@@ -110,4 +110,4 @@ The website uses smooth scroll navigation to these sections:
 
 ## 📄 License
 
-© 2024 Tech For Decorators. Built on Claris FileMaker.
+© 2026 Shop Titan
