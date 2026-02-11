@@ -97,7 +97,7 @@ export default function PlatformSection() {
                             className={`lg:col-span-6 transition-all duration-700 delay-200 ${diagramVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                                 }`}
                         >
-                            <div className="bg-surface/30 dark:bg-gray-900/30 rounded-3xl p-6 md:p-10 border border-structural-border dark:border-gray-800 relative overflow-hidden">
+                            <div className="bg-surface/30 dark:bg-gray-900/30 rounded-3xl p-4 sm:p-6 md:p-10 border border-structural-border dark:border-gray-800 relative overflow-hidden w-full">
                                 <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 blur-[100px] -mr-40 -mt-40"></div>
                                 <motion.div
                                     initial="hidden"

@@ -80,7 +80,7 @@ export default function FeaturesSection() {
                     </div>
 
                     {/* Right Column - Scrolling Content */}
-                    <div className="lg:col-span-8 space-y-24">
+                    <div className="lg:col-span-8 space-y-12 md:space-y-24">
                         {/* Feature 1: Job Tracking */}
                         <motion.div
                             id="feature-0"

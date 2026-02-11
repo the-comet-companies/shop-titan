@@ -246,29 +246,7 @@ export default function ProductShowcaseSection() {
                         <p className="text-lg md:text-xl text-secondary-text dark:text-gray-400 mb-6 md:mb-8 leading-relaxed">
                             We neutralize the Print-on-Demand threat by making one-piece orders as easy to process as bulk orders. Our system treats single units as a first-class workflow, removing the manual overhead that kills small-order margins.
                         </p>
-                        <div className="relative py-6 md:py-8 px-4 border border-structural-border dark:border-gray-800 rounded-xl bg-surface dark:bg-gray-900/30">
-                            <div className="flex flex-wrap items-center justify-between gap-3 md:gap-4 text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-secondary-text">
-                                <div className="flex items-center gap-1 text-primary">
-                                    <span className="material-symbols-outlined text-xs">download</span> Intake
-                                </div>
-                                <span className="material-symbols-outlined text-xs hidden sm:inline">arrow_forward</span>
-                                <div className="flex items-center gap-1">
-                                    <span className="material-symbols-outlined text-xs">visibility</span> Proofing
-                                </div>
-                                <span className="material-symbols-outlined text-xs hidden sm:inline">arrow_forward</span>
-                                <div className="flex items-center gap-1">
-                                    <span className="material-symbols-outlined text-xs">print</span> Production
-                                </div>
-                                <span className="material-symbols-outlined text-xs hidden sm:inline">arrow_forward</span>
-                                <div className="flex items-center gap-1">
-                                    <span className="material-symbols-outlined text-xs">package_2</span> Fulfillment
-                                </div>
-                                <span className="material-symbols-outlined text-xs hidden sm:inline">arrow_forward</span>
-                                <div className="flex items-center gap-1">
-                                    <span className="material-symbols-outlined text-xs">mail</span> Updates
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
 
                     {/* UI Mockup */}
@@ -346,6 +324,37 @@ export default function ProductShowcaseSection() {
                         </BrowserFrame>
                     </motion.div>
                 </div>
+
+                {/* Intake Flow - Full Width */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="relative py-8 md:py-10 px-6 border border-structural-border dark:border-gray-800 rounded-xl bg-surface dark:bg-gray-900/30 mt-12 md:mt-16"
+                >
+                    <div className="flex flex-wrap items-center justify-between gap-4 md:gap-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-secondary-text max-w-4xl mx-auto">
+                        <div className="flex items-center gap-2 text-primary">
+                            <span className="material-symbols-outlined text-base">download</span> Intake
+                        </div>
+                        <span className="material-symbols-outlined text-sm text-gray-300 hidden sm:inline">arrow_forward</span>
+                        <div className="flex items-center gap-2">
+                            <span className="material-symbols-outlined text-base">visibility</span> Proofing
+                        </div>
+                        <span className="material-symbols-outlined text-sm text-gray-300 hidden sm:inline">arrow_forward</span>
+                        <div className="flex items-center gap-2">
+                            <span className="material-symbols-outlined text-base">print</span> Production
+                        </div>
+                        <span className="material-symbols-outlined text-sm text-gray-300 hidden sm:inline">arrow_forward</span>
+                        <div className="flex items-center gap-2">
+                            <span className="material-symbols-outlined text-base">package_2</span> Fulfillment
+                        </div>
+                        <span className="material-symbols-outlined text-sm text-gray-300 hidden sm:inline">arrow_forward</span>
+                        <div className="flex items-center gap-2">
+                            <span className="material-symbols-outlined text-base">mail</span> Updates
+                        </div>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );
