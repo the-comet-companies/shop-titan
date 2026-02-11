@@ -19,7 +19,29 @@
   }
 
   html {
-    @apply scroll-smooth;
+    /* @apply scroll-smooth; - Removing native scroll-smooth to let Lenis handle it */
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background-light dark:bg-background-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-charcoal/20 dark:bg-white/20 rounded-full border-4 border-solid border-background-light dark:border-background-dark;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-charcoal/40 dark:bg-white/40;
+  }
+
+  /* Selection Color */
+  ::selection {
+    @apply bg-primary/30 text-charcoal dark:text-white;
   }
 }
 

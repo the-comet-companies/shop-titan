@@ -1,6 +1,8 @@
 'use client';
 
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import BrowserFrame from '@/components/ui/BrowserFrame';
+import { motion } from 'framer-motion';
 
 export default function ProductShowcaseSection() {
     const { elementRef: section1Ref, isVisible: section1Visible } = useScrollAnimation();
@@ -58,51 +60,67 @@ export default function ProductShowcaseSection() {
                     </div>
 
                     {/* UI Mockup */}
-                    <div className="ui-snippet p-4 md:p-6 shadow-2xl">
-                        <div className="flex items-center justify-between mb-4 md:mb-6 border-b border-structural-border dark:border-gray-800 pb-4">
-                            <div className="flex items-center gap-2">
-                                <div className="w-3 h-3 rounded-full bg-red-400/20"></div>
-                                <div className="w-3 h-3 rounded-full bg-amber-400/20"></div>
-                                <div className="w-3 h-3 rounded-full bg-green-400/20"></div>
-                            </div>
-                            <div className="text-[10px] font-mono text-secondary-text uppercase tracking-widest">
-                                Workflow Engine v4.2
-                            </div>
-                        </div>
-                        <div className="space-y-4">
-                            <div className="p-3 bg-background-light dark:bg-gray-900/50 rounded flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-2 h-8 bg-primary rounded-full"></div>
-                                    <span className="text-sm font-medium dark:text-gray-300">
-                                        Auto-Approve Art if MD5 Matches
-                                    </span>
+                    <motion.div
+                        className="shadow-2xl rounded-xl"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.4 }}
+                    >
+                        <BrowserFrame url="app.shoptitan.com/workflow">
+                            <div className="p-4 md:p-6 bg-background-light dark:bg-black/90 min-h-[300px]">
+                                <div className="space-y-4">
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.3 }}
+                                        className="p-3 bg-white dark:bg-gray-800/50 rounded flex items-center justify-between border border-structural-border dark:border-gray-700"
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-2 h-8 bg-primary rounded-full animate-pulse"></div>
+                                            <span className="text-sm font-medium dark:text-gray-300">
+                                                Auto-Approve Art if MD5 Matches
+                                            </span>
+                                        </div>
+                                        <span className="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded flex items-center gap-1">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Active
+                                        </span>
+                                    </motion.div>
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.5 }}
+                                        className="p-3 bg-white dark:bg-gray-800/50 rounded flex items-center justify-between border border-structural-border dark:border-gray-700"
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-2 h-8 bg-gray-300 rounded-full"></div>
+                                            <span className="text-sm font-medium dark:text-gray-300">
+                                                Skip Shipping Intake (Pre-labeled)
+                                            </span>
+                                        </div>
+                                        <span className="text-[10px] bg-gray-200 text-gray-500 px-2 py-1 rounded">
+                                            System
+                                        </span>
+                                    </motion.div>
+                                    <div className="mt-6 md:mt-8 pt-4 border-t border-structural-border dark:border-gray-800">
+                                        <div className="flex justify-between text-[11px] text-secondary-text mb-2 font-mono uppercase">
+                                            <span>Touchpoints per Order</span>
+                                            <span>-64% reduction</span>
+                                        </div>
+                                        <div className="w-full bg-structural-border dark:bg-gray-800 h-2 rounded-full overflow-hidden">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: "36%" }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+                                                className="bg-primary h-full"
+                                            ></motion.div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <span className="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded">
-                                    Active
-                                </span>
                             </div>
-                            <div className="p-3 bg-background-light dark:bg-gray-900/50 rounded flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-2 h-8 bg-gray-300 rounded-full"></div>
-                                    <span className="text-sm font-medium dark:text-gray-300">
-                                        Skip Shipping Intake (Pre-labeled)
-                                    </span>
-                                </div>
-                                <span className="text-[10px] bg-gray-200 text-gray-500 px-2 py-1 rounded">
-                                    System
-                                </span>
-                            </div>
-                            <div className="mt-6 md:mt-8 pt-4 border-t border-structural-border dark:border-gray-800">
-                                <div className="flex justify-between text-[11px] text-secondary-text mb-2 font-mono uppercase">
-                                    <span>Touchpoints per Order</span>
-                                    <span>-64% reduction</span>
-                                </div>
-                                <div className="w-full bg-structural-border dark:bg-gray-800 h-2 rounded-full overflow-hidden">
-                                    <div className="bg-primary h-full w-[36%]"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </BrowserFrame>
+                    </motion.div>
                 </div>
 
                 {/* Feature 2: Ownership-Level Result */}
@@ -112,47 +130,65 @@ export default function ProductShowcaseSection() {
                         }`}
                 >
                     {/* UI Mockup - Left side on desktop */}
-                    <div className="order-2 lg:order-1 ui-snippet p-6 md:p-8 shadow-2xl bg-surface">
-                        <div className="space-y-6">
-                            <div className="flex gap-4">
-                                <div className="w-1/2 p-4 bg-background-light dark:bg-gray-900 rounded shadow-sm">
-                                    <p className="text-[10px] text-secondary-text uppercase font-bold mb-1">
-                                        Queue Status
-                                    </p>
-                                    <p className="text-2xl font-light text-primary tracking-tight">Healthy</p>
-                                </div>
-                                <div className="w-1/2 p-4 bg-background-light dark:bg-gray-900 rounded shadow-sm">
-                                    <p className="text-[10px] text-secondary-text uppercase font-bold mb-1">
-                                        Escalations
-                                    </p>
-                                    <p className="text-2xl font-light text-charcoal dark:text-white tracking-tight">
-                                        0
-                                    </p>
+                    <motion.div
+                        className="order-2 lg:order-1 shadow-2xl rounded-xl"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.4 }}
+                    >
+                        <BrowserFrame url="app.shoptitan.com/dashboard">
+                            <div className="p-6 md:p-8 bg-background-light dark:bg-black/90 min-h-[300px]">
+                                <div className="space-y-6">
+                                    <div className="flex gap-4">
+                                        <div className="w-1/2 p-4 bg-white dark:bg-gray-800/50 rounded shadow-sm border border-structural-border dark:border-gray-700">
+                                            <p className="text-[10px] text-secondary-text uppercase font-bold mb-1">
+                                                Queue Status
+                                            </p>
+                                            <p className="text-2xl font-light text-primary tracking-tight">Healthy</p>
+                                        </div>
+                                        <div className="w-1/2 p-4 bg-white dark:bg-gray-800/50 rounded shadow-sm border border-structural-border dark:border-gray-700">
+                                            <p className="text-[10px] text-secondary-text uppercase font-bold mb-1">
+                                                Escalations
+                                            </p>
+                                            <p className="text-2xl font-light text-charcoal dark:text-white tracking-tight">
+                                                0
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="p-6 bg-white dark:bg-gray-800/50 rounded shadow-sm border border-structural-border dark:border-gray-700">
+                                        <p className="text-[10px] text-secondary-text uppercase font-bold mb-4">
+                                            Operator Pulse
+                                        </p>
+                                        <div className="space-y-3">
+                                            <div className="flex justify-between items-center text-xs">
+                                                <span className="dark:text-gray-300">Machine A</span>
+                                                <span className="text-green-500 font-mono">142u/hr</span>
+                                            </div>
+                                            <div className="w-full h-1 bg-structural-border dark:bg-gray-800 rounded-full">
+                                                <motion.div
+                                                    initial={{ width: 0 }}
+                                                    whileInView={{ width: "85%" }}
+                                                    transition={{ duration: 1, ease: "easeOut" }}
+                                                    className="h-full bg-green-500 rounded-full"
+                                                ></motion.div>
+                                            </div>
+                                            <div className="flex justify-between items-center text-xs">
+                                                <span className="dark:text-gray-300">Machine B</span>
+                                                <span className="text-green-500 font-mono">138u/hr</span>
+                                            </div>
+                                            <div className="w-full h-1 bg-structural-border dark:bg-gray-800 rounded-full">
+                                                <motion.div
+                                                    initial={{ width: 0 }}
+                                                    whileInView={{ width: "82%" }}
+                                                    transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+                                                    className="h-full bg-green-500 rounded-full"
+                                                ></motion.div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="p-6 bg-background-light dark:bg-gray-900 rounded shadow-sm">
-                                <p className="text-[10px] text-secondary-text uppercase font-bold mb-4">
-                                    Operator Pulse
-                                </p>
-                                <div className="space-y-3">
-                                    <div className="flex justify-between items-center text-xs">
-                                        <span className="dark:text-gray-300">Machine A</span>
-                                        <span className="text-green-500 font-mono">142u/hr</span>
-                                    </div>
-                                    <div className="w-full h-1 bg-structural-border dark:bg-gray-800 rounded-full">
-                                        <div className="w-[85%] h-full bg-green-500"></div>
-                                    </div>
-                                    <div className="flex justify-between items-center text-xs">
-                                        <span className="dark:text-gray-300">Machine B</span>
-                                        <span className="text-green-500 font-mono">138u/hr</span>
-                                    </div>
-                                    <div className="w-full h-1 bg-structural-border dark:bg-gray-800 rounded-full">
-                                        <div className="w-[82%] h-full bg-green-500"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </BrowserFrame>
+                    </motion.div>
 
                     {/* Content - Right side on desktop */}
                     <div className="order-1 lg:order-2">
@@ -236,47 +272,79 @@ export default function ProductShowcaseSection() {
                     </div>
 
                     {/* UI Mockup */}
-                    <div className="ui-snippet p-4 md:p-6 shadow-2xl">
-                        <div className="space-y-4">
-                            <div className="flex items-center gap-4 p-4 border border-primary/10 rounded-lg bg-primary/5">
-                                <div className="w-10 h-10 rounded bg-surface dark:bg-gray-800 flex items-center justify-center shadow-sm">
-                                    <span className="material-symbols-outlined text-primary">shopping_cart</span>
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                    <div className="flex justify-between items-center mb-1 gap-2">
-                                        <span className="text-xs font-bold dark:text-white truncate">
-                                            Shopify Integration: Order #9102
-                                        </span>
-                                        <span className="text-[10px] text-gray-400 flex-shrink-0">0.4s ago</span>
+                    <motion.div
+                        className="shadow-2xl rounded-xl"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.4 }}
+                    >
+                        <BrowserFrame url="app.shoptitan.com/orders/9102">
+                            <div className="p-4 md:p-6 bg-background-light dark:bg-black/90 min-h-[300px]">
+                                <div className="space-y-4">
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.2 }}
+                                        className="flex items-center gap-4 p-4 border border-primary/10 rounded-lg bg-primary/5"
+                                    >
+                                        <div className="w-10 h-10 rounded bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm">
+                                            <span className="material-symbols-outlined text-primary">shopping_cart</span>
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <div className="flex justify-between items-center mb-1 gap-2">
+                                                <span className="text-xs font-bold dark:text-white truncate">
+                                                    Shopify Integration: Order #9102
+                                                </span>
+                                                <span className="text-[10px] text-gray-400 flex-shrink-0">0.4s ago</span>
+                                            </div>
+                                            <div className="text-[11px] text-gray-500 truncate">
+                                                1x Heavyweight Tee (L, Vintage Black) • Direct-to-Garment
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                    <div className="grid grid-cols-3 gap-2">
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            whileInView={{ opacity: 1, scale: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: 0.4 }}
+                                            className="p-3 bg-white dark:bg-gray-900/80 rounded border border-structural-border dark:border-gray-800 text-center"
+                                        >
+                                            <p className="text-[9px] text-gray-400 uppercase mb-1">Art Prep</p>
+                                            <span className="material-symbols-outlined text-green-500 text-lg animate-bounce">
+                                                auto_fix_high
+                                            </span>
+                                        </motion.div>
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            whileInView={{ opacity: 1, scale: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: 0.6 }}
+                                            className="p-3 bg-white dark:bg-gray-900/80 rounded border border-structural-border dark:border-gray-800 text-center"
+                                        >
+                                            <p className="text-[9px] text-gray-400 uppercase mb-1">Stock Check</p>
+                                            <span className="material-symbols-outlined text-green-500 text-lg animate-pulse">
+                                                inventory_2
+                                            </span>
+                                        </motion.div>
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            whileInView={{ opacity: 1, scale: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: 0.8 }}
+                                            className="p-3 bg-white dark:bg-gray-900/80 rounded border border-structural-border dark:border-gray-800 text-center"
+                                        >
+                                            <p className="text-[9px] text-gray-400 uppercase mb-1">Route</p>
+                                            <span className="material-symbols-outlined text-green-500 text-lg">route</span>
+                                        </motion.div>
                                     </div>
-                                    <div className="text-[11px] text-gray-500 truncate">
-                                        1x Heavyweight Tee (L, Vintage Black) • Direct-to-Garment
-                                    </div>
+                                    <p className="text-center text-[11px] text-secondary-text italic">
+                                        No human interaction required until the garment is on the platen.
+                                    </p>
                                 </div>
                             </div>
-                            <div className="grid grid-cols-3 gap-2">
-                                <div className="p-3 bg-background-light dark:bg-gray-900/80 rounded border border-structural-border dark:border-gray-800 text-center">
-                                    <p className="text-[9px] text-gray-400 uppercase mb-1">Art Prep</p>
-                                    <span className="material-symbols-outlined text-green-500 text-lg">
-                                        auto_fix_high
-                                    </span>
-                                </div>
-                                <div className="p-3 bg-background-light dark:bg-gray-900/80 rounded border border-structural-border dark:border-gray-800 text-center">
-                                    <p className="text-[9px] text-gray-400 uppercase mb-1">Stock Check</p>
-                                    <span className="material-symbols-outlined text-green-500 text-lg">
-                                        inventory_2
-                                    </span>
-                                </div>
-                                <div className="p-3 bg-background-light dark:bg-gray-900/80 rounded border border-structural-border dark:border-gray-800 text-center">
-                                    <p className="text-[9px] text-gray-400 uppercase mb-1">Route</p>
-                                    <span className="material-symbols-outlined text-green-500 text-lg">route</span>
-                                </div>
-                            </div>
-                            <p className="text-center text-[11px] text-secondary-text italic">
-                                No human interaction required until the garment is on the platen.
-                            </p>
-                        </div>
-                    </div>
+                        </BrowserFrame>
+                    </motion.div>
                 </div>
             </div>
         </section>

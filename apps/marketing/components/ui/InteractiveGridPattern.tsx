@@ -54,11 +54,16 @@ export default function InteractiveGridPattern({
     );
 }
 
+import { motion } from "framer-motion";
+
 function GridSquare({ className }: { className?: string }) {
     return (
-        <div
+        <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
             className={cn(
-                "h-full w-full border-[0.5px] border-transparent",
+                "h-full w-full border-[0.5px] border-transparent transition-colors duration-500",
                 className
             )}
         />
