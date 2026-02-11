@@ -14,10 +14,10 @@ export default function Home() {
             <Header />
             <main>
                 <HeroSection />
-                <PainPointSection />
                 <PlatformSection />
                 <ProductShowcaseSection />
                 <FeaturesSection />
+                <PainPointSection />
                 <BlogSection />
                 <ContactSection />
             </main>

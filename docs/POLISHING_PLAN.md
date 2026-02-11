@@ -7,7 +7,7 @@ This document outlines the strategy for elevating the `Tech For Decorators` mark
 ### Dependencies
 To achieve complex, physics-based animations (springs, layout transitions) without bloating our CSS, we will introduce **Framer Motion**.
 
-- [ ] **Install framer-motion**: `npm install framer-motion`
+- [x] **Install framer-motion**: `npm install framer-motion`
 - [ ] **Utility Functions**: Ensure `cn` (classNames) helper is robust for merging Tailwind classes with dynamic animation classes.
 
 ### Global polish

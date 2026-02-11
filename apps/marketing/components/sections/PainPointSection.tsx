@@ -1,120 +1,194 @@
 'use client';
 
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useRef, useState } from 'react';
+import { motion, useInView, Variants } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 export default function PainPointSection() {
-    const { elementRef, isVisible } = useScrollAnimation();
+    const containerRef = useRef(null);
+    const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
     const painPoints = [
         {
             time: "9:30 am",
-            icon: "content_copy",
             description: "Production manager copying order details from emails into 4 different spreadsheets.",
-            delay: "delay-100"
         },
         {
             time: "1:15 pm",
-            icon: "search",
             description: "Team lead hunting through folders for artwork files from a job sent two weeks ago.",
-            delay: "delay-200"
         },
         {
             time: "5:45 pm",
-            icon: "edit_note",
             description: "Your best decorator manually updating inventory counts instead of running the next batch.",
-            delay: "delay-300"
         }
     ];
 
+    const containerVariants: Variants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants: Variants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 20
+            }
+        }
+    };
+
     return (
         <section
-            ref={elementRef}
             className="relative py-16 md:py-24 lg:py-32 bg-background-light dark:bg-background-dark overflow-hidden"
         >
-            {/* Gradient Blob Background */}
-            <div className="absolute top-0 right-0 w-[500px] md:w-[800px] h-[500px] md:h-[800px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[120px] -z-10"></div>
+            {/* Gradient Blob Background - Animated */}
+            <motion.div
+                animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.05, 0.08, 0.05]
+                }}
+                transition={{
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+                className="absolute top-0 right-0 w-[500px] md:w-[800px] h-[500px] md:h-[800px] bg-primary rounded-full blur-[120px] -z-10"
+            />
 
             <div className="max-w-6xl mx-auto px-mobile">
                 {/* Main Headline */}
-                <div
-                    className={`text-center max-w-4xl mx-auto mb-16 md:mb-20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                        }`}
+                <motion.div
+                    ref={containerRef}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    variants={containerVariants}
+                    className="text-center max-w-4xl mx-auto mb-16 md:mb-20"
                 >
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white mb-6 leading-tight tracking-tight">
+                    <motion.h2
+                        variants={itemVariants}
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white mb-6 leading-tight tracking-tight"
+                    >
                         Your best people are stuck doing low-value work.
-                    </h2>
-                </div>
+                    </motion.h2>
 
-                {/* Pain Point Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16">
-                    {painPoints.map((point, index) => (
-                        <div
-                            key={index}
-                            className={`feature-card p-6 md:p-8 rounded-2xl transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                                } ${point.delay}`}
-                        >
-                            {/* Clock Icon with Time */}
-                            <div className="mb-6 flex items-center gap-3">
-                                <div className="relative w-16 h-16">
-                                    {/* Clock Circle */}
-                                    <svg
-                                        className="w-full h-full text-structural-border dark:text-gray-800"
-                                        viewBox="0 0 100 100"
-                                    >
-                                        <circle
-                                            cx="50"
-                                            cy="50"
-                                            r="48"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                        />
-                                        {/* Clock Hands - Simple representation */}
-                                        <line
-                                            x1="50"
-                                            y1="50"
-                                            x2="50"
-                                            y2="25"
-                                            stroke="currentColor"
-                                            strokeWidth="3"
-                                            strokeLinecap="round"
-                                            className="text-charcoal dark:text-gray-400"
-                                        />
-                                        <line
-                                            x1="50"
-                                            y1="50"
-                                            x2="70"
-                                            y2="50"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            className="text-charcoal dark:text-gray-400"
-                                        />
-                                    </svg>
+
+                    {/* Pain Point Cards */}
+                    <motion.div
+                        variants={containerVariants}
+                        className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16"
+                    >
+                        {painPoints.map((point, index) => (
+                            <SpotlightCard key={index} variants={itemVariants}>
+                                {/* Clock Icon with Time */}
+                                <div className="mb-6 flex items-center gap-3">
+                                    <div className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-background-light/50 dark:bg-white/5 rounded-full border border-structural-border dark:border-white/10">
+                                        {/* Animated Clock Icon */}
+                                        <div className="w-6 h-6 md:w-8 md:h-8 relative">
+                                            <div className="absolute inset-0 border-2 border-charcoal/30 dark:border-white/30 rounded-full"></div>
+                                            <motion.div
+                                                className="absolute top-1/2 left-1/2 w-[1px] h-1/2 bg-charcoal dark:bg-white origin-bottom"
+                                                style={{ left: '50%', top: '0' }}
+                                                animate={{ rotate: 360 }}
+                                                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                                            />
+                                            <motion.div
+                                                className="absolute top-1/2 left-1/2 w-[1px] h-1/3 bg-charcoal dark:bg-white origin-bottom"
+                                                style={{ left: '50%', top: '16.66%' }}
+                                                animate={{ rotate: 360 }}
+                                                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <span className="text-lg md:text-xl font-semibold text-charcoal dark:text-white font-mono">
+                                        {point.time}
+                                    </span>
                                 </div>
-                                <span className="text-lg md:text-xl font-semibold text-charcoal dark:text-white">
-                                    {point.time}
-                                </span>
-                            </div>
 
-                            {/* Description */}
-                            <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed">
-                                {point.description}
-                            </p>
-                        </div>
-                    ))}
-                </div>
+                                {/* Description */}
+                                <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed">
+                                    {point.description}
+                                </p>
+                            </SpotlightCard>
+                        ))}
+                    </motion.div>
 
-                {/* Bottom Message */}
-                <div
-                    className={`text-center transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                        }`}
-                >
-                    <p className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-400 dark:text-gray-600">
-                        We can automate all of this and give you hours back every day.
-                    </p>
-                </div>
+                    {/* Bottom Message */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="text-center"
+                    >
+                        <p className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-400 dark:text-gray-600">
+                            We can automate all of this and give you hours back every day.
+                        </p>
+                    </motion.div>
+                </motion.div>
             </div>
         </section>
+    );
+}
+
+function SpotlightCard({ children, variants }: { children: React.ReactNode, variants?: any }) {
+    const divRef = useRef<HTMLDivElement>(null);
+    const [isFocused, setIsFocused] = useState(false);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [opacity, setOpacity] = useState(0);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!divRef.current) return;
+
+        const div = divRef.current;
+        const rect = div.getBoundingClientRect();
+
+        setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    };
+
+    const handleFocus = () => {
+        setIsFocused(true);
+        setOpacity(1);
+    };
+
+    const handleBlur = () => {
+        setIsFocused(false);
+        setOpacity(0);
+    };
+
+    const handleMouseEnter = () => {
+        setOpacity(1);
+    };
+
+    const handleMouseLeave = () => {
+        setOpacity(0);
+    };
+
+    return (
+        <motion.div
+            ref={divRef}
+            variants={variants}
+            onMouseMove={handleMouseMove}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            className="group relative flex flex-col justify-start overflow-hidden rounded-2xl border border-structural-border dark:border-white/10 bg-surface dark:bg-white/5 p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
+        >
+            <div
+                className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
+                style={{
+                    background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.06), transparent 40%)`,
+                }}
+            />
+            <div className="relative z-10">
+                {children}
+            </div>
+        </motion.div>
     );
 }

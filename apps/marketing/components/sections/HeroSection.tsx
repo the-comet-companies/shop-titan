@@ -2,6 +2,7 @@
 
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import AnimatedGradientBackground from '@/components/AnimatedGradientBackground';
+import InteractiveGridPattern from '@/components/ui/InteractiveGridPattern';
 
 export default function HeroSection() {
     const { elementRef: whyRef, isVisible: whyVisible } = useScrollAnimation();
@@ -23,19 +24,20 @@ export default function HeroSection() {
             <div className="relative overflow-hidden pt-20 pb-12 md:pt-28 md:pb-20 lg:pb-28">
                 <div className="max-w-6xl mx-auto px-mobile relative z-10">
                     <div className="max-w-3xl text-left">
-                        <p className="text-xl sm:text-2xl md:text-[2.5rem] lg:text-[2.75rem] text-charcoal dark:text-white mb-8 md:mb-12 leading-relaxed sm:leading-normal md:leading-[1.55] tracking-tight font-semibold opacity-0 animate-fade-in-up">
-                            Unify your production. One platform for high-volume decorators to
-                            manage orders, inventory, and automation—from intake to fulfillment,
-                            without the friction.
+                        <p className="text-xl sm:text-2xl md:text-[2.5rem] lg:text-[2.75rem] text-secondary-text dark:text-gray-400 mb-8 md:mb-12 leading-relaxed sm:leading-normal md:leading-[1.55] tracking-tight font-medium opacity-0 animate-fade-in-up">
+                            <span className="text-charcoal dark:text-white">Unify your production.</span> One
+                            platform for high-volume decorators to manage orders, inventory, and
+                            automation—from intake to fulfillment, <span className="text-charcoal dark:text-white">without the friction.</span>
                         </p>
 
-                        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-start opacity-0 animate-fade-in-up delay-200">
-                            <button className="group relative bg-primary text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-semibold transition-all duration-300 text-base md:text-lg shadow-lg shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 hover:scale-105 overflow-hidden focus-primary tap-target w-full sm:w-auto">
-                                <span className="relative z-10">Get Started Now</span>
-                                <div className="absolute inset-0 bg-gradient-to-r from-primary via-purple-500 to-primary bg-[length:200%_100%] opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-[shimmer_3s_linear_infinite]"></div>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-start opacity-0 animate-fade-in-up delay-200">
+                            <button className="group relative backdrop-blur-xl bg-white/5 dark:bg-white/5 border border-white/10 hover:border-white/20 text-charcoal dark:text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-medium transition-all duration-300 text-base md:text-lg hover:bg-white/10 hover:scale-105 flex items-center justify-center gap-2 shadow-lg shadow-black/5">
+                                <span>Get Started Now</span>
+                                <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
                             </button>
-                            <button className="glass-button px-8 md:px-10 py-3 md:py-4 rounded-full font-semibold text-charcoal dark:text-white hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300 text-base md:text-lg hover:scale-105 hover:shadow-xl focus-primary tap-target w-full sm:w-auto">
-                                Contact Sales
+                            <button className="group relative backdrop-blur-xl bg-transparent border border-white/10 hover:border-white/20 text-charcoal dark:text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-medium transition-all duration-300 text-base md:text-lg hover:bg-white/5 hover:scale-105 flex items-center justify-center gap-2">
+                                <span>Contact Sales</span>
+                                <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
                             </button>
                         </div>
                     </div>
@@ -63,6 +65,12 @@ export default function HeroSection() {
 
                 {/* Animated Gradient Background - only for hero area */}
                 <AnimatedGradientBackground />
+                <InteractiveGridPattern
+                    width={80}
+                    height={80}
+                    className="opacity-[0.4] dark:opacity-[0.5]"
+                    squaresClassName="hover:bg-primary/40"
+                />
             </div>
 
             {/* Why This System Exists - separate from animated background */}
