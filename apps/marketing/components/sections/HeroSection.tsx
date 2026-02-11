@@ -66,10 +66,9 @@ export default function HeroSection() {
                 {/* Animated Gradient Background - only for hero area */}
                 <AnimatedGradientBackground />
                 <InteractiveGridPattern
-                    width={80}
-                    height={80}
+                    width={140}
+                    height={140}
                     className="opacity-[0.4] dark:opacity-[0.5]"
-                    squaresClassName="hover:bg-primary/40"
                 />
             </div>
 

@@ -55,22 +55,12 @@ export default function InteractiveGridPattern({
 }
 
 function GridSquare({ className }: { className?: string }) {
-    const [active, setActive] = useState(false);
-
     return (
         <div
             className={cn(
-                "h-full w-full border-[0.5px] border-transparent transition-colors duration-500",
-                active ? "bg-primary/30 dark:bg-primary/40 border-primary/30" : "bg-transparent",
+                "h-full w-full border-[0.5px] border-transparent",
                 className
             )}
-            onMouseEnter={() => {
-                setActive(true);
-            }}
-            onMouseLeave={() => {
-                // Delay the fade out to create a trail effect
-                setTimeout(() => setActive(false), 200);
-            }}
         />
     );
 }
