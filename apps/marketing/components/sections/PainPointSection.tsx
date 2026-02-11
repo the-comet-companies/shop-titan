@@ -34,14 +34,16 @@ export default function PainPointSection() {
     };
 
     const itemVariants: Variants = {
-        hidden: { y: 20, opacity: 0 },
+        hidden: { y: 30, opacity: 0, scale: 0.95 },
         visible: {
             y: 0,
             opacity: 1,
+            scale: 1,
             transition: {
                 type: "spring",
-                stiffness: 100,
-                damping: 20
+                stiffness: 70,
+                damping: 20,
+                mass: 1
             }
         }
     };
@@ -108,9 +110,16 @@ export default function PainPointSection() {
                                             />
                                         </div>
                                     </div>
-                                    <span className="text-lg md:text-xl font-semibold text-charcoal dark:text-white font-mono">
+                                    <motion.span
+                                        className="text-lg md:text-xl font-semibold text-charcoal dark:text-white font-mono"
+                                        animate={{
+                                            textShadow: ["0 0 0px rgba(239,68,68,0)", "0 0 8px rgba(239,68,68,0.4)", "0 0 0px rgba(239,68,68,0)"],
+                                            color: ["#1D1D1F", "#3F1D1F", "#1D1D1F"]
+                                        }}
+                                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
+                                    >
                                         {point.time}
-                                    </span>
+                                    </motion.span>
                                 </div>
 
                                 {/* Description */}

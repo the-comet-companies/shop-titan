@@ -1,6 +1,7 @@
 'use client';
 
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { motion } from 'framer-motion';
 
 export default function PlatformSection() {
     const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
@@ -98,9 +99,24 @@ export default function PlatformSection() {
                         >
                             <div className="bg-surface/30 dark:bg-gray-900/30 rounded-3xl p-6 md:p-10 border border-structural-border dark:border-gray-800 relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 blur-[100px] -mr-40 -mt-40"></div>
-                                <div className="relative z-10 grid grid-cols-1 gap-4 max-w-md mx-auto">
+                                <motion.div
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    variants={{
+                                        hidden: { opacity: 0 },
+                                        visible: { opacity: 1, transition: { staggerChildren: 0.3 } }
+                                    }}
+                                    className="relative z-10 grid grid-cols-1 gap-0 max-w-md mx-auto"
+                                >
                                     {/* Level 1 - Ownership */}
-                                    <div className="bg-surface dark:bg-gray-900 p-6 rounded-2xl border border-structural-border dark:border-gray-800 border-l-4 border-l-gray-300">
+                                    <motion.div
+                                        variants={{
+                                            hidden: { y: 20, opacity: 0, scale: 0.9 },
+                                            visible: { y: 0, opacity: 1, scale: 1, transition: { type: "spring", stiffness: 50 } }
+                                        }}
+                                        className="bg-surface dark:bg-gray-900 p-6 rounded-2xl border border-structural-border dark:border-gray-800 border-l-4 border-l-gray-300 z-30 relative"
+                                    >
                                         <div className="flex items-center justify-between mb-4">
                                             <div className="flex items-center gap-3">
                                                 <span className="material-symbols-outlined text-2xl text-primary/70">
@@ -128,15 +144,27 @@ export default function PlatformSection() {
                                                 Growth ROI
                                             </span>
                                         </div>
-                                    </div>
+                                    </motion.div>
 
                                     {/* Connector */}
-                                    <div className="flex justify-center -my-2 relative z-0">
-                                        <div className="w-px h-8 bg-gray-200 dark:bg-gray-700"></div>
+                                    <div className="flex justify-center relative z-0 h-8">
+                                        <motion.div
+                                            variants={{
+                                                hidden: { height: 0, opacity: 0 },
+                                                visible: { height: "100%", opacity: 1, transition: { duration: 0.4 } }
+                                            }}
+                                            className="w-px bg-gray-200 dark:bg-gray-700"
+                                        />
                                     </div>
 
                                     {/* Level 2 - Management */}
-                                    <div className="bg-surface dark:bg-gray-900 p-6 rounded-2xl border border-structural-border dark:border-gray-800 border-l-4 border-l-gray-300">
+                                    <motion.div
+                                        variants={{
+                                            hidden: { y: 20, opacity: 0, scale: 0.9 },
+                                            visible: { y: 0, opacity: 1, scale: 1, transition: { type: "spring", stiffness: 50 } }
+                                        }}
+                                        className="bg-surface dark:bg-gray-900 p-6 rounded-2xl border border-structural-border dark:border-gray-800 border-l-4 border-l-gray-300 z-20 relative"
+                                    >
                                         <div className="flex items-center justify-between mb-4">
                                             <div className="flex items-center gap-3">
                                                 <span className="material-symbols-outlined text-2xl text-primary/70">
@@ -164,15 +192,27 @@ export default function PlatformSection() {
                                                 Staffing
                                             </span>
                                         </div>
-                                    </div>
+                                    </motion.div>
 
                                     {/* Connector */}
-                                    <div className="flex justify-center -my-2 relative z-0">
-                                        <div className="w-px h-8 bg-primary/30"></div>
+                                    <div className="flex justify-center relative z-0 h-8">
+                                        <motion.div
+                                            variants={{
+                                                hidden: { height: 0, opacity: 0 },
+                                                visible: { height: "100%", opacity: 1, transition: { duration: 0.4 } }
+                                            }}
+                                            className="w-px bg-primary/30"
+                                        />
                                     </div>
 
                                     {/* Level 3 - Automation (Highlighted) */}
-                                    <div className="bg-surface dark:bg-gray-900 p-6 rounded-2xl border-l-4 border-l-primary ring-1 ring-primary/5">
+                                    <motion.div
+                                        variants={{
+                                            hidden: { y: 20, opacity: 0, scale: 0.9 },
+                                            visible: { y: 0, opacity: 1, scale: 1, transition: { type: "spring", stiffness: 50 } }
+                                        }}
+                                        className="bg-surface dark:bg-gray-900 p-6 rounded-2xl border-l-4 border-l-primary ring-1 ring-primary/5 z-10 relative"
+                                    >
                                         <div className="flex items-center justify-between mb-4">
                                             <div className="flex items-center gap-3">
                                                 <span className="material-symbols-outlined text-2xl text-primary">
@@ -209,8 +249,8 @@ export default function PlatformSection() {
                                                 Real-time Status Synchronization
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </motion.div>
+                                </motion.div>
                             </div>
                         </div>
                     </div>

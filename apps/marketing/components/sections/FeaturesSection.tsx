@@ -1,391 +1,355 @@
 'use client';
 
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
 
 export default function FeaturesSection() {
-    const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
-    const { elementRef: card1Ref, isVisible: card1Visible } = useScrollAnimation();
-    const { elementRef: card2Ref, isVisible: card2Visible } = useScrollAnimation();
-    const { elementRef: card3Ref, isVisible: card3Visible } = useScrollAnimation();
-    const { elementRef: card4Ref, isVisible: card4Visible } = useScrollAnimation();
+    const [activeFeature, setActiveFeature] = useState(0);
+
+    // Smooth scroll to feature
+    const scrollToFeature = (index: number) => {
+        const element = document.getElementById(`feature-${index}`);
+        if (element) {
+            // Offset for sticky header if needed, though we have a side nav now
+            const y = element.getBoundingClientRect().top + window.scrollY - 100;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+    };
+
+    const features = [
+        { title: "Job Tracking", id: "tracking" },
+        { title: "Inventory Management", id: "inventory" },
+        { title: "Client Approvals", id: "approvals" },
+        { title: "Automation Layers", id: "automation" }
+    ];
 
     return (
-        <section id="features" className="pt-24 md:pt-32 lg:pt-40 pb-20 md:pb-28 lg:pb-32">
+        <section id="features" className="pt-24 md:pt-32 lg:pt-40 pb-20 md:pb-28 lg:pb-32 bg-background-light dark:bg-background-dark">
             <div className="max-w-7xl mx-auto px-mobile">
-                {/* Header */}
-                <div
-                    ref={headerRef}
-                    className={`mb-16 md:mb-20 lg:mb-24 max-w-3xl transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                        }`}
-                >
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-4 md:mb-6">
-                        Product Capabilities
-                    </span>
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 md:mb-8 tracking-tight text-charcoal dark:text-white">
-                        Engineered for <br />
-                        <span className="text-secondary-text dark:text-gray-600">
-                            Operational Excellence.
-                        </span>
-                    </h1>
-                    <p className="text-base md:text-lg lg:text-xl text-secondary-text dark:text-gray-400 leading-relaxed">
-                        A modular architectural approach to apparel decoration. We didn't
-                        just build features; we solved the fundamental frictions of
-                        high-volume production.
-                    </p>
-                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+                    {/* Left Column - Sticky Header & Nav */}
+                    <div className="lg:col-span-4 lg:sticky lg:top-32 self-start">
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="mb-12"
+                        >
+                            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-4 md:mb-6">
+                                Product Capabilities
+                            </span>
+                            <h1 className="text-4xl sm:text-5xl font-bold leading-[1.1] mb-6 tracking-tight text-charcoal dark:text-white">
+                                Engineered for <br />
+                                <span className="text-secondary-text dark:text-gray-600">
+                                    Operational Excellence.
+                                </span>
+                            </h1>
+                            <p className="text-base text-secondary-text dark:text-gray-400 leading-relaxed max-w-md">
+                                A modular architectural approach to apparel decoration. We didn't
+                                just build features; we solved the fundamental frictions.
+                            </p>
+                        </motion.div>
 
-                <div className="space-y-8 md:space-y-12">
-                    {/* Feature 1: Job Tracking */}
-                    <div
-                        ref={card1Ref}
-                        className={`feature-card rounded-2xl md:rounded-3xl overflow-hidden grid lg:grid-cols-2 transition-all duration-700 ${card1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                            }`}
-                    >
-                        <div className="p-8 md:p-12 lg:p-20 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-structural-border dark:border-gray-800">
-                            <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
-                                <span className="material-symbols-outlined">analytics</span>
-                            </div>
-                            <h2 className="text-3xl font-bold mb-6 dark:text-white">
-                                Job Tracking
-                            </h2>
-                            <div className="space-y-8">
-                                <div>
-                                    <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                        The Problem Eliminated
-                                    </h4>
-                                    <p className="text-secondary-text dark:text-gray-400">
-                                        "Where is order #492?" phone calls and physical job jackets
-                                        getting lost between the office and the press.
-                                    </p>
-                                </div>
-                                <div>
-                                    <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                        What Changes After
-                                    </h4>
-                                    <p className="text-secondary-text dark:text-gray-400">
-                                        Real-time digital status updates at every stage. Every
-                                        garment's journey is logged, visible, and searchable by
-                                        anyone on the team.
-                                    </p>
-                                </div>
-                                <div className="pt-4 border-t border-structural-border dark:border-gray-800">
-                                    <p className="text-sm font-medium text-secondary-text dark:text-gray-400">
-                                        <span className="text-charcoal dark:text-white">
-                                            Best for:
-                                        </span>{" "}
-                                        Production Managers & Customer Service teams.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Mock UI */}
-                        <div className="bg-background-light dark:bg-black p-8 lg:p-12 flex items-center justify-center">
-                            <div className="ui-snippet w-full shadow-2xl overflow-hidden">
-                                <div className="h-10 bg-surface dark:bg-gray-900 border-b border-structural-border dark:border-gray-800 px-4 flex items-center gap-2">
-                                    <div className="flex gap-1.5">
-                                        <div className="w-2.5 h-2.5 rounded-full bg-red-400/20"></div>
-                                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/20"></div>
-                                        <div className="w-2.5 h-2.5 rounded-full bg-green-400/20"></div>
-                                    </div>
-                                    <span className="text-[10px] text-gray-400 font-mono ml-2 uppercase tracking-widest">
-                                        FileMaker Pro - Production_Main
+                        {/* Desktop Navigation */}
+                        <div className="hidden lg:flex flex-col gap-2 relative">
+                            {features.map((feature, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => scrollToFeature(index)}
+                                    className={cn(
+                                        "text-left py-3 px-4 rounded-lg text-sm font-bold transition-all duration-300 relative flex items-center gap-3",
+                                        activeFeature === index
+                                            ? "text-primary bg-primary/5"
+                                            : "text-gray-400 hover:text-charcoal dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                    )}
+                                >
+                                    {activeFeature === index && (
+                                        <motion.div
+                                            layoutId="activeFeatureIndicator"
+                                            className="absolute left-0 w-1 h-6 bg-primary rounded-r-full"
+                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                        />
+                                    )}
+                                    <span className={cn("transition-transform duration-300", activeFeature === index ? "translate-x-2" : "")}>
+                                        {feature.title}
                                     </span>
-                                </div>
-                                <div className="p-6 bg-surface dark:bg-gray-950">
-                                    <div className="flex justify-between items-center mb-6">
-                                        <div className="flex items-center gap-4">
-                                            <div className="px-3 py-1 bg-green-500/10 text-green-600 text-[10px] font-bold rounded">
-                                                IN PRODUCTION
-                                            </div>
-                                            <h3 className="font-bold text-sm dark:text-white">
-                                                Job #9928 - Custom Tees
-                                            </h3>
-                                        </div>
-                                        <span className="text-[10px] text-gray-400">
-                                            ETA: 4:00 PM
-                                        </span>
-                                    </div>
-                                    <div className="space-y-3">
-                                        <div className="flex items-center justify-between p-3 rounded bg-background-light dark:bg-gray-900 text-xs border border-structural-border dark:border-gray-800">
-                                            <span className="text-secondary-text">Separations</span>
-                                            <span className="font-medium text-green-500">
-                                                Verified
-                                            </span>
-                                        </div>
-                                        <div className="flex items-center justify-between p-3 rounded bg-background-light dark:bg-gray-900 text-xs border border-structural-border dark:border-gray-800">
-                                            <span className="text-secondary-text">Screen Burning</span>
-                                            <span className="font-medium text-green-500">
-                                                Completed
-                                            </span>
-                                        </div>
-                                        <div className="flex items-center justify-between p-3 rounded bg-primary/5 text-xs border border-primary/20">
-                                            <span className="text-primary font-semibold">
-                                                Press Stage
-                                            </span>
-                                            <span className="font-medium text-primary">
-                                                82% (410/500 units)
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                </button>
+                            ))}
                         </div>
                     </div>
 
-                    {/* Feature 2: Inventory Management */}
-                    <div
-                        ref={card2Ref}
-                        className={`feature-card rounded-3xl overflow-hidden grid lg:grid-cols-2 transition-all duration-700 delay-100 ${card2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                            }`}
-                    >
-                        <div className="order-2 lg:order-1 bg-background-light dark:bg-black p-8 lg:p-12 flex items-center justify-center">
-                            <div className="ui-snippet w-full shadow-2xl overflow-hidden">
-                                <div className="h-10 bg-surface dark:bg-gray-900 border-b border-structural-border dark:border-gray-800 px-4 flex items-center">
-                                    <span className="text-[10px] text-gray-400 font-mono uppercase tracking-widest">
-                                        Inventory_Matrix_v4
-                                    </span>
+                    {/* Right Column - Scrolling Content */}
+                    <div className="lg:col-span-8 space-y-24">
+                        {/* Feature 1: Job Tracking */}
+                        <motion.div
+                            id="feature-0"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-20%" }}
+                            onViewportEnter={() => setActiveFeature(0)}
+                            transition={{ duration: 0.6 }}
+                            className="feature-card rounded-2xl md:rounded-3xl overflow-hidden grid md:grid-cols-2 border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl"
+                        >
+                            <div className="p-8 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-structural-border dark:border-gray-800">
+                                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
+                                    <span className="material-symbols-outlined">analytics</span>
                                 </div>
-                                <div className="p-6 bg-surface dark:bg-gray-950">
-                                    <div className="grid grid-cols-4 gap-2 mb-6">
-                                        <div className="h-12 bg-background-light dark:bg-gray-900 rounded border border-structural-border dark:border-gray-800 flex flex-col items-center justify-center">
-                                            <span className="text-[9px] text-gray-400">S</span>
-                                            <span className="text-xs font-bold dark:text-white">
-                                                142
-                                            </span>
+                                <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
+                                    Job Tracking
+                                </h2>
+                                <div className="space-y-6">
+                                    <div>
+                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
+                                            The Problem Eliminated
+                                        </h4>
+                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+                                            "Where is order #492?" phone calls and physical job jackets
+                                            getting lost between the office and the press.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
+                                            What Changes After
+                                        </h4>
+                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+                                            Real-time digital status updates at every stage. Every
+                                            garment's journey is logged, visible, and searchable.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-background-light dark:bg-black/50 p-8 flex items-center justify-center">
+                                {/* Mock UI - Kept Simplified */}
+                                <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg overflow-hidden border border-structural-border dark:border-gray-800">
+                                    <div className="h-8 bg-gray-100 dark:bg-gray-900 border-b border-structural-border dark:border-gray-800 px-3 flex items-center gap-2">
+                                        <div className="w-2 h-2 rounded-full bg-red-400"></div>
+                                        <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
+                                        <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                                    </div>
+                                    <div className="p-4 space-y-3">
+                                        <div className="flex justify-between items-center pb-3 border-b border-dashed border-gray-200 dark:border-gray-800">
+                                            <span className="text-xs font-bold dark:text-white">Job #9928</span>
+                                            <span className="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] rounded-full font-bold">PRODUCTION</span>
                                         </div>
-                                        <div className="h-12 bg-background-light dark:bg-gray-900 rounded border border-structural-border dark:border-gray-800 flex flex-col items-center justify-center">
-                                            <span className="text-[9px] text-gray-400">M</span>
-                                            <span className="text-xs font-bold dark:text-white">
-                                                82
-                                            </span>
+                                        <div className="space-y-2">
+                                            <div className="flex justify-between text-[10px] text-gray-500">
+                                                <span>Separations</span>
+                                                <span className="text-green-500 font-bold">Done</span>
+                                            </div>
+                                            <div className="flex justify-between text-[10px] text-gray-500">
+                                                <span>Screen Burning</span>
+                                                <span className="text-green-500 font-bold">Done</span>
+                                            </div>
+                                            <div className="w-full bg-gray-100 dark:bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                                                <motion.div
+                                                    initial={{ width: 0 }}
+                                                    whileInView={{ width: "82%" }}
+                                                    transition={{ duration: 1.5, delay: 0.2 }}
+                                                    className="bg-primary h-full"
+                                                />
+                                            </div>
                                         </div>
-                                        <div className="h-12 bg-orange-50 dark:bg-orange-900/10 rounded border border-orange-200 dark:border-orange-900/30 flex flex-col items-center justify-center">
-                                            <span className="text-[9px] text-orange-500">L</span>
-                                            <span className="text-xs font-bold text-orange-600">
-                                                4
-                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Feature 2: Inventory Management */}
+                        <motion.div
+                            id="feature-1"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-20%" }}
+                            onViewportEnter={() => setActiveFeature(1)}
+                            transition={{ duration: 0.6 }}
+                            className="feature-card rounded-2xl md:rounded-3xl overflow-hidden grid md:grid-cols-2 border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl"
+                        >
+                            <div className="md:order-last p-8 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-l border-structural-border dark:border-gray-800">
+                                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
+                                    <span className="material-symbols-outlined">inventory</span>
+                                </div>
+                                <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
+                                    Inventory Management
+                                </h2>
+                                <div className="space-y-6">
+                                    <div>
+                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
+                                            The Problem Eliminated
+                                        </h4>
+                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+                                            The "Oh crap, we're out of Large Whites" moment
+                                            mid-production because someone forgot to update the spreadsheet.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
+                                            What Changes After
+                                        </h4>
+                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+                                            Global stock visibility synced with POs. Live inventory levels across all bins, automatically updated.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-background-light dark:bg-black/50 p-8 flex items-center justify-center">
+                                <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-5 border border-structural-border dark:border-gray-800">
+                                    <div className="grid grid-cols-3 gap-2 text-center mb-4">
+                                        <div className="p-2 bg-gray-50 dark:bg-gray-900 rounded border border-gray-100 dark:border-gray-800">
+                                            <div className="text-[10px] text-gray-400">S</div>
+                                            <div className="font-bold dark:text-white">142</div>
                                         </div>
-                                        <div className="h-12 bg-background-light dark:bg-gray-900 rounded border border-structural-border dark:border-gray-800 flex flex-col items-center justify-center">
-                                            <span className="text-[9px] text-gray-400">XL</span>
-                                            <span className="text-xs font-bold dark:text-white">
-                                                210
-                                            </span>
+                                        <div className="p-2 bg-gray-50 dark:bg-gray-900 rounded border border-gray-100 dark:border-gray-800">
+                                            <div className="text-[10px] text-gray-400">M</div>
+                                            <div className="font-bold dark:text-white">82</div>
                                         </div>
+                                        <div className="p-2 bg-red-50 dark:bg-red-900/20 rounded border border-red-100 dark:border-red-900/30">
+                                            <div className="text-[10px] text-red-500">L</div>
+                                            <div className="font-bold text-red-600">4</div>
+                                        </div>
+                                    </div>
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.3 }}
+                                        className="p-2 bg-primary/5 border border-primary/10 rounded flex items-center gap-2"
+                                    >
+                                        <span className="material-symbols-outlined text-primary text-sm animate-spin">sync</span>
+                                        <span className="text-[10px] text-primary font-medium">Syncing with SanMar...</span>
+                                    </motion.div>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Feature 3: Client Approvals */}
+                        <motion.div
+                            id="feature-2"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-20%" }}
+                            onViewportEnter={() => setActiveFeature(2)}
+                            transition={{ duration: 0.6 }}
+                            className="feature-card rounded-2xl md:rounded-3xl overflow-hidden grid md:grid-cols-2 border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl"
+                        >
+                            <div className="p-8 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-structural-border dark:border-gray-800">
+                                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
+                                    <span className="material-symbols-outlined">verified</span>
+                                </div>
+                                <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
+                                    Client Approvals
+                                </h2>
+                                <div className="space-y-6">
+                                    <div>
+                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
+                                            The Problem Eliminated
+                                        </h4>
+                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+                                            Approval delays buried in email threads. Clients approving the wrong version.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
+                                            What Changes After
+                                        </h4>
+                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+                                            Integrated proofing portals. One-click approvals trigger production tickets instantly.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-background-light dark:bg-black/50 p-8 flex items-center justify-center">
+                                <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-5 border border-structural-border dark:border-gray-800 text-center">
+                                    <div className="aspect-video bg-gray-100 dark:bg-gray-900 rounded mb-4 flex items-center justify-center relative overflow-hidden">
+                                        <span className="material-symbols-outlined text-4xl text-gray-300">image</span>
+                                        <motion.div
+                                            initial={{ scale: 0, opacity: 0 }}
+                                            whileInView={{ scale: 1, opacity: 1 }}
+                                            transition={{ type: "spring", delay: 0.4 }}
+                                            className="absolute inset-0 flex items-center justify-center bg-green-500/10 backdrop-blur-[1px]"
+                                        >
+                                            <div className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
+                                                <span className="material-symbols-outlined text-sm">check</span> APPROVED
+                                            </div>
+                                        </motion.div>
+                                    </div>
+                                    <button className="w-full py-2 bg-primary text-white text-xs font-bold rounded opacity-50 cursor-not-allowed">
+                                        Approved by Client
+                                    </button>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Feature 4: Automation Layers */}
+                        <motion.div
+                            id="feature-3"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-20%" }}
+                            onViewportEnter={() => setActiveFeature(3)}
+                            transition={{ duration: 0.6 }}
+                            className="feature-card rounded-2xl md:rounded-3xl overflow-hidden grid md:grid-cols-2 border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl"
+                        >
+                            <div className="md:order-last p-8 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-l border-structural-border dark:border-gray-800">
+                                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
+                                    <span className="material-symbols-outlined">bolt</span>
+                                </div>
+                                <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
+                                    Automation Layers
+                                </h2>
+                                <div className="space-y-6">
+                                    <div>
+                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
+                                            The Problem Eliminated
+                                        </h4>
+                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+                                            Manual data re-entry. Humans doing repetitive tasks that computers can do 10x faster.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
+                                            What Changes After
+                                        </h4>
+                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+                                            Your software works for you. Automated alerts, shipping labels, and P&L calculations.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-background-light dark:bg-black/50 p-8 flex items-center justify-center">
+                                <div className="w-full font-mono text-[10px] bg-gray-900 text-gray-300 p-4 rounded-lg shadow-xl border border-gray-800">
+                                    <div className="flex gap-2 mb-2 opacity-50">
+                                        <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                                        <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
                                     </div>
                                     <div className="space-y-2">
-                                        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">
-                                            Incoming Purchase Orders
-                                        </div>
-                                        <div className="p-2 border border-structural-border dark:border-gray-800 rounded flex justify-between items-center text-[11px]">
-                                            <span className="font-medium dark:text-white">
-                                                PO #882 - SanMar
-                                            </span>
-                                            <span className="text-gray-400 italic">
-                                                Arriving Tue
-                                            </span>
-                                        </div>
+                                        <motion.div
+                                            initial={{ opacity: 0, x: -10 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.2 }}
+                                        >
+                                            <span className="text-purple-400">IF</span> status == <span className="text-green-400">"Approved"</span>:
+                                        </motion.div>
+                                        <motion.div
+                                            initial={{ opacity: 0, x: -10 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.4 }}
+                                            className="pl-4"
+                                        >
+                                            <span className="text-blue-400">await</span> shipstation.createLabel();
+                                        </motion.div>
+                                        <motion.div
+                                            initial={{ opacity: 0, x: -10 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.6 }}
+                                            className="pl-4"
+                                        >
+                                            <span className="text-blue-400">await</span> notify.slack(<span className="text-green-400">"#production"</span>);
+                                        </motion.div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="order-1 lg:order-2 p-12 lg:p-20 flex flex-col justify-center border-b lg:border-b-0 lg:border-l border-structural-border dark:border-gray-800">
-                            <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
-                                <span className="material-symbols-outlined">inventory</span>
-                            </div>
-                            <h2 className="text-3xl font-bold mb-6 dark:text-white">
-                                Inventory Management
-                            </h2>
-                            <div className="space-y-8">
-                                <div>
-                                    <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                        The Problem Eliminated
-                                    </h4>
-                                    <p className="text-secondary-text dark:text-gray-400">
-                                        The "Oh crap, we're out of Large Whites" moment
-                                        mid-production because someone forgot to update the
-                                        spreadsheet.
-                                    </p>
-                                </div>
-                                <div>
-                                    <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                        What Changes After
-                                    </h4>
-                                    <p className="text-secondary-text dark:text-gray-400">
-                                        Global stock visibility synced with purchase orders. Live
-                                        inventory levels across all physical bins, automatically
-                                        updated as blanks are pulled.
-                                    </p>
-                                </div>
-                                <div className="pt-4 border-t border-structural-border dark:border-gray-800">
-                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                                        <span className="text-charcoal dark:text-white">
-                                            Best for:
-                                        </span>{" "}
-                                        Purchasing Agents & Warehouse Managers.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Feature 3: Client Approvals */}
-                    <div
-                        ref={card3Ref}
-                        className={`feature-card rounded-3xl overflow-hidden grid lg:grid-cols-2 transition-all duration-700 delay-200 ${card3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                            }`}
-                    >
-                        <div className="p-12 lg:p-20 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-structural-border dark:border-gray-800">
-                            <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
-                                <span className="material-symbols-outlined">verified</span>
-                            </div>
-                            <h2 className="text-3xl font-bold mb-6 dark:text-white">
-                                Client Approvals
-                            </h2>
-                            <div className="space-y-8">
-                                <div>
-                                    <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                        The Problem Eliminated
-                                    </h4>
-                                    <p className="text-secondary-text dark:text-gray-400">
-                                        Approval delays buried in email threads. Clients approving
-                                        the wrong design version because of messy communication.
-                                    </p>
-                                </div>
-                                <div>
-                                    <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                        What Changes After
-                                    </h4>
-                                    <p className="text-secondary-text dark:text-gray-400">
-                                        Integrated proofing portals. One-click approvals that
-                                        instantly trigger production tickets, ensuring you only
-                                        print what's approved.
-                                    </p>
-                                </div>
-                                <div className="pt-4 border-t border-structural-border dark:border-gray-800">
-                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                                        <span className="text-charcoal dark:text-white">
-                                            Best for:
-                                        </span>{" "}
-                                        Sales Reps & Art Departments.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="bg-background-light dark:bg-black p-8 lg:p-12 flex items-center justify-center">
-                            <div className="ui-snippet w-full shadow-2xl overflow-hidden">
-                                <div className="p-6 bg-surface dark:bg-gray-950">
-                                    <div className="aspect-video w-full bg-structural-border dark:bg-gray-900 rounded-lg flex items-center justify-center mb-4 relative overflow-hidden group">
-                                        <div className="text-center">
-                                            <span className="material-symbols-outlined text-gray-300 dark:text-gray-700 text-6xl">
-                                                image
-                                            </span>
-                                            <p className="text-[10px] text-gray-400 mt-2 font-mono uppercase tracking-widest">
-                                                FRONT_CHEST_V2.PDF
-                                            </p>
-                                        </div>
-                                        <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                    </div>
-                                    <div className="flex gap-4">
-                                        <button className="flex-1 py-3 bg-green-500 text-white rounded text-[11px] font-bold uppercase tracking-widest">
-                                            Approve Design
-                                        </button>
-                                        <button className="flex-1 py-3 border border-structural-border dark:border-gray-800 text-gray-500 rounded text-[11px] font-bold uppercase tracking-widest">
-                                            Request Revision
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Feature 4: Automation Layers */}
-                    <div
-                        ref={card4Ref}
-                        className={`feature-card rounded-3xl overflow-hidden grid lg:grid-cols-2 transition-all duration-700 delay-300 ${card4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                            }`}
-                    >
-                        <div className="order-2 lg:order-1 bg-background-light dark:bg-black p-8 lg:p-12 flex items-center justify-center">
-                            <div className="ui-snippet w-full shadow-2xl overflow-hidden">
-                                <div className="h-10 bg-surface dark:bg-gray-900 border-b border-structural-border dark:border-gray-800 px-4 flex items-center justify-between">
-                                    <span className="text-[10px] text-gray-400 font-mono uppercase tracking-widest">
-                                        Automation_Scripts
-                                    </span>
-                                    <div className="w-8 h-4 bg-primary rounded-full relative">
-                                        <div className="absolute right-1 top-1 w-2 h-2 bg-white rounded-full"></div>
-                                    </div>
-                                </div>
-                                <div className="p-6 bg-surface dark:bg-gray-950 font-mono text-[11px]">
-                                    <div className="space-y-4">
-                                        <div className="flex gap-4">
-                                            <span className="text-primary opacity-50">01</span>
-                                            <p className="text-gray-400 dark:text-gray-500">
-                                                <span className="text-primary">IF</span> order_status =
-                                                "Approved"
-                                            </p>
-                                        </div>
-                                        <div className="flex gap-4">
-                                            <span className="text-primary opacity-50">02</span>
-                                            <p className="text-gray-400 dark:text-gray-500 pl-4">
-                                                <span className="text-primary">TRIGGER</span>{" "}
-                                                label_print(ShipStation)
-                                            </p>
-                                        </div>
-                                        <div className="flex gap-4">
-                                            <span className="text-primary opacity-50">03</span>
-                                            <p className="text-gray-400 dark:text-gray-500 pl-4">
-                                                <span className="text-primary">NOTIFY</span>{" "}
-                                                customer(SendGrid, "Art is Ready")
-                                            </p>
-                                        </div>
-                                        <div className="flex gap-4">
-                                            <span className="text-primary opacity-50">04</span>
-                                            <p className="text-gray-400 dark:text-gray-500">
-                                                <span className="text-primary">END IF</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="order-1 lg:order-2 p-12 lg:p-20 flex flex-col justify-center border-b lg:border-b-0 lg:border-l border-structural-border dark:border-gray-800">
-                            <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
-                                <span className="material-symbols-outlined">bolt</span>
-                            </div>
-                            <h2 className="text-3xl font-bold mb-6 dark:text-white">
-                                Automation Layers
-                            </h2>
-                            <div className="space-y-8">
-                                <div>
-                                    <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                        The Problem Eliminated
-                                    </h4>
-                                    <p className="text-secondary-text dark:text-gray-400">
-                                        Manual data re-entry between systems. Humans doing
-                                        repetitive tasks that computers can do 10x faster and with
-                                        zero errors.
-                                    </p>
-                                </div>
-                                <div>
-                                    <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                        What Changes After
-                                    </h4>
-                                    <p className="text-secondary-text dark:text-gray-400">
-                                        Your software works for you. Automated Slack alerts for late
-                                        orders, auto-generated shipping labels, and real-time P&L
-                                        calculations happening in the background.
-                                    </p>
-                                </div>
-                                <div className="pt-4 border-t border-structural-border dark:border-gray-800">
-                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                                        <span className="text-charcoal dark:text-white">
-                                            Best for:
-                                        </span>{" "}
-                                        Operations Directors & Owners.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </div>
