@@ -1,3 +1,7 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
 export default function Footer() {
     return (
         <footer className="bg-background-light dark:bg-background-dark border-t border-structural-border dark:border-gray-900 py-12 md:py-16 lg:py-20">
@@ -21,19 +25,31 @@ export default function Footer() {
                         </h5>
                         <ul className="space-y-3 md:space-y-4 text-sm text-secondary-text dark:text-gray-400">
                             <li>
-                                <a href="#" className="hover:text-primary transition-colors focus-primary tap-target">
+                                <motion.a
+                                    href="#"
+                                    whileHover={{ x: 5, color: "#EF4444" }}
+                                    className="block transition-colors focus-primary tap-target"
+                                >
                                     Case Studies
-                                </a>
+                                </motion.a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-primary transition-colors focus-primary tap-target">
+                                <motion.a
+                                    href="#"
+                                    whileHover={{ x: 5, color: "#EF4444" }}
+                                    className="block transition-colors focus-primary tap-target"
+                                >
                                     Platform
-                                </a>
+                                </motion.a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-primary transition-colors focus-primary tap-target">
+                                <motion.a
+                                    href="#"
+                                    whileHover={{ x: 5, color: "#EF4444" }}
+                                    className="block transition-colors focus-primary tap-target"
+                                >
                                     Pricing
-                                </a>
+                                </motion.a>
                             </li>
                         </ul>
                     </div>
@@ -44,14 +60,22 @@ export default function Footer() {
                         </h5>
                         <ul className="space-y-3 md:space-y-4 text-sm text-secondary-text dark:text-gray-400">
                             <li>
-                                <a href="#" className="hover:text-primary transition-colors focus-primary tap-target">
+                                <motion.a
+                                    href="#"
+                                    whileHover={{ x: 5, color: "#EF4444" }}
+                                    className="block transition-colors focus-primary tap-target"
+                                >
                                     Privacy Policy
-                                </a>
+                                </motion.a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-primary transition-colors focus-primary tap-target">
+                                <motion.a
+                                    href="#"
+                                    whileHover={{ x: 5, color: "#EF4444" }}
+                                    className="block transition-colors focus-primary tap-target"
+                                >
                                     Terms
-                                </a>
+                                </motion.a>
                             </li>
                         </ul>
                     </div>

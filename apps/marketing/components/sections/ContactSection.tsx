@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ContactSection() {
     const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
@@ -14,11 +15,17 @@ export default function ContactSection() {
         friction: "",
     });
 
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission
+        // Handle form submission logic here
         console.log("Form submitted:", formData);
-        alert("Thank you for requesting a demo! We'll be in touch soon.");
+
+        // Simulate API call
+        setTimeout(() => {
+            setIsSubmitted(true);
+        }, 1000);
     };
 
     const handleChange = (
@@ -56,97 +63,133 @@ export default function ContactSection() {
                     className={`bg-surface dark:bg-gray-900 rounded-2xl md:rounded-3xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] border border-structural-border dark:border-gray-800 p-6 md:p-8 lg:p-12 transition-all duration-700 delay-100 ${formVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                         }`}
                 >
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-1 gap-6">
-                            {/* Name */}
-                            <div>
-                                <label
-                                    htmlFor="name"
-                                    className="block text-xs font-bold uppercase tracking-widest text-secondary-text mb-2"
-                                >
-                                    Name
-                                </label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    required
-                                    placeholder="Full Name"
-                                    className="w-full bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-4 focus:ring-primary focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300"
-                                />
-                            </div>
-
-                            {/* Email */}
-                            <div>
-                                <label
-                                    htmlFor="email"
-                                    className="block text-xs font-bold uppercase tracking-widest text-secondary-text mb-2"
-                                >
-                                    Work Email
-                                </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                    placeholder="email@company.com"
-                                    className="w-full bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-4 focus:ring-primary focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300"
-                                />
-                            </div>
-
-                            {/* Company */}
-                            <div>
-                                <label
-                                    htmlFor="company"
-                                    className="block text-xs font-bold uppercase tracking-widest text-secondary-text mb-2"
-                                >
-                                    Company
-                                </label>
-                                <input
-                                    type="text"
-                                    id="company"
-                                    value={formData.company}
-                                    onChange={handleChange}
-                                    required
-                                    placeholder="Business Name"
-                                    className="w-full bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-4 focus:ring-primary focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300"
-                                />
-                            </div>
-
-                            {/* Friction Point */}
-                            <div>
-                                <label
-                                    htmlFor="friction"
-                                    className="block text-xs font-bold uppercase tracking-widest text-secondary-text mb-2"
-                                >
-                                    Main Friction Point
-                                </label>
-                                <textarea
-                                    id="friction"
-                                    value={formData.friction}
-                                    onChange={handleChange}
-                                    required
-                                    placeholder="What part of your operation is causing the most chaos?"
-                                    className="w-full bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-4 focus:ring-primary focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 min-h-[120px]"
-                                />
-                            </div>
-                        </div>
-
-                        {/* Submit Button */}
-                        <div className="pt-4">
-                            <button
-                                type="submit"
-                                className="w-full group relative backdrop-blur-xl bg-white/5 dark:bg-white/5 border border-white/10 hover:border-white/20 text-charcoal dark:text-white font-bold py-5 rounded-full transition-all duration-300 hover:bg-white/10 hover:scale-[1.02] shadow-lg shadow-black/5 flex items-center justify-center gap-3"
+                    <AnimatePresence mode="wait">
+                        {!isSubmitted ? (
+                            <motion.form
+                                key="form"
+                                initial={{ opacity: 1 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                onSubmit={handleSubmit}
+                                className="space-y-6"
                             >
-                                Request Custom Demo
-                                <span className="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">
-                                    arrow_forward
-                                </span>
-                            </button>
-                        </div>
-                    </form>
+                                <div className="grid grid-cols-1 gap-6">
+                                    {/* Name */}
+                                    <div>
+                                        <label
+                                            htmlFor="name"
+                                            className="block text-xs font-bold uppercase tracking-widest text-secondary-text mb-2"
+                                        >
+                                            Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            required
+                                            placeholder="Full Name"
+                                            className="w-full bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 outline-none"
+                                        />
+                                    </div>
+
+                                    {/* Email */}
+                                    <div>
+                                        <label
+                                            htmlFor="email"
+                                            className="block text-xs font-bold uppercase tracking-widest text-secondary-text mb-2"
+                                        >
+                                            Work Email
+                                        </label>
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
+                                            placeholder="email@company.com"
+                                            className="w-full bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 outline-none"
+                                        />
+                                    </div>
+
+                                    {/* Company */}
+                                    <div>
+                                        <label
+                                            htmlFor="company"
+                                            className="block text-xs font-bold uppercase tracking-widest text-secondary-text mb-2"
+                                        >
+                                            Company
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="company"
+                                            value={formData.company}
+                                            onChange={handleChange}
+                                            required
+                                            placeholder="Business Name"
+                                            className="w-full bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 outline-none"
+                                        />
+                                    </div>
+
+                                    {/* Friction Point */}
+                                    <div>
+                                        <label
+                                            htmlFor="friction"
+                                            className="block text-xs font-bold uppercase tracking-widest text-secondary-text mb-2"
+                                        >
+                                            Main Friction Point
+                                        </label>
+                                        <textarea
+                                            id="friction"
+                                            value={formData.friction}
+                                            onChange={handleChange}
+                                            required
+                                            placeholder="What part of your operation is causing the most chaos?"
+                                            className="w-full bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 min-h-[120px] outline-none"
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Submit Button */}
+                                <div className="pt-4">
+                                    <motion.button
+                                        type="submit"
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        className="w-full group relative backdrop-blur-xl bg-white/5 dark:bg-white/5 border border-white/10 hover:border-white/20 text-charcoal dark:text-white font-bold py-5 rounded-full transition-all duration-300 hover:bg-white/10 shadow-lg shadow-black/5 flex items-center justify-center gap-3"
+                                    >
+                                        Request Custom Demo
+                                        <span className="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">
+                                            arrow_forward
+                                        </span>
+                                    </motion.button>
+                                </div>
+                            </motion.form>
+                        ) : (
+                            <motion.div
+                                key="success"
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ type: "spring", stiffness: 50 }}
+                                className="flex flex-col items-center justify-center py-20 text-center space-y-6"
+                            >
+                                <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center text-green-500 mb-4">
+                                    <span className="material-symbols-outlined text-4xl">check_circle</span>
+                                </div>
+                                <div>
+                                    <h3 className="text-2xl font-bold text-charcoal dark:text-white mb-2">Request Received</h3>
+                                    <p className="text-secondary-text dark:text-gray-400 max-w-sm mx-auto">
+                                        Thanks, {formData.name.split(' ')[0]}. We'll be in touch shortly to schedule your demo.
+                                    </p>
+                                </div>
+                                <button
+                                    onClick={() => setIsSubmitted(false)}
+                                    className="text-primary text-sm font-bold uppercase tracking-widest hover:underline mt-8"
+                                >
+                                    Send another request
+                                </button>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
 
                     {/* Social Proof */}
                     <div className="mt-10 pt-8 border-t border-gray-100 dark:border-gray-800 flex flex-col items-center gap-4">

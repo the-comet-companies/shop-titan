@@ -1,6 +1,7 @@
 'use client';
 
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { motion } from 'framer-motion';
 
 export default function BlogSection() {
     const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
@@ -61,7 +62,14 @@ export default function BlogSection() {
                         }`}
                 >
                     {articles.map((article, index) => (
-                        <article key={index} className="group relative">
+                        <motion.article
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-10%" }}
+                            transition={{ delay: index * 0.1 }}
+                            className="group relative"
+                        >
                             <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.2em] text-secondary-text dark:text-gray-500 mb-4 md:mb-6">
                                 <span>{article.date}</span>
                                 <span className="w-1 h-1 rounded-full bg-structural-border"></span>
@@ -76,17 +84,18 @@ export default function BlogSection() {
                                 <p className="max-w-xl text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed font-light">
                                     {article.description}
                                 </p>
-                                <a
+                                <motion.a
                                     href="#"
-                                    className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary hover:translate-x-2 transition-transform duration-300 focus-primary tap-target whitespace-nowrap"
+                                    whileHover={{ x: 5 }}
+                                    className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary focus-primary tap-target whitespace-nowrap"
                                 >
                                     Read Analysis{" "}
                                     <span className="material-symbols-outlined text-sm">
                                         arrow_forward
                                     </span>
-                                </a>
+                                </motion.a>
                             </div>
-                        </article>
+                        </motion.article>
                     ))}
                 </div>
 
