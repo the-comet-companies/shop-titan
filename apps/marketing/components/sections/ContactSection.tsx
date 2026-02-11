@@ -138,7 +138,7 @@ export default function ContactSection() {
                         <div className="pt-4">
                             <button
                                 type="submit"
-                                className="w-full bg-primary text-white font-bold py-5 rounded-xl hover:brightness-110 transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-3 group"
+                                className="w-full group relative backdrop-blur-xl bg-white/5 dark:bg-white/5 border border-white/10 hover:border-white/20 text-charcoal dark:text-white font-bold py-5 rounded-full transition-all duration-300 hover:bg-white/10 hover:scale-[1.02] shadow-lg shadow-black/5 flex items-center justify-center gap-3"
                             >
                                 Request Custom Demo
                                 <span className="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">

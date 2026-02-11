@@ -63,10 +63,10 @@ export default function Header() {
                         </button>
                         <button
                             onClick={() => scrollToSection("contact")}
-                            className="bg-primary text-white px-3 md:px-4 py-2 text-xs font-bold rounded-full hover:brightness-110 transition-all flex items-center gap-2 shadow-sm uppercase tracking-wide focus-primary tap-target"
+                            className="group relative backdrop-blur-xl bg-white/5 dark:bg-white/5 border border-white/10 hover:border-white/20 text-charcoal dark:text-white px-4 md:px-6 py-2 text-xs font-bold rounded-full transition-all duration-300 hover:bg-white/10 hover:scale-105 flex items-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide focus-primary tap-target"
                         >
                             Request Demo{" "}
-                            <span className="material-symbols-outlined text-sm">
+                            <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">
                                 arrow_forward
                             </span>
                         </button>

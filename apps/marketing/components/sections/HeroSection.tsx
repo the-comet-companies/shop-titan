@@ -21,7 +21,7 @@ export default function HeroSection() {
             className="relative"
         >
             {/* Hero Content with Animated Background */}
-            <div className="relative overflow-hidden pt-20 pb-12 md:pt-28 md:pb-20 lg:pb-28">
+            <div className="relative overflow-hidden pt-32 pb-12 md:pt-48 md:pb-20 lg:pb-28">
                 <div className="max-w-6xl mx-auto px-mobile relative z-10">
                     <div className="max-w-3xl text-left">
                         <p className="text-xl sm:text-2xl md:text-[2.5rem] lg:text-[2.75rem] text-secondary-text dark:text-gray-400 mb-8 md:mb-12 leading-relaxed sm:leading-normal md:leading-[1.55] tracking-tight font-medium opacity-0 animate-fade-in-up">
