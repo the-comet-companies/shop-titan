@@ -18,10 +18,11 @@ export default function FeaturesSection() {
     };
 
     const features = [
-        { title: "Job Tracking", id: "tracking" },
-        { title: "Inventory Management", id: "inventory" },
-        { title: "Client Approvals", id: "approvals" },
-        { title: "Automation Layers", id: "automation" }
+        { title: "Job and project tracking", id: "tracking" },
+        { title: "Inventory and materials management", id: "inventory" },
+        { title: "Client workflows and approvals", id: "approvals" },
+        { title: "Financial visibility and reporting", id: "financials" },
+        { title: "Automation layers and triggers", id: "automation" }
     ];
 
     return (
@@ -96,7 +97,7 @@ export default function FeaturesSection() {
                                     <span className="material-symbols-outlined">analytics</span>
                                 </div>
                                 <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
-                                    Job Tracking
+                                    Job and project tracking
                                 </h2>
                                 <div className="space-y-6">
                                     <div>
@@ -170,7 +171,7 @@ export default function FeaturesSection() {
                                     <span className="material-symbols-outlined">inventory</span>
                                 </div>
                                 <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
-                                    Inventory Management
+                                    Inventory and materials management
                                 </h2>
                                 <div className="space-y-6">
                                     <div>
@@ -236,7 +237,7 @@ export default function FeaturesSection() {
                                     <span className="material-symbols-outlined">verified</span>
                                 </div>
                                 <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
-                                    Client Approvals
+                                    Client workflows and approvals
                                 </h2>
                                 <div className="space-y-6">
                                     <div>
@@ -279,7 +280,7 @@ export default function FeaturesSection() {
                             </div>
                         </motion.div>
 
-                        {/* Feature 4: Automation Layers */}
+                        {/* Feature 4: Financial Visibility */}
                         <motion.div
                             id="feature-3"
                             initial={{ opacity: 0, y: 40 }}
@@ -291,10 +292,75 @@ export default function FeaturesSection() {
                         >
                             <div className="md:order-last p-8 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-l border-structural-border dark:border-gray-800">
                                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
+                                    <span className="material-symbols-outlined">payments</span>
+                                </div>
+                                <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
+                                    Financial visibility and reporting
+                                </h2>
+                                <div className="space-y-6">
+                                    <div>
+                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
+                                            The Problem Eliminated
+                                        </h4>
+                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+                                            Profit leaks and guessing margins. Finding out a job lost money two weeks after it shipped.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
+                                            What Changes After
+                                        </h4>
+                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+                                            Real-time P&L per job. Automated commissions. Know your exact profitability the moment an order is placed.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-background-light dark:bg-black/50 p-8 flex items-center justify-center">
+                                <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-5 border border-structural-border dark:border-gray-800">
+                                    <div className="flex justify-between items-end mb-4">
+                                        <div>
+                                            <p className="text-[10px] text-gray-400 uppercase font-bold">Net Profit</p>
+                                            <p className="text-2xl font-bold text-gray-900 dark:text-white">$12,402</p>
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="text-[10px] text-green-500 font-bold flex items-center justify-end gap-1">
+                                                <span className="material-symbols-outlined text-xs">trending_up</span> +14%
+                                            </p>
+                                            <p className="text-[9px] text-gray-400">vs last month</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-end gap-1 h-24">
+                                        {[40, 65, 45, 80, 55, 90, 75].map((height, i) => (
+                                            <motion.div
+                                                key={i}
+                                                initial={{ height: 0 }}
+                                                whileInView={{ height: `${height}%` }}
+                                                transition={{ duration: 0.5, delay: i * 0.1 }}
+                                                className="flex-1 bg-primary/20 rounded-t-sm hover:bg-primary/40 transition-colors"
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Feature 5: Automation Layers */}
+                        <motion.div
+                            id="feature-4"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-20%" }}
+                            onViewportEnter={() => setActiveFeature(4)}
+                            transition={{ duration: 0.6 }}
+                            className="feature-card rounded-2xl md:rounded-3xl overflow-hidden grid md:grid-cols-2 border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl"
+                        >
+                            <div className="md:order-last p-8 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-l border-structural-border dark:border-gray-800">
+                                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
                                     <span className="material-symbols-outlined">bolt</span>
                                 </div>
                                 <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
-                                    Automation Layers
+                                    Automation layers and triggers
                                 </h2>
                                 <div className="space-y-6">
                                     <div>
