@@ -2,7 +2,7 @@
 
 import { ReactLenis, useLenis } from "lenis/react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 
 function ScrollHandler() {
     const lenis = useLenis();
@@ -42,7 +42,9 @@ function ScrollHandler() {
 export default function SmoothScrolling({ children }: { children: React.ReactNode }) {
     return (
         <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}>
-            <ScrollHandler />
+            <Suspense fallback={null}>
+                <ScrollHandler />
+            </Suspense>
             {children}
         </ReactLenis>
     );
