@@ -35,7 +35,7 @@ export default function Header() {
                         >
                             <div className="relative w-8 h-8 md:w-9 md:h-9 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                                 <Image
-                                    src="/android-chrome-192x192.png"
+                                    src="/logo-transparent.png"
                                     alt="Shop Titan Logo"
                                     fill
                                     className="object-contain"
