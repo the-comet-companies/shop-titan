@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import Image from 'next/image';
 import MobileMenu from './ui/MobileMenu';
 
 export default function Header() {
@@ -22,9 +23,20 @@ export default function Header() {
                     <div className="flex-shrink-0">
                         <a
                             href="#"
-                            className="text-sm md:text-base lg:text-lg font-bold tracking-tight text-charcoal dark:text-white"
+                            className="flex items-center gap-2 group"
+                            onClick={(e) => { e.preventDefault(); scrollToSection("hero"); }}
                         >
-                            Shop <span className="text-primary">Titan</span>
+                            <div className="relative w-8 h-8 md:w-9 md:h-9 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                                <Image
+                                    src="/android-chrome-192x192.png"
+                                    alt="Shop Titan Logo"
+                                    fill
+                                    className="object-contain"
+                                />
+                            </div>
+                            <span className="text-sm md:text-base lg:text-lg font-bold tracking-tight text-charcoal dark:text-white group-hover:opacity-80 transition-opacity">
+                                Shop <span className="text-primary">Titan</span>
+                            </span>
                         </a>
                     </div>
 
@@ -32,25 +44,25 @@ export default function Header() {
                     <div className="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 -translate-x-1/2">
                         <button
                             onClick={() => scrollToSection("product")}
-                            className="text-xs font-semibold text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors uppercase tracking-wider focus-primary tap-target"
+                            className="text-xs font-semibold text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110"
                         >
                             Product
                         </button>
                         <button
                             onClick={() => scrollToSection("platform")}
-                            className="text-xs font-semibold text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors uppercase tracking-wider focus-primary tap-target"
+                            className="text-xs font-semibold text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110"
                         >
                             Platform
                         </button>
                         <button
                             onClick={() => scrollToSection("features")}
-                            className="text-xs font-semibold text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors uppercase tracking-wider focus-primary tap-target"
+                            className="text-xs font-semibold text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110"
                         >
                             Features
                         </button>
                         <button
                             onClick={() => scrollToSection("blog")}
-                            className="text-xs font-semibold text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors uppercase tracking-wider focus-primary tap-target"
+                            className="text-xs font-semibold text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110"
                         >
                             Blog
                         </button>
@@ -58,7 +70,7 @@ export default function Header() {
 
                     {/* Desktop Actions */}
                     <div className="hidden md:flex items-center gap-3">
-                        <button className="hidden lg:block text-xs font-bold text-secondary-text dark:text-gray-400 hover:text-charcoal dark:hover:text-white transition-all uppercase tracking-wider px-3 focus-primary tap-target">
+                        <button className="hidden lg:block text-xs font-bold text-secondary-text dark:text-gray-400 hover:text-charcoal dark:hover:text-white transition-all duration-300 uppercase tracking-wider px-3 focus-primary tap-target hover:scale-105">
                             Log in
                         </button>
                         <button
