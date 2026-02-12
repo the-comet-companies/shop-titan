@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Crimson_Pro } from "next/font/google";
 import "./globals.css";
 import SmoothScrolling from "../components/SmoothScrolling";
+import Header from "@/components/Header";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -40,6 +41,8 @@ export const metadata: Metadata = {
     manifest: '/site.webmanifest',
 };
 
+
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -56,7 +59,10 @@ export default function RootLayout({
             <body
                 className={`${inter.variable} ${crimsonPro.variable} antialiased selection:bg-primary/20`}
             >
-                <SmoothScrolling>{children}</SmoothScrolling>
+                <SmoothScrolling>
+                    <Header />
+                    {children}
+                </SmoothScrolling>
             </body>
         </html>
     );

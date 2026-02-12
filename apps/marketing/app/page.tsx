@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import HeroSection from "@/components/sections/HeroSection";
 import PainPointSection from "@/components/sections/PainPointSection";
 import PlatformSection from "@/components/sections/PlatformSection";
@@ -11,7 +10,6 @@ import Footer from "@/components/Footer";
 export default function Home() {
     return (
         <>
-            <Header />
             <main>
                 <HeroSection />
                 <PlatformSection />

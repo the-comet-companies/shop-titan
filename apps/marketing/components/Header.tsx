@@ -2,15 +2,22 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useRouter, usePathname } from 'next/navigation';
 import MobileMenu from './ui/MobileMenu';
 
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const router = useRouter();
+    const pathname = usePathname();
 
     const scrollToSection = (sectionId: string) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+        if (pathname === '/') {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        } else {
+            router.push(`/#${sectionId}`);
         }
     };
 
@@ -70,9 +77,6 @@ export default function Header() {
 
                     {/* Desktop Actions */}
                     <div className="hidden md:flex items-center gap-3">
-                        <button className="hidden lg:block text-xs font-bold text-secondary-text dark:text-gray-400 hover:text-charcoal dark:hover:text-white transition-all duration-300 uppercase tracking-wider px-3 focus-primary tap-target hover:scale-105">
-                            Log in
-                        </button>
                         <button
                             onClick={() => scrollToSection("contact")}
                             className="group relative backdrop-blur-xl bg-white/5 dark:bg-white/5 border border-white/10 hover:border-white/20 text-charcoal dark:text-white px-4 md:px-6 py-2 text-xs font-bold rounded-full transition-all duration-300 hover:bg-white/10 hover:scale-105 flex items-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide focus-primary tap-target"
