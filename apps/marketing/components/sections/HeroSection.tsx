@@ -46,16 +46,16 @@ export default function HeroSection() {
                             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                             className="flex flex-col sm:flex-row gap-4 justify-start"
                         >
+                            <button className="group relative backdrop-blur-xl bg-transparent border border-white/10 hover:border-white/20 text-charcoal dark:text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-medium transition-all duration-300 text-base md:text-lg hover:bg-white/5 hover:scale-105 flex items-center justify-center gap-2">
+                                <span>Contact Sales</span>
+                                <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </button>
                             <button
                                 onClick={() => document.getElementById('platform')?.scrollIntoView({ behavior: 'smooth' })}
                                 className="group relative backdrop-blur-xl bg-white/5 dark:bg-white/5 border border-white/10 hover:border-white/20 text-charcoal dark:text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-medium transition-all duration-300 text-base md:text-lg hover:bg-white/10 hover:scale-105 flex items-center justify-center gap-2 shadow-lg shadow-black/5"
                             >
-                                <span>What we do</span>
+                                <span>Explore</span>
                                 <span className="material-symbols-outlined text-lg group-hover:translate-y-1 transition-transform">arrow_downward</span>
-                            </button>
-                            <button className="group relative backdrop-blur-xl bg-transparent border border-white/10 hover:border-white/20 text-charcoal dark:text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-medium transition-all duration-300 text-base md:text-lg hover:bg-white/5 hover:scale-105 flex items-center justify-center gap-2">
-                                <span>Contact Sales</span>
-                                <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
                             </button>
                         </motion.div>
                     </div>
