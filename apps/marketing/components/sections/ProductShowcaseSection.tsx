@@ -10,7 +10,7 @@ export default function ProductShowcaseSection() {
     const { elementRef: section3Ref, isVisible: section3Visible } = useScrollAnimation();
 
     return (
-        <section className="pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-40 lg:pb-48 bg-background-light dark:bg-background-dark" id="product">
+        <section className="pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-40 lg:pb-48 bg-background-light dark:bg-background-dark overflow-hidden" id="product">
             <div className="max-w-6xl mx-auto px-mobile space-y-24 md:space-y-32 lg:space-y-40">
                 {/* Feature 1: Friction Removal */}
                 <div
@@ -18,7 +18,7 @@ export default function ProductShowcaseSection() {
                     className={`grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center transition-all duration-700 ${section1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                         }`}
                 >
-                    <div>
+                    <div className="order-1 min-w-0">
                         <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
                             Friction Removal
                         </h2>
@@ -61,7 +61,7 @@ export default function ProductShowcaseSection() {
 
                     {/* UI Mockup */}
                     <motion.div
-                        className="shadow-2xl rounded-xl"
+                        className="order-2 shadow-2xl rounded-xl min-w-0"
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.4 }}
                     >
@@ -129,9 +129,48 @@ export default function ProductShowcaseSection() {
                     className={`grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center transition-all duration-700 ${section2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                         }`}
                 >
-                    {/* UI Mockup - Left side on desktop */}
+                    {/* Content - Left side on mobile (Order 1), Right side on desktop (Order 2) */}
+                    <div className="order-1 lg:order-2 min-w-0">
+                        <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
+                            Ownership-Level Result
+                        </h2>
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal dark:text-white mb-4 md:mb-6 leading-tight">
+                            Scale without adding noise.
+                        </h3>
+                        <p className="text-lg md:text-xl text-secondary-text dark:text-gray-400 mb-6 md:mb-8 leading-relaxed">
+                            The ultimate metric for an owner is the ability to disconnect. This framework creates a self-healing operational loop that delivers visibility without requiring your constant involvement.
+                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div className="p-4 border-l-2 border-primary/20">
+                                <span className="text-sm font-bold block mb-1 dark:text-white">
+                                    No Chasing Updates
+                                </span>
+                                <p className="text-sm text-secondary-text">
+                                    Global dashboard visibility for every stakeholder in real-time.
+                                </p>
+                            </div>
+                            <div className="p-4 border-l-2 border-primary/20">
+                                <span className="text-sm font-bold block mb-1 dark:text-white">
+                                    Visibility-on-Demand
+                                </span>
+                                <p className="text-sm text-secondary-text">
+                                    Access deep-dive production logs only when you actually want to.
+                                </p>
+                            </div>
+                            <div className="p-4 border-l-2 border-primary/20 sm:col-span-2">
+                                <span className="text-sm font-bold block mb-1 dark:text-white">
+                                    Owner-Absent Operations
+                                </span>
+                                <p className="text-sm text-secondary-text">
+                                    Rules-based logic ensures the shop floor knows what to do even when you're off-site.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* UI Mockup - Right side on mobile (Order 2), Left side on desktop (Order 1) */}
                     <motion.div
-                        className="order-2 lg:order-1 shadow-2xl rounded-xl"
+                        className="order-2 lg:order-1 shadow-2xl rounded-xl min-w-0"
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.4 }}
                     >
@@ -189,45 +228,6 @@ export default function ProductShowcaseSection() {
                             </div>
                         </BrowserFrame>
                     </motion.div>
-
-                    {/* Content - Right side on desktop */}
-                    <div className="order-1 lg:order-2">
-                        <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
-                            Ownership-Level Result
-                        </h2>
-                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal dark:text-white mb-4 md:mb-6 leading-tight">
-                            Scale without adding noise.
-                        </h3>
-                        <p className="text-lg md:text-xl text-secondary-text dark:text-gray-400 mb-6 md:mb-8 leading-relaxed">
-                            The ultimate metric for an owner is the ability to disconnect. This framework creates a self-healing operational loop that delivers visibility without requiring your constant involvement.
-                        </p>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div className="p-4 border-l-2 border-primary/20">
-                                <span className="text-sm font-bold block mb-1 dark:text-white">
-                                    No Chasing Updates
-                                </span>
-                                <p className="text-sm text-secondary-text">
-                                    Global dashboard visibility for every stakeholder in real-time.
-                                </p>
-                            </div>
-                            <div className="p-4 border-l-2 border-primary/20">
-                                <span className="text-sm font-bold block mb-1 dark:text-white">
-                                    Visibility-on-Demand
-                                </span>
-                                <p className="text-sm text-secondary-text">
-                                    Access deep-dive production logs only when you actually want to.
-                                </p>
-                            </div>
-                            <div className="p-4 border-l-2 border-primary/20 sm:col-span-2">
-                                <span className="text-sm font-bold block mb-1 dark:text-white">
-                                    Owner-Absent Operations
-                                </span>
-                                <p className="text-sm text-secondary-text">
-                                    Rules-based logic ensures the shop floor knows what to do even when you're off-site.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 {/* Feature 3: Single-Piece Orders */}
@@ -236,7 +236,7 @@ export default function ProductShowcaseSection() {
                     className={`grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center transition-all duration-700 ${section3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                         }`}
                 >
-                    <div>
+                    <div className="order-1 min-w-0">
                         <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
                             Strategic Strategy
                         </h2>
@@ -251,7 +251,7 @@ export default function ProductShowcaseSection() {
 
                     {/* UI Mockup */}
                     <motion.div
-                        className="shadow-2xl rounded-xl"
+                        className="order-2 shadow-2xl rounded-xl min-w-0"
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.4 }}
                     >
@@ -325,31 +325,36 @@ export default function ProductShowcaseSection() {
                     </motion.div>
                 </div>
 
-                {/* Intake Flow - Full Width */}
+                {/* Intake Flow - Full Width with Wrapped Flex on Mobile */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="relative py-8 md:py-10 px-6 border border-structural-border dark:border-gray-800 rounded-xl bg-surface dark:bg-gray-900/30 mt-12 md:mt-16"
+                    className="relative py-8 md:py-10 px-4 md:px-6 border border-structural-border dark:border-gray-800 rounded-xl bg-surface dark:bg-gray-900/30 mt-12 md:mt-16"
                 >
-                    <div className="flex flex-wrap items-center justify-between gap-4 md:gap-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-secondary-text max-w-4xl mx-auto">
+                    {/* Wrapped Flex Container for Mobile */}
+                    <div className="flex flex-wrap items-center justify-center md:justify-between gap-y-4 gap-x-3 md:gap-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-secondary-text max-w-4xl mx-auto">
                         <div className="flex items-center gap-2 text-primary">
                             <span className="material-symbols-outlined text-base">download</span> Intake
                         </div>
-                        <span className="material-symbols-outlined text-sm text-gray-300 hidden sm:inline">arrow_forward</span>
+                        <span className="material-symbols-outlined text-sm text-gray-300 hidden md:inline">arrow_forward</span>
+
                         <div className="flex items-center gap-2">
                             <span className="material-symbols-outlined text-base">visibility</span> Proofing
                         </div>
-                        <span className="material-symbols-outlined text-sm text-gray-300 hidden sm:inline">arrow_forward</span>
+                        <span className="material-symbols-outlined text-sm text-gray-300 hidden md:inline">arrow_forward</span>
+
                         <div className="flex items-center gap-2">
                             <span className="material-symbols-outlined text-base">print</span> Production
                         </div>
-                        <span className="material-symbols-outlined text-sm text-gray-300 hidden sm:inline">arrow_forward</span>
+                        <span className="material-symbols-outlined text-sm text-gray-300 hidden md:inline">arrow_forward</span>
+
                         <div className="flex items-center gap-2">
                             <span className="material-symbols-outlined text-base">package_2</span> Fulfillment
                         </div>
-                        <span className="material-symbols-outlined text-sm text-gray-300 hidden sm:inline">arrow_forward</span>
+                        <span className="material-symbols-outlined text-sm text-gray-300 hidden md:inline">arrow_forward</span>
+
                         <div className="flex items-center gap-2">
                             <span className="material-symbols-outlined text-base">mail</span> Updates
                         </div>
@@ -359,3 +364,4 @@ export default function ProductShowcaseSection() {
         </section>
     );
 }
+

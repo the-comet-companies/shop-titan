@@ -81,47 +81,24 @@ export default function FeaturesSection() {
                     </div>
 
                     {/* Right Column - Scrolling Content */}
-                    <div className="lg:col-span-8 space-y-12 md:space-y-24">
+                    <div className="lg:col-span-8 space-y-16 md:space-y-24">
                         {/* Feature 1: Job Tracking */}
-                        <motion.div
+                        <FeatureBlock
                             id="feature-0"
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-20%" }}
-                            onViewportEnter={() => setActiveFeature(0)}
-                            transition={{ duration: 0.6 }}
-                            className="feature-card rounded-2xl md:rounded-3xl overflow-hidden grid md:grid-cols-2 border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl"
+                            setActiveFeature={() => setActiveFeature(0)}
+                            icon="analytics"
+                            title="Job and project tracking"
+                            painPoint={{
+                                title: "The Friction",
+                                description: '"Where is order #492?" phone calls and physical job jackets getting lost between the office and the press.'
+                            }}
+                            solution={{
+                                title: "The Flow",
+                                description: "Real-time digital status updates at every stage. Every garment's journey is logged, visible, and searchable."
+                            }}
                         >
-                            <div className="p-8 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-structural-border dark:border-gray-800">
-                                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
-                                    <span className="material-symbols-outlined">analytics</span>
-                                </div>
-                                <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
-                                    Job and project tracking
-                                </h2>
-                                <div className="space-y-6">
-                                    <div>
-                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                            The Problem Eliminated
-                                        </h4>
-                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
-                                            "Where is order #492?" phone calls and physical job jackets
-                                            getting lost between the office and the press.
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                            What Changes After
-                                        </h4>
-                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
-                                            Real-time digital status updates at every stage. Every
-                                            garment's journey is logged, visible, and searchable.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="bg-background-light dark:bg-black/50 p-8 flex items-center justify-center">
-                                {/* Mock UI - Kept Simplified */}
+                            <div className="h-full flex items-center justify-center">
+                                {/* Mock UI */}
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg overflow-hidden border border-structural-border dark:border-gray-800">
                                     <div className="h-8 bg-gray-100 dark:bg-gray-900 border-b border-structural-border dark:border-gray-800 px-3 flex items-center gap-2">
                                         <div className="w-2 h-2 rounded-full bg-red-400"></div>
@@ -154,46 +131,24 @@ export default function FeaturesSection() {
                                     </div>
                                 </div>
                             </div>
-                        </motion.div>
+                        </FeatureBlock>
 
                         {/* Feature 2: Inventory Management */}
-                        <motion.div
+                        <FeatureBlock
                             id="feature-1"
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-20%" }}
-                            onViewportEnter={() => setActiveFeature(1)}
-                            transition={{ duration: 0.6 }}
-                            className="feature-card rounded-2xl md:rounded-3xl overflow-hidden grid md:grid-cols-2 border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl"
+                            setActiveFeature={() => setActiveFeature(1)}
+                            icon="inventory"
+                            title="Inventory and materials management"
+                            painPoint={{
+                                title: "The Friction",
+                                description: "The \"Oh crap, we're out of Large Whites\" moment mid-production because someone forgot to update the spreadsheet."
+                            }}
+                            solution={{
+                                title: "The Flow",
+                                description: "Global stock visibility synced with POs. Live inventory levels across all bins, automatically updated."
+                            }}
                         >
-                            <div className="md:order-last p-8 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-l border-structural-border dark:border-gray-800">
-                                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
-                                    <span className="material-symbols-outlined">inventory</span>
-                                </div>
-                                <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
-                                    Inventory and materials management
-                                </h2>
-                                <div className="space-y-6">
-                                    <div>
-                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                            The Problem Eliminated
-                                        </h4>
-                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
-                                            The "Oh crap, we're out of Large Whites" moment
-                                            mid-production because someone forgot to update the spreadsheet.
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                            What Changes After
-                                        </h4>
-                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
-                                            Global stock visibility synced with POs. Live inventory levels across all bins, automatically updated.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="bg-background-light dark:bg-black/50 p-8 flex items-center justify-center">
+                            <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-5 border border-structural-border dark:border-gray-800">
                                     <div className="grid grid-cols-3 gap-2 text-center mb-4">
                                         <div className="p-2 bg-gray-50 dark:bg-gray-900 rounded border border-gray-100 dark:border-gray-800">
@@ -220,45 +175,24 @@ export default function FeaturesSection() {
                                     </motion.div>
                                 </div>
                             </div>
-                        </motion.div>
+                        </FeatureBlock>
 
                         {/* Feature 3: Client Approvals */}
-                        <motion.div
+                        <FeatureBlock
                             id="feature-2"
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-20%" }}
-                            onViewportEnter={() => setActiveFeature(2)}
-                            transition={{ duration: 0.6 }}
-                            className="feature-card rounded-2xl md:rounded-3xl overflow-hidden grid md:grid-cols-2 border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl"
+                            setActiveFeature={() => setActiveFeature(2)}
+                            icon="verified"
+                            title="Client workflows and approvals"
+                            painPoint={{
+                                title: "The Friction",
+                                description: "Approval delays buried in email threads. Clients approving the wrong version."
+                            }}
+                            solution={{
+                                title: "The Flow",
+                                description: "Integrated proofing portals. One-click approvals trigger production tickets instantly."
+                            }}
                         >
-                            <div className="p-8 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-structural-border dark:border-gray-800">
-                                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
-                                    <span className="material-symbols-outlined">verified</span>
-                                </div>
-                                <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
-                                    Client workflows and approvals
-                                </h2>
-                                <div className="space-y-6">
-                                    <div>
-                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                            The Problem Eliminated
-                                        </h4>
-                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
-                                            Approval delays buried in email threads. Clients approving the wrong version.
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                            What Changes After
-                                        </h4>
-                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
-                                            Integrated proofing portals. One-click approvals trigger production tickets instantly.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="bg-background-light dark:bg-black/50 p-8 flex items-center justify-center">
+                            <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-5 border border-structural-border dark:border-gray-800 text-center">
                                     <div className="aspect-video bg-gray-100 dark:bg-gray-900 rounded mb-4 flex items-center justify-center relative overflow-hidden">
                                         <span className="material-symbols-outlined text-4xl text-gray-300">image</span>
@@ -278,45 +212,24 @@ export default function FeaturesSection() {
                                     </button>
                                 </div>
                             </div>
-                        </motion.div>
+                        </FeatureBlock>
 
                         {/* Feature 4: Financial Visibility */}
-                        <motion.div
+                        <FeatureBlock
                             id="feature-3"
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-20%" }}
-                            onViewportEnter={() => setActiveFeature(3)}
-                            transition={{ duration: 0.6 }}
-                            className="feature-card rounded-2xl md:rounded-3xl overflow-hidden grid md:grid-cols-2 border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl"
+                            setActiveFeature={() => setActiveFeature(3)}
+                            icon="payments"
+                            title="Financial visibility and reporting"
+                            painPoint={{
+                                title: "The Friction",
+                                description: "Profit leaks and guessing margins. Finding out a job lost money two weeks after it shipped."
+                            }}
+                            solution={{
+                                title: "The Flow",
+                                description: "Real-time P&L per job. Automated commissions. Know your exact profitability the moment an order is placed."
+                            }}
                         >
-                            <div className="md:order-last p-8 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-l border-structural-border dark:border-gray-800">
-                                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
-                                    <span className="material-symbols-outlined">payments</span>
-                                </div>
-                                <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
-                                    Financial visibility and reporting
-                                </h2>
-                                <div className="space-y-6">
-                                    <div>
-                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                            The Problem Eliminated
-                                        </h4>
-                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
-                                            Profit leaks and guessing margins. Finding out a job lost money two weeks after it shipped.
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                            What Changes After
-                                        </h4>
-                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
-                                            Real-time P&L per job. Automated commissions. Know your exact profitability the moment an order is placed.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="bg-background-light dark:bg-black/50 p-8 flex items-center justify-center">
+                            <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-5 border border-structural-border dark:border-gray-800">
                                     <div className="flex justify-between items-end mb-4">
                                         <div>
@@ -343,45 +256,24 @@ export default function FeaturesSection() {
                                     </div>
                                 </div>
                             </div>
-                        </motion.div>
+                        </FeatureBlock>
 
                         {/* Feature 5: Automation Layers */}
-                        <motion.div
+                        <FeatureBlock
                             id="feature-4"
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-20%" }}
-                            onViewportEnter={() => setActiveFeature(4)}
-                            transition={{ duration: 0.6 }}
-                            className="feature-card rounded-2xl md:rounded-3xl overflow-hidden grid md:grid-cols-2 border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl"
+                            setActiveFeature={() => setActiveFeature(4)}
+                            icon="bolt"
+                            title="Automation layers and triggers"
+                            painPoint={{
+                                title: "The Friction",
+                                description: "Manual data re-entry. Humans doing repetitive tasks that computers can do 10x faster."
+                            }}
+                            solution={{
+                                title: "The Flow",
+                                description: "Your software works for you. Automated alerts, shipping labels, and P&L calculations."
+                            }}
                         >
-                            <div className="md:order-last p-8 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-l border-structural-border dark:border-gray-800">
-                                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-8">
-                                    <span className="material-symbols-outlined">bolt</span>
-                                </div>
-                                <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
-                                    Automation layers and triggers
-                                </h2>
-                                <div className="space-y-6">
-                                    <div>
-                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                            The Problem Eliminated
-                                        </h4>
-                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
-                                            Manual data re-entry. Humans doing repetitive tasks that computers can do 10x faster.
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                                            What Changes After
-                                        </h4>
-                                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
-                                            Your software works for you. Automated alerts, shipping labels, and P&L calculations.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="bg-background-light dark:bg-black/50 p-8 flex items-center justify-center">
+                            <div className="h-full flex items-center justify-center">
                                 <div className="w-full font-mono text-[10px] bg-gray-900 text-gray-300 p-4 rounded-lg shadow-xl border border-gray-800">
                                     <div className="flex gap-2 mb-2 opacity-50">
                                         <div className="w-2 h-2 rounded-full bg-red-500"></div>
@@ -415,10 +307,77 @@ export default function FeaturesSection() {
                                     </div>
                                 </div>
                             </div>
-                        </motion.div>
+                        </FeatureBlock>
                     </div>
                 </div>
             </div>
         </section>
+    );
+}
+
+// Sub-component for individual Feature with Storytelling Layout
+function FeatureBlock({
+    id,
+    setActiveFeature,
+    icon,
+    title,
+    painPoint,
+    solution,
+    children
+}: {
+    id: string;
+    setActiveFeature: () => void;
+    icon: string;
+    title: string;
+    painPoint: { title: string; description: string };
+    solution: { title: string; description: string };
+    children: React.ReactNode;
+}) {
+    return (
+        <motion.div
+            id={id}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-20%" }}
+            onViewportEnter={setActiveFeature}
+            transition={{ duration: 0.6 }}
+            className="feature-card rounded-2xl md:rounded-3xl overflow-hidden grid md:grid-cols-2 border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl"
+        >
+            {/* Story Content Side */}
+            <div className="p-6 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-structural-border dark:border-gray-800">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 md:mb-8">
+                    <span className="material-symbols-outlined text-xl md:text-2xl">{icon}</span>
+                </div>
+                <h2 className="text-xl md:text-3xl font-bold mb-6 dark:text-white leading-tight">
+                    {title}
+                </h2>
+                <div className="space-y-4 md:space-y-6">
+                    {/* Pain Point - Story Style */}
+                    <div className="relative pl-4 border-l-2 border-red-400/50 bg-red-50/50 dark:bg-red-900/10 py-3 pr-3 rounded-r-lg">
+                        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-red-500 mb-1">
+                            {painPoint.title}
+                        </h4>
+                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+                            {painPoint.description}
+                        </p>
+                    </div>
+
+                    {/* Solution - Story Style */}
+                    <div className="relative pl-4 border-l-2 border-primary/50 bg-primary/5 dark:bg-primary/10 py-3 pr-3 rounded-r-lg">
+                        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-primary mb-1">
+                            {solution.title}
+                        </h4>
+                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+                            {solution.description}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Visual Side */}
+            <div className="bg-background-light dark:bg-black/50 p-6 md:p-8 flex items-center justify-center min-h-[250px] md:min-h-0">
+                {children}
+            </div>
+        </motion.div>
     );
 }
