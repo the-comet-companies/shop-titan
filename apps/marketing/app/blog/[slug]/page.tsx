@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 interface PageProps {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 // Generate metadata for each blog post
