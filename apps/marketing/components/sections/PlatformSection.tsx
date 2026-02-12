@@ -25,7 +25,7 @@ export default function PlatformSection() {
                                 Architecture Overview
                             </span>
                             <h1 className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-charcoal dark:text-white">
-                                A Single Operational Source of Truth.
+                                The Operational Architecture Behind Structured Shops.
                             </h1>
                         </div>
                     </div>
@@ -44,13 +44,12 @@ export default function PlatformSection() {
                         >
                             <div className="max-w-2xl">
                                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 md:mb-6 leading-tight text-charcoal dark:text-white tracking-tight">
-                                    Built for Operational Leverage.
+                                    Engineered for Operational Independence.
                                 </h2>
                                 <p className="text-secondary-text dark:text-gray-400 text-base md:text-lg lg:text-xl mb-8 md:mb-10 leading-relaxed font-normal">
-                                    Our architecture is designed to decouple your time from the
-                                    shop's output by installing a system-driven hierarchy. Move
-                                    from being the bottleneck to overseeing a self-correcting
-                                    operation.
+                                    The platform installs structured control across ownership, management, and execution.
+                                    Each layer operates with defined responsibility, real-time visibility, and automated enforcement.
+                                    The business runs without constant supervision.
                                 </p>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
@@ -62,11 +61,10 @@ export default function PlatformSection() {
                                         </div>
                                         <div>
                                             <h4 className="font-bold text-sm md:text-base mb-1 md:mb-2 text-charcoal dark:text-white">
-                                                High-Level Visibility
+                                                Executive Visibility
                                             </h4>
                                             <p className="text-gray-500 dark:text-gray-400 text-xs md:text-sm leading-relaxed">
-                                                Real-time P&L and shop capacity without digging through
-                                                spreadsheets or manual reports.
+                                                Real-time financial and capacity clarity — without reports or follow-ups.
                                             </p>
                                         </div>
                                     </div>
@@ -79,11 +77,10 @@ export default function PlatformSection() {
                                         </div>
                                         <div>
                                             <h4 className="font-bold text-sm md:text-base mb-1 md:mb-2 text-charcoal dark:text-white">
-                                                Self-Driving Operations
+                                                Autonomous Execution
                                             </h4>
                                             <p className="text-gray-500 dark:text-gray-400 text-xs md:text-sm leading-relaxed">
-                                                Automated logic that handles order routing, quality
-                                                checks, and status updates automatically.
+                                                Automated routing, validation, and synchronization across production.
                                             </p>
                                         </div>
                                     </div>
@@ -131,7 +128,7 @@ export default function PlatformSection() {
                                             </span>
                                         </div>
                                         <p className="text-gray-500 dark:text-gray-400 text-xs mb-4 font-medium italic">
-                                            "Strategic Direction & Profitability"
+                                            "Strategic Oversight"
                                         </p>
                                         <div className="flex flex-wrap gap-2">
                                             <span className="px-2.5 py-1 rounded bg-background-light dark:bg-gray-800 text-[10px] font-semibold border border-structural-border dark:border-gray-700 uppercase tracking-wider text-secondary-text dark:text-gray-400">
@@ -141,7 +138,7 @@ export default function PlatformSection() {
                                                 Forecasting
                                             </span>
                                             <span className="px-2.5 py-1 rounded bg-background-light dark:bg-gray-800 text-[10px] font-semibold border border-structural-border dark:border-gray-700 uppercase tracking-wider text-secondary-text dark:text-gray-400">
-                                                Growth ROI
+                                                Capital Allocation
                                             </span>
                                         </div>
                                     </motion.div>
@@ -179,17 +176,17 @@ export default function PlatformSection() {
                                             </span>
                                         </div>
                                         <p className="text-gray-500 dark:text-gray-400 text-xs mb-4 font-medium italic">
-                                            "Execution & Optimization"
+                                            "Operational Command"
                                         </p>
                                         <div className="flex flex-wrap gap-2">
                                             <span className="px-2.5 py-1 rounded bg-background-light dark:bg-gray-800 text-[10px] font-semibold border border-structural-border dark:border-gray-700 uppercase tracking-wider text-secondary-text dark:text-gray-400">
                                                 Production Flow
                                             </span>
                                             <span className="px-2.5 py-1 rounded bg-background-light dark:bg-gray-800 text-[10px] font-semibold border border-structural-border dark:border-gray-700 uppercase tracking-wider text-secondary-text dark:text-gray-400">
-                                                Inventory Sync
+                                                Inventory Integrity
                                             </span>
                                             <span className="px-2.5 py-1 rounded bg-background-light dark:bg-gray-800 text-[10px] font-semibold border border-structural-border dark:border-gray-700 uppercase tracking-wider text-secondary-text dark:text-gray-400">
-                                                Staffing
+                                                Workforce Allocation
                                             </span>
                                         </div>
                                     </motion.div>
@@ -227,26 +224,26 @@ export default function PlatformSection() {
                                             </span>
                                         </div>
                                         <p className="text-gray-500 dark:text-gray-400 text-xs mb-4 font-medium italic">
-                                            "Self-Correcting Logistics"
+                                            "System Enforcement Layer"
                                         </p>
                                         <div className="grid grid-cols-1 gap-2.5">
                                             <div className="flex items-center gap-3 text-[11px] text-gray-600 dark:text-gray-400">
                                                 <span className="material-symbols-outlined text-base text-green-600">
                                                     check_circle
                                                 </span>
-                                                Error Prevention Logic
+                                                Error Prevention
                                             </div>
                                             <div className="flex items-center gap-3 text-[11px] text-gray-600 dark:text-gray-400">
                                                 <span className="material-symbols-outlined text-base text-green-600">
                                                     check_circle
                                                 </span>
-                                                Automated Shipping Workflows
+                                                Workflow Automation
                                             </div>
                                             <div className="flex items-center gap-3 text-[11px] text-gray-600 dark:text-gray-400">
                                                 <span className="material-symbols-outlined text-base text-green-600">
                                                     check_circle
                                                 </span>
-                                                Real-time Status Synchronization
+                                                Status Synchronization
                                             </div>
                                         </div>
                                     </motion.div>
