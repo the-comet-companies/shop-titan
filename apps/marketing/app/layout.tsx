@@ -21,6 +21,23 @@ export const metadata: Metadata = {
     title: "Shop Titan | Professional Apparel Operations",
     description:
         "Unify your production. One platform for high-volume decorators to manage orders, inventory, and automation—from intake to fulfillment, without the friction.",
+    icons: {
+        icon: [
+            { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+            { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+            { url: '/favicon.ico', sizes: 'any' }
+        ],
+        apple: [
+            { url: '/apple-touch-icon.png' }
+        ],
+        other: [
+            {
+                rel: 'manifest',
+                url: '/site.webmanifest',
+            }
+        ]
+    },
+    manifest: '/site.webmanifest',
 };
 
 export default function RootLayout({
