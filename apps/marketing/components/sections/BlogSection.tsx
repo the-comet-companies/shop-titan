@@ -2,41 +2,12 @@
 
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { motion } from 'framer-motion';
+import { articles } from '@/lib/blog-data';
+import Link from 'next/link';
 
 export default function BlogSection() {
     const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
     const { elementRef: articlesRef, isVisible: articlesVisible } = useScrollAnimation();
-
-    const articles = [
-        {
-            date: "October 12, 2023",
-            category: "Operations",
-            title: "Neutralizing POD Friction",
-            description:
-                "Why single-piece production is the ultimate bottleneck for traditional shops, and how batching logic solves it forever.",
-        },
-        {
-            date: "October 05, 2023",
-            category: "Growth",
-            title: "Scaling Beyond 10 Employees",
-            description:
-                "The systems change required when you stop managing people and start managing processes.",
-        },
-        {
-            date: "September 28, 2023",
-            category: "Automation",
-            title: "Inventory Sync Realities",
-            description:
-                "Why most inventory systems fail in the decorating world and what a true live-sync looks like at scale.",
-        },
-        {
-            date: "September 15, 2023",
-            category: "Infrastructure",
-            title: "Claris FileMaker vs SaaS",
-            description:
-                "A deep dive into why custom architecture wins over off-the-shelf software for niche industries.",
-        },
-    ];
 
     return (
         <section id="blog" className="pt-24 sm:pt-32 md:pt-48 pb-24 md:pb-40">
@@ -63,7 +34,7 @@ export default function BlogSection() {
                 >
                     {articles.map((article, index) => (
                         <motion.article
-                            key={index}
+                            key={article.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-10%" }}
@@ -75,25 +46,26 @@ export default function BlogSection() {
                                 <span className="w-1 h-1 rounded-full bg-structural-border"></span>
                                 <span className="text-primary">{article.category}</span>
                             </div>
-                            <a href="#" className="block group">
+                            <Link href={`/blog/${article.slug}`} className="block group">
                                 <h2 className="article-title font-serif text-3xl sm:text-4xl md:text-5xl text-charcoal dark:text-white group-hover:text-primary transition-colors duration-400 mb-6 md:mb-8">
                                     {article.title}
                                 </h2>
-                            </a>
+                            </Link>
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-8">
                                 <p className="max-w-xl text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed font-light">
                                     {article.description}
                                 </p>
-                                <motion.a
-                                    href="#"
-                                    whileHover={{ x: 5 }}
-                                    className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary focus-primary tap-target whitespace-nowrap"
+                                <Link
+                                    href={`/blog/${article.slug}`}
+                                    className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary focus-primary tap-target whitespace-nowrap group/link"
                                 >
-                                    Read Analysis{" "}
-                                    <span className="material-symbols-outlined text-sm">
-                                        arrow_forward
-                                    </span>
-                                </motion.a>
+                                    <motion.span whileHover={{ x: 5 }} className="flex items-center gap-2">
+                                        Read Analysis{" "}
+                                        <span className="material-symbols-outlined text-sm">
+                                            arrow_forward
+                                        </span>
+                                    </motion.span>
+                                </Link>
                             </div>
                         </motion.article>
                     ))}
