@@ -10,7 +10,7 @@ export default function ProductShowcaseSection() {
     const { elementRef: section3Ref, isVisible: section3Visible } = useScrollAnimation();
 
     return (
-        <section className="pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-40 lg:pb-48 bg-background-light dark:bg-background-dark overflow-hidden" id="product">
+        <section className="pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-40 lg:pb-48 bg-background-light dark:bg-background-dark overflow-hidden" id="platform">
             <div className="max-w-6xl mx-auto px-mobile space-y-24 md:space-y-32 lg:space-y-40">
                 {/* Feature 1: Friction Removal */}
                 <div

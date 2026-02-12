@@ -31,7 +31,7 @@ export default function Header() {
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 -translate-x-1/2">
                         <button
-                            onClick={() => scrollToSection("product")}
+                            onClick={() => scrollToSection("hero")}
                             className="text-xs font-semibold text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors uppercase tracking-wider focus-primary tap-target"
                         >
                             Product
