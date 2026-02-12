@@ -103,9 +103,6 @@ export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuPr
 
                     {/* Footer Actions */}
                     <div className="space-y-3 pt-6 border-t border-gray-200 dark:border-gray-800">
-                        <button className="w-full px-4 py-3 text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-charcoal dark:hover:text-white transition-all uppercase tracking-wider">
-                            Log in
-                        </button>
                         <button
                             onClick={() => handleNavigate('contact')}
                             className="w-full bg-primary text-white px-4 py-3 text-sm font-bold rounded-full hover:brightness-110 transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20"

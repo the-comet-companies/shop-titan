@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Crimson_Pro } from "next/font/google";
 import "./globals.css";
 import SmoothScrolling from "../components/SmoothScrolling";
+import Header from "@/components/Header";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -21,7 +22,26 @@ export const metadata: Metadata = {
     title: "Shop Titan | Professional Apparel Operations",
     description:
         "Unify your production. One platform for high-volume decorators to manage orders, inventory, and automation—from intake to fulfillment, without the friction.",
+    icons: {
+        icon: [
+            { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+            { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+            { url: '/favicon.ico', sizes: 'any' }
+        ],
+        apple: [
+            { url: '/apple-touch-icon.png' }
+        ],
+        other: [
+            {
+                rel: 'manifest',
+                url: '/site.webmanifest',
+            }
+        ]
+    },
+    manifest: '/site.webmanifest',
 };
+
+
 
 export default function RootLayout({
     children,
@@ -39,7 +59,10 @@ export default function RootLayout({
             <body
                 className={`${inter.variable} ${crimsonPro.variable} antialiased selection:bg-primary/20`}
             >
-                <SmoothScrolling>{children}</SmoothScrolling>
+                <SmoothScrolling>
+                    <Header />
+                    {children}
+                </SmoothScrolling>
             </body>
         </html>
     );
