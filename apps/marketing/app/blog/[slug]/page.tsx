@@ -46,7 +46,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 {/* Back Link */}
                 <div className="mb-12 md:mb-16">
                     <Link
-                        href="/#blog"
+                        href="/blog"
                         className="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary-text hover:text-primary transition-colors flex items-center gap-2"
                     >
                         <span className="material-symbols-outlined text-sm">arrow_back</span>

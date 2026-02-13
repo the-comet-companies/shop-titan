@@ -8,15 +8,22 @@ import VideoPlayer from '@/components/VideoPlayer';
 export default function FeaturesSection() {
     const [activeFeature, setActiveFeature] = useState(0);
     const navRefs = useRef<(HTMLButtonElement | null)[]>([]);
+    const navContainerRef = useRef<HTMLDivElement>(null);
 
-    // Auto-scroll the active navigation item into view
+    // Auto-scroll the active navigation item into view (container only)
     useEffect(() => {
         const activeButton = navRefs.current[activeFeature];
-        if (activeButton) {
-            activeButton.scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest',
-                inline: 'nearest'
+        const container = navContainerRef.current;
+
+        if (activeButton && container) {
+            const buttonTop = activeButton.offsetTop;
+            const buttonHeight = activeButton.offsetHeight;
+            const containerHeight = container.offsetHeight;
+
+            // Scroll to center the button in the container
+            container.scrollTo({
+                top: buttonTop - (containerHeight / 2) + (buttonHeight / 2),
+                behavior: 'smooth'
             });
         }
     }, [activeFeature]);
@@ -80,7 +87,10 @@ export default function FeaturesSection() {
                         </motion.div>
 
                         {/* Desktop Navigation - Now scrollable */}
-                        <div className="hidden lg:flex flex-col gap-1 relative flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent">
+                        <div
+                            ref={navContainerRef}
+                            className="hidden lg:flex flex-col gap-1 relative flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent"
+                        >
                             {features.reduce((acc, feature, index) => {
                                 // Add group header if this is the first item in a new group
                                 const prevGroup = index > 0 ? features[index - 1].group : null;

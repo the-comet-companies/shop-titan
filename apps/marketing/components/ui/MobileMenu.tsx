@@ -43,6 +43,7 @@ export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuPr
         { id: 'platform', label: 'Platform' },
         { id: 'product', label: 'Product' },
         { id: 'features', label: 'Features' },
+        { id: 'pricing', label: 'Pricing' },
         { id: 'blog', label: 'Blog' },
         { id: 'contact', label: 'Contact' },
     ];

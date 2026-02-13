@@ -6,15 +6,21 @@ import { useRouter, usePathname } from 'next/navigation';
 import MobileMenu from './ui/MobileMenu';
 import { useActiveSection } from '@/hooks/useActiveSection';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const router = useRouter();
     const pathname = usePathname();
 
-    const activeSection = useActiveSection(['hero', 'platform', 'product', 'features', 'blog', 'contact']);
+    const activeSection = useActiveSection(['hero', 'platform', 'product', 'features', 'pricing', 'blog', 'contact']);
 
     const scrollToSection = (sectionId: string) => {
+        if (sectionId === 'blog') {
+            router.push('/blog');
+            return;
+        }
+
         if (pathname === '/') {
             const element = document.getElementById(sectionId);
             if (element) {
@@ -27,15 +33,22 @@ export default function Header() {
 
     return (
         <>
-            <header className="fixed top-4 md:top-6 left-0 right-0 z-50 px-4 md:px-6">
+            <motion.header
+                initial={{ y: -100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="fixed top-4 md:top-6 left-0 right-0 z-50 px-4 md:px-6"
+            >
                 <nav
                     className="glass-nav max-w-6xl mx-auto h-14 md:h-16 rounded-full flex items-center justify-between px-4 md:px-6 transition-all duration-300"
                 >
                     <div className="flex-shrink-0">
-                        <a
+                        <motion.a
                             href="#"
                             className="flex items-center gap-2 group"
                             onClick={(e) => { e.preventDefault(); scrollToSection("hero"); }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                         >
                             <div className="relative w-8 h-8 md:w-9 md:h-9 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                                 <Image
@@ -48,33 +61,41 @@ export default function Header() {
                             <span className="text-sm md:text-base lg:text-lg font-bold tracking-tight text-charcoal dark:text-white group-hover:opacity-80 transition-opacity">
                                 Shop <span className="text-primary">Titan</span>
                             </span>
-                        </a>
+                        </motion.a>
                     </div>
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 -translate-x-1/2">
-                        {['platform', 'product', 'features', 'blog'].map((section) => (
-                            <button
+                        {['platform', 'product', 'features', 'pricing', 'blog'].map((section, index) => (
+                            <motion.button
                                 key={section}
                                 onClick={() => scrollToSection(section)}
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
                                 className={cn(
                                     "text-xs font-semibold transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110",
-                                    activeSection === section
+                                    (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog')
                                         ? "text-primary dark:text-white"
                                         : "text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white"
                                 )}
                             >
                                 {section.charAt(0).toUpperCase() + section.slice(1)}
-                            </button>
+                            </motion.button>
                         ))}
                     </div>
 
                     {/* Desktop Actions */}
                     <div className="hidden md:flex items-center gap-3">
-                        <button
+                        <motion.button
                             onClick={() => scrollToSection("contact")}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.5, duration: 0.5 }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                             className={cn(
-                                "group relative backdrop-blur-xl border px-4 md:px-6 py-2 text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide focus-primary tap-target",
+                                "group relative backdrop-blur-xl border px-4 md:px-6 py-2 text-xs font-bold rounded-full transition-all duration-300 flex items-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide focus-primary tap-target",
                                 activeSection === 'contact'
                                     ? "bg-primary text-white border-primary hover:bg-primary/90"
                                     : "bg-white/5 dark:bg-white/5 border-white/10 hover:border-white/20 text-charcoal dark:text-white hover:bg-white/10"
@@ -84,7 +105,7 @@ export default function Header() {
                             <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">
                                 arrow_forward
                             </span>
-                        </button>
+                        </motion.button>
                     </div>
 
                     {/* Mobile Hamburger Menu */}
@@ -98,7 +119,7 @@ export default function Header() {
                         </span>
                     </button>
                 </nav>
-            </header>
+            </motion.header>
 
             {/* Mobile Menu Component */}
             <MobileMenu
