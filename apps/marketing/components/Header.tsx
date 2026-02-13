@@ -4,11 +4,15 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import MobileMenu from './ui/MobileMenu';
+import { useActiveSection } from '@/hooks/useActiveSection';
+import { cn } from '@/lib/utils';
 
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const router = useRouter();
     const pathname = usePathname();
+
+    const activeSection = useActiveSection(['hero', 'platform', 'product', 'features', 'blog', 'contact']);
 
     const scrollToSection = (sectionId: string) => {
         if (pathname === '/') {
@@ -49,37 +53,32 @@ export default function Header() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 -translate-x-1/2">
-                        <button
-                            onClick={() => scrollToSection("product")}
-                            className="text-xs font-semibold text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110"
-                        >
-                            Product
-                        </button>
-                        <button
-                            onClick={() => scrollToSection("platform")}
-                            className="text-xs font-semibold text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110"
-                        >
-                            Platform
-                        </button>
-                        <button
-                            onClick={() => scrollToSection("features")}
-                            className="text-xs font-semibold text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110"
-                        >
-                            Features
-                        </button>
-                        <button
-                            onClick={() => scrollToSection("blog")}
-                            className="text-xs font-semibold text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110"
-                        >
-                            Blog
-                        </button>
+                        {['platform', 'product', 'features', 'blog'].map((section) => (
+                            <button
+                                key={section}
+                                onClick={() => scrollToSection(section)}
+                                className={cn(
+                                    "text-xs font-semibold transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110",
+                                    activeSection === section
+                                        ? "text-primary dark:text-white"
+                                        : "text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white"
+                                )}
+                            >
+                                {section.charAt(0).toUpperCase() + section.slice(1)}
+                            </button>
+                        ))}
                     </div>
 
                     {/* Desktop Actions */}
                     <div className="hidden md:flex items-center gap-3">
                         <button
                             onClick={() => scrollToSection("contact")}
-                            className="group relative backdrop-blur-xl bg-white/5 dark:bg-white/5 border border-white/10 hover:border-white/20 text-charcoal dark:text-white px-4 md:px-6 py-2 text-xs font-bold rounded-full transition-all duration-300 hover:bg-white/10 hover:scale-105 flex items-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide focus-primary tap-target"
+                            className={cn(
+                                "group relative backdrop-blur-xl border px-4 md:px-6 py-2 text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide focus-primary tap-target",
+                                activeSection === 'contact'
+                                    ? "bg-primary text-white border-primary hover:bg-primary/90"
+                                    : "bg-white/5 dark:bg-white/5 border-white/10 hover:border-white/20 text-charcoal dark:text-white hover:bg-white/10"
+                            )}
                         >
                             Request Demo{" "}
                             <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">
@@ -110,3 +109,4 @@ export default function Header() {
         </>
     );
 }
+

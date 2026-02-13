@@ -91,28 +91,6 @@ export default function HeroSection() {
                     className="opacity-[0.4] dark:opacity-[0.5]"
                 />
             </div>
-
-            {/* Why This System Exists - separate from animated background */}
-            <div
-                ref={whyRef}
-                className={`pt-12 md:pt-16 lg:pt-20 pb-4 md:pb-6 bg-white dark:bg-background-dark border-t border-gray-50 dark:border-gray-900 transition-all duration-700 ${whyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                    }`}
-            >
-                <div className="max-w-4xl mx-auto px-mobile text-center">
-                    <h2 className="text-[10px] font-bold tracking-[0.2em] text-primary uppercase mb-3 md:mb-4 opacity-80">
-                        Why This System Exists
-                    </h2>
-                    <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light leading-relaxed text-secondary-text dark:text-gray-400 mb-6 md:mb-8 max-w-2xl mx-auto">
-                        Most decorating businesses don&apos;t suffer from lack of talent. They suffer from{" "}
-                        <span className="text-charcoal dark:text-white italic font-normal">
-                            lack of structure.
-                        </span>
-                    </p>
-                    <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light leading-relaxed text-secondary-text dark:text-gray-400 mb-6 md:mb-8 max-w-2xl mx-auto">
-                        Shop Titan replaces operational noise with a system that runs the business — so ownership no longer has to.
-                    </p>
-                </div>
-            </div>
         </section>
     );
 }
