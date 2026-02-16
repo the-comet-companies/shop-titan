@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface VideoShowcaseProps {
     title: string;
@@ -49,10 +50,11 @@ export default function VideoShowcase({
                     <>
                         {/* Thumbnail */}
                         {!isPlaying && thumbnail && (
-                            <img
+                            <Image
                                 src={thumbnail}
                                 alt={title}
-                                className="w-full h-full object-cover"
+                                fill
+                                className="object-cover"
                             />
                         )}
 

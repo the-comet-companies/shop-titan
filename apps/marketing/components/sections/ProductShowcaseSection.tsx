@@ -164,7 +164,7 @@ export default function ProductShowcaseSection() {
                                     Owner-Absent Operations
                                 </span>
                                 <p className="text-sm text-secondary-text">
-                                    Rules-based logic ensures the shop floor knows what to do even when you're off-site.
+                                    Rules-based logic ensures the shop floor knows what to do even when you&apos;re off-site.
                                 </p>
                             </div>
                         </div>

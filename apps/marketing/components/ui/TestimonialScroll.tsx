@@ -19,7 +19,7 @@ interface TestimonialScrollProps {
 const defaultTestimonials: Testimonial[] = [
     {
         id: '1',
-        quote: 'The time savings are real. We\'re producing 5x more content.',
+        quote: 'The time savings are real. We&apos;re producing 5x more content.',
         author: 'Alex Rivera',
         role: 'Marketing Director',
         initials: 'AR',
@@ -33,7 +33,7 @@ const defaultTestimonials: Testimonial[] = [
     },
     {
         id: '3',
-        quote: 'Best investment we\'ve made this year. The ROI is incredible.',
+        quote: 'Best investment we&apos;ve made this year. The ROI is incredible.',
         author: 'Jessica Wang',
         role: 'CEO',
         initials: 'JW',
@@ -61,7 +61,7 @@ const defaultTestimonials: Testimonial[] = [
     },
     {
         id: '7',
-        quote: 'We\'ve seen a 40% increase in content output. The AI is consistently on-brand.',
+        quote: 'We&apos;ve seen a 40% increase in content output. The AI is consistently on-brand.',
         author: 'Marcus Chen',
         role: 'Marketing Manager',
         initials: 'MC',
@@ -118,7 +118,7 @@ const defaultTestimonials: Testimonial[] = [
     {
         id: '15',
         quote: 'Shop Titan pays for itself in just a few days of use each month.',
-        author: 'Kevin O\'Neil',
+        author: 'Kevin O&apos;Neil',
         role: 'Business Owner',
         initials: 'KO',
     },
@@ -195,7 +195,7 @@ export default function TestimonialScroll({
                                 >
                                     {/* Quote */}
                                     <p className="text-sm text-charcoal dark:text-white mb-4 leading-relaxed">
-                                        "{testimonial.quote}"
+                                        &quot;{testimonial.quote}&quot;
                                     </p>
 
                                     {/* Stars */}
