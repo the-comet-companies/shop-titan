@@ -66,12 +66,15 @@ export default function Header() {
                         maxWidth: isScrolled ? "72rem" : "100%", // 72rem is max-w-6xl
                         borderRadius: isScrolled ? "9999px" : "0px",
                         height: isScrolled ? 64 : 80, // h-16 (64px) vs h-20 (80px)
-                        borderBottomColor: isScrolled ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.05)",
+                        borderBottomColor: isScrolled ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0)",
                     }}
                     transition={{ duration: 0.5, type: "spring", bounce: 0, stiffness: 100, damping: 20 }}
                     className={cn(
-                        "glass-nav mx-auto flex items-center justify-between px-6 md:px-12 transition-all duration-500",
-                        isScrolled ? "shadow-lg shadow-black/5" : "border-b border-white/5 bg-white/5 backdrop-blur-md"
+                        "mx-auto flex items-center justify-between px-6 md:px-12 transition-all duration-500",
+                        // Dynamic Island Style vs Transparent Initial State
+                        isScrolled
+                            ? "glass-nav shadow-lg shadow-black/5"
+                            : "bg-transparent border-b border-transparent backdrop-blur-none"
                     )}
                     style={{
                         marginLeft: "auto",
@@ -166,4 +169,3 @@ export default function Header() {
         </>
     );
 }
-
