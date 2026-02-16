@@ -112,14 +112,13 @@ export default function PlatformSection() {
             });
 
 
-            // Scroll Trigger for Revealing Items
+            // Scroll Trigger for Revealing Items (No Pinning, Just Reveal)
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: el,
-                    start: "top top", // Start pinning relative to viewport
-                    end: "+=120%", // Determine scroll length
-                    pin: true,
-                    scrub: 0.8, // Smooth scrubbing
+                    start: "top 80%", // Start animating when section hits 80% of viewport
+                    end: "top 20%",
+                    toggleActions: "play none none reverse" // Play on enter, reverse on leave back up
                 }
             });
 
@@ -128,7 +127,7 @@ export default function PlatformSection() {
                 autoAlpha: 1,
                 scale: 1,
                 y: 0,
-                duration: 1,
+                duration: 0.8,
                 ease: "power3.out"
             });
 
@@ -140,9 +139,9 @@ export default function PlatformSection() {
                         autoAlpha: 1,
                         y: 0,
                         scale: 1,
-                        duration: 0.8,
+                        duration: 0.6,
                         ease: "back.out(1.2)" // Tiny bounce for dynamic feel
-                    }, 0.5 + (index * 0.3)); // Start overlapping with container reveal
+                    }, 0.2 + (index * 0.1)); // Faster stagger
                 }
             });
 
