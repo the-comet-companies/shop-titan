@@ -5,12 +5,31 @@
 **Product Name:** Shop Titan (formerly Tech For Decorators)  
 **Product Type:** Marketing Website / Single-Page Application  
 **Target Audience:** High-volume apparel decorators and production shop owners  
-**Version:** 1.0.0  
-**Last Updated:** February 10, 2026
+**Version:** 1.1.0  
+**Last Updated:** February 13, 2026
 
 ### Product Vision
 
+**Headlines:**
+1.  A single source of truth for the decoration industry.
+2.  Our system allows you to focus on what you do best.
+
 Shop Titan is the marketing website for a FileMaker-based operational platform designed to unify production for high-volume decorators. The website communicates the core value proposition: transforming traditional, human-centric shop management (where owners are "human routers") into system-driven operations that provide operational leverage and strategic oversight.
+
+---
+
+## 3. Marketing Story - About Us
+
+### Necessity is the mother of invention
+
+This solution came about because there was no solution I liked. So I built my own, over 15 years. Now, I am offering it to the rest of the world.
+
+I did not want to move, and I did not like feeling stressed. I realized stress came from not having optics on where anything is, having to stay on top of the team. So I built a solution where I could be anywhere in the world and still run a large-scale print shop.
+
+Of course, it is to help the team. But I had to do a lot to get it there.
+
+*   Every click has a follow action.
+*   We built this as automated as possible, as delegatable as possible, and for the least amount of issues or mistakes to go wrong.
 
 ---
 
@@ -45,10 +64,8 @@ apps/marketing/
 │   │   └── MobileMenu.tsx
 │   └── sections/
 │       ├── HeroSection.tsx
-│       ├── PainPointSection.tsx
-│       ├── PlatformSection.tsx
-│       ├── ProductShowcaseSection.tsx
 │       ├── FeaturesSection.tsx
+│       ├── PainPointSection.tsx
 │       ├── BlogSection.tsx
 │       └── ContactSection.tsx
 ├── hooks/
@@ -72,230 +89,301 @@ apps/marketing/
 - Desktop navigation: Product, Platform, Features, Blog
 - CTA buttons: "Log in" + "Request Demo"
 - Mobile: Hamburger menu with slide-in drawer
-- Smooth scroll to sections
-- Responsive breakpoints: mobile, tablet, desktop
-
-**Technical:**
-- Z-index: 50
-- Backdrop filter: blur(20px)
-- Background: white/70 (light) | rgba(10,10,10,0.72) (dark)
-- Border: 1px solid rgba(255,255,255,0.08)
+- Smooth scroll to ids
 
 ---
 
-### 2. Hero Section (`#product`)
+### 2. Hero Section (`#hero`)
 
 **Purpose:** Primary value proposition and animated background
 
-**Content:**
-- **Headline:** "Unify your production. One platform for high-volume decorators to manage orders, inventory, and automation—from intake to fulfillment, without the friction."
-- **CTAs:** 
-  - Primary: "Get Started Now" (with shimmer animation)
-  - Secondary: "Contact Sales" (glass button)
-- **Partner Carousel:** Infinite horizontal scroll with Material Icon placeholders
-- **Animated Gradient Background:** 4 flowing gradient blobs with staggered animations
-- **"Why This System Exists" Subsection:**
-  - Tagline: "Why This System Exists"
-  - Problem/solution comparison:
-    - ❌ Disconnected (red icon)
-    - ✅ Unified Flow (green icon)
+**Current Implementation:**
+- **Headline:**
+"A single source of truth for the decoration industry."
+
+**Sub-headline:**
+"Our system allows you to focus on what you do best."
+
+**Primary CTA:**
+"Request Demo" (Button - Standard)
+
+**Secondary CTA:**
+"See How It Works" (Button - Outline/Ghost)
+
+**Social Proof / Trust Signals:**
+*   "Trusted by 150+ high-volume shops."
+*   Partner Logos (SanMar, S&S, AlphaBroder, etc. - in greyscale).
+
+**"Why This System Exists" Subsection:**
+*   Tagline: "Why This System Exists"
+*   Content: "Most decorating businesses don't suffer from lack of talent. They suffer from *lack of structure*."
 
 **Animations:**
 - Fade-in-up for headline (0.8s)
-- Delayed fade-in for CTAs (delay 200ms)
+- Delayed fade-in for CTAs
 - Infinite carousel scroll (40s linear)
-- Gradient blob movements (20-30s ease-in-out)
-- Scroll-triggered fade-in for subsection
+- Animated Gradient Background (4 blobs)
+- Interactive Grid Pattern (opacity 0.4)
 
 **Technical:**
-- Scroll padding offset: 100px
-- Gradient blobs: 4 absolute positioned divs with blur filters
-- useScrollAnimation hook for visibility detection
+- `useScrollAnimation` for "Why" section visibility.
+- Padding offset: `pt-32` mobile, `pt-48` desktop.
 
 ---
 
-### 3. Pain Point Section
+### 3. Marketing Narrative & "Top 10" Pain Points (Context)
 
-**Purpose:** Articulate customer pain points through time-based scenarios
+*This section provides the content strategy and problem analysis that drives the website's messaging. For the actual on-page implementation, see Section 7 (Pain Points Section).*
 
-**Content:**
-- **Headline:** "Your best people are stuck doing low-value work."
-- **3 Time-Based Cards:**
-  1. **9:30 am** - Production manager copying order details into 4 spreadsheets
-  2. **1:15 pm** - Team lead hunting for artwork files
-  3. **5:45 pm** - Decorator manually updating inventory
-- **Bottom Message:** "We can automate all of this and give you hours back every day."
+#### The "Why": Necessity is the mother of invention
+*Marketing Story for About Page / Modal:*
+"This solution came about because there was no solution I liked. So I built my own, over 15 years... I realized stress came from not having optics on where anything is... So I built a solution where I could be anywhere in the world and still run a large-scale print shop."
 
-**Design:**
-- Gradient background (white → gray-50 → white)
-- Red gradient blob (top-right, blurred)
-- Clock SVG icons with custom hands
-- 3-column grid (desktop), stacked (mobile)
-- Staggered animations (delay-100, delay-200, delay-300)
+#### Top 10 Biggest Pain Points (Reference List)
+#### Top 10 Biggest Pain Points (Reference List)
 
-**Technical:**
-- Custom SVG clock circles with static hands
-- Feature card styling with hover effects
-- Scroll-triggered visibility detection
+1.  **No Single Source of Truth:** Orders, artwork, pricing live in different places -> Miscommunication & errors.
+2.  **Production Scheduling Chaos:** Whiteboards/Spreadsheets -> Owners guessing capacity.
+3.  **Manual Repetitive Data Entry:** Errors, burnout, inconsistent records.
+4.  **Lack of Real-Time Job Visibility:** "Where is this order?" -> Constant interruptions.
+5.  **Margin Leakage:** Labor not tracked, reprints eat profit.
+6.  **Pricing Complexity:** Structured matrices missing -> Sales underquotes.
+7.  **Artwork and Approval Bottlenecks:** Files in email/drive -> Wrong versions printed.
+8.  **Inventory Blind Spots:** Blanks run out mid-job -> Production stalls.
+9.  **Owner Dependency:** Owner is the bottleneck/system.
+10. **Scaling Breaks the System:** What works at 5 employees breaks at 20.
+
+**The Meta Problem:** "They are production businesses running on fragmented systems built for small shops... You are not solving decoration. You are solving production operations."
 
 ---
 
 ### 4. Platform Section (`#platform`)
 
-**Purpose:** System architecture overview and operational philosophy
+**Purpose:** System architecture overview and operational philosophy.
 
-**Subsections:**
+**Current Implementation:**
 
 #### 4.1. Header
-- Subtitle: "ARCHITECTURE OVERVIEW"
-- Title: "A Single Operational Source of Truth."
+- **Subtitle:** "Architecture Overview"
+- **Title:** "The Operational Architecture Behind Structured Shops."
 
-#### 4.2. Main Content (2-column layout)
+#### 4.2. Main Content
+- **Left Column:**
+  - Headline: "Engineered for Operational Independence."
+  - Description: "The platform installs structured control across ownership, management, and execution."
+  - **2 Feature Cards:**
+    - �️ **Executive Visibility:** Real-time financial/capacity clarity.
+    - 🤖 **Autonomous Execution:** Automated routing, validation, sync.
+- **Right Column (Architecture Diagram):**
+  - **Level 01 - Ownership:** Strategic Oversight (P&L, Forecasting, Capital).
+  - **Level 02 - Management:** Operational Command (Production Flow, Inventory, Workforce).
+  - **Level 03 - Automation:** Core Engine (Error Prevention, Workflow, Status Sync).
 
-**Left Column:**
-- **Headline:** "Built for Operational Leverage."
-- **Description:** System-driven hierarchy philosophy
-- **2 Feature Cards:**
-  - 🔍 High-Level Visibility (Real-time P&L)
-  - ⚙️ Self-Driving Operations (Automated logic)
+#### 4.3. Hierarchy of Leverage
+- **Traditional Shops:** Owner is "Human Router" (bottleneck).
+- **System-Driven Shops:** "System Router" takes over decision trees.
 
-**Right Column:**
-- **3-Tier Architecture Diagram:**
-  - **Level 01 - Ownership** (gray border-left)
-    - "Strategic Direction & Profitability"
-    - Tags: P&L Visibility, Forecasting, Growth ROI
-  - **Level 02 - Management** (gray border-left)
-    - "Execution & Optimization"
-    - Tags: Production Flow, Inventory Sync, Staffing
-  - **Level 03 - Automation** (primary border-left, highlighted)
-    - "Self-Correcting Logistics"
-    - ✅ Error Prevention Logic
-    - ✅ Automated Shipping Workflows
-    - ✅ Real-time Status Synchronization
-
-#### 4.3. Hierarchy of Leverage Comparison
-
-**Traditional Shops:**
-- Icon: person_off (gray)
-- Description: Owner is "Human Router" = bottleneck
-
-**System-Driven Shops:**
-- Icon: hub (primary color)
-- Description: "System Router" = operational autonomy
-
-**Design:**
-- Contained in rounded card with border
-- 2-column responsive grid
-- Gradient blob accent (primary/5, blurred)
+**Animations:**
+- Staggered fade-ins for header -> content -> diagram -> comparison.
+- Diagram levels pop in with spring physics.
+- Connecting lines grow vertically.
 
 ---
 
-### 5. Product Showcase Section
+### 5. Product Showcase Section (`#product`)
 
-**Purpose:** Visual demonstration of the platform UI
+**Purpose:** Visual demonstration of the platform UI.
 
-**Note:** Not fully detailed in provided files, likely contains:
-- Mock UI screenshots
-- Interactive product demo
-- Feature highlights with visual proofs
+**Current Implementation:**
+
+#### 5.1. Friction Removal
+- **Headline:** "Clarity replaces communication."
+- **Points:** Fewest Clicks, Eliminated Handoffs, Explicit Ownership.
+- **Mockup:** `app.shoptitan.com/workflow` showing "Auto-Approve Art" and "Skip Shipping Intake".
+- **Metric:** "-64% reduction" in touchpoints.
+
+#### 5.2. Ownership-Level Result
+- **Headline:** "Scale without adding noise."
+- **Points:** No Chasing Updates, Visibility-on-Demand, Owner-Absent Operations.
+- **Mockup:** `app.shoptitan.com/dashboard` showing Queue Status (Healthy) and Operator Pulse (Machine A 142u/hr).
+
+#### 5.3. Strategic Strategy
+- **Headline:** "Single-Piece Orders, Without Operational Chaos."
+- **Focus:** Neutralizing Print-on-Demand threat.
+- **Mockup:** `app.shoptitan.com/orders/9102` showing Shopify Integration, Art Prep, Stock Check, Route.
+
+#### 5.4. Intake Flow Animation
+- Horizontal flow: Intake → Proofing → Production → Fulfillment → Updates.
+- Animated with `framer-motion` sliding up.
+
+**Technical:**
+- Uses `BrowserFrame` component for mockups.
+- Scroll-triggered animations for each section.
 
 ---
 
 ### 6. Features Section (`#features`)
 
-**Purpose:** Detailed breakdown of platform capabilities
+**Purpose:** Detailed storytelling of platform capabilities.
 
-**Structure:**
-- 4 detailed feature cards with mock UI snippets
-- Each card contains:
-  - Icon representation
-  - Feature title and description
-  - Mock UI container (`.ui-snippet` class)
-  - Technical specifications
+**Current Implementation (Storytelling Mode):**
+*   **Sticky Header:** "Engineered for Operational Excellence."
+*   **5 Interactive Feature Blocks:**
+    1.  **Job and project tracking:** "Where is order #492?" -> Real-time status.
+        *   Mockup: Job #9928 Production Status.
+    2.  **Inventory and materials management:** "Out of Large Whites" -> Global stock visibility.
+        *   Mockup: Size grid with "Syncing with SanMar..." animation.
+    3.  **Client workflows and approvals:** "Approval delays" -> Integrated proofing.
+        *   Mockup: "Approved by Client" button (disabled state concept).
+    4.  **Financial visibility and reporting:** "Profit leaks" -> Real-time P&L.
+        *   Mockup: Net Profit $12,402 (+14%) with bar chart.
+    5.  **Automation layers and triggers:** "Manual re-entry" -> Automated alerts/labels.
+        *   Mockup: Code logic (`IF status == Approved await shipstation`).
 
-**Design:**
-- Feature card hover effects (shadow lift)
-- Dark/light mode support
-- Responsive grid layout
+**Core Features (Detailed Checklist):**
 
-**Technical:**
-- `.feature-card` custom utility
-- `.ui-snippet` for mock UI containers
-- Scroll-triggered animations
+*   **Quotes:** (Video showcase needed)
+*   **Orders:** End-to-end tracking.
+*   **Customers / Vendors:** CRM & VRM.
+*   **Purchase Orders:**
+    *   **RFQ Feature:** Request for Quotes from vendors.
+*   **Machines & Production Scheduler:** Capacity planning.
+*   **Pricing Matrixes:** Stick count, screen setups, wash types, etc.
+*   **Product Management:**
+    *   **XML Feed Management:** Google Merchant, FB/Insta, Reddit, Pinterest.
+*   **Contractor Work Orders:** "Send work out... get it done right."
+*   **Unlimited Decoration & Task Types:** Flexible config.
+*   **Reporting & Analytics:**
+    *   Inventory Reports.
+    *   Financial Visibility.
+
+**UI/UX Requirements:**
+*   Sticky sidebar navigation tracked to scroll.
+*   `activeFeature` state highlighting.
+*   **Video Integration:** "Showcase each section... possibly a video of each feature."
 
 ---
 
-### 7. Blog Section (`#blog`)
+### 7. Pain Points Section (`#pain-points`)
+
+**Purpose:** Highlight the daily chaos of traditional shops to build empathy and urgency.
+
+**Current Implementation:**
+- **Headline:** "Your best people are stuck doing low-value work."
+- **Animated Background:** Large primary-colored blob with pulse animation.
+- **3 Time-Based Pain Cards (Spotlight Effect):**
+  1.  **9:30 am:** "Production manager copying order details from emails into 4 different spreadsheets."
+  2.  **1:15 pm:** "Team lead hunting through folders for artwork files from a job sent two weeks ago."
+  3.  **5:45 pm:** "Your best decorator manually updating inventory counts instead of running the next batch."
+- **Closing Statement:** "We can automate all of this and give you hours back every day."
+
+**Content Requirements (Context & Analysis):**
+*See "Top 10 Biggest Pain Points" below for the detailed problem analysis driving this section.*
+
+#### Top 10 High-Level Pain Points (Reference)
+1.  **No Single Source of Truth**
+2.  **Production Scheduling Chaos**
+3.  **Manual Repetitive Data Entry**
+4.  **Lack of Real-Time Job Visibility**
+5.  **Margin Leakage**
+6.  **Pricing Complexity**
+7.  **Artwork Bottlenecks**
+8.  **Inventory Blind Spots**
+9.  **Owner Dependency**
+10. **Scaling Breaks the System**
+
+---
+
+### 8. Blog Section (`#blog`)
 
 **Purpose:** Editorial content and thought leadership
 
-**Content:**
-- **Header:** 
-  - "EDITORIAL INSIGHTS"
-  - Tagline: "The architecture of modern apparel decoration."
-- **4 Articles:**
-  1. "Neutralizing POD Friction" (Operations)
-  2. "Scaling Beyond 10 Employees" (Growth)
-  3. "Inventory Sync Realities" (Automation)
-  4. "Claris FileMaker vs SaaS" (Infrastructure)
-
-**Each Article Card:**
-- Date + Category badge
-- Large serif title (3-5xl, hover → primary color)
-- Description paragraph
-- "Read Analysis →" link with arrow icon
-
-**Design:**
-- Serif typography (Crimson Pro italic)
-- Extra-large vertical spacing (48+ between articles)
-- Minimal, editorial aesthetic
-- "View All Archives" button at bottom
+**Current Implementation:**
+- **Header:**
+  - Tagline: "EDITORIAL INSIGHTS"
+  - Main: "The architecture of modern apparel decoration."
+- **Articles:** (Fetched from `blog-data.ts`)
+  - Displays category, date, title, description, and "Read Analysis" link.
+  - Hover effects on titles.
 
 **Technical:**
-- `.article-title` custom utility
-- Serif font family from Crimson Pro
-- Group hover states for interactive elements
+- `useScrollAnimation` for staggered entry.
+- Links to `/blog/[slug]`.
 
 ---
 
-### 8. Contact Section (`#contact`)
+### 9. Contact Section (`#contact`)
 
 **Purpose:** Lead generation through demo request form
 
-**Content:**
+**Current Implementation:**
 - **Header:** "Request Your Demo"
 - **Subheader:** "No pressure. No sales pitch. Just clarity."
 - **Form Fields:**
-  - Name (text, required)
-  - Work Email (email, required)
-  - Company (text, required)
-  - Main Friction Point (textarea, required)
-- **Submit Button:** "Request Custom Demo →"
-- **Social Proof:** Avatar stack + "Joined by 150+ shops this month"
+  - Name, Work Email, Company, Main Friction Point.
+- **Submit Action:** Client-side validation + console log (demo mode).
+- **Social Proof:** Avatar stack + "Joined by 150+ shops this month".
 - **Footer Tag:** "Zero Distractions • Ultra-Clean UI • High Focus"
 
-**Design:**
-- Centered form layout (max-width: xl)
-- Large rounded card with shadow
-- Gray-50 input backgrounds
-- Primary color focus states
-- Arrow icon with translate animation on hover
-
 **Technical:**
-- Client-side validation
-- Console logging on submit (demo)
-- Alert confirmation message
-- React state management for form data
+- Client-side React state.
+- Success message animation on submit.
 
 ---
 
-### 9. Footer Component
 
-**Purpose:** Site links and legal information
 
-**Note:** Not detailed in provided files, standard footer implementation
+### 9. Coming Soon (Email Notification)
+
+*   **WooCommerce Integration** (mapping required)
+*   **Shopify Integration** (mapping required)
+*   **Design Library:** Sell designs and push to marketplaces.
+*   **Ecommerce Feed Management:** Easy XML creation and product pushing for:
+    *   eBay, Amazon, Etsy, Shopify, WooCommerce, Merchant Center, Faire, Fashion Go.
 
 ---
+
+### 10. Target Industries & Segments
+
+Our SaaS is not just for embroidery shops; it is for **Production Driven Decoration Businesses** managing multi-step custom workflows.
+
+| Segment | Examples |
+| :--- | :--- |
+| **Primary Decorators** | Screen Printing, Embroidery, DTG, DTF, Sublimation, Heat Transfer/Vinyl, UV Printing, Pad Printing, Laser Engraving, Applique/Patch. |
+| **Finishing & Processing** | Wash Houses (Enzyme, Acid, Pigment Dye), Dye Houses (Tie-dye, Dip-dye), Specialty Finishers (Sand blasting, Distressing), Embossing/Debossing. |
+| **Government/Institutional** | University Print Shops, Municipal Uniform Providers (Police/Fire), Military Contractors. |
+| **Hybrid Operators** | Promo Product Decorators, Uniform Companies, Merch Fulfillment Centers (3PL), Corporate Swag, Sports Outfitters, Print Brokers, Sign Shops. |
+| **Industrial & Specialty** | Industrial Textile Printers, Hard Goods Decorators, Leather Goods, Luxury Garment Finishers. |
+| **Special Models** | On-Demand Production (POD), Bulk B2B Decorators, In-House Brand Production Teams. |
+
+---
+
+### 11. Packages & Pricing
+
+#### 01 Starter (~$5k Virtual Setup)
+*   Quotes, Orders, Customers.
+
+#### 02 Pro
+*   All in Starter + Vendors, Machines, Purchase Orders.
+
+#### 03 Fully Automated
+*   All in Pro + White-label, API access, Stripe integration, UPS Shipping Labels, Quote follow-ups.
+
+#### 04 Ultimate (Consultant Package)
+*   Full print shop turnaround.
+*   Bi-weekly 2-hour meetings for 6 months (SEO, tech stack, logic).
+*   AI Integrations + Automations.
+
+#### 05 Custom Development
+*   Contact for more.
+
+---
+
+
+
+---
+
+
 
 ## Design System
 
@@ -731,3 +819,76 @@ Shop Titan's marketing website effectively communicates the value proposition of
 **Last Updated:** February 10, 2026  
 **Prepared By:** Antigravity AI Agent  
 **Status:** Complete & Ready for Review
+
+---
+
+### 10. Benefits & Integrations
+
+#### Benefits
+*   **Reliable:** Fully Cloud Based on AWS S3 Servers.
+    *   Secure with hourly, nightly, and monthly backups.
+    *   "Your data - your access - you are in control."
+*   **Quick Response Times:** Support happens through Slack.
+*   **Maintenance Included:** Includes all maintenance + hosting.
+*   **White Label:** Complete white label options, blind ship with client logos.
+
+#### Integrations & Bonus Features
+*   **Workflow:** n8n, Make.com, Zapier.
+*   **Storage:** S3 bucket uploads.
+*   **Payments:** Stripe (create, accept, record payments seamlessly).
+*   **Shipping:** ShipStation integration (Live rates, create/void labels, shipment logging).
+*   **Order Commissions:** (Future)
+
+---
+
+### 11. Coming Soon (Email Notification)
+
+*   **WooCommerce Integration** (mapping required)
+*   **Shopify Integration** (mapping required)
+*   **Design Library:** Sell designs and push to marketplaces.
+*   **Ecommerce Feed Management:** Easy XML creation and product pushing for:
+    *   eBay, Amazon, Etsy, Shopify, WooCommerce, Merchant Center, Faire, Fashion Go.
+
+---
+
+### 12. Target Industries & Segments
+
+Our SaaS is not just for embroidery shops; it is for **Production Driven Decoration Businesses** managing multi-step custom workflows.
+
+| Segment | Examples |
+| :--- | :--- |
+| **Primary Decorators** | Screen Printing, Embroidery, DTG, DTF, Sublimation, Heat Transfer/Vinyl, UV Printing, Pad Printing, Laser Engraving, Applique/Patch. |
+| **Finishing & Processing** | Wash Houses (Enzyme, Acid, Pigment Dye), Dye Houses (Tie-dye, Dip-dye), Specialty Finishers (Sand blasting, Distressing), Embossing/Debossing. |
+| **Government/Institutional** | University Print Shops, Municipal Uniform Providers (Police/Fire), Military Contractors. |
+| **Hybrid Operators** | Promo Product Decorators, Uniform Companies, Merch Fulfillment Centers (3PL), Corporate Swag, Sports Outfitters, Print Brokers, Sign Shops. |
+| **Industrial & Specialty** | Industrial Textile Printers, Hard Goods Decorators, Leather Goods, Luxury Garment Finishers. |
+| **Special Models** | On-Demand Production (POD), Bulk B2B Decorators, In-House Brand Production Teams. |
+
+---
+
+### 13. Packages & Pricing
+
+#### 01 Starter (~$5k Virtual Setup)
+*   Quotes, Orders, Customers.
+
+#### 02 Pro
+*   All in Starter + Vendors, Machines, Purchase Orders.
+
+#### 03 Fully Automated
+*   All in Pro + White-label, API access, Stripe integration, UPS Shipping Labels, Quote follow-ups.
+
+#### 04 Ultimate (Consultant Package)
+*   Full print shop turnaround.
+*   Bi-weekly 2-hour meetings for 6 months (SEO, tech stack, logic).
+*   AI Integrations + Automations.
+
+#### 05 Custom Development
+*   Contact for more.
+
+---
+
+### 14. Footer Component
+
+**Purpose:** Site links and legal information
+
+**Note:** Not detailed in provided files, standard footer implementation
