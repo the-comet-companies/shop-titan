@@ -3,6 +3,7 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import BrowserFrame from '@/components/ui/BrowserFrame';
 import { motion } from 'framer-motion';
+import WorkflowTabs from './WorkflowTabs';
 
 export default function ProductShowcaseSection() {
     const { elementRef: section1Ref, isVisible: section1Visible } = useScrollAnimation();
@@ -325,41 +326,8 @@ export default function ProductShowcaseSection() {
                     </motion.div>
                 </div>
 
-                {/* Intake Flow - Full Width with Wrapped Flex on Mobile */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="relative py-8 md:py-10 px-4 md:px-6 border border-structural-border dark:border-gray-800 rounded-xl bg-surface dark:bg-gray-900/30 mt-12 md:mt-16"
-                >
-                    {/* Wrapped Flex Container for Mobile */}
-                    <div className="flex flex-wrap items-center justify-center md:justify-between gap-y-4 gap-x-3 md:gap-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-secondary-text max-w-4xl mx-auto">
-                        <div className="flex items-center gap-2 text-primary">
-                            <span className="material-symbols-outlined text-base">download</span> Intake
-                        </div>
-                        <span className="material-symbols-outlined text-sm text-gray-300 hidden md:inline">arrow_forward</span>
-
-                        <div className="flex items-center gap-2">
-                            <span className="material-symbols-outlined text-base">visibility</span> Proofing
-                        </div>
-                        <span className="material-symbols-outlined text-sm text-gray-300 hidden md:inline">arrow_forward</span>
-
-                        <div className="flex items-center gap-2">
-                            <span className="material-symbols-outlined text-base">print</span> Production
-                        </div>
-                        <span className="material-symbols-outlined text-sm text-gray-300 hidden md:inline">arrow_forward</span>
-
-                        <div className="flex items-center gap-2">
-                            <span className="material-symbols-outlined text-base">package_2</span> Fulfillment
-                        </div>
-                        <span className="material-symbols-outlined text-sm text-gray-300 hidden md:inline">arrow_forward</span>
-
-                        <div className="flex items-center gap-2">
-                            <span className="material-symbols-outlined text-base">mail</span> Updates
-                        </div>
-                    </div>
-                </motion.div>
+                {/* Intake Flow - Interactive Tabs */}
+                <WorkflowTabs />
             </div>
         </section>
     );
