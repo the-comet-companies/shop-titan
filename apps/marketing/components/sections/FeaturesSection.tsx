@@ -81,7 +81,7 @@ export default function FeaturesSection() {
                                 </span>
                             </h1>
                             <p className="text-base text-secondary-text dark:text-gray-400 leading-relaxed max-w-md">
-                                A modular architectural approach to apparel decoration. We didn't
+                                A modular architectural approach to apparel decoration. We didn&apos;t
                                 just build features; we solved the fundamental frictions.
                             </p>
                         </motion.div>
@@ -333,7 +333,7 @@ export default function FeaturesSection() {
                             <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-4 border border-structural-border dark:border-gray-800">
                                     <div className="mb-3">
-                                        <span className="text-xs font-bold dark:text-white">Today's Schedule</span>
+                                        <span className="text-xs font-bold dark:text-white">Today&apos;s Schedule</span>
                                     </div>
                                     <div className="space-y-2">
                                         {[

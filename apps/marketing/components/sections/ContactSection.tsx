@@ -178,7 +178,7 @@ export default function ContactSection() {
                                 <div>
                                     <h3 className="text-2xl font-bold text-charcoal dark:text-white mb-2">Request Received</h3>
                                     <p className="text-secondary-text dark:text-gray-400 max-w-sm mx-auto">
-                                        Thanks, {formData.name.split(' ')[0]}. We'll be in touch shortly to schedule your demo.
+                                        Thanks, {formData.name.split(' ')[0]}. We&apos;ll be in touch shortly to schedule your demo.
                                     </p>
                                 </div>
                                 <button
