@@ -46,7 +46,7 @@ export default function HeroSection() {
                             className="flex flex-col sm:flex-row gap-4 justify-start"
                         >
                             <button className="btn-primary">
-                                Request Demo
+                                Let's Talk
                             </button>
                             <button
                                 onClick={() => document.getElementById('platform')?.scrollIntoView({ behavior: 'smooth' })}
