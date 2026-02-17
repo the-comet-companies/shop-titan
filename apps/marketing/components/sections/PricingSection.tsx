@@ -17,7 +17,7 @@ interface PricingTier {
     features: PricingFeature[];
     highlighted?: boolean;
     badge?: string;
-    ctaText?: string;
+
 }
 
 // Personal tiers (3 tiers)
@@ -33,7 +33,7 @@ const personalTiers: PricingTier[] = [
             { icon: 'people', text: 'Customer Database' },
             { icon: 'support_agent', text: 'Virtual setup & onboarding' },
         ],
-        ctaText: 'Get Started',
+
     },
     {
         id: 'business',
@@ -50,7 +50,7 @@ const personalTiers: PricingTier[] = [
         ],
         badge: 'Popular',
         highlighted: true,
-        ctaText: 'Upgrade to Business',
+
     },
     {
         id: 'enterprise',
@@ -67,7 +67,7 @@ const personalTiers: PricingTier[] = [
             { icon: 'psychology', text: 'AI Integrations' },
             { icon: 'groups', text: '1-on-1 Strategy Sessions' },
         ],
-        ctaText: 'Upgrade to Enterprise',
+
     },
 ];
 
@@ -88,7 +88,7 @@ const businessTiers: PricingTier[] = [
             { icon: 'trending_up', text: 'Business strategy sessions' },
         ],
         badge: 'Premium',
-        ctaText: 'Contact Us',
+
     },
     {
         id: 'custom',
@@ -101,7 +101,7 @@ const businessTiers: PricingTier[] = [
             { icon: 'group', text: 'Dedicated development team' },
             { icon: 'phone', text: 'Contact us for more details' },
         ],
-        ctaText: 'Contact Sales',
+
     },
 ];
 
@@ -193,15 +193,7 @@ export default function PricingSection() {
                                     {tier.description}
                                 </p>
 
-                                {/* CTA Button */}
-                                <button
-                                    className={`w-full py-3 px-6 rounded-xl font-bold text-sm transition-all duration-300 mb-8 ${tier.highlighted
-                                        ? 'bg-primary text-white hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5'
-                                        : 'bg-gray-100 dark:bg-gray-800 text-charcoal dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700'
-                                        }`}
-                                >
-                                    {tier.ctaText || 'Get Started'}
-                                </button>
+
 
                                 {/* Features List */}
                                 <div className="">
