@@ -23,7 +23,7 @@ export default function Header() {
         }
     });
 
-    const activeSection = useActiveSection(['hero', 'platform', 'product', 'features', 'pricing', 'blog', 'contact']);
+    const activeSection = useActiveSection(['hero', 'platform', 'features', 'product', 'pricing', 'blog', 'contact']);
 
     const scrollToSection = (sectionId: string) => {
         if (sectionId === 'blog') {
@@ -105,7 +105,7 @@ export default function Header() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 -translate-x-1/2">
-                        {['platform', 'product', 'features', 'pricing', 'blog'].map((section, index) => (
+                        {['platform', 'features', 'product', 'pricing', 'blog'].map((section, index) => (
                             <motion.button
                                 key={section}
                                 onClick={() => scrollToSection(section)}
