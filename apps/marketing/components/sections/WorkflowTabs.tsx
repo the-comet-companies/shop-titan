@@ -50,13 +50,13 @@ export default function WorkflowTabs() {
         >
             {/* Tabs Navigation */}
             <div className="flex justify-center mb-8 md:mb-12 px-4">
-                <div className="inline-flex flex-nowrap items-center bg-zinc-100/80 dark:bg-zinc-900/50 backdrop-blur-md border border-zinc-200 dark:border-white/10 rounded-full p-1.5 gap-0 shadow-sm max-w-full overflow-x-auto no-scrollbar">
+                <div className="flex flex-wrap md:flex-nowrap items-center justify-center bg-zinc-100/80 dark:bg-zinc-900/50 backdrop-blur-md border border-zinc-200 dark:border-white/10 rounded-2xl md:rounded-full p-1.5 gap-1 md:gap-0 shadow-sm max-w-full md:overflow-x-auto md:no-scrollbar">
                     {TABS.map((tab) => (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={cn(
-                                "group relative flex items-center gap-2 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider transition-all duration-300 z-10 whitespace-nowrap flex-shrink-0",
+                                "group relative flex items-center gap-2 px-3 py-2 md:px-5 md:py-2.5 rounded-lg md:rounded-full text-xs md:text-sm font-bold uppercase tracking-wider transition-all duration-300 z-10 whitespace-nowrap",
                                 activeTab === tab.id
                                     ? "text-zinc-900 dark:text-white"
                                     : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
@@ -70,13 +70,13 @@ export default function WorkflowTabs() {
                             {activeTab === tab.id && (
                                 <motion.div
                                     layoutId="active-pill"
-                                    className="absolute inset-0 bg-white dark:bg-zinc-800 rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-black/5 dark:border-white/5 z-0"
+                                    className="absolute inset-0 bg-white dark:bg-zinc-800 rounded-lg md:rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-black/5 dark:border-white/5 z-0"
                                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                                 >
                                     {!isPaused && isInView && (
                                         <motion.div
                                             layoutId="progress"
-                                            className="absolute top-0 left-0 h-full bg-zinc-900/5 dark:bg-white/10 rounded-full"
+                                            className="absolute top-0 left-0 h-full bg-zinc-900/5 dark:bg-white/10 rounded-lg md:rounded-full"
                                             initial={{ width: "0%" }}
                                             animate={{ width: "100%" }}
                                             transition={{ duration: 3, ease: "linear" }}
