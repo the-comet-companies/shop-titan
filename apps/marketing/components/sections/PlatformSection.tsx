@@ -58,18 +58,7 @@ export default function PlatformSection() {
         if (!el || !container) return;
 
         const ctx = gsap.context(() => {
-            // Initial states
-            // Container starts slightly scaled down and transparent
-            gsap.set(container, { autoAlpha: 0, scale: 0.95, y: 50 });
-
-            // Items start hidden
-            itemsRef.current.forEach((item) => {
-                if (item) {
-                    gsap.set(item, { autoAlpha: 0, y: 30, scale: 0.9 });
-                }
-            });
-
-            // Initialize words
+            // Initialize words relative to their containers
             platformData.forEach((_, itemIndex) => {
                 const outlineWords = outlineWordsRefs.current[itemIndex];
                 const solidWords = solidWordsRefs.current[itemIndex];
@@ -111,42 +100,73 @@ export default function PlatformSection() {
                 }
             });
 
+            // Scroll Reveal Logic
+            const mm = gsap.matchMedia();
 
-            // Scroll Trigger for Revealing Items (No Pinning, Just Reveal)
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 80%", // Start animating when section hits 80% of viewport
-                    end: "top 20%",
-                    toggleActions: "play none none reverse" // Play on enter, reverse on leave back up
-                }
+            // Desktop: Pin and Reveal 1-by-1
+            mm.add("(min-width: 768px)", () => {
+                // Initial State: Container Visible, Item 0 Visible, Others Hidden
+                gsap.set(container, { autoAlpha: 1, scale: 1, y: 0 });
+
+                itemsRef.current.forEach((item, index) => {
+                    if (item) {
+                        if (index === 0) {
+                            gsap.set(item, { autoAlpha: 1, y: 0, scale: 1 });
+                        } else {
+                            gsap.set(item, { autoAlpha: 0, y: 30, scale: 0.95 });
+                        }
+                    }
+                });
+
+                const updatedItems = itemsRef.current.filter((item): item is HTMLDivElement => item !== null);
+
+                // Timeline linked to scroll
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top top",
+                        end: "+=2000", // Scroll distance
+                        pin: true,
+                        scrub: 1,
+                        anticipatePin: 1
+                    }
+                });
+
+                // Reveal subsequent items
+                // Item 0 is already visible.
+                // We want to reveal 1, 2, 3, 4 sequentially.
+                updatedItems.forEach((item, index) => {
+                    if (index > 0) {
+                        tl.to(item, {
+                            autoAlpha: 1,
+                            y: 0,
+                            scale: 1,
+                            duration: 1,
+                            ease: "power2.out"
+                        }, "+=0.5"); // Stagger manually with timeline position
+                    }
+                });
+
+                // Small buffer at end
+                tl.to({}, { duration: 1 });
             });
 
-            // 1. Reveal Container first
-            tl.to(container, {
-                autoAlpha: 1,
-                scale: 1,
-                y: 0,
-                duration: 0.8,
-                ease: "power3.out"
-            });
+            // Mobile: Simple Reveal (No Pin)
+            mm.add("(max-width: 767px)", () => {
+                // Container starts clear
+                gsap.set(container, { autoAlpha: 1, scale: 1, y: 0 });
 
-            // 2. Reveal Items with Stagger
-            // We want them to pop in one by one shortly after container appears
-            itemsRef.current.forEach((item, index) => {
-                if (item) {
-                    tl.to(item, {
-                        autoAlpha: 1,
-                        y: 0,
-                        scale: 1,
-                        duration: 0.6,
-                        ease: "back.out(1.2)" // Tiny bounce for dynamic feel
-                    }, 0.2 + (index * 0.1)); // Faster stagger
-                }
-            });
+                // Items hidden initially
+                itemsRef.current.forEach((item) => {
+                    if (item) gsap.set(item, { autoAlpha: 0, y: 30 });
+                });
 
-            // Buffer at end
-            tl.to({}, { duration: 0.5 });
+                // Batch reveal as they enter viewport
+                ScrollTrigger.batch(itemsRef.current.filter(i => i), {
+                    start: "top 85%",
+                    onEnter: batch => gsap.to(batch, { autoAlpha: 1, y: 0, stagger: 0.15, overwrite: true })
+                });
+            });
 
         }, el);
 
