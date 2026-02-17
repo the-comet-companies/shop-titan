@@ -6,12 +6,22 @@ import { useRouter, usePathname } from 'next/navigation';
 import MobileMenu from './ui/MobileMenu';
 import { useActiveSection } from '@/hooks/useActiveSection';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     const router = useRouter();
     const pathname = usePathname();
+    const { scrollY } = useScroll();
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        if (latest > 50 && !isScrolled) {
+            setIsScrolled(true);
+        } else if (latest <= 50 && isScrolled) {
+            setIsScrolled(false);
+        }
+    });
 
     const activeSection = useActiveSection(['hero', 'platform', 'product', 'features', 'pricing', 'blog', 'contact']);
 
@@ -35,12 +45,41 @@ export default function Header() {
         <>
             <motion.header
                 initial={{ y: -100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed top-4 md:top-6 left-0 right-0 z-50 px-4 md:px-6"
+                animate={{
+                    y: 0,
+                    opacity: 1,
+                    top: isScrolled ? 24 : 0, // 24px is md:top-6
+                    paddingLeft: isScrolled ? 24 : 0, // 24px is px-6
+                    paddingRight: isScrolled ? 24 : 0,
+                }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className={cn(
+                    "fixed left-0 right-0 z-50 transition-all duration-500",
+                    isScrolled ? "px-4 md:px-6" : "px-0"
+                )}
             >
-                <nav
-                    className="glass-nav max-w-6xl mx-auto h-14 md:h-16 rounded-full flex items-center justify-between px-4 md:px-6 transition-all duration-300"
+                <motion.nav
+                    layout
+                    initial={false}
+                    animate={{
+                        width: isScrolled ? "100%" : "100%",
+                        maxWidth: isScrolled ? "72rem" : "100%", // 72rem is max-w-6xl
+                        borderRadius: isScrolled ? "9999px" : "0px",
+                        height: isScrolled ? 64 : 80, // h-16 (64px) vs h-20 (80px)
+                        borderBottomColor: isScrolled ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0)",
+                    }}
+                    transition={{ duration: 0.5, type: "spring", bounce: 0, stiffness: 100, damping: 20 }}
+                    className={cn(
+                        "mx-auto flex items-center justify-between px-6 md:px-12 transition-all duration-500",
+                        // Dynamic Island Style vs Transparent Initial State
+                        isScrolled
+                            ? "glass-nav shadow-lg shadow-black/5"
+                            : "bg-transparent border-b border-transparent backdrop-blur-none"
+                    )}
+                    style={{
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                    }}
                 >
                     <div className="flex-shrink-0">
                         <motion.a
@@ -118,7 +157,7 @@ export default function Header() {
                             menu
                         </span>
                     </button>
-                </nav>
+                </motion.nav>
             </motion.header>
 
             {/* Mobile Menu Component */}
@@ -130,4 +169,3 @@ export default function Header() {
         </>
     );
 }
-

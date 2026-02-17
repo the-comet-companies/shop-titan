@@ -2,7 +2,6 @@
 
 import { useRef, useState } from 'react';
 import { motion, useInView, Variants } from 'framer-motion';
-import { cn } from '@/lib/utils';
 
 export default function PainPointSection() {
     const containerRef = useRef(null);
@@ -145,9 +144,8 @@ export default function PainPointSection() {
     );
 }
 
-function SpotlightCard({ children, variants }: { children: React.ReactNode, variants?: any }) {
+function SpotlightCard({ children, variants }: { children: React.ReactNode, variants?: Variants }) {
     const divRef = useRef<HTMLDivElement>(null);
-    const [isFocused, setIsFocused] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [opacity, setOpacity] = useState(0);
 
@@ -161,12 +159,10 @@ function SpotlightCard({ children, variants }: { children: React.ReactNode, vari
     };
 
     const handleFocus = () => {
-        setIsFocused(true);
         setOpacity(1);
     };
 
     const handleBlur = () => {
-        setIsFocused(false);
         setOpacity(0);
     };
 
@@ -190,8 +186,9 @@ function SpotlightCard({ children, variants }: { children: React.ReactNode, vari
             className="group relative flex flex-col justify-start overflow-hidden rounded-2xl border border-structural-border dark:border-white/10 bg-surface dark:bg-white/5 p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
         >
             <div
-                className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
+                className="pointer-events-none absolute -inset-px transition duration-300"
                 style={{
+                    opacity,
                     background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.06), transparent 40%)`,
                 }}
             />

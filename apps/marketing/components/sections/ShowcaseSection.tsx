@@ -1,7 +1,7 @@
 'use client';
 
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import VideoShowcase from '@/components/ui/VideoShowcase';
+
 import TestimonialScroll from '@/components/ui/TestimonialScroll';
 
 

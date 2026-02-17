@@ -1,325 +1,209 @@
 'use client';
 
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const platformData = [
+    {
+        statement: "Visibility",
+        rotatingWords: ["REAL-TIME CLARITY", "FINANCIAL INSIGHT", "CAPACITY TRACKING"],
+        outcome: "Executive Visibility: Real-time financial and capacity clarity — without reports or follow-ups.",
+    },
+    {
+        statement: "Auto Mode",
+        rotatingWords: ["AUTOMATED ROUTING", "VALIDATION", "SYNCHRONIZATION"],
+        outcome: "Autonomous Execution: Automated routing, validation, and synchronization across production.",
+    },
+    {
+        statement: "Ownership",
+        rotatingWords: ["P&L VISIBILITY", "FORECASTING", "CAPITAL ALLOCATION"],
+        outcome: "Level 01: Strategic Oversight",
+    },
+    {
+        statement: "Management",
+        rotatingWords: ["PRODUCTION FLOW", "INVENTORY INTEGRITY", "WORKFORCE ALLOCATION"],
+        outcome: "Level 02: Operational Command",
+    },
+    {
+        statement: "Automation",
+        rotatingWords: ["ERROR PREVENTION", "WORKFLOW AUTOMATION", "STATUS SYNCHRONIZATION"],
+        outcome: "Core Engine: System Enforcement Layer",
+    },
+];
 
 export default function PlatformSection() {
-    const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
-    const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
-    const { elementRef: diagramRef, isVisible: diagramVisible } = useScrollAnimation();
-    const { elementRef: cardsRef, isVisible: cardsVisible } = useScrollAnimation();
-    const { elementRef: comparisonRef, isVisible: comparisonVisible } = useScrollAnimation();
+    const sectionRef = useRef<HTMLElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null); // Ref for the styled container
+    const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+    const outlineWordsRefs = useRef<(HTMLSpanElement | null)[][]>([]);
+    const solidWordsRefs = useRef<(HTMLSpanElement | null)[][]>([]);
+
+    const setOutlineWordRef = (el: HTMLSpanElement | null, itemIndex: number, wordIndex: number) => {
+        if (!outlineWordsRefs.current[itemIndex]) outlineWordsRefs.current[itemIndex] = [];
+        if (el) outlineWordsRefs.current[itemIndex][wordIndex] = el;
+    };
+
+    const setSolidWordRef = (el: HTMLSpanElement | null, itemIndex: number, wordIndex: number) => {
+        if (!solidWordsRefs.current[itemIndex]) solidWordsRefs.current[itemIndex] = [];
+        if (el) solidWordsRefs.current[itemIndex][wordIndex] = el;
+    };
+
+    useEffect(() => {
+        const el = sectionRef.current;
+        const container = containerRef.current;
+        if (!el || !container) return;
+
+        const ctx = gsap.context(() => {
+            // Initial states
+            // Container starts slightly scaled down and transparent
+            gsap.set(container, { autoAlpha: 0, scale: 0.95, y: 50 });
+
+            // Items start hidden
+            itemsRef.current.forEach((item) => {
+                if (item) {
+                    gsap.set(item, { autoAlpha: 0, y: 30, scale: 0.9 });
+                }
+            });
+
+            // Initialize words
+            platformData.forEach((_, itemIndex) => {
+                const outlineWords = outlineWordsRefs.current[itemIndex];
+                const solidWords = solidWordsRefs.current[itemIndex];
+                if (outlineWords && solidWords) {
+                    outlineWords.forEach((w, i) => gsap.set(w, { autoAlpha: i === 0 ? 1 : 0, y: i === 0 ? 0 : 20 }));
+                    solidWords.forEach((w, i) => gsap.set(w, { autoAlpha: i === 0 ? 1 : 0, y: i === 0 ? 0 : 20 }));
+                }
+            });
+
+            // Rotating Words Animation
+            platformData.forEach((_, index) => {
+                const words = platformData[index].rotatingWords;
+                const outlineWords = outlineWordsRefs.current[index];
+                const solidWords = solidWordsRefs.current[index];
+
+                if (outlineWords && solidWords && words.length > 1) {
+                    const rotTl = gsap.timeline({ repeat: -1, repeatDelay: 0 });
+                    const stayTime = 2;
+
+                    for (let i = 0; i < words.length; i++) {
+                        const nextI = (i + 1) % words.length;
+
+                        rotTl.to({}, { duration: stayTime });
+
+                        rotTl.to([outlineWords[i], solidWords[i]], {
+                            autoAlpha: 0,
+                            y: -20,
+                            duration: 0.5,
+                            ease: "power2.inOut"
+                        }, "switch" + i);
+
+                        rotTl.to([outlineWords[nextI], solidWords[nextI]], {
+                            autoAlpha: 1,
+                            y: 0,
+                            duration: 0.5,
+                            ease: "power2.inOut"
+                        }, "switch" + i + "+=0");
+                    }
+                }
+            });
+
+
+            // Scroll Trigger for Revealing Items
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top top", // Start pinning relative to viewport
+                    end: "+=120%", // Determine scroll length
+                    pin: true,
+                    scrub: 0.8, // Smooth scrubbing
+                }
+            });
+
+            // 1. Reveal Container first
+            tl.to(container, {
+                autoAlpha: 1,
+                scale: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+
+            // 2. Reveal Items with Stagger
+            // We want them to pop in one by one shortly after container appears
+            itemsRef.current.forEach((item, index) => {
+                if (item) {
+                    tl.to(item, {
+                        autoAlpha: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.8,
+                        ease: "back.out(1.2)" // Tiny bounce for dynamic feel
+                    }, 0.5 + (index * 0.3)); // Start overlapping with container reveal
+                }
+            });
+
+            // Buffer at end
+            tl.to({}, { duration: 0.5 });
+
+        }, el);
+
+        return () => ctx.revert();
+    }, []);
 
     return (
-        <section id="platform" className="bg-white dark:bg-background-dark">
-            {/* Header */}
-            <div
-                ref={headerRef}
-                className={`pt-20 md:pt-28 pb-4 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                    }`}
-            >
-                <div className="max-w-7xl mx-auto px-mobile">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 dark:border-gray-800 pb-6">
-                        <div>
-                            <span className="inline-block text-primary text-[9px] font-black tracking-[0.2em] uppercase mb-1">
-                                Architecture Overview
-                            </span>
-                            <h1 className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-charcoal dark:text-white">
-                                The Operational Architecture Behind Structured Shops.
-                            </h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <section ref={sectionRef} id="platform" className="relative min-h-screen w-full bg-white dark:bg-background-dark flex flex-col items-center justify-center py-24 md:py-32">
 
-            {/* Main Content */}
-            <div className="py-12 md:py-16">
-                <div className="max-w-7xl mx-auto px-mobile">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
-                        {/* Left Column - Text */}
-                        <div
-                            ref={contentRef}
-                            className={`lg:col-span-6 transition-all duration-700 delay-100 ${contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                                }`}
-                        >
-                            <div className="max-w-2xl">
-                                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 md:mb-6 leading-tight text-charcoal dark:text-white tracking-tight">
-                                    Engineered for Operational Independence.
-                                </h2>
-                                <p className="text-secondary-text dark:text-gray-400 text-base md:text-lg lg:text-xl mb-8 md:mb-10 leading-relaxed font-normal">
-                                    The platform installs structured control across ownership, management, and execution.
-                                    Each layer operates with defined responsibility, real-time visibility, and automated enforcement.
-                                    The business runs without constant supervision.
-                                </p>
+            <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-24 flex flex-col justify-center">
+                {/* Main Container */}
+                <div
+                    ref={containerRef}
+                    className="w-full bg-neutral-100 dark:bg-neutral-900/50 rounded-[2.5rem] border border-neutral-200 dark:border-neutral-800 p-8 md:p-16 shadow-2xl opacity-0" // Start invisible
+                >
 
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
-                                    <div className="flex flex-col gap-3 md:gap-4 p-4 md:p-6 rounded-2xl bg-surface dark:bg-gray-900/50 border border-structural-border dark:border-gray-800">
-                                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary">
-                                            <span className="material-symbols-outlined text-xl md:text-2xl">
-                                                visibility
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <h4 className="font-bold text-sm md:text-base mb-1 md:mb-2 text-charcoal dark:text-white">
-                                                Executive Visibility
-                                            </h4>
-                                            <p className="text-gray-500 dark:text-gray-400 text-xs md:text-sm leading-relaxed">
-                                                Real-time financial and capacity clarity — without reports or follow-ups.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex flex-col gap-3 md:gap-4 p-4 md:p-6 rounded-2xl bg-gray-50/50 dark:bg-gray-900/50 border border-gray-100 dark:border-gray-800">
-                                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary">
-                                            <span className="material-symbols-outlined text-xl md:text-2xl">
-                                                auto_mode
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <h4 className="font-bold text-sm md:text-base mb-1 md:mb-2 text-charcoal dark:text-white">
-                                                Autonomous Execution
-                                            </h4>
-                                            <p className="text-gray-500 dark:text-gray-400 text-xs md:text-sm leading-relaxed">
-                                                Automated routing, validation, and synchronization across production.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Right Column - Architecture Diagram */}
-                        <div
-                            ref={diagramRef}
-                            className={`lg:col-span-6 transition-all duration-700 delay-200 ${diagramVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                                }`}
-                        >
-                            <div className="bg-surface/30 dark:bg-gray-900/30 rounded-3xl p-4 sm:p-6 md:p-10 border border-structural-border dark:border-gray-800 relative overflow-hidden w-full">
-                                <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 blur-[100px] -mr-40 -mt-40"></div>
-                                <motion.div
-                                    initial="hidden"
-                                    whileInView="visible"
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    variants={{
-                                        hidden: { opacity: 0 },
-                                        visible: { opacity: 1, transition: { staggerChildren: 0.3 } }
-                                    }}
-                                    className="relative z-10 grid grid-cols-1 gap-0 max-w-md mx-auto"
-                                >
-                                    {/* Level 1 - Ownership */}
-                                    <motion.div
-                                        variants={{
-                                            hidden: { y: 20, opacity: 0, scale: 0.9 },
-                                            visible: { y: 0, opacity: 1, scale: 1, transition: { type: "spring", stiffness: 50 } }
-                                        }}
-                                        className="bg-surface dark:bg-gray-900 p-6 rounded-2xl border border-structural-border dark:border-gray-800 border-l-4 border-l-gray-300 z-30 relative"
-                                    >
-                                        <div className="flex items-center justify-between mb-4">
-                                            <div className="flex items-center gap-3">
-                                                <span className="material-symbols-outlined text-2xl text-primary/70">
-                                                    monitoring
-                                                </span>
-                                                <h3 className="text-lg font-bold text-charcoal dark:text-white">
-                                                    Ownership
-                                                </h3>
-                                            </div>
-                                            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-white dark:bg-gray-800 px-3 py-1 rounded-full border border-gray-100 dark:border-gray-700 shadow-sm">
-                                                Level 01
-                                            </span>
-                                        </div>
-                                        <p className="text-gray-500 dark:text-gray-400 text-xs mb-4 font-medium italic">
-                                            "Strategic Oversight"
-                                        </p>
-                                        <div className="flex flex-wrap gap-2">
-                                            <span className="px-2.5 py-1 rounded bg-background-light dark:bg-gray-800 text-[10px] font-semibold border border-structural-border dark:border-gray-700 uppercase tracking-wider text-secondary-text dark:text-gray-400">
-                                                P&L Visibility
-                                            </span>
-                                            <span className="px-2.5 py-1 rounded bg-background-light dark:bg-gray-800 text-[10px] font-semibold border border-structural-border dark:border-gray-700 uppercase tracking-wider text-secondary-text dark:text-gray-400">
-                                                Forecasting
-                                            </span>
-                                            <span className="px-2.5 py-1 rounded bg-background-light dark:bg-gray-800 text-[10px] font-semibold border border-structural-border dark:border-gray-700 uppercase tracking-wider text-secondary-text dark:text-gray-400">
-                                                Capital Allocation
-                                            </span>
-                                        </div>
-                                    </motion.div>
-
-                                    {/* Connector */}
-                                    <div className="flex justify-center relative z-0 h-8">
-                                        <motion.div
-                                            variants={{
-                                                hidden: { height: 0, opacity: 0 },
-                                                visible: { height: "100%", opacity: 1, transition: { duration: 0.4 } }
-                                            }}
-                                            className="w-px bg-gray-200 dark:bg-gray-700"
-                                        />
-                                    </div>
-
-                                    {/* Level 2 - Management */}
-                                    <motion.div
-                                        variants={{
-                                            hidden: { y: 20, opacity: 0, scale: 0.9 },
-                                            visible: { y: 0, opacity: 1, scale: 1, transition: { type: "spring", stiffness: 50 } }
-                                        }}
-                                        className="bg-surface dark:bg-gray-900 p-6 rounded-2xl border border-structural-border dark:border-gray-800 border-l-4 border-l-gray-300 z-20 relative"
-                                    >
-                                        <div className="flex items-center justify-between mb-4">
-                                            <div className="flex items-center gap-3">
-                                                <span className="material-symbols-outlined text-2xl text-primary/70">
-                                                    account_tree
-                                                </span>
-                                                <h3 className="text-lg font-bold text-charcoal dark:text-white">
-                                                    Management
-                                                </h3>
-                                            </div>
-                                            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-white dark:bg-gray-800 px-3 py-1 rounded-full border border-gray-100 dark:border-gray-700 shadow-sm">
-                                                Level 02
-                                            </span>
-                                        </div>
-                                        <p className="text-gray-500 dark:text-gray-400 text-xs mb-4 font-medium italic">
-                                            "Operational Command"
-                                        </p>
-                                        <div className="flex flex-wrap gap-2">
-                                            <span className="px-2.5 py-1 rounded bg-background-light dark:bg-gray-800 text-[10px] font-semibold border border-structural-border dark:border-gray-700 uppercase tracking-wider text-secondary-text dark:text-gray-400">
-                                                Production Flow
-                                            </span>
-                                            <span className="px-2.5 py-1 rounded bg-background-light dark:bg-gray-800 text-[10px] font-semibold border border-structural-border dark:border-gray-700 uppercase tracking-wider text-secondary-text dark:text-gray-400">
-                                                Inventory Integrity
-                                            </span>
-                                            <span className="px-2.5 py-1 rounded bg-background-light dark:bg-gray-800 text-[10px] font-semibold border border-structural-border dark:border-gray-700 uppercase tracking-wider text-secondary-text dark:text-gray-400">
-                                                Workforce Allocation
-                                            </span>
-                                        </div>
-                                    </motion.div>
-
-                                    {/* Connector */}
-                                    <div className="flex justify-center relative z-0 h-8">
-                                        <motion.div
-                                            variants={{
-                                                hidden: { height: 0, opacity: 0 },
-                                                visible: { height: "100%", opacity: 1, transition: { duration: 0.4 } }
-                                            }}
-                                            className="w-px bg-primary/30"
-                                        />
-                                    </div>
-
-                                    {/* Level 3 - Automation (Highlighted) */}
-                                    <motion.div
-                                        variants={{
-                                            hidden: { y: 20, opacity: 0, scale: 0.9 },
-                                            visible: { y: 0, opacity: 1, scale: 1, transition: { type: "spring", stiffness: 50 } }
-                                        }}
-                                        className="bg-surface dark:bg-gray-900 p-6 rounded-2xl border-l-4 border-l-primary ring-1 ring-primary/5 z-10 relative"
-                                    >
-                                        <div className="flex items-center justify-between mb-4">
-                                            <div className="flex items-center gap-3">
-                                                <span className="material-symbols-outlined text-2xl text-primary">
-                                                    smart_toy
-                                                </span>
-                                                <h3 className="text-lg font-bold text-charcoal dark:text-white">
-                                                    Automation
-                                                </h3>
-                                            </div>
-                                            <span className="text-[10px] font-bold text-primary uppercase tracking-widest bg-primary/5 px-3 py-1 rounded-full border border-primary/10">
-                                                Core Engine
-                                            </span>
-                                        </div>
-                                        <p className="text-gray-500 dark:text-gray-400 text-xs mb-4 font-medium italic">
-                                            "System Enforcement Layer"
-                                        </p>
-                                        <div className="grid grid-cols-1 gap-2.5">
-                                            <div className="flex items-center gap-3 text-[11px] text-gray-600 dark:text-gray-400">
-                                                <span className="material-symbols-outlined text-base text-green-600">
-                                                    check_circle
-                                                </span>
-                                                Error Prevention
-                                            </div>
-                                            <div className="flex items-center gap-3 text-[11px] text-gray-600 dark:text-gray-400">
-                                                <span className="material-symbols-outlined text-base text-green-600">
-                                                    check_circle
-                                                </span>
-                                                Workflow Automation
-                                            </div>
-                                            <div className="flex items-center gap-3 text-[11px] text-gray-600 dark:text-gray-400">
-                                                <span className="material-symbols-outlined text-base text-green-600">
-                                                    check_circle
-                                                </span>
-                                                Status Synchronization
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                </motion.div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Hierarchy of Leverage */}
-            <div className="py-12 md:py-20 bg-background-light/50 dark:bg-black/20 border-t border-structural-border dark:border-gray-800">
-                <div className="max-w-7xl mx-auto px-mobile">
-                    <div className="bg-surface dark:bg-gray-900 rounded-2xl md:rounded-[2rem] p-6 md:p-10 lg:p-16 border border-structural-border dark:border-gray-800 shadow-sm relative overflow-hidden">
-                        <div className="relative z-10">
-                            <div className="mb-8 md:mb-12 text-center max-w-2xl mx-auto">
-                                <h2 className="text-2xl sm:text-3xl font-bold mb-3 md:mb-4 text-charcoal dark:text-white tracking-tight">
-                                    The Hierarchy of Leverage
-                                </h2>
-                                <p className="text-gray-500 dark:text-gray-400 text-sm md:text-base">
-                                    Moving from human-centric to system-centric shop management.
-                                </p>
-                            </div>
-
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 md:gap-y-16 w-full place-items-center">
+                        {platformData.map((item, index) => (
                             <div
-                                ref={comparisonRef}
-                                className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 transition-all duration-700 ${comparisonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                                key={index}
+                                ref={(el) => { itemsRef.current[index] = el; }}
+                                className={`flex flex-col items-center justify-center text-center w-full max-w-md ${index === 4 ? "md:col-span-2 md:w-2/3" : ""
                                     }`}
                             >
-                                {/* Traditional Shops */}
-                                <div className="relative">
-                                    <div className="flex items-center gap-4 mb-6">
-                                        <div className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                                            <span className="material-symbols-outlined text-lg text-gray-400">
-                                                person_off
+                                {/* Statement */}
+                                <h2 className="font-sans font-bold text-2xl sm:text-3xl md:text-5xl text-charcoal dark:text-white mb-2 md:mb-3 tracking-tight">
+                                    {item.statement}
+                                </h2>
+
+                                {/* Rotating Wrapper */}
+                                <div className="relative h-[1.2em] md:h-[1.5em] w-full flex justify-center items-center overflow-visible mb-2 md:mb-4">
+                                    {item.rotatingWords.map((word, wordIndex) => (
+                                        <div key={wordIndex} className="absolute inset-0 flex items-center justify-center">
+                                            <span
+                                                ref={el => setOutlineWordRef(el, index, wordIndex)}
+                                                className="font-sans font-bold text-transparent text-lg sm:text-xl md:text-3xl whitespace-nowrap absolute"
+                                                style={{ WebkitTextStroke: "1px #9ca3af" }}
+                                            >
+                                                {word}
+                                            </span>
+                                            <span
+                                                ref={el => setSolidWordRef(el, index, wordIndex)}
+                                                className="font-sans font-bold text-lg sm:text-xl md:text-3xl text-gray-400 dark:text-gray-500 whitespace-nowrap absolute"
+                                            >
+                                                {word}
                                             </span>
                                         </div>
-                                        <h4 className="font-bold text-gray-400 mb-0 uppercase tracking-[0.2em] text-xs">
-                                            Traditional Shops
-                                        </h4>
-                                    </div>
-                                    <p className="text-gray-500 dark:text-gray-400 leading-relaxed font-light text-base pl-14">
-                                        The owner acts as the{" "}
-                                        <span className="font-medium text-charcoal dark:text-white">
-                                            "Human Router."
-                                        </span>{" "}
-                                        Every critical decision, error recovery, and status check
-                                        must pass through them. When they are unavailable, the
-                                        operation slows down or becomes paralyzed.
-                                    </p>
+                                    ))}
                                 </div>
 
-                                {/* System-Driven Shops */}
-                                <div className="relative">
-                                    <div className="flex items-center gap-4 mb-6">
-                                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                                            <span className="material-symbols-outlined text-lg text-primary">
-                                                hub
-                                            </span>
-                                        </div>
-                                        <h4 className="font-bold text-primary mb-0 uppercase tracking-[0.2em] text-xs">
-                                            System-Driven Shops
-                                        </h4>
-                                    </div>
-                                    <p className="text-gray-500 dark:text-gray-400 leading-relaxed font-light text-base pl-14 border-l-2 border-primary/10">
-                                        The{" "}
-                                        <span className="font-medium text-charcoal dark:text-white">
-                                            "System Router"
-                                        </span>{" "}
-                                        takes over. Decision trees and business logic are baked into
-                                        the architecture. The owner maintains autonomy, focusing on
-                                        strategic oversight while the floor runs autonomously.
-                                    </p>
-                                </div>
+                                {/* Outcome */}
+                                <p className="font-sans text-xs sm:text-sm text-gray-400 dark:text-gray-500 leading-relaxed max-w-sm">
+                                    {item.outcome}
+                                </p>
                             </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </div>

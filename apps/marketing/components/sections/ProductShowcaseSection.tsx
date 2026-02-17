@@ -3,11 +3,13 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import BrowserFrame from '@/components/ui/BrowserFrame';
 import { motion } from 'framer-motion';
+import WorkflowTabs from './WorkflowTabs';
 
 export default function ProductShowcaseSection() {
     const { elementRef: section1Ref, isVisible: section1Visible } = useScrollAnimation();
     const { elementRef: section2Ref, isVisible: section2Visible } = useScrollAnimation();
     const { elementRef: section3Ref, isVisible: section3Visible } = useScrollAnimation();
+    const { elementRef: section4Ref, isVisible: section4Visible } = useScrollAnimation();
 
     return (
         <section className="pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-40 lg:pb-48 bg-background-light dark:bg-background-dark overflow-hidden" id="product">
@@ -162,7 +164,7 @@ export default function ProductShowcaseSection() {
                                     Owner-Absent Operations
                                 </span>
                                 <p className="text-sm text-secondary-text">
-                                    Rules-based logic ensures the shop floor knows what to do even when you're off-site.
+                                    Rules-based logic ensures the shop floor knows what to do even when you&apos;re off-site.
                                 </p>
                             </div>
                         </div>
@@ -325,41 +327,46 @@ export default function ProductShowcaseSection() {
                     </motion.div>
                 </div>
 
-                {/* Intake Flow - Full Width with Wrapped Flex on Mobile */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="relative py-8 md:py-10 px-4 md:px-6 border border-structural-border dark:border-gray-800 rounded-xl bg-surface dark:bg-gray-900/30 mt-12 md:mt-16"
+                {/* Feature 4: Placeholder */}
+                <div
+                    ref={section4Ref}
+                    className={`grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center transition-all duration-700 ${section4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                        }`}
                 >
-                    {/* Wrapped Flex Container for Mobile */}
-                    <div className="flex flex-wrap items-center justify-center md:justify-between gap-y-4 gap-x-3 md:gap-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-secondary-text max-w-4xl mx-auto">
-                        <div className="flex items-center gap-2 text-primary">
-                            <span className="material-symbols-outlined text-base">download</span> Intake
-                        </div>
-                        <span className="material-symbols-outlined text-sm text-gray-300 hidden md:inline">arrow_forward</span>
-
-                        <div className="flex items-center gap-2">
-                            <span className="material-symbols-outlined text-base">visibility</span> Proofing
-                        </div>
-                        <span className="material-symbols-outlined text-sm text-gray-300 hidden md:inline">arrow_forward</span>
-
-                        <div className="flex items-center gap-2">
-                            <span className="material-symbols-outlined text-base">print</span> Production
-                        </div>
-                        <span className="material-symbols-outlined text-sm text-gray-300 hidden md:inline">arrow_forward</span>
-
-                        <div className="flex items-center gap-2">
-                            <span className="material-symbols-outlined text-base">package_2</span> Fulfillment
-                        </div>
-                        <span className="material-symbols-outlined text-sm text-gray-300 hidden md:inline">arrow_forward</span>
-
-                        <div className="flex items-center gap-2">
-                            <span className="material-symbols-outlined text-base">mail</span> Updates
-                        </div>
+                    {/* Content - Left side on mobile (Order 1), Right side on desktop (Order 2) */}
+                    <div className="order-1 lg:order-2 min-w-0">
+                        <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
+                            Coming Soon
+                        </h2>
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal dark:text-white mb-4 md:mb-6 leading-tight">
+                            More capabilities on the way.
+                        </h3>
+                        <p className="text-lg md:text-xl text-secondary-text dark:text-gray-400 mb-6 md:mb-8 leading-relaxed">
+                            We are constantly expanding our platform to help you scale even faster. Stay tuned for updates.
+                        </p>
                     </div>
-                </motion.div>
+
+                    {/* UI Mockup - Right side on mobile (Order 2), Left side on desktop (Order 1) */}
+                    <motion.div
+                        className="order-2 lg:order-1 shadow-2xl rounded-xl min-w-0"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.4 }}
+                    >
+                        <BrowserFrame url="app.shoptitan.com/future">
+                            <div className="p-6 md:p-8 bg-background-light dark:bg-black/90 min-h-[300px] flex items-center justify-center">
+                                <div className="w-full aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700 flex items-center justify-center relative overflow-hidden">
+                                    <div className="text-center text-gray-400 dark:text-gray-500">
+                                        <span className="material-symbols-outlined text-4xl mb-2">image</span>
+                                        <p className="text-sm font-medium uppercase tracking-wider">16:9 Image Placeholder</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </BrowserFrame>
+                    </motion.div>
+                </div>
+
+                {/* Intake Flow - Interactive Tabs */}
+                <WorkflowTabs />
             </div>
         </section>
     );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 interface Testimonial {
     id: string;
@@ -85,8 +86,8 @@ export default function TestimonialCarousel({
                             <span
                                 key={i}
                                 className={`material-symbols-outlined text-xl ${i < currentTestimonial.rating!
-                                        ? 'text-yellow-400'
-                                        : 'text-gray-300 dark:text-gray-700'
+                                    ? 'text-yellow-400'
+                                    : 'text-gray-300 dark:text-gray-700'
                                     }`}
                             >
                                 star
@@ -97,7 +98,7 @@ export default function TestimonialCarousel({
 
                 {/* Quote */}
                 <blockquote className="text-xl md:text-2xl font-light text-charcoal dark:text-white leading-relaxed mb-8">
-                    "{currentTestimonial.quote}"
+                    &quot;{currentTestimonial.quote}&quot;
                 </blockquote>
 
                 {/* Author Info */}
@@ -105,10 +106,11 @@ export default function TestimonialCarousel({
                     {/* Avatar */}
                     <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
                         {currentTestimonial.avatar ? (
-                            <img
+                            <Image
                                 src={currentTestimonial.avatar}
                                 alt={currentTestimonial.author}
-                                className="w-full h-full rounded-full object-cover"
+                                fill
+                                className="rounded-full object-cover"
                             />
                         ) : (
                             <span className="material-symbols-outlined text-2xl text-primary">
@@ -136,8 +138,8 @@ export default function TestimonialCarousel({
                         key={index}
                         onClick={() => setActiveIndex(index)}
                         className={`h-2 rounded-full transition-all duration-300 ${index === activeIndex
-                                ? 'w-8 bg-primary'
-                                : 'w-2 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400'
+                            ? 'w-8 bg-primary'
+                            : 'w-2 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400'
                             }`}
                         aria-label={`Go to testimonial ${index + 1}`}
                     />

@@ -1,12 +1,11 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+
 import AnimatedGradientBackground from '@/components/AnimatedGradientBackground';
 import InteractiveGridPattern from '@/components/ui/InteractiveGridPattern';
 
 export default function HeroSection() {
-    const { elementRef: whyRef, isVisible: whyVisible } = useScrollAnimation();
 
     const partners = [
         { icon: "verified_user", name: "Trusted Partner" },
@@ -46,7 +45,7 @@ export default function HeroSection() {
                             className="flex flex-col sm:flex-row gap-4 justify-start"
                         >
                             <button className="btn-primary">
-                                Request Demo
+                                Let&apos;s Talk
                             </button>
                             <button
                                 onClick={() => document.getElementById('platform')?.scrollIntoView({ behavior: 'smooth' })}
