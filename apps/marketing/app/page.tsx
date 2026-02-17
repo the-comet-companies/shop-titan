@@ -15,8 +15,8 @@ export default function Home() {
             <main>
                 <HeroSection />
                 <PlatformSection />
-                <ProductShowcaseSection />
                 <FeaturesSection />
+                <ProductShowcaseSection />
                 <ShowcaseSection />
                 <PricingSection />
                 <PainPointSection />

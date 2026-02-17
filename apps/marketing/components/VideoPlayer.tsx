@@ -10,6 +10,7 @@ interface VideoPlayerProps {
     muted?: boolean;
     loop?: boolean;
     className?: string;
+    hideControls?: boolean;
 }
 
 export default function VideoPlayer({
@@ -18,7 +19,8 @@ export default function VideoPlayer({
     autoPlay = true,
     muted = true,
     loop = true,
-    className = ''
+    className = '',
+    hideControls = false
 }: VideoPlayerProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -52,7 +54,7 @@ export default function VideoPlayer({
     }, [src, autoPlay]);
 
     const togglePlayPause = () => {
-        if (!videoRef.current) return;
+        if (!videoRef.current || hideControls) return;
 
         if (videoRef.current.paused) {
             videoRef.current.play();
@@ -77,6 +79,7 @@ export default function VideoPlayer({
             className={`relative ${className}`}
             onMouseEnter={() => setShowControls(true)}
             onMouseLeave={() => setShowControls(false)}
+            onClick={togglePlayPause}
         >
             {/* Loading Skeleton */}
             {!isLoaded && (
@@ -105,13 +108,12 @@ export default function VideoPlayer({
             />
 
             {/* Hover Controls */}
-            {showControls && (
+            {showControls && !hideControls && (
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     className="absolute inset-0 flex items-center justify-center bg-black/10 rounded-lg cursor-pointer"
-                    onClick={togglePlayPause}
                 >
                     <motion.div
                         whileHover={{ scale: 1.1 }}
