@@ -34,7 +34,7 @@ export default function Header() {
         if (pathname === '/') {
             const element = document.getElementById(sectionId);
             if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
+                element.scrollIntoView({ behavior: "instant" as ScrollBehavior });
             }
         } else {
             router.push(`/#${sectionId}`);
