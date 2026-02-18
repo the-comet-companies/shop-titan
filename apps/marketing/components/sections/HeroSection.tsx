@@ -34,7 +34,7 @@ export default function HeroSection() {
                             className="mb-8 md:mb-12"
                         >
                             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-charcoal dark:text-white leading-[1.1] mb-8 tracking-tight">
-                                A <span className="bg-gradient-to-r from-[#0066CC] to-[#0099FF] bg-clip-text text-transparent">single source of truth</span> for the decoration industry.
+                                A <span className="text-cyan-500">single source of truth</span> for the decoration industry.
                             </h1>
                             <p className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl text-secondary-text dark:text-gray-300 font-medium">
                                 Our system allows you to focus on what you do best.
@@ -47,18 +47,20 @@ export default function HeroSection() {
                             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                             className="flex flex-col sm:flex-row gap-5 justify-start"
                         >
-                            <button className="px-10 py-5 text-xl font-semibold text-white relative overflow-hidden group rounded-lg">
-                                <div className="absolute inset-0 bg-gradient-to-r from-[#0066CC] to-[#0099FF] opacity-60 group-hover:opacity-75 transition-opacity" />
-                                <div className="absolute inset-0 backdrop-blur-xl bg-white/5 dark:bg-black/5" />
-                                <div className="absolute inset-0 border border-white/20 rounded-lg" />
+                            <button className="px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full flex items-center gap-2 justify-center">
+                                <div className="absolute inset-0 backdrop-blur-xl bg-white/15 dark:bg-white/5 group-hover:bg-white/25 dark:group-hover:bg-white/10 transition-colors rounded-full" />
+                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
                                 <span className="relative z-10">Let&apos;s Talk</span>
+                                <span className="material-symbols-outlined text-xl relative z-10 group-hover:translate-x-1 transition-transform">
+                                    arrow_forward
+                                </span>
                             </button>
                             <button
                                 onClick={() => document.getElementById('platform')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-lg"
+                                className="px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full"
                             >
-                                <div className="absolute inset-0 backdrop-blur-xl bg-white/15 dark:bg-white/5 group-hover:bg-white/25 dark:group-hover:bg-white/10 transition-colors" />
-                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 rounded-lg" />
+                                <div className="absolute inset-0 backdrop-blur-xl bg-white/15 dark:bg-white/5 group-hover:bg-white/25 dark:group-hover:bg-white/10 transition-colors rounded-full" />
+                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 rounded-full" />
                                 <span className="relative z-10">See How It Works</span>
                             </button>
                         </motion.div>

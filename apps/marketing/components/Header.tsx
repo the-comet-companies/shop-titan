@@ -134,10 +134,10 @@ export default function Header() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className={cn(
-                                "group relative backdrop-blur-xl border px-4 md:px-6 py-2 text-xs font-bold rounded-full transition-all duration-300 flex items-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide focus-primary tap-target",
+                                "group relative backdrop-blur-xl border-2 px-4 md:px-6 py-2 text-xs font-bold rounded-full transition-all duration-300 flex items-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide focus-primary tap-target",
                                 activeSection === 'contact'
                                     ? "bg-primary text-white border-primary hover:bg-primary/90"
-                                    : "bg-white/5 dark:bg-white/5 border-white/10 hover:border-white/20 text-charcoal dark:text-white hover:bg-white/10"
+                                    : "bg-white/15 dark:bg-white/5 border-charcoal/20 dark:border-white/30 hover:border-charcoal/30 dark:hover:border-white/40 text-charcoal dark:text-white hover:bg-white/25 dark:hover:bg-white/10"
                             )}
                         >
                             Request Demo{" "}
