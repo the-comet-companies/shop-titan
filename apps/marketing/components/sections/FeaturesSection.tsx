@@ -709,65 +709,112 @@ function FeatureBlock({
             id={id}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40%" }}
+            viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
             onViewportEnter={setActiveFeature}
             transition={{ duration: 0.6 }}
-            className="feature-card rounded-2xl md:rounded-3xl overflow-hidden grid md:grid-cols-2 border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl"
+            className="group feature-card rounded-2xl md:rounded-3xl overflow-hidden flex flex-col border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 max-w-3xl mx-auto w-full relative"
         >
-            {/* Story Content Side */}
-            <div className="p-6 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-structural-border dark:border-gray-800">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 md:mb-8">
-                    <span className="material-symbols-outlined text-xl md:text-2xl">{icon}</span>
+            {/* Hover Gradient Border Effect */}
+            <div className="absolute inset-0 rounded-2xl md:rounded-3xl pointer-events-none border-2 border-transparent group-hover:border-primary/10 transition-colors duration-500" />
+
+            {/* Story Content Side (Top) */}
+            <div className="p-6 md:p-8 flex flex-col justify-center relative z-10 w-full max-w-4xl mx-auto">
+                <div className="flex items-center gap-4 mb-4 md:mb-6">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary flex-shrink-0 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-500">
+                        <span className="material-symbols-outlined text-xl md:text-2xl">{icon}</span>
+                    </div>
+                    <h2 className="text-xl md:text-2xl font-bold dark:text-white leading-tight group-hover:text-primary transition-colors duration-300">
+                        {title}
+                    </h2>
                 </div>
-                <h2 className="text-xl md:text-3xl font-bold mb-6 dark:text-white leading-tight">
-                    {title}
-                </h2>
-                <div className="space-y-4 md:space-y-6">
-                    {/* Pain Point - Story Style */}
-                    <div className="relative pl-4 border-l-2 border-red-400/50 bg-red-50/50 dark:bg-red-900/10 py-3 pr-3 rounded-r-lg">
-                        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-red-500 mb-1">
-                            {painPoint.title}
-                        </h4>
-                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+
+                <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+                    {/* Pain Point - Expressive/Friction Theme (Full Box) */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        whileHover={{ y: -4 }}
+                        transition={{ duration: 0.4 }}
+                        className="relative p-5 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 rounded-xl overflow-hidden flex flex-col h-full hover:shadow-lg hover:border-slate-300 dark:hover:border-slate-600 transition-all"
+                    >
+                        <div className="flex items-center gap-2 mb-3 relative z-10">
+                            <div className="p-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg">
+                                <span className="material-symbols-outlined text-slate-500 text-lg">sentiment_dissatisfied</span>
+                            </div>
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                                {painPoint.title}
+                            </h4>
+                        </div>
+                        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed relative z-10 font-medium flex-grow">
                             {painPoint.description}
                         </p>
-                    </div>
+                    </motion.div>
 
-                    {/* Solution - Story Style */}
-                    <div className="relative pl-4 border-l-2 border-primary/50 bg-primary/5 dark:bg-primary/10 py-3 pr-3 rounded-r-lg">
-                        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-primary mb-1">
-                            {solution.title}
-                        </h4>
-                        <p className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed">
+                    {/* Solution - Vibrant/Flow Theme (Full Box) */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        whileHover={{ y: -4 }}
+                        transition={{ duration: 0.4, delay: 0.1 }}
+                        className="relative p-5 border border-indigo-100 dark:border-indigo-900 bg-gradient-to-br from-indigo-50/50 to-blue-50/50 dark:from-indigo-950/30 dark:to-blue-950/30 rounded-xl overflow-hidden group/flow flex flex-col h-full hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-200 dark:hover:border-indigo-700 transition-all"
+                    >
+                        {/* Subtle Background Gradient Animation */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 dark:via-white/5 to-transparent -translate-x-[100%] animate-[shimmer_3s_infinite] pointer-events-none" />
+
+                        <div className="flex items-center gap-2 mb-3 relative z-10">
+                            <div className="p-1.5 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg text-indigo-600 dark:text-indigo-400">
+                                <span className="material-symbols-outlined text-lg">bolt</span>
+                            </div>
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-indigo-700 dark:text-indigo-400">
+                                {solution.title}
+                            </h4>
+                        </div>
+                        <p className="text-charcoal dark:text-white text-sm leading-relaxed font-semibold relative z-10 flex-grow">
                             {solution.description}
                         </p>
-                    </div>
-
-                    {/* Highlights List */}
-                    {highlights && highlights.length > 0 && (
-                        <div className="pt-2">
-                            <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300 mb-2">Key Features:</h4>
-                            <ul className="space-y-1.5">
-                                {highlights.map((highlight, index) => (
-                                    <li key={index} className="flex items-start gap-2">
-                                        <span className="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
-                                        <span className="text-xs text-secondary-text dark:text-gray-400">{highlight}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
+                    </motion.div>
                 </div>
+
+                {/* Highlights List - Inline/Grid */}
+                {highlights && highlights.length > 0 && (
+                    <div className="pt-4 pl-1">
+                        <ul className="flex flex-wrap gap-x-6 gap-y-2">
+                            {highlights.map((highlight, index) => (
+                                <li key={index} className="flex items-center gap-2 group/item">
+                                    <div className="bg-green-100 dark:bg-green-900/30 rounded-full p-0.5 group-hover/item:scale-110 transition-transform flex-shrink-0">
+                                        <span className="material-symbols-outlined text-green-600 dark:text-green-400 text-[10px] block font-bold">check</span>
+                                    </div>
+                                    <span className="text-xs text-secondary-text dark:text-gray-300 font-medium whitespace-nowrap">{highlight}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
 
-            {/* Visual Side */}
-            <div className="bg-background-light dark:bg-black/50 p-6 md:p-8 flex items-center justify-center min-h-[250px] md:min-h-0">
+            {/* Visual Side (Bottom) */}
+            <div className="bg-gray-50 dark:bg-black/50 p-2 md:p-4 flex items-center justify-center border-t border-structural-border dark:border-gray-800 relative grow">
+                <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50 dark:opacity-20 pointer-events-none" />
+
                 {videoSrc ? (
-                    <VideoPlayer
-                        src={videoSrc}
-                        autoPlay={true}
-                        fallbackContent={children}
-                    />
+                    <div className="w-full max-w-5xl shadow-2xl rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 relative z-10 group-hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] transition-shadow duration-500 bg-white dark:bg-gray-900 flex flex-col aspect-video">
+                        <div className="flex-grow relative bg-gray-900 group-hover:bg-gray-800 transition-colors duration-500">
+                            {/* Play Button Placeholder / Loading State */}
+                            <div className="absolute inset-0 flex items-center justify-center text-white/20 group-hover:text-white/40 transition-colors duration-500">
+                                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-current flex items-center justify-center">
+                                    <span className="material-symbols-outlined text-4xl md:text-5xl">play_arrow</span>
+                                </div>
+                            </div>
+
+                            <VideoPlayer
+                                src={videoSrc}
+                                autoPlay={true}
+                                fallbackContent={children}
+                                className="h-full w-full object-cover relative z-10"
+                                hideControls={true}
+                            />
+                        </div>
+                    </div>
                 ) : (
                     children
                 )}

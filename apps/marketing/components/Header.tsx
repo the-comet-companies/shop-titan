@@ -23,7 +23,7 @@ export default function Header() {
         }
     });
 
-    const activeSection = useActiveSection(['hero', 'platform', 'product', 'features', 'pricing', 'blog', 'contact']);
+    const activeSection = useActiveSection(['hero', 'platform', 'features', 'product', 'pricing', 'blog', 'contact']);
 
     const scrollToSection = (sectionId: string) => {
         if (sectionId === 'blog') {
@@ -48,23 +48,23 @@ export default function Header() {
                 animate={{
                     y: 0,
                     opacity: 1,
-                    top: isScrolled ? 24 : 0, // 24px is md:top-6
-                    paddingLeft: isScrolled ? 24 : 0, // 24px is px-6
-                    paddingRight: isScrolled ? 24 : 0,
+                    top: 0,
+                    paddingLeft: 0,
+                    paddingRight: 0,
                 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className={cn(
                     "fixed left-0 right-0 z-50 transition-all duration-500",
-                    isScrolled ? "px-4 md:px-6" : "px-0"
+                    isScrolled ? "px-0" : "px-0"
                 )}
             >
                 <motion.nav
                     layout
                     initial={false}
                     animate={{
-                        width: isScrolled ? "100%" : "100%",
-                        maxWidth: isScrolled ? "72rem" : "100%", // 72rem is max-w-6xl
-                        borderRadius: isScrolled ? "9999px" : "0px",
+                        width: "100%",
+                        maxWidth: "100%",
+                        borderRadius: "0px",
                         height: isScrolled ? 64 : 80, // h-16 (64px) vs h-20 (80px)
                         borderBottomColor: isScrolled ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0)",
                     }}
@@ -105,7 +105,7 @@ export default function Header() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 -translate-x-1/2">
-                        {['platform', 'product', 'features', 'pricing', 'blog'].map((section, index) => (
+                        {['platform', 'features', 'product', 'pricing', 'blog'].map((section, index) => (
                             <motion.button
                                 key={section}
                                 onClick={() => scrollToSection(section)}
