@@ -10,6 +10,7 @@ interface FeatureData {
   summary: string;
   painPoint: string;
   solution: string;
+  videoSrc?: string;
 }
 
 interface FeatureGridProps {

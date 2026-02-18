@@ -20,6 +20,7 @@ export default function FeaturesSection() {
             summary: "Unified CRM and VRM with complete relationship tracking. Contact cards, order history, notes, and communication logs all in one place.",
             painPoint: "Contact info scattered across emails, sticky notes, and old spreadsheets. No relationship history. No visibility into customer lifetime value.",
             solution: "Unified CRM and VRM with complete relationship tracking. Contact cards, order history, notes, and communication logs all in one place.",
+            videoSrc: "/videos/feature-crm.mp4"
         },
         {
             id: "purchase-orders",
@@ -28,6 +29,7 @@ export default function FeaturesSection() {
             summary: "Automated PO generation with vendor integration. RFQ workflow for quotes, auto-reordering based on stock levels, and complete order tracking.",
             painPoint: "Manual PO creation, vendor emails flying back and forth. Stock running out mid-job because nobody tracked what was ordered.",
             solution: "Automated PO generation with vendor integration. RFQ workflow for quotes, auto-reordering based on stock levels, and complete order tracking.",
+            videoSrc: "/videos/feature-pos.mp4"
         },
         {
             id: "contractors",
@@ -36,6 +38,7 @@ export default function FeaturesSection() {
             summary: "Digital work order system for contractors. Send work out with detailed spec sheets, track deadlines, and get quality confirmation—all documented.",
             painPoint: "Subcontractor miscommunication. Work sent out with vague specs. Jobs coming back wrong or late with no accountability.",
             solution: "Digital work order system for contractors. Send work out with detailed spec sheets, track deadlines, and get quality confirmation—all documented.",
+            videoSrc: "/videos/feature-contractors.mp4"
         },
         {
             id: "products",
@@ -44,6 +47,7 @@ export default function FeaturesSection() {
             summary: "Centralized product database with SKU management, variant tracking, and organized image libraries. One source of truth for all product data.",
             painPoint: "Manual product data entry across multiple channels. SKU chaos. No central product database. Images scattered everywhere.",
             solution: "Centralized product database with SKU management, variant tracking, and organized image libraries. One source of truth for all product data.",
+            videoSrc: "/videos/feature-products.mp4"
         },
         {
             id: "feeds",
@@ -52,6 +56,7 @@ export default function FeaturesSection() {
             summary: "Automated XML feed generation for all platforms: Google Merchant Center, Facebook/Instagram, Reddit, Pinterest. Auto-sync, error handling, and one-click updates.",
             painPoint: "Manual marketplace updates. Products out of sync across Google, Facebook, Pinterest, Reddit. Hours of copy-paste to update pricing.",
             solution: "Automated XML feed generation for all platforms: Google Merchant Center, Facebook/Instagram, Reddit, Pinterest. Auto-sync, error handling, and one-click updates.",
+            videoSrc: "/videos/feature-feeds.mp4"
         },
         {
             id: "tasks",
@@ -60,6 +65,7 @@ export default function FeaturesSection() {
             summary: "Fully configurable task types and decoration methods. Custom fields, workflow rules, and pricing formulas for ANY process you run.",
             painPoint: "Rigid software that can't handle your custom workflows. Every shop does things differently, but you're stuck with one-size-fits-all.",
             solution: "Fully configurable task types and decoration methods. Custom fields, workflow rules, and pricing formulas for ANY process you run.",
+            videoSrc: "/videos/feature-tasks.mp4"
         }
     ], []);
 
