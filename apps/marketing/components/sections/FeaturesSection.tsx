@@ -106,18 +106,28 @@ export default function FeaturesSection() {
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
+                // Find the most visible element (highest intersection ratio)
+                let mostVisibleId = '';
+                let maxRatio = 0;
+
                 entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
+                    if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
                         const id = entry.target.id;
                         if (id.startsWith('feature-') || id === 'more-features') {
-                            setActiveFeature(id);
+                            mostVisibleId = id;
+                            maxRatio = entry.intersectionRatio;
                         }
                     }
                 });
+
+                // Update active feature to the most visible one
+                if (mostVisibleId) {
+                    setActiveFeature(mostVisibleId);
+                }
             },
             {
-                threshold: 0.5,
-                rootMargin: '-100px 0px -50% 0px'
+                threshold: [0, 0.25, 0.5, 0.75, 1],
+                rootMargin: '-20% 0px -50% 0px'
             }
         );
 
