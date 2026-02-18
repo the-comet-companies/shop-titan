@@ -9,7 +9,6 @@ export default function ProductShowcaseSection() {
     const { elementRef: section1Ref, isVisible: section1Visible } = useScrollAnimation();
     const { elementRef: section2Ref, isVisible: section2Visible } = useScrollAnimation();
     const { elementRef: section3Ref, isVisible: section3Visible } = useScrollAnimation();
-    const { elementRef: section4Ref, isVisible: section4Visible } = useScrollAnimation();
 
     return (
         <section className="pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-40 lg:pb-48 bg-background-light dark:bg-background-dark overflow-hidden" id="product">
@@ -22,7 +21,7 @@ export default function ProductShowcaseSection() {
                 >
                     <div className="order-1 min-w-0">
                         <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
-                            Friction Removal
+                            Autonomous Execution & Friction Removal
                         </h2>
                         <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal dark:text-white mb-4 md:mb-6 leading-tight">
                             Clarity replaces communication.
@@ -134,7 +133,7 @@ export default function ProductShowcaseSection() {
                     {/* Content - Left side on mobile (Order 1), Right side on desktop (Order 2) */}
                     <div className="order-1 lg:order-2 min-w-0">
                         <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
-                            Ownership-Level Result
+                            Executive Visibility & Strategic Oversight
                         </h2>
                         <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal dark:text-white mb-4 md:mb-6 leading-tight">
                             Scale without adding noise.
@@ -240,7 +239,7 @@ export default function ProductShowcaseSection() {
                 >
                     <div className="order-1 min-w-0">
                         <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
-                            Strategic Strategy
+                            Operational Command & Strategic Execution
                         </h2>
                         <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal dark:text-white mb-4 md:mb-6 leading-tight">
                             Single-Piece Orders, Without Operational Chaos.
@@ -321,44 +320,6 @@ export default function ProductShowcaseSection() {
                                     <p className="text-center text-[11px] text-secondary-text italic">
                                         No human interaction required until the garment is on the platen.
                                     </p>
-                                </div>
-                            </div>
-                        </BrowserFrame>
-                    </motion.div>
-                </div>
-
-                {/* Feature 4: Placeholder */}
-                <div
-                    ref={section4Ref}
-                    className={`grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center transition-all duration-700 ${section4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                        }`}
-                >
-                    {/* Content - Left side on mobile (Order 1), Right side on desktop (Order 2) */}
-                    <div className="order-1 lg:order-2 min-w-0">
-                        <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
-                            Coming Soon
-                        </h2>
-                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal dark:text-white mb-4 md:mb-6 leading-tight">
-                            More capabilities on the way.
-                        </h3>
-                        <p className="text-lg md:text-xl text-secondary-text dark:text-gray-400 mb-6 md:mb-8 leading-relaxed">
-                            We are constantly expanding our platform to help you scale even faster. Stay tuned for updates.
-                        </p>
-                    </div>
-
-                    {/* UI Mockup - Right side on mobile (Order 2), Left side on desktop (Order 1) */}
-                    <motion.div
-                        className="order-2 lg:order-1 shadow-2xl rounded-xl min-w-0"
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.4 }}
-                    >
-                        <BrowserFrame url="app.shoptitan.com/future">
-                            <div className="p-6 md:p-8 bg-background-light dark:bg-black/90 min-h-[300px] flex items-center justify-center">
-                                <div className="w-full aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700 flex items-center justify-center relative overflow-hidden">
-                                    <div className="text-center text-gray-400 dark:text-gray-500">
-                                        <span className="material-symbols-outlined text-4xl mb-2">image</span>
-                                        <p className="text-sm font-medium uppercase tracking-wider">16:9 Image Placeholder</p>
-                                    </div>
                                 </div>
                             </div>
                         </BrowserFrame>
