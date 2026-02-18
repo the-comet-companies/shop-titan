@@ -17,7 +17,7 @@ export default function HeroSection() {
         >
             {/* Background Layer: Spline 3D Asset */}
             <motion.div
-                className="absolute inset-0 z-0 select-none pointer-events-none lg:pointer-events-auto"
+                className="absolute inset-0 z-0 select-none pointer-events-none"
                 role="img"
                 aria-label="3D visualization of logistics and container management operations"
                 initial={{ opacity: 0 }}

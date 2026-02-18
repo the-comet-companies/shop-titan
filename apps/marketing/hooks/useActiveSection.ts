@@ -1,43 +1,49 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 /**
  * Hook to determine which section is currently active based on scroll position.
- * 
- * @param sectionIds Array of section IDs to track
- * @param offset px offset for calculation (e.g. header height)
- * @returns The ID of the currently active section
+ * Uses requestAnimationFrame throttling to avoid re-renders on every scroll event.
  */
 export function useActiveSection(sectionIds: string[], offset = 100) {
     const [activeSection, setActiveSection] = useState<string>('');
+    const rafRef = useRef<number | null>(null);
+    const currentRef = useRef<string>('');
 
     useEffect(() => {
         const handleScroll = () => {
-            const scrollPosition = window.scrollY + offset;
+            if (rafRef.current !== null) return; // already scheduled
+            rafRef.current = requestAnimationFrame(() => {
+                rafRef.current = null;
+                const scrollPosition = window.scrollY + offset;
 
-            // Find the section that is currently visible
-            for (const id of sectionIds) {
-                const element = document.getElementById(id);
-                if (element) {
-                    const { offsetTop, offsetHeight } = element;
-                    // Check if the scroll position is within the section
-                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-                        setActiveSection(id);
-                        return;
+                let next = window.scrollY < 50 && sectionIds.length > 0 ? sectionIds[0] : '';
+
+                for (const id of sectionIds) {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        const { offsetTop, offsetHeight } = element;
+                        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                            next = id;
+                            break;
+                        }
                     }
                 }
-            }
 
-            // Fallback: checks if we are at the top, set the first section active
-            if (window.scrollY < 50 && sectionIds.length > 0) {
-                setActiveSection(sectionIds[0]);
-            }
+                // Only trigger re-render when section actually changes
+                if (next !== currentRef.current) {
+                    currentRef.current = next;
+                    setActiveSection(next);
+                }
+            });
         };
 
-        window.addEventListener('scroll', handleScroll);
-        // Initial check
+        window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll();
 
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+        };
     }, [sectionIds, offset]);
 
     return activeSection;
