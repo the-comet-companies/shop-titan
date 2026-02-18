@@ -1,63 +1,135 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import VideoPlayer from '@/components/VideoPlayer';
+import FeatureGrid from '@/components/ui/FeatureGrid';
 
 export default function FeaturesSection() {
-    const [activeFeature, setActiveFeature] = useState(0);
+    const [activeFeature, setActiveFeature] = useState('feature-0');
     const navRefs = useRef<(HTMLButtonElement | null)[]>([]);
     const navContainerRef = useRef<HTMLDivElement>(null);
 
-    // Auto-scroll the active navigation item into view (container only)
-    useEffect(() => {
-        const activeButton = navRefs.current[activeFeature];
-        const container = navContainerRef.current;
-
-        if (activeButton && container) {
-            const buttonTop = activeButton.offsetTop;
-            const buttonHeight = activeButton.offsetHeight;
-            const containerHeight = container.offsetHeight;
-
-            // Scroll to center the button in the container
-            container.scrollTo({
-                top: buttonTop - (containerHeight / 2) + (buttonHeight / 2),
-                behavior: 'smooth'
-            });
+    // Tier 2 Features Data
+    const tier2Features = useMemo(() => [
+        {
+            id: "customers",
+            icon: "people",
+            title: "Customers / Vendors",
+            summary: "Unified CRM and VRM with complete relationship tracking. Contact cards, order history, notes, and communication logs all in one place.",
+            painPoint: "Contact info scattered across emails, sticky notes, and old spreadsheets. No relationship history. No visibility into customer lifetime value.",
+            solution: "Unified CRM and VRM with complete relationship tracking. Contact cards, order history, notes, and communication logs all in one place.",
+        },
+        {
+            id: "purchase-orders",
+            icon: "receipt_long",
+            title: "Purchase Orders",
+            summary: "Automated PO generation with vendor integration. RFQ workflow for quotes, auto-reordering based on stock levels, and complete order tracking.",
+            painPoint: "Manual PO creation, vendor emails flying back and forth. Stock running out mid-job because nobody tracked what was ordered.",
+            solution: "Automated PO generation with vendor integration. RFQ workflow for quotes, auto-reordering based on stock levels, and complete order tracking.",
+        },
+        {
+            id: "contractors",
+            icon: "handshake",
+            title: "Contractor Work Orders",
+            summary: "Digital work order system for contractors. Send work out with detailed spec sheets, track deadlines, and get quality confirmation—all documented.",
+            painPoint: "Subcontractor miscommunication. Work sent out with vague specs. Jobs coming back wrong or late with no accountability.",
+            solution: "Digital work order system for contractors. Send work out with detailed spec sheets, track deadlines, and get quality confirmation—all documented.",
+        },
+        {
+            id: "products",
+            icon: "inventory_2",
+            title: "Product Management",
+            summary: "Centralized product database with SKU management, variant tracking, and organized image libraries. One source of truth for all product data.",
+            painPoint: "Manual product data entry across multiple channels. SKU chaos. No central product database. Images scattered everywhere.",
+            solution: "Centralized product database with SKU management, variant tracking, and organized image libraries. One source of truth for all product data.",
+        },
+        {
+            id: "feeds",
+            icon: "rss_feed",
+            title: "XML Feed Management",
+            summary: "Automated XML feed generation for all platforms: Google Merchant Center, Facebook/Instagram, Reddit, Pinterest. Auto-sync, error handling, and one-click updates.",
+            painPoint: "Manual marketplace updates. Products out of sync across Google, Facebook, Pinterest, Reddit. Hours of copy-paste to update pricing.",
+            solution: "Automated XML feed generation for all platforms: Google Merchant Center, Facebook/Instagram, Reddit, Pinterest. Auto-sync, error handling, and one-click updates.",
+        },
+        {
+            id: "tasks",
+            icon: "tune",
+            title: "Decoration & Task Types",
+            summary: "Fully configurable task types and decoration methods. Custom fields, workflow rules, and pricing formulas for ANY process you run.",
+            painPoint: "Rigid software that can't handle your custom workflows. Every shop does things differently, but you're stuck with one-size-fits-all.",
+            solution: "Fully configurable task types and decoration methods. Custom fields, workflow rules, and pricing formulas for ANY process you run.",
         }
-    }, [activeFeature]);
+    ], []);
+
+    // Updated navigation items (Tier 1 + More Features)
+    const navigationItems = useMemo(() => [
+        { title: "Quotes", id: "feature-0", type: "feature" },
+        { title: "Orders", id: "feature-1", type: "feature" },
+        { title: "Machines & Scheduler", id: "feature-4", type: "feature" },
+        { title: "Pricing Matrixes", id: "feature-5", type: "feature" },
+        { title: "Reporting + Analytics", id: "feature-10", type: "feature" },
+        { title: "More Features", id: "more-features", type: "section" }
+    ], []);
+
+    // Auto-scroll the active navigation item into view
+    useEffect(() => {
+        const activeIndex = navigationItems.findIndex(item => item.id === activeFeature);
+        if (activeIndex !== -1) {
+            const activeButton = navRefs.current[activeIndex];
+            const container = navContainerRef.current;
+
+            if (activeButton && container) {
+                const buttonTop = activeButton.offsetTop;
+                const buttonHeight = activeButton.offsetHeight;
+                const containerHeight = container.offsetHeight;
+
+                container.scrollTo({
+                    top: buttonTop - (containerHeight / 2) + (buttonHeight / 2),
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }, [activeFeature, navigationItems]);
 
     // Smooth scroll to feature
-    const scrollToFeature = (index: number) => {
-        const element = document.getElementById(`feature-${index}`);
+    const scrollToFeature = (id: string) => {
+        const element = document.getElementById(id);
         if (element) {
-            // Offset for sticky header if needed, though we have a side nav now
             const y = element.getBoundingClientRect().top + window.scrollY - 100;
             window.scrollTo({ top: y, behavior: 'smooth' });
         }
     };
 
-    const features = [
-        // Core Operations
-        { title: "Quotes", id: "quotes", group: "Core Operations" },
-        { title: "Orders", id: "orders", group: "Core Operations" },
-        { title: "Customers / Vendors", id: "customers", group: "Core Operations" },
-        { title: "Purchase Orders", id: "purchase-orders", group: "Core Operations" },
+    // IntersectionObserver for active state tracking
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        if (id.startsWith('feature-') || id === 'more-features') {
+                            setActiveFeature(id);
+                        }
+                    }
+                });
+            },
+            {
+                threshold: 0.5,
+                rootMargin: '-100px 0px -50% 0px'
+            }
+        );
 
-        // Production Management
-        { title: "Machines & Production Scheduler", id: "scheduler", group: "Production" },
-        { title: "Pricing Matrixes", id: "pricing", group: "Production" },
-        { title: "Contractor Work Orders", id: "contractors", group: "Production" },
+        // Observe all Tier 1 feature blocks and the grid section
+        const featureElements = document.querySelectorAll('[id^="feature-"]');
+        const gridSection = document.getElementById('more-features');
 
-        // Digital & Product Management
-        { title: "Product Management System", id: "products", group: "Digital" },
-        { title: "XML Feed Management", id: "feeds", group: "Digital" },
+        featureElements.forEach(el => observer.observe(el));
+        if (gridSection) observer.observe(gridSection);
 
-        // Flexibility & Intelligence
-        { title: "Decoration & Task Types", id: "tasks", group: "Flexibility" },
-        { title: "Reporting + Data Analytics", id: "analytics", group: "Intelligence" }
-    ];
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <section id="features" className="pt-24 md:pt-32 lg:pt-40 pb-20 md:pb-28 lg:pb-32 bg-background-light dark:bg-background-dark">
@@ -86,61 +158,52 @@ export default function FeaturesSection() {
                             </p>
                         </motion.div>
 
-                        {/* Desktop Navigation - Now scrollable */}
+                        {/* Desktop Navigation */}
                         <div
                             ref={navContainerRef}
                             className="hidden lg:flex flex-col gap-1 relative flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent"
                         >
-                            {features.reduce((acc, feature, index) => {
-                                // Add group header if this is the first item in a new group
-                                const prevGroup = index > 0 ? features[index - 1].group : null;
-                                if (feature.group !== prevGroup) {
-                                    acc.push(
-                                        <div key={`group-${feature.group}`} className="mt-4 first:mt-0 mb-1">
-                                            <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 px-4">
-                                                {feature.group}
-                                            </span>
-                                        </div>
-                                    );
-                                }
-
-                                // Add the feature button
-                                acc.push(
-                                    <button
-                                        key={index}
-                                        ref={(el) => { navRefs.current[index] = el; }}
-                                        onClick={() => scrollToFeature(index)}
-                                        className={cn(
-                                            "text-left py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 relative flex items-center gap-3",
-                                            activeFeature === index
-                                                ? "text-primary bg-primary/5 font-bold"
-                                                : "text-gray-500 hover:text-charcoal dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
-                                        )}
-                                    >
-                                        {activeFeature === index && (
-                                            <motion.div
-                                                layoutId="activeFeatureIndicator"
-                                                className="absolute left-0 w-1 h-6 bg-primary rounded-r-full"
-                                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                            />
-                                        )}
-                                        <span className={cn("transition-transform duration-300", activeFeature === index ? "translate-x-2" : "")}>
-                                            {feature.title}
+                            {navigationItems.map((item, index) => (
+                                <button
+                                    key={item.id}
+                                    ref={(el) => { navRefs.current[index] = el; }}
+                                    onClick={() => scrollToFeature(item.id)}
+                                    className={cn(
+                                        "text-left py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 relative flex items-center gap-3",
+                                        activeFeature === item.id
+                                            ? "text-primary bg-primary/5 font-bold"
+                                            : "text-gray-500 hover:text-charcoal dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800",
+                                        item.type === "section" && "border-t border-gray-200 dark:border-gray-800 mt-4 pt-6"
+                                    )}
+                                >
+                                    {activeFeature === item.id && (
+                                        <motion.div
+                                            layoutId="activeFeatureIndicator"
+                                            className="absolute left-0 w-1 h-6 bg-primary rounded-r-full"
+                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                        />
+                                    )}
+                                    <span className={cn(
+                                        "transition-transform duration-300",
+                                        activeFeature === item.id ? "translate-x-2" : ""
+                                    )}>
+                                        {item.title}
+                                    </span>
+                                    {item.type === "section" && (
+                                        <span className="material-symbols-outlined text-sm ml-auto">
+                                            expand_more
                                         </span>
-                                    </button>
-                                );
-
-                                return acc;
-                            }, [] as React.ReactNode[])}
+                                    )}
+                                </button>
+                            ))}
                         </div>
                     </div>
 
                     {/* Right Column - Scrolling Content */}
                     <div className="lg:col-span-8 space-y-16 md:space-y-24">
-                        {/* Feature 1: Quotes */}
+                        {/* Tier 1: Feature 0 - Quotes */}
                         <FeatureBlock
                             id="feature-0"
-                            setActiveFeature={() => setActiveFeature(0)}
                             icon="description"
                             title="Quotes"
                             painPoint={{
@@ -175,10 +238,9 @@ export default function FeaturesSection() {
                             </div>
                         </FeatureBlock>
 
-                        {/* Feature 2: Orders */}
+                        {/* Tier 1: Feature 1 - Orders */}
                         <FeatureBlock
                             id="feature-1"
-                            setActiveFeature={() => setActiveFeature(1)}
                             icon="shopping_cart"
                             title="Orders"
                             painPoint={{
@@ -230,94 +292,9 @@ export default function FeaturesSection() {
                             </div>
                         </FeatureBlock>
 
-                        {/* Feature 3: Customers / Vendors */}
-                        <FeatureBlock
-                            id="feature-2"
-                            setActiveFeature={() => setActiveFeature(2)}
-                            icon="people"
-                            title="Customers / Vendors"
-                            painPoint={{
-                                title: "The Friction",
-                                description: "Contact info scattered across emails, sticky notes, and old spreadsheets. No relationship history. No visibility into customer lifetime value."
-                            }}
-                            solution={{
-                                title: "The Flow",
-                                description: "Unified CRM and VRM with complete relationship tracking. Contact cards, order history, notes, and communication logs all in one place."
-                            }}
-                            videoSrc="/videos/feature-customers.mp4"
-                        >
-                            <div className="h-full flex items-center justify-center">
-                                <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-5 border border-structural-border dark:border-gray-800">
-                                    <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200 dark:border-gray-800">
-                                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                                            <span className="material-symbols-outlined text-primary">business</span>
-                                        </div>
-                                        <div>
-                                            <h4 className="font-bold text-sm dark:text-white">Acme Corp</h4>
-                                            <p className="text-[10px] text-gray-500">Customer since 2022</p>
-                                        </div>
-                                    </div>
-                                    <div className="grid grid-cols-3 gap-3 text-center">
-                                        <div className="p-2 bg-gray-50 dark:bg-gray-900 rounded">
-                                            <div className="text-lg font-bold text-primary">47</div>
-                                            <div className="text-[9px] text-gray-400">Orders</div>
-                                        </div>
-                                        <div className="p-2 bg-gray-50 dark:bg-gray-900 rounded">
-                                            <div className="text-lg font-bold text-green-600">$89K</div>
-                                            <div className="text-[9px] text-gray-400">Revenue</div>
-                                        </div>
-                                        <div className="p-2 bg-gray-50 dark:bg-gray-900 rounded">
-                                            <div className="text-lg font-bold text-gray-600 dark:text-gray-400">14d</div>
-                                            <div className="text-[9px] text-gray-400">Avg Turn</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </FeatureBlock>
-
-                        {/* Feature 4: Purchase Orders */}
-                        <FeatureBlock
-                            id="feature-3"
-                            setActiveFeature={() => setActiveFeature(3)}
-                            icon="receipt_long"
-                            title="Purchase Orders"
-                            painPoint={{
-                                title: "The Friction",
-                                description: "Manual PO creation, vendor emails flying back and forth. Stock running out mid-job because nobody tracked what was ordered."
-                            }}
-                            solution={{
-                                title: "The Flow",
-                                description: "Automated PO generation with vendor integration. RFQ workflow for quotes, auto-reordering based on stock levels, and complete order tracking."
-                            }}
-                            highlights={["RFQ Feature - Request for Quote workflow"]}
-                            videoSrc="/videos/feature-purchase-orders.mp4"
-                        >
-                            <div className="h-full flex items-center justify-center">
-                                <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-4 border border-structural-border dark:border-gray-800">
-                                    <div className="flex justify-between items-center mb-3">
-                                        <span className="text-xs font-bold dark:text-white">PO #2847</span>
-                                        <span className="px-2 py-0.5 bg-purple-100 text-purple-700 text-[10px] rounded-full font-bold">RFQ SENT</span>
-                                    </div>
-                                    <div className="mb-3 p-2 bg-purple-50 dark:bg-purple-900/10 border border-purple-100 dark:border-purple-900/30 rounded">
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <span className="material-symbols-outlined text-purple-600 text-sm">mail</span>
-                                            <span className="text-[10px] font-bold text-purple-600">Request for Quote</span>
-                                        </div>
-                                        <p className="text-[9px] text-gray-600 dark:text-gray-400">Awaiting vendor response for 500 units Large Black Gildan 5000</p>
-                                    </div>
-                                    <div className="space-y-2 text-[10px]">
-                                        <div className="flex justify-between"><span className="text-gray-500">Vendor:</span><span className="font-bold dark:text-white">SanMar</span></div>
-                                        <div className="flex justify-between"><span className="text-gray-500">Est. Delivery:</span><span className="font-bold dark:text-white">Feb 20, 2026</span></div>
-                                        <div className="flex justify-between"><span className="text-gray-500">Auto-reorder:</span><span className="text-green-600 font-bold">✓ Enabled</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </FeatureBlock>
-
-                        {/* Feature 5: Machines & Production Scheduler */}
+                        {/* Tier 1: Feature 4 - Machines & Production Scheduler */}
                         <FeatureBlock
                             id="feature-4"
-                            setActiveFeature={() => setActiveFeature(4)}
                             icon="precision_manufacturing"
                             title="Machines & Production Scheduler"
                             painPoint={{
@@ -367,10 +344,9 @@ export default function FeaturesSection() {
                             </div>
                         </FeatureBlock>
 
-                        {/* Feature 6: Pricing Matrixes */}
+                        {/* Tier 1: Feature 5 - Pricing Matrixes */}
                         <FeatureBlock
                             id="feature-5"
-                            setActiveFeature={() => setActiveFeature(5)}
                             icon="grid_on"
                             title="Pricing Matrixes"
                             painPoint={{
@@ -424,205 +400,9 @@ export default function FeaturesSection() {
                             </div>
                         </FeatureBlock>
 
-                        {/* Feature 7: Contractor Work Orders */}
-                        <FeatureBlock
-                            id="feature-6"
-                            setActiveFeature={() => setActiveFeature(6)}
-                            icon="handshake"
-                            title="Contractor Work Orders"
-                            painPoint={{
-                                title: "The Friction",
-                                description: "Subcontractor miscommunication. Work sent out with vague specs. Jobs coming back wrong or late with no accountability."
-                            }}
-                            solution={{
-                                title: "The Flow",
-                                description: "Digital work order system for contractors. Send work out with detailed spec sheets, track deadlines, and get quality confirmation—all documented."
-                            }}
-                            videoSrc="/videos/feature-contractors.mp4"
-                        >
-                            <div className="h-full flex items-center justify-center">
-                                <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-4 border border-structural-border dark:border-gray-800">
-                                    <div className="flex justify-between items-center mb-3">
-                                        <span className="text-xs font-bold dark:text-white">Work Order #WO-471</span>
-                                        <span className="px-2 py-0.5 bg-orange-100 text-orange-700 text-[10px] rounded-full font-bold">IN PROGRESS</span>
-                                    </div>
-                                    <div className="space-y-2 text-[10px] mb-3">
-                                        <div className="flex justify-between"><span className="text-gray-500">Contractor:</span><span className="font-bold dark:text-white">Elite Embroidery</span></div>
-                                        <div className="flex justify-between"><span className="text-gray-500">Task:</span><span className="font-bold dark:text-white">Left Chest Logo</span></div>
-                                        <div className="flex justify-between"><span className="text-gray-500">Due Date:</span><span className="font-bold text-orange-600">Feb 18, 2026</span></div>
-                                        <div className="flex justify-between"><span className="text-gray-500">Quantity:</span><span className="font-bold dark:text-white">288 pieces</span></div>
-                                    </div>
-                                    <div className="p-2 bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/30 rounded">
-                                        <p className="text-[9px] text-blue-700 dark:text-blue-400 flex items-center gap-1">
-                                            <span className="material-symbols-outlined text-xs">attach_file</span>
-                                            Spec sheet attached • Quality checklist sent
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </FeatureBlock>
-
-                        {/* Feature 8: Product Management System */}
-                        <FeatureBlock
-                            id="feature-7"
-                            setActiveFeature={() => setActiveFeature(7)}
-                            icon="inventory_2"
-                            title="Product Management System"
-                            painPoint={{
-                                title: "The Friction",
-                                description: "Manual product data entry across multiple channels. SKU chaos. No central product database. Images scattered everywhere."
-                            }}
-                            solution={{
-                                title: "The Flow",
-                                description: "Centralized product database with SKU management, variant tracking, and organized image libraries. One source of truth for all product data."
-                            }}
-                            videoSrc="/videos/feature-products.mp4"
-                        >
-                            <div className="h-full flex items-center justify-center">
-                                <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-4 border border-structural-border dark:border-gray-800">
-                                    <div className="flex gap-3 mb-3">
-                                        <div className="w-16 h-16 bg-gray-100 dark:bg-gray-900 rounded flex items-center justify-center">
-                                            <span className="material-symbols-outlined text-gray-400">checkroom</span>
-                                        </div>
-                                        <div className="flex-1">
-                                            <h4 className="font-bold text-xs dark:text-white mb-1">Gildan 5000 Heavy Cotton Tee</h4>
-                                            <p className="text-[9px] text-gray-500 mb-2">SKU: GIL-5000-BLK-L</p>
-                                            <div className="flex gap-1">
-                                                {['S', 'M', 'L', 'XL', '2XL'].map((size) => (
-                                                    <span key={size} className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-[8px] rounded font-medium dark:text-white">
-                                                        {size}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="grid grid-cols-3 gap-2 text-center text-[9px]">
-                                        <div className="p-2 bg-gray-50 dark:bg-gray-900 rounded">
-                                            <div className="font-bold dark:text-white">24</div>
-                                            <div className="text-gray-400">Colors</div>
-                                        </div>
-                                        <div className="p-2 bg-gray-50 dark:bg-gray-900 rounded">
-                                            <div className="font-bold dark:text-white">7</div>
-                                            <div className="text-gray-400">Sizes</div>
-                                        </div>
-                                        <div className="p-2 bg-gray-50 dark:bg-gray-900 rounded">
-                                            <div className="font-bold text-green-600">✓</div>
-                                            <div className="text-gray-400">Synced</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </FeatureBlock>
-
-                        {/* Feature 9: XML Feed Management */}
-                        <FeatureBlock
-                            id="feature-8"
-                            setActiveFeature={() => setActiveFeature(8)}
-                            icon="rss_feed"
-                            title="XML Feed Management"
-                            painPoint={{
-                                title: "The Friction",
-                                description: "Manual marketplace updates. Products out of sync across Google, Facebook, Pinterest, Reddit. Hours of copy-paste to update pricing."
-                            }}
-                            solution={{
-                                title: "The Flow",
-                                description: "Automated XML feed generation for all platforms: Google Merchant Center, Facebook/Instagram, Reddit, Pinterest. Auto-sync, error handling, and one-click updates."
-                            }}
-                            highlights={[
-                                "Google Merchant Center feed",
-                                "Facebook / Instagram feed",
-                                "Reddit feed",
-                                "Pinterest feed"
-                            ]}
-                            videoSrc="/videos/feature-feeds.mp4"
-                        >
-                            <div className="h-full flex items-center justify-center">
-                                <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-4 border border-structural-border dark:border-gray-800">
-                                    <div className="mb-3">
-                                        <span className="text-xs font-bold dark:text-white">Feed Status</span>
-                                    </div>
-                                    <div className="space-y-2">
-                                        {[
-                                            { platform: "Google Merchant", status: "Synced", color: "green", icon: "check_circle" },
-                                            { platform: "Facebook/Instagram", status: "Synced", color: "green", icon: "check_circle" },
-                                            { platform: "Pinterest", status: "Synced", color: "green", icon: "check_circle" },
-                                            { platform: "Reddit", status: "Syncing", color: "blue", icon: "sync" }
-                                        ].map((feed, i) => (
-                                            <motion.div
-                                                key={i}
-                                                initial={{ opacity: 0, x: -10 }}
-                                                whileInView={{ opacity: 1, x: 0 }}
-                                                transition={{ delay: i * 0.1 }}
-                                                className="flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-900 rounded"
-                                            >
-                                                <span className="text-[10px] font-medium dark:text-white">{feed.platform}</span>
-                                                <div className="flex items-center gap-1">
-                                                    <span className={`material-symbols-outlined text-sm text-${feed.color}-500 ${feed.icon === 'sync' ? 'animate-spin' : ''}`}>
-                                                        {feed.icon}
-                                                    </span>
-                                                    <span className={`text-[9px] text-${feed.color}-600 font-bold`}>{feed.status}</span>
-                                                </div>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                    <p className="mt-3 text-[9px] text-gray-500 text-center">Last updated: 2 minutes ago</p>
-                                </div>
-                            </div>
-                        </FeatureBlock>
-
-                        {/* Feature 10: Decoration & Task Types */}
-                        <FeatureBlock
-                            id="feature-9"
-                            setActiveFeature={() => setActiveFeature(9)}
-                            icon="tune"
-                            title="Unlimited Decoration & Task Types"
-                            painPoint={{
-                                title: "The Friction",
-                                description: "Rigid software that can't handle your custom workflows. Every shop does things differently, but you're stuck with one-size-fits-all."
-                            }}
-                            solution={{
-                                title: "The Flow",
-                                description: "Fully configurable task types and decoration methods. Custom fields, workflow rules, and pricing formulas for ANY process you run."
-                            }}
-                            videoSrc="/videos/feature-tasks.mp4"
-                        >
-                            <div className="h-full flex items-center justify-center">
-                                <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-4 border border-structural-border dark:border-gray-800">
-                                    <div className="mb-3">
-                                        <span className="text-xs font-bold dark:text-white">Active Task Types</span>
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-2">
-                                        {[
-                                            { name: "Screen Printing", icon: "palette" },
-                                            { name: "Embroidery", icon: "style" },
-                                            { name: "DTG", icon: "print" },
-                                            { name: "Heat Press", icon: "local_fire_department" },
-                                            { name: "Vinyl Cut", icon: "cut" },
-                                            { name: "Laser Engrave", icon: "light_mode" }
-                                        ].map((task, i) => (
-                                            <motion.div
-                                                key={i}
-                                                initial={{ opacity: 0, scale: 0.9 }}
-                                                whileInView={{ opacity: 1, scale: 1 }}
-                                                transition={{ delay: i * 0.05 }}
-                                                className="p-2 bg-gray-50 dark:bg-gray-900 rounded-lg text-center"
-                                            >
-                                                <span className="material-symbols-outlined text-primary text-lg">{task.icon}</span>
-                                                <p className="text-[9px] font-medium mt-1 dark:text-white">{task.name}</p>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                    <button className="w-full mt-3 py-2 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg text-[10px] font-bold text-gray-400 hover:border-primary hover:text-primary transition-colors">
-                                        + Add Custom Task Type
-                                    </button>
-                                </div>
-                            </div>
-                        </FeatureBlock>
-
-                        {/* Feature 11: Reporting + Data Analytics */}
+                        {/* Tier 1: Feature 10 - Reporting + Data Analytics */}
                         <FeatureBlock
                             id="feature-10"
-                            setActiveFeature={() => setActiveFeature(10)}
                             icon="analytics"
                             title="Reporting + Data Analytics"
                             painPoint={{
@@ -675,6 +455,9 @@ export default function FeaturesSection() {
                                 </div>
                             </div>
                         </FeatureBlock>
+
+                        {/* Tier 2: Feature Grid */}
+                        <FeatureGrid features={tier2Features} />
                     </div>
                 </div>
             </div>
@@ -685,7 +468,6 @@ export default function FeaturesSection() {
 // Sub-component for individual Feature with Storytelling Layout
 function FeatureBlock({
     id,
-    setActiveFeature,
     icon,
     title,
     painPoint,
@@ -695,7 +477,6 @@ function FeatureBlock({
     children
 }: {
     id: string;
-    setActiveFeature: () => void;
     icon: string;
     title: string;
     painPoint: { title: string; description: string };
@@ -710,7 +491,6 @@ function FeatureBlock({
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-            onViewportEnter={setActiveFeature}
             transition={{ duration: 0.6 }}
             className="group feature-card rounded-2xl md:rounded-3xl overflow-hidden flex flex-col border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 max-w-3xl mx-auto w-full relative"
         >
