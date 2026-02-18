@@ -125,8 +125,16 @@ export default function SplineHero({
     }, [eagerLoad]);
 
     useEffect(() => {
-        window.addEventListener('resize', adjustScale);
-        return () => window.removeEventListener('resize', adjustScale);
+        let resizeTimer: ReturnType<typeof setTimeout>;
+        const debouncedAdjust = () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(adjustScale, 150);
+        };
+        window.addEventListener('resize', debouncedAdjust);
+        return () => {
+            clearTimeout(resizeTimer);
+            window.removeEventListener('resize', debouncedAdjust);
+        };
     }, [adjustScale]);
 
     // CSS-based scale factor for very small laptop screens/narrow viewports
