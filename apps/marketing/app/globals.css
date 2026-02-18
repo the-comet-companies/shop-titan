@@ -19,7 +19,7 @@
   }
 
   html {
-    /* @apply scroll-smooth; - Removing native scroll-smooth to let Lenis handle it */
+    @apply scroll-smooth;
   }
 
   /* Custom Scrollbar */
@@ -49,17 +49,11 @@
 
   /* Custom Utilities */
   .glass-nav {
-    @apply backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 border border-white/20 dark:border-gray-800/50 shadow-lg;
+    @apply bg-white/95 dark:bg-gray-950/95 border-b border-gray-200/60 dark:border-gray-800/60 shadow-sm;
   }
 
   .glass-button {
-    @apply backdrop-blur-md bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl;
-  }
-
-  .dark .glass-nav {
-    background: rgba(10, 10, 10, 0.72);
-    backdrop-filter: saturate(180%) blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    @apply bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl;
   }
 
   .feature-card {

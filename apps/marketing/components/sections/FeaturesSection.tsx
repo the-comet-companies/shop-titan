@@ -132,8 +132,8 @@ export default function FeaturesSection() {
                 }
             },
             {
-                threshold: [0, 0.25, 0.5, 0.75, 1],
-                rootMargin: '-20% 0px -50% 0px'
+                threshold: 0.4,
+                rootMargin: '-10% 0px -40% 0px'
             }
         );
 
