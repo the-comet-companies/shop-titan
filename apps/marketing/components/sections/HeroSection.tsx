@@ -34,7 +34,7 @@ export default function HeroSection() {
                             className="mb-8 md:mb-12"
                         >
                             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-charcoal dark:text-white leading-[1.1] mb-8 tracking-tight">
-                                A <span className="text-blue-800 dark:text-blue-400">single source of truth</span> for the decoration industry.
+                                A single source of truth for the decoration industry.
                             </h1>
                             <p className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl text-secondary-text dark:text-gray-300 font-medium">
                                 Our system allows you to focus on what you do best.
