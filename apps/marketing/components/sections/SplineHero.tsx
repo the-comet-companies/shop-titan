@@ -12,8 +12,10 @@ interface SplineApp {
     findObjectByName: (name: string) => {
         position?: {
             z: number;
+            y?: number;
+            x?: number;
         };
-    } | null;
+    } | undefined; // Changed from null to undefined to match likely Spline return type
 }
 
 export default function SplineHero({
@@ -26,8 +28,29 @@ export default function SplineHero({
 
         const width = window.innerWidth;
 
-        // Laptop screens (typically 1280px - 1440px) often feel too zoomed in
-        if (width < 1600) {
+        if (width < 768) {
+            // Mobile screens (portrait)
+            const camera = splineRef.current.findObjectByName('Main Camera') ||
+                splineRef.current.findObjectByName('Camera') ||
+                splineRef.current.findObjectByName('PerspectiveCamera');
+
+            if (camera && camera.position) {
+                // 1. Pull back EXTREMELY far to ensure everything is in frame
+                camera.position.z = 4500;
+
+                // Initialize if undefined to satisfy TS
+                if (camera.position.x === undefined) camera.position.x = 0;
+                if (camera.position.y === undefined) camera.position.y = 0;
+
+                // 2. Shift camera to the RIGHT to find the tractors (which are off-screen right)
+                // Moving camera +X moves the view to the right side of the scene
+                camera.position.x += 1500;
+
+                // 3. Pan down slightly to catch the floor/conveyor
+                camera.position.y += 200;
+            }
+        } else {
+            // Laptop & Desktop screens (landscape)
             // Find the camera - Spline usually names it 'Main Camera', 'Camera', or 'PerspectiveCamera'
             const camera = splineRef.current.findObjectByName('Main Camera') ||
                 splineRef.current.findObjectByName('Camera') ||
@@ -36,7 +59,20 @@ export default function SplineHero({
             if (camera && camera.position) {
                 // Adjusting camera position to "pull back" significantly
                 // Higher values = more assets visible
-                camera.position.z = camera.position.z > 0 ? 2000 : -2000;
+                // For desktop, we also want to shift sightly right to see the tractor if it's off-screen
+
+                // Base Zoom for Desktop/Laptop
+                camera.position.z = camera.position.z > 0 ? 2200 : -2200;
+
+                // Initialize if undefined
+                if (camera.position.x === undefined) camera.position.x = 0;
+                if (camera.position.y === undefined) camera.position.y = 0;
+
+                // Pan Right to find the tractor (similar to mobile but less aggressive)
+                camera.position.x += 600;
+
+                // Pan Down slightly
+                camera.position.y += 100;
             }
         }
     }, []);
@@ -58,7 +94,9 @@ export default function SplineHero({
         if (typeof window === 'undefined') return 'scale-100';
         const w = window.innerWidth;
         if (w < 1440 && w >= 1024) return 'scale-[0.85] lg:scale-[0.9]';
-        if (w < 1024) return 'scale-[0.7] md:scale-[0.85]';
+        // Mobile is handled by camera Z-index now, so we can keep scale at 1 or slightly reduced if needed
+        if (w < 768) return 'scale-100';
+        if (w < 1024) return 'scale-[0.9]'; // Tablet
         return 'scale-100';
     };
 
