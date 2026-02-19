@@ -31,6 +31,11 @@ export default function Header() {
             return;
         }
 
+        if (sectionId === 'contact') {
+            router.push('/reach-out');
+            return;
+        }
+
         if (pathname === '/') {
             const element = document.getElementById(sectionId);
             if (element) {
@@ -99,7 +104,7 @@ export default function Header() {
                                 transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
                                 className={cn(
                                     "text-xs font-semibold transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110",
-                                    (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog')
+                                    (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog') || (section === 'contact' && pathname === '/reach-out')
                                         ? "text-primary dark:text-white"
                                         : "text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white"
                                 )}
@@ -120,9 +125,7 @@ export default function Header() {
                             whileTap={{ scale: 0.95 }}
                             className={cn(
                                 "group relative border-2 px-4 md:px-6 py-2 text-xs font-bold rounded-full transition-[background-color,border-color] duration-200 flex items-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide focus-primary tap-target",
-                                activeSection === 'contact'
-                                    ? "bg-primary text-white border-primary hover:bg-primary/90"
-                                    : "bg-white/15 dark:bg-white/5 border-charcoal/20 dark:border-white/30 hover:border-charcoal/30 dark:hover:border-white/40 text-charcoal dark:text-white hover:bg-white/25 dark:hover:bg-white/10"
+                                "bg-white/15 dark:bg-white/5 border-charcoal/20 dark:border-white/30 hover:border-charcoal/30 dark:hover:border-white/40 text-charcoal dark:text-white hover:bg-white/25 dark:hover:bg-white/10"
                             )}
                         >
                             Request Demo{" "}

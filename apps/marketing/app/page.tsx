@@ -6,7 +6,7 @@ import FeaturesSection from "@/components/sections/FeaturesSection";
 import ShowcaseSection from "@/components/sections/ShowcaseSection";
 import PricingSection from "@/components/sections/PricingSection";
 
-import ContactSection from "@/components/sections/ContactSection";
+
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -22,7 +22,6 @@ export default function Home() {
                 <PricingSection />
                 <AboutUsSection />
 
-                <ContactSection />
             </main>
             <Footer />
         </>

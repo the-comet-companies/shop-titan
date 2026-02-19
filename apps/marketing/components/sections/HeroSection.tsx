@@ -65,7 +65,7 @@ export default function HeroSection() {
                             aria-label="Primary call-to-action"
                         >
                             <a
-                                href="#contact"
+                                href="/reach-out"
                                 className="px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full flex items-center gap-2 justify-center"
                                 aria-label="Contact us to get started"
                             >
