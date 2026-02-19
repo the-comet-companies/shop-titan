@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
  * Hook to determine which section is currently active based on scroll position.
  * Uses requestAnimationFrame throttling to avoid re-renders on every scroll event.
  */
-export function useActiveSection(sectionIds: string[], offset = 100) {
+export function useActiveSection(sectionIds: readonly string[], offset = 100) {
     const [activeSection, setActiveSection] = useState<string>('');
     const rafRef = useRef<number | null>(null);
     const currentRef = useRef<string>('');
