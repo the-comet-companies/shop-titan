@@ -227,7 +227,7 @@ export default function TestimonialScroll({
                                                 key={i}
                                                 className="text-black dark:text-white text-base"
                                             >
-                                                â˜…
+                                                ★
                                             </span>
                                         ))}
                                     </div>

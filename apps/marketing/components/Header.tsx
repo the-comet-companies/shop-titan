@@ -112,7 +112,7 @@ export default function Header() {
                                 transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
                                 className={cn(
                                     "text-xs font-semibold transition-[color,transform] duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110",
-                                    (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog') || (section === 'contact' && pathname === '/reach-out') || (section === 'pricing' && pathname === '/pricing') || (section === 'about' && pathname === '/about')
+                                    (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog') || ((section as string) === 'contact' && pathname === '/reach-out') || (section === 'pricing' && pathname === '/pricing') || (section === 'about' && pathname === '/about')
                                         ? "text-primary dark:text-white"
                                         : "text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white"
                                 )}
