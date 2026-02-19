@@ -1,13 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
+import dynamic from 'next/dynamic';
 
 import InteractiveGridPattern from '@/components/ui/InteractiveGridPattern';
-import SplineHero from './SplineHero';
+
+const SplineHero = dynamic(() => import('./SplineHero'), { ssr: false });
 
 export default function HeroSection() {
     const [splineReady, setSplineReady] = useState(false);
+    const [mountSpline, setMountSpline] = useState(false);
+
+    useEffect(() => {
+        // Defer Spline mounting until after the first paint. The Spline
+        // runtime blocks the main thread for 1-3s on mobile during scene
+        // decompression and shader compilation. Deferring ensures every
+        // other section's scroll handlers and IntersectionObservers are
+        // fully active (and have fired at least once) before any blocking.
+        const raf = requestAnimationFrame(() => {
+            setMountSpline(true);
+        });
+        return () => cancelAnimationFrame(raf);
+    }, []);
 
     return (
         <section
@@ -25,10 +40,12 @@ export default function HeroSection() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                 <div className="w-full h-[120%] opacity-70 md:opacity-100 transition-opacity duration-1000 transform -translate-y-[10%]">
-                    <SplineHero
-                        eagerLoad={true}
-                        onReady={() => setSplineReady(true)}
-                    />
+                    {mountSpline && (
+                        <SplineHero
+                            eagerLoad={true}
+                            onReady={() => setSplineReady(true)}
+                        />
+                    )}
                 </div>
                 {/* Readability Overlays */}
                 <div className="absolute inset-0 bg-white/30 dark:bg-black/40 -z-1" />
@@ -89,7 +106,7 @@ export default function HeroSection() {
                     </div>
                 </div>
 
-                {/* Subtle Grid overlay for texture - more subtle now */}
+                {/* Subtle Grid overlay for texture */}
                 <InteractiveGridPattern
                     width={120}
                     height={120}
