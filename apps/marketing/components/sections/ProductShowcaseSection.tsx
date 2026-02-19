@@ -22,7 +22,7 @@ export default function ProductShowcaseSection() {
                 >
                     <div className="order-1 min-w-0">
                         <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
-                            Friction Removal
+                            Autonomous Execution & Friction Removal
                         </h2>
                         <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal dark:text-white mb-4 md:mb-6 leading-tight">
                             Clarity replaces communication.
@@ -134,7 +134,7 @@ export default function ProductShowcaseSection() {
                     {/* Content - Left side on mobile (Order 1), Right side on desktop (Order 2) */}
                     <div className="order-1 lg:order-2 min-w-0">
                         <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
-                            Ownership-Level Result
+                            Executive Visibility & Strategic Oversight
                         </h2>
                         <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal dark:text-white mb-4 md:mb-6 leading-tight">
                             Scale without adding noise.
@@ -240,7 +240,7 @@ export default function ProductShowcaseSection() {
                 >
                     <div className="order-1 min-w-0">
                         <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
-                            Strategic Strategy
+                            Operational Command & Strategic Execution
                         </h2>
                         <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-charcoal dark:text-white mb-4 md:mb-6 leading-tight">
                             Single-Piece Orders, Without Operational Chaos.

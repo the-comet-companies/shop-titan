@@ -32,11 +32,16 @@ const config: Config = {
         "gradient-flow-2": "gradientFlow2 25s ease-in-out infinite",
         "gradient-flow-3": "gradientFlow3 30s ease-in-out infinite",
         "gradient-flow-4": "gradientFlow4 22s ease-in-out infinite",
+        "gradient": "gradient 3s linear infinite",
       },
       keyframes: {
         scroll: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        gradient: {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
         },
         gradientFlow1: {
           "0%, 100%": {

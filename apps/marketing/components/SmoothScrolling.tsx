@@ -1,23 +1,21 @@
 "use client";
 
-import { ReactLenis, useLenis } from "lenis/react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, Suspense } from "react";
 
 function ScrollHandler() {
-    const lenis = useLenis();
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
     useEffect(() => {
         // Handle hash navigation on route change
-        if (lenis && window.location.hash) {
+        if (window.location.hash) {
             const hash = window.location.hash;
 
             const scrollToHash = () => {
                 const element = document.querySelector(hash) as HTMLElement;
                 if (element) {
-                    lenis.scrollTo(element, { offset: -100 });
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             };
 
@@ -34,18 +32,18 @@ function ScrollHandler() {
                 clearTimeout(timeout2);
             };
         }
-    }, [lenis, pathname, searchParams]);
+    }, [pathname, searchParams]);
 
     return null;
 }
 
 export default function SmoothScrolling({ children }: { children: React.ReactNode }) {
     return (
-        <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}>
+        <>
             <Suspense fallback={null}>
                 <ScrollHandler />
             </Suspense>
             {children}
-        </ReactLenis>
+        </>
     );
 }

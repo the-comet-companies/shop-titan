@@ -34,7 +34,7 @@ export default function Header() {
         if (pathname === '/') {
             const element = document.getElementById(sectionId);
             if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
+                element.scrollIntoView({ behavior: "instant" as ScrollBehavior });
             }
         } else {
             router.push(`/#${sectionId}`);
@@ -58,28 +58,13 @@ export default function Header() {
                     isScrolled ? "px-0" : "px-0"
                 )}
             >
-                <motion.nav
-                    layout
-                    initial={false}
-                    animate={{
-                        width: "100%",
-                        maxWidth: "100%",
-                        borderRadius: "0px",
-                        height: isScrolled ? 64 : 80, // h-16 (64px) vs h-20 (80px)
-                        borderBottomColor: isScrolled ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0)",
-                    }}
-                    transition={{ duration: 0.5, type: "spring", bounce: 0, stiffness: 100, damping: 20 }}
+                <nav
                     className={cn(
-                        "mx-auto flex items-center justify-between px-6 md:px-12 transition-all duration-500",
-                        // Dynamic Island Style vs Transparent Initial State
+                        "mx-auto flex items-center justify-between px-6 md:px-12 transition-[background-color,border-color,box-shadow] duration-300",
                         isScrolled
-                            ? "glass-nav shadow-lg shadow-black/5"
-                            : "bg-transparent border-b border-transparent backdrop-blur-none"
+                            ? "glass-nav shadow-lg shadow-black/5 h-16"
+                            : "bg-transparent border-b border-transparent h-20"
                     )}
-                    style={{
-                        marginLeft: "auto",
-                        marginRight: "auto"
-                    }}
                 >
                     <div className="flex-shrink-0">
                         <motion.a
@@ -134,10 +119,10 @@ export default function Header() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className={cn(
-                                "group relative backdrop-blur-xl border px-4 md:px-6 py-2 text-xs font-bold rounded-full transition-all duration-300 flex items-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide focus-primary tap-target",
+                                "group relative border-2 px-4 md:px-6 py-2 text-xs font-bold rounded-full transition-[background-color,border-color] duration-200 flex items-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide focus-primary tap-target",
                                 activeSection === 'contact'
                                     ? "bg-primary text-white border-primary hover:bg-primary/90"
-                                    : "bg-white/5 dark:bg-white/5 border-white/10 hover:border-white/20 text-charcoal dark:text-white hover:bg-white/10"
+                                    : "bg-white/15 dark:bg-white/5 border-charcoal/20 dark:border-white/30 hover:border-charcoal/30 dark:hover:border-white/40 text-charcoal dark:text-white hover:bg-white/25 dark:hover:bg-white/10"
                             )}
                         >
                             Request Demo{" "}
@@ -157,7 +142,7 @@ export default function Header() {
                             menu
                         </span>
                     </button>
-                </motion.nav>
+                </nav>
             </motion.header>
 
             {/* Mobile Menu Component */}

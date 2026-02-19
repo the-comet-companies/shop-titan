@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useInView, Variants } from 'framer-motion';
 
 export default function PainPointSection() {
@@ -51,19 +51,8 @@ export default function PainPointSection() {
         <section
             className="relative py-16 md:py-24 lg:py-32 bg-background-light dark:bg-background-dark overflow-hidden"
         >
-            {/* Gradient Blob Background - Animated */}
-            <motion.div
-                animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.05, 0.08, 0.05]
-                }}
-                transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                }}
-                className="absolute top-0 right-0 w-[500px] md:w-[800px] h-[500px] md:h-[800px] bg-primary rounded-full blur-[120px] -z-10"
-            />
+            {/* Static gradient blob — no animation to avoid rAF cost */}
+            <div className="absolute top-0 right-0 w-[500px] md:w-[800px] h-[500px] md:h-[800px] bg-primary rounded-full blur-[120px] opacity-[0.06] -z-10 pointer-events-none" />
 
             <div className="max-w-6xl mx-auto px-mobile">
                 {/* Main Headline */}
@@ -92,33 +81,26 @@ export default function PainPointSection() {
                                 {/* Clock Icon with Time */}
                                 <div className="mb-6 flex items-center gap-3">
                                     <div className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-background-light/50 dark:bg-white/5 rounded-full border border-structural-border dark:border-white/10">
-                                        {/* Animated Clock Icon */}
+                                        {/* Static Clock Icon — no animation to avoid rAF cost */}
                                         <div className="w-6 h-6 md:w-8 md:h-8 relative">
                                             <div className="absolute inset-0 border-2 border-charcoal/30 dark:border-white/30 rounded-full"></div>
-                                            <motion.div
-                                                className="absolute top-1/2 left-1/2 w-[1px] h-1/2 bg-charcoal dark:bg-white origin-bottom"
-                                                style={{ left: '50%', top: '0' }}
-                                                animate={{ rotate: 360 }}
-                                                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                                            {/* Hour hand — static */}
+                                            <div
+                                                className="absolute w-[2px] bg-charcoal dark:bg-white origin-bottom rounded-full"
+                                                style={{ height: '42%', left: 'calc(50% - 1px)', bottom: '50%', transform: `rotate(${index * 60}deg)` }}
                                             />
-                                            <motion.div
-                                                className="absolute top-1/2 left-1/2 w-[1px] h-1/3 bg-charcoal dark:bg-white origin-bottom"
-                                                style={{ left: '50%', top: '16.66%' }}
-                                                animate={{ rotate: 360 }}
-                                                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                                            {/* Minute hand — static */}
+                                            <div
+                                                className="absolute w-[1px] bg-charcoal/70 dark:bg-white/70 origin-bottom rounded-full"
+                                                style={{ height: '38%', left: 'calc(50% - 0.5px)', bottom: '50%', transform: `rotate(${index * 120}deg)` }}
                                             />
                                         </div>
                                     </div>
-                                    <motion.span
+                                    <span
                                         className="text-lg md:text-xl font-semibold text-charcoal dark:text-white font-mono"
-                                        animate={{
-                                            textShadow: ["0 0 0px rgba(239,68,68,0)", "0 0 8px rgba(239,68,68,0.4)", "0 0 0px rgba(239,68,68,0)"],
-                                            color: ["#1D1D1F", "#3F1D1F", "#1D1D1F"]
-                                        }}
-                                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
                                     >
                                         {point.time}
-                                    </motion.span>
+                                    </span>
                                 </div>
 
                                 {/* Description */}
@@ -146,32 +128,23 @@ export default function PainPointSection() {
 
 function SpotlightCard({ children, variants }: { children: React.ReactNode, variants?: Variants }) {
     const divRef = useRef<HTMLDivElement>(null);
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [opacity, setOpacity] = useState(0);
+    const spotlightRef = useRef<HTMLDivElement>(null);
 
+    // Direct DOM manipulation — avoids setState/re-render on every mousemove
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!divRef.current) return;
-
-        const div = divRef.current;
-        const rect = div.getBoundingClientRect();
-
-        setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    };
-
-    const handleFocus = () => {
-        setOpacity(1);
-    };
-
-    const handleBlur = () => {
-        setOpacity(0);
+        if (!divRef.current || !spotlightRef.current) return;
+        const rect = divRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        spotlightRef.current.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(255,255,255,0.06), transparent 40%)`;
     };
 
     const handleMouseEnter = () => {
-        setOpacity(1);
+        if (spotlightRef.current) spotlightRef.current.style.opacity = '1';
     };
 
     const handleMouseLeave = () => {
-        setOpacity(0);
+        if (spotlightRef.current) spotlightRef.current.style.opacity = '0';
     };
 
     return (
@@ -179,18 +152,14 @@ function SpotlightCard({ children, variants }: { children: React.ReactNode, vari
             ref={divRef}
             variants={variants}
             onMouseMove={handleMouseMove}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             className="group relative flex flex-col justify-start overflow-hidden rounded-2xl border border-structural-border dark:border-white/10 bg-surface dark:bg-white/5 p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
         >
             <div
-                className="pointer-events-none absolute -inset-px transition duration-300"
-                style={{
-                    opacity,
-                    background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.06), transparent 40%)`,
-                }}
+                ref={spotlightRef}
+                className="pointer-events-none absolute -inset-px transition-opacity duration-300"
+                style={{ opacity: 0 }}
             />
             <div className="relative z-10">
                 {children}
