@@ -13,6 +13,7 @@ interface FeatureGridCardProps {
   videoSrc?: string;
   isExpanded: boolean;
   onToggle: (id: string) => void;
+  onWatchDemo?: (src: string) => void;
 }
 
 export default function FeatureGridCard({
@@ -24,7 +25,8 @@ export default function FeatureGridCard({
   solution,
   videoSrc,
   isExpanded,
-  onToggle
+  onToggle,
+  onWatchDemo
 }: FeatureGridCardProps) {
   return (
     <motion.div
@@ -33,7 +35,7 @@ export default function FeatureGridCard({
         border rounded-2xl p-6
         transition-all duration-300
         ${isExpanded
-          ? 'border-2 border-primary/30 dark:border-primary/40 shadow-2xl col-span-1 md:col-span-2 lg:col-span-3'
+          ? 'border-2 border-primary/30 dark:border-primary/40 shadow-2xl'
           : 'border border-structural-border dark:border-gray-800 hover:shadow-xl hover:border-primary/20 cursor-pointer'
         }
       `}
@@ -115,17 +117,29 @@ export default function FeatureGridCard({
             <div className="w-full bg-gray-50 dark:bg-black/50 p-2 md:p-4 flex items-center justify-center border border-structural-border dark:border-gray-800 rounded-xl relative overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50 dark:opacity-20 pointer-events-none" />
 
-              <div className="w-full max-w-4xl shadow-2xl rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 relative z-10 bg-white dark:bg-gray-900 flex flex-col aspect-video">
-                <div className="flex-grow relative bg-gray-900">
-                  <div className="absolute inset-0 flex items-center justify-center text-white/20">
-                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-current flex items-center justify-center">
-                      <span className="material-symbols-outlined text-4xl md:text-5xl">play_arrow</span>
+              <div className="w-full max-w-4xl shadow-2xl rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 relative z-10 bg-white dark:bg-gray-900 flex flex-col aspect-video group">
+                <div className="flex-grow relative bg-gray-900 group-hover:bg-gray-800 transition-colors duration-500">
+                  {/* Play Button Trigger */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onWatchDemo?.(videoSrc);
+                    }}
+                    className="absolute inset-0 flex flex-col items-center justify-center text-white/40 group-hover:text-white/80 transition-all duration-500 z-20 hover:bg-black/20"
+                  >
+                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-current flex items-center justify-center mb-4 transition-transform group-hover:scale-110 bg-black/20 backdrop-blur-sm">
+                      <span className="material-symbols-outlined text-4xl md:text-5xl pl-1">play_arrow</span>
                     </div>
-                  </div>
+                    <span className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">Watch Demo</span>
+                  </button>
+
+                  {/* Background Video "Poster" using VideoPlayer */}
                   <VideoPlayer
                     src={videoSrc}
                     autoPlay={true}
-                    className="h-full w-full object-cover relative z-10"
+                    muted={true}
+                    loop={true}
+                    className="h-full w-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500"
                     hideControls={true}
                   />
                 </div>

@@ -4,12 +4,14 @@ import { motion } from 'framer-motion';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import VideoPlayer from '@/components/VideoPlayer';
+import VideoModal from '@/components/ui/VideoModal';
 import FeatureGrid from '@/components/ui/FeatureGrid';
 
 export default function FeaturesSection() {
     const [activeFeature, setActiveFeature] = useState('feature-0');
     const navRefs = useRef<(HTMLButtonElement | null)[]>([]);
     const navContainerRef = useRef<HTMLDivElement>(null);
+    const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
     // Tier 2 Features Data
     const tier2Features = useMemo(() => [
@@ -109,30 +111,37 @@ export default function FeaturesSection() {
     };
 
     // IntersectionObserver for active state tracking
+    const featureRatios = useRef<Map<string, number>>(new Map());
+
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
-                // Find the most visible element (highest intersection ratio)
-                let mostVisibleId = '';
-                let maxRatio = 0;
-
+                // Update ratios for changed entries
                 entries.forEach((entry) => {
-                    if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
-                        const id = entry.target.id;
-                        if (id.startsWith('feature-') || id === 'more-features') {
-                            mostVisibleId = id;
-                            maxRatio = entry.intersectionRatio;
-                        }
+                    const id = entry.target.id;
+                    if (id.startsWith('feature-') || id === 'more-features') {
+                        featureRatios.current.set(id, entry.isIntersecting ? entry.intersectionRatio : 0);
                     }
                 });
 
-                // Update active feature to the most visible one
+                // Find the most visible element among ALL tracked elements
+                let mostVisibleId = '';
+                let maxRatio = 0;
+
+                featureRatios.current.forEach((ratio, id) => {
+                    if (ratio > maxRatio) {
+                        maxRatio = ratio;
+                        mostVisibleId = id;
+                    }
+                });
+
+                // Update active feature if we have a winner
                 if (mostVisibleId) {
                     setActiveFeature(mostVisibleId);
                 }
             },
             {
-                threshold: 0.4,
+                threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], // More granular thresholds
                 rootMargin: '-10% 0px -40% 0px'
             }
         );
@@ -231,6 +240,7 @@ export default function FeaturesSection() {
                                 description: "Automated quote generation with intelligent pricing matrices. Template library, auto-calculations, and one-click PDF generation."
                             }}
                             videoSrc="/videos/feature-quotes.mp4"
+                            onWatchDemo={(src) => setActiveVideo(src)}
                         >
                             <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-5 border border-structural-border dark:border-gray-800">
@@ -268,6 +278,7 @@ export default function FeaturesSection() {
                                 description: "End-to-end order tracking with real-time status updates. Every garment's journey is logged, visible, and searchable from anywhere."
                             }}
                             videoSrc="/videos/feature-orders.mp4"
+                            onWatchDemo={(src) => setActiveVideo(src)}
                         >
                             <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg overflow-hidden border border-structural-border dark:border-gray-800">
@@ -322,6 +333,7 @@ export default function FeaturesSection() {
                                 description: "Visual production scheduler with drag-drop job assignment. Real-time capacity planning, machine utilization tracking, and workload balancing."
                             }}
                             videoSrc="/videos/feature-scheduler.mp4"
+                            onWatchDemo={(src) => setActiveVideo(src)}
                         >
                             <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-4 border border-structural-border dark:border-gray-800">
@@ -374,6 +386,7 @@ export default function FeaturesSection() {
                                 description: "Dynamic pricing matrices for all decoration types: embroidery (stitch count), screen printing (colors, screens), sewing, and any custom task you offer."
                             }}
                             videoSrc="/videos/feature-pricing.mp4"
+                            onWatchDemo={(src) => setActiveVideo(src)}
                         >
                             <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-4 border border-structural-border dark:border-gray-800">
@@ -436,6 +449,7 @@ export default function FeaturesSection() {
                                 "Customer analytics"
                             ]}
                             videoSrc="/videos/feature-analytics.mp4"
+                            onWatchDemo={(src) => setActiveVideo(src)}
                         >
                             <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-5 border border-structural-border dark:border-gray-800">
@@ -473,10 +487,20 @@ export default function FeaturesSection() {
                         </FeatureBlock>
 
                         {/* Tier 2: Feature Grid */}
-                        <FeatureGrid features={tier2Features} />
+                        <FeatureGrid
+                            features={tier2Features}
+                            onWatchDemo={(src) => setActiveVideo(src)}
+                        />
                     </div>
                 </div>
             </div>
+
+            {/* Video Modal */}
+            <VideoModal
+                isOpen={!!activeVideo}
+                onClose={() => setActiveVideo(null)}
+                videoSrc={activeVideo || ''}
+            />
         </section>
     );
 }
@@ -490,6 +514,7 @@ function FeatureBlock({
     solution,
     highlights,
     videoSrc,
+    onWatchDemo,
     children
 }: {
     id: string;
@@ -499,6 +524,7 @@ function FeatureBlock({
     solution: { title: string; description: string };
     highlights?: string[];
     videoSrc?: string;
+    onWatchDemo?: (src: string) => void;
     children?: React.ReactNode;
 }) {
     return (
@@ -595,18 +621,25 @@ function FeatureBlock({
                 {videoSrc ? (
                     <div className="w-full max-w-5xl shadow-2xl rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 relative z-10 group-hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] transition-shadow duration-500 bg-white dark:bg-gray-900 flex flex-col aspect-video">
                         <div className="flex-grow relative bg-gray-900 group-hover:bg-gray-800 transition-colors duration-500">
-                            {/* Play Button Placeholder / Loading State */}
-                            <div className="absolute inset-0 flex items-center justify-center text-white/20 group-hover:text-white/40 transition-colors duration-500">
-                                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-current flex items-center justify-center">
-                                    <span className="material-symbols-outlined text-4xl md:text-5xl">play_arrow</span>
+                            {/* Play Button Trigger */}
+                            <button
+                                onClick={() => onWatchDemo?.(videoSrc)}
+                                className="absolute inset-0 flex flex-col items-center justify-center text-white/40 group-hover:text-white/80 transition-all duration-500 z-20 hover:bg-black/20"
+                            >
+                                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-current flex items-center justify-center mb-4 transition-transform group-hover:scale-110 bg-black/20 backdrop-blur-sm">
+                                    <span className="material-symbols-outlined text-5xl md:text-6xl pl-1">play_arrow</span>
                                 </div>
-                            </div>
+                                <span className="text-sm font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">Watch Demo</span>
+                            </button>
 
+                            {/* Background Video (Muted, Loop, No Controls) acting as a "Live Poster" */}
                             <VideoPlayer
                                 src={videoSrc}
                                 autoPlay={true}
+                                muted={true}
+                                loop={true}
                                 fallbackContent={children}
-                                className="h-full w-full object-cover relative z-10"
+                                className="h-full w-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500"
                                 hideControls={true}
                             />
                         </div>
