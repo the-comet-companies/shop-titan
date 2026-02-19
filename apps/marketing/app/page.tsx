@@ -14,11 +14,12 @@ export default function Home() {
         <>
             <main>
                 <HeroSection />
+                <PainPointSection /> {/* Moved to #2 */}
+
                 <FeaturesSection />
                 <ProductShowcaseSection />
                 <ShowcaseSection />
                 <PricingSection />
-                <PainPointSection />
                 <AboutUsSection />
 
                 <ContactSection />
