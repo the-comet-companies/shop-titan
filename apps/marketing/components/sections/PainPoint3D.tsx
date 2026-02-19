@@ -3,7 +3,6 @@
 import { useEffect, useRef, useMemo, useCallback, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -51,68 +50,51 @@ const painPointScenes = [
 ];
 
 // --- 3D Particle Component ---
-function StoryParticles({ activeIndex, scrollProgress, visible }: { activeIndex: number; scrollProgress: number; visible: boolean }) {
+function StoryParticles({ activeIndex, visible }: { activeIndex: number; scrollProgress: number; visible: boolean }) {
     const pointsRef = useRef<THREE.Points>(null);
-    const count = 2000; // Particle count
+    const count = 500; // Reduced from 2000 — dust needs fewer, smaller particles
 
     const [targetPositions, setTargetPositions] = useState<Float32Array | null>(null);
 
-    // Initial random delays for staggering
-    const particleData = useMemo(() => {
-        const temp = [];
-        for (let i = 0; i < count; i++) {
-            temp.push({ delay: Math.random() * 0.5 });
-        }
-        return temp;
-    }, []);
-
-    // --- Geometries ---
-
-    // Unified Sphere Generation (Used for all steps)
-    const generateSpherePositions = useCallback(() => {
+    // Dust cloud: loose volume scatter instead of tight sphere surface
+    const generateDustPositions = useCallback(() => {
         const positions = new Float32Array(count * 3);
-        const radius = 2.5;
         for (let i = 0; i < count; i++) {
-            const theta = Math.random() * Math.PI * 2; // Angle around the equator
-            const phi = Math.acos(2 * Math.random() - 1); // Angle from the pole
+            // Bias toward inner volume — dust fills space, not a shell
+            const r = Math.pow(Math.random(), 0.4) * 3.2;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(2 * Math.random() - 1);
 
-            // Create a sphere with slight noise for organic feel
-            positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-            positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-            positions[i * 3 + 2] = radius * Math.cos(phi);
+            positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta) + (Math.random() - 0.5) * 1.5;
+            positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta) + (Math.random() - 0.5) * 1.0;
+            positions[i * 3 + 2] = r * Math.cos(phi)                   + (Math.random() - 0.5) * 1.5;
         }
         return positions;
     }, []);
 
-    // Update target positions when index changes
     useEffect(() => {
-        // Always regenerate sphere positions to create a "reshuffling" effect on transition
-        const newPositions = generateSpherePositions();
-        setTargetPositions(newPositions);
-    }, [activeIndex, generateSpherePositions]);
+        setTargetPositions(generateDustPositions());
+    }, [activeIndex, generateDustPositions]);
 
-    const initialPositions = useMemo(() => generateSpherePositions(), [generateSpherePositions]);
+    const initialPositions = useMemo(() => generateDustPositions(), [generateDustPositions]);
 
-    useFrame((state, delta) => {
+    useFrame((_, delta) => {
         if (!visible || !pointsRef.current || !targetPositions) return;
 
         const positions = pointsRef.current.geometry.attributes.position.array as Float32Array;
-
-        // Morph speed factor
-        const lerpFactor = 2.0 * delta;
+        const lerpFactor = 1.5 * delta;
 
         for (let i = 0; i < count; i++) {
             const idx = i * 3;
-            // Simple ease towards target
-            positions[idx] += (targetPositions[idx] - positions[idx]) * lerpFactor;
+            positions[idx]     += (targetPositions[idx]     - positions[idx])     * lerpFactor;
             positions[idx + 1] += (targetPositions[idx + 1] - positions[idx + 1]) * lerpFactor;
             positions[idx + 2] += (targetPositions[idx + 2] - positions[idx + 2]) * lerpFactor;
         }
         pointsRef.current.geometry.attributes.position.needsUpdate = true;
 
-        // Gentle rotation
-        pointsRef.current.rotation.y += delta * 0.1;
-        pointsRef.current.rotation.x += delta * 0.05;
+        // Very slow drift — dust floats, doesn't spin
+        pointsRef.current.rotation.y += delta * 0.04;
+        pointsRef.current.rotation.x += delta * 0.02;
     });
 
     return (
@@ -120,10 +102,10 @@ function StoryParticles({ activeIndex, scrollProgress, visible }: { activeIndex:
             <PointMaterial
                 transparent
                 color={painPointScenes[activeIndex].particleColor}
-                size={0.06}
+                size={0.022}
                 sizeAttenuation={true}
                 depthWrite={false}
-                opacity={0.9}
+                opacity={0.5}
                 blending={THREE.AdditiveBlending}
             />
         </Points>
@@ -132,15 +114,7 @@ function StoryParticles({ activeIndex, scrollProgress, visible }: { activeIndex:
 
 function Scene({ activeIndex, scrollProgress, visible }: { activeIndex: number; scrollProgress: number; visible: boolean }) {
     return (
-        <>
-            <ambientLight intensity={0.6} />
-            <pointLight position={[10, 10, 10]} intensity={1} color="#ffffff" />
-            <pointLight position={[-10, -10, -10]} intensity={0.8} color={painPointScenes[activeIndex].particleColor} />
-            <StoryParticles activeIndex={activeIndex} scrollProgress={scrollProgress} visible={visible} />
-            <EffectComposer>
-                <Bloom intensity={1.2} luminanceThreshold={0.1} luminanceSmoothing={0.9} mipmapBlur />
-            </EffectComposer>
-        </>
+        <StoryParticles activeIndex={activeIndex} scrollProgress={scrollProgress} visible={visible} />
     );
 }
 
@@ -191,8 +165,8 @@ export default function PainPoint3D() {
             <div ref={containerRef} className="absolute inset-0 z-0">
                 <Canvas
                     camera={{ position: [0, 0, 8], fov: 50 }}
-                    gl={{ alpha: true, antialias: true }}
-                    dpr={[1, 2]}
+                    gl={{ alpha: true, antialias: false }}
+                    dpr={[1, 1.5]}
                 >
                     {/* <color attach="background" args={["#000000"]} />  Dark background for bloom */}
                     <Scene activeIndex={activeIndex} scrollProgress={progress} visible={true} />
