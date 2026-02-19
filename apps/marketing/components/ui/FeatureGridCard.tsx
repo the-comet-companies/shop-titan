@@ -33,7 +33,7 @@ export default function FeatureGridCard({
       className={`
         bg-surface dark:bg-gray-900
         border rounded-2xl p-6
-        transition-all duration-300
+        transition-all duration-300 relative
         ${isExpanded
           ? 'border-2 border-primary/30 dark:border-primary/40 shadow-2xl'
           : 'border border-structural-border dark:border-gray-800 hover:shadow-xl hover:border-primary/20 cursor-pointer'
@@ -41,6 +41,20 @@ export default function FeatureGridCard({
       `}
       onClick={() => !isExpanded && onToggle(id)}
     >
+      {/* Minimize Button (Desktop) */}
+      {isExpanded && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggle(id);
+          }}
+          className="hidden md:flex absolute top-6 right-6 w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 hover:text-primary dark:hover:text-white hover:bg-primary/10 transition-all items-center justify-center"
+          aria-label="Minimize"
+        >
+          <span className="material-symbols-outlined text-xl">close_fullscreen</span>
+        </button>
+      )}
+
       {/* Icon & Title Row */}
       <div className="flex items-center gap-4 mb-4">
         <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -147,8 +161,8 @@ export default function FeatureGridCard({
             </div>
           )}
 
-          {/* Collapse Button */}
-          <div className="flex justify-center">
+          {/* Collapse Button (Mobile Only) */}
+          <div className="flex justify-center md:hidden">
             <button
               onClick={(e) => {
                 e.stopPropagation();
