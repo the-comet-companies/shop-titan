@@ -87,14 +87,8 @@ export default function SplineHero({
 
     const handleLoad = useCallback((app: SplineApp) => {
         splineRef.current = app;
-
-        // Initial responsive adjustment
         adjustScale();
-
-        // Add small delay to ensure scene is fully rendered and visible on canvas
-        setTimeout(() => {
-            onReady?.();
-        }, 150);
+        onReady?.();
     }, [adjustScale, onReady]);
 
     // Intersection Observer to lazy load only when in viewport (skip if eagerLoad)
@@ -151,16 +145,7 @@ export default function SplineHero({
     return (
         <div ref={containerRef} className="w-full h-full min-h-[400px] lg:min-h-none relative">
             {shouldLoad ? (
-                <Suspense
-                    fallback={
-                        <div className="absolute inset-0 flex items-center justify-center bg-gray-50/20 dark:bg-gray-900/20 backdrop-blur-sm rounded-3xl overflow-hidden animate-pulse">
-                            <div className="flex flex-col items-center gap-4">
-                                <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-                                <p className="text-sm text-secondary-text animate-pulse">Loading 3D Scene...</p>
-                            </div>
-                        </div>
-                    }
-                >
+                <Suspense fallback={<div className="absolute inset-0" />}>
                     <div className={`w-full h-full transition-all duration-700 ease-out origin-center ${getScaleClass()}`}>
                         <Spline
                             scene={scene}
@@ -170,9 +155,7 @@ export default function SplineHero({
                     </div>
                 </Suspense>
             ) : (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-50/20 dark:bg-gray-900/20">
-                    <div className="w-12 h-12 border-4 border-primary/30 border-t-transparent rounded-full animate-spin" />
-                </div>
+                <div className="absolute inset-0" />
             )}
         </div>
     );

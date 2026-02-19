@@ -42,8 +42,8 @@ export default function HeroSection() {
                     <div className="max-w-3xl text-left">
                         <motion.header
                             initial={{ opacity: 0, y: 20 }}
-                            animate={splineReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
                             className="mb-8 md:mb-12"
                         >
                             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-charcoal dark:text-white leading-[1.1] mb-8 tracking-tight">
@@ -59,8 +59,8 @@ export default function HeroSection() {
 
                         <motion.nav
                             initial={{ opacity: 0, y: 20 }}
-                            animate={splineReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
                             className="flex flex-col sm:flex-row gap-5 justify-start"
                             aria-label="Primary call-to-action"
                         >
