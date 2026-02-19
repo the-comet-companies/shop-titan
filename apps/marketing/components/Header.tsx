@@ -36,6 +36,16 @@ export default function Header() {
             return;
         }
 
+        if (sectionId === 'pricing') {
+            router.push('/pricing');
+            return;
+        }
+
+        if (sectionId === 'about') {
+            router.push('/about');
+            return;
+        }
+
         if (pathname === '/') {
             const element = document.getElementById(sectionId);
             if (element) {
@@ -95,7 +105,7 @@ export default function Header() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 -translate-x-1/2">
-                        {['platform', 'features', 'product', 'pricing', 'blog'].map((section, index) => (
+                        {['about', 'features', 'product', 'pricing', 'blog'].map((section, index) => (
                             <motion.button
                                 key={section}
                                 onClick={() => scrollToSection(section)}
@@ -104,7 +114,7 @@ export default function Header() {
                                 transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
                                 className={cn(
                                     "text-xs font-semibold transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110",
-                                    (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog') || (section === 'contact' && pathname === '/reach-out')
+                                    (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog') || (section === 'contact' && pathname === '/reach-out') || (section === 'pricing' && pathname === '/pricing') || (section === 'about' && pathname === '/about')
                                         ? "text-primary dark:text-white"
                                         : "text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white"
                                 )}

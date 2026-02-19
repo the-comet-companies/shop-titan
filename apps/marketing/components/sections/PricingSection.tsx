@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { motion } from 'framer-motion';
 
@@ -17,11 +18,11 @@ interface PricingTier {
     features: PricingFeature[];
     highlighted?: boolean;
     badge?: string;
-
+    ctaText?: string;
 }
 
-// Personal tiers (3 tiers)
-const personalTiers: PricingTier[] = [
+// Platform tiers (3 tiers)
+const platformTiers: PricingTier[] = [
     {
         id: 'starter',
         name: 'Starter',
@@ -33,7 +34,7 @@ const personalTiers: PricingTier[] = [
             { icon: 'people', text: 'Customer Database' },
             { icon: 'support_agent', text: 'Virtual setup & onboarding' },
         ],
-
+        ctaText: 'Get Started',
     },
     {
         id: 'business',
@@ -50,7 +51,7 @@ const personalTiers: PricingTier[] = [
         ],
         badge: 'Popular',
         highlighted: true,
-
+        ctaText: 'Get Started',
     },
     {
         id: 'enterprise',
@@ -67,12 +68,12 @@ const personalTiers: PricingTier[] = [
             { icon: 'psychology', text: 'AI Integrations' },
             { icon: 'groups', text: '1-on-1 Strategy Sessions' },
         ],
-
+        ctaText: 'Contact Sales',
     },
 ];
 
-// Business tiers (2 tiers)
-const businessTiers: PricingTier[] = [
+// Services tiers (2 tiers)
+const servicesTiers: PricingTier[] = [
     {
         id: 'ultimate',
         name: 'Ultimate',
@@ -88,7 +89,7 @@ const businessTiers: PricingTier[] = [
             { icon: 'trending_up', text: 'Business strategy sessions' },
         ],
         badge: 'Premium',
-
+        ctaText: 'Contact Sales',
     },
     {
         id: 'custom',
@@ -101,16 +102,16 @@ const businessTiers: PricingTier[] = [
             { icon: 'group', text: 'Dedicated development team' },
             { icon: 'phone', text: 'Contact us for more details' },
         ],
-
+        ctaText: 'Let\'s Talk',
     },
 ];
 
 export default function PricingSection() {
     const { elementRef, isVisible } = useScrollAnimation();
-    const [activeTab, setActiveTab] = useState<'personal' | 'business'>('personal');
+    const [activeTab, setActiveTab] = useState<'platform' | 'services'>('platform');
 
-    const currentTiers = activeTab === 'personal' ? personalTiers : businessTiers;
-    const gridCols = activeTab === 'personal' ? 'lg:grid-cols-3' : 'lg:grid-cols-2';
+    const currentTiers = activeTab === 'platform' ? platformTiers : servicesTiers;
+    const gridCols = activeTab === 'platform' ? 'lg:grid-cols-3' : 'lg:grid-cols-2';
 
     return (
         <section id="pricing" className="py-24 bg-gray-50 dark:bg-black relative overflow-hidden">
@@ -132,22 +133,22 @@ export default function PricingSection() {
                 <div className="flex justify-center mb-12">
                     <div className="inline-flex items-center bg-white dark:bg-gray-800 rounded-full p-1.5 shadow-sm border border-gray-100 dark:border-gray-700">
                         <button
-                            onClick={() => setActiveTab('personal')}
-                            className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'personal'
+                            onClick={() => setActiveTab('platform')}
+                            className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'platform'
                                 ? 'bg-primary text-white shadow-md'
                                 : 'text-gray-600 dark:text-gray-400 hover:text-charcoal dark:hover:text-white'
                                 }`}
                         >
-                            Personal
+                            Platform
                         </button>
                         <button
-                            onClick={() => setActiveTab('business')}
-                            className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'business'
+                            onClick={() => setActiveTab('services')}
+                            className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'services'
                                 ? 'bg-primary text-white shadow-md'
                                 : 'text-gray-600 dark:text-gray-400 hover:text-charcoal dark:hover:text-white'
                                 }`}
                         >
-                            Business
+                            Services
                         </button>
                     </div>
                 </div>
@@ -193,10 +194,8 @@ export default function PricingSection() {
                                     {tier.description}
                                 </p>
 
-
-
                                 {/* Features List */}
-                                <div className="">
+                                <div className="mb-8 flex-grow">
                                     <ul className="space-y-4">
                                         {tier.features.map((feature, idx) => (
                                             <li
@@ -213,6 +212,19 @@ export default function PricingSection() {
                                             </li>
                                         ))}
                                     </ul>
+                                </div>
+
+                                {/* CTA Button */}
+                                <div className="mt-auto">
+                                    <Link
+                                        href="/reach-out"
+                                        className={`w-full block text-center py-4 rounded-xl font-bold transition-all duration-300 border-2 ${tier.highlighted
+                                            ? 'bg-primary border-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/25'
+                                            : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-charcoal dark:text-white hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-gray-700'
+                                            }`}
+                                    >
+                                        {tier.ctaText || 'Get Started'}
+                                    </Link>
                                 </div>
                             </div>
                         </motion.div>
