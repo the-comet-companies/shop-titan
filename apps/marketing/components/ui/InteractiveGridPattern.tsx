@@ -28,8 +28,18 @@ export default function InteractiveGridPattern({
         };
 
         calculateGrid();
-        window.addEventListener('resize', calculateGrid);
-        return () => window.removeEventListener('resize', calculateGrid);
+
+        let resizeTimer: ReturnType<typeof setTimeout>;
+        const debouncedCalculate = () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(calculateGrid, 150);
+        };
+
+        window.addEventListener('resize', debouncedCalculate);
+        return () => {
+            clearTimeout(resizeTimer);
+            window.removeEventListener('resize', debouncedCalculate);
+        };
     }, [width, height]);
 
     return (

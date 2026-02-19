@@ -1,5 +1,7 @@
 'use client';
 
+import { useRef, useEffect } from 'react';
+
 interface Testimonial {
     id: string;
     quote: string;
@@ -149,6 +151,25 @@ export default function TestimonialScroll({
     // Create columns for masonry layout - now 4 columns
     const columns = distributeIntoColumns(testimonials, 4);
 
+
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const container = scrollContainerRef.current;
+        if (!container) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                const columns = container.querySelectorAll<HTMLElement>('.animate-scroll-vertical');
+                columns.forEach(col => {
+                    col.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+                });
+            },
+            { threshold: 0.1 }
+        );
+        observer.observe(container);
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <div className={`py-16 md:py-24 ${className}`}>
             {/* Header */}
@@ -177,7 +198,7 @@ export default function TestimonialScroll({
                 <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-gray-950 to-transparent z-20 pointer-events-none" />
 
                 {/* Scrolling columns */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div ref={scrollContainerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     {columns.map((column, columnIndex) => (
                         <div
                             key={columnIndex}
@@ -185,6 +206,7 @@ export default function TestimonialScroll({
                             style={{
                                 animationDelay: `${columnIndex * -5}s`,
                                 animationDuration: '60s', // Slower for better readability
+                                willChange: 'transform',
                             }}
                         >
                             {/* Duplicate array for infinite scroll */}
@@ -205,7 +227,7 @@ export default function TestimonialScroll({
                                                 key={i}
                                                 className="text-black dark:text-white text-base"
                                             >
-                                                ★
+                                                â˜…
                                             </span>
                                         ))}
                                     </div>

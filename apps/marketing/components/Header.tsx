@@ -8,6 +8,9 @@ import { useActiveSection } from '@/hooks/useActiveSection';
 import { cn } from '@/lib/utils';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 
+const NAV_SECTIONS = ['about', 'features', 'product', 'pricing', 'blog'] as const;
+const ACTIVE_SECTIONS = ['hero', 'platform', 'features', 'product', 'pricing', 'blog', 'contact'] as const;
+
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -23,7 +26,7 @@ export default function Header() {
         }
     });
 
-    const activeSection = useActiveSection(['hero', 'platform', 'features', 'product', 'pricing', 'blog', 'contact']);
+    const activeSection = useActiveSection(ACTIVE_SECTIONS);
 
     const scrollToSection = (sectionId: string) => {
         if (sectionId === 'blog') {
@@ -60,16 +63,10 @@ export default function Header() {
         <>
             <motion.header
                 initial={{ y: -100, opacity: 0 }}
-                animate={{
-                    y: 0,
-                    opacity: 1,
-                    top: 0,
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                }}
+                animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className={cn(
-                    "fixed left-0 right-0 z-50 transition-all duration-500",
+                    "fixed left-0 right-0 z-50",
                     isScrolled ? "px-0" : "px-0"
                 )}
             >
@@ -94,6 +91,7 @@ export default function Header() {
                                     src="/logo-transparent.png"
                                     alt="Shop Titan Logo"
                                     fill
+                                    priority
                                     className="object-contain"
                                 />
                             </div>
@@ -105,7 +103,7 @@ export default function Header() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 -translate-x-1/2">
-                        {['about', 'features', 'product', 'pricing', 'blog'].map((section, index) => (
+                        {NAV_SECTIONS.map((section, index) => (
                             <motion.button
                                 key={section}
                                 onClick={() => scrollToSection(section)}
@@ -113,7 +111,7 @@ export default function Header() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
                                 className={cn(
-                                    "text-xs font-semibold transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110",
+                                    "text-xs font-semibold transition-[color,transform] duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110",
                                     (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog') || (section === 'contact' && pathname === '/reach-out') || (section === 'pricing' && pathname === '/pricing') || (section === 'about' && pathname === '/about')
                                         ? "text-primary dark:text-white"
                                         : "text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white"

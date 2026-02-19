@@ -28,7 +28,6 @@ export default function FeatureGridCard({
 }: FeatureGridCardProps) {
   return (
     <motion.div
-      layout
       className={`
         bg-surface dark:bg-gray-900
         border rounded-2xl p-6
@@ -96,7 +95,6 @@ export default function FeatureGridCard({
             {/* Solution - Vibrant/Flow Theme */}
             <div className="relative p-5 border border-indigo-100 dark:border-indigo-900 bg-gradient-to-br from-indigo-50/50 to-blue-50/50 dark:from-indigo-950/30 dark:to-blue-950/30 rounded-xl overflow-hidden group/flow flex flex-col h-full hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-200 dark:hover:border-indigo-700 transition-all">
               {/* Subtle Background Gradient Animation */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 dark:via-white/5 to-transparent -translate-x-[100%] animate-[shimmer_3s_infinite] pointer-events-none" />
 
               <div className="flex items-center gap-2 mb-3 relative z-10">
                 <div className="p-1.5 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg text-indigo-600 dark:text-indigo-400">

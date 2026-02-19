@@ -111,21 +111,6 @@ export default function RootLayout({
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-                {/* Preload critical hero assets */}
-                <link
-                    rel="preload"
-                    href="https://prod.spline.design/tICsK1PQRrzcESXa/scene.splinecode"
-                    as="fetch"
-                    crossOrigin="anonymous"
-                />
-                {/* Uncomment when local video is ready */}
-                {/* <link
-                    rel="preload"
-                    href="/hero-animation.webm"
-                    as="video"
-                    type="video/webm"
-                /> */}
-
                 {/* Material Symbols Icons */}
                 {/* eslint-disable-next-line @next/next/no-page-custom-font */}
                 <link

@@ -50,7 +50,7 @@ export default function WorkflowTabs() {
         >
             {/* Tabs Navigation */}
             <div className="flex justify-center mb-8 md:mb-12 px-4">
-                <div className="flex flex-wrap md:flex-nowrap items-center justify-center bg-zinc-100/80 dark:bg-zinc-900/50 backdrop-blur-md border border-zinc-200 dark:border-white/10 rounded-2xl md:rounded-full p-1.5 gap-1 md:gap-0 shadow-sm max-w-full md:overflow-x-auto md:no-scrollbar">
+                <div className="flex flex-wrap md:flex-nowrap items-center justify-center bg-zinc-100/80 dark:bg-zinc-900/50 border border-zinc-200 dark:border-white/10 rounded-2xl md:rounded-full p-1.5 gap-1 md:gap-0 shadow-sm max-w-full md:overflow-x-auto md:no-scrollbar">
                     {TABS.map((tab) => (
                         <button
                             key={tab.id}
@@ -76,11 +76,11 @@ export default function WorkflowTabs() {
                                     {!isPaused && isInView && (
                                         <motion.div
                                             layoutId="progress"
-                                            className="absolute top-0 left-0 h-full bg-zinc-900/5 dark:bg-white/10 rounded-lg md:rounded-full"
-                                            initial={{ width: "0%" }}
-                                            animate={{ width: "100%" }}
+                                            className="absolute top-0 left-0 h-full w-full bg-zinc-900/5 dark:bg-white/10 rounded-lg md:rounded-full"
+                                            initial={{ scaleX: 0 }}
+                                            animate={{ scaleX: 1 }}
+                                            style={{ transformOrigin: 'left' }}
                                             transition={{ duration: 3, ease: "linear" }}
-                                            style={{ originX: 0 }}
                                         />
                                     )}
                                 </motion.div>
@@ -139,7 +139,7 @@ function IntakeContent() {
                         </div>
                         <div>
                             <div className="font-medium text-sm dark:text-gray-200">Order #{9000 + i}</div>
-                            <div className="text-xs text-secondary-text">Shopify • 2 items</div>
+                            <div className="text-xs text-secondary-text">Shopify Ã¢â‚¬Â¢ 2 items</div>
                         </div>
                     </div>
                     <div className="text-right">
@@ -269,7 +269,7 @@ function UpdatesContent() {
                     </div>
                     <div className="flex-1">
                         <div className="text-sm font-bold dark:text-gray-200">{item.event}</div>
-                        <div className="text-xs text-secondary-text">Order #9000 • Automated Update</div>
+                        <div className="text-xs text-secondary-text">Order #9000 Ã¢â‚¬Â¢ Automated Update</div>
                     </div>
                     <div className="text-xs text-gray-400 font-mono">{item.time}</div>
                 </motion.div>
