@@ -33,11 +33,21 @@ const config: Config = {
         "gradient-flow-3": "gradientFlow3 30s ease-in-out infinite",
         "gradient-flow-4": "gradientFlow4 22s ease-in-out infinite",
         "gradient": "gradient 3s linear infinite",
+        "marquee": "marquee 40s linear infinite",
+        "marquee-reverse": "marquee-reverse 40s linear infinite",
       },
       keyframes: {
         scroll: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        "marquee-reverse": {
+          from: { transform: "translateX(-50%)" },
+          to: { transform: "translateX(0)" },
         },
         gradient: {
           "0%, 100%": { backgroundPosition: "0% 50%" },
