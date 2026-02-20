@@ -1,8 +1,7 @@
 'use client';
 
-import { Suspense, lazy, useCallback, useRef, useEffect, useState } from 'react';
-
-const Spline = lazy(() => import('@splinetool/react-spline'));
+import { useCallback, useRef, useEffect, useState } from 'react';
+import Spline from '@splinetool/react-spline';
 
 interface SplineHeroProps {
     scene?: string;
@@ -88,7 +87,15 @@ export default function SplineHero({
     const handleLoad = useCallback((app: SplineApp) => {
         splineRef.current = app;
         adjustScale();
-        onReady?.();
+        // Two frames: first commits camera changes to the WebGL command queue,
+        // second ensures the GPU has rendered them before we start fading in.
+        // Without this, onReady fires before the first pixel is painted and the
+        // canvas shows a blank/white frame at the start of the fade-in.
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                onReady?.();
+            });
+        });
     }, [adjustScale, onReady]);
 
     // Intersection Observer to lazy load only when in viewport (skip if eagerLoad)
@@ -145,15 +152,13 @@ export default function SplineHero({
     return (
         <div ref={containerRef} className="w-full h-full min-h-[400px] lg:min-h-none relative">
             {shouldLoad ? (
-                <Suspense fallback={<div className="absolute inset-0" />}>
-                    <div className={`w-full h-full transition-all duration-700 ease-out origin-center ${getScaleClass()}`}>
-                        <Spline
-                            scene={scene}
-                            className="w-full h-full"
-                            onLoad={handleLoad}
-                        />
-                    </div>
-                </Suspense>
+                <div className={`w-full h-full transition-all duration-700 ease-out origin-center ${getScaleClass()}`}>
+                    <Spline
+                        scene={scene}
+                        className="w-full h-full"
+                        onLoad={handleLoad}
+                    />
+                </div>
             ) : (
                 <div className="absolute inset-0" />
             )}

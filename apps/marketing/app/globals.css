@@ -140,6 +140,16 @@
     animation: fadeIn 0.6s ease-out forwards;
   }
 
+  /* Spline 3D hero — placeholder lifts away once WebGL is ready */
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+
+  .spline-placeholder-exit {
+    animation: fadeOut 0.9s ease-out forwards;
+  }
+
   /* Stagger delays for sequential animations */
   .delay-100 {
     animation-delay: 0.1s;
