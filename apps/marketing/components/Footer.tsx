@@ -83,7 +83,7 @@ export default function Footer() {
 
                 <div className="mt-12 md:mt-16 lg:mt-20 pt-6 md:pt-8 border-t border-structural-border dark:border-gray-900">
                     <p className="text-xs text-secondary-text text-center md:text-left">
-                        © 2024 Shop Titan. Built on Claris FileMaker.
+                        © 2026 Shop Titan. Built on Claris FileMaker.
                     </p>
                 </div>
             </div>
