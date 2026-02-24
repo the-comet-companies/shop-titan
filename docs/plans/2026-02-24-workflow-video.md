@@ -256,7 +256,7 @@ import {
   FlaskConical, Factory, CreditCard, Truck, ClipboardList, Receipt, BarChart3,
 } from "lucide-react";
 import type { LucideProps } from "lucide-react";
-import { STAGE_FRAMES } from "./data";
+import { STAGES } from "./data";
 import type { StageData } from "./data";
 
 const { fontFamily } = loadFont("normal", {
@@ -269,6 +269,23 @@ const ICON_MAP: Record<string, React.FC<LucideProps>> = {
   FlaskConical, Factory, CreditCard, Truck, ClipboardList, Receipt, BarChart3,
 };
 
+// Thematic exit animation per stage (last 8 frames: 37–45)
+const EXIT_MAP: Record<string, string> = {
+  lead: "slideUp",           // person walks away
+  quote: "shrink",           // document filed
+  "follow-ups": "spinShrink",  // bell rings away
+  development: "spinZoomOut",  // gears overdrive
+  "creative-proofs": "slideLeft", // palette swings left
+  approval: "zoomOut",       // step back — approved
+  sampling: "tipAndFall",    // flask tips and falls
+  production: "zoomIn",      // enter the factory
+  payment: "slideRight",     // card swipe
+  shipping: "slideRight",    // truck drives off
+  packing: "scaleDownY",     // box closes
+  invoicing: "slideDown",    // receipt tears off
+  reporting: "zoomOut",      // big picture view
+};
+
 type StageProps = {
   stage: StageData;
   index: number;
@@ -279,225 +296,202 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
   const { fps, width } = useVideoConfig();
 
   const isEven = index % 2 === 0;
+  const exitType = EXIT_MAP[stage.id] ?? "shrink";
 
-  // Diagonal sweep: slides across frames 0–22
-  const sweepX = interpolate(frame, [0, 22], [-300, width + 300], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+  // ─── Background sweeps ───────────────────────────────────────────────────
+
+  // Sweep 1: wide, primary direction, frames 0–22
+  const sweep1X = interpolate(frame, [0, 22],
+    [isEven ? -300 : width + 300, isEven ? width + 300 : -300],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
+  // Sweep 2: medium, opposite direction, frames 4–26
+  const sweep2X = interpolate(frame, [4, 26],
+    [isEven ? width + 200 : -200, isEven ? -200 : width + 200],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
+  // Sweep 3: thin, same as sweep 1 but faster, frames 8–20
+  const sweep3X = interpolate(frame, [8, 20],
+    [isEven ? -150 : width + 150, isEven ? width + 150 : -150],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
+
+  // ─── Exit animations (frames 37–45) ─────────────────────────────────────
+
+  const exitProgress = interpolate(frame, [37, 45], [0, 1], {
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
 
-  // Single spring progress value drives all icon motion (frames 0–12)
+  const exitIconX = exitType === "slideRight" ? interpolate(exitProgress, [0, 1], [0, 1920])
+    : exitType === "slideLeft" ? interpolate(exitProgress, [0, 1], [0, -1920]) : 0;
+
+  const exitIconY = exitType === "slideUp" ? interpolate(exitProgress, [0, 1], [0, -1200])
+    : exitType === "slideDown" || exitType === "tipAndFall"
+    ? interpolate(exitProgress, [0, 1], [0, 1200]) : 0;
+
+  const exitIconRotation = exitType === "spinShrink" || exitType === "spinZoomOut"
+    ? interpolate(exitProgress, [0, 1], [0, 360])
+    : exitType === "tipAndFall" ? interpolate(exitProgress, [0, 1], [0, -90]) : 0;
+
+  const exitIconScale = exitType === "shrink" || exitType === "spinShrink" || exitType === "spinZoomOut"
+    ? interpolate(exitProgress, [0, 1], [1, 0]) : 1;
+
+  const exitIconScaleY = exitType === "scaleDownY"
+    ? interpolate(exitProgress, [0, 1], [1, 0]) : 1;
+
+  // Slide exits: icon stays opaque as it flies away. Scale exits: fade out.
+  const exitIconZoneOpacity = ["slideRight", "slideLeft", "slideUp", "slideDown", "tipAndFall"]
+    .includes(exitType) ? 1
+    : interpolate(exitProgress, [0, 1], [1, 0], {
+        extrapolateLeft: "clamp", extrapolateRight: "clamp",
+      });
+
+  // Zoom exits scale the whole content block
+  const exitContentScale = exitType === "zoomIn"
+    ? interpolate(exitProgress, [0, 1], [1, 2.5], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })
+    : exitType === "zoomOut"
+    ? interpolate(exitProgress, [0, 1], [1, 0.3], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })
+    : 1;
+
+  // Text always fades on exit regardless of icon animation
+  const textExitOpacity = interpolate(frame, [37, 45], [1, 0], {
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
+  });
+
+  // ─── Entry animations ────────────────────────────────────────────────────
+
   const iconProgress = spring({
-    frame,
-    fps,
+    frame, fps,
     config: { damping: 14, stiffness: 100, mass: 0.5 },
     durationInFrames: 12,
   });
 
-  // Slide: even stages enter from left (−150→0), odd from right (+150→0)
   const iconX = interpolate(iconProgress, [0, 1], [isEven ? -150 : 150, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
-
-  // Rotation: even start at −20°, odd at +20°, both resolve to 0°
   const iconRotation = interpolate(iconProgress, [0, 1], [isEven ? -20 : 20, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
-
-  // Scale: springs from 0.6 → 1
   const iconScale = interpolate(iconProgress, [0, 1], [0.6, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
-
-  // Opacity: fades in frames 0–4
   const iconOpacity = interpolate(frame, [0, 4], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
-
-  // Glow opacity: fades in frames 0–8
   const glowOpacity = interpolate(frame, [0, 8], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
-
-  // Stage number: fades in frames 11–18
   const numberOpacity = interpolate(frame, [11, 18], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
-
-  // Stage name: slides up + fades in frames 17–26
   const nameOpacity = interpolate(frame, [17, 26], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
   const nameY = interpolate(frame, [17, 26], [20, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
     easing: Easing.out(Easing.quad),
   });
-
-  // Rule: draws from center, frames 22–28
   const ruleScale = interpolate(frame, [22, 28], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
-
-  // Insight copy: fades up, frames 26–37
   const insightOpacity = interpolate(frame, [26, 37], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
   const insightY = interpolate(frame, [26, 37], [15, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
     easing: Easing.out(Easing.quad),
   });
 
-  // Progress bar: fills 0→100% linearly over full stage duration
-  const progressWidth = interpolate(frame, [0, STAGE_FRAMES], [0, 100], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  // ─── Progress dots ───────────────────────────────────────────────────────
+
+  // Pulsing ring breathes with ~0.6s period (18 frames)
+  const dotRingSize = 20 + 5 * Math.sin((frame * Math.PI * 2) / 18);
+  const dotRingOpacity = 0.4 + 0.25 * Math.sin((frame * Math.PI * 2) / 18);
 
   const IconComponent = ICON_MAP[stage.icon];
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#0A0A0A", fontFamily }}>
-      {/* Diagonal light sweep */}
-      <div
-        style={{
-          position: "absolute",
-          top: "-50%",
-          left: 0,
-          width: 280,
-          height: "200%",
-          background: "linear-gradient(to right, transparent 0%, rgba(0,102,204,0.05) 30%, rgba(0,102,204,0.12) 50%, rgba(0,102,204,0.05) 70%, transparent 100%)",
-          transform: `skewX(-15deg) translateX(${sweepX}px)`,
-          pointerEvents: "none",
-        }}
-      />
+      {/* ── Background sweeps ─────────────────────────────────────────── */}
+      <div style={{ position: "absolute", top: "-50%", left: 0, width: 280, height: "200%",
+        background: "linear-gradient(to right, transparent 0%, rgba(0,102,204,0.05) 30%, rgba(0,102,204,0.12) 50%, rgba(0,102,204,0.05) 70%, transparent 100%)",
+        transform: `skewX(-15deg) translateX(${sweep1X}px)`, pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: "-50%", left: 0, width: 160, height: "200%",
+        background: "linear-gradient(to right, transparent 0%, rgba(0,102,204,0.03) 30%, rgba(0,102,204,0.07) 50%, rgba(0,102,204,0.03) 70%, transparent 100%)",
+        transform: `skewX(-28deg) translateX(${sweep2X}px)`, pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: "-50%", left: 0, width: 80, height: "200%",
+        background: "linear-gradient(to right, transparent 0%, rgba(0,102,204,0.04) 50%, transparent 100%)",
+        transform: `skewX(-6deg) translateX(${sweep3X}px)`, pointerEvents: "none" }} />
 
-      {/* Centered content block */}
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          textAlign: "center",
-          width: "100%",
-          padding: "0 200px",
-          boxSizing: "border-box",
-        }}
-      >
-        {/* Icon zone */}
-        <div
-          style={{
-            position: "relative",
-            display: "inline-flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginBottom: 40,
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              width: 400,
-              height: 400,
-              background: "radial-gradient(circle, rgba(0,102,204,0.12) 0%, transparent 70%)",
-              opacity: glowOpacity,
-            }}
-          />
+      {/* ── Centered content block ────────────────────────────────────── */}
+      <div style={{
+        position: "absolute", top: "50%", left: "50%",
+        transform: `translate(-50%, -50%) scale(${exitContentScale})`,
+        textAlign: "center", width: "100%", padding: "0 200px", boxSizing: "border-box",
+      }}>
+        {/* Icon zone — has its own exit transform */}
+        <div style={{
+          position: "relative", display: "inline-flex",
+          justifyContent: "center", alignItems: "center", marginBottom: 40,
+          opacity: exitIconZoneOpacity,
+          transform: `translateX(${exitIconX}px) translateY(${exitIconY}px) rotate(${exitIconRotation}deg) scale(${exitIconScale}) scaleY(${exitIconScaleY})`,
+        }}>
+          <div style={{ position: "absolute", width: 400, height: 400,
+            background: "radial-gradient(circle, rgba(0,102,204,0.12) 0%, transparent 70%)",
+            opacity: glowOpacity }} />
           {IconComponent && (
-            <div
-              style={{
-                opacity: iconOpacity,
-                transform: `translateX(${iconX}px) rotate(${iconRotation}deg) scale(${iconScale})`,
-                position: "relative",
-              }}
-            >
+            <div style={{
+              opacity: iconOpacity,
+              transform: `translateX(${iconX}px) rotate(${iconRotation}deg) scale(${iconScale})`,
+              position: "relative",
+            }}>
               <IconComponent size={220} color="#0066CC" strokeWidth={1.5} />
             </div>
           )}
         </div>
 
-        {/* Stage number */}
-        <div
-          style={{
-            opacity: numberOpacity,
-            color: "#6E6E73",
-            fontSize: 56,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            marginBottom: 32,
-            fontWeight: 400,
-          }}
-        >
-          {stage.number}
-        </div>
-
-        {/* Stage name */}
-        <div
-          style={{
-            opacity: nameOpacity,
-            transform: `translateY(${nameY}px)`,
-            color: "#FFFFFF",
-            fontSize: 80,
-            fontWeight: 700,
-            letterSpacing: "-0.02em",
-            lineHeight: 1,
-            marginBottom: 28,
-          }}
-        >
-          {stage.name}
-        </div>
-
-        {/* Rule — draws symmetrically from center */}
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 36 }}>
-          <div
-            style={{
-              height: 2,
-              width: 80,
-              backgroundColor: "#0066CC",
-              transform: `scaleX(${ruleScale})`,
-              transformOrigin: "center",
-            }}
-          />
-        </div>
-
-        {/* Insight copy */}
-        <div
-          style={{
-            opacity: insightOpacity,
-            transform: `translateY(${insightY}px)`,
-            color: "#6E6E73",
-            fontSize: 22,
-            fontWeight: 400,
-            lineHeight: 1.7,
-            whiteSpace: "pre-line",
-          }}
-        >
-          {stage.insight}
+        {/* Text block — fades out on exit */}
+        <div style={{ opacity: textExitOpacity }}>
+          <div style={{ opacity: numberOpacity, color: "#6E6E73", fontSize: 56,
+            letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 32, fontWeight: 400 }}>
+            {stage.number}
+          </div>
+          <div style={{ opacity: nameOpacity, transform: `translateY(${nameY}px)`,
+            color: "#FFFFFF", fontSize: 80, fontWeight: 700,
+            letterSpacing: "-0.02em", lineHeight: 1, marginBottom: 28 }}>
+            {stage.name}
+          </div>
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: 36 }}>
+            <div style={{ height: 2, width: 80, backgroundColor: "#0066CC",
+              transform: `scaleX(${ruleScale})`, transformOrigin: "center" }} />
+          </div>
+          <div style={{ opacity: insightOpacity, transform: `translateY(${insightY}px)`,
+            color: "#6E6E73", fontSize: 22, fontWeight: 400, lineHeight: 1.7, whiteSpace: "pre-line" }}>
+            {stage.insight}
+          </div>
         </div>
       </div>
 
-      {/* Progress bar — pinned to bottom */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          height: 3,
-          width: `${progressWidth}%`,
-          backgroundColor: "#0066CC",
-        }}
-      />
+      {/* ── Progress dots — centered, 48px from bottom ────────────────── */}
+      <div style={{ position: "absolute", bottom: 48, left: 0, right: 0,
+        display: "flex", justifyContent: "center", alignItems: "center", gap: 10 }}>
+        {STAGES.map((_, i) => {
+          const isCompleted = i < index;
+          const isCurrent = i === index;
+          const dotSize = isCompleted ? 10 : isCurrent ? 14 : 8;
+          return (
+            <div key={i} style={{ position: "relative", display: "flex",
+              alignItems: "center", justifyContent: "center", width: 24, height: 24 }}>
+              {isCurrent && (
+                <div style={{ position: "absolute", width: dotRingSize, height: dotRingSize,
+                  borderRadius: "50%", border: "2px solid #0066CC", opacity: dotRingOpacity }} />
+              )}
+              <div style={{ width: dotSize, height: dotSize, borderRadius: "50%",
+                backgroundColor: isCompleted || isCurrent ? "#0066CC" : "rgba(255,255,255,0.2)" }} />
+            </div>
+          );
+        })}
+      </div>
     </AbsoluteFill>
   );
 };
@@ -1034,7 +1028,25 @@ All tasks complete. The workflow cinematic video is live at `http://localhost:30
 
 **Re-rendering:** If stage copy, timing, or animations need to change in future, edit the relevant files in `apps/remotion/src/WorkflowVideo/`, re-run `npm run render` from `apps/remotion/`, and commit the new MP4.
 
-**Current video specs:** 705 frames · 30fps · ~23.5s · 2.6MB
+**Current video specs:** 705 frames · 30fps · ~23.5s · ~3MB
 - 2s intro + 13 × 1.5s stages + 2s outro
-- Each stage: diagonal blue sweep (frames 0–22), icon slides in with alternating direction + rotation (even=left/−20°, odd=right/+20°), text cascades in, progress bar fills
+- Each stage: 3 background sweeps (multi-directional, direction alternates per stage), icon slides in with alternating direction + rotation (even=left/−20°, odd=right/+20°), text cascades in, thematic exit animation in last 8 frames
 - Step number: 56px · Stage name: 80px · Insight: 22px
+- Progress: 13 dots centered 48px from bottom — completed=solid blue, current=14px + pulsing ring, upcoming=dim
+
+**Exit animations per stage:**
+| Stage | Exit type | Effect |
+|-------|-----------|--------|
+| LEAD | slideUp | Icon floats off top |
+| QUOTE | shrink | Icon shrinks to zero |
+| QUOTE FOLLOW UPS | spinShrink | Icon spins 360° and shrinks |
+| DEVELOPMENT | spinZoomOut | Icon spins and scales out |
+| CREATIVE PROOFS | slideLeft | Icon slides off left |
+| APPROVAL SYSTEM | zoomOut | Whole scene shrinks back |
+| SAMPLING | tipAndFall | Icon rotates −90° and falls |
+| PRODUCTION | zoomIn | Whole scene rushes forward |
+| PAYMENT LINKS | slideRight | Icon swipes right |
+| SHIPPING LABELS | slideRight | Truck drives off right |
+| PACKING DATA | scaleDownY | Icon flattens closed |
+| INVOICING | slideDown | Icon tears off downward |
+| REPORTING | zoomOut | Whole scene steps back |
