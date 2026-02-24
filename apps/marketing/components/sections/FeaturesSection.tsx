@@ -110,6 +110,12 @@ export default function FeaturesSection() {
         }
     };
 
+    // Progress track percentage (0–100) based on active nav item index
+    const activeNavIndex = navigationItems.findIndex(item => item.id === activeFeature);
+    const progressPercent = navigationItems.length > 1
+        ? (Math.max(0, activeNavIndex) / (navigationItems.length - 1)) * 100
+        : 0;
+
     // IntersectionObserver for active state tracking
     const featureRatios = useRef<Map<string, number>>(new Map());
 
@@ -192,8 +198,17 @@ export default function FeaturesSection() {
                         {/* Desktop Navigation */}
                         <div
                             ref={navContainerRef}
-                            className="hidden lg:flex flex-col gap-1 relative flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent"
+                            className="hidden lg:flex flex-col gap-1 relative flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent pl-4"
                         >
+                            {/* Progress track */}
+                            <div className="absolute left-1 top-3 bottom-3 w-0.5 bg-gray-200 dark:bg-gray-800 rounded-full pointer-events-none">
+                                <motion.div
+                                    className="absolute top-0 left-0 w-full bg-primary rounded-full"
+                                    animate={{ height: `${progressPercent}%` }}
+                                    transition={{ type: "spring", stiffness: 200, damping: 30 }}
+                                />
+                            </div>
+
                             {navigationItems.map((item, index) => (
                                 <button
                                     key={item.id}
@@ -202,26 +217,24 @@ export default function FeaturesSection() {
                                     className={cn(
                                         "text-left py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 relative flex items-center gap-3",
                                         activeFeature === item.id
-                                            ? "text-primary bg-primary/5 font-bold"
-                                            : "text-gray-500 hover:text-charcoal dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800",
+                                            ? "text-primary font-bold"
+                                            : "text-gray-500 hover:text-charcoal dark:hover:text-white",
                                         item.type === "section" && "border-t border-gray-200 dark:border-gray-800 mt-4 pt-6"
                                     )}
                                 >
+                                    {/* Glassmorphic background pill for active item */}
                                     {activeFeature === item.id && (
                                         <motion.div
-                                            layoutId="activeFeatureIndicator"
-                                            className="absolute left-0 w-1 h-6 bg-primary rounded-r-full"
+                                            layoutId="activeNavPill"
+                                            className="absolute inset-0 bg-white/70 dark:bg-white/10 backdrop-blur-sm border border-white/80 dark:border-white/20 shadow-md shadow-primary/10 rounded-lg"
                                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                         />
                                     )}
-                                    <span className={cn(
-                                        "transition-transform duration-300",
-                                        activeFeature === item.id ? "translate-x-2" : ""
-                                    )}>
+                                    <span className="relative z-10">
                                         {item.title}
                                     </span>
                                     {item.type === "section" && (
-                                        <span className="material-symbols-outlined text-sm ml-auto">
+                                        <span className="material-symbols-outlined text-sm ml-auto relative z-10">
                                             expand_more
                                         </span>
                                     )}
