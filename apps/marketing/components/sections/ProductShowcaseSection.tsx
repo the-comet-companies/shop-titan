@@ -5,6 +5,13 @@ import BrowserFrame from '@/components/ui/BrowserFrame';
 import { motion } from 'framer-motion';
 import WorkflowTabs from './WorkflowTabs';
 
+const CheckCircle = () => (
+    <svg className="flex-shrink-0 w-5 h-5 text-primary mt-0.5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M5 8l2 2.5 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
 export default function ProductShowcaseSection() {
     const { elementRef: section1Ref, isVisible: section1Visible } = useScrollAnimation();
     const { elementRef: section2Ref, isVisible: section2Visible } = useScrollAnimation();
@@ -14,11 +21,11 @@ export default function ProductShowcaseSection() {
     return (
         <section className="pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-40 lg:pb-48 bg-background-light dark:bg-background-dark overflow-hidden" id="product">
             <div className="max-w-6xl mx-auto px-mobile space-y-24 md:space-y-32 lg:space-y-40">
+
                 {/* Feature 1: Friction Removal */}
                 <div
                     ref={section1Ref}
-                    className={`grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center transition-all duration-700 ${section1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                        }`}
+                    className={`grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center transition-all duration-700 ${section1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                 >
                     <div className="order-1 min-w-0">
                         <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
@@ -32,7 +39,7 @@ export default function ProductShowcaseSection() {
                         </p>
                         <ul className="space-y-4">
                             <li className="flex items-start gap-3">
-                                <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
+                                <CheckCircle />
                                 <div>
                                     <span className="font-bold block dark:text-white">Fewest Clicks</span>
                                     <p className="text-secondary-text text-sm">
@@ -41,7 +48,7 @@ export default function ProductShowcaseSection() {
                                 </div>
                             </li>
                             <li className="flex items-start gap-3">
-                                <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
+                                <CheckCircle />
                                 <div>
                                     <span className="font-bold block dark:text-white">Eliminated Handoffs</span>
                                     <p className="text-secondary-text text-sm">
@@ -50,7 +57,7 @@ export default function ProductShowcaseSection() {
                                 </div>
                             </li>
                             <li className="flex items-start gap-3">
-                                <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
+                                <CheckCircle />
                                 <div>
                                     <span className="font-bold block dark:text-white">Explicit Ownership</span>
                                     <p className="text-secondary-text text-sm">
@@ -61,41 +68,24 @@ export default function ProductShowcaseSection() {
                         </ul>
                     </div>
 
-                    {/* UI Mockup */}
-                    <motion.div
-                        className="order-2 shadow-2xl rounded-xl min-w-0"
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.4 }}
-                    >
+                    <div className="order-2 shadow-2xl rounded-xl min-w-0">
                         <BrowserFrame url="app.shoptitan.com/workflow">
                             <div className="p-4 md:p-6 bg-background-light dark:bg-black/90 min-h-[300px]">
                                 <div className="space-y-4">
-                                    <motion.div
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.3 }}
-                                        className="p-3 bg-white dark:bg-gray-800/50 rounded flex items-center justify-between border border-structural-border dark:border-gray-700"
-                                    >
+                                    <div className="p-3 bg-white dark:bg-gray-800/50 rounded flex items-center justify-between border border-structural-border dark:border-gray-700">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-2 h-8 bg-primary rounded-full animate-pulse"></div>
+                                            <div className="w-2 h-8 bg-primary rounded-full animate-pulse" />
                                             <span className="text-sm font-medium dark:text-gray-300">
                                                 Auto-Approve Art if MD5 Matches
                                             </span>
                                         </div>
                                         <span className="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded flex items-center gap-1">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Active
+                                            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" /> Active
                                         </span>
-                                    </motion.div>
-                                    <motion.div
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.5 }}
-                                        className="p-3 bg-white dark:bg-gray-800/50 rounded flex items-center justify-between border border-structural-border dark:border-gray-700"
-                                    >
+                                    </div>
+                                    <div className="p-3 bg-white dark:bg-gray-800/50 rounded flex items-center justify-between border border-structural-border dark:border-gray-700">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-2 h-8 bg-gray-300 rounded-full"></div>
+                                            <div className="w-2 h-8 bg-gray-300 rounded-full" />
                                             <span className="text-sm font-medium dark:text-gray-300">
                                                 Skip Shipping Intake (Pre-labeled)
                                             </span>
@@ -103,7 +93,7 @@ export default function ProductShowcaseSection() {
                                         <span className="text-[10px] bg-gray-200 text-gray-500 px-2 py-1 rounded">
                                             System
                                         </span>
-                                    </motion.div>
+                                    </div>
                                     <div className="mt-6 md:mt-8 pt-4 border-t border-structural-border dark:border-gray-800">
                                         <div className="flex justify-between text-[11px] text-secondary-text mb-2 font-mono uppercase">
                                             <span>Touchpoints per Order</span>
@@ -114,24 +104,22 @@ export default function ProductShowcaseSection() {
                                                 initial={{ width: 0 }}
                                                 whileInView={{ width: "36%" }}
                                                 viewport={{ once: true }}
-                                                transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+                                                transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
                                                 className="bg-primary h-full"
-                                            ></motion.div>
+                                            />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </BrowserFrame>
-                    </motion.div>
+                    </div>
                 </div>
 
-                {/* Feature 2: Ownership-Level Result */}
+                {/* Feature 2: Executive Visibility */}
                 <div
                     ref={section2Ref}
-                    className={`grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center transition-all duration-700 ${section2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                        }`}
+                    className={`grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center transition-all duration-700 ${section2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                 >
-                    {/* Content - Left side on mobile (Order 1), Right side on desktop (Order 2) */}
                     <div className="order-1 lg:order-2 min-w-0">
                         <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
                             Executive Visibility & Strategic Oversight
@@ -144,25 +132,19 @@ export default function ProductShowcaseSection() {
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="p-4 border-l-2 border-primary/20">
-                                <span className="text-sm font-bold block mb-1 dark:text-white">
-                                    No Chasing Updates
-                                </span>
+                                <span className="text-sm font-bold block mb-1 dark:text-white">No Chasing Updates</span>
                                 <p className="text-sm text-secondary-text">
                                     Global dashboard visibility for every stakeholder in real-time.
                                 </p>
                             </div>
                             <div className="p-4 border-l-2 border-primary/20">
-                                <span className="text-sm font-bold block mb-1 dark:text-white">
-                                    Visibility-on-Demand
-                                </span>
+                                <span className="text-sm font-bold block mb-1 dark:text-white">Visibility-on-Demand</span>
                                 <p className="text-sm text-secondary-text">
                                     Access deep-dive production logs only when you actually want to.
                                 </p>
                             </div>
                             <div className="p-4 border-l-2 border-primary/20 sm:col-span-2">
-                                <span className="text-sm font-bold block mb-1 dark:text-white">
-                                    Owner-Absent Operations
-                                </span>
+                                <span className="text-sm font-bold block mb-1 dark:text-white">Owner-Absent Operations</span>
                                 <p className="text-sm text-secondary-text">
                                     Rules-based logic ensures the shop floor knows what to do even when you&apos;re off-site.
                                 </p>
@@ -170,35 +152,22 @@ export default function ProductShowcaseSection() {
                         </div>
                     </div>
 
-                    {/* UI Mockup - Right side on mobile (Order 2), Left side on desktop (Order 1) */}
-                    <motion.div
-                        className="order-2 lg:order-1 shadow-2xl rounded-xl min-w-0"
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.4 }}
-                    >
+                    <div className="order-2 lg:order-1 shadow-2xl rounded-xl min-w-0">
                         <BrowserFrame url="app.shoptitan.com/dashboard">
                             <div className="p-6 md:p-8 bg-background-light dark:bg-black/90 min-h-[300px]">
                                 <div className="space-y-6">
                                     <div className="flex gap-4">
                                         <div className="w-1/2 p-4 bg-white dark:bg-gray-800/50 rounded shadow-sm border border-structural-border dark:border-gray-700">
-                                            <p className="text-[10px] text-secondary-text uppercase font-bold mb-1">
-                                                Queue Status
-                                            </p>
+                                            <p className="text-[10px] text-secondary-text uppercase font-bold mb-1">Queue Status</p>
                                             <p className="text-2xl font-light text-primary tracking-tight">Healthy</p>
                                         </div>
                                         <div className="w-1/2 p-4 bg-white dark:bg-gray-800/50 rounded shadow-sm border border-structural-border dark:border-gray-700">
-                                            <p className="text-[10px] text-secondary-text uppercase font-bold mb-1">
-                                                Escalations
-                                            </p>
-                                            <p className="text-2xl font-light text-charcoal dark:text-white tracking-tight">
-                                                0
-                                            </p>
+                                            <p className="text-[10px] text-secondary-text uppercase font-bold mb-1">Escalations</p>
+                                            <p className="text-2xl font-light text-charcoal dark:text-white tracking-tight">0</p>
                                         </div>
                                     </div>
                                     <div className="p-6 bg-white dark:bg-gray-800/50 rounded shadow-sm border border-structural-border dark:border-gray-700">
-                                        <p className="text-[10px] text-secondary-text uppercase font-bold mb-4">
-                                            Operator Pulse
-                                        </p>
+                                        <p className="text-[10px] text-secondary-text uppercase font-bold mb-4">Operator Pulse</p>
                                         <div className="space-y-3">
                                             <div className="flex justify-between items-center text-xs">
                                                 <span className="dark:text-gray-300">Machine A</span>
@@ -208,9 +177,10 @@ export default function ProductShowcaseSection() {
                                                 <motion.div
                                                     initial={{ width: 0 }}
                                                     whileInView={{ width: "85%" }}
+                                                    viewport={{ once: true }}
                                                     transition={{ duration: 1, ease: "easeOut" }}
                                                     className="h-full bg-green-500 rounded-full"
-                                                ></motion.div>
+                                                />
                                             </div>
                                             <div className="flex justify-between items-center text-xs">
                                                 <span className="dark:text-gray-300">Machine B</span>
@@ -220,23 +190,23 @@ export default function ProductShowcaseSection() {
                                                 <motion.div
                                                     initial={{ width: 0 }}
                                                     whileInView={{ width: "82%" }}
+                                                    viewport={{ once: true }}
                                                     transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
                                                     className="h-full bg-green-500 rounded-full"
-                                                ></motion.div>
+                                                />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </BrowserFrame>
-                    </motion.div>
+                    </div>
                 </div>
 
                 {/* Feature 3: Single-Piece Orders */}
                 <div
                     ref={section3Ref}
-                    className={`grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center transition-all duration-700 ${section3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                        }`}
+                    className={`grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center transition-all duration-700 ${section3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                 >
                     <div className="order-1 min-w-0">
                         <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
@@ -248,26 +218,14 @@ export default function ProductShowcaseSection() {
                         <p className="text-lg md:text-xl text-secondary-text dark:text-gray-400 mb-6 md:mb-8 leading-relaxed">
                             We neutralize the Print-on-Demand threat by making one-piece orders as easy to process as bulk orders. Our system treats single units as a first-class workflow, removing the manual overhead that kills small-order margins.
                         </p>
-
                     </div>
 
-                    {/* UI Mockup */}
-                    <motion.div
-                        className="order-2 shadow-2xl rounded-xl min-w-0"
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.4 }}
-                    >
+                    <div className="order-2 shadow-2xl rounded-xl min-w-0">
                         <BrowserFrame url="app.shoptitan.com/orders/9102">
                             <div className="p-4 md:p-6 bg-background-light dark:bg-black/90 min-h-[300px]">
                                 <div className="space-y-4">
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.2 }}
-                                        className="flex items-center gap-4 p-4 border border-primary/10 rounded-lg bg-primary/5"
-                                    >
-                                        <div className="w-10 h-10 rounded bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm">
+                                    <div className="flex items-center gap-4 p-4 border border-primary/10 rounded-lg bg-primary/5">
+                                        <div className="w-10 h-10 rounded bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm flex-shrink-0">
                                             <span className="material-symbols-outlined text-primary">shopping_cart</span>
                                         </div>
                                         <div className="flex-1 min-w-0">
@@ -281,42 +239,20 @@ export default function ProductShowcaseSection() {
                                                 1x Heavyweight Tee (L, Vintage Black) • Direct-to-Garment
                                             </div>
                                         </div>
-                                    </motion.div>
+                                    </div>
                                     <div className="grid grid-cols-3 gap-2">
-                                        <motion.div
-                                            initial={{ opacity: 0, scale: 0.9 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: 0.4 }}
-                                            className="p-3 bg-white dark:bg-gray-900/80 rounded border border-structural-border dark:border-gray-800 text-center"
-                                        >
+                                        <div className="p-3 bg-white dark:bg-gray-900/80 rounded border border-structural-border dark:border-gray-800 text-center">
                                             <p className="text-[9px] text-gray-400 uppercase mb-1">Art Prep</p>
-                                            <span className="material-symbols-outlined text-green-500 text-lg animate-bounce">
-                                                auto_fix_high
-                                            </span>
-                                        </motion.div>
-                                        <motion.div
-                                            initial={{ opacity: 0, scale: 0.9 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: 0.6 }}
-                                            className="p-3 bg-white dark:bg-gray-900/80 rounded border border-structural-border dark:border-gray-800 text-center"
-                                        >
+                                            <span className="material-symbols-outlined text-green-500 text-lg">auto_fix_high</span>
+                                        </div>
+                                        <div className="p-3 bg-white dark:bg-gray-900/80 rounded border border-structural-border dark:border-gray-800 text-center">
                                             <p className="text-[9px] text-gray-400 uppercase mb-1">Stock Check</p>
-                                            <span className="material-symbols-outlined text-green-500 text-lg animate-pulse">
-                                                inventory_2
-                                            </span>
-                                        </motion.div>
-                                        <motion.div
-                                            initial={{ opacity: 0, scale: 0.9 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: 0.8 }}
-                                            className="p-3 bg-white dark:bg-gray-900/80 rounded border border-structural-border dark:border-gray-800 text-center"
-                                        >
+                                            <span className="material-symbols-outlined text-green-500 text-lg">inventory_2</span>
+                                        </div>
+                                        <div className="p-3 bg-white dark:bg-gray-900/80 rounded border border-structural-border dark:border-gray-800 text-center">
                                             <p className="text-[9px] text-gray-400 uppercase mb-1">Route</p>
                                             <span className="material-symbols-outlined text-green-500 text-lg">route</span>
-                                        </motion.div>
+                                        </div>
                                     </div>
                                     <p className="text-center text-[11px] text-secondary-text italic">
                                         No human interaction required until the garment is on the platen.
@@ -324,16 +260,14 @@ export default function ProductShowcaseSection() {
                                 </div>
                             </div>
                         </BrowserFrame>
-                    </motion.div>
+                    </div>
                 </div>
 
-                {/* Feature 4: Placeholder */}
+                {/* Feature 4: Coming Soon */}
                 <div
                     ref={section4Ref}
-                    className={`grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center transition-all duration-700 ${section4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                        }`}
+                    className={`grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center transition-all duration-700 ${section4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                 >
-                    {/* Content - Left side on mobile (Order 1), Right side on desktop (Order 2) */}
                     <div className="order-1 lg:order-2 min-w-0">
                         <h2 className="text-xs font-bold tracking-widest text-primary uppercase mb-3 md:mb-4">
                             Coming Soon
@@ -346,23 +280,22 @@ export default function ProductShowcaseSection() {
                         </p>
                     </div>
 
-                    {/* UI Mockup - Right side on mobile (Order 2), Left side on desktop (Order 1) */}
-                    <motion.div
-                        className="order-2 lg:order-1 shadow-2xl rounded-xl min-w-0"
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.4 }}
-                    >
+                    <div className="order-2 lg:order-1 shadow-2xl rounded-xl min-w-0">
                         <BrowserFrame url="app.shoptitan.com/future">
                             <div className="p-6 md:p-8 bg-background-light dark:bg-black/90 min-h-[300px] flex items-center justify-center">
-                                <div className="w-full aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700 flex items-center justify-center relative overflow-hidden">
+                                <div className="w-full aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700 flex items-center justify-center">
                                     <div className="text-center text-gray-400 dark:text-gray-500">
-                                        <span className="material-symbols-outlined text-4xl mb-2">image</span>
+                                        <svg className="w-10 h-10 mx-auto mb-2 opacity-50" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                                            <rect x="3" y="3" width="34" height="34" rx="4" stroke="currentColor" strokeWidth="2" strokeDasharray="4 3" />
+                                            <circle cx="14" cy="15" r="3" stroke="currentColor" strokeWidth="1.5" />
+                                            <path d="M3 27l9-7 7 6 6-5 12 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
                                         <p className="text-sm font-medium uppercase tracking-wider">16:9 Image Placeholder</p>
                                     </div>
                                 </div>
                             </div>
                         </BrowserFrame>
-                    </motion.div>
+                    </div>
                 </div>
 
                 {/* Intake Flow - Interactive Tabs */}
@@ -371,4 +304,3 @@ export default function ProductShowcaseSection() {
         </section>
     );
 }
-
