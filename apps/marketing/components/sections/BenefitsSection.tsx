@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function BenefitsSection() {
     return (
@@ -40,8 +41,8 @@ export default function BenefitsSection() {
                         <div className="absolute right-0 top-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mx-20 -my-20 group-hover:bg-primary/10 transition-colors" />
 
                         <div className="relative z-10">
-                            <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6">
-                                <span className="material-symbols-outlined text-2xl">cloud_done</span>
+                            <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center p-2 mb-6">
+                                <img src="/logos/storage/amazonS3.svg" alt="Amazon S3" className="w-full h-full object-contain drop-shadow-sm" />
                             </div>
                             <h3 className="text-xl md:text-2xl font-bold dark:text-white mb-2">Fully Cloud Based on AWS S3</h3>
                             <p className="text-secondary-text dark:text-gray-400 font-medium">
@@ -99,14 +100,14 @@ export default function BenefitsSection() {
 
                         {/* Logos Grid */}
                         <div className="grid grid-cols-2 gap-3 opacity-70 group-hover:opacity-100 transition-opacity">
-                            <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg h-12 flex items-center justify-center font-bold font-mono text-gray-800 dark:text-gray-200">
-                                n8n
+                            <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg h-12 flex items-center justify-center p-2">
+                                <img src="/logos/tools/n8n.svg" alt="n8n" className="w-full h-full object-contain dark:invert" />
                             </div>
-                            <div className="bg-orange-50 dark:bg-orange-900/20 rounded-lg h-12 flex items-center justify-center font-bold text-orange-600 dark:text-orange-400 tracking-tight flex-col leading-none">
-                                <span className="text-[10px] uppercase font-black">Zapier</span>
+                            <div className="bg-orange-50 dark:bg-orange-900/20 rounded-lg h-12 flex items-center justify-center p-2">
+                                <img src="/logos/tools/zapier.svg" alt="Zapier" className="w-full h-full object-contain" />
                             </div>
-                            <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg h-12 flex items-center justify-center col-span-2 font-bold text-indigo-700 dark:text-indigo-400">
-                                make.com
+                            <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg h-12 flex items-center justify-center col-span-2 p-2">
+                                <img src="/logos/tools/make.svg" alt="Make" className="w-full h-full object-contain dark:invert" />
                             </div>
                         </div>
                     </motion.div>
@@ -134,9 +135,9 @@ export default function BenefitsSection() {
 
                             {/* Animated Payment Marquee */}
                             <motion.div
-                                className="flex w-max shrink-0 items-center opacity-60 group-hover:opacity-100 transition-opacity"
+                                className="flex w-max shrink-0 items-center opacity-60 group-hover:opacity-100 transition-opacity will-change-transform"
                                 animate={{ x: ["0%", "-50%"] }}
-                                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                             >
                                 <PaymentLogos />
                                 <PaymentLogos />
@@ -176,9 +177,20 @@ export default function BenefitsSection() {
                         {/* Carrier Logos */}
                         <div className="flex-1 w-full relative">
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-white dark:bg-gray-900/80 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-inner perspective-1000">
-                                {['UPS', 'FedEx', 'USPS', 'DHL', 'ShipWire', 'Amazon'].map((carrier, i) => (
-                                    <div key={i} className="aspect-[3/2] rounded-lg bg-gray-50 dark:bg-gray-800 flex items-center justify-center font-bold text-gray-400 dark:text-gray-500 border border-gray-100 dark:border-gray-700/50 hover:bg-white dark:hover:bg-gray-700 hover:text-charcoal dark:hover:text-white hover:scale-105 hover:shadow-md transition-all cursor-default">
-                                        <span className="text-xs uppercase tracking-wider">{carrier}</span>
+                                {[
+                                    { name: 'UPS', src: 'ups.svg' },
+                                    { name: 'FedEx', src: 'fedex.svg' },
+                                    { name: 'USPS', src: 'usps.svg' },
+                                    { name: 'DHL', src: 'dhl.svg' },
+                                    { name: 'ShipWire', src: 'shipwire.svg', invertDark: true, className: 'scale-[1.5]' },
+                                    { name: 'Amazon', src: 'amazon.svg', invertDark: true, className: 'scale-[6]' }
+                                ].map((carrier, i) => (
+                                    <div key={i} className="aspect-[3/2] rounded-lg bg-gray-50 dark:bg-gray-800 flex items-center justify-center border border-gray-100 dark:border-gray-700/50 hover:bg-white dark:hover:bg-gray-700 hover:scale-105 hover:shadow-md transition-all cursor-default p-4 group/carrier">
+                                        <img
+                                            src={`/logos/shipping/${carrier.src}`}
+                                            alt={carrier.name}
+                                            className={`w-full h-full object-contain opacity-70 group-hover/carrier:opacity-100 transition-opacity ${carrier.invertDark ? 'dark:invert dark:opacity-80' : ''} ${carrier.className || ''}`}
+                                        />
                                     </div>
                                 ))}
                             </div>
@@ -194,30 +206,17 @@ export default function BenefitsSection() {
 
 function PaymentLogos() {
     return (
-        <div className="flex items-center gap-8 px-4">
-            <span className="text-xl font-bold italic tracking-tight text-[#1434CB] dark:text-[#a0aeff] opacity-80 backdrop-grayscale">VISA</span>
-            <span className="text-xl font-black text-[#006FCF] dark:text-[#6ba7f7] bg-blue-50 dark:bg-white/10 px-2 py-0.5 rounded opacity-80">AMEX</span>
-            <span className="text-xl font-bold text-gray-800 dark:text-white opacity-80">DISCOVER</span>
-            <span className="text-2xl text-[#eb001b] opacity-80 relative w-8 h-8 flex justify-center items-center">
-                <div className="w-5 h-5 bg-[#eb001b] rounded-full absolute left-0" />
-                <div className="w-5 h-5 bg-[#f79e1b] rounded-full absolute right-0 mix-blend-multiply dark:mix-blend-screen" />
-            </span>
-            <span className="text-2xl font-black italic text-[#003087] dark:text-[#7ba9ff] opacity-80">PayPal</span>
-            <span className="text-xl font-medium text-gray-800 dark:text-gray-200 flex items-center gap-1 opacity-80">
-                <span className="flex text-lg items-center text-blue-500">G</span>Pay
-            </span>
-            <span className="text-xl font-medium text-gray-800 dark:text-gray-200 flex items-center gap-1 opacity-80">
-                <span className="material-symbols-outlined text-sm">apple</span>Pay
-            </span>
-            <span className="text-xl font-black text-[#00D632] dark:text-[#2bed5f] flex items-center gap-1 opacity-80">
-                <span className="w-4 h-4 rounded-sm bg-current rotate-45 mr-1" /> link
-            </span>
-            <span className="text-xl font-bold text-gray-800 dark:text-gray-200 px-3 border border-gray-300 dark:border-gray-600 rounded-full opacity-80">
-                affirm
-            </span>
-            <span className="text-lg font-bold text-pink-600 dark:text-pink-400 bg-pink-100 dark:bg-pink-900/30 px-3 py-1 rounded-full opacity-80">
-                Klarna.
-            </span>
+        <div className="flex items-center gap-8 md:gap-12 pr-8 md:pr-12">
+            <img src="/logos/payments/visa.svg" alt="Visa" className="opacity-80 drop-shadow-sm w-auto h-6 sm:h-8 object-contain" />
+            <img src="/logos/payments/amex.svg" alt="AMEX" className="opacity-80 drop-shadow-sm w-auto h-6 sm:h-8 object-contain" />
+            <img src="/logos/payments/discover.svg" alt="Discover" className="opacity-80 drop-shadow-sm w-auto h-6 sm:h-8 object-contain" />
+            <img src="/logos/payments/mastercard.svg" alt="Mastercard" className="opacity-80 drop-shadow-sm w-auto h-7 sm:h-9 object-contain" />
+            <img src="/logos/payments/paypal.svg" alt="PayPal" className="opacity-80 drop-shadow-sm w-auto h-7 sm:h-9 object-contain" />
+            <img src="/logos/payments/google-pay.svg" alt="Google Pay" className="opacity-80 drop-shadow-sm w-auto h-6 sm:h-8 object-contain" />
+            <img src="/logos/payments/apple-pay.svg" alt="Apple Pay" className="opacity-80 drop-shadow-sm w-auto h-6 sm:h-8 object-contain" />
+            <img src="/logos/payments/stripe-link.svg" alt="Stripe Link" className="opacity-80 drop-shadow-sm w-auto h-4 sm:h-6 object-contain" />
+            <img src="/logos/payments/affirm.svg" alt="Affirm" className="opacity-80 drop-shadow-sm w-auto h-4 sm:h-5 object-contain" />
+            <img src="/logos/payments/klarna.svg" alt="Klarna" className="opacity-80 drop-shadow-sm w-auto h-4 sm:h-5 object-contain" />
         </div>
     );
 }
