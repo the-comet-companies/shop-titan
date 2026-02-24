@@ -1,11 +1,29 @@
 import React from "react";
 import {
   useCurrentFrame,
+  useVideoConfig,
   interpolate,
+  spring,
   Easing,
   AbsoluteFill,
 } from "remotion";
 import { loadFont } from "@remotion/google-fonts/Inter";
+import {
+  UserPlus,
+  FileText,
+  BellRing,
+  Settings,
+  Palette,
+  CheckCircle,
+  FlaskConical,
+  Factory,
+  CreditCard,
+  Truck,
+  ClipboardList,
+  Receipt,
+  BarChart3,
+} from "lucide-react";
+import type { LucideProps } from "lucide-react";
 import { STAGE_FRAMES } from "./data";
 import type { StageData } from "./data";
 
@@ -14,12 +32,29 @@ const { fontFamily } = loadFont("normal", {
   subsets: ["latin"],
 });
 
+const ICON_MAP: Record<string, React.FC<LucideProps>> = {
+  UserPlus,
+  FileText,
+  BellRing,
+  Settings,
+  Palette,
+  CheckCircle,
+  FlaskConical,
+  Factory,
+  CreditCard,
+  Truck,
+  ClipboardList,
+  Receipt,
+  BarChart3,
+};
+
 type StageProps = {
   stage: StageData;
 };
 
 export const Stage: React.FC<StageProps> = ({ stage }) => {
   const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
 
   // White flash: fades from opaque to transparent over first 8 frames
   const flashOpacity = interpolate(frame, [0, 8], [1, 0], {
@@ -27,45 +62,67 @@ export const Stage: React.FC<StageProps> = ({ stage }) => {
     extrapolateRight: "clamp",
   });
 
-  // Stage number: fades in frames 8–20
-  const numberOpacity = interpolate(frame, [8, 20], [0, 1], {
+  // Icon: spring scale in from frame 8, completes ~frame 30
+  const iconScale = spring({
+    frame: frame - 8,
+    fps,
+    config: { damping: 200 },
+    durationInFrames: 22,
+  });
+
+  // Icon opacity: fades in frames 8–25
+  const iconOpacity = interpolate(frame, [8, 25], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Stage name: slides up + fades in frames 20–40
-  const nameOpacity = interpolate(frame, [20, 40], [0, 1], {
+  // Glow opacity: fades in frames 8–25
+  const glowOpacity = interpolate(frame, [8, 25], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const nameY = interpolate(frame, [20, 40], [20, 0], {
+
+  // Stage number: fades in frames 30–45
+  const numberOpacity = interpolate(frame, [30, 45], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  // Stage name: slides up + fades in frames 42–60
+  const nameOpacity = interpolate(frame, [42, 60], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const nameY = interpolate(frame, [42, 60], [20, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.out(Easing.quad),
   });
 
-  // Rule: draws symmetrically from center, frames 30–45
-  const ruleScale = interpolate(frame, [30, 45], [0, 1], {
+  // Rule: draws symmetrically from center, frames 52–65
+  const ruleScale = interpolate(frame, [52, 65], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Insight copy: fades up, frames 40–65
-  const insightOpacity = interpolate(frame, [40, 65], [0, 1], {
+  // Insight copy: fades up, frames 60–82
+  const insightOpacity = interpolate(frame, [60, 82], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const insightY = interpolate(frame, [40, 65], [15, 0], {
+  const insightY = interpolate(frame, [60, 82], [15, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.out(Easing.quad),
   });
 
-  // Progress bar: fills 0→100% linearly over full 90 frames
+  // Progress bar: fills 0→100% linearly over full stage duration
   const progressWidth = interpolate(frame, [0, STAGE_FRAMES], [0, 100], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
+
+  const IconComponent = ICON_MAP[stage.icon];
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#0A0A0A", fontFamily }}>
@@ -82,6 +139,41 @@ export const Stage: React.FC<StageProps> = ({ stage }) => {
           boxSizing: "border-box",
         }}
       >
+        {/* Icon zone */}
+        <div
+          style={{
+            position: "relative",
+            display: "inline-flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginBottom: 40,
+          }}
+        >
+          {/* Radial glow behind icon */}
+          <div
+            style={{
+              position: "absolute",
+              width: 400,
+              height: 400,
+              background:
+                "radial-gradient(circle, rgba(0,102,204,0.12) 0%, transparent 70%)",
+              opacity: glowOpacity,
+            }}
+          />
+          {/* Icon */}
+          {IconComponent && (
+            <div
+              style={{
+                opacity: iconOpacity,
+                transform: `scale(${iconScale})`,
+                position: "relative",
+              }}
+            >
+              <IconComponent size={220} color="#0066CC" strokeWidth={1.5} />
+            </div>
+          )}
+        </div>
+
         {/* Stage number */}
         <div
           style={{
@@ -103,7 +195,7 @@ export const Stage: React.FC<StageProps> = ({ stage }) => {
             opacity: nameOpacity,
             transform: `translateY(${nameY}px)`,
             color: "#FFFFFF",
-            fontSize: 96,
+            fontSize: 80,
             fontWeight: 700,
             letterSpacing: "-0.02em",
             lineHeight: 1,
