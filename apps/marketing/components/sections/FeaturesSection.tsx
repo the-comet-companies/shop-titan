@@ -147,7 +147,7 @@ export default function FeaturesSection() {
                 }
             },
             {
-                threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], // More granular thresholds
+                threshold: [0, 0.25, 0.5, 1],
                 rootMargin: '-10% 0px -40% 0px'
             }
         );
@@ -579,7 +579,7 @@ function FeatureBlock({
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        whileHover={{ y: -4 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.4 }}
                         className="relative p-5 border border-rose-200/50 dark:border-rose-800/30 bg-rose-50/60 dark:bg-rose-950/20 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col h-full hover:shadow-lg hover:border-rose-300/60 dark:hover:border-rose-700/40 transition-all"
                     >
@@ -602,7 +602,7 @@ function FeatureBlock({
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        whileHover={{ y: -4 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: 0.1 }}
                         className="relative p-5 border border-blue-200/50 dark:border-blue-800/30 bg-blue-50/60 dark:bg-blue-950/20 backdrop-blur-sm rounded-xl overflow-hidden group/flow flex flex-col h-full hover:shadow-lg hover:shadow-primary/10 hover:border-blue-300/60 dark:hover:border-blue-700/40 transition-all"
                     >

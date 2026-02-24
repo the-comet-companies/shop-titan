@@ -111,19 +111,26 @@ export default function PainPoint3D() {
         const outer = outerRef.current;
         if (!outer) return;
 
+        let rafId = 0;
         const handleScroll = () => {
-            const rect = outer.getBoundingClientRect();
-            const totalScrollable = outer.offsetHeight - window.innerHeight;
-            const scrolled = -rect.top;
-            const p = Math.max(0, Math.min(1, scrolled / totalScrollable));
-            setProgress(p);
-            setActiveIndex(Math.min(Math.floor(p * 3), 2));
+            cancelAnimationFrame(rafId);
+            rafId = requestAnimationFrame(() => {
+                const rect = outer.getBoundingClientRect();
+                const totalScrollable = outer.offsetHeight - window.innerHeight;
+                const scrolled = -rect.top;
+                const p = Math.max(0, Math.min(1, scrolled / totalScrollable));
+                setProgress(p);
+                setActiveIndex(Math.min(Math.floor(p * 3), 2));
+            });
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll(); // sync on mount
 
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            cancelAnimationFrame(rafId);
+        };
     }, []);
 
     return (

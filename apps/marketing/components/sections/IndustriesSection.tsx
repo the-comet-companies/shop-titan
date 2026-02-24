@@ -112,26 +112,31 @@ export default function IndustriesSection() {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentWordIndex((prev) => (prev + 1) % highlightWords.length);
-        }, 2500);
-        return () => clearInterval(interval);
-    }, []);
-
-    useEffect(() => {
         const container = scrollContainerRef.current;
         if (!container) return;
+        let wordInterval: ReturnType<typeof setInterval> | null = null;
         const observer = new IntersectionObserver(
             ([entry]) => {
                 const rows = container.querySelectorAll<HTMLElement>('.animate-scroll-horizontal');
                 rows.forEach(row => {
                     row.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
                 });
+                if (entry.isIntersecting && !wordInterval) {
+                    wordInterval = setInterval(() => {
+                        setCurrentWordIndex((prev) => (prev + 1) % highlightWords.length);
+                    }, 2500);
+                } else if (!entry.isIntersecting && wordInterval) {
+                    clearInterval(wordInterval);
+                    wordInterval = null;
+                }
             },
             { threshold: 0.1 }
         );
         observer.observe(container);
-        return () => observer.disconnect();
+        return () => {
+            observer.disconnect();
+            if (wordInterval) clearInterval(wordInterval);
+        };
     }, []);
 
     return (
