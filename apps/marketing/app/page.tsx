@@ -15,10 +15,9 @@ export default function Home() {
         <>
             <main>
                 <HeroSection />
-                <PainPointSection /> {/* Moved to #2 */}
-
-                <FeaturesSection />
+                <PainPointSection />
                 <WorkflowVideoSection />
+                <FeaturesSection />
                 <ProductShowcaseSection />
                 <BenefitsSection />
                 <IndustriesSection />
