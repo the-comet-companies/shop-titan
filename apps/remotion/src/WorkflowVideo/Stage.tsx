@@ -50,9 +50,10 @@ const ICON_MAP: Record<string, React.FC<LucideProps>> = {
 
 type StageProps = {
   stage: StageData;
+  index: number;
 };
 
-export const Stage: React.FC<StageProps> = ({ stage }) => {
+export const Stage: React.FC<StageProps> = ({ stage, index }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 

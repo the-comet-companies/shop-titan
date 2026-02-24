@@ -13,13 +13,13 @@ export const WorkflowVideo: React.FC = () => {
           <Intro />
         </Series.Sequence>
 
-        {STAGES.map((stage) => (
+        {STAGES.map((stage, index) => (
           <Series.Sequence
             key={stage.id}
             durationInFrames={STAGE_FRAMES}
             premountFor={15}
           >
-            <Stage stage={stage} />
+            <Stage stage={stage} index={index} />
           </Series.Sequence>
         ))}
 
