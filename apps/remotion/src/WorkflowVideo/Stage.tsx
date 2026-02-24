@@ -57,61 +57,75 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // White flash: fades from opaque to transparent over first 8 frames
-  const flashOpacity = interpolate(frame, [0, 8], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  const isEven = index % 2 === 0;
 
-  // Icon: spring scale in from frame 8, completes ~frame 30
-  const iconScale = spring({
-    frame: frame - 8,
+  // Single spring progress value drives all icon motion (frames 0–25)
+  const iconProgress = spring({
+    frame,
     fps,
-    config: { damping: 200 },
-    durationInFrames: 22,
+    config: { damping: 14, stiffness: 100, mass: 0.5 },
+    durationInFrames: 25,
   });
 
-  // Icon opacity: fades in frames 8–25
-  const iconOpacity = interpolate(frame, [8, 25], [0, 1], {
+  // Slide: even stages enter from left (−150→0), odd from right (+150→0)
+  const iconX = interpolate(iconProgress, [0, 1], [isEven ? -150 : 150, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Glow opacity: fades in frames 8–25
-  const glowOpacity = interpolate(frame, [8, 25], [0, 1], {
+  // Rotation: even start at −20°, odd at +20°, both resolve to 0°
+  const iconRotation = interpolate(iconProgress, [0, 1], [isEven ? -20 : 20, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Stage number: fades in frames 30–45
-  const numberOpacity = interpolate(frame, [30, 45], [0, 1], {
+  // Scale: springs from 0.6 → 1
+  const iconScale = interpolate(iconProgress, [0, 1], [0.6, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Stage name: slides up + fades in frames 42–60
-  const nameOpacity = interpolate(frame, [42, 60], [0, 1], {
+  // Opacity: fades in over first 30% of the spring
+  const iconOpacity = interpolate(frame, [0, 8], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const nameY = interpolate(frame, [42, 60], [20, 0], {
+
+  // Glow opacity: fades in frames 0–17
+  const glowOpacity = interpolate(frame, [0, 17], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  // Stage number: fades in frames 22–37 (was 30–45)
+  const numberOpacity = interpolate(frame, [22, 37], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  // Stage name: slides up + fades in frames 34–52 (was 42–60)
+  const nameOpacity = interpolate(frame, [34, 52], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const nameY = interpolate(frame, [34, 52], [20, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.out(Easing.quad),
   });
 
-  // Rule: draws symmetrically from center, frames 52–65
-  const ruleScale = interpolate(frame, [52, 65], [0, 1], {
+  // Rule: draws from center, frames 44–57 (was 52–65)
+  const ruleScale = interpolate(frame, [44, 57], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Insight copy: fades up, frames 60–82
-  const insightOpacity = interpolate(frame, [60, 82], [0, 1], {
+  // Insight copy: fades up, frames 52–74 (was 60–82)
+  const insightOpacity = interpolate(frame, [52, 74], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const insightY = interpolate(frame, [60, 82], [15, 0], {
+  const insightY = interpolate(frame, [52, 74], [15, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.out(Easing.quad),
@@ -161,12 +175,12 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
               opacity: glowOpacity,
             }}
           />
-          {/* Icon */}
+          {/* Icon — slide + rotate + scale */}
           {IconComponent && (
             <div
               style={{
                 opacity: iconOpacity,
-                transform: `scale(${iconScale})`,
+                transform: `translateX(${iconX}px) rotate(${iconRotation}deg) scale(${iconScale})`,
                 position: "relative",
               }}
             >
@@ -250,15 +264,6 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
           height: 3,
           width: `${progressWidth}%`,
           backgroundColor: "#0066CC",
-        }}
-      />
-
-      {/* White flash overlay — on top of everything */}
-      <AbsoluteFill
-        style={{
-          backgroundColor: "#FFFFFF",
-          opacity: flashOpacity,
-          pointerEvents: "none",
         }}
       />
     </AbsoluteFill>
