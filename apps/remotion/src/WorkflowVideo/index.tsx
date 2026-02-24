@@ -7,7 +7,7 @@ import { STAGES, STAGE_FRAMES, INTRO_FRAMES, OUTRO_FRAMES } from "./data";
 
 export const WorkflowVideo: React.FC = () => {
   return (
-    <AbsoluteFill style={{ backgroundColor: "#0A0A0A" }}>
+    <AbsoluteFill style={{ backgroundColor: "#0A0A0A" /* fallback canvas between sequences */ }}>
       <Series>
         <Series.Sequence durationInFrames={INTRO_FRAMES} premountFor={30}>
           <Intro />
