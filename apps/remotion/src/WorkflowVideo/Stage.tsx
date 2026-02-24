@@ -6,6 +6,7 @@ import {
   AbsoluteFill,
 } from "remotion";
 import { loadFont } from "@remotion/google-fonts/Inter";
+import { STAGE_FRAMES } from "./data";
 import type { StageData } from "./data";
 
 const { fontFamily } = loadFont("normal", {
@@ -61,7 +62,7 @@ export const Stage: React.FC<StageProps> = ({ stage }) => {
   });
 
   // Progress bar: fills 0→100% linearly over full 90 frames
-  const progressWidth = interpolate(frame, [0, 90], [0, 100], {
+  const progressWidth = interpolate(frame, [0, STAGE_FRAMES], [0, 100], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
