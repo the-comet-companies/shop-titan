@@ -157,7 +157,13 @@ export default function FeaturesSection() {
     }, []);
 
     return (
-        <section id="features" className="pt-24 md:pt-32 lg:pt-40 pb-20 md:pb-28 lg:pb-32 bg-background-light dark:bg-background-dark">
+        <section id="features" className="pt-24 md:pt-32 lg:pt-40 pb-20 md:pb-28 lg:pb-32 bg-background-light dark:bg-background-dark relative overflow-hidden">
+            {/* Animated gradient orb background */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+                <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-primary/[0.06] blur-3xl animate-gradient-flow-1" />
+                <div className="absolute top-1/2 -left-48 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.04] blur-3xl animate-gradient-flow-2" />
+                <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-teal-400/[0.03] blur-3xl animate-gradient-flow-3" />
+            </div>
             <div className="max-w-7xl mx-auto px-mobile">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
                     {/* Left Column - Sticky Header & Nav */}
@@ -530,19 +536,21 @@ function FeatureBlock({
     return (
         <motion.div
             id={id}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 40, scale: 0.97 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
             transition={{ duration: 0.6 }}
-            className="group feature-card rounded-2xl md:rounded-3xl overflow-hidden flex flex-col border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 max-w-3xl mx-auto w-full relative"
+            className="group feature-card rounded-2xl md:rounded-3xl overflow-hidden flex flex-col border border-white/60 dark:border-white/10 bg-white/80 dark:bg-white/5 backdrop-blur-xl shadow-xl shadow-black/5 dark:shadow-black/40 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 max-w-3xl mx-auto w-full relative"
         >
             {/* Hover Gradient Border Effect */}
             <div className="absolute inset-0 rounded-2xl md:rounded-3xl pointer-events-none border-2 border-transparent group-hover:border-primary/10 transition-colors duration-500" />
+            {/* Top-edge glass highlight */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent pointer-events-none z-10" />
 
             {/* Story Content Side (Top) */}
             <div className="p-6 md:p-8 flex flex-col justify-center relative z-10 w-full max-w-4xl mx-auto">
                 <div className="flex items-center gap-4 mb-4 md:mb-6">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary flex-shrink-0 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-500">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white/80 dark:bg-white/10 backdrop-blur-sm border border-white/50 dark:border-white/20 rounded-2xl shadow-sm flex items-center justify-center text-primary flex-shrink-0 group-hover:scale-110 group-hover:shadow-md group-hover:shadow-primary/20 transition-all duration-500">
                         <span className="material-symbols-outlined text-xl md:text-2xl">{icon}</span>
                     </div>
                     <h2 className="text-xl md:text-2xl font-bold dark:text-white leading-tight group-hover:text-primary transition-colors duration-300">
@@ -557,13 +565,15 @@ function FeatureBlock({
                         whileInView={{ opacity: 1, scale: 1 }}
                         whileHover={{ y: -4 }}
                         transition={{ duration: 0.4 }}
-                        className="relative p-5 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 rounded-xl overflow-hidden flex flex-col h-full hover:shadow-lg hover:border-slate-300 dark:hover:border-slate-600 transition-all"
+                        className="relative p-5 border border-rose-200/50 dark:border-rose-800/30 bg-rose-50/60 dark:bg-rose-950/20 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col h-full hover:shadow-lg hover:border-rose-300/60 dark:hover:border-rose-700/40 transition-all"
                     >
+                        {/* Corner glow accent */}
+                        <div className="absolute top-0 right-0 w-20 h-20 bg-rose-500/10 blur-2xl rounded-full pointer-events-none" />
                         <div className="flex items-center gap-2 mb-3 relative z-10">
-                            <div className="p-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg">
-                                <span className="material-symbols-outlined text-slate-500 text-lg">sentiment_dissatisfied</span>
+                            <div className="p-1.5 bg-rose-100 dark:bg-rose-900/40 rounded-lg">
+                                <span className="material-symbols-outlined text-rose-500 text-lg">sentiment_dissatisfied</span>
                             </div>
-                            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-rose-600 dark:text-rose-400">
                                 {painPoint.title}
                             </h4>
                         </div>
@@ -578,16 +588,15 @@ function FeatureBlock({
                         whileInView={{ opacity: 1, scale: 1 }}
                         whileHover={{ y: -4 }}
                         transition={{ duration: 0.4, delay: 0.1 }}
-                        className="relative p-5 border border-indigo-100 dark:border-indigo-900 bg-gradient-to-br from-indigo-50/50 to-blue-50/50 dark:from-indigo-950/30 dark:to-blue-950/30 rounded-xl overflow-hidden group/flow flex flex-col h-full hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-200 dark:hover:border-indigo-700 transition-all"
+                        className="relative p-5 border border-blue-200/50 dark:border-blue-800/30 bg-blue-50/60 dark:bg-blue-950/20 backdrop-blur-sm rounded-xl overflow-hidden group/flow flex flex-col h-full hover:shadow-lg hover:shadow-primary/10 hover:border-blue-300/60 dark:hover:border-blue-700/40 transition-all"
                     >
-                        {/* Subtle Background Gradient Animation */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 dark:via-white/5 to-transparent -translate-x-[100%] animate-[shimmer_3s_infinite] pointer-events-none" />
-
+                        {/* Corner glow accent */}
+                        <div className="absolute bottom-0 left-0 w-20 h-20 bg-primary/10 blur-2xl rounded-full pointer-events-none" />
                         <div className="flex items-center gap-2 mb-3 relative z-10">
-                            <div className="p-1.5 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg text-indigo-600 dark:text-indigo-400">
+                            <div className="p-1.5 bg-blue-100 dark:bg-blue-900/50 rounded-lg text-primary">
                                 <span className="material-symbols-outlined text-lg">bolt</span>
                             </div>
-                            <h4 className="text-xs font-bold uppercase tracking-widest text-indigo-700 dark:text-indigo-400">
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-primary dark:text-blue-400">
                                 {solution.title}
                             </h4>
                         </div>
