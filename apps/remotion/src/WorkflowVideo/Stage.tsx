@@ -55,16 +55,22 @@ type StageProps = {
 
 export const Stage: React.FC<StageProps> = ({ stage, index }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const { fps, width } = useVideoConfig();
 
   const isEven = index % 2 === 0;
 
-  // Single spring progress value drives all icon motion (frames 0–25)
+  // Diagonal sweep: slides across frames 0–22
+  const sweepX = interpolate(frame, [0, 22], [-300, width + 300], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  // Single spring progress value drives all icon motion (frames 0–12)
   const iconProgress = spring({
     frame,
     fps,
     config: { damping: 14, stiffness: 100, mass: 0.5 },
-    durationInFrames: 25,
+    durationInFrames: 12,
   });
 
   // Slide: even stages enter from left (−150→0), odd from right (+150→0)
@@ -85,47 +91,47 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
     extrapolateRight: "clamp",
   });
 
-  // Opacity: fades in over first 30% of the spring
-  const iconOpacity = interpolate(frame, [0, 8], [0, 1], {
+  // Opacity: fades in frames 0–4
+  const iconOpacity = interpolate(frame, [0, 4], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Glow opacity: fades in frames 0–17
-  const glowOpacity = interpolate(frame, [0, 17], [0, 1], {
+  // Glow opacity: fades in frames 0–8
+  const glowOpacity = interpolate(frame, [0, 8], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Stage number: fades in frames 22–37 (was 30–45)
-  const numberOpacity = interpolate(frame, [22, 37], [0, 1], {
+  // Stage number: fades in frames 11–18
+  const numberOpacity = interpolate(frame, [11, 18], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Stage name: slides up + fades in frames 34–52 (was 42–60)
-  const nameOpacity = interpolate(frame, [34, 52], [0, 1], {
+  // Stage name: slides up + fades in frames 17–26
+  const nameOpacity = interpolate(frame, [17, 26], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const nameY = interpolate(frame, [34, 52], [20, 0], {
+  const nameY = interpolate(frame, [17, 26], [20, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.out(Easing.quad),
   });
 
-  // Rule: draws from center, frames 44–57 (was 52–65)
-  const ruleScale = interpolate(frame, [44, 57], [0, 1], {
+  // Rule: draws from center, frames 22–28
+  const ruleScale = interpolate(frame, [22, 28], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Insight copy: fades up, frames 52–74 (was 60–82)
-  const insightOpacity = interpolate(frame, [52, 74], [0, 1], {
+  // Insight copy: fades up, frames 26–37
+  const insightOpacity = interpolate(frame, [26, 37], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const insightY = interpolate(frame, [52, 74], [15, 0], {
+  const insightY = interpolate(frame, [26, 37], [15, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.out(Easing.quad),
@@ -141,6 +147,21 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#0A0A0A", fontFamily }}>
+      {/* Diagonal light sweep */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-50%",
+          left: 0,
+          width: 280,
+          height: "200%",
+          background:
+            "linear-gradient(to right, transparent 0%, rgba(0,102,204,0.05) 30%, rgba(0,102,204,0.12) 50%, rgba(0,102,204,0.05) 70%, transparent 100%)",
+          transform: `skewX(-15deg) translateX(${sweepX}px)`,
+          pointerEvents: "none",
+        }}
+      />
+
       {/* Centered content block */}
       <div
         style={{
@@ -194,7 +215,7 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
           style={{
             opacity: numberOpacity,
             color: "#6E6E73",
-            fontSize: 14,
+            fontSize: 56,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
             marginBottom: 32,
