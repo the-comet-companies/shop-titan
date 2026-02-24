@@ -139,7 +139,7 @@ function IntakeContent() {
                         </div>
                         <div>
                             <div className="font-medium text-sm dark:text-gray-200">Order #{9000 + i}</div>
-                            <div className="text-xs text-secondary-text">Shopify Ã¢â‚¬Â¢ 2 items</div>
+                            <div className="text-xs text-secondary-text">Shopify 2 items</div>
                         </div>
                     </div>
                     <div className="text-right">
