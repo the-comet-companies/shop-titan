@@ -24,7 +24,7 @@ import {
   BarChart3,
 } from "lucide-react";
 import type { LucideProps } from "lucide-react";
-import { STAGE_FRAMES } from "./data";
+import { STAGE_FRAMES, STAGES } from "./data";
 import type { StageData } from "./data";
 
 const { fontFamily } = loadFont("normal", {
@@ -59,11 +59,29 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
 
   const isEven = index % 2 === 0;
 
-  // Diagonal sweep: slides across frames 0–22
-  const sweepX = interpolate(frame, [0, 22], [-300, width + 300], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  // Sweep 1: wide, direction follows isEven, frames 0–22
+  const sweep1X = interpolate(
+    frame,
+    [0, 22],
+    [isEven ? -300 : width + 300, isEven ? width + 300 : -300],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
+
+  // Sweep 2: medium, opposite direction, delayed to frames 4–26
+  const sweep2X = interpolate(
+    frame,
+    [4, 26],
+    [isEven ? width + 200 : -200, isEven ? -200 : width + 200],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
+
+  // Sweep 3: thin, same direction as sweep 1, faster, frames 8–20
+  const sweep3X = interpolate(
+    frame,
+    [8, 20],
+    [isEven ? -150 : width + 150, isEven ? width + 150 : -150],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
 
   // Single spring progress value drives all icon motion (frames 0–12)
   const iconProgress = spring({
@@ -137,7 +155,7 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
     easing: Easing.out(Easing.quad),
   });
 
-  // Progress bar: fills 0→100% linearly over full stage duration
+  // Current segment fill
   const progressWidth = interpolate(frame, [0, STAGE_FRAMES], [0, 100], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -147,7 +165,7 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#0A0A0A", fontFamily }}>
-      {/* Diagonal light sweep */}
+      {/* Sweep 1 — wide, primary direction */}
       <div
         style={{
           position: "absolute",
@@ -157,7 +175,37 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
           height: "200%",
           background:
             "linear-gradient(to right, transparent 0%, rgba(0,102,204,0.05) 30%, rgba(0,102,204,0.12) 50%, rgba(0,102,204,0.05) 70%, transparent 100%)",
-          transform: `skewX(-15deg) translateX(${sweepX}px)`,
+          transform: `skewX(-15deg) translateX(${sweep1X}px)`,
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Sweep 2 — medium, opposite direction, delayed */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-50%",
+          left: 0,
+          width: 160,
+          height: "200%",
+          background:
+            "linear-gradient(to right, transparent 0%, rgba(0,102,204,0.03) 30%, rgba(0,102,204,0.07) 50%, rgba(0,102,204,0.03) 70%, transparent 100%)",
+          transform: `skewX(-28deg) translateX(${sweep2X}px)`,
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Sweep 3 — thin, same direction as sweep 1, faster */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-50%",
+          left: 0,
+          width: 80,
+          height: "200%",
+          background:
+            "linear-gradient(to right, transparent 0%, rgba(0,102,204,0.04) 50%, transparent 100%)",
+          transform: `skewX(-6deg) translateX(${sweep3X}px)`,
           pointerEvents: "none",
         }}
       />
@@ -276,17 +324,45 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
         </div>
       </div>
 
-      {/* Progress bar — pinned to bottom */}
+      {/* 13-segment progress bar */}
       <div
         style={{
           position: "absolute",
           bottom: 0,
           left: 0,
-          height: 3,
-          width: `${progressWidth}%`,
-          backgroundColor: "#0066CC",
+          right: 0,
+          height: 4,
+          display: "flex",
+          gap: 2,
         }}
-      />
+      >
+        {STAGES.map((_, i) => (
+          <div
+            key={i}
+            style={{
+              flex: 1,
+              height: "100%",
+              backgroundColor:
+                i < index ? "#0066CC" : "rgba(255,255,255,0.08)",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {i === index && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  height: "100%",
+                  width: `${progressWidth}%`,
+                  backgroundColor: "#0066CC",
+                }}
+              />
+            )}
+          </div>
+        ))}
+      </div>
     </AbsoluteFill>
   );
 };
