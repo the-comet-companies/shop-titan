@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, LayoutGroup } from 'framer-motion';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import VideoPlayer from '@/components/VideoPlayer';
@@ -163,7 +163,7 @@ export default function FeaturesSection() {
     }, []);
 
     return (
-        <section id="features" className="pt-24 md:pt-32 lg:pt-40 pb-20 md:pb-28 lg:pb-32 bg-background-light dark:bg-background-dark relative overflow-hidden">
+        <section id="features" className="pt-24 md:pt-32 lg:pt-40 pb-20 md:pb-28 lg:pb-32 bg-background-light dark:bg-background-dark relative">
             {/* Animated gradient orb background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
                 <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-primary/[0.06] blur-3xl animate-gradient-flow-1" />
@@ -203,43 +203,46 @@ export default function FeaturesSection() {
                             {/* Progress track */}
                             <div className="absolute left-1 top-3 bottom-3 w-0.5 bg-gray-200 dark:bg-gray-800 rounded-full pointer-events-none">
                                 <motion.div
-                                    className="absolute top-0 left-0 w-full bg-primary rounded-full"
-                                    animate={{ height: `${progressPercent}%` }}
+                                    className="absolute top-0 left-0 w-full h-full bg-primary rounded-full origin-top"
+                                    initial={{ scaleY: 0 }}
+                                    animate={{ scaleY: progressPercent / 100 }}
                                     transition={{ type: "spring", stiffness: 200, damping: 30 }}
                                 />
                             </div>
 
-                            {navigationItems.map((item, index) => (
-                                <button
-                                    key={item.id}
-                                    ref={(el) => { navRefs.current[index] = el; }}
-                                    onClick={() => scrollToFeature(item.id)}
-                                    className={cn(
-                                        "text-left py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 relative flex items-center gap-3",
-                                        activeFeature === item.id
-                                            ? "text-primary font-bold"
-                                            : "text-gray-500 hover:text-charcoal dark:hover:text-white",
-                                        item.type === "section" && "border-t border-gray-200 dark:border-gray-800 mt-4 pt-6"
-                                    )}
-                                >
-                                    {/* Glassmorphic background pill for active item */}
-                                    {activeFeature === item.id && (
-                                        <motion.div
-                                            layoutId="activeNavPill"
-                                            className="absolute inset-0 bg-white/70 dark:bg-white/10 backdrop-blur-sm border border-white/80 dark:border-white/20 shadow-md shadow-primary/10 rounded-lg"
-                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                        />
-                                    )}
-                                    <span className="relative z-10">
-                                        {item.title}
-                                    </span>
-                                    {item.type === "section" && (
-                                        <span className="material-symbols-outlined text-sm ml-auto relative z-10">
-                                            expand_more
+                            <LayoutGroup>
+                                {navigationItems.map((item, index) => (
+                                    <button
+                                        key={item.id}
+                                        ref={(el) => { navRefs.current[index] = el; }}
+                                        onClick={() => scrollToFeature(item.id)}
+                                        className={cn(
+                                            "text-left py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 relative flex items-center gap-3",
+                                            activeFeature === item.id
+                                                ? "text-primary font-bold"
+                                                : "text-gray-500 hover:text-charcoal dark:hover:text-white",
+                                            item.type === "section" && "border-t border-gray-200 dark:border-gray-800 mt-4 pt-6"
+                                        )}
+                                    >
+                                        {/* Glassmorphic background pill for active item */}
+                                        {activeFeature === item.id && (
+                                            <motion.div
+                                                layoutId="activeNavPill"
+                                                className="absolute inset-0 bg-white/70 dark:bg-white/10 backdrop-blur-sm border border-white/80 dark:border-white/20 shadow-md shadow-primary/10 rounded-lg"
+                                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                            />
+                                        )}
+                                        <span className="relative z-10">
+                                            {item.title}
                                         </span>
-                                    )}
-                                </button>
-                            ))}
+                                        {item.type === "section" && (
+                                            <span className="material-symbols-outlined text-sm ml-auto relative z-10">
+                                                expand_more
+                                            </span>
+                                        )}
+                                    </button>
+                                ))}
+                            </LayoutGroup>
                         </div>
                     </div>
 
