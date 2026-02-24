@@ -49,9 +49,9 @@ function StoryParticles({ activeIndex, visible }: { activeIndex: number; scrollP
             const r = Math.pow(Math.random(), 0.4) * 3.2;
             const theta = Math.random() * Math.PI * 2;
             const phi = Math.acos(2 * Math.random() - 1);
-            positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta) + (Math.random() - 0.5) * 1.5;
+            positions[i * 3] = r * Math.sin(phi) * Math.cos(theta) + (Math.random() - 0.5) * 1.5;
             positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta) + (Math.random() - 0.5) * 1.0;
-            positions[i * 3 + 2] = r * Math.cos(phi)                   + (Math.random() - 0.5) * 1.5;
+            positions[i * 3 + 2] = r * Math.cos(phi) + (Math.random() - 0.5) * 1.5;
         }
         return positions;
     }, []);
@@ -70,7 +70,7 @@ function StoryParticles({ activeIndex, visible }: { activeIndex: number; scrollP
 
         for (let i = 0; i < count; i++) {
             const idx = i * 3;
-            positions[idx]     += (targetPositions[idx]     - positions[idx])     * lerpFactor;
+            positions[idx] += (targetPositions[idx] - positions[idx]) * lerpFactor;
             positions[idx + 1] += (targetPositions[idx + 1] - positions[idx + 1]) * lerpFactor;
             positions[idx + 2] += (targetPositions[idx + 2] - positions[idx + 2]) * lerpFactor;
         }
@@ -171,19 +171,6 @@ export default function PainPoint3D() {
                             );
                         })}
                     </div>
-                </div>
-
-                {/* Pagination/Progress Dots */}
-                <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20">
-                    {painPointScenes.map((_, idx) => (
-                        <div
-                            key={idx}
-                            className={`w-2 h-2 rounded-full transition-all duration-500
-                                ${idx === activeIndex ? 'h-8 bg-white' : 'bg-white/30'}
-                            `}
-                            style={{ backgroundColor: idx === activeIndex ? painPointScenes[idx].color : undefined }}
-                        />
-                    ))}
                 </div>
 
                 {/* Gradient overlay for bottom blending */}
