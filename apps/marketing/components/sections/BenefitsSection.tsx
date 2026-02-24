@@ -171,16 +171,16 @@ export default function BenefitsSection() {
 function PaymentLogos() {
     return (
         <div className="flex shrink-0 items-center gap-8 md:gap-12 pr-8 md:pr-12">
-            <img src="/logos/payments/visa.svg" alt="Visa" className="opacity-80 w-auto h-6 sm:h-8 object-contain" />
-            <img src="/logos/payments/amex.svg" alt="AMEX" className="opacity-80 w-auto h-6 sm:h-8 object-contain" />
-            <img src="/logos/payments/discover.svg" alt="Discover" className="opacity-80 w-auto h-6 sm:h-8 object-contain" />
-            <img src="/logos/payments/mastercard.svg" alt="Mastercard" className="opacity-80 w-auto h-7 sm:h-9 object-contain" />
-            <img src="/logos/payments/paypal.svg" alt="PayPal" className="opacity-80 w-auto h-7 sm:h-9 object-contain" />
-            <img src="/logos/payments/google-pay.svg" alt="Google Pay" className="opacity-80 w-auto h-6 sm:h-8 object-contain" />
-            <img src="/logos/payments/apple-pay.svg" alt="Apple Pay" className="opacity-80 w-auto h-6 sm:h-8 object-contain" />
-            <img src="/logos/payments/stripe-link.svg" alt="Stripe Link" className="opacity-80 w-auto h-4 sm:h-6 object-contain" />
-            <img src="/logos/payments/affirm.svg" alt="Affirm" className="opacity-80 w-auto h-4 sm:h-5 object-contain" />
-            <img src="/logos/payments/klarna.svg" alt="Klarna" className="opacity-80 w-auto h-4 sm:h-5 object-contain" />
+            <img src="/logos/payments/visa.svg" alt="Visa" className="opacity-80 w-auto h-14 object-contain" />
+            <img src="/logos/payments/amex.svg" alt="AMEX" className="opacity-80 w-auto h-14 object-contain" />
+            <img src="/logos/payments/discover.svg" alt="Discover" className="opacity-80 w-auto h-14 object-contain" />
+            <img src="/logos/payments/mastercard.svg" alt="Mastercard" className="opacity-80 w-auto h-14 object-contain" />
+            <img src="/logos/payments/paypal.svg" alt="PayPal" className="opacity-80 w-auto h-14 object-contain" />
+            <img src="/logos/payments/google-pay.svg" alt="Google Pay" className="opacity-80 w-auto h-14 object-contain" />
+            <img src="/logos/payments/apple-pay.svg" alt="Apple Pay" className="opacity-80 w-auto h-14 object-contain" />
+            <img src="/logos/payments/stripe-link.svg" alt="Stripe Link" className="opacity-80 w-auto h-7 object-contain" />
+            <img src="/logos/payments/affirm.svg" alt="Affirm" className="opacity-80 w-auto h-7 object-contain" />
+            <img src="/logos/payments/klarna.svg" alt="Klarna" className="opacity-80 w-auto h-7 object-contain" />
         </div>
     );
 }
