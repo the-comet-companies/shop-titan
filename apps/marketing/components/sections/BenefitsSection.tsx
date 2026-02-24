@@ -109,7 +109,7 @@ export default function BenefitsSection() {
                             <div className="absolute left-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
                             <div className="absolute right-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
                             <div
-                                className="carousel-track shrink-0 opacity-60 group-hover:opacity-100 transition-opacity"
+                                className="carousel-track items-center shrink-0 opacity-60 group-hover:opacity-100 transition-opacity"
                                 style={{ animationDuration: '30s', willChange: 'transform' }}
                             >
                                 <PaymentLogos />
@@ -170,7 +170,7 @@ export default function BenefitsSection() {
 
 function PaymentLogos() {
     return (
-        <div className="flex items-center gap-8 md:gap-12 pr-8 md:pr-12">
+        <div className="flex shrink-0 items-center gap-8 md:gap-12 pr-8 md:pr-12">
             <img src="/logos/payments/visa.svg" alt="Visa" className="opacity-80 w-auto h-6 sm:h-8 object-contain" />
             <img src="/logos/payments/amex.svg" alt="AMEX" className="opacity-80 w-auto h-6 sm:h-8 object-contain" />
             <img src="/logos/payments/discover.svg" alt="Discover" className="opacity-80 w-auto h-6 sm:h-8 object-contain" />
