@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import VideoPlayer from '@/components/VideoPlayer';
 
 interface FeatureGridCardProps {
@@ -31,12 +31,12 @@ export default function FeatureGridCard({
   return (
     <motion.div
       className={`
-        bg-surface dark:bg-gray-900
+        bg-white/70 dark:bg-white/5 backdrop-blur-xl
         border rounded-2xl p-6
         transition-all duration-300 relative
         ${isExpanded
-          ? 'border-2 border-primary/30 dark:border-primary/40 shadow-2xl'
-          : 'border border-structural-border dark:border-gray-800 hover:shadow-xl hover:border-primary/20 cursor-pointer'
+          ? 'border-2 border-primary/30 dark:border-primary/40 shadow-2xl shadow-primary/5'
+          : 'border border-white/50 dark:border-white/10 shadow-lg hover:shadow-xl hover:border-primary/20 cursor-pointer'
         }
       `}
       onClick={() => !isExpanded && onToggle(id)}
@@ -67,7 +67,7 @@ export default function FeatureGridCard({
         </h3>
       </div>
 
-      {!isExpanded ? (
+      {!isExpanded && (
         <>
           {/* Collapsed State */}
           <p className="text-sm text-secondary-text dark:text-gray-400 leading-relaxed mb-4 line-clamp-2">
@@ -85,97 +85,101 @@ export default function FeatureGridCard({
             <span className="material-symbols-outlined text-base">expand_more</span>
           </button>
         </>
-      ) : (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
-          className="space-y-6"
-        >
-          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
-            {/* Pain Point - Expressive/Friction Theme */}
-            <div className="relative p-5 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 rounded-xl overflow-hidden flex flex-col h-full hover:shadow-lg hover:border-slate-300 dark:hover:border-slate-600 transition-all">
-              <div className="flex items-center gap-2 mb-3 relative z-10">
-                <div className="p-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg">
-                  <span className="material-symbols-outlined text-slate-500 text-lg">sentiment_dissatisfied</span>
-                </div>
-                <h4 className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
-                  The Friction
-                </h4>
-              </div>
-              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed relative z-10 font-medium flex-grow">
-                {painPoint}
-              </p>
-            </div>
-
-            {/* Solution - Vibrant/Flow Theme */}
-            <div className="relative p-5 border border-indigo-100 dark:border-indigo-900 bg-gradient-to-br from-indigo-50/50 to-blue-50/50 dark:from-indigo-950/30 dark:to-blue-950/30 rounded-xl overflow-hidden group/flow flex flex-col h-full hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-200 dark:hover:border-indigo-700 transition-all">
-              {/* Subtle Background Gradient Animation */}
-
-              <div className="flex items-center gap-2 mb-3 relative z-10">
-                <div className="p-1.5 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg text-indigo-600 dark:text-indigo-400">
-                  <span className="material-symbols-outlined text-lg">bolt</span>
-                </div>
-                <h4 className="text-xs font-bold uppercase tracking-widest text-indigo-700 dark:text-indigo-400">
-                  The Flow
-                </h4>
-              </div>
-              <p className="text-charcoal dark:text-white text-sm leading-relaxed font-semibold relative z-10 flex-grow">
-                {solution}
-              </p>
-            </div>
-          </div>
-
-          {/* Video Placeholder */}
-          {videoSrc && (
-            <div className="w-full bg-gray-50 dark:bg-black/50 p-2 md:p-4 flex items-center justify-center border border-structural-border dark:border-gray-800 rounded-xl relative overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50 dark:opacity-20 pointer-events-none" />
-
-              <div className="w-full max-w-4xl shadow-2xl rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 relative z-10 bg-white dark:bg-gray-900 flex flex-col aspect-video group">
-                <div className="flex-grow relative bg-gray-900 group-hover:bg-gray-800 transition-colors duration-500">
-                  {/* Play Button Trigger */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onWatchDemo?.(videoSrc);
-                    }}
-                    className="absolute inset-0 flex flex-col items-center justify-center text-white/40 group-hover:text-white/80 transition-all duration-500 z-20 hover:bg-black/20"
-                  >
-                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-current flex items-center justify-center mb-4 transition-transform group-hover:scale-110 bg-black/20 backdrop-blur-sm">
-                      <span className="material-symbols-outlined text-4xl md:text-5xl pl-1">play_arrow</span>
-                    </div>
-                    <span className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">Watch Demo</span>
-                  </button>
-
-                  {/* Background Video "Poster" using VideoPlayer */}
-                  <VideoPlayer
-                    src={videoSrc}
-                    autoPlay={true}
-                    muted={true}
-                    loop={true}
-                    className="h-full w-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500"
-                    hideControls={true}
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Collapse Button (Mobile Only) */}
-          <div className="flex justify-center md:hidden">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onToggle(id);
-              }}
-              className="text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all mt-4"
-            >
-              Show Less
-              <span className="material-symbols-outlined text-base">expand_less</span>
-            </button>
-          </div>
-        </motion.div>
       )}
+
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            key="expanded-content"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ type: "spring", stiffness: 260, damping: 25 }}
+            className="space-y-6 overflow-hidden"
+          >
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+              {/* Pain Point - Rose glass */}
+              <div className="relative p-5 border border-rose-200/50 dark:border-rose-800/30 bg-rose-50/60 dark:bg-rose-950/20 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col h-full hover:shadow-lg transition-all">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-rose-500/10 blur-2xl rounded-full pointer-events-none" />
+                <div className="flex items-center gap-2 mb-3 relative z-10">
+                  <div className="p-1.5 bg-rose-100 dark:bg-rose-900/40 rounded-lg">
+                    <span className="material-symbols-outlined text-rose-500 text-lg">sentiment_dissatisfied</span>
+                  </div>
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-rose-600 dark:text-rose-400">
+                    The Friction
+                  </h4>
+                </div>
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed relative z-10 font-medium flex-grow">
+                  {painPoint}
+                </p>
+              </div>
+
+              {/* Solution - Primary blue glass */}
+              <div className="relative p-5 border border-blue-200/50 dark:border-blue-800/30 bg-blue-50/60 dark:bg-blue-950/20 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col h-full hover:shadow-lg hover:shadow-primary/10 transition-all">
+                <div className="absolute bottom-0 left-0 w-20 h-20 bg-primary/10 blur-2xl rounded-full pointer-events-none" />
+                <div className="flex items-center gap-2 mb-3 relative z-10">
+                  <div className="p-1.5 bg-blue-100 dark:bg-blue-900/50 rounded-lg text-primary">
+                    <span className="material-symbols-outlined text-lg">bolt</span>
+                  </div>
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-primary dark:text-blue-400">
+                    The Flow
+                  </h4>
+                </div>
+                <p className="text-charcoal dark:text-white text-sm leading-relaxed font-semibold relative z-10 flex-grow">
+                  {solution}
+                </p>
+              </div>
+            </div>
+
+            {/* Video Placeholder */}
+            {videoSrc && (
+              <div className="w-full bg-gray-50 dark:bg-black/50 p-2 md:p-4 flex items-center justify-center border border-structural-border dark:border-gray-800 rounded-xl relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50 dark:opacity-20 pointer-events-none" />
+
+                <div className="w-full max-w-4xl shadow-2xl rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 relative z-10 bg-white dark:bg-gray-900 flex flex-col aspect-video group">
+                  <div className="flex-grow relative bg-gray-900 group-hover:bg-gray-800 transition-colors duration-500">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onWatchDemo?.(videoSrc);
+                      }}
+                      className="absolute inset-0 flex flex-col items-center justify-center text-white/40 group-hover:text-white/80 transition-all duration-500 z-20 hover:bg-black/20"
+                    >
+                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-current flex items-center justify-center mb-4 transition-transform group-hover:scale-110 bg-black/20 backdrop-blur-sm">
+                        <span className="material-symbols-outlined text-4xl md:text-5xl pl-1">play_arrow</span>
+                      </div>
+                      <span className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">Watch Demo</span>
+                    </button>
+
+                    <VideoPlayer
+                      src={videoSrc}
+                      autoPlay={true}
+                      muted={true}
+                      loop={true}
+                      className="h-full w-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500"
+                      hideControls={true}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Collapse Button (Mobile Only) */}
+            <div className="flex justify-center md:hidden">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onToggle(id);
+                }}
+                className="text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all mt-4"
+              >
+                Show Less
+                <span className="material-symbols-outlined text-base">expand_less</span>
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
