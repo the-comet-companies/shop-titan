@@ -101,9 +101,9 @@ export const STAGES: StageData[] = [
 ];
 
 export const FPS = 30;
-export const STAGE_FRAMES = 45; // 1.5s
+export const STAGE_FRAMES = 60; // 2s
 export const INTRO_FRAMES = 60; // 2s
-export const OUTRO_FRAMES = 60; // 2s
-// 60 + (13 × 45) + 60 = 705 frames total
+export const OUTRO_FRAMES = 90; // 3s
+// 60 + (13 × 45) + 90 = 735 frames total
 export const TOTAL_FRAMES =
   INTRO_FRAMES + STAGES.length * STAGE_FRAMES + OUTRO_FRAMES;

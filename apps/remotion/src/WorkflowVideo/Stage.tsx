@@ -103,9 +103,9 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
-  // ─── Exit animations (frames 37–45) ─────────────────────────────────────
+  // ─── Exit animations (frames 50–60) ─────────────────────────────────────
 
-  const exitProgress = interpolate(frame, [37, 45], [0, 1], {
+  const exitProgress = interpolate(frame, [50, 60], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -176,7 +176,7 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
       : 1;
 
   // Text fade-out on exit (all non-zoom exits: text fades while icon flies)
-  const textExitOpacity = interpolate(frame, [37, 45], [1, 0], {
+  const textExitOpacity = interpolate(frame, [50, 60], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
