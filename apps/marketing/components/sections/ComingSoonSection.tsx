@@ -21,7 +21,7 @@ function LogoSlot({ name, file }: { name: string; file: string }) {
   }
 
   return (
-    <span className="px-3 py-1 rounded-full bg-white/10 text-white/50 text-xs font-medium">
+    <span className="px-3 py-1 rounded-full bg-gray-100 text-secondary-text text-xs font-medium">
       {name}
     </span>
   );
@@ -82,11 +82,11 @@ export default function ComingSoonSection() {
   };
 
   return (
-    <section className="bg-[#0A0A0A] py-24 md:py-32 relative overflow-hidden">
+    <section className="bg-background-light py-24 md:py-32 relative overflow-hidden">
       {/* Background orbs */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-primary/[0.07] blur-3xl" />
-        <div className="absolute bottom-0 -left-48 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.05] blur-3xl" />
+        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-primary/[0.06] blur-3xl" />
+        <div className="absolute bottom-0 -left-48 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.04] blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -101,10 +101,10 @@ export default function ComingSoonSection() {
           <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-5">
             Extra
           </span>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-5">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-charcoal leading-[1.1] tracking-tight mb-5">
             What&apos;s Coming.
           </h2>
-          <p className="text-lg text-white/50 max-w-xl mx-auto mb-10">
+          <p className="text-lg text-secondary-text max-w-xl mx-auto mb-10">
             Be the first to know when these features ship.
           </p>
 
@@ -115,7 +115,7 @@ export default function ComingSoonSection() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
-                className="flex items-center gap-3 text-white/80"
+                className="flex items-center gap-3 text-charcoal"
               >
                 <span className="material-symbols-outlined text-primary text-2xl">
                   check_circle
@@ -134,7 +134,7 @@ export default function ComingSoonSection() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
-                  className="flex-1 px-5 py-3 rounded-full bg-white/10 border border-white/15 text-white placeholder:text-white/30 text-sm focus:outline-none focus:border-primary/60 focus:bg-white/[0.12] transition-colors"
+                  className="flex-1 px-5 py-3 rounded-full bg-white border border-structural-border text-charcoal placeholder:text-gray-400 text-sm focus:outline-none focus:border-primary/60 transition-colors"
                 />
                 <button
                   type="submit"
@@ -165,10 +165,10 @@ export default function ComingSoonSection() {
                 hidden: { opacity: 0, y: 24 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
               }}
-              className="group relative flex flex-col gap-4 p-6 md:p-8 rounded-2xl md:rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-primary/30 hover:bg-white/[0.08] hover:shadow-[0_0_40px_-10px_rgba(0,102,204,0.3)] transition-all duration-300"
+              className="group relative flex flex-col gap-4 p-6 md:p-8 rounded-2xl md:rounded-3xl bg-surface border border-structural-border hover:border-primary/30 hover:shadow-[0_0_40px_-10px_rgba(0,102,204,0.15)] transition-all duration-300"
             >
-              {/* Top-edge glass highlight */}
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-t-3xl pointer-events-none" />
+              {/* Top-edge highlight */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent rounded-t-3xl pointer-events-none" />
 
               {/* Header row */}
               <div className="flex items-start justify-between gap-4">
@@ -178,15 +178,15 @@ export default function ComingSoonSection() {
                       {card.icon}
                     </span>
                   </div>
-                  <h3 className="text-white font-bold text-lg leading-tight">{card.title}</h3>
+                  <h3 className="text-charcoal font-bold text-lg leading-tight">{card.title}</h3>
                 </div>
-                <span className="flex-shrink-0 px-2.5 py-1 rounded-full bg-white/10 text-white/50 text-[10px] font-bold tracking-wider uppercase">
+                <span className="flex-shrink-0 px-2.5 py-1 rounded-full bg-gray-100 text-secondary-text text-[10px] font-bold tracking-wider uppercase">
                   Soon
                 </span>
               </div>
 
               {/* Description */}
-              <p className="text-white/50 text-sm leading-relaxed">{card.description}</p>
+              <p className="text-secondary-text text-sm leading-relaxed">{card.description}</p>
 
               {/* Logo grid */}
               {card.logos.length > 0 && (
@@ -199,7 +199,7 @@ export default function ComingSoonSection() {
 
               {/* Footnote */}
               {card.footnote && (
-                <p className="text-white/25 text-xs mt-auto pt-2 border-t border-white/10">
+                <p className="text-gray-400 text-xs mt-auto pt-2 border-t border-structural-border">
                   {card.footnote}
                 </p>
               )}
