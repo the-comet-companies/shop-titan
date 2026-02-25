@@ -192,11 +192,12 @@ export default function PainPoint3D() {
                                         {'cta' in scene && scene.cta ? (
                                             <a
                                                 href={scene.cta.href}
-                                                className="pointer-events-auto inline-flex items-center gap-3 px-10 py-5 rounded-full text-lg font-bold text-white transition-all duration-300 hover:brightness-110 hover:scale-105 shadow-lg"
-                                                style={{ backgroundColor: scene.color, boxShadow: `0 8px 30px ${scene.color}40` }}
+                                                className="pointer-events-auto px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center"
                                             >
-                                                {scene.cta.label}
-                                                <span className="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                                                <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
+                                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
+                                                <span className="relative z-10">{scene.cta.label}</span>
+                                                <span className="material-symbols-outlined text-xl relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                                             </a>
                                         ) : (
                                             <div className="inline-block px-6 py-3 border-2 rounded-full text-sm font-bold tracking-widest uppercase" style={{ borderColor: scene.color, color: scene.color }}>
