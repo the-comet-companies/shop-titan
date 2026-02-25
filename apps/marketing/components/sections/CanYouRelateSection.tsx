@@ -186,9 +186,6 @@ export default function CanYouRelateSection() {
                             transition={{ duration: 0.5, ease: 'easeOut' }}
                             style={{ pointerEvents: allVisible ? 'auto' : 'none' }}
                         >
-                            <p className="text-xl md:text-2xl font-bold text-charcoal dark:text-white">
-                                Every one of these has a fix.
-                            </p>
                             <button
                                 onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
                                 className="px-8 py-3 text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
