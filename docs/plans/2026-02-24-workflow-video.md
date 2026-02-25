@@ -214,10 +214,10 @@ export const STAGES: StageData[] = [
 ];
 
 export const FPS = 30;
-export const STAGE_FRAMES = 45; // 1.5s
+export const STAGE_FRAMES = 60; // 2s
 export const INTRO_FRAMES = 60; // 2s
-export const OUTRO_FRAMES = 60; // 2s
-// 60 + (13 × 45) + 60 = 705 frames total
+export const OUTRO_FRAMES = 90; // 3s
+// 60 + (13 × 60) + 90 = 930 frames total
 export const TOTAL_FRAMES =
   INTRO_FRAMES + STAGES.length * STAGE_FRAMES + OUTRO_FRAMES;
 ```
@@ -316,9 +316,9 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
-  // ─── Exit animations (frames 37–45) ─────────────────────────────────────
+  // ─── Exit animations (frames 50–60) ─────────────────────────────────────
 
-  const exitProgress = interpolate(frame, [37, 45], [0, 1], {
+  const exitProgress = interpolate(frame, [50, 60], [0, 1], {
     extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
 
@@ -354,7 +354,7 @@ export const Stage: React.FC<StageProps> = ({ stage, index }) => {
     : 1;
 
   // Text always fades on exit regardless of icon animation
-  const textExitOpacity = interpolate(frame, [37, 45], [1, 0], {
+  const textExitOpacity = interpolate(frame, [50, 60], [1, 0], {
     extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
 
@@ -873,13 +873,42 @@ git commit -m "feat(remotion): render workflow cinematic video"
 ```tsx
 'use client';
 
+import { useRef, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export default function WorkflowVideoSection() {
   const { elementRef, isVisible } = useScrollAnimation();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const hasExpanded = useRef(false);
+
+  // Fires once to trigger the expand animation
+  const isContainerInView = useInView(containerRef, { once: true, margin: '-80px' });
+
+  // Ongoing visibility for play/pause control
+  const isVideoVisible = useInView(containerRef, { once: false, amount: 0.3 });
+
+  // After the expand animation finishes, start playing if still in view
+  const handleExpandComplete = () => {
+    hasExpanded.current = true;
+    if (isVideoVisible) {
+      videoRef.current?.play();
+    }
+  };
+
+  // Play/pause as user scrolls in and out — only after expand has run
+  useEffect(() => {
+    if (!hasExpanded.current) return;
+    if (isVideoVisible) {
+      videoRef.current?.play();
+    } else {
+      videoRef.current?.pause();
+    }
+  }, [isVideoVisible]);
 
   return (
-    <section className="py-24 md:py-32 bg-background-light">
+    <section id="workflow-video" className="py-24 md:py-32 bg-background-light">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div
@@ -896,23 +925,41 @@ export default function WorkflowVideoSection() {
           </p>
         </div>
 
-        {/* Video container */}
-        <div className="rounded-2xl overflow-hidden shadow-2xl">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full block"
+        {/* Video container — cinematic expand reveal */}
+        <div ref={containerRef}>
+          <motion.div
+            className="rounded-2xl overflow-hidden shadow-2xl origin-center"
+            initial={{ scaleX: 0, scaleY: 0.04 }}
+            animate={
+              isContainerInView
+                ? { scaleX: [0, 1, 1], scaleY: [0.04, 0.04, 1] }
+                : { scaleX: 0, scaleY: 0.04 }
+            }
+            transition={{
+              duration: 0.9,
+              times: [0, 0.45, 1],
+              ease: ['easeOut', 'easeInOut'],
+            }}
+            onAnimationComplete={handleExpandComplete}
           >
-            <source src="/animations/workflow.mp4" type="video/mp4" />
-          </video>
+            <video
+              ref={videoRef}
+              loop
+              muted
+              playsInline
+              className="w-full block"
+            >
+              <source src="/animations/workflow.mp4" type="video/mp4" />
+            </video>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
 ```
+
+**Reveal behaviour:** On scroll-into-view, the container animates from a thin horizontal sliver (phase 1: scaleX 0→1) then expands vertically (phase 2: scaleY 0.04→1) over 0.9s. The video plays only after the expand completes and pauses automatically when the section is scrolled out of view.
 
 **Step 2: Commit**
 
@@ -1028,11 +1075,12 @@ All tasks complete. The workflow cinematic video is live at `http://localhost:30
 
 **Re-rendering:** If stage copy, timing, or animations need to change in future, edit the relevant files in `apps/remotion/src/WorkflowVideo/`, re-run `npm run render` from `apps/remotion/`, and commit the new MP4.
 
-**Current video specs:** 705 frames · 30fps · ~23.5s · ~3MB
-- 2s intro + 13 × 1.5s stages + 2s outro
-- Each stage: 3 background sweeps (multi-directional, direction alternates per stage), icon slides in with alternating direction + rotation (even=left/−20°, odd=right/+20°), text cascades in, thematic exit animation in last 8 frames
+**Current video specs:** 930 frames · 30fps · ~31s
+- 2s intro + 13 × 2s stages + 3s outro
+- Each stage: 3 background sweeps (multi-directional, direction alternates per stage), icon slides in with alternating direction + rotation (even=left/−20°, odd=right/+20°), text cascades in (entry completes by frame 37), 13-frame dwell, thematic exit animation frames 50–60
 - Step number: 56px · Stage name: 80px · Insight: 22px
 - Progress: 13 dots centered 48px from bottom — completed=solid blue, current=14px + pulsing ring, upcoming=dim
+- Marketing embed: cinematic expand reveal on scroll (horizontal bar → full rectangle, 0.9s); video plays only after expand and pauses when scrolled out of view
 
 **Exit animations per stage:**
 | Stage | Exit type | Effect |
