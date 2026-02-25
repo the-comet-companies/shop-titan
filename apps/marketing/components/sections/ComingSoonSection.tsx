@@ -3,9 +3,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-// Logo slot: renders an <img> if the SVG file exists at the given path,
-// otherwise renders a text pill. Swap in real SVGs by dropping files into
-// public/images/logos/ — no code changes needed.
 function LogoSlot({ name, file }: { name: string; file: string }) {
   const [imgFailed, setImgFailed] = useState(false);
 
@@ -27,6 +24,37 @@ function LogoSlot({ name, file }: { name: string; file: string }) {
   );
 }
 
+function IntegrationLogos({ logos }: { logos: readonly { name: string; file: string }[] }) {
+  return (
+    <div className="flex shrink-0 items-center gap-8 pr-8">
+      {logos.map((logo) => (
+        <img
+          key={logo.file}
+          src={`/logos/integrations/${logo.file}`}
+          alt={logo.name}
+          className="h-7 w-auto object-contain opacity-70"
+        />
+      ))}
+    </div>
+  );
+}
+
+function IntegrationCarousel({ logos }: { logos: readonly { name: string; file: string }[] }) {
+  return (
+    <div className="w-full relative py-3 flex overflow-hidden mt-1">
+      <div className="absolute left-0 inset-y-0 w-12 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 inset-y-0 w-12 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+      <div
+        className="carousel-track items-center shrink-0 opacity-60 group-hover:opacity-100 transition-opacity"
+        style={{ animationDuration: '25s', willChange: 'transform' }}
+      >
+        <IntegrationLogos logos={logos} />
+        <IntegrationLogos logos={logos} />
+      </div>
+    </div>
+  );
+}
+
 const CARDS = [
   {
     id: 'woocommerce',
@@ -35,6 +63,7 @@ const CARDS = [
     description: 'Connect your WooCommerce store directly to Shop Titan.',
     footnote: '* Additional time may be required for field mapping',
     logos: [{ name: 'WooCommerce', file: 'woocommerce.svg' }],
+    carousel: false,
   },
   {
     id: 'shopify',
@@ -43,6 +72,7 @@ const CARDS = [
     description: 'Two-way sync between Shopify orders and your Shop Titan workflow.',
     footnote: '* Additional dev time may be required for mapping',
     logos: [{ name: 'Shopify', file: 'shopify.svg' }],
+    carousel: false,
   },
   {
     id: 'design-library',
@@ -51,6 +81,7 @@ const CARDS = [
     description: 'Take your designs, sell them and push them to all the marketplaces.',
     footnote: null,
     logos: [],
+    carousel: false,
   },
   {
     id: 'feed-management',
@@ -68,6 +99,7 @@ const CARDS = [
       { name: 'Faire', file: 'faire.svg' },
       { name: 'Fashion Go', file: 'fashion-go.svg' },
     ],
+    carousel: true,
   },
 ] as const;
 
@@ -165,7 +197,7 @@ export default function ComingSoonSection() {
                 hidden: { opacity: 0, y: 24 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
               }}
-              className="group relative flex flex-col gap-4 p-6 md:p-8 rounded-2xl md:rounded-3xl bg-surface border border-structural-border hover:border-primary/30 hover:shadow-[0_0_40px_-10px_rgba(0,102,204,0.15)] transition-all duration-300"
+              className="group relative flex flex-col gap-4 p-6 md:p-8 rounded-2xl md:rounded-3xl bg-surface border border-structural-border overflow-hidden hover:border-primary/30 hover:shadow-[0_0_40px_-10px_rgba(0,102,204,0.15)] transition-all duration-300"
             >
               {/* Top-edge highlight */}
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent rounded-t-3xl pointer-events-none" />
@@ -188,14 +220,16 @@ export default function ComingSoonSection() {
               {/* Description */}
               <p className="text-secondary-text text-sm leading-relaxed">{card.description}</p>
 
-              {/* Logo grid */}
-              {card.logos.length > 0 && (
+              {/* Logos — carousel or static pills */}
+              {card.carousel ? (
+                <IntegrationCarousel logos={card.logos} />
+              ) : card.logos.length > 0 ? (
                 <div className="flex flex-wrap gap-2 mt-1 items-center">
                   {card.logos.map((logo) => (
                     <LogoSlot key={logo.file} name={logo.name} file={logo.file} />
                   ))}
                 </div>
-              )}
+              ) : null}
 
               {/* Footnote */}
               {card.footnote && (
