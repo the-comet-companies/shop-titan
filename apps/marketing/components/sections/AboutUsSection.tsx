@@ -14,7 +14,7 @@ export default function AboutUsSection() {
     const videoY = useTransform(scrollYProgress, [0, 0.5], [50, 0]);
 
     return (
-        <section ref={containerRef} id="about-us" className="py-24 md:py-32 bg-background-light dark:bg-background-dark overflow-hidden relative">
+        <section ref={containerRef} id="about-us" className="pt-8 pb-24 md:pt-12 md:pb-32 bg-background-light dark:bg-background-dark overflow-hidden relative">
 
             {/* Background Texture - Subtle Grain or Gradient */}
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat mix-blend-overlay"></div>
@@ -22,7 +22,7 @@ export default function AboutUsSection() {
             <div className="max-w-5xl mx-auto px-6 sm:px-8 md:px-12 relative z-10">
 
                 {/* 1. Intro Header - Cinematic & Centered */}
-                <div className="mb-16 md:mb-20 text-center">
+                <div className="mb-4 md:mb-6 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ export default function AboutUsSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
-                        className="text-4xl sm:text-5xl md:text-7xl font-bold text-charcoal dark:text-white mb-6 tracking-tight leading-[1.1]"
+                        className="text-4xl sm:text-5xl md:text-7xl font-bold text-charcoal dark:text-white mb-2 tracking-tight leading-[1.1]"
                     >
                         Necessity is the <br className="hidden md:block" />
                         <span className="text-secondary-text dark:text-gray-500">mother of invention.</span>
@@ -46,7 +46,7 @@ export default function AboutUsSection() {
 
                     <motion.div
                         initial={{ height: 0 }}
-                        whileInView={{ height: 60 }}
+                        whileInView={{ height: 24 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.4, duration: 1 }}
                         className="w-[1px] bg-gradient-to-b from-charcoal/20 to-transparent dark:from-white/20 mx-auto"
@@ -89,10 +89,10 @@ export default function AboutUsSection() {
                     className="mt-8 flex flex-col items-center justify-center text-center"
                 >
                     <div className="h-16 w-16 md:h-20 md:w-20 rounded-full bg-gray-200 dark:bg-gray-800 p-0.5 border border-white dark:border-gray-700 shadow-md mb-4 bg-[url('/placeholder-founder.jpg')] bg-cover bg-center">
-                        <div className="w-full h-full rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">F</div>
+                        <div className="w-full h-full rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">M</div>
                     </div>
                     <div>
-                        <h4 className="text-lg font-bold text-charcoal dark:text-white">Founder Name</h4>
+                        <h4 className="text-lg font-bold text-charcoal dark:text-white">Michael Monfared</h4>
                         <p className="text-sm text-secondary-text dark:text-gray-500 font-medium">Founder & CEO, Shop Titan</p>
                     </div>
                 </motion.div>
