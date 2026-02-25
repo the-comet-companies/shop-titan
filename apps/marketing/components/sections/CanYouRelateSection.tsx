@@ -90,12 +90,12 @@ export default function CanYouRelateSection() {
                     className="mb-16 md:mb-20 max-w-2xl"
                 >
                     <span className="inline-block px-3 py-1 rounded-full bg-rose-100 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 text-xs font-bold tracking-wider uppercase mb-4">
-                        Can You Relate?
+                        The Friction
                     </span>
                     <h2 className="text-3xl md:text-5xl font-bold text-charcoal dark:text-white leading-tight mb-4">
-                        If any of these sound familiar,
+                        We&apos;ve heard all of these.
                         <br />
-                        <span className="text-secondary-text dark:text-gray-500">keep reading.</span>
+                        <span className="text-secondary-text dark:text-gray-500">Usually in the same conversation.</span>
                     </h2>
                 </motion.div>
 
