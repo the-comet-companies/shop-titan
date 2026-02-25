@@ -20,7 +20,7 @@ export default function Home() {
                 <CanYouRelateSection />
                 <WorkflowVideoSection />
                 <FeaturesSection />
-                <ProductShowcaseSection />
+                {/* <ProductShowcaseSection /> */}
                 <BenefitsSection />
                 <IndustriesSection />
                 <ShowcaseSection />
