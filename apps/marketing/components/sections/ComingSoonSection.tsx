@@ -237,9 +237,12 @@ export default function ComingSoonSection() {
                 />
                 <button
                   type="submit"
-                  className="px-7 py-3 rounded-full bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-colors flex-shrink-0"
+                  className="px-7 py-3 rounded-full text-white text-sm font-semibold relative overflow-hidden group flex-shrink-0"
                 >
-                  Notify Me
+                  <div className="absolute inset-0 bg-charcoal group-hover:bg-charcoal/80 transition-colors rounded-full" />
+                  <div className="absolute inset-0 bg-white/[0.06] rounded-full" />
+                  <div className="absolute inset-0 border border-white/10 rounded-full" />
+                  <span className="relative z-10">Notify Me</span>
                 </button>
               </motion.form>
             )}
