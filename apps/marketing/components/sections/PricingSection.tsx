@@ -34,7 +34,6 @@ const platformTiers: PricingTier[] = [
             { icon: 'people', text: 'Customer Database' },
             { icon: 'support_agent', text: 'Virtual setup & onboarding' },
         ],
-        ctaText: 'Get Started',
     },
     {
         id: 'business',
@@ -51,7 +50,6 @@ const platformTiers: PricingTier[] = [
         ],
         badge: 'Popular',
         highlighted: true,
-        ctaText: 'Get Started',
     },
     {
         id: 'enterprise',
@@ -68,7 +66,6 @@ const platformTiers: PricingTier[] = [
             { icon: 'psychology', text: 'AI Integrations' },
             { icon: 'groups', text: '1-on-1 Strategy Sessions' },
         ],
-        ctaText: 'Contact Sales',
     },
 ];
 
@@ -89,7 +86,6 @@ const servicesTiers: PricingTier[] = [
             { icon: 'trending_up', text: 'Business strategy sessions' },
         ],
         badge: 'Premium',
-        ctaText: 'Contact Sales',
     },
     {
         id: 'custom',
@@ -102,7 +98,6 @@ const servicesTiers: PricingTier[] = [
             { icon: 'group', text: 'Dedicated development team' },
             { icon: 'phone', text: 'Contact us for more details' },
         ],
-        ctaText: 'Let\'s Talk',
     },
 ];
 
@@ -114,7 +109,7 @@ export default function PricingSection() {
     const gridCols = activeTab === 'platform' ? 'lg:grid-cols-3' : 'lg:grid-cols-2';
 
     return (
-        <section id="pricing" className="py-24 bg-gray-50 dark:bg-black relative overflow-hidden">
+        <section id="pricing" className="pt-8 pb-24 bg-gray-50 dark:bg-black relative overflow-hidden">
             <div ref={elementRef} className="container mx-auto px-4 md:px-6">
                 {/* Header */}
                 <div
@@ -213,31 +208,32 @@ export default function PricingSection() {
                                         ))}
                                     </ul>
                                 </div>
-
-                                {/* CTA Button */}
-                                <div className="mt-auto">
-                                    <Link
-                                        href="/reach-out"
-                                        className={`w-full block text-center py-4 rounded-xl font-bold transition-all duration-300 border-2 ${tier.highlighted
-                                            ? 'bg-primary border-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/25'
-                                            : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-charcoal dark:text-white hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-gray-700'
-                                            }`}
-                                    >
-                                        {tier.ctaText || 'Get Started'}
-                                    </Link>
-                                </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
 
-                {/* Additional Info */}
-                <div className={`mt-16 text-center transition-all duration-700 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'
-                    }`}>
-                    <p className="text-sm text-secondary-text dark:text-gray-500">
-                        All packages include full access to Shop Titan platform. Custom integrations and features available upon request.
-                    </p>
-                </div>
+                {/* Main Call to Action */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="mt-16 text-center"
+                >
+                    <Link
+                        href="/reach-out"
+                        className="inline-flex items-center gap-2 px-10 py-5 bg-primary text-white text-lg font-bold rounded-full hover:bg-primary/90 transition-transform hover:scale-105 shadow-xl shadow-primary/20"
+                    >
+                        Let&apos;s Build Your Setup
+                        <span className="material-symbols-outlined text-xl">arrow_forward</span>
+                    </Link>
+                    <div className="mt-8">
+                        <p className="text-sm text-secondary-text dark:text-gray-500 max-w-2xl mx-auto">
+                            All packages include full access to Shop Titan platform. Custom integrations and features available upon request. We believe in providing solutions, not forcing subscriptions. Let&apos;s discuss what works best for your workflow.
+                        </p>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );
