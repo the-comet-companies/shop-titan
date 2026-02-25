@@ -298,4 +298,9 @@
   .stack-mobile {
     @apply flex flex-col md:flex-row;
   }
+
+  /* Hide scrollbar cross-browser (Firefox uses inline style scrollbarWidth: none) */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
 }

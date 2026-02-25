@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
+const MotionLink = motion.create(Link);
+
 export default function Footer() {
     return (
         <footer className="bg-[#111111] border-t border-[#222] py-12 md:py-16 lg:py-20">
@@ -26,34 +28,31 @@ export default function Footer() {
                         </h5>
                         <ul className="space-y-3 md:space-y-4 text-sm text-gray-400">
                             <li>
-                                <Link href="/blog" passHref legacyBehavior>
-                                    <motion.a
-                                        whileHover={{ x: 5, color: "#EF4444" }}
-                                        className="block transition-colors focus-primary tap-target hover:text-white"
-                                    >
-                                        Case Studies
-                                    </motion.a>
-                                </Link>
+                                <MotionLink
+                                    href="/blog"
+                                    whileHover={{ x: 5, color: "#EF4444" }}
+                                    className="block transition-colors focus-primary tap-target hover:text-white"
+                                >
+                                    Case Studies
+                                </MotionLink>
                             </li>
                             <li>
-                                <Link href="/#platform" passHref legacyBehavior>
-                                    <motion.a
-                                        whileHover={{ x: 5, color: "#EF4444" }}
-                                        className="block transition-colors focus-primary tap-target hover:text-white"
-                                    >
-                                        Platform
-                                    </motion.a>
-                                </Link>
+                                <MotionLink
+                                    href="/#platform"
+                                    whileHover={{ x: 5, color: "#EF4444" }}
+                                    className="block transition-colors focus-primary tap-target hover:text-white"
+                                >
+                                    Platform
+                                </MotionLink>
                             </li>
                             <li>
-                                <Link href="/pricing" passHref legacyBehavior>
-                                    <motion.a
-                                        whileHover={{ x: 5, color: "#EF4444" }}
-                                        className="block transition-colors focus-primary tap-target hover:text-white"
-                                    >
-                                        Pricing
-                                    </motion.a>
-                                </Link>
+                                <MotionLink
+                                    href="/pricing"
+                                    whileHover={{ x: 5, color: "#EF4444" }}
+                                    className="block transition-colors focus-primary tap-target hover:text-white"
+                                >
+                                    Pricing
+                                </MotionLink>
                             </li>
                         </ul>
                     </div>
@@ -64,24 +63,22 @@ export default function Footer() {
                         </h5>
                         <ul className="space-y-3 md:space-y-4 text-sm text-gray-400">
                             <li>
-                                <Link href="/privacy-policy" passHref legacyBehavior>
-                                    <motion.a
-                                        whileHover={{ x: 5, color: "#EF4444" }}
-                                        className="block transition-colors focus-primary tap-target hover:text-white"
-                                    >
-                                        Privacy Policy
-                                    </motion.a>
-                                </Link>
+                                <MotionLink
+                                    href="/privacy-policy"
+                                    whileHover={{ x: 5, color: "#EF4444" }}
+                                    className="block transition-colors focus-primary tap-target hover:text-white"
+                                >
+                                    Privacy Policy
+                                </MotionLink>
                             </li>
                             <li>
-                                <Link href="/terms" passHref legacyBehavior>
-                                    <motion.a
-                                        whileHover={{ x: 5, color: "#EF4444" }}
-                                        className="block transition-colors focus-primary tap-target hover:text-white"
-                                    >
-                                        Terms
-                                    </motion.a>
-                                </Link>
+                                <MotionLink
+                                    href="/terms"
+                                    whileHover={{ x: 5, color: "#EF4444" }}
+                                    className="block transition-colors focus-primary tap-target hover:text-white"
+                                >
+                                    Terms
+                                </MotionLink>
                             </li>
                         </ul>
                     </div>

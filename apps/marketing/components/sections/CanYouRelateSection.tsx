@@ -1,6 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+
+const TOTAL_CARDS = 10;
 
 const painPoints = [
     {
@@ -55,103 +58,151 @@ const painPoints = [
     },
 ];
 
-const containerVariants = {
-    hidden: {},
-    show: {
-        transition: { staggerChildren: 0.07 },
-    },
-};
+function AnimatedCard({ point, visible, index }: { point: typeof painPoints[0]; visible: boolean; index: number }) {
+    const prefersReduced = useReducedMotion();
 
-const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-    },
-};
+    return (
+        <motion.div
+            data-index={index}
+            initial={false}
+            animate={visible
+                ? { opacity: 1, scale: 1 }
+                : { opacity: 0, scale: prefersReduced ? 1 : 0.88 }
+            }
+            transition={visible && !prefersReduced
+                ? { type: 'spring', stiffness: 280, damping: 22 }
+                : { duration: prefersReduced ? 0.15 : 0 }
+            }
+            className="relative p-3 md:p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden group"
+        >
+            {/* Hover glow */}
+            <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/0 group-hover:bg-rose-500/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+            <span className="block text-[10px] font-bold tracking-widest text-secondary-text dark:text-gray-600 uppercase mb-1.5">
+                {point.number}
+            </span>
+            <p className="text-sm font-bold text-charcoal dark:text-white leading-snug mb-1">
+                {point.headline}
+            </p>
+            <p className="text-xs text-secondary-text dark:text-gray-500 font-medium leading-relaxed">
+                {point.consequence}
+            </p>
+        </motion.div>
+    );
+}
 
 export default function CanYouRelateSection() {
+    const outerRef = useRef<HTMLDivElement>(null);
+    const [visibleCount, setVisibleCount] = useState(0);
+
+    useEffect(() => {
+        // Mobile: show all cards immediately, no scroll-driven reveal
+        if (window.innerWidth < 768) {
+            setVisibleCount(TOTAL_CARDS);
+            return;
+        }
+
+        // Desktop: scroll-driven reveal
+        const outer = outerRef.current;
+        if (!outer) return;
+
+        let rafId = 0;
+        const handleScroll = () => {
+            cancelAnimationFrame(rafId);
+            rafId = requestAnimationFrame(() => {
+                const rect = outer.getBoundingClientRect();
+                const totalScrollable = outer.offsetHeight - window.innerHeight;
+                const scrolled = -rect.top;
+                const p = Math.max(0, Math.min(1, scrolled / totalScrollable));
+                const STEPS = TOTAL_CARDS / 2;
+                const rawPairs = Math.min(STEPS, Math.floor((p * STEPS) / 0.9) + 1);
+                setVisibleCount(rawPairs * 2);
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            cancelAnimationFrame(rafId);
+        };
+    }, []);
+
+    const allVisible = visibleCount === TOTAL_CARDS;
+
     return (
-        <section id="can-you-relate" className="py-24 md:py-32 bg-surface dark:bg-gray-950 relative overflow-hidden">
-            {/* Top divider */}
-            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent" />
-            {/* Micro grid texture */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+        // Mobile: auto height (no scroll track). Desktop: 400vh sticky scroll track.
+        <div ref={outerRef} className="md:h-[400vh]">
+            <section
+                id="can-you-relate"
+                className="md:sticky md:top-0 md:h-screen md:overflow-hidden flex flex-col bg-surface dark:bg-gray-950 relative"
+            >
+                {/* Top divider */}
+                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent" />
+                {/* Micro grid texture */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto px-mobile relative z-10">
+                {/* Content wrapper */}
+                <div className="relative z-10 md:flex-1 flex flex-col max-w-7xl mx-auto w-full px-mobile py-6 md:py-8 lg:py-12 md:min-h-0">
 
-                {/* Section header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, ease: 'easeOut' }}
-                    className="mb-16 md:mb-20 max-w-2xl"
-                >
-                    <span className="inline-block px-3 py-1 rounded-full bg-rose-100 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 text-xs font-bold tracking-wider uppercase mb-4">
-                        The Friction
-                    </span>
-                    <h2 className="text-3xl md:text-5xl font-bold text-charcoal dark:text-white leading-tight mb-4">
-                        We&apos;ve heard all of these.
-                        <br />
-                        <span className="text-secondary-text dark:text-gray-500">Usually in the same conversation.</span>
-                    </h2>
-                </motion.div>
-
-                {/* Pain point grid */}
-                <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5"
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: '-60px' }}
-                >
-                    {painPoints.map((point) => (
-                        <motion.div
-                            key={point.number}
-                            variants={cardVariants}
-                            className="group relative p-6 md:p-7 rounded-2xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-rose-200 dark:hover:border-rose-900/60 transition-colors duration-300 overflow-hidden"
-                        >
-                            {/* Hover glow */}
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/0 group-hover:bg-rose-500/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
-
-                            <span className="block text-xs font-bold tracking-widest text-secondary-text dark:text-gray-600 uppercase mb-3">
-                                {point.number}
+                    {/* Header */}
+                    <div className="flex-shrink-0 mb-6 md:mb-8">
+                        <div className="flex items-end justify-between gap-4">
+                            <h2 className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white leading-tight">
+                                We&apos;ve heard all of these.
+                                <br />
+                                <span className="text-secondary-text dark:text-gray-500">Usually in the same conversation.</span>
+                            </h2>
+                            {/* Progress counter — desktop only */}
+                            <span className="hidden md:inline text-sm font-bold tabular-nums text-secondary-text dark:text-gray-600 flex-shrink-0 pb-1">
+                                {visibleCount} <span className="text-structural-border dark:text-gray-700">/</span> {TOTAL_CARDS}
                             </span>
-                            <p className="text-base md:text-lg font-bold text-charcoal dark:text-white leading-snug mb-2">
-                                {point.headline}
+                        </div>
+                    </div>
+
+                    {/* Grid wrapper — desktop: fixed height + overflow clip. Mobile: natural height. */}
+                    <div className="relative md:flex-1 md:overflow-hidden md:min-h-0">
+                        <div className="grid grid-cols-2 gap-3">
+                            {painPoints.map((point, index) => (
+                                <AnimatedCard
+                                    key={point.number}
+                                    point={point}
+                                    visible={index < visibleCount}
+                                    index={index}
+                                />
+                            ))}
+                        </div>
+
+                        {/* Bridge CTA
+                            Desktop: absolute overlay with gradient fade
+                            Mobile: normal flow element below the grid */}
+                        <motion.div
+                            className="md:absolute md:bottom-0 md:inset-x-0 md:bg-gradient-to-t md:from-surface md:dark:from-gray-950 md:via-surface/95 md:dark:via-gray-950/95 md:to-transparent pt-6 pb-2 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
+                            initial={false}
+                            animate={{
+                                opacity: allVisible ? 1 : 0,
+                                y: allVisible ? 0 : 8,
+                            }}
+                            transition={{ duration: 0.5, ease: 'easeOut' }}
+                            style={{ pointerEvents: allVisible ? 'auto' : 'none' }}
+                        >
+                            <p className="text-xl md:text-2xl font-bold text-charcoal dark:text-white">
+                                Every one of these has a fix.
                             </p>
-                            <p className="text-sm text-secondary-text dark:text-gray-500 font-medium leading-relaxed">
-                                {point.consequence}
-                            </p>
+                            <button
+                                onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
+                                className="px-8 py-3 text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
+                            >
+                                <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
+                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
+                                <span className="relative z-10">See How It Works</span>
+                                <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                            </button>
                         </motion.div>
-                    ))}
-                </motion.div>
+                    </div>
 
-                {/* Bridge to features */}
-                <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
-                    className="mt-16 md:mt-20 flex flex-col items-center text-center gap-6"
-                >
-                    <p className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white">
-                        Every one of these has a fix.
-                    </p>
-                    <button
-                        onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
-                        className="px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center"
-                    >
-                        <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
-                        <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
-                        <span className="relative z-10">See How It Works</span>
-                        <span className="material-symbols-outlined text-xl relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
-                    </button>
-                </motion.div>
-
-            </div>
-        </section>
+                </div>
+            </section>
+        </div>
     );
 }
