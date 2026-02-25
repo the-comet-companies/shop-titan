@@ -34,8 +34,7 @@ export default function BenefitsSection() {
                         viewport={{ once: true }}
                     >
                         <h2 className="text-3xl md:text-5xl font-bold text-charcoal dark:text-white leading-tight mb-4">
-                            Built for reliability.<br />
-                            <span className="text-secondary-text dark:text-gray-400">Integrated with everything.</span>
+                            Built for reliability.
                         </h2>
                     </motion.div>
                 </div>

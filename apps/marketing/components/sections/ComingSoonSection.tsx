@@ -12,7 +12,7 @@ function LogoSlot({ name, file }: { name: string; file: string }) {
   if (!imgFailed) {
     return (
       <img
-        src={`/images/logos/${file}`}
+        src={`/logos/integrations/${file}`}
         alt={name}
         onError={() => setImgFailed(true)}
         className="h-6 w-auto object-contain opacity-60 grayscale"

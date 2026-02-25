@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "Bash(python3:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(echo Failed:*)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(gh api:*)",
+      "Bash(cd /c/Users/desil/projects/shop-titan/apps/remotion && npm install 2>&1)",
+      "Bash(cd:*)",
+      "Bash(git:*)",
+      "Bash(node:*)",
+      "Bash(cd /c/Users/desil/projects/shop-titan/apps/remotion && npm run render 2>&1)",
+      "Bash(cd /c/Users/desil/projects/shop-titan/apps/remotion && npx tsc --noEmit 2>&1)",
+      "Bash(cd /c/Users/desil/projects/shop-titan/apps/marketing && npx tsc --noEmit 2>&1)"
+    ]
+  }
+}

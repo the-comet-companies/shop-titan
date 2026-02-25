@@ -25,8 +25,8 @@ export default function Home() {
                 <BenefitsSection />
                 <IndustriesSection />
                 <ShowcaseSection />
-                <ComingSoonSection />
                 <CtaSection />
+                <ComingSoonSection />
 
             </main>
             <Footer />
