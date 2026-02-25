@@ -130,53 +130,9 @@ export default function ComingSoonSection() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="text-center mb-14 md:mb-18"
         >
-          <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-5">
-            Extra
-          </span>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-charcoal leading-[1.1] tracking-tight mb-5">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-charcoal leading-[1.1] tracking-tight">
             What&apos;s Coming.
           </h2>
-          <p className="text-lg text-secondary-text max-w-xl mx-auto mb-10">
-            Be the first to know when these features ship.
-          </p>
-
-          {/* Email form */}
-          <div className="flex justify-center">
-            {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-                className="flex items-center gap-3 text-charcoal"
-              >
-                <span className="material-symbols-outlined text-primary text-2xl">
-                  check_circle
-                </span>
-                <span className="text-base font-medium">You&apos;re on the list.</span>
-              </motion.div>
-            ) : (
-              <motion.form
-                initial={{ opacity: 1 }}
-                onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row gap-3 w-full max-w-md"
-              >
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
-                  className="flex-1 px-5 py-3 rounded-full bg-white border border-structural-border text-charcoal placeholder:text-gray-400 text-sm focus:outline-none focus:border-primary/60 transition-colors"
-                />
-                <button
-                  type="submit"
-                  className="px-7 py-3 rounded-full bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-colors flex-shrink-0"
-                >
-                  Notify Me
-                </button>
-              </motion.form>
-            )}
-          </div>
         </motion.div>
 
         {/* Feature cards */}
@@ -239,6 +195,55 @@ export default function ComingSoonSection() {
               )}
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Email CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="text-center mt-14 md:mt-16"
+        >
+          <p className="text-lg text-secondary-text max-w-xl mx-auto mb-8">
+            Be the first to know when these features ship.
+          </p>
+          <div className="flex justify-center">
+            {submitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+                className="flex items-center gap-3 text-charcoal"
+              >
+                <span className="material-symbols-outlined text-primary text-2xl">
+                  check_circle
+                </span>
+                <span className="text-base font-medium">You&apos;re on the list.</span>
+              </motion.div>
+            ) : (
+              <motion.form
+                initial={{ opacity: 1 }}
+                onSubmit={handleSubmit}
+                className="flex flex-col sm:flex-row gap-3 w-full max-w-md"
+              >
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  className="flex-1 px-5 py-3 rounded-full bg-white border border-structural-border text-charcoal placeholder:text-gray-400 text-sm focus:outline-none focus:border-primary/60 transition-colors"
+                />
+                <button
+                  type="submit"
+                  className="px-7 py-3 rounded-full bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-colors flex-shrink-0"
+                >
+                  Notify Me
+                </button>
+              </motion.form>
+            )}
+          </div>
         </motion.div>
       </div>
     </section>
