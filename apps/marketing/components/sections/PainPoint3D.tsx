@@ -14,7 +14,7 @@ const painPointScenes = [
         description: "Orders, artwork, pricing, and approvals live in different places. Your production manager is copying details from emails into 4 different spreadsheets.",
         color: "#ef4444",
         particleColor: "#93c5fd",
-        highlightWord: "CHAOS"
+        highlightWord: "CHAOS",
     },
     {
         id: "solution",
@@ -23,7 +23,7 @@ const painPointScenes = [
         description: "Shop Titan becomes your single source of truth. Orders, art, pricing, production, and inventory in one system.",
         color: "#4f46e5",
         particleColor: "#60a5fa",
-        highlightWord: "CLARITY"
+        highlightWord: "CLARITY",
     },
     {
         id: "dream",
@@ -32,7 +32,26 @@ const painPointScenes = [
         description: "Zero time wasted searching. No more 'which version?' confusion. Production errors eliminated at the source.",
         color: "#059669",
         particleColor: "#3b82f6",
-        highlightWord: "FOCUS"
+        highlightWord: "FOCUS",
+    },
+    {
+        id: "stakes",
+        title: "Every Week You Wait...",
+        subtitle: "THE RISK",
+        description: "Another missed deadline. Another manual error. Another dollar left on the floor. The margin leaks are silent — until they're not. Your competitors are already systematizing.",
+        color: "#f97316",
+        particleColor: "#fca5a5",
+        highlightWord: "COST",
+    },
+    {
+        id: "cta",
+        title: "Ready to change that?",
+        subtitle: "YOUR MOVE",
+        description: "Shops that unify their operations cut production errors and reclaim hours every single day. The only question is when you start.",
+        color: "#0066CC",
+        particleColor: "#93c5fd",
+        highlightWord: null,
+        cta: { label: "Let's Talk", href: "/reach-out" },
     },
 ];
 
@@ -120,7 +139,7 @@ export default function PainPoint3D() {
                 const scrolled = -rect.top;
                 const p = Math.max(0, Math.min(1, scrolled / totalScrollable));
                 setProgress(p);
-                setActiveIndex(Math.min(Math.floor(p * 3), 2));
+                setActiveIndex(Math.min(Math.floor(p * 5), 4));
             });
         };
 
@@ -134,7 +153,7 @@ export default function PainPoint3D() {
     }, []);
 
     return (
-        <div ref={outerRef} style={{ height: '300vh' }}>
+        <div ref={outerRef} style={{ height: '500vh' }}>
             <section className="sticky top-0 h-screen w-full overflow-hidden bg-background-light dark:bg-black">
                 {/* 3D Canvas Layer */}
                 <div className="absolute inset-0 z-0">
@@ -155,7 +174,7 @@ export default function PainPoint3D() {
                             return (
                                 <div
                                     key={scene.id}
-                                    className={`absolute inset-0 flex flex-col items-center justify-center ${isActive ? 'opacity-100' : 'opacity-0'}`}
+                                    className={`absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`}
                                 >
                                     <div className="p-4 md:p-0">
                                         <span
@@ -170,9 +189,20 @@ export default function PainPoint3D() {
                                         <p className="text-lg md:text-2xl text-secondary-text dark:text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto">
                                             {scene.description}
                                         </p>
-                                        <div className="inline-block px-6 py-3 border-2 rounded-full text-sm font-bold tracking-widest uppercase" style={{ borderColor: scene.color, color: scene.color }}>
-                                            {scene.highlightWord}
-                                        </div>
+                                        {'cta' in scene && scene.cta ? (
+                                            <a
+                                                href={scene.cta.href}
+                                                className="pointer-events-auto inline-flex items-center gap-3 px-10 py-5 rounded-full text-lg font-bold text-white transition-all duration-300 hover:brightness-110 hover:scale-105 shadow-lg"
+                                                style={{ backgroundColor: scene.color, boxShadow: `0 8px 30px ${scene.color}40` }}
+                                            >
+                                                {scene.cta.label}
+                                                <span className="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                                            </a>
+                                        ) : (
+                                            <div className="inline-block px-6 py-3 border-2 rounded-full text-sm font-bold tracking-widest uppercase" style={{ borderColor: scene.color, color: scene.color }}>
+                                                {scene.highlightWord}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             );
