@@ -104,4 +104,4 @@ CTA
 | 2026-02-25 | Initial audit | PainPoint3D had 3/5 framework steps; added Negative Stakes + CTA scenes |
 | 2026-02-25 | Framework complete | All 5 steps now in PainPoint3D scroll sequence |
 | 2026-02-25 | Coverage audit | Top 10 mapped; 3 missing entirely, 4 macro-level gaps identified |
-| — | "Can You Relate?" section | Proposed — not yet built |
+| 2026-02-25 | "Can You Relate?" section built | `CanYouRelateSection.tsx` — all 10 pain points, rose hover cards, bridge CTA to #features |
