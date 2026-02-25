@@ -33,9 +33,6 @@ export default function BenefitsSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-4">
-                            The Ecosystem
-                        </span>
                         <h2 className="text-3xl md:text-5xl font-bold text-charcoal dark:text-white leading-tight mb-4">
                             Built for reliability.<br />
                             <span className="text-secondary-text dark:text-gray-400">Integrated with everything.</span>
@@ -57,11 +54,13 @@ export default function BenefitsSection() {
                         className="md:col-span-2 rounded-2xl md:rounded-3xl p-6 md:p-8 border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm relative overflow-hidden group hover:border-gray-300 dark:hover:border-gray-700 transition-colors flex flex-col justify-between"
                     >
                         <div>
-                            <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center p-2 mb-6">
-                                <img src="/logos/storage/amazonS3.svg" alt="Amazon S3" className="w-full h-full object-contain" />
+                            <div className="flex items-center gap-4 mb-2">
+                                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center p-2 flex-shrink-0">
+                                    <img src="/logos/storage/amazonS3.svg" alt="Amazon S3" className="w-full h-full object-contain" />
+                                </div>
+                                <h3 className="text-xl md:text-2xl font-bold dark:text-white">Fully Cloud Based on AWS S3</h3>
                             </div>
-                            <h3 className="text-xl md:text-2xl font-bold dark:text-white mb-2">Fully Cloud Based on AWS S3</h3>
-                            <p className="text-secondary-text dark:text-gray-400 font-medium">
+                            <p className="text-secondary-text dark:text-gray-400 font-medium pt-2">
                                 Secure, enterprise-grade architecture. Your data, your access, you are in control.
                             </p>
                         </div>
@@ -82,9 +81,6 @@ export default function BenefitsSection() {
                         variants={cardVariants}
                         className="rounded-2xl md:rounded-3xl p-6 md:p-8 border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm overflow-hidden group hover:border-gray-300 dark:hover:border-gray-700 transition-colors"
                     >
-                        <div className="w-12 h-12 bg-yellow-100 dark:bg-yellow-900/20 rounded-xl flex items-center justify-center text-yellow-600 dark:text-yellow-500 mb-6">
-                            <span className="material-symbols-outlined text-2xl">support_agent</span>
-                        </div>
                         <h3 className="text-xl font-bold dark:text-white mb-2">Quick Response Support</h3>
                         <p className="text-secondary-text dark:text-gray-400 font-medium text-sm">
                             Real support happens through Slack, directly connecting you with our success team. Includes all maintenance and hosting so you focus on what you do best.
@@ -97,9 +93,6 @@ export default function BenefitsSection() {
                         className="md:col-span-1 rounded-2xl md:rounded-3xl p-6 md:p-8 border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm overflow-hidden group hover:border-gray-300 dark:hover:border-gray-700 transition-colors flex flex-col justify-between"
                     >
                         <div>
-                            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/20 rounded-xl flex items-center justify-center text-purple-600 dark:text-purple-400 mb-6">
-                                <span className="material-symbols-outlined text-2xl">webhook</span>
-                            </div>
                             <h3 className="text-xl font-bold dark:text-white mb-2">API & Automations</h3>
                             <p className="text-secondary-text dark:text-gray-400 font-medium text-sm mb-6">
                                 Unlimited possibilities with white-labeled, blind ship options using your client&apos;s logo, plus S3 bucket integrations.
@@ -124,9 +117,6 @@ export default function BenefitsSection() {
                         className="md:col-span-2 rounded-2xl md:rounded-3xl p-6 md:p-8 border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm overflow-hidden group hover:border-gray-300 dark:hover:border-gray-700 transition-colors flex flex-col justify-between"
                     >
                         <div>
-                            <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/20 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-6">
-                                <span className="material-symbols-outlined text-2xl">payments</span>
-                            </div>
                             <h3 className="text-xl md:text-2xl font-bold dark:text-white mb-2">Seamless Payments via Stripe</h3>
                             <p className="text-secondary-text dark:text-gray-400 font-medium max-w-xl">
                                 Accept all payment types. Create, accept, and record payments seamlessly directly through the platform.
@@ -151,9 +141,6 @@ export default function BenefitsSection() {
                         className="lg:col-span-3 rounded-2xl md:rounded-3xl p-6 md:p-8 border border-structural-border dark:border-gray-800 bg-gradient-to-br from-indigo-50/40 to-blue-50/40 dark:from-indigo-950/20 dark:to-blue-950/20 shadow-sm overflow-hidden group hover:border-blue-200 dark:hover:border-blue-800 transition-colors flex flex-col md:flex-row items-center gap-8"
                     >
                         <div className="flex-1">
-                            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/40 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6">
-                                <span className="material-symbols-outlined text-2xl">local_shipping</span>
-                            </div>
                             <h3 className="text-xl md:text-2xl font-bold dark:text-white mb-4">Advanced Shipping & Logging</h3>
                             <ul className="space-y-3 mb-6">
                                 {[
