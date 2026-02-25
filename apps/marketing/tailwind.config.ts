@@ -94,6 +94,9 @@ const config: Config = {
           },
         },
       },
+      maxWidth: {
+        container: "1280px",
+      },
     },
   },
   plugins: [],

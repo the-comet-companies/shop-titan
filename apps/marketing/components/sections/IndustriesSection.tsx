@@ -136,7 +136,7 @@ export default function IndustriesSection() {
         <section
             id="industries"
             ref={sectionRef}
-            className="py-20 md:py-32 bg-background-light dark:bg-background-dark relative overflow-hidden"
+            className="pt-20 md:pt-32 pb-8 md:pb-12 bg-background-light dark:bg-background-dark relative overflow-hidden"
         >
             {/* Top: Headline + Capabilities List */}
             <div className="max-w-7xl mx-auto px-mobile relative z-10 mb-24 md:mb-32">
@@ -226,7 +226,7 @@ export default function IndustriesSection() {
                             key={rowIndex}
                             className="carousel-track shrink-0"
                             style={{
-                                animationDuration: '55s',
+                                animationDuration: '120s',
                                 animationDelay: `${rowIndex * -12}s`,
                                 animationDirection: rowIndex % 2 === 0 ? 'normal' : 'reverse',
                                 willChange: 'transform',
