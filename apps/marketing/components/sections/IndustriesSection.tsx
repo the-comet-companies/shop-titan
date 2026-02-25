@@ -138,62 +138,8 @@ export default function IndustriesSection() {
             ref={sectionRef}
             className="pt-20 md:pt-32 pb-8 md:pb-12 bg-background-light dark:bg-background-dark relative overflow-hidden"
         >
-            {/* Top: Headline + Capabilities List */}
-            <div className="max-w-7xl mx-auto px-mobile relative z-10 mb-24 md:mb-32">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
-                    <div className="flex flex-col justify-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-6">
-                                Workflows Solved
-                            </span>
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6 tracking-tight text-charcoal dark:text-white">
-                                Built for businesses who{' '}
-                                <span className="text-primary italic font-serif opacity-90">actually make</span> things.
-                            </h2>
-                            <p className="text-lg text-secondary-text dark:text-gray-400 leading-relaxed max-w-lg">
-                                If your shop performs any of these multi-step custom workflows, our platform is engineered for your operational chaos.
-                            </p>
-                        </motion.div>
-                    </div>
-
-                    <motion.div
-                        className="flex flex-col divide-y divide-gray-100 dark:divide-gray-800/60 self-center"
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, ease: 'easeOut' }}
-                    >
-                        {capabilities.map((capability, index) => (
-                            <div key={index} className="flex items-center gap-4 py-3.5">
-                                <svg
-                                    className="flex-shrink-0 w-4 h-4 text-green-500 dark:text-green-400"
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                    aria-hidden="true"
-                                >
-                                    <path
-                                        d="M3 8l3.5 3.5L13 4.5"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                                <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                                    {capability}
-                                </span>
-                            </div>
-                        ))}
-                    </motion.div>
-                </div>
-            </div>
-
-            {/* Bottom: Industry Marquee */}
-            <div className="relative pt-16 pb-12 border-y border-gray-200 dark:border-gray-800/60 bg-white/50 dark:bg-black/20">
+            {/* Top: Industry Marquee */}
+            <div className="relative pt-16 pb-12 border-b border-gray-200 dark:border-gray-800/60 bg-white/50 dark:bg-black/20 mb-20 md:mb-32">
                 <div className="absolute left-0 inset-y-0 w-24 md:w-48 bg-gradient-to-r from-background-light dark:from-background-dark to-transparent z-10 pointer-events-none" />
                 <div className="absolute right-0 inset-y-0 w-24 md:w-48 bg-gradient-to-l from-background-light dark:from-background-dark to-transparent z-10 pointer-events-none" />
 
@@ -242,6 +188,60 @@ export default function IndustriesSection() {
                             ))}
                         </div>
                     ))}
+                </div>
+            </div>
+
+            {/* Bottom: Headline + Capabilities List */}
+            <div className="max-w-7xl mx-auto px-mobile relative z-10 pt-12 md:pt-16 pb-8 md:pb-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+                    <div className="flex flex-col justify-center lg:order-last">
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-6">
+                                Workflows Solved
+                            </span>
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6 tracking-tight text-charcoal dark:text-white">
+                                Built for businesses who{' '}
+                                <span className="text-primary italic font-serif opacity-90">actually make</span> things.
+                            </h2>
+                            <p className="text-lg text-secondary-text dark:text-gray-400 leading-relaxed max-w-lg">
+                                If your shop performs any of these multi-step custom workflows, our platform is engineered for your operational chaos.
+                            </p>
+                        </motion.div>
+                    </div>
+
+                    <motion.div
+                        className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 self-center w-full"
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, ease: 'easeOut' }}
+                    >
+                        {capabilities.map((capability, index) => (
+                            <div key={index} className="flex items-center gap-3 py-2 border-b border-gray-100 dark:border-gray-800/60 sm:border-0">
+                                <svg
+                                    className="flex-shrink-0 w-4 h-4 text-green-500 dark:text-green-400"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M3 8l3.5 3.5L13 4.5"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                                <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                                    {capability}
+                                </span>
+                            </div>
+                        ))}
+                    </motion.div>
                 </div>
             </div>
         </section>
