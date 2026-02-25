@@ -190,15 +190,24 @@ export default function PainPoint3D() {
                                             {scene.description}
                                         </p>
                                         {'cta' in scene && scene.cta ? (
-                                            <a
-                                                href={scene.cta.href}
-                                                className="pointer-events-auto px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center"
-                                            >
-                                                <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
-                                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
-                                                <span className="relative z-10">{scene.cta.label}</span>
-                                                <span className="material-symbols-outlined text-xl relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
-                                            </a>
+                                            <div className="flex flex-col items-center gap-5">
+                                                <a
+                                                    href={scene.cta.href}
+                                                    className="pointer-events-auto px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center"
+                                                >
+                                                    <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
+                                                    <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
+                                                    <span className="relative z-10">{scene.cta.label}</span>
+                                                    <span className="material-symbols-outlined text-xl relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                                                </a>
+                                                <button
+                                                    onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
+                                                    className="pointer-events-auto flex flex-col items-center gap-2 text-secondary-text dark:text-gray-500 hover:text-charcoal dark:hover:text-white transition-colors duration-300 group"
+                                                >
+                                                    <span className="text-xs font-semibold tracking-widest uppercase">Explore the platform</span>
+                                                    <span className="material-symbols-outlined text-lg animate-bounce">keyboard_arrow_down</span>
+                                                </button>
+                                            </div>
                                         ) : (
                                             <div className="inline-block px-6 py-3 border-2 rounded-full text-sm font-bold tracking-widest uppercase" style={{ borderColor: scene.color, color: scene.color }}>
                                                 {scene.highlightWord}
