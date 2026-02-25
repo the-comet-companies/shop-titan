@@ -6,7 +6,7 @@ export default function WorkflowVideoSection() {
   const { elementRef, isVisible } = useScrollAnimation();
 
   return (
-    <section className="py-24 md:py-32 bg-background-light">
+    <section id="workflow-video" className="py-24 md:py-32 bg-background-light">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div

@@ -141,7 +141,7 @@ export default function CanYouRelateSection() {
                         Every one of these has a fix.
                     </p>
                     <button
-                        onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+                        onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
                         className="px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center"
                     >
                         <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
