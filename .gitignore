@@ -49,6 +49,7 @@ Thumbs.db
 .agent/skills/
 .agents/skills/
 .gemini/
+.claude/
 
 # Misc
 *.pem
