@@ -94,12 +94,12 @@ export default function Footer() {
                             <input
                                 type="email"
                                 placeholder="your@email.com"
-                                className="w-full bg-[#161616] border border-[#222] text-gray-300 placeholder-gray-500 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary rounded-none transition-colors"
+                                className="w-full min-h-[44px] bg-[#161616] border border-[#222] text-gray-300 placeholder-gray-500 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary rounded-none transition-colors"
                                 required
                             />
                             <button
                                 type="submit"
-                                className="bg-white text-black text-xs font-bold px-6 py-3 tracking-widest uppercase hover:bg-gray-200 transition-colors whitespace-nowrap rounded-none border border-white"
+                                className="min-h-[44px] bg-white text-black text-xs font-bold px-6 py-3 tracking-widest uppercase hover:bg-gray-200 transition-colors whitespace-nowrap rounded-none border border-white"
                             >
                                 Subscribe
                             </button>
