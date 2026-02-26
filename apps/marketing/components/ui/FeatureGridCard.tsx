@@ -102,9 +102,6 @@ export default function FeatureGridCard({
               <div className="relative p-5 border border-rose-200/50 dark:border-rose-800/30 bg-rose-50/60 dark:bg-rose-950/20 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col h-full hover:shadow-lg transition-all">
                 <div className="absolute top-0 right-0 w-20 h-20 bg-rose-500/10 blur-2xl rounded-full pointer-events-none" />
                 <div className="flex items-center gap-2 mb-3 relative z-10">
-                  <div className="p-1.5 bg-rose-100 dark:bg-rose-900/40 rounded-lg">
-                    <span className="material-symbols-outlined text-rose-500 text-lg">sentiment_dissatisfied</span>
-                  </div>
                   <h4 className="text-xs font-bold uppercase tracking-widest text-rose-600 dark:text-rose-400">
                     The Friction
                   </h4>
@@ -118,9 +115,6 @@ export default function FeatureGridCard({
               <div className="relative p-5 border border-blue-200/50 dark:border-blue-800/30 bg-blue-50/60 dark:bg-blue-950/20 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col h-full hover:shadow-lg hover:shadow-primary/10 transition-all">
                 <div className="absolute bottom-0 left-0 w-20 h-20 bg-primary/10 blur-2xl rounded-full pointer-events-none" />
                 <div className="flex items-center gap-2 mb-3 relative z-10">
-                  <div className="p-1.5 bg-blue-100 dark:bg-blue-900/50 rounded-lg text-primary">
-                    <span className="material-symbols-outlined text-lg">bolt</span>
-                  </div>
                   <h4 className="text-xs font-bold uppercase tracking-widest text-primary dark:text-blue-400">
                     The Flow
                   </h4>
