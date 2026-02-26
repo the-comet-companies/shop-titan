@@ -1,7 +1,9 @@
 'use client';
 
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import VideoPlayer from '@/components/VideoPlayer';
+import { cn } from '@/lib/utils';
 
 interface FeatureGridCardProps {
   id: string;
@@ -28,6 +30,13 @@ export default function FeatureGridCard({
   onToggle,
   onWatchDemo
 }: FeatureGridCardProps) {
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
+
+  // Reset video state when card is collapsed
+  if (!isExpanded && isVideoVisible) {
+    setIsVideoVisible(false);
+  }
+
   return (
     <motion.div
       className={`
@@ -125,36 +134,53 @@ export default function FeatureGridCard({
               </div>
             </div>
 
-            {/* Video Placeholder */}
+            {/* Video Placeholder & Toggle */}
             {videoSrc && (
-              <div className="w-full bg-gray-50 dark:bg-black/50 p-2 md:p-4 flex items-center justify-center border border-structural-border dark:border-gray-800 rounded-xl relative overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50 dark:opacity-20 pointer-events-none" />
+              <div className="mt-4 flex flex-col gap-4">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsVideoVisible(!isVideoVisible);
+                  }}
+                  className="w-full py-3 px-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 text-charcoal dark:text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors active:bg-gray-50 dark:active:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800"
+                >
+                  <span className="material-symbols-outlined text-lg text-primary">
+                    {isVideoVisible ? 'visibility_off' : 'play_circle'}
+                  </span>
+                  {isVideoVisible ? 'Hide Visual' : 'See Visual Demo'}
+                </button>
 
-                <div className="w-full max-w-4xl shadow-2xl rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 relative z-10 bg-white dark:bg-gray-900 flex flex-col aspect-video group">
-                  <div className="flex-grow relative bg-gray-900 group-hover:bg-gray-800 transition-colors duration-500">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onWatchDemo?.(videoSrc);
-                      }}
-                      className="absolute inset-0 flex flex-col items-center justify-center text-white/40 group-hover:text-white/80 transition-all duration-500 z-20 hover:bg-black/20"
-                    >
-                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-current flex items-center justify-center mb-4 transition-transform group-hover:scale-110 bg-black/20 backdrop-blur-sm">
-                        <span className="material-symbols-outlined text-4xl md:text-5xl pl-1">play_arrow</span>
+                {isVideoVisible && (
+                  <div className="w-full bg-gray-50 dark:bg-black/50 p-2 md:p-4 flex items-center justify-center border border-structural-border dark:border-gray-800 rounded-xl relative overflow-hidden animate-in fade-in zoom-in duration-300">
+                    <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50 dark:opacity-20 pointer-events-none" />
+
+                    <div className="w-full max-w-4xl shadow-2xl rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 relative z-10 bg-white dark:bg-gray-900 flex flex-col aspect-video group">
+                      <div className="flex-grow relative bg-gray-900 group-hover:bg-gray-800 transition-colors duration-500">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onWatchDemo?.(videoSrc);
+                          }}
+                          className="absolute inset-0 flex flex-col items-center justify-center text-white/40 group-hover:text-white/80 transition-all duration-500 z-20 hover:bg-black/20"
+                        >
+                          <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-current flex items-center justify-center mb-4 transition-transform group-hover:scale-110 bg-black/20 backdrop-blur-sm">
+                            <span className="material-symbols-outlined text-4xl md:text-5xl pl-1">play_arrow</span>
+                          </div>
+                          <span className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">Watch Demo</span>
+                        </button>
+
+                        <VideoPlayer
+                          src={videoSrc}
+                          autoPlay={true}
+                          muted={true}
+                          loop={true}
+                          className="h-full w-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500"
+                          hideControls={true}
+                        />
                       </div>
-                      <span className="text-xs md:text-sm font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">Watch Demo</span>
-                    </button>
-
-                    <VideoPlayer
-                      src={videoSrc}
-                      autoPlay={true}
-                      muted={true}
-                      loop={true}
-                      className="h-full w-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500"
-                      hideControls={true}
-                    />
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             )}
 
