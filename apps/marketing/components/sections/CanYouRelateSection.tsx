@@ -73,7 +73,7 @@ function AnimatedCard({ point, visible, index }: { point: typeof painPoints[0]; 
                 ? { type: 'spring', stiffness: 280, damping: 22 }
                 : { duration: prefersReduced ? 0.15 : 0 }
             }
-            className="relative p-3 md:p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden group"
+            className="relative p-3 md:p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden group min-w-0"
         >
             {/* Hover glow */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/0 group-hover:bg-rose-500/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
@@ -95,9 +95,11 @@ export default function CanYouRelateSection() {
     const [visibleCount, setVisibleCount] = useState(0);
 
     useEffect(() => {
-        // Mobile: show all cards immediately, no scroll-driven reveal
-        if (window.innerWidth < 768) {
-            setVisibleCount(TOTAL_CARDS);
+        // Mobile: Handle mobile scroll state via CSS/framer-motion natively
+        const isMobile = window.innerWidth < 768;
+
+        if (isMobile) {
+            setVisibleCount(TOTAL_CARDS); // Let `whileInView` intercept and handle animations
             return;
         }
 
@@ -162,14 +164,22 @@ export default function CanYouRelateSection() {
 
                     {/* Grid wrapper — desktop: fixed height + overflow clip. Mobile: natural height. */}
                     <div className="relative md:flex-1 md:overflow-hidden md:min-h-0">
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-5">
                             {painPoints.map((point, index) => (
-                                <AnimatedCard
+                                <motion.div
                                     key={point.number}
-                                    point={point}
-                                    visible={index < visibleCount}
-                                    index={index}
-                                />
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    transition={{ duration: 0.5, delay: window.innerWidth < 768 ? 0.1 : 0 }}
+                                    className="h-full"
+                                >
+                                    <AnimatedCard
+                                        point={point}
+                                        visible={index < visibleCount}
+                                        index={index}
+                                    />
+                                </motion.div>
                             ))}
                         </div>
 
@@ -188,7 +198,7 @@ export default function CanYouRelateSection() {
                         >
                             <button
                                 onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="px-8 py-3 text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
+                                className="px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
                             >
                                 <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
                                 <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />

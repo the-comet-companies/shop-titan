@@ -1,82 +1,85 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export default function WorkflowVideoSection() {
   const { elementRef, isVisible } = useScrollAnimation();
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const hasExpanded = useRef(false);
 
-  // Fires once to trigger the expand animation
-  const isContainerInView = useInView(containerRef, { once: true, margin: '-80px' });
-
-  // Ongoing visibility for play/pause control
-  const isVideoVisible = useInView(containerRef, { once: false, amount: 0.3 });
-
-  // After the expand animation finishes, start playing if still in view
-  const handleExpandComplete = () => {
-    hasExpanded.current = true;
-    if (isVideoVisible) {
-      videoRef.current?.play();
-    }
-  };
-
-  // Play/pause as user scrolls in and out — only after expand has run
+  // Use a native IntersectionObserver for robust mobile video play/pause
   useEffect(() => {
-    if (!hasExpanded.current) return;
-    if (isVideoVisible) {
-      videoRef.current?.play();
-    } else {
-      videoRef.current?.pause();
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Ensure video is muted for inline autoplay policies
+    video.muted = true;
+    video.playsInline = true;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Use a promise catch to handle play() rejections gracefully (e.g. low power mode)
+            video.play().catch(() => {
+              console.log("Video autoplay blocked or pending interaction.");
+            });
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.2 } // Play when 20% visible
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
     }
-  }, [isVideoVisible]);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
-    <section id="workflow-video" className="py-24 md:py-32 bg-background-light">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="workflow-video" className="py-24 md:py-32 bg-background-light dark:bg-black">
+      <div className="max-w-6xl mx-auto px-mobile">
         {/* Section header */}
         <div
           ref={elementRef}
-          className={`text-center mb-12 transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-primary-text mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-charcoal dark:text-white mb-4">
             Every stage. One system.
           </h2>
-          <p className="text-lg text-secondary-text max-w-2xl mx-auto">
+          <p className="text-lg text-secondary-text dark:text-gray-400 max-w-2xl mx-auto">
             From the first lead to the final report — fully connected.
           </p>
         </div>
 
-        {/* Video container — cinematic expand reveal */}
+        {/* Video container — simplified fade reveal for mobile reliability */}
         <div ref={containerRef}>
           <motion.div
-            className="rounded-2xl overflow-hidden shadow-2xl origin-center"
-            initial={{ scaleX: 0, scaleY: 0.04 }}
-            animate={
-              isContainerInView
-                ? { scaleX: [0, 1, 1], scaleY: [0.04, 0.04, 1] }
-                : { scaleX: 0, scaleY: 0.04 }
-            }
-            transition={{
-              duration: 0.9,
-              times: [0, 0.45, 1],
-              ease: ['easeOut', 'easeInOut'],
-            }}
-            onAnimationComplete={handleExpandComplete}
+            className="rounded-2xl overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
           >
             <video
               ref={videoRef}
               loop
               muted
               playsInline
-              className="w-full block"
+              preload="metadata"
+              className="w-full h-auto block aspect-video object-cover"
+              poster="/video-fallback-poster.jpg" // Add a poster class or image if available
             >
               <source src="/animations/workflow.mp4" type="video/mp4" />
+              <p>Your browser does not support HTML5 video.</p>
             </video>
           </motion.div>
         </div>
