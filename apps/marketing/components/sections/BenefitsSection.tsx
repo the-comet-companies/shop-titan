@@ -22,7 +22,7 @@ const containerVariants: Variants = {
 
 export default function BenefitsSection() {
     return (
-        <section id="benefits" className="pt-20 md:pt-32 pb-20 md:pb-32 bg-surface dark:bg-gray-950 relative overflow-hidden">
+        <section id="benefits" className="pt-10 md:pt-16 pb-12 md:pb-16 bg-surface dark:bg-gray-950 relative overflow-hidden">
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 

@@ -136,7 +136,7 @@ export default function IndustriesSection() {
         <section
             id="industries"
             ref={sectionRef}
-            className="pt-20 md:pt-32 pb-8 md:pb-12 bg-background-light dark:bg-background-dark relative overflow-hidden"
+            className="pt-0 pb-8 md:pb-12 bg-background-light dark:bg-background-dark relative overflow-hidden"
         >
             {/* Top: Industry Marquee */}
             <div className="relative pt-16 pb-12 border-b border-gray-200 dark:border-gray-800/60 bg-white/50 dark:bg-black/20 mb-20 md:mb-32">
