@@ -623,11 +623,9 @@ function FeatureBlock({
                     <div className="pt-4 pl-1">
                         <ul className="flex flex-wrap gap-x-6 gap-y-2">
                             {highlights.map((highlight, index) => (
-                                <li key={index} className="flex items-center gap-2 group/item">
-                                    <div className="bg-green-100 dark:bg-green-900/30 rounded-full p-0.5 group-hover/item:scale-110 transition-transform flex-shrink-0">
-                                        <span className="material-symbols-outlined text-green-600 dark:text-green-400 text-[10px] block font-bold">check</span>
-                                    </div>
-                                    <span className="text-xs text-secondary-text dark:text-gray-300 font-medium whitespace-nowrap">{highlight}</span>
+                                <li key={index} className="flex items-start gap-1.5 group/item">
+                                    <span className="material-symbols-outlined text-green-500 dark:text-green-400 text-[14px] mt-[1.5px] font-bold flex-shrink-0 group-hover/item:scale-110 transition-transform">check</span>
+                                    <span className="text-xs text-secondary-text dark:text-gray-300 font-medium leading-relaxed">{highlight}</span>
                                 </li>
                             ))}
                         </ul>
