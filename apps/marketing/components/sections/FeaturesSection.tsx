@@ -588,9 +588,6 @@ function FeatureBlock({
                         {/* Corner glow accent */}
                         <div className="absolute top-0 right-0 w-20 h-20 bg-rose-500/10 blur-2xl rounded-full pointer-events-none" />
                         <div className="flex items-center gap-2 mb-3 relative z-10">
-                            <div className="p-1.5 bg-rose-100 dark:bg-rose-900/40 rounded-lg">
-                                <span className="material-symbols-outlined text-rose-500 text-lg">sentiment_dissatisfied</span>
-                            </div>
                             <h4 className="text-xs font-bold uppercase tracking-widest text-rose-600 dark:text-rose-400">
                                 {painPoint.title}
                             </h4>
@@ -611,9 +608,6 @@ function FeatureBlock({
                         {/* Corner glow accent */}
                         <div className="absolute bottom-0 left-0 w-20 h-20 bg-primary/10 blur-2xl rounded-full pointer-events-none" />
                         <div className="flex items-center gap-2 mb-3 relative z-10">
-                            <div className="p-1.5 bg-blue-100 dark:bg-blue-900/50 rounded-lg text-primary">
-                                <span className="material-symbols-outlined text-lg">bolt</span>
-                            </div>
                             <h4 className="text-xs font-bold uppercase tracking-widest text-primary dark:text-blue-400">
                                 {solution.title}
                             </h4>
