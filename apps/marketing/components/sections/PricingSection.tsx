@@ -109,11 +109,11 @@ export default function PricingSection() {
     const gridCols = activeTab === 'platform' ? 'lg:grid-cols-3' : 'lg:grid-cols-2';
 
     return (
-        <section id="pricing" className="pt-8 pb-24 bg-gray-50 dark:bg-black relative overflow-hidden">
+        <section id="pricing" className="pt-8 pb-16 md:pb-24 bg-gray-50 dark:bg-black relative overflow-hidden">
             <div ref={elementRef} className="container mx-auto px-4 md:px-6">
                 {/* Header */}
                 <div
-                    className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    className={`text-center mb-8 md:mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                         }`}
                 >
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal dark:text-white mb-4">
@@ -129,7 +129,7 @@ export default function PricingSection() {
                     <div className="inline-flex items-center bg-white dark:bg-gray-800 rounded-full p-1.5 shadow-sm border border-gray-100 dark:border-gray-700">
                         <button
                             onClick={() => setActiveTab('platform')}
-                            className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'platform'
+                            className={`px-6 py-2 md:py-2.5 min-h-[44px] rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'platform'
                                 ? 'bg-primary text-white shadow-md'
                                 : 'text-gray-600 dark:text-gray-400 hover:text-charcoal dark:hover:text-white'
                                 }`}
@@ -138,7 +138,7 @@ export default function PricingSection() {
                         </button>
                         <button
                             onClick={() => setActiveTab('services')}
-                            className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'services'
+                            className={`px-6 py-2 md:py-2.5 min-h-[44px] rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'services'
                                 ? 'bg-primary text-white shadow-md'
                                 : 'text-gray-600 dark:text-gray-400 hover:text-charcoal dark:hover:text-white'
                                 }`}
