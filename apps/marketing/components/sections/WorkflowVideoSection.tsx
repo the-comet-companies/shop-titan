@@ -71,12 +71,12 @@ export default function WorkflowVideoSection() {
           >
             <video
               ref={videoRef}
+              autoPlay
               loop
               muted
               playsInline
-              preload="metadata"
-              className="w-full h-auto block aspect-video object-cover"
-              poster="/video-fallback-poster.jpg" // Add a poster class or image if available
+              preload="auto"
+              className="w-full h-auto block aspect-[4/3] md:aspect-video object-cover object-center"
             >
               <source src="/animations/workflow.mp4" type="video/mp4" />
               <p>Your browser does not support HTML5 video.</p>
