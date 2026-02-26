@@ -58,7 +58,6 @@ function IntegrationCarousel({ logos }: { logos: readonly { name: string; file: 
 const CARDS = [
   {
     id: 'woocommerce',
-    icon: 'shopping_bag',
     title: 'WooCommerce Integration',
     description: 'Connect your WooCommerce store directly to Shop Titan.',
     footnote: '* Additional time may be required for field mapping',
@@ -67,7 +66,6 @@ const CARDS = [
   },
   {
     id: 'shopify',
-    icon: 'storefront',
     title: 'Shopify Integration',
     description: 'Two-way sync between Shopify orders and your Shop Titan workflow.',
     footnote: '* Additional dev time may be required for mapping',
@@ -75,17 +73,7 @@ const CARDS = [
     carousel: false,
   },
   {
-    id: 'design-library',
-    icon: 'palette',
-    title: 'Design Library',
-    description: 'Take your designs, sell them and push them to all the marketplaces.',
-    footnote: null,
-    logos: [],
-    carousel: false,
-  },
-  {
     id: 'feed-management',
-    icon: 'rss_feed',
     title: 'eCommerce Feed Management',
     description: 'Easy XML creation and product pushing across all major platforms.',
     footnote: null,
@@ -100,6 +88,14 @@ const CARDS = [
       { name: 'Fashion Go', file: 'fashion-go.svg' },
     ],
     carousel: true,
+  },
+  {
+    id: 'design-library',
+    title: 'Design Library',
+    description: 'Take your designs, sell them and push them to all the marketplaces.',
+    footnote: null,
+    logos: [],
+    carousel: false,
   },
 ] as const;
 
@@ -161,11 +157,6 @@ export default function ComingSoonSection() {
               {/* Header row */}
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                    <span className="material-symbols-outlined text-primary text-xl">
-                      {card.icon}
-                    </span>
-                  </div>
                   <h3 className="text-charcoal font-bold text-lg leading-tight">{card.title}</h3>
                 </div>
                 <span className="flex-shrink-0 px-2.5 py-1 rounded-full bg-gray-100 text-secondary-text text-[10px] font-bold tracking-wider uppercase">
