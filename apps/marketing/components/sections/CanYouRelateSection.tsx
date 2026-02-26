@@ -92,52 +92,13 @@ function AnimatedCard({ point, visible, index }: { point: typeof painPoints[0]; 
 
 export default function CanYouRelateSection() {
     const outerRef = useRef<HTMLDivElement>(null);
-    const [visibleCount, setVisibleCount] = useState(0);
-
-    useEffect(() => {
-        // Mobile: Handle mobile scroll state via CSS/framer-motion natively
-        const isMobile = window.innerWidth < 768;
-
-        if (isMobile) {
-            setVisibleCount(TOTAL_CARDS); // Let `whileInView` intercept and handle animations
-            return;
-        }
-
-        // Desktop: scroll-driven reveal
-        const outer = outerRef.current;
-        if (!outer) return;
-
-        let rafId = 0;
-        const handleScroll = () => {
-            cancelAnimationFrame(rafId);
-            rafId = requestAnimationFrame(() => {
-                const rect = outer.getBoundingClientRect();
-                const totalScrollable = outer.offsetHeight - window.innerHeight;
-                const scrolled = -rect.top;
-                const p = Math.max(0, Math.min(1, scrolled / totalScrollable));
-                const STEPS = TOTAL_CARDS / 2;
-                const rawPairs = Math.min(STEPS, Math.floor((p * STEPS) / 0.9) + 1);
-                setVisibleCount(rawPairs * 2);
-            });
-        };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-            cancelAnimationFrame(rafId);
-        };
-    }, []);
-
-    const allVisible = visibleCount === TOTAL_CARDS;
 
     return (
-        // Mobile: auto height (no scroll track). Desktop: 400vh sticky scroll track.
-        <div ref={outerRef} className="md:h-[400vh]">
+        // Mobile & Desktop: natural flowing height
+        <div ref={outerRef} className="w-full">
             <section
                 id="can-you-relate"
-                className="md:sticky md:top-0 md:h-screen md:overflow-hidden flex flex-col bg-surface dark:bg-gray-950 relative"
+                className="flex flex-col bg-surface dark:bg-gray-950 relative"
             >
                 {/* Top divider */}
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent" />
@@ -148,22 +109,18 @@ export default function CanYouRelateSection() {
                 <div className="relative z-10 md:flex-1 flex flex-col max-w-7xl mx-auto w-full px-mobile py-6 md:py-8 lg:py-12 md:min-h-0">
 
                     {/* Header */}
-                    <div className="flex-shrink-0 mb-6 md:mb-8">
+                    <div className="flex-shrink-0 mb-8 md:mb-12">
                         <div className="flex items-end justify-between gap-4">
                             <h2 className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white leading-tight">
                                 We&apos;ve heard all of these.
                                 <br />
                                 <span className="text-secondary-text dark:text-gray-500">Usually in the same conversation.</span>
                             </h2>
-                            {/* Progress counter — desktop only */}
-                            <span className="hidden md:inline text-sm font-bold tabular-nums text-secondary-text dark:text-gray-600 flex-shrink-0 pb-1">
-                                {visibleCount} <span className="text-structural-border dark:text-gray-700">/</span> {TOTAL_CARDS}
-                            </span>
                         </div>
                     </div>
 
-                    {/* Grid wrapper — desktop: fixed height + overflow clip. Mobile: natural height. */}
-                    <div className="relative md:flex-1 md:overflow-hidden md:min-h-0">
+                    {/* Grid wrapper */}
+                    <div className="relative">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-5">
                             {painPoints.map((point, index) => (
                                 <motion.div
@@ -171,30 +128,25 @@ export default function CanYouRelateSection() {
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ duration: 0.5, delay: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.1 : 0 }}
+                                    transition={{ duration: 0.5, delay: index % 2 === 0 ? 0 : 0.1 }}
                                     className="h-full"
                                 >
                                     <AnimatedCard
                                         point={point}
-                                        visible={index < visibleCount}
+                                        visible={true}
                                         index={index}
                                     />
                                 </motion.div>
                             ))}
                         </div>
 
-                        {/* Bridge CTA
-                            Desktop: absolute overlay with gradient fade
-                            Mobile: normal flow element below the grid */}
+                        {/* Bridge CTA */}
                         <motion.div
-                            className="md:absolute md:bottom-0 md:inset-x-0 md:bg-gradient-to-t md:from-surface md:dark:from-gray-950 md:via-surface/95 md:dark:via-gray-950/95 md:to-transparent pt-6 pb-2 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
-                            initial={false}
-                            animate={{
-                                opacity: allVisible ? 1 : 0,
-                                y: allVisible ? 0 : 8,
-                            }}
-                            transition={{ duration: 0.5, ease: 'easeOut' }}
-                            style={{ pointerEvents: allVisible ? 'auto' : 'none' }}
+                            className="pt-10 pb-4 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
                         >
                             <button
                                 onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}

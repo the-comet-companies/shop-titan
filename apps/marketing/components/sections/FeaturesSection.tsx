@@ -549,6 +549,8 @@ function FeatureBlock({
     onWatchDemo?: (src: string) => void;
     children?: React.ReactNode;
 }) {
+    const [isMobileExpanded, setIsMobileExpanded] = useState(false);
+
     return (
         <motion.div
             id={id}
@@ -637,10 +639,26 @@ function FeatureBlock({
                         </ul>
                     </div>
                 )}
+
+                {/* Expand Toggle Button */}
+                <div className="mt-6">
+                    <button
+                        onClick={() => setIsMobileExpanded(!isMobileExpanded)}
+                        className="w-full py-3 px-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 text-charcoal dark:text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors active:bg-gray-50 dark:active:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    >
+                        <span className="material-symbols-outlined text-lg text-primary">
+                            {isMobileExpanded ? 'visibility_off' : 'play_circle'}
+                        </span>
+                        {isMobileExpanded ? 'Hide Visual' : 'See Visual Demo'}
+                    </button>
+                </div>
             </div>
 
-            {/* Visual Side (Bottom) */}
-            <div className="bg-gray-50 dark:bg-black/50 p-2 md:p-4 flex items-center justify-center border-t border-structural-border dark:border-gray-800 relative grow">
+            {/* Visual Side (Bottom) - Toggleable on all devices */}
+            <div className={cn(
+                "bg-gray-50 dark:bg-black/50 p-2 md:p-4 border-t border-structural-border dark:border-gray-800 relative grow transition-all duration-300",
+                isMobileExpanded ? "block md:flex md:items-center md:justify-center md:h-auto" : "hidden"
+            )}>
                 <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50 dark:opacity-20 pointer-events-none" />
 
                 {videoSrc ? (
