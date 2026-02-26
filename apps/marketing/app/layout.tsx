@@ -106,25 +106,17 @@ export default function RootLayout({
                 {/* DNS Prefetch for critical origins */}
                 <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
                 <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+                <link rel="dns-prefetch" href="https://prod.spline.design" />
 
                 {/* Preconnect for faster font loading */}
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-                {/* Preload critical hero assets */}
-                <link
-                    rel="preload"
-                    href="https://prod.spline.design/tICsK1PQRrzcESXa/scene.splinecode"
-                    as="fetch"
-                    crossOrigin="anonymous"
-                />
-                {/* Uncomment when local video is ready */}
-                {/* <link
-                    rel="preload"
-                    href="/hero-animation.webm"
-                    as="video"
-                    type="video/webm"
-                /> */}
+                {/* Preconnect for Spline 3D scene CDN — eliminates DNS+TCP+TLS before scene download */}
+                <link rel="preconnect" href="https://prod.spline.design" crossOrigin="anonymous" />
+
+                {/* Prefetch the Spline scene so the browser fetches it during idle time */}
+                <link rel="prefetch" href="https://prod.spline.design/tICsK1PQRrzcESXa/scene.splinecode" as="fetch" crossOrigin="anonymous" />
 
                 {/* Material Symbols Icons */}
                 {/* eslint-disable-next-line @next/next/no-page-custom-font */}

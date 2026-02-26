@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { motion } from 'framer-motion';
 
@@ -17,11 +18,11 @@ interface PricingTier {
     features: PricingFeature[];
     highlighted?: boolean;
     badge?: string;
-
+    ctaText?: string;
 }
 
-// Personal tiers (3 tiers)
-const personalTiers: PricingTier[] = [
+// Platform tiers (3 tiers)
+const platformTiers: PricingTier[] = [
     {
         id: 'starter',
         name: 'Starter',
@@ -33,7 +34,6 @@ const personalTiers: PricingTier[] = [
             { icon: 'people', text: 'Customer Database' },
             { icon: 'support_agent', text: 'Virtual setup & onboarding' },
         ],
-
     },
     {
         id: 'business',
@@ -50,7 +50,6 @@ const personalTiers: PricingTier[] = [
         ],
         badge: 'Popular',
         highlighted: true,
-
     },
     {
         id: 'enterprise',
@@ -67,12 +66,11 @@ const personalTiers: PricingTier[] = [
             { icon: 'psychology', text: 'AI Integrations' },
             { icon: 'groups', text: '1-on-1 Strategy Sessions' },
         ],
-
     },
 ];
 
-// Business tiers (2 tiers)
-const businessTiers: PricingTier[] = [
+// Services tiers (2 tiers)
+const servicesTiers: PricingTier[] = [
     {
         id: 'ultimate',
         name: 'Ultimate',
@@ -88,7 +86,6 @@ const businessTiers: PricingTier[] = [
             { icon: 'trending_up', text: 'Business strategy sessions' },
         ],
         badge: 'Premium',
-
     },
     {
         id: 'custom',
@@ -101,23 +98,22 @@ const businessTiers: PricingTier[] = [
             { icon: 'group', text: 'Dedicated development team' },
             { icon: 'phone', text: 'Contact us for more details' },
         ],
-
     },
 ];
 
 export default function PricingSection() {
     const { elementRef, isVisible } = useScrollAnimation();
-    const [activeTab, setActiveTab] = useState<'personal' | 'business'>('personal');
+    const [activeTab, setActiveTab] = useState<'platform' | 'services'>('platform');
 
-    const currentTiers = activeTab === 'personal' ? personalTiers : businessTiers;
-    const gridCols = activeTab === 'personal' ? 'lg:grid-cols-3' : 'lg:grid-cols-2';
+    const currentTiers = activeTab === 'platform' ? platformTiers : servicesTiers;
+    const gridCols = activeTab === 'platform' ? 'lg:grid-cols-3' : 'lg:grid-cols-2';
 
     return (
-        <section id="pricing" className="py-24 bg-gray-50 dark:bg-black relative overflow-hidden">
+        <section id="pricing" className="pt-8 pb-16 md:pb-24 bg-gray-50 dark:bg-black relative overflow-hidden">
             <div ref={elementRef} className="container mx-auto px-4 md:px-6">
                 {/* Header */}
                 <div
-                    className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    className={`text-center mb-8 md:mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                         }`}
                 >
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal dark:text-white mb-4">
@@ -132,22 +128,22 @@ export default function PricingSection() {
                 <div className="flex justify-center mb-12">
                     <div className="inline-flex items-center bg-white dark:bg-gray-800 rounded-full p-1.5 shadow-sm border border-gray-100 dark:border-gray-700">
                         <button
-                            onClick={() => setActiveTab('personal')}
-                            className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'personal'
+                            onClick={() => setActiveTab('platform')}
+                            className={`px-6 py-2 md:py-2.5 min-h-[44px] rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'platform'
                                 ? 'bg-primary text-white shadow-md'
                                 : 'text-gray-600 dark:text-gray-400 hover:text-charcoal dark:hover:text-white'
                                 }`}
                         >
-                            Personal
+                            Platform
                         </button>
                         <button
-                            onClick={() => setActiveTab('business')}
-                            className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'business'
+                            onClick={() => setActiveTab('services')}
+                            className={`px-6 py-2 md:py-2.5 min-h-[44px] rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'services'
                                 ? 'bg-primary text-white shadow-md'
                                 : 'text-gray-600 dark:text-gray-400 hover:text-charcoal dark:hover:text-white'
                                 }`}
                         >
-                            Business
+                            Services
                         </button>
                     </div>
                 </div>
@@ -193,10 +189,8 @@ export default function PricingSection() {
                                     {tier.description}
                                 </p>
 
-
-
                                 {/* Features List */}
-                                <div className="">
+                                <div className="mb-8 flex-grow">
                                     <ul className="space-y-4">
                                         {tier.features.map((feature, idx) => (
                                             <li
@@ -219,13 +213,27 @@ export default function PricingSection() {
                     ))}
                 </div>
 
-                {/* Additional Info */}
-                <div className={`mt-16 text-center transition-all duration-700 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'
-                    }`}>
-                    <p className="text-sm text-secondary-text dark:text-gray-500">
-                        All packages include full access to Shop Titan platform. Custom integrations and features available upon request.
-                    </p>
-                </div>
+                {/* Main Call to Action */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="mt-16 text-center"
+                >
+                    <Link
+                        href="/reach-out"
+                        className="inline-flex items-center gap-2 px-10 py-5 bg-primary text-white text-lg font-bold rounded-full hover:bg-primary/90 transition-transform hover:scale-105 shadow-xl shadow-primary/20"
+                    >
+                        Let&apos;s Build Your Setup
+                        <span className="material-symbols-outlined text-xl">arrow_forward</span>
+                    </Link>
+                    <div className="mt-8">
+                        <p className="text-sm text-secondary-text dark:text-gray-500 max-w-2xl mx-auto">
+                            All packages include full access to Shop Titan platform. Custom integrations and features available upon request. We believe in providing solutions, not forcing subscriptions. Let&apos;s discuss what works best for your workflow.
+                        </p>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

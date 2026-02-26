@@ -47,7 +47,9 @@ Thumbs.db
 
 # Agent/AI Tools
 .agent/skills/
+.agents/skills/
 .gemini/
+.claude/
 
 # Misc
 *.pem

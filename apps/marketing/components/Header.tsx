@@ -8,6 +8,9 @@ import { useActiveSection } from '@/hooks/useActiveSection';
 import { cn } from '@/lib/utils';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 
+const NAV_SECTIONS = ['about', 'features', 'product', 'pricing', 'blog'] as const;
+const ACTIVE_SECTIONS = ['hero', 'platform', 'features', 'product', 'pricing', 'blog', 'contact'] as const;
+
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -23,11 +26,26 @@ export default function Header() {
         }
     });
 
-    const activeSection = useActiveSection(['hero', 'platform', 'features', 'product', 'pricing', 'blog', 'contact']);
+    const activeSection = useActiveSection(ACTIVE_SECTIONS);
 
     const scrollToSection = (sectionId: string) => {
         if (sectionId === 'blog') {
             router.push('/blog');
+            return;
+        }
+
+        if (sectionId === 'contact') {
+            router.push('/reach-out');
+            return;
+        }
+
+        if (sectionId === 'pricing') {
+            router.push('/pricing');
+            return;
+        }
+
+        if (sectionId === 'about') {
+            router.push('/about');
             return;
         }
 
@@ -45,16 +63,10 @@ export default function Header() {
         <>
             <motion.header
                 initial={{ y: -100, opacity: 0 }}
-                animate={{
-                    y: 0,
-                    opacity: 1,
-                    top: 0,
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                }}
+                animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className={cn(
-                    "fixed left-0 right-0 z-50 transition-all duration-500",
+                    "fixed left-0 right-0 z-50",
                     isScrolled ? "px-0" : "px-0"
                 )}
             >
@@ -79,6 +91,7 @@ export default function Header() {
                                     src="/logo-transparent.png"
                                     alt="Shop Titan Logo"
                                     fill
+                                    priority
                                     className="object-contain"
                                 />
                             </div>
@@ -90,7 +103,7 @@ export default function Header() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 -translate-x-1/2">
-                        {['platform', 'features', 'product', 'pricing', 'blog'].map((section, index) => (
+                        {NAV_SECTIONS.map((section, index) => (
                             <motion.button
                                 key={section}
                                 onClick={() => scrollToSection(section)}
@@ -98,8 +111,8 @@ export default function Header() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
                                 className={cn(
-                                    "text-xs font-semibold transition-all duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110",
-                                    (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog')
+                                    "text-xs font-semibold transition-[color,transform] duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110",
+                                    (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog') || ((section as string) === 'contact' && pathname === '/reach-out') || (section === 'pricing' && pathname === '/pricing') || (section === 'about' && pathname === '/about')
                                         ? "text-primary dark:text-white"
                                         : "text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white"
                                 )}
@@ -120,9 +133,7 @@ export default function Header() {
                             whileTap={{ scale: 0.95 }}
                             className={cn(
                                 "group relative border-2 px-4 md:px-6 py-2 text-xs font-bold rounded-full transition-[background-color,border-color] duration-200 flex items-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide focus-primary tap-target",
-                                activeSection === 'contact'
-                                    ? "bg-primary text-white border-primary hover:bg-primary/90"
-                                    : "bg-white/15 dark:bg-white/5 border-charcoal/20 dark:border-white/30 hover:border-charcoal/30 dark:hover:border-white/40 text-charcoal dark:text-white hover:bg-white/25 dark:hover:bg-white/10"
+                                "bg-white/15 dark:bg-white/5 border-charcoal/20 dark:border-white/30 hover:border-charcoal/30 dark:hover:border-white/40 text-charcoal dark:text-white hover:bg-white/25 dark:hover:bg-white/10"
                             )}
                         >
                             Request Demo{" "}

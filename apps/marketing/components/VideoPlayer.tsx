@@ -83,14 +83,7 @@ export default function VideoPlayer({
         >
             {/* Loading Skeleton */}
             {!isLoaded && (
-                <motion.div
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="absolute inset-0 bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden"
-                >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
-                </motion.div>
+                <div className="absolute inset-0 bg-gray-100 dark:bg-gray-900 rounded-lg" />
             )}
 
             {/* Video Element */}
@@ -100,6 +93,7 @@ export default function VideoPlayer({
                 muted={muted}
                 loop={loop}
                 playsInline
+                preload="none"
                 onLoadedData={() => setIsLoaded(true)}
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
@@ -118,7 +112,7 @@ export default function VideoPlayer({
                     <motion.div
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
-                        className="w-16 h-16 bg-white/90 dark:bg-gray-900/90 rounded-full flex items-center justify-center backdrop-blur-sm shadow-xl"
+                        className="w-16 h-16 bg-white/90 dark:bg-gray-900/90 rounded-full flex items-center justify-center shadow-xl"
                     >
                         <span className="material-symbols-outlined text-3xl text-charcoal dark:text-white">
                             {isPlaying ? 'pause' : 'play_arrow'}

@@ -40,7 +40,7 @@ export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuPr
     };
 
     const menuItems = [
-        { id: 'platform', label: 'Platform' },
+        { id: 'about', label: 'About' },
         { id: 'product', label: 'Product' },
         { id: 'features', label: 'Features' },
         { id: 'pricing', label: 'Pricing' },

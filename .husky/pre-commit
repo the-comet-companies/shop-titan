@@ -1,3 +1,4 @@
 #!/bin/sh
 cd apps/marketing
 npx lint-staged
+npx tsc --noEmit

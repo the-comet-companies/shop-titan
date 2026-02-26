@@ -1,40 +1,99 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from "framer-motion";
+import dynamic from 'next/dynamic';
 
 import InteractiveGridPattern from '@/components/ui/InteractiveGridPattern';
-import SplineHero from './SplineHero';
+
+const SplineHero = dynamic(() => import('./SplineHero'), { ssr: false });
 
 export default function HeroSection() {
-    const [splineReady, setSplineReady] = useState(false);
+    const [mountSpline, setMountSpline] = useState(false);
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        // Instant reveal on mobile since Spline isn't mounted
+        if (window.innerWidth < 768 && sectionRef.current) {
+            sectionRef.current.style.opacity = '1';
+        }
+
+        const raf = requestAnimationFrame(() => {
+            if (window.innerWidth >= 768) {
+                setMountSpline(true);
+            }
+        });
+        return () => cancelAnimationFrame(raf);
+    }, []);
+
+    // Fallback: reveal hero after 5s regardless (Spline slow/failed)
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (sectionRef.current) {
+                sectionRef.current.style.opacity = '1';
+            }
+        }, 5000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    const handleSplineReady = useCallback(() => {
+        if (sectionRef.current) {
+            sectionRef.current.style.opacity = '1';
+        }
+    }, []);
 
     return (
         <section
+            ref={sectionRef}
             id="hero"
             aria-label="Welcome to Shop Titan"
             className="relative bg-background dark:bg-background-dark min-h-[80vh] flex flex-col justify-start overflow-hidden"
+            style={{ opacity: 0, transition: 'opacity 0.6s ease-out' }}
         >
-            {/* Background Layer: Spline 3D Asset */}
-            <motion.div
-                className="absolute inset-0 z-0 select-none pointer-events-none"
+            {/* Animated Wave Background for Mobile */}
+            <div className="absolute inset-0 z-0 overflow-hidden md:hidden bg-[#F0F4F8] dark:bg-[#0A0A0A]">
+                {/* Wave 1 */}
+                <div
+                    className="absolute left-[-50%] top-[-50%] w-[200%] h-[200%] bg-[linear-gradient(45deg,transparent,rgba(0,102,204,0.15),transparent)] animate-[spin_25s_linear_infinite]"
+                    style={{ borderRadius: '40% 60% 70% 30% / 40% 50% 60% 50%' }}
+                />
+                {/* Wave 2 */}
+                <div
+                    className="absolute left-[-20%] top-[-20%] w-[140%] h-[140%] bg-[linear-gradient(45deg,transparent,rgba(0,102,204,0.12),transparent)] animate-[spin_18s_linear_infinite_reverse]"
+                    style={{ borderRadius: '60% 40% 30% 70% / 50% 30% 70% 40%' }}
+                />
+                {/* Wave 3 - Extra variation */}
+                <div
+                    className="absolute left-[-30%] top-[-10%] w-[160%] h-[160%] bg-[linear-gradient(135deg,transparent,rgba(0,102,204,0.08),transparent)] animate-[spin_32s_linear_infinite]"
+                    style={{ borderRadius: '30% 70% 50% 50% / 40% 60% 40% 60%' }}
+                />
+                {/* Wave 4 - Extra variation */}
+                <div
+                    className="absolute left-[10%] top-[-40%] w-[180%] h-[180%] bg-[linear-gradient(90deg,transparent,rgba(0,102,204,0.1),transparent)] animate-[spin_22s_linear_infinite_reverse]"
+                    style={{ borderRadius: '50% 50% 40% 60% / 70% 30% 50% 50%' }}
+                />
+            </div>
+
+            {/* Spline 3D Asset for Desktop */}
+            <div
+                className="absolute inset-0 z-0 select-none pointer-events-none hidden md:block"
                 role="img"
                 aria-label="3D visualization of logistics and container management operations"
-                initial={{ opacity: 0 }}
-                animate={splineReady ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
             >
-                <div className="w-full h-[120%] opacity-70 md:opacity-100 transition-opacity duration-1000 transform -translate-y-[10%]">
-                    <SplineHero
-                        eagerLoad={true}
-                        onReady={() => setSplineReady(true)}
-                    />
+                <div className="w-full h-[120%] opacity-70 md:opacity-100 transform -translate-y-[10%]">
+                    {mountSpline && (
+                        <SplineHero
+                            eagerLoad={true}
+                            onReady={handleSplineReady}
+                        />
+                    )}
                 </div>
-                {/* Readability Overlays */}
-                <div className="absolute inset-0 bg-white/30 dark:bg-black/40 -z-1" />
-                <div className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-transparent dark:from-black dark:via-black/70 dark:to-transparent z-10 lg:block hidden" />
-                <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/80 dark:from-black/10 dark:via-transparent dark:to-black/80 z-10 lg:hidden block" />
-            </motion.div>
+            </div>
+
+            {/* Readability overlays: always-on so text is readable over both placeholder and 3D */}
+            <div className="absolute inset-0 z-[1] bg-white/30 dark:bg-black/40 pointer-events-none" />
+            <div className="absolute inset-0 z-[1] bg-gradient-to-r from-white via-white/70 to-transparent dark:from-black dark:via-black/70 dark:to-transparent pointer-events-none lg:block hidden" />
+            <div className="absolute inset-0 z-[1] bg-gradient-to-b from-white/10 via-transparent to-white/80 dark:from-black/10 dark:via-transparent dark:to-black/80 pointer-events-none lg:hidden block" />
 
             {/* Hero Content */}
             <div className="relative pt-32 pb-20 md:pt-24 lg:pt-32 lg:pb-40 z-20">
@@ -42,8 +101,8 @@ export default function HeroSection() {
                     <div className="max-w-3xl text-left">
                         <motion.header
                             initial={{ opacity: 0, y: 20 }}
-                            animate={splineReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
                             className="mb-8 md:mb-12"
                         >
                             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-charcoal dark:text-white leading-[1.1] mb-8 tracking-tight">
@@ -59,13 +118,13 @@ export default function HeroSection() {
 
                         <motion.nav
                             initial={{ opacity: 0, y: 20 }}
-                            animate={splineReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
                             className="flex flex-col sm:flex-row gap-5 justify-start"
                             aria-label="Primary call-to-action"
                         >
                             <a
-                                href="#contact"
+                                href="/reach-out"
                                 className="px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full flex items-center gap-2 justify-center"
                                 aria-label="Contact us to get started"
                             >
@@ -77,7 +136,7 @@ export default function HeroSection() {
                                 </span>
                             </a>
                             <button
-                                onClick={() => document.getElementById('platform')?.scrollIntoView({ behavior: 'smooth' })}
+                                onClick={() => document.getElementById('pain-points')?.scrollIntoView({ behavior: 'auto' })}
                                 className="px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full"
                                 aria-label="Scroll to platform features section"
                             >
@@ -89,7 +148,7 @@ export default function HeroSection() {
                     </div>
                 </div>
 
-                {/* Subtle Grid overlay for texture - more subtle now */}
+                {/* Subtle Grid overlay for texture */}
                 <InteractiveGridPattern
                     width={120}
                     height={120}

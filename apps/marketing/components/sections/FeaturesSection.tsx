@@ -1,15 +1,17 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, LayoutGroup } from 'framer-motion';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import VideoPlayer from '@/components/VideoPlayer';
+import VideoModal from '@/components/ui/VideoModal';
 import FeatureGrid from '@/components/ui/FeatureGrid';
 
 export default function FeaturesSection() {
     const [activeFeature, setActiveFeature] = useState('feature-0');
     const navRefs = useRef<(HTMLButtonElement | null)[]>([]);
     const navContainerRef = useRef<HTMLDivElement>(null);
+    const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
     // Tier 2 Features Data
     const tier2Features = useMemo(() => [
@@ -108,31 +110,44 @@ export default function FeaturesSection() {
         }
     };
 
+    // Progress track percentage (0–100) based on active nav item index
+    const activeNavIndex = navigationItems.findIndex(item => item.id === activeFeature);
+    const progressPercent = navigationItems.length > 1
+        ? (Math.max(0, activeNavIndex) / (navigationItems.length - 1)) * 100
+        : 0;
+
     // IntersectionObserver for active state tracking
+    const featureRatios = useRef<Map<string, number>>(new Map());
+
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
-                // Find the most visible element (highest intersection ratio)
-                let mostVisibleId = '';
-                let maxRatio = 0;
-
+                // Update ratios for changed entries
                 entries.forEach((entry) => {
-                    if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
-                        const id = entry.target.id;
-                        if (id.startsWith('feature-') || id === 'more-features') {
-                            mostVisibleId = id;
-                            maxRatio = entry.intersectionRatio;
-                        }
+                    const id = entry.target.id;
+                    if (id.startsWith('feature-') || id === 'more-features') {
+                        featureRatios.current.set(id, entry.isIntersecting ? entry.intersectionRatio : 0);
                     }
                 });
 
-                // Update active feature to the most visible one
+                // Find the most visible element among ALL tracked elements
+                let mostVisibleId = '';
+                let maxRatio = 0;
+
+                featureRatios.current.forEach((ratio, id) => {
+                    if (ratio > maxRatio) {
+                        maxRatio = ratio;
+                        mostVisibleId = id;
+                    }
+                });
+
+                // Update active feature if we have a winner
                 if (mostVisibleId) {
                     setActiveFeature(mostVisibleId);
                 }
             },
             {
-                threshold: 0.4,
+                threshold: [0, 0.25, 0.5, 1],
                 rootMargin: '-10% 0px -40% 0px'
             }
         );
@@ -148,7 +163,13 @@ export default function FeaturesSection() {
     }, []);
 
     return (
-        <section id="features" className="pt-24 md:pt-32 lg:pt-40 pb-20 md:pb-28 lg:pb-32 bg-background-light dark:bg-background-dark">
+        <section id="features" className="pt-24 md:pt-32 lg:pt-40 pb-20 md:pb-28 lg:pb-32 bg-background-light dark:bg-background-dark relative">
+            {/* Animated gradient orb background */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+                <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-primary/[0.06] blur-3xl animate-gradient-flow-1" />
+                <div className="absolute top-1/2 -left-48 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.04] blur-3xl animate-gradient-flow-2" />
+                <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-teal-400/[0.03] blur-3xl animate-gradient-flow-3" />
+            </div>
             <div className="max-w-7xl mx-auto px-mobile">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
                     {/* Left Column - Sticky Header & Nav */}
@@ -177,41 +198,51 @@ export default function FeaturesSection() {
                         {/* Desktop Navigation */}
                         <div
                             ref={navContainerRef}
-                            className="hidden lg:flex flex-col gap-1 relative flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent"
+                            className="hidden lg:flex flex-col gap-1 relative flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent pl-4"
                         >
-                            {navigationItems.map((item, index) => (
-                                <button
-                                    key={item.id}
-                                    ref={(el) => { navRefs.current[index] = el; }}
-                                    onClick={() => scrollToFeature(item.id)}
-                                    className={cn(
-                                        "text-left py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 relative flex items-center gap-3",
-                                        activeFeature === item.id
-                                            ? "text-primary bg-primary/5 font-bold"
-                                            : "text-gray-500 hover:text-charcoal dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800",
-                                        item.type === "section" && "border-t border-gray-200 dark:border-gray-800 mt-4 pt-6"
-                                    )}
-                                >
-                                    {activeFeature === item.id && (
-                                        <motion.div
-                                            layoutId="activeFeatureIndicator"
-                                            className="absolute left-0 w-1 h-6 bg-primary rounded-r-full"
-                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                        />
-                                    )}
-                                    <span className={cn(
-                                        "transition-transform duration-300",
-                                        activeFeature === item.id ? "translate-x-2" : ""
-                                    )}>
-                                        {item.title}
-                                    </span>
-                                    {item.type === "section" && (
-                                        <span className="material-symbols-outlined text-sm ml-auto">
-                                            expand_more
+                            {/* Progress track */}
+                            <div className="absolute left-1 top-3 bottom-3 w-0.5 bg-gray-200 dark:bg-gray-800 rounded-full pointer-events-none">
+                                <motion.div
+                                    className="absolute top-0 left-0 w-full h-full bg-primary rounded-full origin-top"
+                                    initial={{ scaleY: 0 }}
+                                    animate={{ scaleY: progressPercent / 100 }}
+                                    transition={{ type: "spring", stiffness: 200, damping: 30 }}
+                                />
+                            </div>
+
+                            <LayoutGroup>
+                                {navigationItems.map((item, index) => (
+                                    <button
+                                        key={item.id}
+                                        ref={(el) => { navRefs.current[index] = el; }}
+                                        onClick={() => scrollToFeature(item.id)}
+                                        className={cn(
+                                            "text-left py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 relative flex items-center gap-3",
+                                            activeFeature === item.id
+                                                ? "text-primary font-bold"
+                                                : "text-gray-500 hover:text-charcoal dark:hover:text-white",
+                                            item.type === "section" && "border-t border-gray-200 dark:border-gray-800 mt-4 pt-6"
+                                        )}
+                                    >
+                                        {/* Glassmorphic background pill for active item */}
+                                        {activeFeature === item.id && (
+                                            <motion.div
+                                                layoutId="activeNavPill"
+                                                className="absolute inset-0 bg-white/70 dark:bg-white/10 backdrop-blur-sm border border-white/80 dark:border-white/20 shadow-md shadow-primary/10 rounded-lg"
+                                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                            />
+                                        )}
+                                        <span className="relative z-10">
+                                            {item.title}
                                         </span>
-                                    )}
-                                </button>
-                            ))}
+                                        {item.type === "section" && (
+                                            <span className="material-symbols-outlined text-sm ml-auto relative z-10">
+                                                expand_more
+                                            </span>
+                                        )}
+                                    </button>
+                                ))}
+                            </LayoutGroup>
                         </div>
                     </div>
 
@@ -231,6 +262,7 @@ export default function FeaturesSection() {
                                 description: "Automated quote generation with intelligent pricing matrices. Template library, auto-calculations, and one-click PDF generation."
                             }}
                             videoSrc="/videos/feature-quotes.mp4"
+                            onWatchDemo={(src) => setActiveVideo(src)}
                         >
                             <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-5 border border-structural-border dark:border-gray-800">
@@ -268,6 +300,7 @@ export default function FeaturesSection() {
                                 description: "End-to-end order tracking with real-time status updates. Every garment's journey is logged, visible, and searchable from anywhere."
                             }}
                             videoSrc="/videos/feature-orders.mp4"
+                            onWatchDemo={(src) => setActiveVideo(src)}
                         >
                             <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg overflow-hidden border border-structural-border dark:border-gray-800">
@@ -322,6 +355,7 @@ export default function FeaturesSection() {
                                 description: "Visual production scheduler with drag-drop job assignment. Real-time capacity planning, machine utilization tracking, and workload balancing."
                             }}
                             videoSrc="/videos/feature-scheduler.mp4"
+                            onWatchDemo={(src) => setActiveVideo(src)}
                         >
                             <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-4 border border-structural-border dark:border-gray-800">
@@ -374,6 +408,7 @@ export default function FeaturesSection() {
                                 description: "Dynamic pricing matrices for all decoration types: embroidery (stitch count), screen printing (colors, screens), sewing, and any custom task you offer."
                             }}
                             videoSrc="/videos/feature-pricing.mp4"
+                            onWatchDemo={(src) => setActiveVideo(src)}
                         >
                             <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-4 border border-structural-border dark:border-gray-800">
@@ -436,6 +471,7 @@ export default function FeaturesSection() {
                                 "Customer analytics"
                             ]}
                             videoSrc="/videos/feature-analytics.mp4"
+                            onWatchDemo={(src) => setActiveVideo(src)}
                         >
                             <div className="h-full flex items-center justify-center">
                                 <div className="w-full bg-surface dark:bg-gray-950 rounded-lg shadow-lg p-5 border border-structural-border dark:border-gray-800">
@@ -473,10 +509,20 @@ export default function FeaturesSection() {
                         </FeatureBlock>
 
                         {/* Tier 2: Feature Grid */}
-                        <FeatureGrid features={tier2Features} />
+                        <FeatureGrid
+                            features={tier2Features}
+                            onWatchDemo={(src) => setActiveVideo(src)}
+                        />
                     </div>
                 </div>
             </div>
+
+            {/* Video Modal */}
+            <VideoModal
+                isOpen={!!activeVideo}
+                onClose={() => setActiveVideo(null)}
+                videoSrc={activeVideo || ''}
+            />
         </section>
     );
 }
@@ -490,6 +536,7 @@ function FeatureBlock({
     solution,
     highlights,
     videoSrc,
+    onWatchDemo,
     children
 }: {
     id: string;
@@ -499,24 +546,29 @@ function FeatureBlock({
     solution: { title: string; description: string };
     highlights?: string[];
     videoSrc?: string;
+    onWatchDemo?: (src: string) => void;
     children?: React.ReactNode;
 }) {
+    const [isMobileExpanded, setIsMobileExpanded] = useState(false);
+
     return (
         <motion.div
             id={id}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 40, scale: 0.97 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
             transition={{ duration: 0.6 }}
-            className="group feature-card rounded-2xl md:rounded-3xl overflow-hidden flex flex-col border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-xl hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 max-w-3xl mx-auto w-full relative"
+            className="group feature-card rounded-2xl md:rounded-3xl overflow-hidden flex flex-col border border-white/60 dark:border-white/10 bg-white/80 dark:bg-white/5 backdrop-blur-xl shadow-xl shadow-black/5 dark:shadow-black/40 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 max-w-3xl mx-auto w-full relative"
         >
             {/* Hover Gradient Border Effect */}
             <div className="absolute inset-0 rounded-2xl md:rounded-3xl pointer-events-none border-2 border-transparent group-hover:border-primary/10 transition-colors duration-500" />
+            {/* Top-edge glass highlight */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent pointer-events-none z-10" />
 
             {/* Story Content Side (Top) */}
             <div className="p-6 md:p-8 flex flex-col justify-center relative z-10 w-full max-w-4xl mx-auto">
                 <div className="flex items-center gap-4 mb-4 md:mb-6">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary flex-shrink-0 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-500">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white/80 dark:bg-white/10 backdrop-blur-sm border border-white/50 dark:border-white/20 rounded-2xl shadow-sm flex items-center justify-center text-primary flex-shrink-0 group-hover:scale-110 group-hover:shadow-md group-hover:shadow-primary/20 transition-all duration-500">
                         <span className="material-symbols-outlined text-xl md:text-2xl">{icon}</span>
                     </div>
                     <h2 className="text-xl md:text-2xl font-bold dark:text-white leading-tight group-hover:text-primary transition-colors duration-300">
@@ -529,15 +581,14 @@ function FeatureBlock({
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        whileHover={{ y: -4 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.4 }}
-                        className="relative p-5 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 rounded-xl overflow-hidden flex flex-col h-full hover:shadow-lg hover:border-slate-300 dark:hover:border-slate-600 transition-all"
+                        className="relative p-5 border border-rose-200/50 dark:border-rose-800/30 bg-rose-50/60 dark:bg-rose-950/20 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col h-full hover:shadow-lg hover:border-rose-300/60 dark:hover:border-rose-700/40 transition-all"
                     >
+                        {/* Corner glow accent */}
+                        <div className="absolute top-0 right-0 w-20 h-20 bg-rose-500/10 blur-2xl rounded-full pointer-events-none" />
                         <div className="flex items-center gap-2 mb-3 relative z-10">
-                            <div className="p-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg">
-                                <span className="material-symbols-outlined text-slate-500 text-lg">sentiment_dissatisfied</span>
-                            </div>
-                            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-rose-600 dark:text-rose-400">
                                 {painPoint.title}
                             </h4>
                         </div>
@@ -550,18 +601,14 @@ function FeatureBlock({
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        whileHover={{ y: -4 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: 0.1 }}
-                        className="relative p-5 border border-indigo-100 dark:border-indigo-900 bg-gradient-to-br from-indigo-50/50 to-blue-50/50 dark:from-indigo-950/30 dark:to-blue-950/30 rounded-xl overflow-hidden group/flow flex flex-col h-full hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-200 dark:hover:border-indigo-700 transition-all"
+                        className="relative p-5 border border-blue-200/50 dark:border-blue-800/30 bg-blue-50/60 dark:bg-blue-950/20 backdrop-blur-sm rounded-xl overflow-hidden group/flow flex flex-col h-full hover:shadow-lg hover:shadow-primary/10 hover:border-blue-300/60 dark:hover:border-blue-700/40 transition-all"
                     >
-                        {/* Subtle Background Gradient Animation */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 dark:via-white/5 to-transparent -translate-x-[100%] animate-[shimmer_3s_infinite] pointer-events-none" />
-
+                        {/* Corner glow accent */}
+                        <div className="absolute bottom-0 left-0 w-20 h-20 bg-primary/10 blur-2xl rounded-full pointer-events-none" />
                         <div className="flex items-center gap-2 mb-3 relative z-10">
-                            <div className="p-1.5 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg text-indigo-600 dark:text-indigo-400">
-                                <span className="material-symbols-outlined text-lg">bolt</span>
-                            </div>
-                            <h4 className="text-xs font-bold uppercase tracking-widest text-indigo-700 dark:text-indigo-400">
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-primary dark:text-blue-400">
                                 {solution.title}
                             </h4>
                         </div>
@@ -576,37 +623,58 @@ function FeatureBlock({
                     <div className="pt-4 pl-1">
                         <ul className="flex flex-wrap gap-x-6 gap-y-2">
                             {highlights.map((highlight, index) => (
-                                <li key={index} className="flex items-center gap-2 group/item">
-                                    <div className="bg-green-100 dark:bg-green-900/30 rounded-full p-0.5 group-hover/item:scale-110 transition-transform flex-shrink-0">
-                                        <span className="material-symbols-outlined text-green-600 dark:text-green-400 text-[10px] block font-bold">check</span>
-                                    </div>
-                                    <span className="text-xs text-secondary-text dark:text-gray-300 font-medium whitespace-nowrap">{highlight}</span>
+                                <li key={index} className="flex items-start gap-1.5 group/item">
+                                    <span className="material-symbols-outlined text-green-500 dark:text-green-400 text-[14px] mt-[1.5px] font-bold flex-shrink-0 group-hover/item:scale-110 transition-transform">check</span>
+                                    <span className="text-xs text-secondary-text dark:text-gray-300 font-medium leading-relaxed">{highlight}</span>
                                 </li>
                             ))}
                         </ul>
                     </div>
                 )}
+
+                {/* Expand Toggle Button */}
+                <div className="mt-6">
+                    <button
+                        onClick={() => setIsMobileExpanded(!isMobileExpanded)}
+                        className="w-full py-3 px-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 text-charcoal dark:text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors active:bg-gray-50 dark:active:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    >
+                        <span className="material-symbols-outlined text-lg text-primary">
+                            {isMobileExpanded ? 'visibility_off' : 'play_circle'}
+                        </span>
+                        {isMobileExpanded ? 'Hide Visual' : 'See Visual Demo'}
+                    </button>
+                </div>
             </div>
 
-            {/* Visual Side (Bottom) */}
-            <div className="bg-gray-50 dark:bg-black/50 p-2 md:p-4 flex items-center justify-center border-t border-structural-border dark:border-gray-800 relative grow">
+            {/* Visual Side (Bottom) - Toggleable on all devices */}
+            <div className={cn(
+                "bg-gray-50 dark:bg-black/50 p-2 md:p-4 border-t border-structural-border dark:border-gray-800 relative grow transition-all duration-300",
+                isMobileExpanded ? "block md:flex md:items-center md:justify-center md:h-auto" : "hidden"
+            )}>
                 <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50 dark:opacity-20 pointer-events-none" />
 
                 {videoSrc ? (
                     <div className="w-full max-w-5xl shadow-2xl rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 relative z-10 group-hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] transition-shadow duration-500 bg-white dark:bg-gray-900 flex flex-col aspect-video">
                         <div className="flex-grow relative bg-gray-900 group-hover:bg-gray-800 transition-colors duration-500">
-                            {/* Play Button Placeholder / Loading State */}
-                            <div className="absolute inset-0 flex items-center justify-center text-white/20 group-hover:text-white/40 transition-colors duration-500">
-                                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-current flex items-center justify-center">
-                                    <span className="material-symbols-outlined text-4xl md:text-5xl">play_arrow</span>
+                            {/* Play Button Trigger */}
+                            <button
+                                onClick={() => onWatchDemo?.(videoSrc)}
+                                className="absolute inset-0 flex flex-col items-center justify-center text-white/40 group-hover:text-white/80 transition-all duration-500 z-20 hover:bg-black/20"
+                            >
+                                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-current flex items-center justify-center mb-4 transition-transform group-hover:scale-110 bg-black/20 backdrop-blur-sm">
+                                    <span className="material-symbols-outlined text-5xl md:text-6xl pl-1">play_arrow</span>
                                 </div>
-                            </div>
+                                <span className="text-sm font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">Watch Demo</span>
+                            </button>
 
+                            {/* Background Video (Muted, Loop, No Controls) acting as a "Live Poster" */}
                             <VideoPlayer
                                 src={videoSrc}
                                 autoPlay={true}
+                                muted={true}
+                                loop={true}
                                 fallbackContent={children}
-                                className="h-full w-full object-cover relative z-10"
+                                className="h-full w-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500"
                                 hideControls={true}
                             />
                         </div>

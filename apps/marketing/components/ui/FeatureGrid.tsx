@@ -15,9 +15,10 @@ interface FeatureData {
 
 interface FeatureGridProps {
   features: FeatureData[];
+  onWatchDemo?: (src: string) => void;
 }
 
-export default function FeatureGrid({ features }: FeatureGridProps) {
+export default function FeatureGrid({ features, onWatchDemo }: FeatureGridProps) {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
 
   return (
@@ -36,7 +37,7 @@ export default function FeatureGrid({ features }: FeatureGridProps) {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6">
         {features.map((feature) => (
           <FeatureGridCard
             key={feature.id}
@@ -45,6 +46,7 @@ export default function FeatureGrid({ features }: FeatureGridProps) {
             onToggle={(id) => {
               setExpandedCard(expandedCard === id ? null : id);
             }}
+            onWatchDemo={onWatchDemo}
           />
         ))}
       </div>
