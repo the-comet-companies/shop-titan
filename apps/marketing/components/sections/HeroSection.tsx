@@ -13,8 +13,15 @@ export default function HeroSection() {
     const sectionRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
+        // Instant reveal on mobile since Spline isn't mounted
+        if (window.innerWidth < 768 && sectionRef.current) {
+            sectionRef.current.style.opacity = '1';
+        }
+
         const raf = requestAnimationFrame(() => {
-            setMountSpline(true);
+            if (window.innerWidth >= 768) {
+                setMountSpline(true);
+            }
         });
         return () => cancelAnimationFrame(raf);
     }, []);
@@ -43,9 +50,33 @@ export default function HeroSection() {
             className="relative bg-background dark:bg-background-dark min-h-[80vh] flex flex-col justify-start overflow-hidden"
             style={{ opacity: 0, transition: 'opacity 0.6s ease-out' }}
         >
-            {/* Spline 3D Asset */}
+            {/* Animated Wave Background for Mobile */}
+            <div className="absolute inset-0 z-0 overflow-hidden md:hidden bg-[#F0F4F8] dark:bg-[#0A0A0A]">
+                {/* Wave 1 */}
+                <div
+                    className="absolute left-[-50%] top-[-50%] w-[200%] h-[200%] bg-[linear-gradient(45deg,transparent,rgba(0,102,204,0.15),transparent)] animate-[spin_25s_linear_infinite]"
+                    style={{ borderRadius: '40% 60% 70% 30% / 40% 50% 60% 50%' }}
+                />
+                {/* Wave 2 */}
+                <div
+                    className="absolute left-[-20%] top-[-20%] w-[140%] h-[140%] bg-[linear-gradient(45deg,transparent,rgba(0,102,204,0.12),transparent)] animate-[spin_18s_linear_infinite_reverse]"
+                    style={{ borderRadius: '60% 40% 30% 70% / 50% 30% 70% 40%' }}
+                />
+                {/* Wave 3 - Extra variation */}
+                <div
+                    className="absolute left-[-30%] top-[-10%] w-[160%] h-[160%] bg-[linear-gradient(135deg,transparent,rgba(0,102,204,0.08),transparent)] animate-[spin_32s_linear_infinite]"
+                    style={{ borderRadius: '30% 70% 50% 50% / 40% 60% 40% 60%' }}
+                />
+                {/* Wave 4 - Extra variation */}
+                <div
+                    className="absolute left-[10%] top-[-40%] w-[180%] h-[180%] bg-[linear-gradient(90deg,transparent,rgba(0,102,204,0.1),transparent)] animate-[spin_22s_linear_infinite_reverse]"
+                    style={{ borderRadius: '50% 50% 40% 60% / 70% 30% 50% 50%' }}
+                />
+            </div>
+
+            {/* Spline 3D Asset for Desktop */}
             <div
-                className="absolute inset-0 z-0 select-none pointer-events-none"
+                className="absolute inset-0 z-0 select-none pointer-events-none hidden md:block"
                 role="img"
                 aria-label="3D visualization of logistics and container management operations"
             >
