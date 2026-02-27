@@ -409,7 +409,7 @@ export default function FeaturesSection() {
                         transition={{ duration: 0.4, delay: 0.2 }}
                         className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-2xl mx-auto leading-relaxed"
                     >
-                        A modular architectural approach to apparel decoration. We didn't just build features; we solved the fundamental frictions.
+                        A modular architectural approach to apparel decoration. We didn&apos;t just build features; we solved the fundamental frictions.
                     </motion.p>
                 </div>
 

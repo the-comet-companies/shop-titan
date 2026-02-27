@@ -23,7 +23,7 @@ interface SplineApp {
 export default function SplineHero({
     scene = "https://prod.spline.design/tICsK1PQRrzcESXa/scene.splinecode",
     onReady,
-    mobileVideoFallback,
+    mobileVideoFallback: _mobileVideoFallback,
     eagerLoad = false
 }: SplineHeroProps) {
     const splineRef = useRef<SplineApp | null>(null);

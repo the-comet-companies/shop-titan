@@ -108,6 +108,7 @@ function generatePositionsForShape(shape: ParticleShape, count: number): Float32
                 break;
             default: {
                 const _exhaustiveCheck: never = shape;
+                void _exhaustiveCheck;
                 r = 0;
                 noise = 0;
                 break;
@@ -115,7 +116,7 @@ function generatePositionsForShape(shape: ParticleShape, count: number): Float32
         }
         const theta = Math.random() * Math.PI * 2;
         const phi = Math.acos(2 * Math.random() - 1);
-        positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta) + (Math.random() - 0.5) * noise;
+        positions[i * 3] = r * Math.sin(phi) * Math.cos(theta) + (Math.random() - 0.5) * noise;
         positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta) + (Math.random() - 0.5) * noise;
         positions[i * 3 + 2] = r * Math.cos(phi) + (Math.random() - 0.5) * noise;
     }
@@ -387,7 +388,7 @@ function StoryParticles({
 
         for (let i = 0; i < PARTICLE_COUNT; i++) {
             const idx = i * 3;
-            positions[idx]     += (targetPositions[idx]     - positions[idx])     * lerpFactor;
+            positions[idx] += (targetPositions[idx] - positions[idx]) * lerpFactor;
             positions[idx + 1] += (targetPositions[idx + 1] - positions[idx + 1]) * lerpFactor;
             positions[idx + 2] += (targetPositions[idx + 2] - positions[idx + 2]) * lerpFactor;
         }
