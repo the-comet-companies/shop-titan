@@ -338,12 +338,17 @@ export default function FeaturesSection() {
     // Close dropdown on outside click or scroll
     useEffect(() => {
         if (!dropdownOpen) return;
-        function close() { setDropdownOpen(false); }
-        document.addEventListener('mousedown', close);
-        window.addEventListener('scroll', close, { passive: true });
+        function handleMouseDown(e: MouseEvent) {
+            // If the click is on the More button itself, skip — let onClick toggle it
+            if (moreButtonRef.current?.contains(e.target as Node)) return;
+            setDropdownOpen(false);
+        }
+        function handleScroll() { setDropdownOpen(false); }
+        document.addEventListener('mousedown', handleMouseDown);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => {
-            document.removeEventListener('mousedown', close);
-            window.removeEventListener('scroll', close);
+            document.removeEventListener('mousedown', handleMouseDown);
+            window.removeEventListener('scroll', handleScroll);
         };
     }, [dropdownOpen]);
 
