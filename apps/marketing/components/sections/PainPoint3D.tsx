@@ -365,27 +365,27 @@ export default function PainPoint3D() {
                     </div>
                 </div>
 
-                {/* Progress Dots */}
+                {/* Progress Lines */}
                 <div
-                    className="absolute bottom-8 left-0 right-0 z-20 flex items-center justify-center gap-2"
+                    className="absolute bottom-8 left-0 right-0 z-20 flex items-center justify-center gap-1.5 px-8"
                     role="group"
                     aria-label="Scene navigation"
                 >
                     {painPointScenes.map((scene, index) => (
-                        <motion.button
+                        <button
                             key={scene.id}
                             type="button"
                             onClick={() => scrollToScene(index)}
-                            className="rounded-full cursor-pointer h-3 py-3 box-content"
-                            animate={{
-                                width: activeIndex === index ? 24 : 8,
-                                backgroundColor:
-                                    activeIndex === index ? scene.color : `${scene.color}66`,
-                            }}
-                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                            className="flex-1 max-w-24 cursor-pointer py-3"
                             aria-label={`Go to ${scene.subtitle}`}
                             aria-current={activeIndex === index ? 'step' : undefined}
-                        />
+                        >
+                            <motion.div
+                                style={{ height: '1px', backgroundColor: scene.color }}
+                                animate={{ opacity: activeIndex === index ? 1 : 0.25 }}
+                                transition={{ duration: 0.4, ease: 'easeInOut' }}
+                            />
+                        </button>
                     ))}
                 </div>
 
