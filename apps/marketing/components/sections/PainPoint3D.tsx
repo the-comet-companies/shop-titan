@@ -518,7 +518,7 @@ export default function PainPoint3D() {
                                 {/* H2 */}
                                 <motion.h2
                                     variants={itemVariants}
-                                    className="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal dark:text-white mb-8 leading-tight tracking-tight"
+                                    className="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal dark:text-white mb-8 leading-tight tracking-tight md:whitespace-nowrap"
                                 >
                                     {activeScene.title}
                                 </motion.h2>
