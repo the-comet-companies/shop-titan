@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useMemo, useState } from "react";
+import { useEffect, useRef, useMemo, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
@@ -254,6 +254,16 @@ export default function PainPoint3D() {
         };
     }, []);
 
+    const scrollToScene = useCallback((index: number) => {
+        const outer = outerRef.current;
+        if (!outer) return;
+        const totalScrollable = outer.offsetHeight - window.innerHeight;
+        const targetProgress = (index + 0.5) / 5;
+        const targetScrollY =
+            outer.getBoundingClientRect().top + window.scrollY + targetProgress * totalScrollable;
+        window.scrollTo({ top: targetScrollY, behavior: 'smooth' });
+    }, []);
+
     return (
         <div ref={outerRef} style={{ height: '500vh' }}>
             <section className="sticky top-0 h-screen w-full overflow-hidden bg-background-light dark:bg-black">
@@ -350,6 +360,24 @@ export default function PainPoint3D() {
                             </motion.div>
                         </AnimatePresence>
                     </div>
+                </div>
+
+                {/* Progress Dots */}
+                <div className="absolute bottom-8 left-0 right-0 z-20 flex items-center justify-center gap-2">
+                    {painPointScenes.map((scene, index) => (
+                        <motion.button
+                            key={scene.id}
+                            onClick={() => scrollToScene(index)}
+                            className="rounded-full cursor-pointer h-2"
+                            animate={{
+                                width: activeIndex === index ? 24 : 8,
+                                backgroundColor:
+                                    activeIndex === index ? scene.color : `${scene.color}66`,
+                            }}
+                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                            aria-label={`Go to ${scene.subtitle}`}
+                        />
+                    ))}
                 </div>
 
                 {/* Gradient overlay for bottom blending */}
