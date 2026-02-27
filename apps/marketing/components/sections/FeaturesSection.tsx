@@ -400,7 +400,7 @@ export default function FeaturesSection() {
                         transition={{ duration: 0.4, delay: 0.1 }}
                         className="text-3xl md:text-5xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-4"
                     >
-                        Built for how print shops actually work
+                        Engineered for Operational Excellence
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 12 }}
@@ -409,7 +409,7 @@ export default function FeaturesSection() {
                         transition={{ duration: 0.4, delay: 0.2 }}
                         className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-2xl mx-auto leading-relaxed"
                     >
-                        Every tool your team needs — quotes, orders, production, inventory — in one place.
+                        A modular architectural approach to apparel decoration. We didn't just build features; we solved the fundamental frictions.
                     </motion.p>
                 </div>
 
