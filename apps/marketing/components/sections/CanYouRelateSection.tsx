@@ -60,11 +60,11 @@ const painPoints = [
 function AnimatedCard({ point }: { point: typeof painPoints[0] }) {
     return (
         <div
-            className="relative p-3 md:p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden group min-w-0 h-full"
+            className="relative p-3 md:p-4 rounded-xl border border-structural-border dark:border-gray-800 hover:border-rose-500/30 dark:hover:border-rose-500/20 bg-white dark:bg-gray-900 overflow-hidden group min-w-0 h-full transition-colors duration-300"
         >
             {/* Hover glow */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/0 group-hover:bg-rose-500/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
-            <span className="block text-[10px] font-bold tracking-widest text-secondary-text dark:text-gray-600 uppercase mb-1.5">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/0 group-hover:bg-rose-500/[0.10] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+            <span className="block text-[10px] font-bold tracking-widest text-rose-500/70 dark:text-rose-500/50 uppercase mb-1.5">
                 {point.number}
             </span>
             <p className="text-sm font-bold text-charcoal dark:text-white leading-snug mb-1">
