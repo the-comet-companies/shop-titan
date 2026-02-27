@@ -31,7 +31,7 @@ const painPointScenes: PainPointScene[] = [
         color: "#ef4444",
         particleColor: "#93c5fd",
         highlightWord: "CHAOS",
-        icon: "layers",
+        icon: "report",
         particleShape: "scattered",
     },
     {
@@ -42,7 +42,7 @@ const painPointScenes: PainPointScene[] = [
         color: "#4f46e5",
         particleColor: "#60a5fa",
         highlightWord: "CLARITY",
-        icon: "verified",
+        icon: "emoji_objects",
         particleShape: "organized",
     },
     {
@@ -53,7 +53,7 @@ const painPointScenes: PainPointScene[] = [
         color: "#059669",
         particleColor: "#3b82f6",
         highlightWord: "FOCUS",
-        icon: "auto_awesome",
+        icon: "trending_up",
         particleShape: "expanding",
     },
     {
