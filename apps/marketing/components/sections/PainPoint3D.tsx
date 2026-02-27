@@ -142,6 +142,7 @@ const itemVariants = {
         y: 0,
         transition: { duration: 0.35, ease: 'easeOut' as const },
     },
+    exit: {},
 };
 
 const iconVariants = {
@@ -152,6 +153,7 @@ const iconVariants = {
         y: 0,
         transition: { duration: 0.4, ease: 'easeOut' as const },
     },
+    exit: {},
 };
 
 // --- 3D Particle Component ---
@@ -165,15 +167,14 @@ function StoryParticles({
     visible: boolean;
 }) {
     const pointsRef = useRef<THREE.Points>(null);
-    const count = PARTICLE_COUNT;
 
     const [targetPositions, setTargetPositions] = useState<Float32Array | null>(null);
 
     useEffect(() => {
-        setTargetPositions(generatePositionsForShape(particleShape, count));
+        setTargetPositions(generatePositionsForShape(particleShape, PARTICLE_COUNT));
     }, [particleShape]);
 
-    const initialPositions = useMemo(() => generatePositionsForShape('scattered', count), []);
+    const initialPositions = useMemo(() => generatePositionsForShape('scattered', PARTICLE_COUNT), []);
 
     useFrame((_, delta) => {
         if (!visible || !pointsRef.current || !targetPositions) return;
@@ -181,7 +182,7 @@ function StoryParticles({
         const positions = pointsRef.current.geometry.attributes.position.array as Float32Array;
         const lerpFactor = 1.5 * delta;
 
-        for (let i = 0; i < count; i++) {
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
             const idx = i * 3;
             positions[idx]     += (targetPositions[idx]     - positions[idx])     * lerpFactor;
             positions[idx + 1] += (targetPositions[idx + 1] - positions[idx + 1]) * lerpFactor;
@@ -208,6 +209,7 @@ function StoryParticles({
     );
 }
 
+// Scene is kept as an extension point for future geometry (lighting, additional meshes, etc.)
 function Scene({
     activeIndex,
     particleShape,
@@ -327,7 +329,7 @@ export default function PainPoint3D() {
 
                                 {/* CTA or highlight word */}
                                 <motion.div variants={itemVariants}>
-                                    {'cta' in activeScene && activeScene.cta ? (
+                                    {activeScene.cta ? (
                                         <div className="flex flex-col items-center gap-5">
                                             <a
                                                 href={activeScene.cta.href}
