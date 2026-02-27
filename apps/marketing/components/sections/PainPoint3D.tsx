@@ -1,14 +1,27 @@
 'use client';
 
-import { useEffect, useRef, useMemo, useCallback, useState } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
 type ParticleShape = 'scattered' | 'organized' | 'expanding' | 'contracting';
 
+interface PainPointScene {
+    id: string;
+    title: string;
+    subtitle: string;
+    description: string;
+    color: string;
+    particleColor: string;
+    highlightWord: string | null;
+    icon: string;
+    particleShape: ParticleShape;
+    cta?: { label: string; href: string };
+}
+
 // --- Data Structure ---
-const painPointScenes = [
+const painPointScenes: PainPointScene[] = [
     {
         id: "chaos",
         title: "No Single Source of Truth",
@@ -18,7 +31,7 @@ const painPointScenes = [
         particleColor: "#93c5fd",
         highlightWord: "CHAOS",
         icon: "layers",
-        particleShape: "scattered" as ParticleShape,
+        particleShape: "scattered",
     },
     {
         id: "solution",
@@ -29,7 +42,7 @@ const painPointScenes = [
         particleColor: "#60a5fa",
         highlightWord: "CLARITY",
         icon: "verified",
-        particleShape: "organized" as ParticleShape,
+        particleShape: "organized",
     },
     {
         id: "dream",
@@ -40,7 +53,7 @@ const painPointScenes = [
         particleColor: "#3b82f6",
         highlightWord: "FOCUS",
         icon: "auto_awesome",
-        particleShape: "expanding" as ParticleShape,
+        particleShape: "expanding",
     },
     {
         id: "stakes",
@@ -51,7 +64,7 @@ const painPointScenes = [
         particleColor: "#fca5a5",
         highlightWord: "COST",
         icon: "alarm",
-        particleShape: "contracting" as ParticleShape,
+        particleShape: "contracting",
     },
     {
         id: "cta",
@@ -62,36 +75,64 @@ const painPointScenes = [
         particleColor: "#93c5fd",
         highlightWord: null,
         icon: "rocket_launch",
-        particleShape: "expanding" as ParticleShape,
+        particleShape: "expanding",
         cta: { label: "Let's Talk", href: "/reach-out" },
     },
 ];
 
+// --- Particle Shape Generator ---
+function generatePositionsForShape(shape: ParticleShape, count: number): Float32Array {
+    const positions = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+        let r: number;
+        let noise: number;
+        switch (shape) {
+            case 'scattered':
+                r = Math.random() * 5;
+                noise = 2.5;
+                break;
+            case 'organized':
+                r = 2.5 + Math.random() * 0.5;
+                noise = 0.3;
+                break;
+            case 'expanding':
+                r = 3.5 + Math.random() * 2.5;
+                noise = 1.0;
+                break;
+            case 'contracting':
+                r = Math.pow(Math.random(), 2) * 2.0;
+                noise = 0.5;
+                break;
+        }
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta) + (Math.random() - 0.5) * noise;
+        positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta) + (Math.random() - 0.5) * noise;
+        positions[i * 3 + 2] = r * Math.cos(phi) + (Math.random() - 0.5) * noise;
+    }
+    return positions;
+}
+
 // --- 3D Particle Component ---
-function StoryParticles({ activeIndex, visible }: { activeIndex: number; scrollProgress: number; visible: boolean }) {
+function StoryParticles({
+    activeIndex,
+    particleShape,
+    visible,
+}: {
+    activeIndex: number;
+    particleShape: ParticleShape;
+    visible: boolean;
+}) {
     const pointsRef = useRef<THREE.Points>(null);
     const count = 500;
 
     const [targetPositions, setTargetPositions] = useState<Float32Array | null>(null);
 
-    const generateDustPositions = useCallback(() => {
-        const positions = new Float32Array(count * 3);
-        for (let i = 0; i < count; i++) {
-            const r = Math.pow(Math.random(), 0.4) * 3.2;
-            const theta = Math.random() * Math.PI * 2;
-            const phi = Math.acos(2 * Math.random() - 1);
-            positions[i * 3] = r * Math.sin(phi) * Math.cos(theta) + (Math.random() - 0.5) * 1.5;
-            positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta) + (Math.random() - 0.5) * 1.0;
-            positions[i * 3 + 2] = r * Math.cos(phi) + (Math.random() - 0.5) * 1.5;
-        }
-        return positions;
-    }, []);
-
     useEffect(() => {
-        setTargetPositions(generateDustPositions());
-    }, [activeIndex, generateDustPositions]);
+        setTargetPositions(generatePositionsForShape(particleShape, count));
+    }, [particleShape]);
 
-    const initialPositions = useMemo(() => generateDustPositions(), [generateDustPositions]);
+    const initialPositions = useMemo(() => generatePositionsForShape('scattered', count), []);
 
     useFrame((_, delta) => {
         if (!visible || !pointsRef.current || !targetPositions) return;
@@ -101,7 +142,7 @@ function StoryParticles({ activeIndex, visible }: { activeIndex: number; scrollP
 
         for (let i = 0; i < count; i++) {
             const idx = i * 3;
-            positions[idx] += (targetPositions[idx] - positions[idx]) * lerpFactor;
+            positions[idx]     += (targetPositions[idx]     - positions[idx])     * lerpFactor;
             positions[idx + 1] += (targetPositions[idx + 1] - positions[idx + 1]) * lerpFactor;
             positions[idx + 2] += (targetPositions[idx + 2] - positions[idx + 2]) * lerpFactor;
         }
@@ -126,9 +167,17 @@ function StoryParticles({ activeIndex, visible }: { activeIndex: number; scrollP
     );
 }
 
-function Scene({ activeIndex, scrollProgress, visible }: { activeIndex: number; scrollProgress: number; visible: boolean }) {
+function Scene({
+    activeIndex,
+    particleShape,
+    visible,
+}: {
+    activeIndex: number;
+    particleShape: ParticleShape;
+    visible: boolean;
+}) {
     return (
-        <StoryParticles activeIndex={activeIndex} scrollProgress={scrollProgress} visible={visible} />
+        <StoryParticles activeIndex={activeIndex} particleShape={particleShape} visible={visible} />
     );
 }
 
@@ -136,7 +185,8 @@ function Scene({ activeIndex, scrollProgress, visible }: { activeIndex: number; 
 export default function PainPoint3D() {
     const outerRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState(0);
-    const [progress, setProgress] = useState(0);
+
+    const activeScene = painPointScenes[activeIndex];
 
     useEffect(() => {
         const outer = outerRef.current;
@@ -150,7 +200,6 @@ export default function PainPoint3D() {
                 const totalScrollable = outer.offsetHeight - window.innerHeight;
                 const scrolled = -rect.top;
                 const p = Math.max(0, Math.min(1, scrolled / totalScrollable));
-                setProgress(p);
                 setActiveIndex(Math.min(Math.floor(p * 5), 4));
             });
         };
@@ -174,7 +223,7 @@ export default function PainPoint3D() {
                         gl={{ alpha: true, antialias: false }}
                         dpr={[1, 1.5]}
                     >
-                        <Scene activeIndex={activeIndex} scrollProgress={progress} visible={true} />
+                        <Scene activeIndex={activeIndex} particleShape={activeScene.particleShape} visible={true} />
                     </Canvas>
                 </div>
 
