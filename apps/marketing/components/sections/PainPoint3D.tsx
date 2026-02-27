@@ -339,6 +339,7 @@ export default function PainPoint3D() {
                                                 <span className="material-symbols-outlined text-xl relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                                             </a>
                                             <button
+                                                type="button"
                                                 onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
                                                 className="pointer-events-auto flex flex-col items-center gap-2 text-secondary-text dark:text-gray-500 hover:text-charcoal dark:hover:text-white transition-colors duration-300 group"
                                             >
@@ -363,12 +364,17 @@ export default function PainPoint3D() {
                 </div>
 
                 {/* Progress Dots */}
-                <div className="absolute bottom-8 left-0 right-0 z-20 flex items-center justify-center gap-2">
+                <div
+                    className="absolute bottom-8 left-0 right-0 z-20 flex items-center justify-center gap-2"
+                    role="group"
+                    aria-label="Scene navigation"
+                >
                     {painPointScenes.map((scene, index) => (
                         <motion.button
                             key={scene.id}
+                            type="button"
                             onClick={() => scrollToScene(index)}
-                            className="rounded-full cursor-pointer h-2"
+                            className="rounded-full cursor-pointer h-3 py-3 box-content"
                             animate={{
                                 width: activeIndex === index ? 24 : 8,
                                 backgroundColor:
@@ -376,6 +382,7 @@ export default function PainPoint3D() {
                             }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                             aria-label={`Go to ${scene.subtitle}`}
+                            aria-current={activeIndex === index ? 'step' : undefined}
                         />
                     ))}
                 </div>
