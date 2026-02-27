@@ -4,16 +4,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 
 const capabilities = [
-    "Take in custom orders",
-    "Manage artwork",
-    "RFQs & Work with subcontractors",
-    "Schedule machines",
-    "Assign production tasks",
-    "Manage pricing matrices",
-    "Deal with rush jobs",
-    "Track QC",
-    "Coordinate vendors",
-    "Handle sampling and reorders"
+    { label: "Take in custom orders", icon: "shopping_bag" },
+    { label: "Manage artwork", icon: "palette" },
+    { label: "RFQs & Work with subcontractors", icon: "handshake" },
+    { label: "Schedule machines", icon: "precision_manufacturing" },
+    { label: "Assign production tasks", icon: "task_alt" },
+    { label: "Manage pricing matrices", icon: "grid_on" },
+    { label: "Deal with rush jobs", icon: "bolt" },
+    { label: "Track QC", icon: "verified" },
+    { label: "Coordinate vendors", icon: "people" },
+    { label: "Handle sampling and reorders", icon: "repeat" },
 ];
 
 const industries = [
@@ -82,7 +82,7 @@ const industries = [
     "Campus merch producers",
     "Athletic department printers",
     "Police uniform suppliers",
-    "Fire department apparel"
+    "Fire department apparel",
 ];
 
 const uniqueIndustries = Array.from(new Set(industries));
@@ -102,7 +102,7 @@ const highlightWords = [
     "promo distributors",
     "sublimation shops",
     "print brokers",
-    "apparel brands"
+    "apparel brands",
 ];
 
 export default function IndustriesSection() {
@@ -136,17 +136,55 @@ export default function IndustriesSection() {
         <section
             id="industries"
             ref={sectionRef}
-            className="pt-0 pb-8 md:pb-12 bg-background-light dark:bg-background-dark relative overflow-hidden"
+            className="relative bg-background-dark overflow-hidden pt-40 pb-40"
         >
-            {/* Top: Industry Marquee */}
-            <div className="relative pt-16 pb-12 border-b border-gray-200 dark:border-gray-800/60 bg-white/50 dark:bg-black/20 mb-20 md:mb-32">
-                <div className="absolute left-0 inset-y-0 w-24 md:w-48 bg-gradient-to-r from-background-light dark:from-background-dark to-transparent z-10 pointer-events-none" />
-                <div className="absolute right-0 inset-y-0 w-24 md:w-48 bg-gradient-to-l from-background-light dark:from-background-dark to-transparent z-10 pointer-events-none" />
+            {/* Animated gradient orb background */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50" aria-hidden="true">
+                <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-primary/[0.06] blur-3xl animate-gradient-flow-1" />
+                <div className="absolute top-1/2 -left-48 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.04] blur-3xl animate-gradient-flow-2" />
+                <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-teal-400/[0.03] blur-3xl animate-gradient-flow-3" />
+            </div>
 
-                <div className="max-w-7xl mx-auto px-mobile text-center mb-12 relative z-20">
-                    <h3 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white mb-3 flex flex-wrap items-center justify-center gap-2">
+            {/* Top bleed: previous light section → dark */}
+            <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-background-light dark:from-background-dark to-transparent pointer-events-none z-0" />
+            {/* Bottom bleed: dark → next light section */}
+            <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent pointer-events-none z-0" />
+
+            {/* All content sits above the gradient bleeds */}
+            <div className="relative z-10">
+
+                {/* Section Header */}
+                <div className="max-w-3xl mx-auto px-mobile text-center mb-16 md:mb-20">
+                    <motion.span
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4 }}
+                        className="inline-block px-3 py-1 rounded-full bg-white/10 text-white text-xs font-bold tracking-wider uppercase mb-6"
+                    >
+                        Who We Serve
+                    </motion.span>
+
+                    <motion.h2
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: 0.1 }}
+                        className="text-4xl md:text-6xl font-bold text-white leading-tight tracking-tight mb-6"
+                    >
+                        Built for businesses who{' '}
+                        <span className="italic font-serif opacity-90">actually make</span> things.
+                    </motion.h2>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: 0.2 }}
+                        className="flex flex-wrap items-center justify-center gap-2 text-xl md:text-2xl text-white/60 font-medium"
+                    >
                         <span>Not just for</span>
-                        <div className="relative inline-flex overflow-hidden h-10 items-center justify-center px-1">
+                        <div className="relative inline-flex overflow-hidden h-8 items-center justify-center">
                             <AnimatePresence mode="wait">
                                 <motion.span
                                     key={currentWordIndex}
@@ -154,95 +192,72 @@ export default function IndustriesSection() {
                                     animate={{ y: 0, opacity: 1 }}
                                     exit={{ y: -20, opacity: 0 }}
                                     transition={{ duration: 0.3 }}
-                                    className="block font-serif italic text-primary min-w-[200px]"
+                                    className="block italic font-serif text-white whitespace-nowrap"
                                 >
                                     &quot;{highlightWords[currentWordIndex]}&quot;
                                 </motion.span>
                             </AnimatePresence>
                         </div>
-                    </h3>
-                    <p className="text-secondary-text dark:text-gray-400 font-medium mt-2">
-                        Production driven decoration businesses managing multi step custom workflows.
+                    </motion.div>
+                </div>
+
+                {/* Marquee */}
+                <div className="relative overflow-hidden pb-8">
+                    {/* Edge fades — must match section bg */}
+                    <div className="absolute left-0 inset-y-0 w-24 md:w-48 bg-gradient-to-r from-background-dark to-transparent z-10 pointer-events-none" />
+                    <div className="absolute right-0 inset-y-0 w-24 md:w-48 bg-gradient-to-l from-background-dark to-transparent z-10 pointer-events-none" />
+
+                    <div className="flex flex-col gap-4 md:gap-5">
+                        {industryRows.map((row, rowIndex) => (
+                            <div
+                                key={rowIndex}
+                                className="carousel-track shrink-0"
+                                style={{
+                                    animationDuration: '120s',
+                                    animationDelay: `${rowIndex * -12}s`,
+                                    animationDirection: rowIndex % 2 === 0 ? 'normal' : 'reverse',
+                                    willChange: 'transform',
+                                }}
+                            >
+                                {[...row, ...row].map((industry, i) => (
+                                    <span
+                                        key={`${rowIndex}-${i}`}
+                                        className="inline-flex items-center px-4 py-2 mr-3 rounded-full border border-white/10 text-sm font-medium text-white/75 whitespace-nowrap bg-white/[0.05] hover:bg-white/10 hover:border-white/20 transition-colors"
+                                    >
+                                        {industry}
+                                    </span>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Bridge text */}
+                <div className="max-w-3xl mx-auto px-mobile text-center mt-10 mb-8">
+                    <p className="text-sm text-white/40 font-medium tracking-widest uppercase">
+                        If your shop handles any of these, you&apos;re in the right place.
                     </p>
                 </div>
 
-                <div className="flex flex-col gap-4 md:gap-5 overflow-hidden pb-8">
-                    {industryRows.map((row, rowIndex) => (
-                        <div
-                            key={rowIndex}
-                            className="carousel-track shrink-0"
-                            style={{
-                                animationDuration: '120s',
-                                animationDelay: `${rowIndex * -12}s`,
-                                animationDirection: rowIndex % 2 === 0 ? 'normal' : 'reverse',
-                                willChange: 'transform',
-                            }}
-                        >
-                            {[...row, ...row].map((industry, i) => (
-                                <span
-                                    key={`${rowIndex}-${i}`}
-                                    className="inline-flex items-center px-4 py-2 mr-3 rounded-full border border-gray-200 dark:border-gray-800 text-sm font-medium text-charcoal dark:text-gray-300 whitespace-nowrap bg-white/70 dark:bg-gray-900/50"
-                                >
-                                    {industry}
-                                </span>
-                            ))}
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {/* Bottom: Headline + Capabilities List */}
-            <div className="max-w-7xl mx-auto px-mobile relative z-10 pt-12 md:pt-16 pb-8 md:pb-12">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
-                    <div className="flex flex-col justify-center lg:order-last">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-6">
-                                Workflows Solved
-                            </span>
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6 tracking-tight text-charcoal dark:text-white">
-                                Built for businesses who{' '}
-                                <span className="text-primary italic font-serif opacity-90">actually make</span> things.
-                            </h2>
-                            <p className="text-lg text-secondary-text dark:text-gray-400 leading-relaxed max-w-lg">
-                                If your shop performs any of these multi-step custom workflows, our platform is engineered for your operational chaos.
-                            </p>
-                        </motion.div>
-                    </div>
-
-                    <motion.div
-                        className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 self-center w-full"
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, ease: 'easeOut' }}
-                    >
+                {/* Capability Badges */}
+                <div className="max-w-4xl mx-auto px-mobile pb-8">
+                    <div className="flex flex-wrap gap-3 justify-center">
                         {capabilities.map((capability, index) => (
-                            <div key={index} className="flex items-center gap-3 py-2 border-b border-gray-100 dark:border-gray-800/60 sm:border-0">
-                                <svg
-                                    className="flex-shrink-0 w-4 h-4 text-green-500 dark:text-green-400"
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                    aria-hidden="true"
-                                >
-                                    <path
-                                        d="M3 8l3.5 3.5L13 4.5"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                                <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                                    {capability}
-                                </span>
-                            </div>
+                            <motion.div
+                                key={capability.label}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ type: 'spring', stiffness: 280, damping: 22, delay: index * 0.06 }}
+                                className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/[0.08] border border-white/[0.15] text-sm font-medium text-white/90 hover:bg-white/[0.15] hover:border-white/25 transition-colors duration-200 cursor-default"
+                            >
+                                <span className="material-symbols-outlined text-primary text-base leading-none">{capability.icon}</span>
+                                {capability.label}
+                            </motion.div>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
+
             </div>
         </section>
     );
