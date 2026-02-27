@@ -85,8 +85,8 @@ export default function CanYouRelateSection() {
                 id="can-you-relate"
                 className="flex flex-col bg-surface dark:bg-gray-950 relative"
             >
-                {/* Transition gradient from PainPoint3D */}
-                <div className="absolute top-0 inset-x-0 h-56 bg-gradient-to-b from-black to-transparent pointer-events-none z-0" />
+                {/* Top divider */}
+                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent" />
                 {/* Micro grid texture */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
@@ -96,10 +96,10 @@ export default function CanYouRelateSection() {
                     {/* Header */}
                     <div className="flex-shrink-0 mb-8 md:mb-12">
                         <div className="flex items-end justify-between gap-4">
-                            <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">
+                            <h2 className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white leading-tight">
                                 We&apos;ve heard all of these.
                                 <br />
-                                <span className="text-gray-400">Usually in the same conversation.</span>
+                                <span className="text-secondary-text dark:text-gray-500">Usually in the same conversation.</span>
                             </h2>
                         </div>
                     </div>
