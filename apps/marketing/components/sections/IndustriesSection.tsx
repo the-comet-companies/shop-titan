@@ -136,19 +136,19 @@ export default function IndustriesSection() {
         <section
             id="industries"
             ref={sectionRef}
-            className="relative bg-background-dark overflow-hidden pt-40 pb-40"
+            className="relative bg-background-light overflow-hidden pt-40 pb-40"
         >
             {/* Animated gradient orb background */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50" aria-hidden="true">
-                <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-primary/[0.06] blur-3xl animate-gradient-flow-1" />
-                <div className="absolute top-1/2 -left-48 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.04] blur-3xl animate-gradient-flow-2" />
-                <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-teal-400/[0.03] blur-3xl animate-gradient-flow-3" />
+            <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40" aria-hidden="true">
+                <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-primary/[0.07] blur-3xl animate-gradient-flow-1" />
+                <div className="absolute top-1/2 -left-48 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.05] blur-3xl animate-gradient-flow-2" />
+                <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-teal-400/[0.04] blur-3xl animate-gradient-flow-3" />
             </div>
 
             {/* Top bleed: previous light section → dark */}
-            <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-background-light dark:from-background-dark to-transparent pointer-events-none z-0" />
-            {/* Bottom bleed: dark → next light section */}
-            <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent pointer-events-none z-0" />
+            <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-background-light to-transparent pointer-events-none z-0" />
+            {/* Bottom bleed */}
+            <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-background-light to-transparent pointer-events-none z-0" />
 
             {/* All content sits above the gradient bleeds */}
             <div className="relative z-10">
@@ -160,7 +160,7 @@ export default function IndustriesSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4 }}
-                        className="inline-block px-3 py-1 rounded-full bg-white/10 text-white text-xs font-bold tracking-wider uppercase mb-6"
+                        className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-6"
                     >
                         Who We Serve
                     </motion.span>
@@ -170,7 +170,7 @@ export default function IndustriesSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: 0.1 }}
-                        className="text-4xl md:text-6xl font-bold text-white leading-tight tracking-tight mb-6"
+                        className="text-4xl md:text-6xl font-bold text-charcoal dark:text-white leading-tight tracking-tight mb-6"
                     >
                         Built for businesses who{' '}
                         <span className="italic font-serif opacity-90">actually make</span> things.
@@ -181,7 +181,7 @@ export default function IndustriesSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: 0.2 }}
-                        className="flex flex-wrap items-center justify-center gap-2 text-xl md:text-2xl text-white/60 font-medium"
+                        className="flex flex-wrap items-center justify-center gap-2 text-xl md:text-2xl text-secondary-text font-medium"
                     >
                         <span>Not just for</span>
                         <div className="relative inline-flex overflow-hidden h-8 items-center justify-center">
@@ -192,7 +192,7 @@ export default function IndustriesSection() {
                                     animate={{ y: 0, opacity: 1 }}
                                     exit={{ y: -20, opacity: 0 }}
                                     transition={{ duration: 0.3 }}
-                                    className="block italic font-serif text-white whitespace-nowrap"
+                                    className="block italic font-serif text-primary whitespace-nowrap"
                                 >
                                     &quot;{highlightWords[currentWordIndex]}&quot;
                                 </motion.span>
@@ -204,8 +204,8 @@ export default function IndustriesSection() {
                 {/* Marquee */}
                 <div className="relative overflow-hidden pb-8">
                     {/* Edge fades — must match section bg */}
-                    <div className="absolute left-0 inset-y-0 w-24 md:w-48 bg-gradient-to-r from-background-dark to-transparent z-10 pointer-events-none" />
-                    <div className="absolute right-0 inset-y-0 w-24 md:w-48 bg-gradient-to-l from-background-dark to-transparent z-10 pointer-events-none" />
+                    <div className="absolute left-0 inset-y-0 w-24 md:w-48 bg-gradient-to-r from-background-light to-transparent z-10 pointer-events-none" />
+                    <div className="absolute right-0 inset-y-0 w-24 md:w-48 bg-gradient-to-l from-background-light to-transparent z-10 pointer-events-none" />
 
                     <div className="flex flex-col gap-4 md:gap-5">
                         {industryRows.map((row, rowIndex) => (
@@ -222,7 +222,7 @@ export default function IndustriesSection() {
                                 {[...row, ...row].map((industry, i) => (
                                     <span
                                         key={`${rowIndex}-${i}`}
-                                        className="inline-flex items-center px-4 py-2 mr-3 rounded-full border border-white/10 text-sm font-medium text-white/75 whitespace-nowrap bg-white/[0.05] hover:bg-white/10 hover:border-white/20 transition-colors"
+                                        className="inline-flex items-center px-4 py-2 mr-3 rounded-full border border-gray-200 text-sm font-medium text-gray-700 whitespace-nowrap bg-white hover:bg-gray-50 hover:border-gray-300 transition-colors shadow-sm"
                                     >
                                         {industry}
                                     </span>
@@ -234,7 +234,7 @@ export default function IndustriesSection() {
 
                 {/* Bridge text */}
                 <div className="max-w-3xl mx-auto px-mobile text-center mt-10 mb-8">
-                    <p className="text-sm text-white/40 font-medium tracking-widest uppercase">
+                    <p className="text-sm text-secondary-text/60 font-medium tracking-widest uppercase">
                         If your shop handles any of these, you&apos;re in the right place.
                     </p>
                 </div>
@@ -249,7 +249,7 @@ export default function IndustriesSection() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ type: 'spring', stiffness: 280, damping: 22, delay: index * 0.06 }}
-                                className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/[0.08] border border-white/[0.15] text-sm font-medium text-white/90 hover:bg-white/[0.15] hover:border-white/25 transition-colors duration-200 cursor-default"
+                                className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-gray-200 text-sm font-medium text-charcoal hover:bg-gray-50 hover:border-gray-300 transition-colors duration-200 cursor-default shadow-sm"
                             >
                                 <span className="material-symbols-outlined text-primary text-base leading-none">{capability.icon}</span>
                                 {capability.label}
