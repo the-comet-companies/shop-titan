@@ -156,6 +156,209 @@ const iconVariants = {
     exit: {},
 };
 
+type IconProps = { color: string };
+
+function ReportIcon({ color }: IconProps) {
+    return (
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <motion.path
+                d="M32 10 L56 52 H8 Z"
+                stroke={color}
+                strokeWidth="3"
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+            />
+            <motion.line
+                x1="32" y1="26" x2="32" y2="40"
+                stroke={color}
+                strokeWidth="3.5"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.2, delay: 0.55, ease: 'easeOut' }}
+            />
+            <motion.circle
+                cx="32" cy="47" r="2.5"
+                fill={color}
+                style={{ transformOrigin: '32px 47px' }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.15, delay: 0.75, type: 'spring' as const, stiffness: 400 }}
+            />
+        </svg>
+    );
+}
+
+function LightbulbIcon({ color }: IconProps) {
+    return (
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <motion.path
+                d="M32 10 C21 10 14 19 14 28 C14 37 20 41 22 46 H42 C44 41 50 37 50 28 C50 19 43 10 32 10 Z"
+                stroke={color}
+                strokeWidth="2.5"
+                strokeLinejoin="round"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.65, ease: 'easeOut' }}
+            />
+            <motion.path
+                d="M32 18 C25 18 22 24 22 28 C22 35 27 38 29 43 H35 C37 38 42 35 42 28 C42 24 39 18 32 18 Z"
+                fill={color}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.15 }}
+                transition={{ duration: 0.4, delay: 0.6 }}
+            />
+            <motion.line
+                x1="24" y1="50" x2="40" y2="50"
+                stroke={color} strokeWidth="2.5" strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.2, delay: 0.65 }}
+            />
+            <motion.line
+                x1="27" y1="55" x2="37" y2="55"
+                stroke={color} strokeWidth="2.5" strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.15, delay: 0.82 }}
+            />
+        </svg>
+    );
+}
+
+function TrendingUpIcon({ color }: IconProps) {
+    return (
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <motion.line
+                x1="8" y1="52" x2="56" y2="52"
+                stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeOpacity={0.3}
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+            />
+            <motion.line
+                x1="8" y1="52" x2="8" y2="10"
+                stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeOpacity={0.3}
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.25, ease: 'easeOut', delay: 0.15 }}
+            />
+            <motion.polyline
+                points="12,48 24,36 36,26 50,14"
+                stroke={color}
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.55, delay: 0.3, ease: 'easeOut' }}
+            />
+            <motion.polyline
+                points="44,12 50,14 48,20"
+                stroke={color}
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2, delay: 0.85 }}
+            />
+        </svg>
+    );
+}
+
+function AlarmIcon({ color }: IconProps) {
+    return (
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <motion.circle
+                cx="32" cy="36" r="20"
+                stroke={color} strokeWidth="2.5"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.55, ease: 'easeOut' }}
+            />
+            <motion.line
+                x1="14" y1="20" x2="22" y2="28"
+                stroke={color} strokeWidth="2.5" strokeLinecap="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.15, delay: 0.5 }}
+            />
+            <motion.line
+                x1="50" y1="20" x2="42" y2="28"
+                stroke={color} strokeWidth="2.5" strokeLinecap="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.15, delay: 0.5 }}
+            />
+            <motion.line
+                x1="32" y1="36" x2="32" y2="18"
+                stroke={color} strokeWidth="2.5" strokeLinecap="round"
+                style={{ transformOrigin: '32px 36px' }}
+                initial={{ rotate: 180 }}
+                animate={{ rotate: 0 }}
+                transition={{ duration: 0.45, delay: 0.65, ease: 'easeInOut' }}
+            />
+            <motion.circle
+                cx="32" cy="36" r="2"
+                fill={color}
+                style={{ transformOrigin: '32px 36px' }}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.15, delay: 0.6, type: 'spring' as const, stiffness: 400 }}
+            />
+        </svg>
+    );
+}
+
+function RocketIcon({ color }: IconProps) {
+    return (
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <motion.path
+                d="M32 6 C32 6 19 22 19 38 L26 45 L38 45 L45 38 C45 22 32 6 32 6 Z"
+                stroke={color} strokeWidth="2.5" strokeLinejoin="round"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.55, ease: 'easeOut' }}
+            />
+            <motion.path
+                d="M19 38 L12 50 L26 45"
+                stroke={color} strokeWidth="2" strokeLinejoin="round"
+                style={{ transformOrigin: '19px 45px' }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.2, delay: 0.5 }}
+            />
+            <motion.path
+                d="M45 38 L52 50 L38 45"
+                stroke={color} strokeWidth="2" strokeLinejoin="round"
+                style={{ transformOrigin: '45px 45px' }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.2, delay: 0.5 }}
+            />
+            <motion.circle
+                cx="32" cy="28" r="5"
+                stroke={color} strokeWidth="2"
+                style={{ transformOrigin: '32px 28px' }}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.2, delay: 0.6, type: 'spring' as const, stiffness: 350 }}
+            />
+            <motion.path
+                d="M26 46 C24 52 28 58 32 60 C36 58 40 52 38 46"
+                stroke={color} strokeWidth="2" strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 0.8 }}
+                transition={{ duration: 0.3, delay: 0.75, ease: 'easeOut' }}
+            />
+        </svg>
+    );
+}
+
 // --- 3D Particle Component ---
 function StoryParticles({
     activeIndex,
