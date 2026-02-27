@@ -254,15 +254,6 @@ export default function PainPoint3D() {
         };
     }, []);
 
-    // useCallback kept for use in Task 4 (scrollToScene)
-    const _scrollToScene = useCallback((index: number) => {
-        const outer = outerRef.current;
-        if (!outer) return;
-        const totalScrollable = outer.offsetHeight - window.innerHeight;
-        const targetScroll = outer.offsetTop + (index / 5) * totalScrollable;
-        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
-    }, []);
-
     return (
         <div ref={outerRef} style={{ height: '500vh' }}>
             <section className="sticky top-0 h-screen w-full overflow-hidden bg-background-light dark:bg-black">
