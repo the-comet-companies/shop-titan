@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useMemo, useState } from "react";
+import { useEffect, useRef, useMemo, useState, useCallback } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
@@ -81,6 +82,8 @@ const painPointScenes: PainPointScene[] = [
 ];
 
 // --- Particle Shape Generator ---
+const PARTICLE_COUNT = 500;
+
 function generatePositionsForShape(shape: ParticleShape, count: number): Float32Array {
     const positions = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
@@ -103,6 +106,12 @@ function generatePositionsForShape(shape: ParticleShape, count: number): Float32
                 r = Math.pow(Math.random(), 2) * 2.0;
                 noise = 0.5;
                 break;
+            default: {
+                const _exhaustiveCheck: never = shape;
+                r = 0;
+                noise = 0;
+                break;
+            }
         }
         const theta = Math.random() * Math.PI * 2;
         const phi = Math.acos(2 * Math.random() - 1);
@@ -112,6 +121,38 @@ function generatePositionsForShape(shape: ParticleShape, count: number): Float32
     }
     return positions;
 }
+
+// --- Animation Variants ---
+const sceneVariants = {
+    initial: {},
+    animate: {
+        transition: { staggerChildren: 0.07 },
+    },
+    exit: {
+        opacity: 0,
+        y: -10,
+        transition: { duration: 0.2, ease: 'easeIn' as const },
+    },
+};
+
+const itemVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.35, ease: 'easeOut' as const },
+    },
+};
+
+const iconVariants = {
+    initial: { opacity: 0, scale: 0.85, y: 20 },
+    animate: {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        transition: { duration: 0.4, ease: 'easeOut' as const },
+    },
+};
 
 // --- 3D Particle Component ---
 function StoryParticles({
@@ -124,7 +165,7 @@ function StoryParticles({
     visible: boolean;
 }) {
     const pointsRef = useRef<THREE.Points>(null);
-    const count = 500;
+    const count = PARTICLE_COUNT;
 
     const [targetPositions, setTargetPositions] = useState<Float32Array | null>(null);
 
@@ -213,6 +254,15 @@ export default function PainPoint3D() {
         };
     }, []);
 
+    // useCallback kept for use in Task 4 (scrollToScene)
+    const _scrollToScene = useCallback((index: number) => {
+        const outer = outerRef.current;
+        if (!outer) return;
+        const totalScrollable = outer.offsetHeight - window.innerHeight;
+        const targetScroll = outer.offsetTop + (index / 5) * totalScrollable;
+        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    }, []);
+
     return (
         <div ref={outerRef} style={{ height: '500vh' }}>
             <section className="sticky top-0 h-screen w-full overflow-hidden bg-background-light dark:bg-black">
@@ -230,54 +280,84 @@ export default function PainPoint3D() {
                 {/* Text Overlay Layer */}
                 <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
                     <div className="w-full max-w-4xl px-mobile mx-auto text-center">
-                        {painPointScenes.map((scene, index) => {
-                            const isActive = activeIndex === index;
-                            return (
-                                <div
-                                    key={scene.id}
-                                    className={`absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`}
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={activeScene.id}
+                                variants={sceneVariants}
+                                initial="initial"
+                                animate="animate"
+                                exit="exit"
+                                className="flex flex-col items-center p-4 md:p-0"
+                            >
+                                {/* Icon */}
+                                <motion.span
+                                    variants={iconVariants}
+                                    className="material-symbols-outlined mb-6 select-none"
+                                    style={{ fontSize: '64px', color: activeScene.color }}
+                                    aria-hidden="true"
                                 >
-                                    <div className="p-4 md:p-0">
-                                        <span
-                                            className="block text-sm md:text-base font-bold tracking-[0.3em] uppercase mb-6"
-                                            style={{ color: scene.color }}
-                                        >
-                                            {scene.subtitle}
-                                        </span>
-                                        <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal dark:text-white mb-8 leading-tight tracking-tight">
-                                            {scene.title}
-                                        </h2>
-                                        <p className="text-lg md:text-2xl text-secondary-text dark:text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto">
-                                            {scene.description}
-                                        </p>
-                                        {'cta' in scene && scene.cta ? (
-                                            <div className="flex flex-col items-center gap-5">
-                                                <a
-                                                    href={scene.cta.href}
-                                                    className="pointer-events-auto px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center"
-                                                >
-                                                    <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
-                                                    <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
-                                                    <span className="relative z-10">{scene.cta.label}</span>
-                                                    <span className="material-symbols-outlined text-xl relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
-                                                </a>
-                                                <button
-                                                    onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
-                                                    className="pointer-events-auto flex flex-col items-center gap-2 text-secondary-text dark:text-gray-500 hover:text-charcoal dark:hover:text-white transition-colors duration-300 group"
-                                                >
-                                                    <span className="text-xs font-semibold tracking-widest uppercase">Explore the platform</span>
-                                                    <span className="material-symbols-outlined text-lg animate-bounce">keyboard_arrow_down</span>
-                                                </button>
+                                    {activeScene.icon}
+                                </motion.span>
+
+                                {/* Subtitle eyebrow */}
+                                <motion.span
+                                    variants={itemVariants}
+                                    className="block text-sm md:text-base font-bold tracking-[0.3em] uppercase mb-6"
+                                    style={{ color: activeScene.color }}
+                                >
+                                    {activeScene.subtitle}
+                                </motion.span>
+
+                                {/* H2 */}
+                                <motion.h2
+                                    variants={itemVariants}
+                                    className="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal dark:text-white mb-8 leading-tight tracking-tight"
+                                >
+                                    {activeScene.title}
+                                </motion.h2>
+
+                                {/* Description */}
+                                <motion.p
+                                    variants={itemVariants}
+                                    className="text-lg md:text-2xl text-secondary-text dark:text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto"
+                                >
+                                    {activeScene.description}
+                                </motion.p>
+
+                                {/* CTA or highlight word */}
+                                <motion.div variants={itemVariants}>
+                                    {'cta' in activeScene && activeScene.cta ? (
+                                        <div className="flex flex-col items-center gap-5">
+                                            <a
+                                                href={activeScene.cta.href}
+                                                className="pointer-events-auto px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center"
+                                            >
+                                                <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
+                                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
+                                                <span className="relative z-10">{activeScene.cta.label}</span>
+                                                <span className="material-symbols-outlined text-xl relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                                            </a>
+                                            <button
+                                                onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
+                                                className="pointer-events-auto flex flex-col items-center gap-2 text-secondary-text dark:text-gray-500 hover:text-charcoal dark:hover:text-white transition-colors duration-300 group"
+                                            >
+                                                <span className="text-xs font-semibold tracking-widest uppercase">Explore the platform</span>
+                                                <span className="material-symbols-outlined text-lg animate-bounce">keyboard_arrow_down</span>
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        activeScene.highlightWord && (
+                                            <div
+                                                className="inline-block px-8 py-4 border-2 rounded-full text-sm font-bold tracking-widest uppercase"
+                                                style={{ borderColor: activeScene.color, color: activeScene.color }}
+                                            >
+                                                {activeScene.highlightWord}
                                             </div>
-                                        ) : (
-                                            <div className="inline-block px-6 py-3 border-2 rounded-full text-sm font-bold tracking-widest uppercase" style={{ borderColor: scene.color, color: scene.color }}>
-                                                {scene.highlightWord}
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            );
-                        })}
+                                        )
+                                    )}
+                                </motion.div>
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
                 </div>
 
