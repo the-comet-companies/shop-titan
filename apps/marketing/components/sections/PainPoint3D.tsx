@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useMemo, useState, useCallback } from "react";
+import React, { useEffect, useRef, useMemo, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
@@ -16,7 +16,7 @@ interface PainPointScene {
     color: string;
     particleColor: string;
     highlightWord: string | null;
-    icon: string;
+    Icon: (props: IconProps) => React.JSX.Element;
     particleShape: ParticleShape;
     cta?: { label: string; href: string };
 }
@@ -31,7 +31,7 @@ const painPointScenes: PainPointScene[] = [
         color: "#ef4444",
         particleColor: "#93c5fd",
         highlightWord: "CHAOS",
-        icon: "report",
+        Icon: ReportIcon,
         particleShape: "scattered",
     },
     {
@@ -42,7 +42,7 @@ const painPointScenes: PainPointScene[] = [
         color: "#4f46e5",
         particleColor: "#60a5fa",
         highlightWord: "CLARITY",
-        icon: "emoji_objects",
+        Icon: LightbulbIcon,
         particleShape: "organized",
     },
     {
@@ -53,7 +53,7 @@ const painPointScenes: PainPointScene[] = [
         color: "#059669",
         particleColor: "#3b82f6",
         highlightWord: "FOCUS",
-        icon: "trending_up",
+        Icon: TrendingUpIcon,
         particleShape: "expanding",
     },
     {
@@ -64,7 +64,7 @@ const painPointScenes: PainPointScene[] = [
         color: "#f97316",
         particleColor: "#fca5a5",
         highlightWord: "COST",
-        icon: "alarm",
+        Icon: AlarmIcon,
         particleShape: "contracting",
     },
     {
@@ -75,7 +75,7 @@ const painPointScenes: PainPointScene[] = [
         color: "#0066CC",
         particleColor: "#93c5fd",
         highlightWord: null,
-        icon: "rocket_launch",
+        Icon: RocketIcon,
         particleShape: "expanding",
         cta: { label: "Let's Talk", href: "/reach-out" },
     },
@@ -433,6 +433,7 @@ export default function PainPoint3D() {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const activeScene = painPointScenes[activeIndex];
+    const SceneIcon = activeScene.Icon;
 
     useEffect(() => {
         const outer = outerRef.current;
@@ -496,14 +497,13 @@ export default function PainPoint3D() {
                                 className="flex flex-col items-center p-4 md:p-0"
                             >
                                 {/* Icon */}
-                                <motion.span
+                                <motion.div
                                     variants={iconVariants}
-                                    className="material-symbols-outlined mb-6 select-none"
-                                    style={{ fontSize: '64px', color: activeScene.color }}
+                                    className="mb-6"
                                     aria-hidden="true"
                                 >
-                                    {activeScene.icon}
-                                </motion.span>
+                                    <SceneIcon color={activeScene.color} />
+                                </motion.div>
 
                                 {/* Subtitle eyebrow */}
                                 <motion.span
