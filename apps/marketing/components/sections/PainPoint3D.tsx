@@ -5,6 +5,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
+type ParticleShape = 'scattered' | 'organized' | 'expanding' | 'contracting';
+
 // --- Data Structure ---
 const painPointScenes = [
     {
@@ -15,6 +17,8 @@ const painPointScenes = [
         color: "#ef4444",
         particleColor: "#93c5fd",
         highlightWord: "CHAOS",
+        icon: "layers",
+        particleShape: "scattered" as ParticleShape,
     },
     {
         id: "solution",
@@ -24,6 +28,8 @@ const painPointScenes = [
         color: "#4f46e5",
         particleColor: "#60a5fa",
         highlightWord: "CLARITY",
+        icon: "verified",
+        particleShape: "organized" as ParticleShape,
     },
     {
         id: "dream",
@@ -33,6 +39,8 @@ const painPointScenes = [
         color: "#059669",
         particleColor: "#3b82f6",
         highlightWord: "FOCUS",
+        icon: "auto_awesome",
+        particleShape: "expanding" as ParticleShape,
     },
     {
         id: "stakes",
@@ -42,6 +50,8 @@ const painPointScenes = [
         color: "#f97316",
         particleColor: "#fca5a5",
         highlightWord: "COST",
+        icon: "alarm",
+        particleShape: "contracting" as ParticleShape,
     },
     {
         id: "cta",
@@ -51,6 +61,8 @@ const painPointScenes = [
         color: "#0066CC",
         particleColor: "#93c5fd",
         highlightWord: null,
+        icon: "rocket_launch",
+        particleShape: "expanding" as ParticleShape,
         cta: { label: "Let's Talk", href: "/reach-out" },
     },
 ];
