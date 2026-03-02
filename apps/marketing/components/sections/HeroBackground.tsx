@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+import { motion, useReducedMotion, useAnimationFrame } from 'framer-motion';
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -34,11 +34,54 @@ function pathD(node: NodeDef) {
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
+interface ParticleProps {
+  pathId: string;
+  duration: number;
+  startOffset: number; // 0-1, staggers particles so they don't bunch
+}
+
+function Particle({ pathId, duration, startOffset }: ParticleProps) {
+  const circleRef = useRef<SVGCircleElement>(null);
+  const startTimeRef = useRef<number | null>(null);
+
+  useAnimationFrame((time) => {
+    const circle = circleRef.current;
+    const pathEl = document.getElementById(pathId) as SVGPathElement | null;
+    if (!circle || !pathEl) return;
+
+    if (startTimeRef.current === null) startTimeRef.current = time;
+    const elapsed = time - startTimeRef.current;
+    const durationMs = duration * 1000;
+    const progress = ((elapsed / durationMs) + startOffset) % 1;
+
+    const totalLength = pathEl.getTotalLength();
+    const point = pathEl.getPointAtLength(progress * totalLength);
+    circle.setAttribute('cx', String(point.x));
+    circle.setAttribute('cy', String(point.y));
+
+    // Fade: in over first 10%, out over last 15%
+    const opacity =
+      progress < 0.10 ? progress / 0.10 :
+      progress > 0.85 ? (1 - progress) / 0.15 :
+      1;
+    circle.setAttribute('opacity', String(opacity * 0.9));
+  });
+
+  return (
+    <circle
+      ref={circleRef}
+      r={3}
+      fill="#0066CC"
+      opacity={0}
+    />
+  );
+}
+
+
 function NetworkNode({ node, index, isMobile, prefersReduced }: { node: NodeDef; index: number; isMobile: boolean; prefersReduced: boolean | null }) {
   const W = 110;
   const H = 44;
   const particleCount = isMobile ? 1 : 2;
-  void particleCount; // will be used in Task 4
 
   return (
     <>
@@ -55,6 +98,16 @@ function NetworkNode({ node, index, isMobile, prefersReduced }: { node: NodeDef;
         animate={{ pathLength: 1, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.3 + index * 0.1 + 0.4, ease: 'easeOut' }}
       />
+
+      {/* Particles travel from node to hub — only when motion is allowed */}
+      {!prefersReduced && Array.from({ length: particleCount }, (_, i) => (
+        <Particle
+          key={i}
+          pathId={`path-${node.id}`}
+          duration={2.5 + node.x * 0.0005} // slight variation per path
+          startOffset={i / particleCount}
+        />
+      ))}
 
       {/* Drifting node card */}
       <motion.g
