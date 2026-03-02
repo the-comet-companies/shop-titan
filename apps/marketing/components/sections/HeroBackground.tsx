@@ -33,10 +33,19 @@ function ctrlPt(x1: number, y1: number, x2: number, y2: number) {
   return { x: mx - (dy / len) * len * 0.12, y: my + (dx / len) * len * 0.12 };
 }
 
-// pathD draws hub→node so the line animates outward from the center
+// pathD draws hub→node, terminating at the pill's edge (not the center)
+const PILL_EDGE_OFFSET = 26; // ≈ H/2 + 2px buffer — stops line at pill border
+
 function pathD(node: NodeDef, hub: HubPos) {
-  const cp = ctrlPt(hub.x, hub.y, node.x, node.y);
-  return `M${hub.x},${hub.y} Q${cp.x},${cp.y} ${node.x},${node.y}`;
+  // Direction vector from hub to node
+  const dx = node.x - hub.x;
+  const dy = node.y - hub.y;
+  const len = Math.sqrt(dx * dx + dy * dy);
+  // End point: node center minus one pill-radius toward the hub
+  const endX = node.x - (dx / len) * PILL_EDGE_OFFSET;
+  const endY = node.y - (dy / len) * PILL_EDGE_OFFSET;
+  const cp = ctrlPt(hub.x, hub.y, endX, endY);
+  return `M${hub.x},${hub.y} Q${cp.x},${cp.y} ${endX},${endY}`;
 }
 
 // ── Sub-components ────────────────────────────────────────────────────────────
@@ -98,7 +107,7 @@ function NetworkNode({
   node: NodeDef; index: number; isMobile: boolean; prefersReduced: boolean | null; hub: HubPos;
 }) {
   const W = node.w;
-  const H = 44;
+  const H = 48;
   const particleCount = isMobile ? 1 : 2;
 
   // Always use desktop coordinates — mobile renders Hub-only, no NetworkNodes
@@ -149,25 +158,30 @@ function NetworkNode({
           width={W}
           height={H}
           style={{ overflow: 'visible' }}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 1.0 + index * 1.1, ease: 'easeOut' }}
+          initial={{ opacity: 0, scale: 0.7 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 280, damping: 20, delay: 1.0 + index * 1.1 }}
         >
           <div
             // @ts-expect-error xmlns required for SVG foreignObject
             xmlns="http://www.w3.org/1999/xhtml"
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl
-                       bg-white dark:bg-slate-800
-                       border-2 border-primary/50 dark:border-primary/40
-                       shadow-lg
-                       text-xs font-bold text-charcoal dark:text-white
+            className="flex items-center gap-2 px-3 py-2.5
+                       rounded-full
+                       bg-white/75 dark:bg-slate-900/80
+                       backdrop-blur-md
+                       border border-primary/25 dark:border-primary/20
+                       shadow-[0_4px_20px_rgba(0,102,204,0.13)]
                        whitespace-nowrap"
             style={{ width: W, height: H }}
           >
-            <span className="material-symbols-outlined text-primary text-sm leading-none">
-              {node.icon}
+            <span className="flex-none flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 dark:bg-primary/20">
+              <span className="material-symbols-outlined text-primary leading-none" style={{ fontSize: '13px' }}>
+                {node.icon}
+              </span>
             </span>
-            {node.label}
+            <span className="text-[11px] font-semibold tracking-wide text-charcoal dark:text-white">
+              {node.label}
+            </span>
           </div>
         </motion.foreignObject>
       </motion.g>
@@ -193,25 +207,41 @@ function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: Hub
         />
       ))}
 
-      {/* Static rings with entrance spring */}
+      {/* Hub entrance — inside-out: core pops first, outer rings expand after */}
+
+      {/* Inner dot — springs in first with bounce, then breathes continuously */}
+      <motion.circle cx={pos.x} cy={pos.y} r={8} fill="#0066CC" fillOpacity={0.80}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={prefersReduced
+          ? { scale: 1, opacity: 1 }
+          : { scale: [0, 1.4, 0.9, 1.15, 1], opacity: 1 }
+        }
+        transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+        style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
+      />
+      {/* Continuous breath on inner dot */}
+      {!prefersReduced && (
+        <motion.circle cx={pos.x} cy={pos.y} r={8} fill="#0066CC" fillOpacity={0.50}
+          animate={{ scale: [1, 1.4, 1] }}
+          transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 1, ease: 'easeInOut', delay: 1 }}
+          style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
+        />
+      )}
+
+      {/* Mid rings — expand outward after core */}
+      <motion.circle cx={pos.x} cy={pos.y} r={16} fill="#0066CC" fillOpacity={0.20}
+        initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+        transition={{ type: 'spring', stiffness: 180, damping: 14, delay: 0.3 }}
+        style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
+      />
+      <motion.circle cx={pos.x} cy={pos.y} r={28} fill="#0066CC" fillOpacity={0.12}
+        initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+        transition={{ type: 'spring', stiffness: 160, damping: 16, delay: 0.45 }}
+        style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
+      />
       <motion.circle cx={pos.x} cy={pos.y} r={42} fill="#0066CC" fillOpacity={0.06}
         initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.1 }}
-        style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
-      />
-      <motion.circle cx={pos.x} cy={pos.y} r={28} fill="#0066CC" fillOpacity={0.10}
-        initial={{ scale: 0 }} animate={{ scale: 1 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.15 }}
-        style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
-      />
-      <motion.circle cx={pos.x} cy={pos.y} r={16} fill="#0066CC" fillOpacity={0.20}
-        initial={{ scale: 0 }} animate={{ scale: 1 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.2 }}
-        style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
-      />
-      <motion.circle cx={pos.x} cy={pos.y} r={8} fill="#0066CC" fillOpacity={0.60}
-        initial={{ scale: 0 }} animate={{ scale: 1 }}
-        transition={{ type: 'spring', stiffness: 260, damping: 18, delay: 0.25 }}
+        transition={{ type: 'spring', stiffness: 140, damping: 18, delay: 0.6 }}
         style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
       />
     </g>
