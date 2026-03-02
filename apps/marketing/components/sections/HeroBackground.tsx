@@ -1,19 +1,19 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
-import { motion, useAnimationFrame } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 const HUB = { x: 840, y: 340 };
 
 const NODES = [
-  { id: 'quotes',    label: 'Quotes',    icon: 'request_quote',          x: 240,  y: 130, mobile: true  },
-  { id: 'orders',    label: 'Orders',    icon: 'shopping_cart',           x: 1120, y: 90,  mobile: true  },
-  { id: 'scheduler', label: 'Scheduler', icon: 'precision_manufacturing', x: 1280, y: 320, mobile: true  },
-  { id: 'pricing',   label: 'Pricing',   icon: 'grid_on',                 x: 1180, y: 530, mobile: false },
-  { id: 'analytics', label: 'Analytics', icon: 'analytics',               x: 880,  y: 610, mobile: false },
-  { id: 'customers', label: 'Customers', icon: 'people',                  x: 460,  y: 520, mobile: false },
+  { id: 'quotes',    label: 'Quotes',    icon: 'request_quote',          x: 240,  y: 130, mobile: true,  driftPeriod: 9,  driftDelay: 0   },
+  { id: 'orders',    label: 'Orders',    icon: 'shopping_cart',           x: 1120, y: 90,  mobile: true,  driftPeriod: 12, driftDelay: 1.5 },
+  { id: 'scheduler', label: 'Scheduler', icon: 'precision_manufacturing', x: 1280, y: 320, mobile: true,  driftPeriod: 8,  driftDelay: 3   },
+  { id: 'pricing',   label: 'Pricing',   icon: 'grid_on',                 x: 1180, y: 530, mobile: false, driftPeriod: 14, driftDelay: 0.8 },
+  { id: 'analytics', label: 'Analytics', icon: 'analytics',               x: 880,  y: 610, mobile: false, driftPeriod: 11, driftDelay: 2.2 },
+  { id: 'customers', label: 'Customers', icon: 'people',                  x: 460,  y: 520, mobile: false, driftPeriod: 10, driftDelay: 4   },
 ] as const;
 
 type NodeDef = typeof NODES[number];
@@ -34,13 +34,15 @@ function pathD(node: NodeDef) {
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
-function NetworkNode({ node, index }: { node: NodeDef; index: number }) {
+function NetworkNode({ node, index, isMobile }: { node: NodeDef; index: number; isMobile: boolean }) {
   const W = 110;
   const H = 44;
+  const particleCount = isMobile ? 1 : 2;
+  void particleCount; // will be used in Task 4
 
   return (
-    <g>
-      {/* Path draws on after node appears */}
+    <>
+      {/* Static path — does not drift */}
       <motion.path
         id={`path-${node.id}`}
         d={pathD(node)}
@@ -54,42 +56,62 @@ function NetworkNode({ node, index }: { node: NodeDef; index: number }) {
         transition={{ duration: 0.8, delay: 0.3 + index * 0.1 + 0.4, ease: 'easeOut' }}
       />
 
-      {/* Node card */}
-      <motion.foreignObject
-        x={node.x - W / 2}
-        y={node.y - H / 2}
-        width={W}
-        height={H}
-        style={{ overflow: 'visible' }}
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 + index * 0.1, ease: 'easeOut' }}
+      {/* Drifting node card */}
+      <motion.g
+        animate={{ y: [0, -6, 0, 6, 0], x: [0, 3, 0, -3, 0] }}
+        transition={{
+          duration: node.driftPeriod,
+          delay: node.driftDelay,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
       >
-        <div
-          // @ts-expect-error xmlns required for SVG foreignObject
-          xmlns="http://www.w3.org/1999/xhtml"
-          className="flex items-center gap-1.5 px-3 py-2 rounded-xl
-                     bg-white/80 dark:bg-white/5
-                     border border-primary/20 dark:border-white/10
-                     backdrop-blur-sm shadow-sm
-                     text-xs font-semibold text-charcoal dark:text-white
-                     whitespace-nowrap"
-          style={{ width: W, height: H }}
+        <motion.foreignObject
+          x={node.x - W / 2}
+          y={node.y - H / 2}
+          width={W}
+          height={H}
+          style={{ overflow: 'visible' }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 + index * 0.1, ease: 'easeOut' }}
         >
-          <span className="material-symbols-outlined text-primary text-sm leading-none">
-            {node.icon}
-          </span>
-          {node.label}
-        </div>
-      </motion.foreignObject>
-    </g>
+          <div
+            // @ts-expect-error xmlns required for SVG foreignObject
+            xmlns="http://www.w3.org/1999/xhtml"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl
+                       bg-white/80 dark:bg-white/5
+                       border border-primary/20 dark:border-white/10
+                       backdrop-blur-sm shadow-sm
+                       text-xs font-semibold text-charcoal dark:text-white
+                       whitespace-nowrap"
+            style={{ width: W, height: H }}
+          >
+            <span className="material-symbols-outlined text-primary text-sm leading-none">
+              {node.icon}
+            </span>
+            {node.label}
+          </div>
+        </motion.foreignObject>
+      </motion.g>
+    </>
   );
 }
 
 function Hub() {
   return (
     <g>
-      {/* Pulse ring — emits every 3s (added in Task 3, placeholder comment here) */}
+      {/* Pulse ring — expands and fades every ~3s */}
+      <motion.circle
+        cx={HUB.x} cy={HUB.y} r={28}
+        fill="none"
+        stroke="#0066CC"
+        strokeWidth={1}
+        initial={{ scale: 1, opacity: 0.4 }}
+        animate={{ scale: 3, opacity: 0 }}
+        transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 0.5, ease: 'easeOut' }}
+        style={{ transformOrigin: `${HUB.x}px ${HUB.y}px` }}
+      />
 
       {/* Static rings with entrance spring */}
       <motion.circle
@@ -153,7 +175,7 @@ export default function HeroBackground() {
         className="w-full h-full opacity-40 dark:opacity-30"
       >
         {visibleNodes.map((node, i) => (
-          <NetworkNode key={node.id} node={node} index={i} />
+          <NetworkNode key={node.id} node={node} index={i} isMobile={isMobile} />
         ))}
         <Hub />
       </svg>
