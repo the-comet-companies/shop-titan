@@ -239,6 +239,33 @@ export default function HeroBackground() {
         preserveAspectRatio="xMidYMid slice"
         className="w-full h-full opacity-80 dark:opacity-70"
       >
+        <defs>
+          {/* Aurora glow — soft radial, left-center */}
+          <radialGradient id="aurora-left" cx="25%" cy="50%" r="45%" gradientUnits="objectBoundingBox">
+            <stop offset="0%" stopColor="#0066CC" stopOpacity={0.45} />
+            <stop offset="55%" stopColor="#0066CC" stopOpacity={0.15} />
+            <stop offset="100%" stopColor="#0066CC" stopOpacity={0} />
+          </radialGradient>
+
+          {/* Dot grid pattern — 2px dots every 36px */}
+          <pattern id="dot-grid" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+            <circle cx="18" cy="18" r="1.5" fill="#0066CC" fillOpacity={0.65} />
+          </pattern>
+
+          {/* Fade mask: left opaque → transparent at 55% */}
+          <linearGradient id="dot-fade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="white" stopOpacity={1} />
+            <stop offset="55%" stopColor="white" stopOpacity={0.2} />
+            <stop offset="75%" stopColor="white" stopOpacity={0} />
+          </linearGradient>
+          <mask id="dot-mask">
+            <rect x="0" y="0" width="1440" height="720" fill="url(#dot-fade)" />
+          </mask>
+        </defs>
+
+        {/* Left-side atmosphere: aurora glow + dot grid */}
+        <rect x="0" y="0" width="1440" height="720" fill="url(#aurora-left)" />
+        <rect x="0" y="0" width="1440" height="720" fill="url(#dot-grid)" mask="url(#dot-mask)" />
         {/* On mobile: only the hub glow — no nodes or paths to avoid overlapping full-width text */}
         {!isMobile && NODES.map((node, i) => (
           <NetworkNode
