@@ -107,6 +107,7 @@ function NetworkNode({ node, index, isMobile, prefersReduced }: { node: NodeDef;
 
       {/* Particles travel from node to hub — only when motion is allowed */}
       {!prefersReduced && Array.from({ length: particleCount }, (_, i) => (
+        // Duration varies by node x-position: leftmost ~2.6s, rightmost ~3.1s — organic speed variation
         <Particle
           key={`particle-${node.id}-${i}`}
           pathId={`path-${node.id}`}
@@ -120,6 +121,8 @@ function NetworkNode({ node, index, isMobile, prefersReduced }: { node: NodeDef;
         animate={prefersReduced ? {} : { y: [0, -6, 0, 6, 0], x: [0, 3, 0, -3, 0] }}
         transition={{
           duration: node.driftPeriod,
+          // 1.5s offset ensures drift starts after the entrance animation completes
+          // (worst case: 0.3 + 5*0.1 + 0.5s duration = ~1.3s)
           delay: 1.5 + node.driftDelay,
           repeat: Infinity,
           ease: 'easeInOut',
@@ -212,6 +215,7 @@ function Hub({ prefersReduced }: { prefersReduced: boolean | null }) {
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function HeroBackground() {
+  // null before hook resolves — treated as falsy (animate by default)
   const prefersReduced = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
 
