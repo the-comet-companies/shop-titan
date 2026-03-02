@@ -43,18 +43,24 @@ interface ParticleProps {
 function Particle({ pathId, duration, startOffset }: ParticleProps) {
   const circleRef = useRef<SVGCircleElement>(null);
   const startTimeRef = useRef<number | null>(null);
+  const totalLengthRef = useRef<number | null>(null);
 
   useAnimationFrame((time) => {
     const circle = circleRef.current;
     const pathEl = document.getElementById(pathId) as SVGPathElement | null;
     if (!circle || !pathEl) return;
 
+    // Cache total length — path shape never changes
+    if (totalLengthRef.current === null) {
+      totalLengthRef.current = pathEl.getTotalLength();
+    }
+
     if (startTimeRef.current === null) startTimeRef.current = time;
     const elapsed = time - startTimeRef.current;
     const durationMs = duration * 1000;
     const progress = ((elapsed / durationMs) + startOffset) % 1;
 
-    const totalLength = pathEl.getTotalLength();
+    const totalLength = totalLengthRef.current;
     const point = pathEl.getPointAtLength(progress * totalLength);
     circle.setAttribute('cx', String(point.x));
     circle.setAttribute('cy', String(point.y));
@@ -102,7 +108,7 @@ function NetworkNode({ node, index, isMobile, prefersReduced }: { node: NodeDef;
       {/* Particles travel from node to hub — only when motion is allowed */}
       {!prefersReduced && Array.from({ length: particleCount }, (_, i) => (
         <Particle
-          key={i}
+          key={`particle-${node.id}-${i}`}
           pathId={`path-${node.id}`}
           duration={2.5 + node.x * 0.0005} // slight variation per path
           startOffset={i / particleCount}
