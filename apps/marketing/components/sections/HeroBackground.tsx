@@ -209,14 +209,28 @@ function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: Hub
 
       {/* Hub entrance — inside-out: core pops first, outer rings expand after */}
 
-      {/* Inner dot — springs in first with bounce, then breathes continuously */}
+      {/* Entrance burst — single pulse fires once hub appears, bridges gap to repeating pulses */}
+      {!prefersReduced && (
+        <motion.circle
+          cx={pos.x} cy={pos.y} r={42}
+          fill="none"
+          stroke="#0066CC"
+          strokeWidth={2.5}
+          initial={{ scale: 0.8, opacity: 0.65 }}
+          animate={{ scale: 5, opacity: 0 }}
+          transition={{ duration: 2.2, ease: 'easeOut', delay: 0.65 }}
+          style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
+        />
+      )}
+
+      {/* Inner dot — springs in first with bigger bounce, then breathes continuously */}
       <motion.circle cx={pos.x} cy={pos.y} r={8} fill="#0066CC" fillOpacity={0.80}
         initial={{ scale: 0, opacity: 0 }}
         animate={prefersReduced
           ? { scale: 1, opacity: 1 }
-          : { scale: [0, 1.4, 0.9, 1.15, 1], opacity: 1 }
+          : { scale: [0, 1.9, 0.75, 1.25, 0.95, 1], opacity: 1 }
         }
-        transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+        transition={{ duration: 0.9, delay: 0.1, ease: 'easeOut' }}
         style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
       />
       {/* Continuous breath on inner dot */}
