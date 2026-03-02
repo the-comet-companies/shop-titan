@@ -1,101 +1,25 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from "framer-motion";
-import dynamic from 'next/dynamic';
-
+import HeroBackground from './HeroBackground';
 import InteractiveGridPattern from '@/components/ui/InteractiveGridPattern';
 
-const SplineHero = dynamic(() => import('./SplineHero'), { ssr: false });
-
 export default function HeroSection() {
-    const [mountSpline, setMountSpline] = useState(false);
-    const sectionRef = useRef<HTMLElement>(null);
-
-    useEffect(() => {
-        // Instant reveal on mobile since Spline isn't mounted
-        if (window.innerWidth < 768 && sectionRef.current) {
-            sectionRef.current.style.opacity = '1';
-        }
-
-        const raf = requestAnimationFrame(() => {
-            if (window.innerWidth >= 768) {
-                setMountSpline(true);
-            }
-        });
-        return () => cancelAnimationFrame(raf);
-    }, []);
-
-    // Fallback: reveal hero after 5s regardless (Spline slow/failed)
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            if (sectionRef.current) {
-                sectionRef.current.style.opacity = '1';
-            }
-        }, 5000);
-        return () => clearTimeout(timer);
-    }, []);
-
-    const handleSplineReady = useCallback(() => {
-        if (sectionRef.current) {
-            sectionRef.current.style.opacity = '1';
-        }
-    }, []);
-
     return (
         <section
-            ref={sectionRef}
             id="hero"
             aria-label="Welcome to Shop Titan"
             className="relative bg-background dark:bg-background-dark min-h-[80vh] flex flex-col justify-start overflow-hidden"
-            style={{ opacity: 0, transition: 'opacity 0.6s ease-out' }}
         >
-            {/* Animated Wave Background for Mobile */}
-            <div className="absolute inset-0 z-0 overflow-hidden md:hidden bg-[#F0F4F8] dark:bg-[#0A0A0A]">
-                {/* Wave 1 */}
-                <div
-                    className="absolute left-[-50%] top-[-50%] w-[200%] h-[200%] bg-[linear-gradient(45deg,transparent,rgba(0,102,204,0.15),transparent)] animate-[spin_25s_linear_infinite]"
-                    style={{ borderRadius: '40% 60% 70% 30% / 40% 50% 60% 50%' }}
-                />
-                {/* Wave 2 */}
-                <div
-                    className="absolute left-[-20%] top-[-20%] w-[140%] h-[140%] bg-[linear-gradient(45deg,transparent,rgba(0,102,204,0.12),transparent)] animate-[spin_18s_linear_infinite_reverse]"
-                    style={{ borderRadius: '60% 40% 30% 70% / 50% 30% 70% 40%' }}
-                />
-                {/* Wave 3 - Extra variation */}
-                <div
-                    className="absolute left-[-30%] top-[-10%] w-[160%] h-[160%] bg-[linear-gradient(135deg,transparent,rgba(0,102,204,0.08),transparent)] animate-[spin_32s_linear_infinite]"
-                    style={{ borderRadius: '30% 70% 50% 50% / 40% 60% 40% 60%' }}
-                />
-                {/* Wave 4 - Extra variation */}
-                <div
-                    className="absolute left-[10%] top-[-40%] w-[180%] h-[180%] bg-[linear-gradient(90deg,transparent,rgba(0,102,204,0.1),transparent)] animate-[spin_22s_linear_infinite_reverse]"
-                    style={{ borderRadius: '50% 50% 40% 60% / 70% 30% 50% 50%' }}
-                />
-            </div>
+            {/* Convergence Network Background */}
+            <HeroBackground />
 
-            {/* Spline 3D Asset for Desktop */}
-            <div
-                className="absolute inset-0 z-0 select-none pointer-events-none hidden md:block"
-                role="img"
-                aria-label="3D visualization of logistics and container management operations"
-            >
-                <div className="w-full h-[120%] opacity-70 md:opacity-100 transform -translate-y-[10%]">
-                    {mountSpline && (
-                        <SplineHero
-                            eagerLoad={true}
-                            onReady={handleSplineReady}
-                        />
-                    )}
-                </div>
-            </div>
-
-            {/* Readability overlays: always-on so text is readable over both placeholder and 3D */}
+            {/* Readability overlays */}
             <div className="absolute inset-0 z-[1] bg-white/30 dark:bg-black/40 pointer-events-none" />
             <div className="absolute inset-0 z-[1] bg-gradient-to-r from-white via-white/70 to-transparent dark:from-black dark:via-black/70 dark:to-transparent pointer-events-none lg:block hidden" />
             <div className="absolute inset-0 z-[1] bg-gradient-to-b from-white/10 via-transparent to-white/80 dark:from-black/10 dark:via-transparent dark:to-black/80 pointer-events-none lg:hidden block" />
 
-            {/* Hero Content */}
+            {/* Hero Content — unchanged */}
             <div className="relative pt-32 pb-20 md:pt-24 lg:pt-32 lg:pb-40 z-20">
                 <div className="max-w-7xl mx-auto px-mobile relative">
                     <div className="max-w-3xl text-left">
