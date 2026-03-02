@@ -15,7 +15,7 @@ export default function HeroSection() {
             <HeroBackground />
 
             {/* Readability overlays */}
-            <div className="absolute inset-0 z-[1] bg-white/30 dark:bg-black/40 pointer-events-none" />
+            <div className="absolute inset-0 z-[1] bg-white/10 dark:bg-black/20 pointer-events-none" />
             <div className="absolute inset-0 z-[1] bg-gradient-to-r from-white via-white/70 to-transparent dark:from-black dark:via-black/70 dark:to-transparent pointer-events-none lg:block hidden" />
             <div className="absolute inset-0 z-[1] bg-gradient-to-b from-white/10 via-transparent to-white/80 dark:from-black/10 dark:via-transparent dark:to-black/80 pointer-events-none lg:hidden block" />
 

@@ -907,3 +907,134 @@ The hero background is now:
 - Zero external dependencies (no Spline, no 3D library)
 - Instant render — no async load or fallback timer
 - Narratively on-brand: platform modules visibly converging to a single hub
+
+---
+
+---
+
+## Post-Implementation Updates (2026-03-02)
+
+The following changes were made after the initial implementation was shipped, during a refinement session.
+
+---
+
+### Update 1: Node list — workflow stages
+
+**Motivation:** The original node list (Quotes, Orders, Scheduler, Pricing, Analytics, Customers) reflected internal module names. The updated list maps to the visible job workflow a decoration shop runs through.
+
+**Before → After:**
+
+| Before | Icon | → | After | Icon |
+|---|---|---|---|---|
+| Quotes | `request_quote` | → | Intake | `inbox` |
+| Orders | `shopping_cart` | → | Proofing | `rate_review` |
+| Scheduler | `precision_manufacturing` | → | Production | `precision_manufacturing` |
+| Pricing | `grid_on` | → | Fulfillment | `local_shipping` |
+| Analytics | `analytics` | → | Status Updates | `notifications` |
+| Customers | `people` | → | *(dropped — now 5 nodes)* | |
+
+**File changed:** `HeroBackground.tsx` — `NODES` array
+
+---
+
+### Update 2: Visibility improvements
+
+**Motivation:** Nodes were too faint to read against the white background. Several values were tuned:
+
+| Property | Before | After |
+|---|---|---|
+| SVG `opacity` (light) | `opacity-40` | `opacity-80` |
+| SVG `opacity` (dark) | `dark:opacity-35` | `dark:opacity-70` |
+| Node card background | `bg-white/80` | `bg-white` |
+| Node card border | `border border-primary/20` | `border-2 border-primary/50` |
+| Node card shadow | `shadow-sm` | `shadow-lg` |
+| Node card font weight | `font-semibold` | `font-bold` |
+| Path `strokeOpacity` | `0.25` | `0.45` |
+| Path `strokeWidth` | `1.5` | `2` |
+| `HeroSection` blanket overlay | `bg-white/30 dark:bg-black/40` | `bg-white/10 dark:bg-black/20` |
+
+**Files changed:** `HeroBackground.tsx`, `HeroSection.tsx`
+
+---
+
+### Update 3: Node repositioning — clear of text/CTA area
+
+**Motivation:** Several nodes (notably Intake at x:240 and Status Updates at x:460) sat behind the hero headline and CTA buttons on desktop. All nodes were moved to `x ≥ 820` so they live entirely in the right half, behind the hub.
+
+**Final desktop positions:**
+
+```ts
+const NODES = [
+  { id: 'intake',         x: 840,  y: 90  },
+  { id: 'proofing',       x: 1120, y: 140 },
+  { id: 'production',     x: 1240, y: 340 },
+  { id: 'fulfillment',    x: 1080, y: 540 },
+  { id: 'status_updates', x: 860,  y: 580 },
+];
+```
+
+**File changed:** `HeroBackground.tsx` — `NODES` array
+
+---
+
+### Update 4: Per-node card widths
+
+**Motivation:** The hardcoded `W = 120` was wide enough for short labels but clipped "Status Updates" (14 chars + icon), causing a broken/invisible border on that card.
+
+**Change:** Replaced `const W = 120` with `const W = node.w` and added a `w` field to each node entry:
+
+```ts
+{ id: 'intake',         ..., w: 110 }
+{ id: 'proofing',       ..., w: 120 }
+{ id: 'production',     ..., w: 130 }
+{ id: 'fulfillment',    ..., w: 125 }
+{ id: 'status_updates', ..., w: 148 }  // 148px fits 2-word label
+```
+
+**File changed:** `HeroBackground.tsx` — `NODES` array + `NetworkNode`
+
+---
+
+### Update 5: Mobile — hub-only strategy
+
+**Motivation:** The hero headline is full-width on mobile, leaving no clear region for floating node cards. Every position tried (top, middle, lower) collided with either the headline text or the stacked CTA buttons. Attempted approaches ruled out:
+
+1. **Scaled-down mobile positions** — hero text is full-width; no gap on left or right
+2. **Lower-right cluster (mx/my per node)** — still overlapped the headline or buttons given the tall `pt-32` padding
+3. **Hub-only** ✅ — clean, elegant, zero overlap
+
+**Final mobile behaviour:**
+- `isMobile` (< 768px): renders **only** `<Hub />`, no `<NetworkNode>` elements
+- `MOBILE_HUB = { x: 760, y: 560 }` — lower-right of the mobile visible SVG slice (visible x-range ≈ 512–927), below the CTA buttons
+- Particles suppressed on mobile (no `useAnimationFrame` loops → lighter on mobile GPU)
+
+**Architecture simplification:**
+- `pathD()` signature simplified from `(node, hub, isMobile)` → `(node, hub)` since it only ever runs on desktop
+- `mx/my` mobile coordinate fields removed from `NODES` (previously attempted, now dropped)
+- Render guard: `{!isMobile && NODES.map(...)}`
+
+**Files changed:** `HeroBackground.tsx`
+
+```ts
+// Desktop hub position (unchanged)
+const HUB = { x: 840, y: 340 };
+
+// Mobile hub — lower-right, clear of all text/buttons
+const MOBILE_HUB = { x: 760, y: 560 };
+
+// In render:
+const hub = isMobile ? MOBILE_HUB : HUB;
+// ...
+{!isMobile && NODES.map((node, i) => <NetworkNode ... hub={hub} />)}
+<Hub prefersReduced={prefersReduced} pos={hub} />
+```
+
+---
+
+### Final state summary
+
+| Breakpoint | What renders |
+|---|---|
+| Desktop (≥ 768px) | 5-node convergence network + hub glow + particles + ambient drift |
+| Mobile (< 768px) | Hub glow only (pulsing orb, lower-right) |
+
