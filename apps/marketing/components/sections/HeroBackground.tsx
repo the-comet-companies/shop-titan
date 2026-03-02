@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { useAnimationFrame } from 'framer-motion';
+import { motion, useAnimationFrame } from 'framer-motion';
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -34,14 +34,14 @@ function pathD(node: NodeDef) {
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
-function NetworkNode({ node }: { node: NodeDef }) {
-  const W = 110; // foreignObject width
-  const H = 44;  // foreignObject height
+function NetworkNode({ node, index }: { node: NodeDef; index: number }) {
+  const W = 110;
+  const H = 44;
 
   return (
     <g>
-      {/* Connection path */}
-      <path
+      {/* Path draws on after node appears */}
+      <motion.path
         id={`path-${node.id}`}
         d={pathD(node)}
         fill="none"
@@ -49,15 +49,21 @@ function NetworkNode({ node }: { node: NodeDef }) {
         strokeOpacity={0.25}
         strokeWidth={1.5}
         strokeLinecap="round"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.3 + index * 0.1 + 0.4, ease: 'easeOut' }}
       />
 
-      {/* Node card via foreignObject */}
-      <foreignObject
+      {/* Node card */}
+      <motion.foreignObject
         x={node.x - W / 2}
         y={node.y - H / 2}
         width={W}
         height={H}
         style={{ overflow: 'visible' }}
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 + index * 0.1, ease: 'easeOut' }}
       >
         <div
           // @ts-expect-error xmlns required for SVG foreignObject
@@ -75,7 +81,7 @@ function NetworkNode({ node }: { node: NodeDef }) {
           </span>
           {node.label}
         </div>
-      </foreignObject>
+      </motion.foreignObject>
     </g>
   );
 }
@@ -83,13 +89,41 @@ function NetworkNode({ node }: { node: NodeDef }) {
 function Hub() {
   return (
     <g>
-      {/* Outer glow ring */}
-      <circle cx={HUB.x} cy={HUB.y} r={42} fill="#0066CC" fillOpacity={0.06} />
-      {/* Mid ring */}
-      <circle cx={HUB.x} cy={HUB.y} r={28} fill="#0066CC" fillOpacity={0.10} />
-      {/* Core */}
-      <circle cx={HUB.x} cy={HUB.y} r={16} fill="#0066CC" fillOpacity={0.20} />
-      <circle cx={HUB.x} cy={HUB.y} r={8}  fill="#0066CC" fillOpacity={0.60} />
+      {/* Pulse ring — emits every 3s (added in Task 3, placeholder comment here) */}
+
+      {/* Static rings with entrance spring */}
+      <motion.circle
+        cx={HUB.x} cy={HUB.y} r={42}
+        fill="#0066CC" fillOpacity={0.06}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.1 }}
+        style={{ transformOrigin: `${HUB.x}px ${HUB.y}px` }}
+      />
+      <motion.circle
+        cx={HUB.x} cy={HUB.y} r={28}
+        fill="#0066CC" fillOpacity={0.10}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.15 }}
+        style={{ transformOrigin: `${HUB.x}px ${HUB.y}px` }}
+      />
+      <motion.circle
+        cx={HUB.x} cy={HUB.y} r={16}
+        fill="#0066CC" fillOpacity={0.20}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.2 }}
+        style={{ transformOrigin: `${HUB.x}px ${HUB.y}px` }}
+      />
+      <motion.circle
+        cx={HUB.x} cy={HUB.y} r={8}
+        fill="#0066CC" fillOpacity={0.60}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: 'spring', stiffness: 260, damping: 18, delay: 0.25 }}
+        style={{ transformOrigin: `${HUB.x}px ${HUB.y}px` }}
+      />
     </g>
   );
 }
@@ -118,8 +152,8 @@ export default function HeroBackground() {
         preserveAspectRatio="xMidYMid slice"
         className="w-full h-full opacity-40 dark:opacity-30"
       >
-        {visibleNodes.map(node => (
-          <NetworkNode key={node.id} node={node} />
+        {visibleNodes.map((node, i) => (
+          <NetworkNode key={node.id} node={node} index={i} />
         ))}
         <Hub />
       </svg>
