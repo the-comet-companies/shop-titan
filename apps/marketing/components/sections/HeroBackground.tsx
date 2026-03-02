@@ -15,7 +15,7 @@ const MOBILE_HUB = { x: 760, y: 560 };
 type HubPos = typeof HUB;
 
 const NODES = [
-  { id: 'intake', label: 'Intake', icon: 'inbox', x: 840, y: 120, mobile: true, driftPeriod: 9, driftDelay: 0, w: 110 },
+  { id: 'intake', label: 'Intake', icon: 'inbox', x: 890, y: 120, mobile: true, driftPeriod: 9, driftDelay: 0, w: 110 },
   { id: 'proofing', label: 'Proofing', icon: 'rate_review', x: 1120, y: 140, mobile: true, driftPeriod: 12, driftDelay: 1.5, w: 120 },
   { id: 'production', label: 'Production', icon: 'precision_manufacturing', x: 1240, y: 340, mobile: true, driftPeriod: 8, driftDelay: 3, w: 130 },
   { id: 'fulfillment', label: 'Fulfillment', icon: 'local_shipping', x: 1080, y: 540, mobile: false, driftPeriod: 14, driftDelay: 0.8, w: 125 },
@@ -33,10 +33,10 @@ function ctrlPt(x1: number, y1: number, x2: number, y2: number) {
   return { x: mx - (dy / len) * len * 0.12, y: my + (dx / len) * len * 0.12 };
 }
 
-// pathD always uses desktop coordinates (mobile renders hub-only, no paths)
+// pathD draws hub→node so the line animates outward from the center
 function pathD(node: NodeDef, hub: HubPos) {
-  const cp = ctrlPt(node.x, node.y, hub.x, hub.y);
-  return `M${node.x},${node.y} Q${cp.x},${cp.y} ${hub.x},${hub.y}`;
+  const cp = ctrlPt(hub.x, hub.y, node.x, node.y);
+  return `M${hub.x},${hub.y} Q${cp.x},${cp.y} ${node.x},${node.y}`;
 }
 
 // ── Sub-components ────────────────────────────────────────────────────────────
@@ -65,17 +65,19 @@ function Particle({ pathId, duration, startOffset }: ParticleProps) {
     if (startTimeRef.current === null) startTimeRef.current = time;
     const elapsed = time - startTimeRef.current;
     const durationMs = duration * 1000;
-    const progress = ((elapsed / durationMs) + startOffset) % 1;
+    // Reversed: travel from node (path end) back toward hub (path start)
+    const rawProgress = ((elapsed / durationMs) + startOffset) % 1;
+    const progress = 1 - rawProgress;
 
     const totalLength = totalLengthRef.current;
     const point = pathEl.getPointAtLength(progress * totalLength);
     circle.setAttribute('cx', String(point.x));
     circle.setAttribute('cy', String(point.y));
 
-    // Fade: in over first 10%, out over last 15%
+    // Fade: in over first 10% of travel, out over last 15% (near hub)
     const opacity =
-      progress < 0.10 ? progress / 0.10 :
-        progress > 0.85 ? (1 - progress) / 0.15 :
+      rawProgress < 0.10 ? rawProgress / 0.10 :
+        rawProgress > 0.85 ? (1 - rawProgress) / 0.15 :
           1;
     circle.setAttribute('opacity', String(opacity * 0.9));
   });
@@ -116,7 +118,7 @@ function NetworkNode({
         strokeLinecap="round"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 0.7, delay: 2.5 + index * 0.7, ease: 'easeOut' }}
+        transition={{ duration: 0.7, delay: 0.3 + index * 1.1, ease: 'easeOut' }}
       />
 
       {/* Particles travel from node to hub — only when motion is allowed */}
@@ -135,8 +137,8 @@ function NetworkNode({
         animate={prefersReduced ? {} : { y: [0, -6, 0, 6, 0], x: [0, 3, 0, -3, 0] }}
         transition={{
           duration: node.driftPeriod,
-          // 2.5s offset clears sequential node entrance (worst case: 0.3 + 4*0.4 + 0.4 = 2.3s)
-          delay: 2.5 + node.driftDelay,
+          // 1.5s after node appears (node appears at 1.0 + index*1.1, +0.5s clearance)
+          delay: 1.5 + index * 1.1 + node.driftDelay,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
@@ -149,7 +151,7 @@ function NetworkNode({
           style={{ overflow: 'visible' }}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.3 + index * 0.4, ease: 'easeOut' }}
+          transition={{ duration: 0.4, delay: 1.0 + index * 1.1, ease: 'easeOut' }}
         >
           <div
             // @ts-expect-error xmlns required for SVG foreignObject
@@ -176,8 +178,8 @@ function NetworkNode({
 function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: HubPos }) {
   return (
     <g>
-      {/* Pulse rings — 3 ripples staggered evenly across the 3.5s cycle */}
-      {[0, 1.17, 2.33].map((delay, i) => (
+      {/* Pulse rings — 3 ripples, start after all nodes appear (~5.8s), then repeat every 3.5s */}
+      {[5.8, 7.0, 8.2].map((delay, i) => (
         <motion.circle
           key={i}
           cx={pos.x} cy={pos.y} r={42}

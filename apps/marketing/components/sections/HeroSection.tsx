@@ -21,7 +21,7 @@ export default function HeroSection() {
 
             {/* Hero Content — unchanged */}
             <div className="relative pt-32 pb-20 md:pt-24 lg:pt-32 lg:pb-40 z-20">
-                <div className="max-w-7xl mx-auto px-mobile relative">
+                <div className="max-w-7xl mx-auto px-mobile relative 2xl:max-w-[1480px]">
                     <div className="max-w-3xl text-left">
                         <motion.header
                             initial={{ opacity: 0, y: 20 }}
@@ -30,7 +30,14 @@ export default function HeroSection() {
                             className="mb-8 md:mb-12"
                         >
                             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-charcoal dark:text-white leading-[1.1] mb-8 tracking-tight">
-                                A single source of truth for the decoration industry.
+                                A{' '}
+                                <motion.span
+                                    animate={{ color: ['#1a1a2e', '#1e3a6e', '#1a1a2e'] }}
+                                    transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 1, ease: 'easeInOut' }}
+                                >
+                                    single source of truth
+                                </motion.span>
+                                {' '}for the decoration industry.
                             </h1>
                             <p
                                 className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl text-secondary-text dark:text-gray-300 font-medium"
