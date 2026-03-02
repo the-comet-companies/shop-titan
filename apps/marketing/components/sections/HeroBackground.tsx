@@ -15,7 +15,7 @@ const MOBILE_HUB = { x: 760, y: 560 };
 type HubPos = typeof HUB;
 
 const NODES = [
-  { id: 'intake', label: 'Intake', icon: 'inbox', x: 840, y: 90, mobile: true, driftPeriod: 9, driftDelay: 0, w: 110 },
+  { id: 'intake', label: 'Intake', icon: 'inbox', x: 840, y: 120, mobile: true, driftPeriod: 9, driftDelay: 0, w: 110 },
   { id: 'proofing', label: 'Proofing', icon: 'rate_review', x: 1120, y: 140, mobile: true, driftPeriod: 12, driftDelay: 1.5, w: 120 },
   { id: 'production', label: 'Production', icon: 'precision_manufacturing', x: 1240, y: 340, mobile: true, driftPeriod: 8, driftDelay: 3, w: 130 },
   { id: 'fulfillment', label: 'Fulfillment', icon: 'local_shipping', x: 1080, y: 540, mobile: false, driftPeriod: 14, driftDelay: 0.8, w: 125 },
@@ -176,17 +176,20 @@ function NetworkNode({
 function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: HubPos }) {
   return (
     <g>
-      {/* Pulse ring — expands and fades every ~3.5s */}
-      <motion.circle
-        cx={pos.x} cy={pos.y} r={28}
-        fill="none"
-        stroke="#0066CC"
-        strokeWidth={1}
-        initial={{ scale: 1, opacity: prefersReduced ? 0 : 0.4 }}
-        animate={prefersReduced ? { scale: 1, opacity: 0 } : { scale: 3, opacity: 0 }}
-        transition={prefersReduced ? { duration: 0 } : { duration: 2.5, repeat: Infinity, repeatDelay: 1, ease: 'easeOut' }}
-        style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
-      />
+      {/* Pulse rings — 3 ripples staggered evenly across the 3.5s cycle */}
+      {[0, 1.17, 2.33].map((delay, i) => (
+        <motion.circle
+          key={i}
+          cx={pos.x} cy={pos.y} r={42}
+          fill="none"
+          stroke="#0066CC"
+          strokeWidth={1.5}
+          initial={{ scale: 1, opacity: prefersReduced ? 0 : 0.5 }}
+          animate={prefersReduced ? { scale: 1, opacity: 0 } : { scale: 4.5, opacity: 0 }}
+          transition={prefersReduced ? { duration: 0 } : { duration: 2.5, repeat: Infinity, repeatDelay: 1, ease: 'easeOut', delay }}
+          style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
+        />
+      ))}
 
       {/* Static rings with entrance spring */}
       <motion.circle cx={pos.x} cy={pos.y} r={42} fill="#0066CC" fillOpacity={0.06}
@@ -252,11 +255,13 @@ export default function HeroBackground() {
             <circle cx="18" cy="18" r="1.5" fill="#0066CC" fillOpacity={0.65} />
           </pattern>
 
-          {/* Fade mask: left opaque → transparent at 55% */}
+          {/* Fade mask: opaque on both edges, transparent in middle (around hub) */}
           <linearGradient id="dot-fade" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="white" stopOpacity={1} />
-            <stop offset="55%" stopColor="white" stopOpacity={0.2} />
-            <stop offset="75%" stopColor="white" stopOpacity={0} />
+            <stop offset="40%" stopColor="white" stopOpacity={0} />
+            <stop offset="65%" stopColor="white" stopOpacity={0} />
+            <stop offset="85%" stopColor="white" stopOpacity={0.5} />
+            <stop offset="100%" stopColor="white" stopOpacity={0.7} />
           </linearGradient>
           <mask id="dot-mask">
             <rect x="0" y="0" width="1440" height="720" fill="url(#dot-fade)" />
