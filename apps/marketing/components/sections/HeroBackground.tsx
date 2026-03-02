@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -34,7 +34,7 @@ function pathD(node: NodeDef) {
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
-function NetworkNode({ node, index, isMobile }: { node: NodeDef; index: number; isMobile: boolean }) {
+function NetworkNode({ node, index, isMobile, prefersReduced }: { node: NodeDef; index: number; isMobile: boolean; prefersReduced: boolean | null }) {
   const W = 110;
   const H = 44;
   const particleCount = isMobile ? 1 : 2;
@@ -58,10 +58,10 @@ function NetworkNode({ node, index, isMobile }: { node: NodeDef; index: number; 
 
       {/* Drifting node card */}
       <motion.g
-        animate={{ y: [0, -6, 0, 6, 0], x: [0, 3, 0, -3, 0] }}
+        animate={prefersReduced ? {} : { y: [0, -6, 0, 6, 0], x: [0, 3, 0, -3, 0] }}
         transition={{
           duration: node.driftPeriod,
-          delay: node.driftDelay,
+          delay: 1.5 + node.driftDelay,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
@@ -98,7 +98,7 @@ function NetworkNode({ node, index, isMobile }: { node: NodeDef; index: number; 
   );
 }
 
-function Hub() {
+function Hub({ prefersReduced }: { prefersReduced: boolean | null }) {
   return (
     <g>
       {/* Pulse ring — expands and fades every ~3s */}
@@ -107,9 +107,9 @@ function Hub() {
         fill="none"
         stroke="#0066CC"
         strokeWidth={1}
-        initial={{ scale: 1, opacity: 0.4 }}
-        animate={{ scale: 3, opacity: 0 }}
-        transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 0.5, ease: 'easeOut' }}
+        initial={{ scale: 1, opacity: prefersReduced ? 0 : 0.4 }}
+        animate={prefersReduced ? { scale: 1, opacity: 0 } : { scale: 3, opacity: 0 }}
+        transition={prefersReduced ? { duration: 0 } : { duration: 2.5, repeat: Infinity, repeatDelay: 0.5, ease: 'easeOut' }}
         style={{ transformOrigin: `${HUB.x}px ${HUB.y}px` }}
       />
 
@@ -153,6 +153,7 @@ function Hub() {
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function HeroBackground() {
+  const prefersReduced = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -175,9 +176,9 @@ export default function HeroBackground() {
         className="w-full h-full opacity-40 dark:opacity-30"
       >
         {visibleNodes.map((node, i) => (
-          <NetworkNode key={node.id} node={node} index={i} isMobile={isMobile} />
+          <NetworkNode key={node.id} node={node} index={i} isMobile={isMobile} prefersReduced={prefersReduced} />
         ))}
-        <Hub />
+        <Hub prefersReduced={prefersReduced} />
       </svg>
     </div>
   );
