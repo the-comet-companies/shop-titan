@@ -382,18 +382,25 @@ const NODES = [
 ] as const;
 ```
 
-**Step 2: Wrap node card group in ambient drift motion**
+**Step 2: Add `prefers-reduced-motion` guard and wrap node card in drift motion**
 
-Wrap the entire node `<g>` in a `<motion.g>` using `animate` loop:
+Import `useReducedMotion` and compute it in `HeroBackground`. Pass it as a prop to `NetworkNode` and `Hub`. Gate the drift on `!prefersReduced`. Add a 1.5s delay offset to the drift to prevent a `y` animation conflict with the entrance (the `foreignObject` entrance animates `y: 12→0`; without the offset the drift starts simultaneously and they compose additively causing a jerk).
 
 ```tsx
-function NetworkNode({ node, index }: { node: NodeDef; index: number }) {
-  const W = 110;
+// In HeroBackground (main export):
+// null before hook resolves — treated as falsy (animate by default)
+const prefersReduced = useReducedMotion();
+
+function NetworkNode({ node, index, isMobile, prefersReduced }: {
+  node: NodeDef; index: number; isMobile: boolean; prefersReduced: boolean | null
+}) {
+  const W = 120; // 120px fits all 9-char labels with ~15px margin
   const H = 44;
+  const particleCount = isMobile ? 1 : 2;
 
   return (
     <>
-      {/* Static path — does not move with the node drift */}
+      {/* Static path — does not drift */}
       <motion.path
         id={`path-${node.id}`}
         d={pathD(node)}
@@ -409,10 +416,12 @@ function NetworkNode({ node, index }: { node: NodeDef; index: number }) {
 
       {/* Drifting node card */}
       <motion.g
-        animate={{ y: [0, -6, 0, 6, 0], x: [0, 3, 0, -3, 0] }}
+        animate={prefersReduced ? {} : { y: [0, -6, 0, 6, 0], x: [0, 3, 0, -3, 0] }}
         transition={{
           duration: node.driftPeriod,
-          delay: node.driftDelay,
+          // 1.5s offset ensures drift starts after the entrance animation completes
+          // (worst case: 0.3 + 5*0.1 + 0.5s duration = ~1.3s)
+          delay: 1.5 + node.driftDelay,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
@@ -450,23 +459,23 @@ function NetworkNode({ node, index }: { node: NodeDef; index: number }) {
 }
 ```
 
-**Step 3: Add hub pulse ring**
+**Step 3: Add hub pulse ring with reduced-motion guard**
 
-Add a repeating `motion.circle` that scales outward and fades:
+`Hub` accepts `prefersReduced` and gates the pulse ring. `repeatDelay` is `1` (not `0.5`) — a 3.5s cycle is less assertive behind a large hero headline.
 
 ```tsx
-function Hub() {
+function Hub({ prefersReduced }: { prefersReduced: boolean | null }) {
   return (
     <g>
-      {/* Pulse ring — emits every 3s */}
+      {/* Pulse ring — emits every ~3.5s */}
       <motion.circle
         cx={HUB.x} cy={HUB.y} r={28}
         fill="none"
         stroke="#0066CC"
         strokeWidth={1}
-        initial={{ scale: 1, opacity: 0.4 }}
-        animate={{ scale: 3, opacity: 0 }}
-        transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 0.5, ease: 'easeOut' }}
+        initial={{ scale: 1, opacity: prefersReduced ? 0 : 0.4 }}
+        animate={prefersReduced ? { scale: 1, opacity: 0 } : { scale: 3, opacity: 0 }}
+        transition={prefersReduced ? { duration: 0 } : { duration: 2.5, repeat: Infinity, repeatDelay: 1, ease: 'easeOut' }}
         style={{ transformOrigin: `${HUB.x}px ${HUB.y}px` }}
       />
 
@@ -531,6 +540,8 @@ interface ParticleProps {
 function Particle({ pathId, duration, startOffset }: ParticleProps) {
   const circleRef = useRef<SVGCircleElement>(null);
   const startTimeRef = useRef<number | null>(null);
+  // Cache path length — getTotalLength() triggers a layout recalc if called every frame
+  const totalLengthRef = useRef<number | null>(null);
 
   useAnimationFrame((time) => {
     const circle = circleRef.current;
@@ -544,8 +555,8 @@ function Particle({ pathId, duration, startOffset }: ParticleProps) {
     // Offset so particles are spread along the path, not all starting at once
     const progress = ((elapsed / durationMs) + startOffset) % 1;
 
-    const totalLength = pathEl.getTotalLength();
-    const point = pathEl.getPointAtLength(progress * totalLength);
+    if (totalLengthRef.current === null) totalLengthRef.current = pathEl.getTotalLength();
+    const point = pathEl.getPointAtLength(progress * totalLengthRef.current);
     circle.setAttribute('cx', String(point.x));
     circle.setAttribute('cy', String(point.y));
 
@@ -570,11 +581,16 @@ function Particle({ pathId, duration, startOffset }: ParticleProps) {
 
 **Step 2: Add particles to NetworkNode**
 
-Each node renders 2 particles on desktop, 1 on mobile. Pass `isMobile` as a prop:
+Each node renders 2 particles on desktop, 1 on mobile. Three changes from the draft plan:
+- `key` is a composite `particle-${node.id}-${i}` (not `i` alone — prevents React from reusing state when node list changes between mobile/desktop)
+- `duration` uses `node.x * 0.0005` (not `index * 0.3`) so travel times are stable regardless of render order
+- `!prefersReduced &&` gate suppresses particles for users who prefer reduced motion
 
 ```tsx
-function NetworkNode({ node, index, isMobile }: { node: NodeDef; index: number; isMobile: boolean }) {
-  const W = 110;
+function NetworkNode({ node, index, isMobile, prefersReduced }: {
+  node: NodeDef; index: number; isMobile: boolean; prefersReduced: boolean | null
+}) {
+  const W = 120; // 120px fits all 9-char labels with ~15px margin
   const H = 44;
   const particleCount = isMobile ? 1 : 2;
 
@@ -593,21 +609,22 @@ function NetworkNode({ node, index, isMobile }: { node: NodeDef; index: number; 
         transition={{ duration: 0.8, delay: 0.3 + index * 0.1 + 0.4, ease: 'easeOut' }}
       />
 
-      {/* Particles — rendered after path so they draw over it */}
-      {Array.from({ length: particleCount }, (_, i) => (
+      {/* Particles — only when motion is allowed */}
+      {!prefersReduced && Array.from({ length: particleCount }, (_, i) => (
         <Particle
-          key={i}
+          key={`particle-${node.id}-${i}`}
           pathId={`path-${node.id}`}
-          duration={2.5 + index * 0.3} // slightly different speed per path
+          duration={2.5 + node.x * 0.0005} // varies by x position — stable across re-renders
           startOffset={i / particleCount}
         />
       ))}
 
       <motion.g
-        animate={{ y: [0, -6, 0, 6, 0], x: [0, 3, 0, -3, 0] }}
+        animate={prefersReduced ? {} : { y: [0, -6, 0, 6, 0], x: [0, 3, 0, -3, 0] }}
         transition={{
           duration: node.driftPeriod,
-          delay: node.driftDelay,
+          // 1.5s offset ensures drift starts after the entrance animation completes
+          delay: 1.5 + node.driftDelay,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
@@ -645,11 +662,11 @@ function NetworkNode({ node, index, isMobile }: { node: NodeDef; index: number; 
 }
 ```
 
-**Step 3: Pass `isMobile` down from the main component**
+**Step 3: Pass `isMobile` and `prefersReduced` down from the main component**
 
 ```tsx
 {visibleNodes.map((node, i) => (
-  <NetworkNode key={node.id} node={node} index={i} isMobile={isMobile} />
+  <NetworkNode key={node.id} node={node} index={i} isMobile={isMobile} prefersReduced={prefersReduced} />
 ))}
 ```
 
@@ -794,10 +811,35 @@ grep -r "SplineHero" apps/marketing/components apps/marketing/app
 # Should return no results
 ```
 
-**Step 5: Final commit**
+**Step 5: Remove remaining Spline artifacts**
+
+The `SplineHero` component was the only file referencing Spline, but three other locations still pull the asset or bundle the package:
+
+- **`apps/marketing/app/layout.tsx`** — remove these 3 `<link>` tags in `<head>`:
+  ```html
+  <link rel="dns-prefetch" href="//prod.spline.design" />
+  <link rel="preconnect" href="https://prod.spline.design" />
+  <link rel="prefetch" href="https://prod.spline.design/..." as="fetch" crossOrigin="anonymous" />
+  ```
+  Without removal these continue downloading the Spline scene file on every page load.
+
+- **`apps/marketing/next.config.ts`** — remove `'@splinetool/react-spline'` from `optimizePackageImports`:
+  ```ts
+  // before
+  optimizePackageImports: ['framer-motion', '@splinetool/react-spline', ...],
+  // after
+  optimizePackageImports: ['framer-motion', ...],
+  ```
+
+- **`apps/marketing/package.json`** — uninstall the packages:
+  ```bash
+  cd apps/marketing && npm uninstall @splinetool/react-spline @splinetool/runtime
+  ```
+
+**Step 6: Final commit**
 
 ```bash
-git add components/sections/HeroSection.tsx
+git add components/sections/HeroSection.tsx app/layout.tsx next.config.ts package.json package-lock.json
 git rm components/sections/SplineHero.tsx
 git commit -m "feat: hero background - wire HeroBackground into HeroSection, remove Spline"
 ```
@@ -811,12 +853,15 @@ git commit -m "feat: hero background - wire HeroBackground into HeroSection, rem
 
 **Context:** After seeing all layers together, adjust opacity and particle opacity as needed. No logic changes — only numeric constants.
 
-**Things to tune if needed:**
-- Overall SVG opacity: currently `opacity-40 dark:opacity-30` on the SVG element
-- Particle size: `r={3}` — try `r={2.5}` if too prominent
-- Path stroke opacity: `0.25` — try `0.20` if lines feel heavy
-- Hub pulse ring: `repeatDelay: 0.5` — increase to `1.5` if pulse feels too frequent
-- Node drift amplitude: `y: [0, -6, 0, 6, 0]` — try `[0, -4, 0, 4, 0]` for subtler movement
+**Actual changes made during polish pass:**
+- `W = 110 → 120` — 110px clipped the "Scheduler" label; 120px fits all 9-char labels with margin
+- SVG dark opacity: `dark:opacity-30 → dark:opacity-35` — network was too faint in dark mode
+- Hub pulse `repeatDelay: 0.5 → 1` — already applied in Task 3 (3.5s total cycle is less assertive)
+
+**Things considered but not changed:**
+- Particle size `r={3}` — kept; feels right at current SVG opacity
+- Path stroke opacity `0.25` — kept; subtraction would lose legibility at mobile sizes
+- Node drift amplitude `y: [0, -6, 0, 6, 0]` — kept; motion is gentle at current durations
 
 **Step 1: Test on multiple viewport widths**
 
@@ -831,6 +876,26 @@ Using browser devtools, verify at:
 ```bash
 git add components/sections/HeroBackground.tsx
 git commit -m "chore: hero background - visual polish pass (opacity/particle tuning)"
+```
+
+---
+
+---
+
+## Extra: Clarifying comments (not in original plan)
+
+After all tasks were complete, a final pass added inline comments explaining the "why" behind non-obvious constants. No logic was changed.
+
+**Comments added to `HeroBackground.tsx`:**
+- `W = 120` — "fits all 9-char labels with ~15px margin"
+- `1.5 + node.driftDelay` — "clears entrance animation (worst case ~1.3s)"
+- `node.x * 0.0005` — "varies by x position — stable across re-renders"
+- `totalLengthRef` — "getTotalLength() triggers layout recalc if called every frame"
+- `key={\`particle-${node.id}-${i}\`}` — "composite key prevents React reusing state across nodes"
+
+```bash
+git add components/sections/HeroBackground.tsx
+git commit -m "chore: hero background - add clarifying comments for magic numbers/design rationale"
 ```
 
 ---
