@@ -85,7 +85,7 @@ function Particle({ pathId, duration, startOffset }: ParticleProps) {
 
 
 function NetworkNode({ node, index, isMobile, prefersReduced }: { node: NodeDef; index: number; isMobile: boolean; prefersReduced: boolean | null }) {
-  const W = 110;
+  const W = 120;
   const H = 44;
   const particleCount = isMobile ? 1 : 2;
 
@@ -168,7 +168,7 @@ function Hub({ prefersReduced }: { prefersReduced: boolean | null }) {
         strokeWidth={1}
         initial={{ scale: 1, opacity: prefersReduced ? 0 : 0.4 }}
         animate={prefersReduced ? { scale: 1, opacity: 0 } : { scale: 3, opacity: 0 }}
-        transition={prefersReduced ? { duration: 0 } : { duration: 2.5, repeat: Infinity, repeatDelay: 0.5, ease: 'easeOut' }}
+        transition={prefersReduced ? { duration: 0 } : { duration: 2.5, repeat: Infinity, repeatDelay: 1, ease: 'easeOut' }}
         style={{ transformOrigin: `${HUB.x}px ${HUB.y}px` }}
       />
 
@@ -232,7 +232,7 @@ export default function HeroBackground() {
       <svg
         viewBox="0 0 1440 720"
         preserveAspectRatio="xMidYMid slice"
-        className="w-full h-full opacity-40 dark:opacity-30"
+        className="w-full h-full opacity-40 dark:opacity-35"
       >
         {visibleNodes.map((node, i) => (
           <NetworkNode key={node.id} node={node} index={i} isMobile={isMobile} prefersReduced={prefersReduced} />
