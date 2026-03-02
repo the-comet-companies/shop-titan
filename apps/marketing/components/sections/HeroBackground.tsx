@@ -116,7 +116,7 @@ function NetworkNode({
         strokeLinecap="round"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.3 + index * 0.1 + 0.4, ease: 'easeOut' }}
+        transition={{ duration: 0.7, delay: 2.5 + index * 0.7, ease: 'easeOut' }}
       />
 
       {/* Particles travel from node to hub — only when motion is allowed */}
@@ -135,8 +135,8 @@ function NetworkNode({
         animate={prefersReduced ? {} : { y: [0, -6, 0, 6, 0], x: [0, 3, 0, -3, 0] }}
         transition={{
           duration: node.driftPeriod,
-          // 1.5s offset clears entrance animation (worst case ~1.3s)
-          delay: 1.5 + node.driftDelay,
+          // 2.5s offset clears sequential node entrance (worst case: 0.3 + 4*0.4 + 0.4 = 2.3s)
+          delay: 2.5 + node.driftDelay,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
@@ -149,7 +149,7 @@ function NetworkNode({
           style={{ overflow: 'visible' }}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 + index * 0.1, ease: 'easeOut' }}
+          transition={{ duration: 0.4, delay: 0.3 + index * 0.4, ease: 'easeOut' }}
         >
           <div
             // @ts-expect-error xmlns required for SVG foreignObject
