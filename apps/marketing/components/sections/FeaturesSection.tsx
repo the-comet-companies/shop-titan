@@ -222,20 +222,20 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.12 }}
-                    className="relative p-4 border border-rose-200/50 dark:border-rose-800/30 bg-rose-50/60 dark:bg-rose-950/20 rounded-xl overflow-hidden"
+                    className="relative p-4 border border-black/10 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur-md shadow-sm rounded-xl overflow-hidden"
                 >
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-rose-500/10 blur-2xl rounded-full pointer-events-none" />
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-white/50 dark:bg-white/10 blur-2xl rounded-full pointer-events-none" />
                     <p className="text-xs font-bold uppercase tracking-widest text-rose-600 dark:text-rose-400 mb-1.5 relative z-10">{feature.painPoint.label}</p>
-                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium relative z-10">{feature.painPoint.description}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed font-medium relative z-10">{feature.painPoint.description}</p>
                 </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.18 }}
-                    className="relative p-4 border border-blue-200/50 dark:border-blue-800/30 bg-blue-50/60 dark:bg-blue-950/20 rounded-xl overflow-hidden"
+                    className="relative p-4 border border-black/10 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur-md shadow-sm rounded-xl overflow-hidden"
                 >
-                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-primary/10 blur-2xl rounded-full pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/50 dark:bg-white/10 blur-2xl rounded-full pointer-events-none" />
                     <p className="text-xs font-bold uppercase tracking-widest text-primary dark:text-blue-400 mb-1.5 relative z-10">{feature.solution.label}</p>
                     <p className="text-sm text-charcoal dark:text-white leading-relaxed font-semibold relative z-10">{feature.solution.description}</p>
                 </motion.div>
@@ -486,29 +486,29 @@ export default function FeaturesSection() {
 
                 {/* Bottom CTA */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="flex flex-col items-center text-center gap-2 pt-8 pb-4 border-t border-structural-border dark:border-gray-800 mt-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="flex flex-col items-center text-center gap-2 pt-8 pb-4 border-t border-structural-border dark:border-gray-800 mt-4"
                 >
-                  <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-                    <p className="text-xl md:text-2xl font-bold text-charcoal dark:text-white">
-                      Seen enough?
+                    <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+                        <p className="text-xl md:text-2xl font-bold text-charcoal dark:text-white">
+                            Seen enough?
+                        </p>
+                        <a
+                            href="/reach-out"
+                            className="px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
+                        >
+                            <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
+                            <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
+                            <span className="relative z-10">Let&apos;s Talk</span>
+                            <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                        </a>
+                    </div>
+                    <p className="text-sm text-secondary-text dark:text-gray-400 font-medium">
+                        Get a guided walkthrough of the features relevant to your shop.
                     </p>
-                    <a
-                      href="/reach-out"
-                      className="px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
-                    >
-                      <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
-                      <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
-                      <span className="relative z-10">Let&apos;s Talk</span>
-                      <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
-                    </a>
-                  </div>
-                  <p className="text-sm text-secondary-text dark:text-gray-400 font-medium">
-                    Get a guided walkthrough of the features relevant to your shop.
-                  </p>
                 </motion.div>
 
             </div>
