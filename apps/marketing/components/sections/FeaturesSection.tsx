@@ -492,7 +492,7 @@ export default function FeaturesSection() {
                   transition={{ duration: 0.5, delay: 0.2 }}
                   className="flex flex-col items-center text-center gap-2 pt-8 pb-4 border-t border-structural-border dark:border-gray-800 mt-4"
                 >
-                  <div className="flex flex-row items-center gap-4">
+                  <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
                     <p className="text-xl md:text-2xl font-bold text-charcoal dark:text-white">
                       Seen enough?
                     </p>
