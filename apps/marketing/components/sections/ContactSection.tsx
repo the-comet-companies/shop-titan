@@ -416,7 +416,7 @@ export default function ContactSection() {
                                                         whileHover={{ scale: 1.02 }}
                                                         whileTap={{ scale: 0.98 }}
                                                         disabled={isSubmitting}
-                                                        className="w-full md:w-1/3 group relative bg-transparent border border-structural-border dark:border-gray-700 text-secondary-text font-bold py-5 rounded-full transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center gap-2"
+                                                        className="w-full md:w-1/3 min-h-[48px] group relative bg-transparent border border-structural-border dark:border-gray-700 text-secondary-text font-bold py-3 md:py-4 rounded-xl transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center gap-2"
                                                     >
                                                         <span className="material-symbols-outlined text-xl group-hover:-translate-x-1 transition-transform">
                                                             arrow_back
@@ -429,7 +429,7 @@ export default function ContactSection() {
                                                         whileHover={{ scale: 1.02 }}
                                                         whileTap={{ scale: 0.98 }}
                                                         disabled={isSubmitting}
-                                                        className="w-full md:w-2/3 group relative backdrop-blur-xl bg-primary border border-primary text-white font-bold py-5 rounded-full transition-all duration-300 hover:bg-primary/90 shadow-lg shadow-primary/25 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                        className="w-full md:w-2/3 min-h-[48px] group relative backdrop-blur-xl bg-charcoal dark:bg-white/10 border border-charcoal/10 dark:border-white/10 text-white font-bold py-3 md:py-4 rounded-xl transition-all duration-300 shadow-lg flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                                                     >
                                                         {isSubmitting ? (
                                                             <span className="material-symbols-outlined animate-spin">refresh</span>
