@@ -176,27 +176,35 @@ export default function PublicPricingSection() {
 
             <div ref={elementRef} className="container mx-auto px-4 md:px-6 relative z-10">
                 {/* Header */}
-                <div
-                    className={`text-center mb-16 md:mb-24 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                        }`}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-16 md:mb-24"
                 >
 
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-charcoal dark:text-white mb-6">
                         The Operating System for <br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">
+                        <span>
                             High-Volume Apparel
                         </span>
                     </h2>
-                    <p className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-2xl mx-auto">
-                        Transform your print shop with a setup package designed to scale with your ambition. No hidden fees, just raw operational power.
-                    </p>
-                </div>
+                </motion.div>
 
                 {/* Pricing Grids */}
                 <div className="space-y-24">
                     {/* Platform Grid */}
                     <div>
-                        <h3 className="text-2xl font-bold text-center text-charcoal dark:text-white mb-10 tracking-tight">Platform Packages</h3>
+                        <motion.h3
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="text-2xl font-bold text-center text-charcoal dark:text-white mb-10 tracking-tight"
+                        >
+                            Platform Packages
+                        </motion.h3>
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
                             {platformTiers.map((tier, index) => renderCard(tier, index))}
                         </div>
@@ -204,7 +212,15 @@ export default function PublicPricingSection() {
 
                     {/* Services Grid */}
                     <div>
-                        <h3 className="text-2xl font-bold text-center text-charcoal dark:text-white mb-10 tracking-tight">Professional Services</h3>
+                        <motion.h3
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="text-2xl font-bold text-center text-charcoal dark:text-white mb-10 tracking-tight"
+                        >
+                            Professional Services
+                        </motion.h3>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
                             {servicesTiers.map((tier, index) => renderCard(tier, index))}
                         </div>
