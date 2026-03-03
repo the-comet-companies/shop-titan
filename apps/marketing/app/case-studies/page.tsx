@@ -11,7 +11,6 @@ export default function CaseStudiesPage() {
             <main className="min-h-screen flex flex-col items-center justify-center p-8 text-center pt-32 pb-24">
                 <div className="max-w-4xl mx-auto">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-6">
-                        <span className="material-symbols-outlined text-sm">auto_awesome</span>
                         Coming Soon
                     </div>
                     <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-charcoal dark:text-white">

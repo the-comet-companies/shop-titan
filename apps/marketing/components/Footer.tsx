@@ -47,6 +47,15 @@ export default function Footer() {
                             </li>
                             <li>
                                 <MotionLink
+                                    href="/#industries"
+                                    whileHover={{ x: 5, color: "#EF4444" }}
+                                    className="block transition-colors focus-primary tap-target hover:text-white"
+                                >
+                                    Industries We Serve
+                                </MotionLink>
+                            </li>
+                            <li>
+                                <MotionLink
                                     href="/pricing"
                                     whileHover={{ x: 5, color: "#EF4444" }}
                                     className="block transition-colors focus-primary tap-target hover:text-white"
