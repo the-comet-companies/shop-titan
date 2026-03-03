@@ -18,7 +18,7 @@ export default function Footer() {
                     <div className="sm:col-span-2 lg:col-span-3">
                         <a
                             href="#"
-                            className="text-lg md:text-xl font-bold tracking-tight text-white mb-4 md:mb-6 block"
+                            className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter text-white mb-4 md:mb-6 block"
                         >
                             Shop <span className="text-primary">Titan</span>
                         </a>

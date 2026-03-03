@@ -91,16 +91,8 @@ export default function Header() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <div className="relative w-8 h-8 md:w-9 md:h-9 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                                <Image
-                                    src="/logo-transparent.png"
-                                    alt="Shop Titan Logo"
-                                    fill
-                                    priority
-                                    className="object-contain"
-                                />
-                            </div>
-                            <span className="text-sm md:text-base lg:text-lg font-bold tracking-tight text-charcoal dark:text-white group-hover:opacity-80 transition-opacity">
+
+                            <span className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter text-charcoal dark:text-white group-hover:opacity-80 transition-opacity">
                                 Shop <span className="text-primary">Titan</span>
                             </span>
                         </motion.a>
