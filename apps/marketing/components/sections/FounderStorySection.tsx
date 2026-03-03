@@ -43,7 +43,7 @@ export default function FounderStorySection() {
                             transition={{ duration: 0.4, delay: 0.2 }}
                             className="text-lg text-gray-400 leading-relaxed max-w-lg"
                         >
-                            Over 15 years running a large-scale print shop, Michael Monfared felt the same stress every owner does — no visibility, no control, no way to step away. So he built his own solution. Now he&apos;s offering it to everyone.
+                            Over 15 years running a large-scale print shop, the stress was constant — no visibility, no control, no way to step away. So he built his own solution, and now he&apos;s offering it to the world.
                         </motion.p>
 
                         <motion.div
