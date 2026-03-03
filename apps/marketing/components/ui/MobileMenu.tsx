@@ -43,7 +43,7 @@ export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuPr
         { id: 'about', label: 'About' },
         { id: 'case-studies', label: 'Case Studies' },
         { id: 'features', label: 'Features' },
-        // { id: 'pricing', label: 'Pricing' },
+        { id: 'pricing', label: 'Pricing' },
         { id: 'blog', label: 'Blog' },
         { id: 'contact', label: 'Contact' },
     ];
