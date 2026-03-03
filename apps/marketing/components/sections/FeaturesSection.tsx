@@ -484,6 +484,33 @@ export default function FeaturesSection() {
                     <FeaturePanel key={activeFeature.id} feature={activeFeature} />
                 </AnimatePresence>
 
+                {/* Bottom CTA */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="flex flex-col items-center text-center gap-4 pt-8 pb-4 border-t border-structural-border dark:border-gray-800 mt-4"
+                >
+                  <div>
+                    <p className="text-xl md:text-2xl font-bold text-charcoal dark:text-white mb-1">
+                      Seen enough? Let&apos;s Talk.
+                    </p>
+                    <p className="text-sm text-secondary-text dark:text-gray-400 font-medium">
+                      Get a guided walkthrough of the features relevant to your shop.
+                    </p>
+                  </div>
+                  <a
+                    href="/reach-out"
+                    className="px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
+                  >
+                    <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
+                    <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
+                    <span className="relative z-10">Let&apos;s Talk</span>
+                    <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                  </a>
+                </motion.div>
+
             </div>
 
             {/* Dropdown — rendered at root level with fixed positioning to escape all overflow clipping */}
