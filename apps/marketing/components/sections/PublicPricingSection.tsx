@@ -175,22 +175,6 @@ export default function PublicPricingSection() {
             <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-500/10 blur-[150px] rounded-full pointer-events-none mix-blend-screen" />
 
             <div ref={elementRef} className="container mx-auto px-4 md:px-6 relative z-10">
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-16 md:mb-24"
-                >
-
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-charcoal dark:text-white mb-6">
-                        The Operating System for <br className="hidden md:block" />
-                        <span>
-                            High-Volume Apparel
-                        </span>
-                    </h2>
-                </motion.div>
 
                 {/* Pricing Grids */}
                 <div className="space-y-24">
