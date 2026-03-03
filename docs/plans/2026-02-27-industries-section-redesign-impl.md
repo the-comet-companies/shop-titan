@@ -1,3 +1,27 @@
+# IndustriesSection Redesign Implementation Plan
+
+> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+
+**Goal:** Replace the disconnected light-bg two-zone section with a unified dark-themed section that flows: header → marquee → capability badges.
+
+**Architecture:** Full file rewrite of `IndustriesSection.tsx`. The `capabilities` array gains icon fields. The marquee logic, `distributeIntoRows`, `industryRows`, `highlightWords`, and the IntersectionObserver interval are all preserved verbatim. The two-column bottom layout and plain SVG checklist are deleted. Background becomes `bg-background-dark` with top/bottom gradient bleeds and faint animated orbs.
+
+**Tech Stack:** Framer Motion (`motion`, `AnimatePresence`), Tailwind CSS, TypeScript, React. No new dependencies.
+
+---
+
+## Task 1: Rewrite IndustriesSection.tsx
+
+**Files:**
+- Modify: `apps/marketing/components/sections/IndustriesSection.tsx`
+
+This is a full file replacement. The complete new content is provided below — copy it exactly.
+
+**Step 1: Write the complete new file**
+
+Replace the entire contents of `apps/marketing/components/sections/IndustriesSection.tsx` with:
+
+```tsx
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
@@ -136,19 +160,19 @@ export default function IndustriesSection() {
         <section
             id="industries"
             ref={sectionRef}
-            className="relative bg-background-light overflow-hidden pt-40 pb-40"
+            className="relative bg-background-dark overflow-hidden pt-40 pb-40"
         >
             {/* Animated gradient orb background */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40" aria-hidden="true">
-                <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-primary/[0.07] blur-3xl animate-gradient-flow-1" />
-                <div className="absolute top-1/2 -left-48 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.05] blur-3xl animate-gradient-flow-2" />
-                <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-teal-400/[0.04] blur-3xl animate-gradient-flow-3" />
+            <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50" aria-hidden="true">
+                <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-primary/[0.06] blur-3xl animate-gradient-flow-1" />
+                <div className="absolute top-1/2 -left-48 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.04] blur-3xl animate-gradient-flow-2" />
+                <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-teal-400/[0.03] blur-3xl animate-gradient-flow-3" />
             </div>
 
             {/* Top bleed: previous light section → dark */}
-            <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-background-light to-transparent pointer-events-none z-0" />
-            {/* Bottom bleed */}
-            <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-background-light to-transparent pointer-events-none z-0" />
+            <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-background-light dark:from-background-dark to-transparent pointer-events-none z-0" />
+            {/* Bottom bleed: dark → next light section */}
+            <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent pointer-events-none z-0" />
 
             {/* All content sits above the gradient bleeds */}
             <div className="relative z-10">
@@ -160,7 +184,7 @@ export default function IndustriesSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4 }}
-                        className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-6"
+                        className="inline-block px-3 py-1 rounded-full bg-white/10 text-white text-xs font-bold tracking-wider uppercase mb-6"
                     >
                         Who We Serve
                     </motion.span>
@@ -170,7 +194,7 @@ export default function IndustriesSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: 0.1 }}
-                        className="text-4xl md:text-6xl font-bold text-charcoal dark:text-white leading-tight tracking-tight mb-6"
+                        className="text-4xl md:text-6xl font-bold text-white leading-tight tracking-tight mb-6"
                     >
                         Built for businesses who{' '}
                         <span className="italic font-serif opacity-90">actually make</span> things.
@@ -181,7 +205,7 @@ export default function IndustriesSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: 0.2 }}
-                        className="flex flex-wrap items-center justify-center gap-2 text-xl md:text-2xl text-secondary-text font-medium"
+                        className="flex flex-wrap items-center justify-center gap-2 text-xl md:text-2xl text-white/60 font-medium"
                     >
                         <span>Not just for</span>
                         <div className="relative inline-flex overflow-hidden h-8 items-center justify-center">
@@ -192,7 +216,7 @@ export default function IndustriesSection() {
                                     animate={{ y: 0, opacity: 1 }}
                                     exit={{ y: -20, opacity: 0 }}
                                     transition={{ duration: 0.3 }}
-                                    className="block italic font-serif text-primary whitespace-nowrap"
+                                    className="block italic font-serif text-white whitespace-nowrap"
                                 >
                                     &quot;{highlightWords[currentWordIndex]}&quot;
                                 </motion.span>
@@ -204,8 +228,8 @@ export default function IndustriesSection() {
                 {/* Marquee */}
                 <div className="relative overflow-hidden pb-8">
                     {/* Edge fades — must match section bg */}
-                    <div className="absolute left-0 inset-y-0 w-24 md:w-48 bg-gradient-to-r from-background-light to-transparent z-10 pointer-events-none" />
-                    <div className="absolute right-0 inset-y-0 w-24 md:w-48 bg-gradient-to-l from-background-light to-transparent z-10 pointer-events-none" />
+                    <div className="absolute left-0 inset-y-0 w-24 md:w-48 bg-gradient-to-r from-background-dark to-transparent z-10 pointer-events-none" />
+                    <div className="absolute right-0 inset-y-0 w-24 md:w-48 bg-gradient-to-l from-background-dark to-transparent z-10 pointer-events-none" />
 
                     <div className="flex flex-col gap-4 md:gap-5">
                         {industryRows.map((row, rowIndex) => (
@@ -222,7 +246,7 @@ export default function IndustriesSection() {
                                 {[...row, ...row].map((industry, i) => (
                                     <span
                                         key={`${rowIndex}-${i}`}
-                                        className="inline-flex items-center px-4 py-2 mr-3 rounded-full border border-gray-200 text-sm font-medium text-gray-700 whitespace-nowrap bg-white hover:bg-gray-50 hover:border-gray-300 transition-colors shadow-sm"
+                                        className="inline-flex items-center px-4 py-2 mr-3 rounded-full border border-white/10 text-sm font-medium text-white/75 whitespace-nowrap bg-white/[0.05] hover:bg-white/10 hover:border-white/20 transition-colors"
                                     >
                                         {industry}
                                     </span>
@@ -234,7 +258,7 @@ export default function IndustriesSection() {
 
                 {/* Bridge text */}
                 <div className="max-w-3xl mx-auto px-mobile text-center mt-10 mb-8">
-                    <p className="text-sm text-secondary-text/60 font-medium tracking-widest uppercase">
+                    <p className="text-sm text-white/40 font-medium tracking-widest uppercase">
                         If your shop handles any of these, you&apos;re in the right place.
                     </p>
                 </div>
@@ -249,7 +273,7 @@ export default function IndustriesSection() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ type: 'spring', stiffness: 280, damping: 22, delay: index * 0.06 }}
-                                className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-gray-200 text-sm font-medium text-charcoal hover:bg-gray-50 hover:border-gray-300 transition-colors duration-200 cursor-default shadow-sm"
+                                className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/[0.08] border border-white/[0.15] text-sm font-medium text-white/90 hover:bg-white/[0.15] hover:border-white/25 transition-colors duration-200 cursor-default"
                             >
                                 <span className="material-symbols-outlined text-primary text-base leading-none">{capability.icon}</span>
                                 {capability.label}
@@ -262,3 +286,79 @@ export default function IndustriesSection() {
         </section>
     );
 }
+```
+
+**Step 2: TypeScript check**
+
+Run: `cd apps/marketing && npx tsc --noEmit`
+Expected: No errors.
+
+**Step 3: Commit**
+
+```bash
+git add apps/marketing/components/sections/IndustriesSection.tsx
+git commit -m "feat: industries section - dark redesign with unified marquee and capability badges"
+```
+
+---
+
+## Task 2: Visual verification
+
+**Files:** none (visual check only)
+
+**Step 1: Start dev server**
+
+Run: `cd apps/marketing && npm run dev`
+
+Open `http://localhost:3000` and scroll to the Industries section.
+
+**Step 2: Verify transitions**
+
+- [ ] **Top bleed (light mode):** Scrolling into the section from above — the white/near-white of the previous section should fade smoothly into the dark background over ~160px. There should be no hard white-to-black edge.
+- [ ] **Bottom bleed (light mode):** The dark section fades back to light at the bottom before the next section begins.
+- [ ] **Dark mode:** Both bleeds are invisible (both sides are dark) — section appears seamlessly continuous with surrounding dark-mode backgrounds.
+
+**Step 3: Verify section header**
+
+- [ ] `"WHO WE SERVE"` eyebrow pill: white/10 frosted rounded pill, white text, visible against dark bg
+- [ ] H2: large (`text-6xl` on desktop), white, `"actually make"` uses `font-serif italic`
+- [ ] Rotating subtitle: `"Not just for"` in muted white/60, rotating word appears in white serif italic
+- [ ] Rotating word transitions smoothly (slide up/down with `AnimatePresence`) every 2.5s
+- [ ] All three elements stagger in when section enters viewport
+
+**Step 4: Verify marquee**
+
+- [ ] Two rows of industry pills scrolling — row 1 left-to-right, row 2 right-to-left
+- [ ] Pills: semi-transparent dark (`bg-white/[0.05]`), subtle white border
+- [ ] Edge fades match the dark bg (not white — this was the bug in the original)
+- [ ] Scrolling is smooth and continuous — no gap or jump at the seam
+
+**Step 5: Verify bridge text + capability badges**
+
+- [ ] `"IF YOUR SHOP HANDLES ANY OF THESE..."` appears in faint uppercase between marquee and badges
+- [ ] 10 badges flex-wrap in a centered cluster
+- [ ] Each badge: `shopping_bag`, `palette`, etc. icons render in `text-primary` blue
+- [ ] Badge labels are `text-white/90` — readable on dark bg
+- [ ] Badges spring in with stagger (first badge at 0ms, last at ~540ms)
+- [ ] Hover state: badge lightens slightly — confirms it's interactive-feeling
+
+**Step 6: Commit if visual fixes needed**
+
+If you made any tweaks during verification:
+```bash
+git add apps/marketing/components/sections/IndustriesSection.tsx
+git commit -m "fix: industries section - visual polish after review"
+```
+
+---
+
+## Notes
+
+- `carousel-track` is a CSS animation class defined in `apps/marketing/app/globals.css` — do not remove or rename it
+- `bg-background-dark` is a custom Tailwind token defined in `apps/marketing/tailwind.config.ts` — verify the exact value matches what PainPoint3D uses for its dark background (`dark:bg-black` uses `#000000`, `bg-background-dark` is likely `#0a0a0a`)
+- `animate-gradient-flow-1/2/3` are keyframe animation classes defined in `globals.css` — same as used in FeaturesSection
+- `font-serif` maps to `Crimson Pro` via `var(--font-crimson)` — already loaded in `app/layout.tsx`
+- `px-mobile` is a custom Tailwind utility for horizontal section padding — already in the project
+- The `overflow-hidden` on the section is required to prevent the marquee rows from showing outside the section bounds
+- `pt-40 pb-40` (160px top/bottom) gives the gradient bleeds room to breathe — the actual content starts at z-10, sitting above the bleeds
+- If `bg-background-dark` doesn't exist as a Tailwind token, substitute `bg-[#0a0a0a]` — but check `tailwind.config.ts` first

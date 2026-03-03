@@ -106,10 +106,10 @@ export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuPr
                     <div className="space-y-3 pt-6 border-t border-gray-200 dark:border-gray-800">
                         <button
                             onClick={() => handleNavigate('contact')}
-                            className="w-full bg-primary text-white px-4 py-3 text-sm font-bold rounded-full hover:brightness-110 transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
+                            className="w-full group relative border-2 px-4 py-3 text-sm font-bold rounded-full transition-[background-color,border-color] duration-200 flex items-center justify-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide bg-white/15 dark:bg-white/5 border-charcoal/20 dark:border-white/30 hover:border-charcoal/30 dark:hover:border-white/40 text-charcoal dark:text-white hover:bg-white/25 dark:hover:bg-white/10"
                         >
                             Request Demo
-                            <span className="material-symbols-outlined text-sm">
+                            <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">
                                 arrow_forward
                             </span>
                         </button>

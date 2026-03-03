@@ -38,7 +38,7 @@ export default function AboutUsSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
-                        className="text-4xl sm:text-5xl md:text-7xl font-bold text-charcoal dark:text-white mb-2 tracking-tight leading-[1.1]"
+                        className="text-3xl sm:text-5xl md:text-7xl font-bold text-charcoal dark:text-white mb-2 tracking-tight leading-[1.1]"
                     >
                         Necessity is the <br className="hidden md:block" />
                         <span className="text-secondary-text dark:text-gray-500">mother of invention.</span>
@@ -63,8 +63,8 @@ export default function AboutUsSection() {
                         <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
 
                         {/* Play Button */}
-                        <div className="relative z-10 w-24 h-24 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-white/20 transition-all duration-500">
-                            <span className="material-symbols-outlined text-5xl text-white ml-2">play_arrow</span>
+                        <div className="relative z-10 w-16 h-16 md:w-24 md:h-24 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-white/20 transition-all duration-500">
+                            <span className="material-symbols-outlined text-3xl md:text-5xl text-white ml-1 md:ml-2">play_arrow</span>
                         </div>
                     </div>
 
@@ -72,11 +72,11 @@ export default function AboutUsSection() {
                     <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
 
                     {/* Video Label */}
-                    <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20">
-                        <span className="inline-block px-2 py-1 bg-white/20 backdrop-blur-sm rounded text-[10px] font-bold text-white mb-2 uppercase tracking-wide">
+                    <div className="absolute bottom-4 left-4 md:bottom-10 md:left-10 z-20">
+                        <span className="inline-block px-1.5 py-0.5 md:px-2 md:py-1 bg-white/20 backdrop-blur-sm rounded text-[8px] md:text-[10px] font-bold text-white mb-1 md:mb-2 uppercase tracking-wide">
                             Watch the Film
                         </span>
-                        <h3 className="text-white text-xl md:text-2xl font-bold">Building Shop Titan</h3>
+                        <h3 className="text-white text-lg md:text-2xl font-bold">Building Shop Titan</h3>
                     </div>
                 </motion.div>
 
@@ -106,7 +106,7 @@ export default function AboutUsSection() {
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="font-serif text-3xl md:text-4xl italic text-charcoal dark:text-white leading-tight"
+                            className="font-serif text-2xl md:text-4xl italic text-charcoal dark:text-white leading-tight"
                         >
                             &ldquo;I didn&apos;t want to move, and I didn&apos;t like feeling stressed.&rdquo;
                         </motion.blockquote>
@@ -124,7 +124,7 @@ export default function AboutUsSection() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="first-letter:text-6xl first-letter:font-bold first-letter:text-charcoal dark:first-letter:text-white first-letter:mr-3 first-letter:float-left"
+                            className="first-letter:text-5xl md:first-letter:text-6xl first-letter:font-bold first-letter:text-charcoal dark:first-letter:text-white first-letter:mr-2 md:first-letter:mr-3 first-letter:float-left"
                         >
                             This solution came about because there was no solution I liked. So I built my own, over 15 years.
                             I realized stress came from not having optics on where anything is, having to stay on top of the team.

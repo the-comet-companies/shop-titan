@@ -1,7 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const TOTAL_CARDS = 10;
 
@@ -58,26 +57,14 @@ const painPoints = [
     },
 ];
 
-function AnimatedCard({ point, visible, index }: { point: typeof painPoints[0]; visible: boolean; index: number }) {
-    const prefersReduced = useReducedMotion();
-
+function AnimatedCard({ point }: { point: typeof painPoints[0] }) {
     return (
-        <motion.div
-            data-index={index}
-            initial={false}
-            animate={visible
-                ? { opacity: 1, scale: 1 }
-                : { opacity: 0, scale: prefersReduced ? 1 : 0.88 }
-            }
-            transition={visible && !prefersReduced
-                ? { type: 'spring', stiffness: 280, damping: 22 }
-                : { duration: prefersReduced ? 0.15 : 0 }
-            }
-            className="relative p-3 md:p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden group min-w-0"
+        <div
+            className="relative p-3 md:p-4 rounded-xl border border-structural-border dark:border-gray-800 hover:border-rose-500/30 dark:hover:border-rose-500/20 bg-white dark:bg-gray-900 overflow-hidden group min-w-0 h-full transition-colors duration-300"
         >
             {/* Hover glow */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/0 group-hover:bg-rose-500/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
-            <span className="block text-[10px] font-bold tracking-widest text-secondary-text dark:text-gray-600 uppercase mb-1.5">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/0 group-hover:bg-rose-500/[0.10] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+            <span className="block text-[10px] font-bold tracking-widest text-rose-500/70 dark:text-rose-500/50 uppercase mb-1.5">
                 {point.number}
             </span>
             <p className="text-sm font-bold text-charcoal dark:text-white leading-snug mb-1">
@@ -86,16 +73,14 @@ function AnimatedCard({ point, visible, index }: { point: typeof painPoints[0]; 
             <p className="text-xs text-secondary-text dark:text-gray-500 font-medium leading-relaxed">
                 {point.consequence}
             </p>
-        </motion.div>
+        </div>
     );
 }
 
 export default function CanYouRelateSection() {
-    const outerRef = useRef<HTMLDivElement>(null);
-
     return (
         // Mobile & Desktop: natural flowing height
-        <div ref={outerRef} className="w-full">
+        <div className="w-full">
             <section
                 id="can-you-relate"
                 className="flex flex-col bg-surface dark:bg-gray-950 relative"
@@ -125,17 +110,13 @@ export default function CanYouRelateSection() {
                             {painPoints.map((point, index) => (
                                 <motion.div
                                     key={point.number}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ duration: 0.5, delay: index % 2 === 0 ? 0 : 0.1 }}
+                                    initial={{ opacity: 0, x: index % 2 === 0 ? -28 : 28, y: 12 }}
+                                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                                    viewport={{ once: true, margin: "-80px" }}
+                                    transition={{ type: 'spring', stiffness: 260, damping: 24, delay: index * 0.06 }}
                                     className="h-full"
                                 >
-                                    <AnimatedCard
-                                        point={point}
-                                        visible={true}
-                                        index={index}
-                                    />
+                                    <AnimatedCard point={point} />
                                 </motion.div>
                             ))}
                         </div>

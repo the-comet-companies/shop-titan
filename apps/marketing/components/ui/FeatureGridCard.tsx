@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import VideoPlayer from '@/components/VideoPlayer';
-import { cn } from '@/lib/utils';
+
 
 interface FeatureGridCardProps {
   id: string;
