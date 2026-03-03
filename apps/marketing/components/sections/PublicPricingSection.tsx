@@ -136,12 +136,7 @@ export default function PublicPricingSection() {
                     {tier.name}
                 </h3>
 
-                {/* Highlighted Price String */}
-                <div className="mb-6">
-                    <span className="text-3xl lg:text-4xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-charcoal to-secondary-text dark:from-white dark:to-gray-400">
-                        {tier.price}
-                    </span>
-                </div>
+
 
                 {/* Description */}
                 <p className="text-sm text-secondary-text dark:text-gray-400 mb-8 min-h-[40px] leading-relaxed">
@@ -185,10 +180,7 @@ export default function PublicPricingSection() {
                     className={`text-center mb-16 md:mb-24 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                         }`}
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-6">
-                        <span className="material-symbols-outlined text-sm">stars</span>
-                        Transparent Value
-                    </div>
+
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-charcoal dark:text-white mb-6">
                         The Operating System for <br className="hidden md:block" />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">
