@@ -14,6 +14,8 @@ export default function ContactSection() {
         email: "",
         phone: "",
         company: "",
+        employeeCount: "",
+        decorationMethods: [] as string[],
         friction: "",
     });
 
@@ -25,12 +27,21 @@ export default function ContactSection() {
     const WEBHOOK_STEP_2 = process.env.NEXT_PUBLIC_CONTACT_WEBHOOK_STEP_2 || "";
 
     const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
         setFormData({
             ...formData,
             [e.target.id]: e.target.value,
         });
+    };
+
+    const handleDecorationChange = (method: string) => {
+        setFormData(prev => ({
+            ...prev,
+            decorationMethods: prev.decorationMethods.includes(method)
+                ? prev.decorationMethods.filter(m => m !== method)
+                : [...prev.decorationMethods, method]
+        }));
     };
 
     const handleNextStep = async (e: React.FormEvent) => {
@@ -49,6 +60,7 @@ export default function ContactSection() {
                         email: formData.email,
                         phone: formData.phone,
                         company: formData.company,
+                        employeeCount: formData.employeeCount,
                         timestamp: new Date().toISOString()
                     })
                 });
@@ -57,7 +69,8 @@ export default function ContactSection() {
                     name: formData.name,
                     email: formData.email,
                     phone: formData.phone,
-                    company: formData.company
+                    company: formData.company,
+                    employeeCount: formData.employeeCount
                 });
                 // Simulate delay
                 await new Promise(resolve => setTimeout(resolve, 800));
@@ -85,6 +98,7 @@ export default function ContactSection() {
                     body: JSON.stringify({
                         step: 2,
                         email: formData.email, // Key to link records if needed
+                        decorationMethods: formData.decorationMethods,
                         friction: formData.friction,
                         timestamp: new Date().toISOString()
                     })
@@ -92,6 +106,7 @@ export default function ContactSection() {
             } else {
                 console.log("Step 2 Webhook Triggered:", {
                     email: formData.email,
+                    decorationMethods: formData.decorationMethods,
                     friction: formData.friction
                 });
                 // Simulate delay
@@ -197,7 +212,7 @@ export default function ContactSection() {
                                 }`}
                         >
                             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-charcoal dark:text-white mb-3 md:mb-4">
-                                {step === 1 ? "Request Your Demo" : "Tell Us More"}
+                                {step === 1 ? "Let\u2019s Talk" : "Tell Us More"}
                             </h1>
                             <p className="text-secondary-text dark:text-gray-400 text-base md:text-lg">
                                 {step === 1 ? "No pressure. No sales pitch. Just clarity." : "What's the biggest challenge you're facing right now?"}
@@ -213,7 +228,7 @@ export default function ContactSection() {
                             {/* Form Header */}
                             <div className="mb-6 lg:mb-8 text-center lg:text-left">
                                 <h3 className="text-2xl lg:text-3xl font-bold text-charcoal dark:text-white mb-2">
-                                    {step === 1 ? "Book a Demo" : "Tell Us More"}
+                                    {step === 1 ? "Let\u2019s Talk" : "Tell Us More"}
                                 </h3>
                                 <p className="text-secondary-text dark:text-gray-400">
                                     {step === 1 ? "Get a guided tour of the platform." : "We'll tailor the demo to your needs."}
@@ -295,6 +310,27 @@ export default function ContactSection() {
                                                             className="w-full min-h-[48px] bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 outline-none"
                                                         />
                                                     </div>
+
+                                                    {/* Number of Employees */}
+                                                    <div>
+                                                        <label htmlFor="employeeCount" className="block text-xs font-bold uppercase tracking-widest text-secondary-text mb-2">
+                                                            Number of Employees
+                                                        </label>
+                                                        <select
+                                                            id="employeeCount"
+                                                            value={formData.employeeCount}
+                                                            onChange={handleChange}
+                                                            required
+                                                            className="w-full min-h-[48px] bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white outline-none appearance-none cursor-pointer"
+                                                        >
+                                                            <option value="" disabled>Select team size</option>
+                                                            <option value="1-5">1–5 employees</option>
+                                                            <option value="6-15">6–15 employees</option>
+                                                            <option value="16-50">16–50 employees</option>
+                                                            <option value="51-200">51–200 employees</option>
+                                                            <option value="200+">200+ employees</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
 
                                                 {/* Next Button */}
@@ -322,19 +358,52 @@ export default function ContactSection() {
                                         ) : (
                                             <form onSubmit={handleSubmit} className="space-y-6">
                                                 <div className="grid grid-cols-1 gap-6">
-                                                    {/* Friction Point */}
+                                                    {/* Decoration Methods */}
+                                                    <div>
+                                                        <label className="block text-xs font-bold uppercase tracking-widest text-secondary-text mb-3">
+                                                            Decoration Methods Used
+                                                        </label>
+                                                        <div className="grid grid-cols-2 gap-2">
+                                                            {["Screen Printing", "Embroidery", "DTG/DTF", "Vinyl/Heat Transfer", "Sublimation", "Other"].map((method) => (
+                                                                <label
+                                                                    key={method}
+                                                                    className={`flex items-center gap-3 px-3 py-3 rounded-xl border cursor-pointer transition-all duration-200 ${formData.decorationMethods.includes(method)
+                                                                        ? "border-primary bg-primary/10 text-primary"
+                                                                        : "border-structural-border dark:border-gray-800 text-secondary-text dark:text-gray-400 hover:border-primary/40"
+                                                                        }`}
+                                                                >
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        className="hidden"
+                                                                        checked={formData.decorationMethods.includes(method)}
+                                                                        onChange={() => handleDecorationChange(method)}
+                                                                    />
+                                                                    <span className={`w-4 h-4 rounded flex items-center justify-center border flex-shrink-0 ${formData.decorationMethods.includes(method)
+                                                                        ? "bg-primary border-primary"
+                                                                        : "border-gray-300 dark:border-gray-600"
+                                                                        }`}>
+                                                                        {formData.decorationMethods.includes(method) && (
+                                                                            <span className="material-symbols-outlined text-white" style={{ fontSize: '12px' }}>check</span>
+                                                                        )}
+                                                                    </span>
+                                                                    <span className="text-xs font-semibold">{method}</span>
+                                                                </label>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+
+                                                    {/* What's Slowing You Down */}
                                                     <div>
                                                         <label htmlFor="friction" className="block text-xs font-bold uppercase tracking-widest text-secondary-text mb-2">
-                                                            Main Friction Point
+                                                            What&apos;s Slowing You Down?
                                                         </label>
                                                         <textarea
                                                             id="friction"
                                                             value={formData.friction}
                                                             onChange={handleChange}
-                                                            required
                                                             autoFocus
                                                             placeholder="What part of your operation is causing the most chaos?"
-                                                            className="w-full bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 min-h-[160px] outline-none resize-none"
+                                                            className="w-full bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 min-h-[120px] outline-none resize-none"
                                                         />
                                                     </div>
                                                 </div>
@@ -395,7 +464,7 @@ export default function ContactSection() {
                                             </p>
                                         </div>
                                         <button
-                                            onClick={() => { setIsSubmitted(false); setStep(1); setFormData({ name: "", email: "", phone: "", company: "", friction: "" }) }}
+                                            onClick={() => { setIsSubmitted(false); setStep(1); setFormData({ name: "", email: "", phone: "", company: "", employeeCount: "", decorationMethods: [], friction: "" }) }}
                                             className="text-primary text-sm font-bold uppercase tracking-widest hover:underline mt-8"
                                         >
                                             Send another request
