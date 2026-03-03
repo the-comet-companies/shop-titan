@@ -192,6 +192,33 @@ export default function ShowcaseSection() {
 
                 </div>
 
+                {/* CTA */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="mt-12 flex flex-col items-center gap-3"
+                >
+                  <div>
+                    <p className="text-xl md:text-2xl font-bold text-charcoal mb-1">
+                      Join them. Let&apos;s Talk.
+                    </p>
+                    <p className="text-sm text-secondary-text font-medium">
+                      See why shops like yours switched to Shop Titan.
+                    </p>
+                  </div>
+                  <a
+                    href="/reach-out"
+                    className="px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
+                  >
+                    <div className="absolute inset-0 bg-charcoal/5 group-hover:bg-charcoal/10 transition-colors rounded-full" />
+                    <div className="absolute inset-0 border-2 border-charcoal/20 group-hover:border-charcoal/30 transition-colors rounded-full" />
+                    <span className="relative z-10">Let&apos;s Talk</span>
+                    <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                  </a>
+                </motion.div>
+
             </div>
         </section>
     );
