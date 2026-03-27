@@ -162,7 +162,7 @@ export default function IndustriesSection() {
                         transition={{ duration: 0.4 }}
                         className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-6"
                     >
-                        Who We Serve
+                        Industries We Serve
                     </motion.span>
 
                     <motion.h2
@@ -257,6 +257,7 @@ export default function IndustriesSection() {
                         ))}
                     </div>
                 </div>
+
 
             </div>
         </section>

@@ -7,6 +7,7 @@ import WorkflowVideoSection from "@/components/sections/WorkflowVideoSection";
 import BenefitsSection from "@/components/sections/BenefitsSection";
 import IndustriesSection from "@/components/sections/IndustriesSection";
 import ShowcaseSection from "@/components/sections/ShowcaseSection";
+import FounderStorySection from "@/components/sections/FounderStorySection";
 import ComingSoonSection from "@/components/sections/ComingSoonSection";
 import CtaSection from "@/components/sections/CtaSection";
 
@@ -25,8 +26,9 @@ export default function Home() {
                 <BenefitsSection />
                 <IndustriesSection />
                 <ShowcaseSection />
-                <CtaSection />
+                <FounderStorySection />
                 <ComingSoonSection />
+                <CtaSection />
 
             </main>
             <Footer />

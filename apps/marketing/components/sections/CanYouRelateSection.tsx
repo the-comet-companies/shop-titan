@@ -123,21 +123,35 @@ export default function CanYouRelateSection() {
 
                         {/* Bridge CTA */}
                         <motion.div
-                            className="pt-10 pb-4 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
+                          className="pt-10 pb-4 flex flex-col items-center justify-center gap-6"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, margin: "-50px" }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
                         >
-                            <button
-                                onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
+                          <p className="text-lg md:text-xl font-semibold text-charcoal dark:text-white text-center">
+                            We have solutions for all of these.
+                          </p>
+                          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                            <a
+                              href="/reach-out"
+                              className="w-full sm:w-auto px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
                             >
-                                <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
-                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
-                                <span className="relative z-10">See How It Works</span>
-                                <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                              <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
+                              <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
+                              <span className="relative z-10">Let&apos;s Talk</span>
+                              <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                            </a>
+                            <button
+                              onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
+                              className="w-full sm:w-auto px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
+                            >
+                              <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
+                              <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
+                              <span className="relative z-10">See How It Works</span>
+                              <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                             </button>
+                          </div>
                         </motion.div>
                     </div>
 

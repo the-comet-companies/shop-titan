@@ -8,8 +8,8 @@ import { useActiveSection } from '@/hooks/useActiveSection';
 import { cn } from '@/lib/utils';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 
-const NAV_SECTIONS = ['about', 'features', 'product', 'pricing', 'blog'] as const;
-const ACTIVE_SECTIONS = ['hero', 'platform', 'features', 'product', 'pricing', 'blog', 'contact'] as const;
+const NAV_SECTIONS = ['about', 'features', 'case-studies', 'pricing', 'blog'] as const;
+const ACTIVE_SECTIONS = ['hero', 'platform', 'features', 'case-studies', 'pricing', 'blog', 'contact'] as const;
 
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -46,6 +46,11 @@ export default function Header() {
 
         if (sectionId === 'about') {
             router.push('/about');
+            return;
+        }
+
+        if (sectionId === 'case-studies') {
+            router.push('/case-studies');
             return;
         }
 
@@ -86,16 +91,8 @@ export default function Header() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <div className="relative w-8 h-8 md:w-9 md:h-9 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                                <Image
-                                    src="/logo-transparent.png"
-                                    alt="Shop Titan Logo"
-                                    fill
-                                    priority
-                                    className="object-contain"
-                                />
-                            </div>
-                            <span className="text-sm md:text-base lg:text-lg font-bold tracking-tight text-charcoal dark:text-white group-hover:opacity-80 transition-opacity">
+
+                            <span className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter text-charcoal dark:text-white group-hover:opacity-80 transition-opacity">
                                 Shop <span className="text-primary">Titan</span>
                             </span>
                         </motion.a>
@@ -112,12 +109,12 @@ export default function Header() {
                                 transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
                                 className={cn(
                                     "text-xs font-semibold transition-[color,transform] duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110",
-                                    (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog') || ((section as string) === 'contact' && pathname === '/reach-out') || (section === 'pricing' && pathname === '/pricing') || (section === 'about' && pathname === '/about')
+                                    (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog') || ((section as string) === 'contact' && pathname === '/reach-out') || (section === 'case-studies' && pathname === '/case-studies') || (section === 'pricing' && pathname === '/pricing') || (section === 'about' && pathname === '/about')
                                         ? "text-primary dark:text-white"
                                         : "text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white"
                                 )}
                             >
-                                {section.charAt(0).toUpperCase() + section.slice(1)}
+                                {section === 'case-studies' ? 'Case Studies' : section.charAt(0).toUpperCase() + section.slice(1)}
                             </motion.button>
                         ))}
                     </div>

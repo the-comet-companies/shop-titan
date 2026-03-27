@@ -5,15 +5,20 @@ import Link from 'next/link';
 
 const MotionLink = motion.create(Link);
 
+const linkClass = "block transition-colors focus-primary tap-target hover:text-white";
+const hoverProps = { x: 5, color: "#EF4444" } as const;
+
 export default function Footer() {
     return (
         <footer className="bg-[#111111] border-t border-[#222] py-12 md:py-16 lg:py-20">
             <div className="max-w-7xl mx-auto px-mobile">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-12">
-                    <div className="sm:col-span-2 lg:col-span-4">
+
+                    {/* Brand */}
+                    <div className="sm:col-span-2 lg:col-span-3">
                         <a
                             href="#"
-                            className="text-lg md:text-xl font-bold tracking-tight text-white mb-4 md:mb-6 block"
+                            className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter text-white mb-4 md:mb-6 block"
                         >
                             Shop <span className="text-primary">Titan</span>
                         </a>
@@ -22,75 +27,54 @@ export default function Footer() {
                         </p>
                     </div>
 
+                    {/* Product */}
                     <div className="lg:col-span-2">
                         <h5 className="text-xs font-bold uppercase tracking-widest mb-4 md:mb-6 text-white">
-                            Explore
+                            Product
                         </h5>
                         <ul className="space-y-3 md:space-y-4 text-sm text-gray-400">
-                            <li>
-                                <MotionLink
-                                    href="/blog"
-                                    whileHover={{ x: 5, color: "#EF4444" }}
-                                    className="block transition-colors focus-primary tap-target hover:text-white"
-                                >
-                                    Case Studies
-                                </MotionLink>
-                            </li>
-                            <li>
-                                <MotionLink
-                                    href="/#platform"
-                                    whileHover={{ x: 5, color: "#EF4444" }}
-                                    className="block transition-colors focus-primary tap-target hover:text-white"
-                                >
-                                    Platform
-                                </MotionLink>
-                            </li>
-                            <li>
-                                <MotionLink
-                                    href="/pricing"
-                                    whileHover={{ x: 5, color: "#EF4444" }}
-                                    className="block transition-colors focus-primary tap-target hover:text-white"
-                                >
-                                    Pricing
-                                </MotionLink>
-                            </li>
+                            <li><MotionLink href="/#features" whileHover={hoverProps} className={linkClass}>Features</MotionLink></li>
+                            <li><MotionLink href="/#benefits" whileHover={hoverProps} className={linkClass}>Benefits</MotionLink></li>
+                            <li><MotionLink href="/#workflow-video" whileHover={hoverProps} className={linkClass}>How It Works</MotionLink></li>
+                            <li><MotionLink href="/#industries" whileHover={hoverProps} className={linkClass}>Industries We Serve</MotionLink></li>
+                            <li><MotionLink href="/#showcase" whileHover={hoverProps} className={linkClass}>Showcase</MotionLink></li>
+                            <li><MotionLink href="/pricing" whileHover={hoverProps} className={linkClass}>Pricing</MotionLink></li>
                         </ul>
                     </div>
 
+                    {/* Company */}
+                    <div className="lg:col-span-2">
+                        <h5 className="text-xs font-bold uppercase tracking-widest mb-4 md:mb-6 text-white">
+                            Company
+                        </h5>
+                        <ul className="space-y-3 md:space-y-4 text-sm text-gray-400">
+                            <li><MotionLink href="/about" whileHover={hoverProps} className={linkClass}>About</MotionLink></li>
+                            <li><MotionLink href="/#founder-story" whileHover={hoverProps} className={linkClass}>Founder Story</MotionLink></li>
+                            <li><MotionLink href="/case-studies" whileHover={hoverProps} className={linkClass}>Case Studies</MotionLink></li>
+                            <li><MotionLink href="/reach-out" whileHover={hoverProps} className={linkClass}>Contact</MotionLink></li>
+                        </ul>
+                    </div>
+
+                    {/* Legal */}
                     <div className="lg:col-span-2">
                         <h5 className="text-xs font-bold uppercase tracking-widest mb-4 md:mb-6 text-white">
                             Legal
                         </h5>
                         <ul className="space-y-3 md:space-y-4 text-sm text-gray-400">
-                            <li>
-                                <MotionLink
-                                    href="/privacy-policy"
-                                    whileHover={{ x: 5, color: "#EF4444" }}
-                                    className="block transition-colors focus-primary tap-target hover:text-white"
-                                >
-                                    Privacy Policy
-                                </MotionLink>
-                            </li>
-                            <li>
-                                <MotionLink
-                                    href="/terms"
-                                    whileHover={{ x: 5, color: "#EF4444" }}
-                                    className="block transition-colors focus-primary tap-target hover:text-white"
-                                >
-                                    Terms
-                                </MotionLink>
-                            </li>
+                            <li><MotionLink href="/privacy-policy" whileHover={hoverProps} className={linkClass}>Privacy Policy</MotionLink></li>
+                            <li><MotionLink href="/terms" whileHover={hoverProps} className={linkClass}>Terms</MotionLink></li>
                         </ul>
                     </div>
 
-                    <div className="sm:col-span-2 lg:col-span-4">
+                    {/* Stay Updated */}
+                    <div className="sm:col-span-2 lg:col-span-3">
                         <h5 className="text-xs font-bold uppercase tracking-widest mb-4 md:mb-6 text-white">
                             Stay Updated
                         </h5>
                         <p className="text-gray-400 text-sm md:text-base mb-6 leading-relaxed">
                             Get periodic updates on our progress and new features.
                         </p>
-                        <form className="flex w-full" onSubmit={(e) => e.preventDefault()}>
+                        <form className="flex flex-col gap-2 w-full" onSubmit={(e) => e.preventDefault()}>
                             <input
                                 type="email"
                                 placeholder="your@email.com"
@@ -99,12 +83,13 @@ export default function Footer() {
                             />
                             <button
                                 type="submit"
-                                className="min-h-[44px] bg-white text-black text-xs font-bold px-6 py-3 tracking-widest uppercase hover:bg-gray-200 transition-colors whitespace-nowrap rounded-none border border-white"
+                                className="w-full min-h-[44px] bg-white text-black text-xs font-bold px-6 py-3 tracking-widest uppercase hover:bg-gray-200 transition-colors rounded-none border border-white"
                             >
                                 Subscribe
                             </button>
                         </form>
                     </div>
+
                 </div>
 
                 <div className="mt-12 md:mt-16 lg:mt-20 pt-6 md:pt-8 border-t border-[#222]">
