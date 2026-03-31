@@ -35,6 +35,7 @@ const config: Config = {
         "gradient": "gradient 3s linear infinite",
         "marquee": "marquee 40s linear infinite",
         "marquee-reverse": "marquee-reverse 40s linear infinite",
+        "pan-left": "panLeft 15s ease-in-out infinite alternate",
       },
       keyframes: {
         scroll: {
@@ -82,6 +83,10 @@ const config: Config = {
             transform: "translateX(30px) translateY(-20px) scale(1.08)",
             opacity: "0.55"
           },
+        },
+        panLeft: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
         },
         gradientFlow4: {
           "0%, 100%": {

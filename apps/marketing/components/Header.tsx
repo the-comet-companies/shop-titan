@@ -55,9 +55,10 @@ export default function Header() {
         }
 
         if (pathname === '/') {
-            const element = document.getElementById(sectionId);
+            const targetId = sectionId === 'features' ? 'website-features' : sectionId;
+            const element = document.getElementById(targetId);
             if (element) {
-                element.scrollIntoView({ behavior: "instant" as ScrollBehavior });
+                element.scrollIntoView({ behavior: "smooth" });
             }
         } else {
             router.push(`/#${sectionId}`);

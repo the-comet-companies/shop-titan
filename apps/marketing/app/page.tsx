@@ -3,6 +3,8 @@ import PainPointSection from "@/components/sections/PainPointSection";
 import CanYouRelateSection from "@/components/sections/CanYouRelateSection";
 import ProductShowcaseSection from "@/components/sections/ProductShowcaseSection";
 import FeaturesSection from "@/components/sections/FeaturesSection";
+import WebsiteFeaturesSection from "@/components/sections/WebsiteFeaturesSection";
+import PathSelectionSection from "@/components/sections/PathSelectionSection";
 import WorkflowVideoSection from "@/components/sections/WorkflowVideoSection";
 import BenefitsSection from "@/components/sections/BenefitsSection";
 import IndustriesSection from "@/components/sections/IndustriesSection";
@@ -19,9 +21,11 @@ export default function Home() {
             <main>
                 <HeroSection />
                 <PainPointSection />
+                <PathSelectionSection />
+                <WebsiteFeaturesSection />
+                <FeaturesSection />
                 <CanYouRelateSection />
                 <WorkflowVideoSection />
-                <FeaturesSection />
                 {/* <ProductShowcaseSection /> */}
                 <BenefitsSection />
                 <IndustriesSection />
