@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import VideoPlayer from '@/components/VideoPlayer';
 import VideoModal from '@/components/ui/VideoModal';
 import brandsImage from '@/assets/Website/Brands.png';
@@ -22,7 +22,7 @@ interface Feature {
     solution: { label: string; description: string };
     highlights?: string[];
     videoSrc: string;
-    imageSrc?: any;
+    imageSrc?: StaticImageData;
     layout?: 'stacked' | 'side-by-side';
     hideBrowserChrome?: boolean;
 }
