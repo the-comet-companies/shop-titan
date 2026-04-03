@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import VideoPlayer from '@/components/VideoPlayer';
 import VideoModal from '@/components/ui/VideoModal';
@@ -9,6 +9,11 @@ import quotesImage from '@/assets/Filemaker/Quotes.png';
 import ordersImage from '@/assets/Filemaker/Orders.png';
 import customersImage from '@/assets/Filemaker/Customers.png';
 import purchaseOrdersImage from '@/assets/Filemaker/PurchaseOrders.png';
+import taskTypesImage from '@/assets/Filemaker/TaskTypes.png';
+import pricingGridImage from '@/assets/Filemaker/ServicePricingGrid.png';
+import screenPricingGridImage from '@/assets/Filemaker/ScreenPricingGrid.png';
+import emailTemplateImage from '@/assets/Filemaker/EmailTemplate.png';
+import reportingImage from '@/assets/Filemaker/Reporting.png';
 
 // --- Shared Feature Type ---
 interface Feature {
@@ -58,25 +63,42 @@ const tier1Features: Feature[] = [
         imageSrc: ordersImage,
     },
     {
-        id: 'scheduler',
-        tabLabel: 'Scheduler',
-        tabIcon: 'precision_manufacturing',
-        title: 'Machines & Production Scheduler',
+        id: 'email-template',
+        tabLabel: 'Email Templates',
+        tabIcon: 'mail',
+        title: 'Email Templates',
         painPoint: {
             label: 'THE FRICTION',
-            description: 'Overbooking machines, capacity guessing, production chaos. Managers juggling jobs in their head. No visibility into actual machine utilization.',
+            description: 'Sending plain text emails or manually formatting every message. No consistency, no branding, and no way to automate order confirmations or updates.',
         },
         solution: {
             label: 'THE FIX',
-            description: 'Visual production scheduler with drag-drop job assignment. Real-time capacity planning, machine utilization tracking, and workload balancing.',
+            description: 'Professional, branded email templates for order confirmations, invoices, shipping updates, and more. Automated and consistent every time.',
         },
-        videoSrc: '/videos/feature-scheduler.mp4',
+        videoSrc: '/videos/feature-email.mp4',
+        imageSrc: emailTemplateImage,
+    },
+    {
+        id: 'tasks',
+        tabLabel: 'Task Types',
+        tabIcon: 'tune',
+        title: 'Task Types',
+        painPoint: {
+            label: 'THE FRICTION',
+            description: "Rigid software that can't handle your custom workflows. Every shop does things differently, but you're stuck with one-size-fits-all.",
+        },
+        solution: {
+            label: 'THE FIX',
+            description: 'Fully configurable task types and decoration methods. Custom fields, workflow rules, and pricing formulas for ANY process you run.',
+        },
+        videoSrc: '/videos/feature-tasks.mp4',
+        imageSrc: taskTypesImage,
     },
     {
         id: 'pricing',
-        tabLabel: 'Pricing',
+        tabLabel: 'Service Pricing Grid',
         tabIcon: 'grid_on',
-        title: 'Pricing Matrixes',
+        title: 'Service Pricing Grid',
         painPoint: {
             label: 'THE FRICTION',
             description: 'Underquoting complex jobs. No structured pricing for different decoration types. Sales team guessing at embroidery stitch counts or screen counts.',
@@ -86,32 +108,24 @@ const tier1Features: Feature[] = [
             description: 'Dynamic pricing matrices for all decoration types: embroidery (stitch count), screen printing (colors, screens), sewing, and any custom task you offer.',
         },
         videoSrc: '/videos/feature-pricing.mp4',
+        imageSrc: pricingGridImage,
     },
     {
-        id: 'analytics',
-        tabLabel: 'Analytics',
-        tabIcon: 'analytics',
-        title: 'Reporting + Data Analytics',
+        id: 'screen-pricing',
+        tabLabel: 'Screen Pricing Grid',
+        tabIcon: 'grid_on',
+        title: 'Screen Pricing Grid',
         painPoint: {
             label: 'THE FRICTION',
-            description: 'No business intelligence. Flying blind on inventory, profit margins, and customer trends. Finding out problems weeks after they happened.',
+            description: 'Screen printing pricing is a guessing game. Number of colors, screen counts, and setup fees vary per job — and nobody quotes them consistently.',
         },
         solution: {
             label: 'THE FIX',
-            description: 'Real-time dashboards and comprehensive reports: Inventory levels & turnover, financial P&L, production metrics, and customer analytics.',
+            description: 'Dedicated screen printing pricing matrix. Set rates by color count, quantity breaks, and screen fees — every quote is accurate and consistent.',
         },
-        highlights: [
-            'Inventory Reports (stock levels, turnover, reorder alerts)',
-            'Financial visibility (real-time P&L)',
-            'Production metrics',
-            'Customer analytics',
-        ],
-        videoSrc: '/videos/feature-analytics.mp4',
+        videoSrc: '/videos/feature-screen-pricing.mp4',
+        imageSrc: screenPricingGridImage,
     },
-];
-
-// --- Tier 2 Features ---
-const tier2Features: Feature[] = [
     {
         id: 'customers',
         tabLabel: 'Customers / Vendors',
@@ -160,49 +174,20 @@ const tier2Features: Feature[] = [
         videoSrc: '/videos/feature-contractors.mp4',
     },
     {
-        id: 'products',
-        tabLabel: 'Product Management',
-        tabIcon: 'inventory_2',
-        title: 'Product Management',
+        id: 'reporting',
+        tabLabel: 'Reporting',
+        tabIcon: 'assessment',
+        title: 'Reporting',
         painPoint: {
             label: 'THE FRICTION',
-            description: 'Manual product data entry across multiple channels. SKU chaos. No central product database. Images scattered everywhere.',
+            description: 'No visibility into your numbers. Revenue, costs, and margins buried in spreadsheets. You find out about problems weeks after they happen.',
         },
         solution: {
             label: 'THE FIX',
-            description: 'Centralized product database with SKU management, variant tracking, and organized image libraries. One source of truth for all product data.',
+            description: 'Built-in reporting with real-time dashboards. Track revenue, production output, costs, and profitability — all from one place.',
         },
-        videoSrc: '/videos/feature-products.mp4',
-    },
-    {
-        id: 'feeds',
-        tabLabel: 'XML Feed Management',
-        tabIcon: 'rss_feed',
-        title: 'XML Feed Management',
-        painPoint: {
-            label: 'THE FRICTION',
-            description: 'Manual marketplace updates. Products out of sync across Google, Facebook, Pinterest, Reddit. Hours of copy-paste to update pricing.',
-        },
-        solution: {
-            label: 'THE FIX',
-            description: 'Automated XML feed generation for all platforms: Google Merchant Center, Facebook/Instagram, Reddit, Pinterest. Auto-sync, error handling, and one-click updates.',
-        },
-        videoSrc: '/videos/feature-feeds.mp4',
-    },
-    {
-        id: 'tasks',
-        tabLabel: 'Decoration & Task Types',
-        tabIcon: 'tune',
-        title: 'Decoration & Task Types',
-        painPoint: {
-            label: 'THE FRICTION',
-            description: "Rigid software that can't handle your custom workflows. Every shop does things differently, but you're stuck with one-size-fits-all.",
-        },
-        solution: {
-            label: 'THE FIX',
-            description: 'Fully configurable task types and decoration methods. Custom fields, workflow rules, and pricing formulas for ANY process you run.',
-        },
-        videoSrc: '/videos/feature-tasks.mp4',
+        videoSrc: '/videos/feature-reporting.mp4',
+        imageSrc: reportingImage,
     },
 ];
 
@@ -405,80 +390,13 @@ function FeaturePanel({ feature }: { feature: Feature }) {
 // --- Main Component ---
 export default function FeaturesSection() {
     const [activeTab, setActiveTab] = useState<number>(0);
-    const [activeTier2, setActiveTier2] = useState<Feature | null>(null);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    // Fixed position of dropdown (to escape overflow clipping)
-    const [dropdownPos, setDropdownPos] = useState<{ top: number; left: number } | null>(null);
     const [activeVideo, setActiveVideo] = useState<string | null>(null);
-    const moreButtonRef = useRef<HTMLButtonElement>(null);
     const tabScrollRef = useRef<HTMLDivElement>(null);
-    const [scrollState, setScrollState] = useState<'start' | 'middle' | 'end'>('start');
 
-    useEffect(() => {
-        const el = tabScrollRef.current;
-        if (!el) return;
-        function update() {
-            if (!el) return;
-            const atStart = el.scrollLeft <= 4;
-            const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 4;
-            setScrollState(atStart ? 'start' : atEnd ? 'end' : 'middle');
-        }
-        update();
-        el.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update, { passive: true });
-        return () => {
-            el.removeEventListener('scroll', update);
-            window.removeEventListener('resize', update);
-        };
-    }, []);
-
-    const activeFeature: Feature = activeTier2 ?? tier1Features[activeTab];
-    const isMoreActive = activeTier2 !== null;
-
-    // Close dropdown on outside click or scroll
-    useEffect(() => {
-        if (!dropdownOpen) return;
-        function handleMouseDown(e: MouseEvent) {
-            // If the click is on the More button itself, skip — let onClick toggle it
-            if (moreButtonRef.current?.contains(e.target as Node)) return;
-            setDropdownOpen(false);
-        }
-        function handleScroll() { setDropdownOpen(false); }
-        document.addEventListener('mousedown', handleMouseDown);
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => {
-            document.removeEventListener('mousedown', handleMouseDown);
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [dropdownOpen]);
-
-    function openDropdown() {
-        if (moreButtonRef.current) {
-            const rect = moreButtonRef.current.getBoundingClientRect();
-            setDropdownPos({ top: rect.bottom + 8, left: rect.left });
-        }
-        setDropdownOpen(o => !o);
-    }
-
-    function selectTier1(i: number) {
-        setActiveTab(i);
-        setActiveTier2(null);
-        setDropdownOpen(false);
-    }
-
-    function selectTier2(f: Feature) {
-        setActiveTier2(f);
-        setDropdownOpen(false);
-    }
+    const activeFeature: Feature = tier1Features[activeTab];
 
     return (
         <section id="features" className="pt-12 md:pt-16 lg:pt-20 pb-0 bg-background-light dark:bg-background-dark relative">
-            {/* Animated gradient orb background */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-                <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-primary/[0.06] blur-3xl animate-gradient-flow-1" />
-                <div className="absolute top-1/2 -left-48 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.04] blur-3xl animate-gradient-flow-2" />
-                <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-teal-400/[0.03] blur-3xl animate-gradient-flow-3" />
-            </div>
 
             <div className="max-w-7xl mx-auto px-mobile relative z-10">
 
@@ -513,72 +431,39 @@ export default function FeaturesSection() {
                     </motion.p>
                 </div>
 
-                {/* Sticky Tab Bar */}
-                <div className="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md py-4 mb-10 md:mb-14 -mx-mobile px-mobile">
-                    <LayoutGroup>
-                        {/* Scroll indicator wrapper */}
-                        <div className="relative">
-                            {/* Left fade — visible once scrolled right */}
-                            <div className={`absolute left-0 top-0 bottom-1 w-8 bg-gradient-to-r from-background-light/90 dark:from-background-dark/90 to-transparent pointer-events-none z-10 transition-opacity duration-200 ${scrollState === 'start' ? 'opacity-0' : 'opacity-100'}`} />
-                            {/* Right fade — visible when more tabs exist to the right */}
-                            <div className={`absolute right-0 top-0 bottom-1 w-12 bg-gradient-to-l from-background-light/90 dark:from-background-dark/90 to-transparent pointer-events-none z-10 transition-opacity duration-200 ${scrollState === 'end' ? 'opacity-0' : 'opacity-100'}`} />
+            </div>
 
-                            {/* Single scrollable row — More pill sits flush after the last tab */}
-                            <div ref={tabScrollRef} className="flex gap-2 overflow-x-auto scrollbar-none pb-1">
-                                {tier1Features.map((f, i) => (
-                                    <button
-                                        key={f.id}
-                                        onClick={() => selectTier1(i)}
-                                        className={`relative flex items-center gap-1 sm:gap-1.5 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors ${!isMoreActive && activeTab === i
-                                            ? 'text-white'
-                                            : 'border border-structural-border dark:border-gray-700 text-secondary-text hover:text-charcoal dark:hover:text-white hover:border-primary/30'
-                                            }`}
-                                    >
-                                        {!isMoreActive && activeTab === i && (
-                                            <motion.div
-                                                layoutId="activeFeatureTab"
-                                                className="absolute inset-0 bg-primary rounded-full"
-                                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                                            />
-                                        )}
-                                        <span className="material-symbols-outlined text-sm sm:text-base relative z-10 hidden sm:inline-block">{f.tabIcon}</span>
-                                        <span className="relative z-10">{f.tabLabel}</span>
-                                    </button>
-                                ))}
-
-                                {/* "More" pill — uses fixed-position dropdown to escape overflow clipping */}
+            {/* Sticky Tab Bar — full width, scrollable */}
+            <div className="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md py-4 mb-10 md:mb-14 px-4 md:px-8">
+                <LayoutGroup>
+                    <div className="relative">
+                        <div ref={tabScrollRef} className="flex gap-1.5 overflow-x-auto pb-1 justify-start">
+                            {tier1Features.map((f, i) => (
                                 <button
-                                    ref={moreButtonRef}
-                                    onClick={openDropdown}
-                                    className={`relative flex items-center gap-1 sm:gap-1.5 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors ${isMoreActive
+                                    key={f.id}
+                                    onClick={() => setActiveTab(i)}
+                                    className={`relative flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors ${activeTab === i
                                         ? 'text-white'
                                         : 'border border-structural-border dark:border-gray-700 text-secondary-text hover:text-charcoal dark:hover:text-white hover:border-primary/30'
                                         }`}
                                 >
-                                    {isMoreActive && (
+                                    {activeTab === i && (
                                         <motion.div
                                             layoutId="activeFeatureTab"
                                             className="absolute inset-0 bg-primary rounded-full"
                                             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                                         />
                                     )}
-                                    <span className="material-symbols-outlined text-sm sm:text-base relative z-10 hidden sm:inline-block">apps</span>
-                                    <span className="relative z-10">
-                                        {isMoreActive ? activeTier2!.tabLabel : 'More'}
-                                    </span>
-                                    <motion.span
-                                        animate={{ rotate: dropdownOpen ? 180 : 0 }}
-                                        transition={{ duration: 0.2 }}
-                                        className="material-symbols-outlined text-base relative z-10"
-                                    >
-                                        expand_more
-                                    </motion.span>
+                                    <span className="material-symbols-outlined text-sm sm:text-base relative z-10 hidden sm:inline-block">{f.tabIcon}</span>
+                                    <span className="relative z-10">{f.tabLabel}</span>
                                 </button>
-                            </div>
-                        </div>{/* end relative scroll indicator wrapper */}
-                    </LayoutGroup>
-                </div>
+                            ))}
+                        </div>
+                    </div>
+                </LayoutGroup>
+            </div>
 
+            <div className="max-w-7xl mx-auto px-mobile relative z-10">
                 {/* Feature Panel */}
                 <AnimatePresence mode="wait">
                     <FeaturePanel key={activeFeature.id} feature={activeFeature} />
@@ -610,41 +495,7 @@ export default function FeaturesSection() {
                         Get a guided walkthrough of the features relevant to your shop.
                     </p>
                 </motion.div>
-
             </div>
-
-            {/* Dropdown — rendered at root level with fixed positioning to escape all overflow clipping */}
-            <AnimatePresence>
-                {dropdownOpen && dropdownPos && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 6, scale: 0.97 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 4, scale: 0.97 }}
-                        transition={{ duration: 0.15 }}
-                        style={{ position: 'fixed', top: dropdownPos.top, left: Math.min(dropdownPos.left, window.innerWidth - 264 - 8) }}
-                        className="w-64 bg-white dark:bg-gray-900 border border-structural-border dark:border-gray-800 rounded-2xl shadow-xl shadow-black/10 overflow-hidden z-[999]"
-                    >
-                        {tier2Features.map((f) => (
-                            <button
-                                key={f.id}
-                                onClick={() => selectTier2(f)}
-                                className={`w-full flex items-center gap-3 px-4 py-3 text-left text-sm transition-colors ${activeTier2?.id === f.id
-                                    ? 'bg-primary/10 text-primary font-semibold'
-                                    : 'text-charcoal dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
-                                    }`}
-                            >
-                                <span className={`material-symbols-outlined text-lg flex-shrink-0 ${activeTier2?.id === f.id ? 'text-primary' : 'text-secondary-text dark:text-gray-400'}`}>
-                                    {f.tabIcon}
-                                </span>
-                                <span className="truncate">{f.tabLabel}</span>
-                                {activeTier2?.id === f.id && (
-                                    <span className="material-symbols-outlined text-primary text-base ml-auto flex-shrink-0">check</span>
-                                )}
-                            </button>
-                        ))}
-                    </motion.div>
-                )}
-            </AnimatePresence>
 
             {/* Video Modal */}
             <VideoModal

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import VideoPlayer from '@/components/VideoPlayer';
 import VideoModal from '@/components/ui/VideoModal';
@@ -11,6 +11,8 @@ import productCatalogImage from '@/assets/Website/ProductCatalog.png';
 import servicesImage from '@/assets/Website/Services.png';
 import mobileImage from '@/assets/Website/mobile.png';
 import dragAndDropImage from '@/assets/Website/DragAndDrop.png';
+import customerPortalImage from '@/assets/Website/CustomerPortal.png';
+import seoImage from '@/assets/Website/SEO.png';
 
 // --- Shared Feature Type ---
 interface Feature {
@@ -53,12 +55,20 @@ const tier1Features: Feature[] = [
         title: 'Product Catalog',
         painPoint: {
             label: 'THE FRICTION',
-            description: 'Manually updating products across platforms. No color swatches, no variant management, no way to show what you actually offer at scale.',
+            description: 'Your customers can\'t see what you carry. No browsable catalog, no color options, no way to compare styles — they call, email, or go somewhere else.',
         },
         solution: {
             label: 'THE FIX',
-            description: 'Dynamic product catalog with color swatches, size selectors, variant management, and real-time pricing. Synced with your back-office inventory.',
+            description: 'A browsable, searchable product catalog that shows everything you offer — with real photos, color swatches, size breakdowns, and live pricing.',
         },
+        highlights: [
+            'Color swatches with real product images',
+            'Size & variant selectors per style',
+            'SKU display for easy reordering',
+            'Sale badges & discount pricing',
+            'Filter by brand, category, or color',
+            'Synced with back-office inventory',
+        ],
         videoSrc: '/videos/feature-catalog.mp4',
         imageSrc: productCatalogImage,
         layout: 'side-by-side',
@@ -114,10 +124,6 @@ const tier1Features: Feature[] = [
         imageSrc: servicesImage,
         layout: 'side-by-side',
     },
-];
-
-// --- Tier 2: Additional Website Features ---
-const tier2Features: Feature[] = [
     {
         id: 'customer-portal',
         tabLabel: 'Customer Portal',
@@ -132,6 +138,8 @@ const tier2Features: Feature[] = [
             description: 'Self-service customer portal with order tracking, history, reorder capability, and saved designs. Fewer support calls, happier customers.',
         },
         videoSrc: '/videos/feature-portal.mp4',
+        imageSrc: customerPortalImage,
+        layout: 'side-by-side',
     },
     {
         id: 'seo',
@@ -147,6 +155,8 @@ const tier2Features: Feature[] = [
             description: 'Built-in SEO optimization, Google Analytics integration, and conversion tracking. Know where your traffic comes from and what converts.',
         },
         videoSrc: '/videos/feature-seo.mp4',
+        imageSrc: seoImage,
+        layout: 'side-by-side',
     },
     {
         id: 'mobile',
@@ -213,6 +223,22 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                         <p className="text-xs font-bold uppercase tracking-widest text-primary dark:text-blue-400 mb-1.5 relative z-10">{feature.solution.label}</p>
                         <p className="text-sm text-charcoal dark:text-white leading-relaxed font-semibold relative z-10">{feature.solution.description}</p>
                     </motion.div>
+
+                    {feature.highlights && feature.highlights.length > 0 && (
+                        <motion.ul
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3, delay: 0.24 }}
+                            className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5"
+                        >
+                            {feature.highlights.map((h, i) => (
+                                <li key={i} className="flex items-start gap-1.5">
+                                    <span className="material-symbols-outlined text-green-500 dark:text-green-400 text-sm mt-0.5 flex-shrink-0">check</span>
+                                    <span className="text-xs text-secondary-text dark:text-gray-300 font-medium leading-relaxed">{h}</span>
+                                </li>
+                            ))}
+                        </motion.ul>
+                    )}
                 </div>
 
                 {/* Right: Browser Frame with image */}
@@ -434,77 +460,13 @@ function FeaturePanel({ feature }: { feature: Feature }) {
 // --- Main Component ---
 export default function WebsiteFeaturesSection() {
     const [activeTab, setActiveTab] = useState<number>(0);
-    const [activeTier2, setActiveTier2] = useState<Feature | null>(null);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [dropdownPos, setDropdownPos] = useState<{ top: number; left: number } | null>(null);
     const [activeVideo, setActiveVideo] = useState<string | null>(null);
-    const moreButtonRef = useRef<HTMLButtonElement>(null);
     const tabScrollRef = useRef<HTMLDivElement>(null);
-    const [scrollState, setScrollState] = useState<'start' | 'middle' | 'end'>('start');
 
-    useEffect(() => {
-        const el = tabScrollRef.current;
-        if (!el) return;
-        function update() {
-            if (!el) return;
-            const atStart = el.scrollLeft <= 4;
-            const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 4;
-            setScrollState(atStart ? 'start' : atEnd ? 'end' : 'middle');
-        }
-        update();
-        el.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update, { passive: true });
-        return () => {
-            el.removeEventListener('scroll', update);
-            window.removeEventListener('resize', update);
-        };
-    }, []);
-
-    const activeFeature: Feature = activeTier2 ?? tier1Features[activeTab];
-    const isMoreActive = activeTier2 !== null;
-
-    useEffect(() => {
-        if (!dropdownOpen) return;
-        function handleMouseDown(e: MouseEvent) {
-            if (moreButtonRef.current?.contains(e.target as Node)) return;
-            setDropdownOpen(false);
-        }
-        function handleScroll() { setDropdownOpen(false); }
-        document.addEventListener('mousedown', handleMouseDown);
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => {
-            document.removeEventListener('mousedown', handleMouseDown);
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [dropdownOpen]);
-
-    function openDropdown() {
-        if (moreButtonRef.current) {
-            const rect = moreButtonRef.current.getBoundingClientRect();
-            setDropdownPos({ top: rect.bottom + 8, left: rect.left });
-        }
-        setDropdownOpen(o => !o);
-    }
-
-    function selectTier1(i: number) {
-        setActiveTab(i);
-        setActiveTier2(null);
-        setDropdownOpen(false);
-    }
-
-    function selectTier2(f: Feature) {
-        setActiveTier2(f);
-        setDropdownOpen(false);
-    }
+    const activeFeature: Feature = tier1Features[activeTab];
 
     return (
         <section id="website-features" className="pt-12 md:pt-16 lg:pt-20 pb-0 bg-background-light dark:bg-background-dark relative">
-            {/* Animated gradient orb background */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-                <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-teal-500/[0.06] blur-3xl animate-gradient-flow-1" />
-                <div className="absolute top-1/2 -left-48 w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-3xl animate-gradient-flow-2" />
-                <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-indigo-400/[0.03] blur-3xl animate-gradient-flow-3" />
-            </div>
 
             <div className="max-w-7xl mx-auto px-mobile relative z-10">
 
@@ -538,25 +500,24 @@ export default function WebsiteFeaturesSection() {
                         More than a website — a complete online storefront with custom ordering, product configuration, and seamless checkout built for print shops.
                     </motion.p>
                 </div>
+            </div>
 
-                {/* Sticky Tab Bar */}
-                <div className="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md py-4 mb-10 md:mb-14 -mx-mobile px-mobile">
+            {/* Sticky Tab Bar — outside max-w container for full width */}
+            <div className="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md py-4 mb-10 md:mb-14 px-4 md:px-8 flex justify-center">
                     <LayoutGroup>
                         <div className="relative">
-                            <div className={`absolute left-0 top-0 bottom-1 w-8 bg-gradient-to-r from-background-light/90 dark:from-background-dark/90 to-transparent pointer-events-none z-10 transition-opacity duration-200 ${scrollState === 'start' ? 'opacity-0' : 'opacity-100'}`} />
-                            <div className={`absolute right-0 top-0 bottom-1 w-12 bg-gradient-to-l from-background-light/90 dark:from-background-dark/90 to-transparent pointer-events-none z-10 transition-opacity duration-200 ${scrollState === 'end' ? 'opacity-0' : 'opacity-100'}`} />
 
-                            <div ref={tabScrollRef} className="flex gap-2 overflow-x-auto scrollbar-none pb-1">
+                            <div ref={tabScrollRef} className="flex gap-1.5 overflow-x-auto scrollbar-none pb-1 justify-start">
                                 {tier1Features.map((f, i) => (
                                     <button
                                         key={f.id}
-                                        onClick={() => selectTier1(i)}
-                                        className={`relative flex items-center gap-1 sm:gap-1.5 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors ${!isMoreActive && activeTab === i
+                                        onClick={() => setActiveTab(i)}
+                                        className={`relative flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors ${activeTab === i
                                             ? 'text-white'
                                             : 'border border-structural-border dark:border-gray-700 text-secondary-text hover:text-charcoal dark:hover:text-white hover:border-primary/30'
                                             }`}
                                     >
-                                        {!isMoreActive && activeTab === i && (
+                                        {activeTab === i && (
                                             <motion.div
                                                 layoutId="activeWebsiteTab"
                                                 className="absolute inset-0 bg-primary rounded-full"
@@ -567,79 +528,17 @@ export default function WebsiteFeaturesSection() {
                                         <span className="relative z-10">{f.tabLabel}</span>
                                     </button>
                                 ))}
-
-                                {/* "More" pill */}
-                                <button
-                                    ref={moreButtonRef}
-                                    onClick={openDropdown}
-                                    className={`relative flex items-center gap-1 sm:gap-1.5 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors ${isMoreActive
-                                        ? 'text-white'
-                                        : 'border border-structural-border dark:border-gray-700 text-secondary-text hover:text-charcoal dark:hover:text-white hover:border-primary/30'
-                                        }`}
-                                >
-                                    {isMoreActive && (
-                                        <motion.div
-                                            layoutId="activeWebsiteTab"
-                                            className="absolute inset-0 bg-primary rounded-full"
-                                            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                                        />
-                                    )}
-                                    <span className="material-symbols-outlined text-sm sm:text-base relative z-10 hidden sm:inline-block">apps</span>
-                                    <span className="relative z-10">
-                                        {isMoreActive ? activeTier2!.tabLabel : 'More'}
-                                    </span>
-                                    <motion.span
-                                        animate={{ rotate: dropdownOpen ? 180 : 0 }}
-                                        transition={{ duration: 0.2 }}
-                                        className="material-symbols-outlined text-base relative z-10"
-                                    >
-                                        expand_more
-                                    </motion.span>
-                                </button>
                             </div>
                         </div>
                     </LayoutGroup>
-                </div>
+            </div>
 
+            <div className="max-w-7xl mx-auto px-mobile relative z-10">
                 {/* Feature Panel */}
                 <AnimatePresence mode="wait">
                     <FeaturePanel key={activeFeature.id} feature={activeFeature} />
                 </AnimatePresence>
-
             </div>
-
-            {/* Dropdown */}
-            <AnimatePresence>
-                {dropdownOpen && dropdownPos && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 6, scale: 0.97 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 4, scale: 0.97 }}
-                        transition={{ duration: 0.15 }}
-                        style={{ position: 'fixed', top: dropdownPos.top, left: Math.min(dropdownPos.left, window.innerWidth - 264 - 8) }}
-                        className="w-64 bg-white dark:bg-gray-900 border border-structural-border dark:border-gray-800 rounded-2xl shadow-xl shadow-black/10 overflow-hidden z-[999]"
-                    >
-                        {tier2Features.map((f) => (
-                            <button
-                                key={f.id}
-                                onClick={() => selectTier2(f)}
-                                className={`w-full flex items-center gap-3 px-4 py-3 text-left text-sm transition-colors ${activeTier2?.id === f.id
-                                    ? 'bg-primary/10 text-primary font-semibold'
-                                    : 'text-charcoal dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
-                                    }`}
-                            >
-                                <span className={`material-symbols-outlined text-lg flex-shrink-0 ${activeTier2?.id === f.id ? 'text-primary' : 'text-secondary-text dark:text-gray-400'}`}>
-                                    {f.tabIcon}
-                                </span>
-                                <span className="truncate">{f.tabLabel}</span>
-                                {activeTier2?.id === f.id && (
-                                    <span className="material-symbols-outlined text-primary text-base ml-auto flex-shrink-0">check</span>
-                                )}
-                            </button>
-                        ))}
-                    </motion.div>
-                )}
-            </AnimatePresence>
 
             {/* Video Modal */}
             <VideoModal

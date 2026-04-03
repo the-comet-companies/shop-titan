@@ -55,7 +55,7 @@ export default function Header() {
         }
 
         if (pathname === '/') {
-            const targetId = sectionId === 'features' ? 'website-features' : sectionId;
+            const targetId = sectionId === 'features' ? 'solutions' : sectionId;
             const element = document.getElementById(targetId);
             if (element) {
                 element.scrollIntoView({ behavior: "smooth" });
