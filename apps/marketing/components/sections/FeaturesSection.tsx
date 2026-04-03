@@ -14,6 +14,7 @@ import pricingGridImage from '@/assets/Filemaker/ServicePricingGrid.png';
 import screenPricingGridImage from '@/assets/Filemaker/ScreenPricingGrid.png';
 import emailTemplateImage from '@/assets/Filemaker/EmailTemplate.png';
 import reportingImage from '@/assets/Filemaker/Reporting.png';
+import contractorImage from '@/assets/Filemaker/Contractor.png';
 
 // --- Shared Feature Type ---
 interface Feature {
@@ -172,6 +173,7 @@ const tier1Features: Feature[] = [
             description: 'Digital work order system for contractors. Send work out with detailed spec sheets, track deadlines, and get quality confirmation—all documented.',
         },
         videoSrc: '/videos/feature-contractors.mp4',
+        imageSrc: contractorImage,
     },
     {
         id: 'reporting',
@@ -202,7 +204,7 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.25 }}
-                className="flex flex-col lg:flex-row gap-6 lg:gap-16 items-start lg:items-center mb-12 md:mb-20 lg:mb-28"
+                className="flex flex-col lg:flex-row gap-6 lg:gap-16 items-start lg:items-start mb-12 md:mb-20 lg:mb-28"
             >
                 {/* Left: Copy */}
                 <div className="lg:w-4/12 flex flex-col gap-4 order-2 lg:order-1">
