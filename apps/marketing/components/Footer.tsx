@@ -27,17 +27,18 @@ export default function Footer() {
                         </p>
                     </div>
 
-                    {/* Product */}
+                    {/* Platform */}
                     <div className="lg:col-span-2">
                         <h5 className="text-xs font-bold uppercase tracking-widest mb-4 md:mb-6 text-white">
-                            Product
+                            Platform
                         </h5>
                         <ul className="space-y-3 md:space-y-4 text-sm text-gray-400">
-                            <li><MotionLink href="/#features" whileHover={hoverProps} className={linkClass}>Features</MotionLink></li>
-                            <li><MotionLink href="/#benefits" whileHover={hoverProps} className={linkClass}>Benefits</MotionLink></li>
-                            <li><MotionLink href="/#workflow-video" whileHover={hoverProps} className={linkClass}>How It Works</MotionLink></li>
-                            <li><MotionLink href="/#industries" whileHover={hoverProps} className={linkClass}>Industries We Serve</MotionLink></li>
-                            <li><MotionLink href="/#showcase" whileHover={hoverProps} className={linkClass}>Showcase</MotionLink></li>
+                            <li><MotionLink href="/platform/filemaker-system" whileHover={hoverProps} className={linkClass}>FileMaker System</MotionLink></li>
+                            <li><MotionLink href="/platform/ecommerce-storefront" whileHover={hoverProps} className={linkClass}>Ecommerce Storefront</MotionLink></li>
+                            <li><MotionLink href="/platform/complete-system" whileHover={hoverProps} className={linkClass}>Complete System</MotionLink></li>
+                            <li><MotionLink href="/platform/inventory-management" whileHover={hoverProps} className={linkClass}>Inventory Management</MotionLink></li>
+                            <li><MotionLink href="/platform/production-automation" whileHover={hoverProps} className={linkClass}>Production Management</MotionLink></li>
+                            <li><MotionLink href="/hire/filemaker-developer" whileHover={hoverProps} className={linkClass}>Hire a Developer</MotionLink></li>
                             <li><MotionLink href="/pricing" whileHover={hoverProps} className={linkClass}>Pricing</MotionLink></li>
                         </ul>
                     </div>

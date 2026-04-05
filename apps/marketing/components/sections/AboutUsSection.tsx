@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import Link from 'next/link';
 
 export default function AboutUsSection() {
     const containerRef = useRef<HTMLElement>(null);
@@ -168,6 +169,30 @@ export default function AboutUsSection() {
                         </motion.p>
                     </div>
                 </div>
+
+                {/* Internal Links */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mt-16 md:mt-24 pt-10 border-t border-structural-border dark:border-gray-800 text-center"
+                >
+                    <p className="text-lg font-bold text-charcoal dark:text-white mb-6">See what we built</p>
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        <Link href="/platform/filemaker-system" className="px-5 py-2.5 text-sm font-medium text-secondary-text hover:text-charcoal dark:hover:text-white border border-structural-border dark:border-gray-700 rounded-full hover:border-primary/30 transition-colors">
+                            FileMaker System
+                        </Link>
+                        <Link href="/platform/ecommerce-storefront" className="px-5 py-2.5 text-sm font-medium text-secondary-text hover:text-charcoal dark:hover:text-white border border-structural-border dark:border-gray-700 rounded-full hover:border-primary/30 transition-colors">
+                            Ecommerce Storefront
+                        </Link>
+                        <Link href="/platform/complete-system" className="px-5 py-2.5 text-sm font-medium text-secondary-text hover:text-charcoal dark:hover:text-white border border-structural-border dark:border-gray-700 rounded-full hover:border-primary/30 transition-colors">
+                            Complete System
+                        </Link>
+                        <Link href="/reach-out" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-full transition-colors">
+                            Book a Demo
+                        </Link>
+                    </div>
+                </motion.div>
 
             </div>
         </section>

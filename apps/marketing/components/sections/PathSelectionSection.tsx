@@ -79,7 +79,7 @@ export default function PathSelectionSection() {
                         exit={{ opacity: 0, y: -8 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <WebsiteFeaturesSection />
+                        <WebsiteFeaturesSection hideLearnMore={activeTab === 'both'} />
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -93,7 +93,31 @@ export default function PathSelectionSection() {
                         exit={{ opacity: 0, y: -8 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <FeaturesSection />
+                        <FeaturesSection hideLearnMore={activeTab === 'both'} />
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Combined CTA for "both" tab */}
+            <AnimatePresence mode="wait">
+                {activeTab === 'both' && (
+                    <motion.div
+                        key="combined-cta"
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.3 }}
+                        className="flex items-center justify-center pt-8 pb-12"
+                    >
+                        <a
+                            href="/platform/complete-system"
+                            className="px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
+                        >
+                            <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
+                            <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
+                            <span className="relative z-10">Learn more about the Complete System</span>
+                            <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                        </a>
                     </motion.div>
                 )}
             </AnimatePresence>

@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-    title: "Case Studies | Shop Titan",
-    description: "Read about how our customers succeed with Shop Titan.",
+export const metadata: Metadata = {
+    title: "Case Studies — Real Results From Real Print Shops",
+    description: "See how print shops use Shop Titan to streamline operations, increase orders, and scale their business with FileMaker systems and ecommerce storefronts.",
+    alternates: {
+        canonical: "https://shoptitan.app/case-studies",
+    },
+    openGraph: {
+        title: "Case Studies — Shop Titan",
+        description: "See how print shops use Shop Titan to streamline operations and scale their business.",
+        url: "https://shoptitan.app/case-studies",
+    },
 };
 
 export default function CaseStudiesPage() {

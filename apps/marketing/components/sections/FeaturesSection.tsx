@@ -390,7 +390,7 @@ function FeaturePanel({ feature }: { feature: Feature }) {
 }
 
 // --- Main Component ---
-export default function FeaturesSection() {
+export default function FeaturesSection({ hideLearnMore = false }: { hideLearnMore?: boolean } = {}) {
     const [activeTab, setActiveTab] = useState<number>(0);
     const [activeVideo, setActiveVideo] = useState<string | null>(null);
     const tabScrollRef = useRef<HTMLDivElement>(null);
@@ -472,31 +472,25 @@ export default function FeaturesSection() {
                 </AnimatePresence>
 
                 {/* Bottom CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="flex flex-col items-center text-center gap-2 pt-8 pb-4 border-t border-structural-border dark:border-gray-800 mt-4"
-                >
-                    <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-                        <p className="text-xl md:text-2xl font-bold text-charcoal dark:text-white">
-                            Seen enough?
-                        </p>
+                {!hideLearnMore && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="flex items-center justify-center pt-8 pb-4 mt-4"
+                    >
                         <a
-                            href="/reach-out"
+                            href="/platform/filemaker-system"
                             className="px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
                         >
                             <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
                             <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
-                            <span className="relative z-10">Let&apos;s Talk</span>
+                            <span className="relative z-10">Learn more about the FileMaker system</span>
                             <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                         </a>
-                    </div>
-                    <p className="text-sm text-secondary-text dark:text-gray-400 font-medium">
-                        Get a guided walkthrough of the features relevant to your shop.
-                    </p>
-                </motion.div>
+                    </motion.div>
+                )}
             </div>
 
             {/* Video Modal */}
