@@ -18,13 +18,13 @@ const testimonials: Testimonial[] = [
         company: "Premier Embroidery Co.",
     },
     {
-        quote: "The single source of truth concept is revolutionary. No more hunting for information across spreadsheets — everything is exactly where you expect it.",
+        quote: "The single source of truth concept is revolutionary. No more hunting for information across spreadsheets  - everything is exactly where you expect it.",
         author: "Michael Chen",
         role: "Production Manager",
         company: "Elite Screen Printing",
     },
     {
-        quote: "We scaled from 5 to 20 employees without losing our minds. The system handles everything — orders, scheduling, QC. I can't imagine running the shop without it.",
+        quote: "We scaled from 5 to 20 employees without losing our minds. The system handles everything  - orders, scheduling, QC. I can't imagine running the shop without it.",
         author: "Jessica Williams",
         role: "CEO",
         company: "Custom Apparel Solutions",

@@ -77,7 +77,7 @@ export default function WorkflowVideoSection() {
                         Every stage. One system.
                     </h2>
                     <p className="text-lg text-secondary-text dark:text-gray-400 max-w-2xl mx-auto">
-                        From the first lead to the final report — fully connected.
+                        From the first lead to the final report  - fully connected.
                     </p>
                 </motion.div>
 
@@ -110,7 +110,7 @@ export default function WorkflowVideoSection() {
                         </span>
                     </div>
 
-                    {/* Image area — fixed height to prevent layout shift */}
+                    {/* Image area  - fixed height to prevent layout shift */}
                     <div className="relative h-[280px] sm:h-[380px] md:h-[500px] lg:h-[580px] bg-white dark:bg-gray-950 overflow-hidden">
                         <AnimatePresence mode="wait">
                             <motion.div
@@ -123,7 +123,7 @@ export default function WorkflowVideoSection() {
                             >
                                 <Image
                                     src={slide.src}
-                                    alt={`${slide.type} — ${slide.label}`}
+                                    alt={`${slide.type}  - ${slide.label}`}
                                     className="w-full h-full object-cover object-top"
                                     sizes="(max-width: 1024px) 100vw, 1100px"
                                     placeholder="blur"

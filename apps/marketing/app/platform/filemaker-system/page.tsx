@@ -8,7 +8,7 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 const faqs = [
     {
         question: 'What is FileMaker used for in print shops?',
-        answer: 'FileMaker is a business application platform by Claris (an Apple subsidiary) used to build custom operational systems. In print shops, a FileMaker system manages quotes, orders, inventory, customer relationships, purchase orders, production tracking, and reporting — replacing spreadsheets and disconnected tools with one connected platform.',
+        answer: 'FileMaker is a business application platform by Claris (an Apple subsidiary) used to build custom operational systems. In print shops, a FileMaker system manages quotes, orders, inventory, customer relationships, purchase orders, production tracking, and reporting  - replacing spreadsheets and disconnected tools with one connected platform.',
     },
     {
         question: 'Is FileMaker good for small business?',
@@ -20,7 +20,7 @@ const faqs = [
     },
     {
         question: 'Is this system custom-built or pre-built?',
-        answer: "It's a production-tested system refined through daily use in a real print shop. We deploy it and customize it to your specific business — your pricing, decoration methods, email templates, and workflows. You get a proven system with personalized configuration, not a build from scratch.",
+        answer: "It's a production-tested system refined through daily use in a real print shop. We deploy it and customize it to your specific business  - your pricing, decoration methods, email templates, and workflows. You get a proven system with personalized configuration, not a build from scratch.",
     },
     {
         question: 'Can the FileMaker system connect to my ecommerce website?',
@@ -28,19 +28,19 @@ const faqs = [
     },
     {
         question: 'How long does implementation take?',
-        answer: 'Most shops are fully operational in 2–4 weeks. That includes configuring pricing matrices, setting up decoration types, customizing email templates, migrating existing data, and training your team.',
+        answer: 'Most shops are fully operational in 2-4 weeks. That includes configuring pricing matrices, setting up decoration types, customizing email templates, migrating existing data, and training your team.',
     },
     {
         question: 'Can this replace my spreadsheets?',
-        answer: "That's exactly what it's built to do. Quotes, orders, inventory, customer lists, vendor records, pricing — everything that currently lives in Excel or Google Sheets moves into a connected system where data flows automatically between modules.",
+        answer: "That's exactly what it's built to do. Quotes, orders, inventory, customer lists, vendor records, pricing  - everything that currently lives in Excel or Google Sheets moves into a connected system where data flows automatically between modules.",
     },
     {
         question: 'Do I need technical knowledge to use it?',
-        answer: 'No. The system is designed for shop floor staff, office managers, and owners — not IT specialists. If your team can use a web browser, they can use this system. Training is included during setup.',
+        answer: 'No. The system is designed for shop floor staff, office managers, and owners  - not IT specialists. If your team can use a web browser, they can use this system. Training is included during setup.',
     },
     {
         question: 'Can the system grow with my business?',
-        answer: "Yes. The same system scales from 50 orders a month to 500+. As your operation grows — more decoration types, more staff, more customers — the system handles it without needing to be rebuilt.",
+        answer: "Yes. The same system scales from 50 orders a month to 500+. As your operation grows  - more decoration types, more staff, more customers  - the system handles it without needing to be rebuilt.",
     },
     {
         question: 'What makes this different from Printavo, ShopWorx, or other print shop software?',
@@ -98,7 +98,7 @@ export default function FileMakerSystemPage() {
                             transition={{ duration: 0.5, delay: 0.1 }}
                             className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
                         >
-                            FileMaker System for Print Shops — Replace Spreadsheets, Manage Orders & Inventory
+                            FileMaker System for Print Shops  - Replace Spreadsheets, Manage Orders & Inventory
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 12 }}
@@ -106,7 +106,7 @@ export default function FileMakerSystemPage() {
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8"
                         >
-                            A pre-built print shop management system that handles quotes, orders, inventory, and production — already tested in real daily operations. We deploy it into your shop, customized to your workflow, in 2–4 weeks.
+                            A pre-built print shop management system that handles quotes, orders, inventory, and production  - already tested in real daily operations. We deploy it into your shop, customized to your workflow, in 2-4 weeks.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
@@ -239,7 +239,7 @@ export default function FileMakerSystemPage() {
                                 { num: '02', title: 'Orders disappear between the office and the floor.', desc: "A customer calls about their order. Office checks email. Production checks the whiteboard. Art checks a folder. Nobody has the full picture." },
                                 { num: '03', title: "You don't know what's on your shelves until it's too late.", desc: "Blanks get allocated to one job, pulled for another, and the count hasn't been updated since last week. You find out you're short the morning the order is due." },
                                 { num: '04', title: 'Every order gets entered more than once.', desc: 'Quote in one place. Confirmation in another. Production sheet printed separately. Invoice from scratch. Each handoff is a chance for errors.' },
-                                { num: '05', title: 'The shop runs on your memory.', desc: "You know where every job is. But the moment you step away — vacation, meeting, sick day — things stall. The business depends on you being present." },
+                                { num: '05', title: 'The shop runs on your memory.', desc: "You know where every job is. But the moment you step away  - vacation, meeting, sick day  - things stall. The business depends on you being present." },
                             ].map((pain, i) => (
                                 <motion.div
                                     key={pain.num}
@@ -276,7 +276,7 @@ export default function FileMakerSystemPage() {
                                 className="lg:w-1/2 space-y-4 text-secondary-text dark:text-gray-400 leading-relaxed"
                             >
                                 <p>
-                                    This isn&apos;t a concept or a prototype. It&apos;s a complete FileMaker system for print shops — running in a real apparel decoration operation, handling daily orders, managing thousands of SKUs, and coordinating production across multiple decoration methods.
+                                    This isn&apos;t a concept or a prototype. It&apos;s a complete FileMaker system for print shops  - running in a real apparel decoration operation, handling daily orders, managing thousands of SKUs, and coordinating production across multiple decoration methods.
                                 </p>
                                 <p>
                                     Every module was built because the shop needed it. Every workflow was refined under real deadlines. The edge cases were found and fixed by the people using it daily.
@@ -323,7 +323,7 @@ export default function FileMakerSystemPage() {
                             viewport={{ once: true }}
                             className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-12"
                         >
-                            From First Call to Final Shipment — One System
+                            From First Call to Final Shipment  - One System
                         </motion.h2>
                         <motion.div
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
@@ -333,12 +333,12 @@ export default function FileMakerSystemPage() {
                             viewport={{ once: true, margin: '-60px' }}
                         >
                             {[
-                                { step: '01', title: 'Quote', icon: 'request_quote', desc: 'Select decoration type, pricing matrix calculates everything — setup, per-piece, quantity breaks, rush. Branded PDF sent in under 2 minutes.' },
-                                { step: '02', title: 'Order', icon: 'shopping_cart', desc: 'One-click conversion from quote. All details carry over — customer, line items, specs, artwork, due date. Visible to your entire team instantly.' },
+                                { step: '01', title: 'Quote', icon: 'request_quote', desc: 'Select decoration type, pricing matrix calculates everything  - setup, per-piece, quantity breaks, rush. Branded PDF sent in under 2 minutes.' },
+                                { step: '02', title: 'Order', icon: 'shopping_cart', desc: 'One-click conversion from quote. All details carry over  - customer, line items, specs, artwork, due date. Visible to your entire team instantly.' },
                                 { step: '03', title: 'Inventory', icon: 'inventory_2', desc: 'Tracks blanks by style, color, size. Low stock triggers a PO. Receiving updates counts automatically. No spreadsheets, no shelf counts.' },
-                                { step: '04', title: 'Production', icon: 'precision_manufacturing', desc: 'Each task tracked individually — screen printing, embroidery, sewing. Team sees what\'s due, in progress, and complete. Office sees the same.' },
+                                { step: '04', title: 'Production', icon: 'precision_manufacturing', desc: 'Each task tracked individually  - screen printing, embroidery, sewing. Team sees what\'s due, in progress, and complete. Office sees the same.' },
                                 { step: '05', title: 'Fulfillment', icon: 'local_shipping', desc: 'Packing slip generated. Shipping via ShipStation. Customer gets branded tracking email. Order closed.' },
-                                { step: '06', title: 'Reporting', icon: 'assessment', desc: 'Active orders, production load, inventory levels, financials — on demand. No month-end scramble. No manual assembly.' },
+                                { step: '06', title: 'Reporting', icon: 'assessment', desc: 'Active orders, production load, inventory levels, financials  - on demand. No month-end scramble. No manual assembly.' },
                             ].map((s) => (
                                 <motion.div
                                     key={s.step}
@@ -379,10 +379,10 @@ export default function FileMakerSystemPage() {
                                 viewport={{ once: true }}
                                 className="p-6 rounded-2xl border border-rose-200 dark:border-rose-900/40 bg-rose-50/30 dark:bg-rose-950/10"
                             >
-                                <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-4">Before — Manual Operations</h3>
+                                <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-4">Before  - Manual Operations</h3>
                                 <ul className="space-y-3">
                                     {[
-                                        'Quotes took 15–30 minutes each',
+                                        'Quotes took 15-30 minutes each',
                                         'Orders tracked in email and paper job jackets',
                                         'Inventory counted by hand after running out',
                                         'Customer info across inboxes and sticky notes',
@@ -402,7 +402,7 @@ export default function FileMakerSystemPage() {
                                 viewport={{ once: true }}
                                 className="p-6 rounded-2xl border border-green-200 dark:border-green-900/40 bg-green-50/30 dark:bg-green-950/10"
                             >
-                                <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wider mb-4">After — FileMaker System</h3>
+                                <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wider mb-4">After  - FileMaker System</h3>
                                 <ul className="space-y-3">
                                     {[
                                         'Quotes generated in under 2 minutes',
@@ -426,7 +426,7 @@ export default function FileMakerSystemPage() {
                             viewport={{ once: true }}
                             className="text-secondary-text dark:text-gray-400 leading-relaxed mt-8 text-center max-w-2xl mx-auto text-sm"
                         >
-                            The team didn&apos;t get bigger. The repetitive work — data entry, status lookups, inventory counts — was handled by the system instead of by people.
+                            The team didn&apos;t get bigger. The repetitive work  - data entry, status lookups, inventory counts  - was handled by the system instead of by people.
                         </motion.p>
                     </div>
                 </section>
@@ -458,8 +458,8 @@ export default function FileMakerSystemPage() {
                                 </thead>
                                 <tbody>
                                     {[
-                                        ['Timeline', '6–12 months', '2–4 weeks'],
-                                        ['Upfront Cost', '$50,000–$150,000+', 'Flat monthly fee'],
+                                        ['Timeline', '6-12 months', '2-4 weeks'],
+                                        ['Upfront Cost', '$50,000-$150,000+', 'Flat monthly fee'],
                                         ['Risk', 'Your business is the test case', 'Tested in real daily operations'],
                                         ['Features', 'You discover needs after launch', 'Built from operational needs'],
                                         ['Support', 'Developer availability varies', 'Ongoing via Slack'],
@@ -522,7 +522,7 @@ export default function FileMakerSystemPage() {
                             viewport={{ once: true }}
                             className="text-center text-sm text-primary font-semibold mt-6"
                         >
-                            Total timeline: 2–4 weeks from discovery to go-live
+                            Total timeline: 2-4 weeks from discovery to go-live
                         </motion.p>
                     </div>
                 </section>
@@ -547,7 +547,7 @@ export default function FileMakerSystemPage() {
                         >
                             {[
                                 { title: 'Print shops processing 50+ orders/month', desc: "You need a system that keeps up with volume without hiring more office staff to manage paperwork.", icon: 'print' },
-                                { title: 'Apparel decorators with multiple methods', desc: 'Screen printing, embroidery, DTG, sewing — each with different pricing and workflows. One system handles all of them.', icon: 'checkroom' },
+                                { title: 'Apparel decorators with multiple methods', desc: 'Screen printing, embroidery, DTG, sewing  - each with different pricing and workflows. One system handles all of them.', icon: 'checkroom' },
                                 { title: 'Shops that tried other software and hit limits', desc: "You've used Printavo, ShopWorx, or Airtable. You need custom pricing, real inventory, POs, and website integration.", icon: 'sync_problem' },
                                 { title: 'Owners ready to stop being the system', desc: "If the shop stalls when you leave, the knowledge is in your head instead of a system. This fixes that.", icon: 'person_off' },
                             ].map((item) => (
@@ -618,7 +618,7 @@ export default function FileMakerSystemPage() {
                             transition={{ delay: 0.1 }}
                             className="text-lg text-secondary-text dark:text-gray-400 leading-relaxed mb-8 max-w-2xl mx-auto"
                         >
-                            Book a walkthrough and see exactly how this FileMaker system for print shops manages quotes, orders, inventory, and production — and how your workflow would look inside it.
+                            Book a walkthrough and see exactly how this FileMaker system for print shops manages quotes, orders, inventory, and production  - and how your workflow would look inside it.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
@@ -631,7 +631,7 @@ export default function FileMakerSystemPage() {
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Live Demo — See How Your Workflow Would Look
+                                Book a Live Demo  - See How Your Workflow Would Look
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                         </motion.div>

@@ -9,11 +9,11 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 const faqs = [
     {
         question: 'Is this built on Shopify or WooCommerce?',
-        answer: "No. The storefront is purpose-built for print shops. Generic ecommerce platforms don't support the workflows print shops need — artwork uploads, size/color matrices, volume pricing, and production system integration.",
+        answer: "No. The storefront is purpose-built for print shops. Generic ecommerce platforms don't support the workflows print shops need  - artwork uploads, size/color matrices, volume pricing, and production system integration.",
     },
     {
         question: 'Can customers upload their own artwork?',
-        answer: 'Yes. Customers drag and drop design files directly onto their order. They can specify placement, decoration method, and add notes — all before checkout.',
+        answer: 'Yes. Customers drag and drop design files directly onto their order. They can specify placement, decoration method, and add notes  - all before checkout.',
     },
     {
         question: 'Does the storefront connect to a production system?',
@@ -25,7 +25,7 @@ const faqs = [
     },
     {
         question: 'How long does it take to launch?',
-        answer: 'Most storefronts launch in 2–3 weeks. That includes setting up your product catalog, branding, artwork upload system, and connecting to your operations system.',
+        answer: 'Most storefronts launch in 2-3 weeks. That includes setting up your product catalog, branding, artwork upload system, and connecting to your operations system.',
     },
     {
         question: 'Do I need to manage the products myself?',
@@ -37,7 +37,7 @@ const faqs = [
     },
     {
         question: 'Will it work on mobile?',
-        answer: 'Yes. Fully responsive. Over 60% of ecommerce traffic is mobile — the storefront is designed and tested for phones and tablets.',
+        answer: 'Yes. Fully responsive. Over 60% of ecommerce traffic is mobile  - the storefront is designed and tested for phones and tablets.',
     },
     {
         question: 'What if I already have a website?',
@@ -45,7 +45,7 @@ const faqs = [
     },
     {
         question: 'Can I see a live example?',
-        answer: 'Yes. Book a demo and we\'ll show you a working storefront handling real orders — with real products, real pricing, and real artwork uploads.',
+        answer: 'Yes. Book a demo and we\'ll show you a working storefront handling real orders  - with real products, real pricing, and real artwork uploads.',
     },
 ];
 
@@ -96,7 +96,7 @@ export default function EcommerceStorefrontPage() {
                             transition={{ duration: 0.5, delay: 0.1 }}
                             className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
                         >
-                            Ecommerce Website for Print Shops — Online Ordering for Custom Apparel
+                            Ecommerce Website for Print Shops  - Online Ordering for Custom Apparel
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 12 }}
@@ -104,7 +104,7 @@ export default function EcommerceStorefrontPage() {
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8"
                         >
-                            A storefront built specifically for screen printers and apparel decorators — with artwork uploads, size/color selection, volume pricing, and automatic order flow into your production system. Not a template. A proven storefront handling real orders every day.
+                            A storefront built specifically for screen printers and apparel decorators  - with artwork uploads, size/color selection, volume pricing, and automatic order flow into your production system. Not a template. A proven storefront handling real orders every day.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
@@ -165,9 +165,9 @@ export default function EcommerceStorefrontPage() {
                                 { icon: 'upload_file', title: 'Artwork Uploads', desc: 'Customers drag and drop design files directly onto their order with placement selection' },
                                 { icon: 'grid_view', title: 'Size/Color Matrices', desc: 'Customers select quantities per size per color in a grid layout, not one at a time' },
                                 { icon: 'payments', title: 'Volume Pricing', desc: 'Pricing changes automatically based on order quantity and decoration method' },
-                                { icon: 'loyalty', title: 'Brand Pages', desc: 'Dedicated pages for each blank apparel brand you carry — Comfort Colors, Bella+Canvas, Gildan, and more' },
+                                { icon: 'loyalty', title: 'Brand Pages', desc: 'Dedicated pages for each blank apparel brand you carry  - Comfort Colors, Bella+Canvas, Gildan, and more' },
                                 { icon: 'sync', title: 'Production-Ready Orders', desc: 'Orders arrive with all the information your shop needs to start production immediately' },
-                                { icon: 'smartphone', title: 'Mobile Responsive', desc: 'Over 60% of traffic is mobile — the storefront works perfectly on every device' },
+                                { icon: 'smartphone', title: 'Mobile Responsive', desc: 'Over 60% of traffic is mobile  - the storefront works perfectly on every device' },
                             ].map((item) => (
                                 <motion.div
                                     key={item.title}
@@ -191,7 +191,7 @@ export default function EcommerceStorefrontPage() {
                             viewport={{ once: true }}
                             className="text-sm text-secondary-text dark:text-gray-400 mt-8"
                         >
-                            A standard Shopify or Wix store isn&apos;t built for this. It&apos;s built for selling one product at one price. Print shops sell custom work with variables — and the storefront needs to handle that.{' '}
+                            A standard Shopify or Wix store isn&apos;t built for this. It&apos;s built for selling one product at one price. Print shops sell custom work with variables  - and the storefront needs to handle that.{' '}
                             <Link href="/platform/filemaker-system" className="text-primary hover:underline">
                                 Already have a storefront and need a back-office system? →
                             </Link>
@@ -217,7 +217,7 @@ export default function EcommerceStorefrontPage() {
                             transition={{ delay: 0.1 }}
                             className="text-secondary-text dark:text-gray-500 mb-12"
                         >
-                            These aren&apos;t opinions — they&apos;re limitations.
+                            These aren&apos;t opinions  - they&apos;re limitations.
                         </motion.p>
 
                         <motion.div
@@ -228,9 +228,9 @@ export default function EcommerceStorefrontPage() {
                             viewport={{ once: true, margin: '-80px' }}
                         >
                             {[
-                                { num: '01', title: "Shopify doesn't handle your pricing model.", desc: "You charge by quantity, number of colors, stitch count, and decoration type — with setup fees and quantity breaks. Shopify's pricing logic is built for retail: one product, one price." },
+                                { num: '01', title: "Shopify doesn't handle your pricing model.", desc: "You charge by quantity, number of colors, stitch count, and decoration type  - with setup fees and quantity breaks. Shopify's pricing logic is built for retail: one product, one price." },
                                 { num: '02', title: "Wix and Squarespace can't handle artwork uploads.", desc: "Customers need to upload print-ready files with their order. Generic builders don't support file uploads tied to specific products, placements, and decoration methods." },
-                                { num: '03', title: "Template sites don't support size/color matrices.", desc: "Your customers order 50 black mediums, 30 black larges, and 20 navy mediums — all on one order. Generic ecommerce treats each variant as a separate add-to-cart action." },
+                                { num: '03', title: "Template sites don't support size/color matrices.", desc: "Your customers order 50 black mediums, 30 black larges, and 20 navy mediums  - all on one order. Generic ecommerce treats each variant as a separate add-to-cart action." },
                                 { num: '04', title: 'Your website looks nice but generates zero orders.', desc: "You paid an agency for a pretty website. It has a gallery, a contact form, and an about page. But customers can't browse, select products, upload artwork, or place an order." },
                                 { num: '05', title: "Orders from your website don't connect to anything.", desc: "Even if you take online orders, someone manually re-enters them into production. Every manual step is a chance for the wrong quantity, color, or decoration to slip through." },
                             ].map((pain) => (
@@ -268,7 +268,7 @@ export default function EcommerceStorefrontPage() {
                             transition={{ delay: 0.1 }}
                             className="text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl mb-10"
                         >
-                            This isn&apos;t a website template adapted for printing. It&apos;s a storefront architecture built inside a real apparel decoration operation — handling real customer orders every day. Every feature exists because real customers used them to place real orders.
+                            This isn&apos;t a website template adapted for printing. It&apos;s a storefront architecture built inside a real apparel decoration operation  - handling real customer orders every day. Every feature exists because real customers used them to place real orders.
                         </motion.p>
 
                         {/* Features grouped by workflow */}
@@ -279,7 +279,7 @@ export default function EcommerceStorefrontPage() {
                                     color: 'teal',
                                     items: [
                                         { icon: 'grid_view', title: 'Product catalog', desc: 'Browsable by category, brand, or decoration type with real product images and color swatches' },
-                                        { icon: 'view_comfy', title: 'Size/color configurator', desc: 'Customers select quantities per size per color in a grid layout — not one variant at a time' },
+                                        { icon: 'view_comfy', title: 'Size/color configurator', desc: 'Customers select quantities per size per color in a grid layout  - not one variant at a time' },
                                         { icon: 'upload_file', title: 'Artwork upload', desc: 'Drag and drop design files directly onto the order with placement selection' },
                                         { icon: 'payments', title: 'Volume pricing', desc: 'Prices update automatically based on quantity, showing per-piece cost and total' },
                                         { icon: 'person', title: 'Customer portal', desc: 'Order history, tracking, saved designs, and reorder capability' },
@@ -299,8 +299,8 @@ export default function EcommerceStorefrontPage() {
                                     color: 'indigo',
                                     items: [
                                         { icon: 'trending_up', title: 'SEO-ready pages', desc: 'Meta titles, descriptions, structured data, and clean URLs built in from day one' },
-                                        { icon: 'loyalty', title: 'Brand pages', desc: 'Dedicated pages for each blank apparel brand you carry — helps customers browse by brand' },
-                                        { icon: 'smartphone', title: 'Mobile optimization', desc: 'Fully responsive. Over 60% of your traffic is on mobile — the storefront works perfectly' },
+                                        { icon: 'loyalty', title: 'Brand pages', desc: 'Dedicated pages for each blank apparel brand you carry  - helps customers browse by brand' },
+                                        { icon: 'smartphone', title: 'Mobile optimization', desc: 'Fully responsive. Over 60% of your traffic is on mobile  - the storefront works perfectly' },
                                     ],
                                 },
                             ].map((group) => (
@@ -361,7 +361,7 @@ export default function EcommerceStorefrontPage() {
                             viewport={{ once: true, margin: '-60px' }}
                         >
                             {[
-                                { step: '01', title: 'Customer Orders', icon: 'shopping_cart', desc: 'Customer selects product, chooses colors and sizes, uploads artwork, submits payment — all on your website.' },
+                                { step: '01', title: 'Customer Orders', icon: 'shopping_cart', desc: 'Customer selects product, chooses colors and sizes, uploads artwork, submits payment  - all on your website.' },
                                 { step: '02', title: 'Order Appears in FileMaker', icon: 'sync', desc: 'Automatically. No email forwarding, no copy-pasting, no manual entry. Every detail transfers.' },
                                 { step: '03', title: 'Inventory Checked', icon: 'inventory_2', desc: 'The system verifies blank availability. If stock is low, a purchase order is triggered automatically.' },
                                 { step: '04', title: 'Production Scheduled', icon: 'precision_manufacturing', desc: 'Decoration tasks are created based on order specs. Your team sees exactly what needs to happen.' },
@@ -392,7 +392,7 @@ export default function EcommerceStorefrontPage() {
                             viewport={{ once: true }}
                             className="text-secondary-text dark:text-gray-400 text-sm leading-relaxed mt-8 text-center max-w-2xl mx-auto"
                         >
-                            Most print shop websites stop at step 1. Your customers place an order, then someone re-enters data, checks inventory manually, and emails the production floor. That&apos;s not an ecommerce system — that&apos;s a contact form with extra steps.
+                            Most print shop websites stop at step 1. Your customers place an order, then someone re-enters data, checks inventory manually, and emails the production floor. That&apos;s not an ecommerce system  - that&apos;s a contact form with extra steps.
                         </motion.p>
                         <motion.p
                             initial={{ opacity: 0 }}
@@ -426,15 +426,15 @@ export default function EcommerceStorefrontPage() {
                                 viewport={{ once: true }}
                                 className="p-6 rounded-2xl border border-rose-200 dark:border-rose-900/40 bg-rose-50/30 dark:bg-rose-950/10"
                             >
-                                <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-4">Before — No Online Ordering</h3>
+                                <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-4">Before  - No Online Ordering</h3>
                                 <ul className="space-y-3">
                                     {[
                                         'Customers call or email to place orders',
                                         'Artwork collected via email, often lost',
                                         'Orders re-entered manually into production',
-                                        'No product catalog — customers don\'t know what you carry',
+                                        'No product catalog  - customers don\'t know what you carry',
                                         'Website is a brochure that generates no revenue',
-                                        'Mobile visitors bounce — site doesn\'t work on phones',
+                                        'Mobile visitors bounce  - site doesn\'t work on phones',
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-start gap-2 text-sm text-secondary-text dark:text-gray-400">
                                             <span className="material-symbols-outlined text-rose-500 text-sm mt-0.5 flex-shrink-0">close</span>
@@ -449,15 +449,15 @@ export default function EcommerceStorefrontPage() {
                                 viewport={{ once: true }}
                                 className="p-6 rounded-2xl border border-green-200 dark:border-green-900/40 bg-green-50/30 dark:bg-green-950/10"
                             >
-                                <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wider mb-4">After — Print Shop Ecommerce Website</h3>
+                                <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wider mb-4">After  - Print Shop Ecommerce Website</h3>
                                 <ul className="space-y-3">
                                     {[
-                                        'Customers browse, configure, upload, and order — 24/7',
+                                        'Customers browse, configure, upload, and order  - 24/7',
                                         'Artwork attached directly to order with placement',
                                         'Orders flow into production system automatically',
                                         'Full product catalog with swatches, sizing, and pricing',
                                         'Storefront designed to convert visitors into customers',
-                                        'Mobile-optimized — works perfectly on every device',
+                                        'Mobile-optimized  - works perfectly on every device',
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-start gap-2 text-sm text-secondary-text dark:text-gray-400">
                                             <span className="material-symbols-outlined text-green-500 text-sm mt-0.5 flex-shrink-0">check</span>
@@ -489,10 +489,10 @@ export default function EcommerceStorefrontPage() {
                             viewport={{ once: true }}
                         >
                             {[
-                                { title: 'Print shops with no online ordering', desc: "You rely on phone calls, emails, and walk-ins. You're losing customers who expect to order online — especially younger buyers and B2B clients.", icon: 'storefront' },
+                                { title: 'Print shops with no online ordering', desc: "You rely on phone calls, emails, and walk-ins. You're losing customers who expect to order online  - especially younger buyers and B2B clients.", icon: 'storefront' },
                                 { title: 'Shops with a website that doesn\'t generate orders', desc: "You have a website. It looks fine. But it has no product catalog, can't handle artwork uploads, and has no checkout. It's a digital business card.", icon: 'web_asset_off' },
                                 { title: 'Decorators who want website + operations connected', desc: "You're tired of re-entering online orders into your system manually. You want a storefront that feeds directly into production.", icon: 'hub' },
-                                { title: 'Shops selling to both retail and wholesale', desc: 'You need different pricing for different customer types, volume discounts, and B2B account management — all from one storefront.', icon: 'groups' },
+                                { title: 'Shops selling to both retail and wholesale', desc: 'You need different pricing for different customer types, volume discounts, and B2B account management  - all from one storefront.', icon: 'groups' },
                             ].map((item) => (
                                 <motion.div
                                     key={item.title}
@@ -561,7 +561,7 @@ export default function EcommerceStorefrontPage() {
                             transition={{ delay: 0.1 }}
                             className="text-lg text-secondary-text dark:text-gray-400 leading-relaxed mb-8 max-w-2xl mx-auto"
                         >
-                            This isn&apos;t a mockup. Customers use it to browse products, upload artwork, and place orders — every day. Book a walkthrough and see how it works for your business.
+                            This isn&apos;t a mockup. Customers use it to browse products, upload artwork, and place orders  - every day. Book a walkthrough and see how it works for your business.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
@@ -574,7 +574,7 @@ export default function EcommerceStorefrontPage() {
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Demo — Watch How Orders Flow Into the System
+                                Book a Demo  - Watch How Orders Flow Into the System
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                         </motion.div>

@@ -324,10 +324,10 @@ export default function ContactSection() {
                                                             className="w-full min-h-[48px] bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white outline-none appearance-none cursor-pointer"
                                                         >
                                                             <option value="" disabled>Select team size</option>
-                                                            <option value="1-5">1–5 employees</option>
-                                                            <option value="6-15">6–15 employees</option>
-                                                            <option value="16-50">16–50 employees</option>
-                                                            <option value="51-200">51–200 employees</option>
+                                                            <option value="1-5">1-5 employees</option>
+                                                            <option value="6-15">6-15 employees</option>
+                                                            <option value="16-50">16-50 employees</option>
+                                                            <option value="51-200">51-200 employees</option>
                                                             <option value="200+">200+ employees</option>
                                                         </select>
                                                     </div>

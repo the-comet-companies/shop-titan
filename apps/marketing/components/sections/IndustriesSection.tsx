@@ -203,7 +203,7 @@ export default function IndustriesSection() {
 
                 {/* Marquee */}
                 <div className="relative overflow-hidden pb-8">
-                    {/* Edge fades — must match section bg */}
+                    {/* Edge fades  - must match section bg */}
                     <div className="absolute left-0 inset-y-0 w-24 md:w-48 bg-gradient-to-r from-background-light to-transparent z-10 pointer-events-none" />
                     <div className="absolute right-0 inset-y-0 w-24 md:w-48 bg-gradient-to-l from-background-light to-transparent z-10 pointer-events-none" />
 

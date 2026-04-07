@@ -167,7 +167,7 @@ export default function ComingSoonSection() {
               {/* Description */}
               <p className="text-secondary-text text-sm leading-relaxed">{card.description}</p>
 
-              {/* Logos — carousel or static pills */}
+              {/* Logos  - carousel or static pills */}
               {card.carousel ? (
                 <IntegrationCarousel logos={card.logos} />
               ) : card.logos.length > 0 ? (

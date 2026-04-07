@@ -9,19 +9,19 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 const faqs = [
     {
         question: 'How much does a FileMaker developer cost?',
-        answer: "Typical FileMaker developers charge $100–$200/hour. A full system build can cost $50,000–$150,000+ depending on complexity. Shop Titan charges a flat monthly fee that includes the system, hosting, support, and updates — no hourly billing, no scope creep.",
+        answer: "Typical FileMaker developers charge $100-$200/hour. A full system build can cost $50,000-$150,000+ depending on complexity. Shop Titan charges a flat monthly fee that includes the system, hosting, support, and updates  - no hourly billing, no scope creep.",
     },
     {
         question: 'Should I hire a FileMaker developer or deploy a pre-built system?',
-        answer: "If your business runs standard operational workflows — quotes, orders, inventory, production, customers — a pre-built system is faster, cheaper, and lower risk. If you need something genuinely unique that no existing system covers, a custom developer or FileMaker consultant may be the right choice.",
+        answer: "If your business runs standard operational workflows  - quotes, orders, inventory, production, customers  - a pre-built system is faster, cheaper, and lower risk. If you need something genuinely unique that no existing system covers, a custom developer or FileMaker consultant may be the right choice.",
     },
     {
         question: 'How long does custom FileMaker development take?',
-        answer: 'A typical custom build takes 6–12 months for a full operations system. Shop Titan deploys in 2–4 weeks because the system is already built and tested in real operations.',
+        answer: 'A typical custom build takes 6-12 months for a full operations system. Shop Titan deploys in 2-4 weeks because the system is already built and tested in real operations.',
     },
     {
         question: "What's the difference between a FileMaker developer and a FileMaker consultant?",
-        answer: 'A FileMaker developer builds systems. A FileMaker consultant advises on strategy, evaluates existing systems, and recommends solutions. Shop Titan combines both — we consult on your workflow and deploy a proven system.',
+        answer: 'A FileMaker developer builds systems. A FileMaker consultant advises on strategy, evaluates existing systems, and recommends solutions. Shop Titan combines both  - we consult on your workflow and deploy a proven system.',
     },
     {
         question: 'Can FileMaker connect to my ecommerce website?',
@@ -29,7 +29,7 @@ const faqs = [
     },
     {
         question: 'Is FileMaker still a good choice in 2025?',
-        answer: "Yes. FileMaker (by Claris, an Apple subsidiary) has been powering businesses for over 30 years. It's flexible, runs on Mac, PC, and mobile, and is actively developed. It's not a legacy tool — it's a modern platform for custom business systems.",
+        answer: "Yes. FileMaker (by Claris, an Apple subsidiary) has been powering businesses for over 30 years. It's flexible, runs on Mac, PC, and mobile, and is actively developed. It's not a legacy tool  - it's a modern platform for custom business systems.",
     },
     {
         question: 'What if I already have a FileMaker system?',
@@ -48,7 +48,7 @@ const faqs = [
 const faqSchema = generateFAQSchema(faqs);
 const serviceSchema = generateServiceSchema({
     name: 'FileMaker Developer & System Deployment',
-    description: 'Pre-built FileMaker systems deployed in 2–4 weeks. Alternative to hiring a FileMaker developer for custom builds. Proven in real operations.',
+    description: 'Pre-built FileMaker systems deployed in 2-4 weeks. Alternative to hiring a FileMaker developer for custom builds. Proven in real operations.',
     url: 'https://shoptitan.app/hire/filemaker-developer',
 });
 const breadcrumbSchema = generateBreadcrumbSchema([
@@ -92,7 +92,7 @@ export default function HireFileMakerDeveloperPage() {
                             transition={{ duration: 0.5, delay: 0.1 }}
                             className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
                         >
-                            Hire a FileMaker Developer — Or Deploy a System That&apos;s Already Built
+                            Hire a FileMaker Developer  - Or Deploy a System That&apos;s Already Built
                         </motion.h1>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
@@ -101,10 +101,10 @@ export default function HireFileMakerDeveloperPage() {
                             className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8 space-y-4"
                         >
                             <p>
-                                You&apos;re looking to hire a FileMaker developer because you need a system. But before you spend 6–12 months and $50K+ building one from scratch, consider this: the system you need might already exist. We deploy pre-built FileMaker systems used in real business operations — customized to your workflow — in 2–4 weeks.
+                                You&apos;re looking to hire a FileMaker developer because you need a system. But before you spend 6-12 months and $50K+ building one from scratch, consider this: the system you need might already exist. We deploy pre-built FileMaker systems used in real business operations  - customized to your workflow  - in 2-4 weeks.
                             </p>
                             <p className="text-base text-secondary-text/80 dark:text-gray-500">
-                                If you&apos;re searching to hire a FileMaker developer, you&apos;re likely trying to build a system for your business. This page shows a faster alternative — deploying a proven FileMaker system instead of building one from scratch.
+                                If you&apos;re searching to hire a FileMaker developer, you&apos;re likely trying to build a system for your business. This page shows a faster alternative  - deploying a proven FileMaker system instead of building one from scratch.
                             </p>
                         </motion.div>
                         <motion.div
@@ -117,7 +117,7 @@ export default function HireFileMakerDeveloperPage() {
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Consultation — See If You Even Need a Developer
+                                Book a Consultation  - See If You Even Need a Developer
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                         </motion.div>
@@ -146,7 +146,7 @@ export default function HireFileMakerDeveloperPage() {
                             className="text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl space-y-4 mb-10"
                         >
                             <p className="text-lg">
-                                A FileMaker developer — sometimes called a Claris FileMaker developer or FileMaker programmer — builds custom business applications on the FileMaker platform. They design databases, create user interfaces, write scripts for automation, and build workflows that connect different parts of a business.
+                                A FileMaker developer  - sometimes called a Claris FileMaker developer or FileMaker programmer  - builds custom business applications on the FileMaker platform. They design databases, create user interfaces, write scripts for automation, and build workflows that connect different parts of a business.
                             </p>
                             <p>A FileMaker consultant may also audit existing systems, recommend improvements, or integrate FileMaker with other tools.</p>
                         </motion.div>
@@ -185,7 +185,7 @@ export default function HireFileMakerDeveloperPage() {
                             viewport={{ once: true }}
                             className="text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl"
                         >
-                            But here&apos;s what most businesses discover after hiring a FileMaker developer: <strong className="text-charcoal dark:text-white">they didn&apos;t just need a developer — they needed a working system.</strong> The development is the means, not the end. And if the system already exists, the development is unnecessary.
+                            But here&apos;s what most businesses discover after hiring a FileMaker developer: <strong className="text-charcoal dark:text-white">they didn&apos;t just need a developer  - they needed a working system.</strong> The development is the means, not the end. And if the system already exists, the development is unnecessary.
                         </motion.p>
                         <motion.p
                             initial={{ opacity: 0 }}
@@ -229,11 +229,11 @@ export default function HireFileMakerDeveloperPage() {
                             viewport={{ once: true, margin: '-80px' }}
                         >
                             {[
-                                { num: '01', title: 'You describe what you need. They build what they heard.', desc: "The first version never matches. Not because the developer is bad — but because nobody understands a system until they use it. So you revise. And revise." },
-                                { num: '02', title: 'The project takes longer than anyone expected.', desc: "Original estimate: 3 months. Six months in, you're still adding features — inventory, purchase orders, email templates. Each one adds weeks and cost." },
-                                { num: '03', title: "You're paying someone to figure out your business.", desc: "A FileMaker developer for hire builds databases. Knowing what a print shop needs — how quotes connect to orders, how pricing matrices work — takes years of operational experience." },
+                                { num: '01', title: 'You describe what you need. They build what they heard.', desc: "The first version never matches. Not because the developer is bad  - but because nobody understands a system until they use it. So you revise. And revise." },
+                                { num: '02', title: 'The project takes longer than anyone expected.', desc: "Original estimate: 3 months. Six months in, you're still adding features  - inventory, purchase orders, email templates. Each one adds weeks and cost." },
+                                { num: '03', title: "You're paying someone to figure out your business.", desc: "A FileMaker developer for hire builds databases. Knowing what a print shop needs  - how quotes connect to orders, how pricing matrices work  - takes years of operational experience." },
                                 { num: '04', title: 'When the project ends, the developer moves on.', desc: "Need changes? They're on another project. Something breaks? You're waiting. New feature? New invoice, new timeline." },
-                                { num: '05', title: "You're the first user of an unproven system.", desc: "Every bug, every edge case, every workflow gap — you discover them in production. With real customers and real orders. That's beta testing with your business." },
+                                { num: '05', title: "You're the first user of an unproven system.", desc: "Every bug, every edge case, every workflow gap  - you discover them in production. With real customers and real orders. That's beta testing with your business." },
                             ].map((pain) => (
                                 <motion.div
                                     key={pain.num}
@@ -273,7 +273,7 @@ export default function HireFileMakerDeveloperPage() {
                                 Here&apos;s what most people searching &quot;hire FileMaker developer&quot; actually need: a working system. Not a developer. Not a project. A system that handles their operations today.
                             </p>
                             <p>
-                                We built a complete FileMaker system inside a real business operation — handling daily orders, managing thousands of SKUs, coordinating production across screen printing, embroidery, DTG, and sewing. Instead of hiring a Claris FileMaker developer to build from scratch, you deploy ours.
+                                We built a complete FileMaker system inside a real business operation  - handling daily orders, managing thousands of SKUs, coordinating production across screen printing, embroidery, DTG, and sewing. Instead of hiring a Claris FileMaker developer to build from scratch, you deploy ours.
                             </p>
                         </motion.div>
 
@@ -293,8 +293,8 @@ export default function HireFileMakerDeveloperPage() {
                                 </thead>
                                 <tbody>
                                     {[
-                                        ['Timeline', '6–12 months', '2–4 weeks'],
-                                        ['Cost', '$50,000–$150,000+', 'Flat monthly fee'],
+                                        ['Timeline', '6-12 months', '2-4 weeks'],
+                                        ['Cost', '$50,000-$150,000+', 'Flat monthly fee'],
                                         ['Risk', 'You\'re the test case', 'Tested in real operations'],
                                         ['Scope', 'Discover needs along the way', 'Built from real needs'],
                                         ['Support', 'Developer availability varies', 'Ongoing via Slack'],
@@ -331,10 +331,10 @@ export default function HireFileMakerDeveloperPage() {
                             viewport={{ once: true }}
                         >
                             {[
-                                { icon: 'verified', title: 'A proven system — not a project', desc: "You're not hiring a FileMaker developer to start a build. You're getting a complete platform — quotes, orders, inventory, production, reporting. All built, tested, connected." },
-                                { icon: 'tune', title: 'Customization — not one-size-fits-all', desc: 'Your pricing matrices configured. Your decoration types set up. Your email templates branded. The system fits your business because we configure it to your business.' },
-                                { icon: 'support_agent', title: 'Ongoing support — not a handoff', desc: "Direct Slack access. Questions answered. Issues resolved. Updates deployed. This isn't a project that ends — it's a system that evolves." },
-                                { icon: 'school', title: 'Training — not documentation', desc: "We train your team on every module. Designed for shop floor staff and office managers — not for people who know FileMaker." },
+                                { icon: 'verified', title: 'A proven system  - not a project', desc: "You're not hiring a FileMaker developer to start a build. You're getting a complete platform  - quotes, orders, inventory, production, reporting. All built, tested, connected." },
+                                { icon: 'tune', title: 'Customization  - not one-size-fits-all', desc: 'Your pricing matrices configured. Your decoration types set up. Your email templates branded. The system fits your business because we configure it to your business.' },
+                                { icon: 'support_agent', title: 'Ongoing support  - not a handoff', desc: "Direct Slack access. Questions answered. Issues resolved. Updates deployed. This isn't a project that ends  - it's a system that evolves." },
+                                { icon: 'school', title: 'Training  - not documentation', desc: "We train your team on every module. Designed for shop floor staff and office managers  - not for people who know FileMaker." },
                             ].map((item) => (
                                 <motion.div
                                     key={item.title}
@@ -381,7 +381,7 @@ export default function HireFileMakerDeveloperPage() {
                                 viewport={{ once: true }}
                                 className="p-6 rounded-2xl border border-rose-200 dark:border-rose-900/40 bg-rose-50/30 dark:bg-rose-950/10"
                             >
-                                <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-4">The Typical Path — Hiring a Developer</h3>
+                                <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-4">The Typical Path  - Hiring a Developer</h3>
                                 <ul className="space-y-3">
                                     {[
                                         'Find a FileMaker developer on Upwork or referral',
@@ -463,7 +463,7 @@ export default function HireFileMakerDeveloperPage() {
                             viewport={{ once: true }}
                         >
                             {[
-                                { title: 'You need something truly unique.', desc: "If your business has workflows that no existing system covers — not just customization, but fundamentally different logic — a custom build might be necessary. This is rare." },
+                                { title: 'You need something truly unique.', desc: "If your business has workflows that no existing system covers  - not just customization, but fundamentally different logic  - a custom build might be necessary. This is rare." },
                                 { title: 'You have an existing FileMaker system that needs modifications.', desc: 'If you have a working database and need targeted improvements, a developer can make changes without replacing the system.' },
                                 { title: "You're building for a non-standard industry.", desc: 'Our system is built for print shops and apparel decorators. If you\'re in a completely different industry, a custom FileMaker developer may be a better fit.' },
                             ].map((item) => (
@@ -508,10 +508,10 @@ export default function HireFileMakerDeveloperPage() {
                             viewport={{ once: true }}
                         >
                             {[
-                                { title: 'Demo', desc: 'We show you the working system — quotes, orders, inventory, production. Real workflows, not slides.', icon: 'play_circle' },
+                                { title: 'Demo', desc: 'We show you the working system  - quotes, orders, inventory, production. Real workflows, not slides.', icon: 'play_circle' },
                                 { title: 'Workflow Discussion', desc: 'You tell us how your shop operates. Decoration types, pricing, team, pain points.', icon: 'forum' },
                                 { title: 'System Fit Check', desc: "We tell you honestly if our system fits. If it doesn't, we'll say so.", icon: 'check_circle' },
-                                { title: 'Setup Timeline', desc: 'If it fits: configuration, data migration, training, go-live. Most shops: 2–4 weeks.', icon: 'calendar_month' },
+                                { title: 'Setup Timeline', desc: 'If it fits: configuration, data migration, training, go-live. Most shops: 2-4 weeks.', icon: 'calendar_month' },
                             ].map((s) => (
                                 <motion.div
                                     key={s.title}
@@ -549,7 +549,7 @@ export default function HireFileMakerDeveloperPage() {
                         >
                             {[
                                 { title: 'Print shops searching for a FileMaker developer', desc: "You need a system for quotes, orders, and inventory. Before you start a build, see the system that's already handling these workflows.", icon: 'search' },
-                                { title: 'Businesses burned by a custom build', desc: "Project went over budget, over timeline, or the developer disappeared. You need something proven — not another experiment.", icon: 'warning' },
+                                { title: 'Businesses burned by a custom build', desc: "Project went over budget, over timeline, or the developer disappeared. You need something proven  - not another experiment.", icon: 'warning' },
                                 { title: 'Shops evaluating FileMaker vs other platforms', desc: "Considering FileMaker but don't want to bet on a developer? See a working system before deciding.", icon: 'compare' },
                                 { title: 'Owners who need a system now', desc: "Operations are breaking. You can't wait 6 months for a custom build. You need a working system in weeks.", icon: 'speed' },
                             ].map((item) => (
@@ -633,7 +633,7 @@ export default function HireFileMakerDeveloperPage() {
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Consultation — See If You Even Need a Developer
+                                Book a Consultation  - See If You Even Need a Developer
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                         </motion.div>

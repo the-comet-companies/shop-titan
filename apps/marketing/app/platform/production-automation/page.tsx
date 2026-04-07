@@ -9,15 +9,15 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 const faqs = [
     {
         question: 'How do print shops track production?',
-        answer: 'Print shops track production using a system that assigns jobs to departments, updates status in real time, and shows what is printing, what is queued, and what is at risk — replacing whiteboards and manual check-ins.',
+        answer: 'Print shops track production using a system that assigns jobs to departments, updates status in real time, and shows what is printing, what is queued, and what is at risk  - replacing whiteboards and manual check-ins.',
     },
     {
         question: 'What is print shop production scheduling?',
-        answer: 'Print shop production scheduling is the process of organizing jobs by priority, print method, and deadline — so your team knows exactly what to run next without asking a manager.',
+        answer: 'Print shop production scheduling is the process of organizing jobs by priority, print method, and deadline  - so your team knows exactly what to run next without asking a manager.',
     },
     {
         question: 'How do you manage rush orders in a print shop?',
-        answer: 'Rush orders are flagged in the system with a priority level. The production queue automatically adjusts — moving the rush job ahead while recalculating deadlines for other jobs so nothing is silently pushed late.',
+        answer: 'Rush orders are flagged in the system with a priority level. The production queue automatically adjusts  - moving the rush job ahead while recalculating deadlines for other jobs so nothing is silently pushed late.',
     },
     {
         question: 'What software do screen printers use for production management?',
@@ -25,19 +25,19 @@ const faqs = [
     },
     {
         question: 'Can a production system handle multiple print methods?',
-        answer: 'Yes. A print shop production system routes jobs to the correct department based on print method — screen printing, DTG, embroidery, or heat transfer — with each station seeing only their assigned work.',
+        answer: 'Yes. A print shop production system routes jobs to the correct department based on print method  - screen printing, DTG, embroidery, or heat transfer  - with each station seeing only their assigned work.',
     },
     {
         question: 'What is a job tracking system for print shops?',
-        answer: 'A job tracking system for print shops follows every order from intake through art approval, production, quality check, and shipping — giving real-time visibility into where every job stands without walking the floor.',
+        answer: 'A job tracking system for print shops follows every order from intake through art approval, production, quality check, and shipping  - giving real-time visibility into where every job stands without walking the floor.',
     },
     {
         question: 'How does production connect to inventory?',
-        answer: 'When a job enters production, the system checks that blanks are allocated and available. Inventory is deducted as production completes — so stock counts always reflect reality, not estimates.',
+        answer: 'When a job enters production, the system checks that blanks are allocated and available. Inventory is deducted as production completes  - so stock counts always reflect reality, not estimates.',
     },
     {
         question: 'How long does it take to set up a production system?',
-        answer: 'Production configuration is part of the overall Shop Titan deployment — typically 2–4 weeks. We map your departments, define workflows, configure task types, and train your team during onboarding.',
+        answer: 'Production configuration is part of the overall Shop Titan deployment  - typically 2-4 weeks. We map your departments, define workflows, configure task types, and train your team during onboarding.',
     },
 ];
 
@@ -88,7 +88,7 @@ export default function ProductionAutomationPage() {
                             transition={{ duration: 0.5, delay: 0.1 }}
                             className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
                         >
-                            Production Management for Print Shops — Track Jobs, Control Scheduling, Prevent Delays
+                            Production Management for Print Shops  - Track Jobs, Control Scheduling, Prevent Delays
                         </motion.h1>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
@@ -97,10 +97,10 @@ export default function ProductionAutomationPage() {
                             className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8 space-y-4"
                         >
                             <p>
-                                A print shop production management system that tracks every job from art approval to shipment. Know what&apos;s printing, what&apos;s next, and what&apos;s late — without walking the floor. Handle screen printing production tracking, rush orders, and multi-method routing in one connected system.
+                                A print shop production management system that tracks every job from art approval to shipment. Know what&apos;s printing, what&apos;s next, and what&apos;s late  - without walking the floor. Handle screen printing production tracking, rush orders, and multi-method routing in one connected system.
                             </p>
                             <p className="text-base text-secondary-text/80 dark:text-gray-500">
-                                Already running in production. Deploys in 2–4 weeks.
+                                Already running in production. Deploys in 2-4 weeks.
                             </p>
                         </motion.div>
                         <motion.div
@@ -113,7 +113,7 @@ export default function ProductionAutomationPage() {
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Demo — See Every Job Tracked From Order to Shipment
+                                Book a Demo  - See Every Job Tracked From Order to Shipment
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                         </motion.div>
@@ -142,7 +142,7 @@ export default function ProductionAutomationPage() {
                             className="text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl space-y-4 mb-10"
                         >
                             <p className="text-lg">
-                                Print shop production management is the process of tracking and controlling every job from art approval to shipment — including scheduling, task assignment, and real-time status updates across departments like screen printing, DTG, and embroidery.
+                                Print shop production management is the process of tracking and controlling every job from art approval to shipment  - including scheduling, task assignment, and real-time status updates across departments like screen printing, DTG, and embroidery.
                             </p>
                             <p>
                                 In simple terms, it replaces whiteboards, spreadsheets, and manual check-ins with a system that shows exactly what&apos;s in production, what&apos;s next, and what&apos;s at risk.
@@ -157,11 +157,11 @@ export default function ProductionAutomationPage() {
                             viewport={{ once: true, margin: '-80px' }}
                         >
                             {[
-                                { icon: 'dashboard', title: 'Real-time job board', desc: 'See every job\'s status — queued, in production, in QC, shipped — without asking anyone or walking the floor' },
+                                { icon: 'dashboard', title: 'Real-time job board', desc: 'See every job\'s status  - queued, in production, in QC, shipped  - without asking anyone or walking the floor' },
                                 { icon: 'schedule', title: 'Production scheduling', desc: 'Jobs organized by priority, deadline, and print method so your team knows exactly what runs next' },
-                                { icon: 'assignment_ind', title: 'Task assignment', desc: 'Each department sees only their work — screen printing, DTG, embroidery, finishing — with clear handoffs between stations' },
-                                { icon: 'priority_high', title: 'Rush order routing', desc: 'Rush jobs flagged and prioritized automatically — other deadlines recalculated so nothing is silently pushed late' },
-                                { icon: 'verified', title: 'Quality checkpoints', desc: 'Built-in QC gates ensure jobs are verified before moving to the next stage — catching errors before they ship' },
+                                { icon: 'assignment_ind', title: 'Task assignment', desc: 'Each department sees only their work  - screen printing, DTG, embroidery, finishing  - with clear handoffs between stations' },
+                                { icon: 'priority_high', title: 'Rush order routing', desc: 'Rush jobs flagged and prioritized automatically  - other deadlines recalculated so nothing is silently pushed late' },
+                                { icon: 'verified', title: 'Quality checkpoints', desc: 'Built-in QC gates ensure jobs are verified before moving to the next stage  - catching errors before they ship' },
                                 { icon: 'analytics', title: 'Throughput analytics', desc: 'Track jobs per day, bottleneck identification, on-time rates, and department performance over time' },
                             ].map((item) => (
                                 <motion.div
@@ -186,7 +186,7 @@ export default function ProductionAutomationPage() {
                             viewport={{ once: true }}
                             className="text-sm text-secondary-text dark:text-gray-400"
                         >
-                            Production works best when connected to your full system — see how it fits inside the{' '}
+                            Production works best when connected to your full system  - see how it fits inside the{' '}
                             <Link href="/platform/complete-system" className="text-primary hover:underline">complete print shop management system</Link>.
                             {' '}Powered by our{' '}
                             <Link href="/platform/filemaker-system" className="text-primary hover:underline">FileMaker system</Link>.
@@ -224,7 +224,7 @@ export default function ProductionAutomationPage() {
                         >
                             {[
                                 { num: '01', title: 'A job sits in art approval while production assumes it\'s ready.', desc: 'The press is set up, the blanks are pulled, but the art was never approved. Nobody checked. Now you\'re resetting for a different job and losing 45 minutes.' },
-                                { num: '02', title: 'The press operator asks "what\'s next?" and no one knows.', desc: 'There\'s a whiteboard, maybe a clipboard. But the priorities changed after lunch and nobody updated either one. The operator picks a job — it might be the wrong one.' },
+                                { num: '02', title: 'The press operator asks "what\'s next?" and no one knows.', desc: 'There\'s a whiteboard, maybe a clipboard. But the priorities changed after lunch and nobody updated either one. The operator picks a job  - it might be the wrong one.' },
                                 { num: '03', title: 'Rush orders push everything else behind without visibility.', desc: 'A rush job jumps the line. Three other deadlines slip. Nobody knows which customers are now at risk until someone calls asking where their order is.' },
                                 { num: '04', title: 'Jobs move between departments with no handoff.', desc: 'Screen printing finishes a job. It sits on a cart. Finishing doesn\'t know it\'s there. The customer calls on Friday asking for tracking. It hasn\'t shipped.' },
                                 { num: '05', title: 'You only find out a job is late after the customer complains.', desc: 'No dashboard. No alerts. No proactive visibility. By the time you know there\'s a problem, the customer already knows too.' },
@@ -254,7 +254,7 @@ export default function ProductionAutomationPage() {
                             viewport={{ once: true }}
                             className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-12"
                         >
-                            Print Shop Production Scheduling &amp; Job Tracking — Organized by Workflow
+                            Print Shop Production Scheduling &amp; Job Tracking  - Organized by Workflow
                         </motion.h2>
 
                         <div className="space-y-12">
@@ -272,8 +272,8 @@ export default function ProductionAutomationPage() {
                                 </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {[
-                                        { title: 'Real-time job board', desc: 'Every job visible by status — queued, in production, in QC, ready to ship. No walking the floor to find out what\'s happening.' },
-                                        { title: 'Status tracking by department', desc: 'Screen printing, DTG, embroidery, finishing — each department\'s queue visible in one view. Know where every job is at any moment.' },
+                                        { title: 'Real-time job board', desc: 'Every job visible by status  - queued, in production, in QC, ready to ship. No walking the floor to find out what\'s happening.' },
+                                        { title: 'Status tracking by department', desc: 'Screen printing, DTG, embroidery, finishing  - each department\'s queue visible in one view. Know where every job is at any moment.' },
                                     ].map((f) => (
                                         <div key={f.title} className="p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900">
                                             <p className="text-sm font-bold text-charcoal dark:text-white mb-1">{f.title}</p>
@@ -300,7 +300,7 @@ export default function ProductionAutomationPage() {
                                 </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {[
-                                        { title: 'Queue management', desc: 'Jobs ordered by priority and deadline. Your team always knows what to run next — no guessing, no asking the owner.' },
+                                        { title: 'Queue management', desc: 'Jobs ordered by priority and deadline. Your team always knows what to run next  - no guessing, no asking the owner.' },
                                         { title: 'Priority routing for rush orders', desc: 'Rush jobs flagged and moved to the front. The system recalculates affected deadlines so you know what else is at risk.' },
                                     ].map((f) => (
                                         <div key={f.title} className="p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900">
@@ -330,8 +330,8 @@ export default function ProductionAutomationPage() {
                                     {[
                                         { title: 'Task assignment by department', desc: 'Each station sees only their assigned work. Screen printing doesn\'t see embroidery jobs. Clear ownership, clean handoffs.' },
                                         { title: 'Art approval workflow', desc: 'Jobs can\'t enter production until art is approved. No more setting up presses for unapproved designs.' },
-                                        { title: 'Quality checkpoints', desc: 'Built-in QC gates between stages. Jobs are verified before moving forward — catching errors before they ship to customers.' },
-                                        { title: 'Multi-method routing', desc: 'Screen printing, DTG, embroidery, heat transfer — jobs routed to the correct department based on method. One system, all methods.' },
+                                        { title: 'Quality checkpoints', desc: 'Built-in QC gates between stages. Jobs are verified before moving forward  - catching errors before they ship to customers.' },
+                                        { title: 'Multi-method routing', desc: 'Screen printing, DTG, embroidery, heat transfer  - jobs routed to the correct department based on method. One system, all methods.' },
                                     ].map((f) => (
                                         <div key={f.title} className="p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900">
                                             <p className="text-sm font-bold text-charcoal dark:text-white mb-1">{f.title}</p>
@@ -415,14 +415,14 @@ export default function ProductionAutomationPage() {
                                 {
                                     icon: 'language',
                                     title: 'Production → Website',
-                                    desc: 'Real-time order status visible to customers on your storefront. They see "In Production" or "Shipped" — without calling to ask.',
+                                    desc: 'Real-time order status visible to customers on your storefront. They see "In Production" or "Shipped"  - without calling to ask.',
                                     link: '/platform/ecommerce-storefront',
                                     linkText: 'See the customer-facing storefront',
                                 },
                                 {
                                     icon: 'receipt_long',
                                     title: 'Production → Invoicing',
-                                    desc: 'Completed jobs trigger invoicing automatically. No manual data entry. The invoice matches the order — quantities, pricing, and all.',
+                                    desc: 'Completed jobs trigger invoicing automatically. No manual data entry. The invoice matches the order  - quantities, pricing, and all.',
                                     link: '/platform/filemaker-system',
                                     linkText: 'See the FileMaker system behind it',
                                 },
@@ -476,7 +476,7 @@ export default function ProductionAutomationPage() {
                                 viewport={{ once: true }}
                                 className="p-6 rounded-2xl border border-rose-200 dark:border-rose-900/40 bg-rose-50/30 dark:bg-rose-950/10"
                             >
-                                <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-4">Before — Manual Production Tracking</h3>
+                                <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-4">Before  - Manual Production Tracking</h3>
                                 <ul className="space-y-3">
                                     {[
                                         'Jobs tracked on whiteboards that nobody updates',
@@ -499,13 +499,13 @@ export default function ProductionAutomationPage() {
                                 viewport={{ once: true }}
                                 className="p-6 rounded-2xl border border-green-200 dark:border-green-900/40 bg-green-50/30 dark:bg-green-950/10"
                             >
-                                <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wider mb-4">After — Job Tracking System for Print Shops</h3>
+                                <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wider mb-4">After  - Job Tracking System for Print Shops</h3>
                                 <ul className="space-y-3">
                                     {[
                                         'Real-time job board with status by department',
                                         'Art approval gates prevent unapproved jobs from printing',
                                         'Rush orders reprioritized with deadline impact visible',
-                                        'Each station sees only their queue — clear handoffs',
+                                        'Each station sees only their queue  - clear handoffs',
                                         'At-risk jobs flagged before deadlines are missed',
                                         'Throughput and bottleneck data for continuous improvement',
                                     ].map((item, i) => (
@@ -539,10 +539,10 @@ export default function ProductionAutomationPage() {
                             viewport={{ once: true, margin: '-60px' }}
                         >
                             {[
-                                { step: '01', title: 'Production Setup', desc: 'Define your departments — screen printing, DTG, embroidery, finishing, shipping. Each gets its own queue and task types.', icon: 'settings' },
-                                { step: '02', title: 'Workflow Mapping', desc: 'Map how jobs move through your shop — from order intake through art, production, QC, and shipping. Define handoff rules.', icon: 'route' },
-                                { step: '03', title: 'System Configuration', desc: 'Set up automation rules — rush order routing, priority logic, QC gates, and status notifications across departments.', icon: 'tune' },
-                                { step: '04', title: 'Team Training', desc: 'Each department learns their interface — how to receive tasks, update status, flag issues, and hand off to the next station.', icon: 'school' },
+                                { step: '01', title: 'Production Setup', desc: 'Define your departments  - screen printing, DTG, embroidery, finishing, shipping. Each gets its own queue and task types.', icon: 'settings' },
+                                { step: '02', title: 'Workflow Mapping', desc: 'Map how jobs move through your shop  - from order intake through art, production, QC, and shipping. Define handoff rules.', icon: 'route' },
+                                { step: '03', title: 'System Configuration', desc: 'Set up automation rules  - rush order routing, priority logic, QC gates, and status notifications across departments.', icon: 'tune' },
+                                { step: '04', title: 'Team Training', desc: 'Each department learns their interface  - how to receive tasks, update status, flag issues, and hand off to the next station.', icon: 'school' },
                                 { step: '05', title: 'Go Live', desc: 'Real production running through the system. Live support during the transition. Your team sees what\'s printing, what\'s next, and what\'s at risk.', icon: 'rocket_launch' },
                             ].map((s) => (
                                 <motion.div
@@ -612,7 +612,7 @@ export default function ProductionAutomationPage() {
                             transition={{ delay: 0.1 }}
                             className="text-secondary-text dark:text-gray-400 mb-8 max-w-2xl mx-auto"
                         >
-                            Production management is one module inside Shop Titan&apos;s connected platform. Orders, inventory, production, and your website — all in one system.
+                            Production management is one module inside Shop Titan&apos;s connected platform. Orders, inventory, production, and your website  - all in one system.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}

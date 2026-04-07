@@ -60,7 +60,7 @@ const painPointScenes: PainPointScene[] = [
         id: "stakes",
         title: "Every Week You Wait...",
         subtitle: "THE RISK",
-        description: "Another missed deadline. Another manual error. Another dollar left on the floor. The margin leaks are silent — until they're not. Your competitors are already systematizing.",
+        description: "Another missed deadline. Another manual error. Another dollar left on the floor. The margin leaks are silent  - until they're not. Your competitors are already systematizing.",
         color: "#f97316",
         particleColor: "#f97316",
         highlightWord: "COST",

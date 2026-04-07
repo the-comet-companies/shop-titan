@@ -11,7 +11,7 @@ export default function BrowserFrame({ children, className, url = "app.shoptitan
         <div className={cn("rounded-xl overflow-hidden border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-900 shadow-2xl", className)}>
             {/* Frame Header */}
             <div className="flex items-center gap-4 px-4 py-3 border-b border-structural-border dark:border-gray-800 bg-background-light dark:bg-gray-900/50">
-                {/* Signal bars — unique production-themed window control replacement */}
+                {/* Signal bars  - unique production-themed window control replacement */}
                 <div className="flex items-end gap-[3px]">
                     <div className="w-[3px] h-[8px] rounded-full bg-gray-300 dark:bg-gray-600" />
                     <div className="w-[3px] h-[11px] rounded-full bg-gray-300 dark:bg-gray-600" />

@@ -9,7 +9,7 @@ import { motion, useReducedMotion, useAnimationFrame } from 'framer-motion';
 const HUB = { x: 840, y: 340 };
 
 // Mobile hub: lower-right corner, clear of all text and buttons.
-// On 375×812 mobile the visible SVG x-range ≈ 512–927; y=580 is below the CTA buttons.
+// On 375×812 mobile the visible SVG x-range ≈ 512-927; y=580 is below the CTA buttons.
 const MOBILE_HUB = { x: 760, y: 560 };
 
 type HubPos = typeof HUB;
@@ -34,7 +34,7 @@ function ctrlPt(x1: number, y1: number, x2: number, y2: number) {
 }
 
 // pathD draws hub→node, terminating at the pill's edge (not the center)
-const PILL_EDGE_OFFSET = 26; // ≈ H/2 + 2px buffer — stops line at pill border
+const PILL_EDGE_OFFSET = 26; // ≈ H/2 + 2px buffer  - stops line at pill border
 
 function pathD(node: NodeDef, hub: HubPos) {
   // Direction vector from hub to node
@@ -59,7 +59,7 @@ interface ParticleProps {
 function Particle({ pathId, duration, startOffset }: ParticleProps) {
   const circleRef = useRef<SVGCircleElement>(null);
   const startTimeRef = useRef<number | null>(null);
-  // Cache total length — getTotalLength() triggers layout recalc if called every frame
+  // Cache total length  - getTotalLength() triggers layout recalc if called every frame
   const totalLengthRef = useRef<number | null>(null);
 
   useAnimationFrame((time) => {
@@ -110,7 +110,7 @@ function NetworkNode({
   const H = 48;
   const particleCount = isMobile ? 1 : 2;
 
-  // Always use desktop coordinates — mobile renders Hub-only, no NetworkNodes
+  // Always use desktop coordinates  - mobile renders Hub-only, no NetworkNodes
   const nx = node.x;
   const ny = node.y;
 
@@ -130,7 +130,7 @@ function NetworkNode({
         transition={{ duration: 0.7, delay: 0.3 + index * 1.1, ease: 'easeOut' }}
       />
 
-      {/* Particles travel from node to hub — only when motion is allowed */}
+      {/* Particles travel from node to hub  - only when motion is allowed */}
       {!prefersReduced && Array.from({ length: particleCount }, (_, i) => (
         // composite key prevents React reusing state across nodes
         <Particle
@@ -192,7 +192,7 @@ function NetworkNode({
 function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: HubPos }) {
   return (
     <g>
-      {/* Pulse rings — 3 ripples, start after all nodes appear (~5.8s), then repeat every 3.5s */}
+      {/* Pulse rings  - 3 ripples, start after all nodes appear (~5.8s), then repeat every 3.5s */}
       {[5.8, 7.0, 8.2].map((delay, i) => (
         <motion.circle
           key={i}
@@ -207,9 +207,9 @@ function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: Hub
         />
       ))}
 
-      {/* Hub entrance — inside-out: core pops first, outer rings expand after */}
+      {/* Hub entrance  - inside-out: core pops first, outer rings expand after */}
 
-      {/* Entrance burst — single pulse fires once hub appears, bridges gap to repeating pulses */}
+      {/* Entrance burst  - single pulse fires once hub appears, bridges gap to repeating pulses */}
       {!prefersReduced && (
         <motion.circle
           cx={pos.x} cy={pos.y} r={42}
@@ -223,7 +223,7 @@ function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: Hub
         />
       )}
 
-      {/* Inner dot — springs in first with bigger bounce, then breathes continuously */}
+      {/* Inner dot  - springs in first with bigger bounce, then breathes continuously */}
       <motion.circle cx={pos.x} cy={pos.y} r={8} fill="#0066CC" fillOpacity={0.80}
         initial={{ scale: 0, opacity: 0 }}
         animate={prefersReduced
@@ -242,7 +242,7 @@ function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: Hub
         />
       )}
 
-      {/* Mid rings — expand outward after core */}
+      {/* Mid rings  - expand outward after core */}
       <motion.circle cx={pos.x} cy={pos.y} r={16} fill="#0066CC" fillOpacity={0.20}
         initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 180, damping: 14, delay: 0.3 }}
@@ -265,7 +265,7 @@ function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: Hub
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function HeroBackground() {
-  // null before hook resolves — treated as falsy (animate by default)
+  // null before hook resolves  - treated as falsy (animate by default)
   const prefersReduced = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -289,14 +289,14 @@ export default function HeroBackground() {
         className="w-full h-full opacity-80 dark:opacity-70"
       >
         <defs>
-          {/* Aurora glow — soft radial, left-center */}
+          {/* Aurora glow  - soft radial, left-center */}
           <radialGradient id="aurora-left" cx="25%" cy="50%" r="45%" gradientUnits="objectBoundingBox">
             <stop offset="0%" stopColor="#0066CC" stopOpacity={0.45} />
             <stop offset="55%" stopColor="#0066CC" stopOpacity={0.15} />
             <stop offset="100%" stopColor="#0066CC" stopOpacity={0} />
           </radialGradient>
 
-          {/* Dot grid pattern — 2px dots every 36px */}
+          {/* Dot grid pattern  - 2px dots every 36px */}
           <pattern id="dot-grid" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
             <circle cx="18" cy="18" r="1.5" fill="#0066CC" fillOpacity={0.65} />
           </pattern>
@@ -317,7 +317,7 @@ export default function HeroBackground() {
         {/* Left-side atmosphere: aurora glow + dot grid */}
         <rect x="0" y="0" width="1440" height="720" fill="url(#aurora-left)" />
         <rect x="0" y="0" width="1440" height="720" fill="url(#dot-grid)" mask="url(#dot-mask)" />
-        {/* On mobile: only the hub glow — no nodes or paths to avoid overlapping full-width text */}
+        {/* On mobile: only the hub glow  - no nodes or paths to avoid overlapping full-width text */}
         {!isMobile && NODES.map((node, i) => (
           <NetworkNode
             key={node.id}

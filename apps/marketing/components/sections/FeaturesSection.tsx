@@ -91,7 +91,7 @@ const tier1Features: Feature[] = [
         },
         solution: {
             label: 'THE FIX',
-            description: 'Built-in transfer and firm management. Track requests, confirmations, and status changes in one place — with full history and real-time updates.',
+            description: 'Built-in transfer and firm management. Track requests, confirmations, and status changes in one place  - with full history and real-time updates.',
         },
         videoSrc: '/videos/feature-support.mp4',
         imageSrc: transferFirmImage,
@@ -135,11 +135,11 @@ const tier1Features: Feature[] = [
         title: 'Screen Pricing Grid',
         painPoint: {
             label: 'THE FRICTION',
-            description: 'Screen printing pricing is a guessing game. Number of colors, screen counts, and setup fees vary per job — and nobody quotes them consistently.',
+            description: 'Screen printing pricing is a guessing game. Number of colors, screen counts, and setup fees vary per job  - and nobody quotes them consistently.',
         },
         solution: {
             label: 'THE FIX',
-            description: 'Dedicated screen printing pricing matrix. Set rates by color count, quantity breaks, and screen fees — every quote is accurate and consistent.',
+            description: 'Dedicated screen printing pricing matrix. Set rates by color count, quantity breaks, and screen fees  - every quote is accurate and consistent.',
         },
         videoSrc: '/videos/feature-screen-pricing.mp4',
         imageSrc: screenPricingGridImage,
@@ -187,7 +187,7 @@ const tier1Features: Feature[] = [
         },
         solution: {
             label: 'THE FIX',
-            description: 'Digital work order system for contractors. Send work out with detailed spec sheets, track deadlines, and get quality confirmation—all documented.',
+            description: 'Digital work order system for contractors. Send work out with detailed spec sheets, track deadlines, and get quality confirmation -all documented.',
         },
         videoSrc: '/videos/feature-contractors.mp4',
         imageSrc: contractorImage,
@@ -203,7 +203,7 @@ const tier1Features: Feature[] = [
         },
         solution: {
             label: 'THE FIX',
-            description: 'Built-in reporting with real-time dashboards. Track revenue, production output, costs, and profitability — all from one place.',
+            description: 'Built-in reporting with real-time dashboards. Track revenue, production output, costs, and profitability  - all from one place.',
         },
         videoSrc: '/videos/feature-reporting.mp4',
         imageSrc: reportingImage,
@@ -446,13 +446,13 @@ export default function FeaturesSection({ hideLearnMore = false }: { hideLearnMo
                         transition={{ duration: 0.4, delay: 0.2 }}
                         className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-2xl mx-auto leading-relaxed"
                     >
-                        A powerful FileMaker-based system that runs your entire operation — from quoting and orders to scheduling and analytics.
+                        A powerful FileMaker-based system that runs your entire operation  - from quoting and orders to scheduling and analytics.
                     </motion.p>
                 </div>
 
             </div>
 
-            {/* Sticky Tab Bar — full width, scrollable */}
+            {/* Sticky Tab Bar  - full width, scrollable */}
             <div className="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md py-4 mb-10 md:mb-14 px-4 md:px-8">
                 <LayoutGroup>
                     <div className="relative">

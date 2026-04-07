@@ -9,23 +9,23 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 const faqs = [
     {
         question: 'Can I replace my print shop spreadsheets with software?',
-        answer: 'Yes. A print shop management system replaces spreadsheets for orders, inventory, production tracking, quoting, and customer management — with everything connected in real time instead of scattered across files.',
+        answer: 'Yes. A print shop management system replaces spreadsheets for orders, inventory, production tracking, quoting, and customer management  - with everything connected in real time instead of scattered across files.',
     },
     {
         question: 'How do I migrate from spreadsheets to a print shop management system?',
-        answer: 'We import your existing spreadsheet data — customers, products, pricing, vendor info — into the system during onboarding. Your spreadsheets become the starting point, not something you lose.',
+        answer: 'We import your existing spreadsheet data  - customers, products, pricing, vendor info  - into the system during onboarding. Your spreadsheets become the starting point, not something you lose.',
     },
     {
         question: "What's better than spreadsheets for managing a print shop?",
-        answer: 'A connected system where orders, inventory, production, and your website share the same data. Unlike spreadsheets, changes happen in real time — no version conflicts, no broken formulas, no manual updates.',
+        answer: 'A connected system where orders, inventory, production, and your website share the same data. Unlike spreadsheets, changes happen in real time  - no version conflicts, no broken formulas, no manual updates.',
     },
     {
         question: 'How long does it take to switch from spreadsheets?',
-        answer: 'Typical deployment takes 2–4 weeks. That includes data import, system configuration, workflow mapping, and team training. You run both systems in parallel until the transition is complete.',
+        answer: 'Typical deployment takes 2-4 weeks. That includes data import, system configuration, workflow mapping, and team training. You run both systems in parallel until the transition is complete.',
     },
     {
         question: 'Will I lose my data when switching from spreadsheets?',
-        answer: "No. We don't rebuild your data — we structure it. Your existing spreadsheets are exported, cleaned, and imported into the system. Nothing is lost — it's organized into a connected platform.",
+        answer: "No. We don't rebuild your data  - we structure it. Your existing spreadsheets are exported, cleaned, and imported into the system. Nothing is lost  - it's organized into a connected platform.",
     },
     {
         question: 'What print shop data can be imported from spreadsheets?',
@@ -36,7 +36,7 @@ const faqs = [
 const faqSchema = generateFAQSchema(faqs);
 const serviceSchema = generateServiceSchema({
     name: 'Replace Print Shop Spreadsheets',
-    description: 'Replace spreadsheets with a connected print shop management system. Orders, inventory, production, and customer data — all in one platform.',
+    description: 'Replace spreadsheets with a connected print shop management system. Orders, inventory, production, and customer data  - all in one platform.',
     url: 'https://shoptitan.app/get-started/replace-spreadsheets',
 });
 const breadcrumbSchema = generateBreadcrumbSchema([
@@ -89,10 +89,10 @@ export default function ReplaceSpreadsheetsPage() {
                             className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8 space-y-4"
                         >
                             <p>
-                                You built your business on spreadsheets. They got you here. But they can&apos;t take you further — missed orders, broken formulas, and zero visibility are costing you money every week. It&apos;s time to move from manual tracking to a connected print shop workflow system.
+                                You built your business on spreadsheets. They got you here. But they can&apos;t take you further  - missed orders, broken formulas, and zero visibility are costing you money every week. It&apos;s time to move from manual tracking to a connected print shop workflow system.
                             </p>
                             <p className="text-base text-secondary-text/80 dark:text-gray-500">
-                                You don&apos;t need to start over. You need software instead of spreadsheets — a system that imports your data and connects everything.
+                                You don&apos;t need to start over. You need software instead of spreadsheets  - a system that imports your data and connects everything.
                             </p>
                         </motion.div>
                         <motion.div
@@ -105,7 +105,7 @@ export default function ReplaceSpreadsheetsPage() {
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Demo — Replace Spreadsheets With a Connected System
+                                Book a Demo  - Replace Spreadsheets With a Connected System
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                         </motion.div>
@@ -137,7 +137,7 @@ export default function ReplaceSpreadsheetsPage() {
                                 Print shops often start with spreadsheets because they are easy to set up and flexible. But as orders, inventory, and production grow, spreadsheets become harder to manage, prone to errors, and disconnected from real-time operations.
                             </p>
                             <p>
-                                In simple terms, spreadsheets work for tracking data — but not for running a print shop. This is where a <Link href="/platform/complete-system" className="text-primary hover:underline">complete print shop management system</Link> becomes necessary.
+                                In simple terms, spreadsheets work for tracking data  - but not for running a print shop. This is where a <Link href="/platform/complete-system" className="text-primary hover:underline">complete print shop management system</Link> becomes necessary.
                             </p>
                         </motion.div>
 
@@ -153,7 +153,7 @@ export default function ReplaceSpreadsheetsPage() {
                                 { icon: 'people', title: 'Multi-user chaos', desc: 'Two people editing the same sheet means conflicting versions and lost data.' },
                                 { icon: 'link_off', title: 'Nothing is connected', desc: 'Orders, inventory, production, and customers live in separate tabs with no link between them.' },
                                 { icon: 'functions', title: 'Fragile formulas', desc: 'One wrong edit breaks pricing, totals, or reporting for the entire sheet.' },
-                                { icon: 'school', title: 'Impossible to train', desc: 'New employees take weeks to understand your spreadsheet system — and still make mistakes.' },
+                                { icon: 'school', title: 'Impossible to train', desc: 'New employees take weeks to understand your spreadsheet system  - and still make mistakes.' },
                                 { icon: 'visibility_off', title: 'Zero visibility', desc: 'You can\'t answer basic questions without digging through multiple sheets and tabs.' },
                             ].map((item) => (
                                 <motion.div
@@ -203,11 +203,11 @@ export default function ReplaceSpreadsheetsPage() {
                             viewport={{ once: true, margin: '-80px' }}
                         >
                             {[
-                                { num: '01', title: 'Someone edits row 342 and breaks the entire pricing formula.', desc: 'One accidental change cascades through the sheet. You don\'t notice until a customer gets quoted the wrong price — or worse, you lose money on a job.' },
-                                { num: '02', title: 'Two people update the same file — now you have conflicting versions.', desc: 'The office updated the order sheet. Production updated their copy. Neither matches. Nobody knows which is right.' },
+                                { num: '01', title: 'Someone edits row 342 and breaks the entire pricing formula.', desc: 'One accidental change cascades through the sheet. You don\'t notice until a customer gets quoted the wrong price  - or worse, you lose money on a job.' },
+                                { num: '02', title: 'Two people update the same file  - now you have conflicting versions.', desc: 'The office updated the order sheet. Production updated their copy. Neither matches. Nobody knows which is right.' },
                                 { num: '03', title: 'You can\'t answer basic questions without digging through multiple sheets.', desc: '"How many orders shipped this week?" "What\'s our revenue this month?" 20 minutes of filtering, copying, and cross-referencing to get a number you should see instantly.' },
-                                { num: '04', title: 'New employee takes 3 weeks to learn your spreadsheet system.', desc: 'Color-coded tabs, hidden columns, custom formulas that only the owner understands. Training is a nightmare because there is no system — just a collection of files.' },
-                                { num: '05', title: 'Customer calls asking about their order — you open 4 tabs to find the answer.', desc: 'Order status in one sheet. Tracking in another. Payment in a third. By the time you find the info, the customer is frustrated and you look disorganized.' },
+                                { num: '04', title: 'New employee takes 3 weeks to learn your spreadsheet system.', desc: 'Color-coded tabs, hidden columns, custom formulas that only the owner understands. Training is a nightmare because there is no system  - just a collection of files.' },
+                                { num: '05', title: 'Customer calls asking about their order  - you open 4 tabs to find the answer.', desc: 'Order status in one sheet. Tracking in another. Payment in a third. By the time you find the info, the customer is frustrated and you look disorganized.' },
                             ].map((pain) => (
                                 <motion.div
                                     key={pain.num}
@@ -234,7 +234,7 @@ export default function ReplaceSpreadsheetsPage() {
                             viewport={{ once: true }}
                             className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
                         >
-                            What You&apos;re Tracking in Spreadsheets — and Why It Breaks
+                            What You&apos;re Tracking in Spreadsheets  - and Why It Breaks
                         </motion.h2>
                         <motion.p
                             initial={{ opacity: 0, y: 12 }}
@@ -257,7 +257,7 @@ export default function ReplaceSpreadsheetsPage() {
                                 {
                                     title: 'Orders & Jobs',
                                     icon: 'shopping_cart',
-                                    breaks: 'Status not synced — production doesn\'t know what\'s approved, office doesn\'t know what shipped.',
+                                    breaks: 'Status not synced  - production doesn\'t know what\'s approved, office doesn\'t know what shipped.',
                                     system: 'Real-time order tracking from intake to delivery. Every department sees the same status.',
                                 },
                                 {
@@ -375,16 +375,16 @@ export default function ReplaceSpreadsheetsPage() {
                                 viewport={{ once: true }}
                                 className="p-6 rounded-2xl border border-green-200 dark:border-green-900/40 bg-green-50/30 dark:bg-green-950/10"
                             >
-                                <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wider mb-4">Shop Titan — Connected System</h3>
+                                <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wider mb-4">Shop Titan  - Connected System</h3>
                                 <ul className="space-y-3">
                                     {[
-                                        'Everything in one platform — orders, inventory, production, customers',
+                                        'Everything in one platform  - orders, inventory, production, customers',
                                         'Real-time updates as events happen',
                                         'Orders automatically create production jobs',
                                         'Inventory adjusts when stock is received or used',
                                         'New employees follow guided workflows from day one',
                                         'Instant visibility into every job and department',
-                                        'Reports generated on demand — no assembly required',
+                                        'Reports generated on demand  - no assembly required',
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-start gap-2 text-sm text-secondary-text dark:text-gray-400">
                                             <span className="material-symbols-outlined text-green-500 text-sm mt-0.5 flex-shrink-0">check</span>
@@ -416,7 +416,7 @@ export default function ReplaceSpreadsheetsPage() {
                             viewport={{ once: true }}
                             className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
                         >
-                            You Don&apos;t Lose Your Data — We Structure It
+                            You Don&apos;t Lose Your Data  - We Structure It
                         </motion.h2>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
@@ -426,7 +426,7 @@ export default function ReplaceSpreadsheetsPage() {
                             className="text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl space-y-4 mb-12"
                         >
                             <p>
-                                We don&apos;t rebuild your data — we structure it. Your existing spreadsheets become your starting point. Customers, products, pricing, vendor info — everything is imported and organized into a connected system.
+                                We don&apos;t rebuild your data  - we structure it. Your existing spreadsheets become your starting point. Customers, products, pricing, vendor info  - everything is imported and organized into a connected system.
                             </p>
                             <p>
                                 You run both systems in parallel during the transition. Nothing is lost. Nothing is rushed.
@@ -441,9 +441,9 @@ export default function ReplaceSpreadsheetsPage() {
                             viewport={{ once: true, margin: '-60px' }}
                         >
                             {[
-                                { step: '01', title: 'Export', desc: 'Export your existing spreadsheets — orders, customers, products, pricing, vendors. We tell you exactly what we need.', icon: 'upload_file' },
+                                { step: '01', title: 'Export', desc: 'Export your existing spreadsheets  - orders, customers, products, pricing, vendors. We tell you exactly what we need.', icon: 'upload_file' },
                                 { step: '02', title: 'Clean', desc: 'We review your data for duplicates, inconsistencies, and formatting issues. You approve before anything is imported.', icon: 'cleaning_services' },
-                                { step: '03', title: 'Import', desc: 'Data imported into the system — structured, connected, and ready. Customers link to orders. Products link to inventory.', icon: 'download' },
+                                { step: '03', title: 'Import', desc: 'Data imported into the system  - structured, connected, and ready. Customers link to orders. Products link to inventory.', icon: 'download' },
                                 { step: '04', title: 'Verify', desc: 'You verify the data is correct. Run both systems in parallel. Compare results. Build confidence before switching.', icon: 'fact_check' },
                                 { step: '05', title: 'Go Live', desc: 'Spreadsheets retired. Your team runs on a connected print shop workflow system. Live support throughout the transition.', icon: 'rocket_launch' },
                             ].map((s) => (
@@ -485,7 +485,7 @@ export default function ReplaceSpreadsheetsPage() {
                             transition={{ delay: 0.1 }}
                             className="text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl mb-10"
                         >
-                            The real problem with spreadsheets isn&apos;t the data — it&apos;s the disconnect. When you replace spreadsheets with a connected system, everything talks to everything else.
+                            The real problem with spreadsheets isn&apos;t the data  - it&apos;s the disconnect. When you replace spreadsheets with a connected system, everything talks to everything else.
                         </motion.p>
 
                         <motion.div
@@ -513,14 +513,14 @@ export default function ReplaceSpreadsheetsPage() {
                                 {
                                     icon: 'precision_manufacturing',
                                     title: 'Production updates automatically',
-                                    desc: 'Jobs move through departments with status updates at every stage. Your team knows what\'s printing, what\'s next, and what\'s late — without a whiteboard.',
+                                    desc: 'Jobs move through departments with status updates at every stage. Your team knows what\'s printing, what\'s next, and what\'s late  - without a whiteboard.',
                                     link: '/platform/production-automation',
                                     linkText: 'See production management',
                                 },
                                 {
                                     icon: 'analytics',
                                     title: 'Reports generate instantly',
-                                    desc: 'Revenue, production output, inventory levels, and customer history — on demand. No formulas, no assembly, no 20-minute data hunts.',
+                                    desc: 'Revenue, production output, inventory levels, and customer history  - on demand. No formulas, no assembly, no 20-minute data hunts.',
                                     link: '/platform/filemaker-system',
                                     linkText: 'See the FileMaker system',
                                 },
@@ -593,7 +593,7 @@ export default function ReplaceSpreadsheetsPage() {
                             transition={{ delay: 0.1 }}
                             className="text-secondary-text dark:text-gray-400 mb-8 max-w-2xl mx-auto"
                         >
-                            From manual tracking to a connected print shop management software — orders, inventory, production, and your website in one system. Your spreadsheets got you here. A system takes you further.
+                            From manual tracking to a connected print shop management software  - orders, inventory, production, and your website in one system. Your spreadsheets got you here. A system takes you further.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}

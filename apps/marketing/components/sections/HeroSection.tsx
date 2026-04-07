@@ -19,7 +19,7 @@ export default function HeroSection() {
             <div className="absolute inset-0 z-[1] bg-gradient-to-r from-white/50 via-white/40 to-transparent dark:from-black/50 dark:via-black/40 dark:to-transparent pointer-events-none lg:block hidden" />
             <div className="absolute inset-0 z-[1] bg-gradient-to-b from-white/10 via-transparent to-white/80 dark:from-black/10 dark:via-transparent dark:to-black/80 pointer-events-none lg:hidden block" />
 
-            {/* Hero Content — unchanged */}
+            {/* Hero Content  - unchanged */}
             <div className="relative pt-32 pb-20 md:pt-24 lg:pt-32 lg:pb-40 z-20">
                 <div className="max-w-7xl mx-auto px-mobile relative 2xl:max-w-[1480px]">
                     <div className="max-w-3xl text-left">
