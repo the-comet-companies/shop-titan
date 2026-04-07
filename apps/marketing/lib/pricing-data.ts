@@ -27,6 +27,23 @@ export interface PricingTier {
     includes: string[];
 }
 
+export interface AddOn {
+    id: string;
+    name: string;
+    price: number;
+}
+
+export const addOns: AddOn[] = [
+    { id: 'white-label', name: 'White-label', price: 25 },
+    { id: 'api-access', name: 'API access', price: 25 },
+    { id: 'stripe', name: 'Stripe payments integration', price: 25 },
+    { id: 'ups', name: 'UPS Shipping Labels', price: 25 },
+    { id: 'quote-followups', name: 'Quote follow ups', price: 25 },
+    { id: 'all-in-pro', name: 'All in Pro +', price: 0 },
+];
+
+export const addOnBundlePrice = 120;
+
 export interface FAQ {
     question: string;
     answer: string;

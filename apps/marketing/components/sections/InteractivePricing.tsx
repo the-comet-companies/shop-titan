@@ -6,6 +6,7 @@ import Link from 'next/link';
 import {
     hero, steps, tracks, deliveries, pricing,
     comparisonFeatures, comparisonPricing, faqs,
+    addOns, addOnBundlePrice,
     type TrackId, type DeliveryId,
 } from '@/lib/pricing-data';
 
@@ -20,6 +21,7 @@ export default function InteractivePricing() {
     const [selectedTrack, setSelectedTrack] = useState<TrackId | null>(null);
     const [selectedDelivery, setSelectedDelivery] = useState<DeliveryId | null>(null);
     const [openFaq, setOpenFaq] = useState<number | null>(null);
+    const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
 
     const step1Ref = useRef<HTMLDivElement>(null);
     const step2Ref = useRef<HTMLDivElement>(null);
@@ -31,6 +33,7 @@ export default function InteractivePricing() {
     const handleTrackSelect = useCallback((id: TrackId) => {
         setSelectedTrack(id);
         setSelectedDelivery(null);
+        setSelectedAddOns([]);
         setCurrentStep(2);
         setTimeout(() => scrollTo(step2Ref.current), 100);
     }, []);
@@ -51,6 +54,28 @@ export default function InteractivePricing() {
         setCurrentStep(3);
         setTimeout(() => scrollTo(step3Ref.current), 100);
     }, []);
+
+    const toggleAddOn = useCallback((id: string) => {
+        setSelectedAddOns(prev => {
+            if (id === 'all-in-pro') {
+                // Select all or deselect all
+                const allIds = addOns.map(a => a.id);
+                return prev.length === allIds.length ? [] : allIds;
+            }
+            const next = prev.includes(id) ? prev.filter(a => a !== id) : [...prev, id];
+            // If all individual items selected, also mark all-in-pro
+            const individualIds = addOns.filter(a => a.id !== 'all-in-pro').map(a => a.id);
+            if (individualIds.every(i => next.includes(i)) && !next.includes('all-in-pro')) {
+                return [...next, 'all-in-pro'];
+            }
+            return next.filter(i => i !== 'all-in-pro');
+        });
+    }, []);
+
+    const allAddOnsSelected = selectedAddOns.length === addOns.length;
+    const addOnMonthly = allAddOnsSelected
+        ? addOnBundlePrice
+        : addOns.filter(a => a.id !== 'all-in-pro' && selectedAddOns.includes(a.id)).reduce((sum, a) => sum + a.price, 0);
 
     const selectedPricing = selectedTrack && selectedDelivery
         ? pricing.find(p => p.track === selectedTrack && p.delivery === selectedDelivery)
@@ -382,7 +407,12 @@ export default function InteractivePricing() {
                                     </div>
                                     <div>
                                         <p className="text-[10px] font-bold uppercase tracking-widest text-secondary-text dark:text-gray-500 mb-1">Monthly</p>
-                                        <p className="text-2xl font-bold text-charcoal dark:text-white">{selectedPricing.monthly}</p>
+                                        <p className="text-2xl font-bold text-charcoal dark:text-white">
+                                            {selectedPricing.monthly}
+                                            {addOnMonthly > 0 && (
+                                                <span className="text-sm font-medium text-primary ml-1">+ ${addOnMonthly}/mo</span>
+                                            )}
+                                        </p>
                                     </div>
                                     <div>
                                         <p className="text-[10px] font-bold uppercase tracking-widest text-secondary-text dark:text-gray-500 mb-1">Timeline</p>
@@ -390,7 +420,7 @@ export default function InteractivePricing() {
                                     </div>
                                 </div>
 
-                                <div className="border-t border-structural-border dark:border-gray-800 pt-6 mb-8">
+                                <div className="border-t border-structural-border dark:border-gray-800 pt-6 mb-6">
                                     <p className="text-sm font-bold text-charcoal dark:text-white mb-4">Everything included:</p>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                         {selectedPricing.includes.map((item) => (
@@ -400,6 +430,49 @@ export default function InteractivePricing() {
                                             </div>
                                         ))}
                                     </div>
+                                </div>
+
+                                {/* Add-ons */}
+                                <div className="border-t border-structural-border dark:border-gray-800 pt-6 mb-8">
+                                    <div className="flex items-center justify-between mb-4">
+                                        <p className="text-sm font-bold text-charcoal dark:text-white">Premium Automations</p>
+                                        {allAddOnsSelected && (
+                                            <span className="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-full">
+                                                Bundle - ${addOnBundlePrice}/mo
+                                            </span>
+                                        )}
+                                    </div>
+                                    <div className="space-y-2">
+                                        {addOns.filter(a => a.id !== 'all-in-pro').map((addon) => (
+                                            <label
+                                                key={addon.id}
+                                                className="flex items-center gap-3 cursor-pointer group"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    checked={selectedAddOns.includes(addon.id)}
+                                                    onChange={() => toggleAddOn(addon.id)}
+                                                    className="w-4 h-4 rounded-sm border-gray-300 dark:border-gray-600 accent-primary cursor-pointer"
+                                                />
+                                                <span className="text-sm text-charcoal dark:text-gray-300 group-hover:text-primary transition-colors flex-1">
+                                                    {addon.name}
+                                                </span>
+                                                <span className="text-xs text-secondary-text dark:text-gray-500">
+                                                    +${addon.price}/mo
+                                                </span>
+                                            </label>
+                                        ))}
+                                    </div>
+                                    <button
+                                        onClick={() => toggleAddOn('all-in-pro')}
+                                        className={`mt-4 w-full py-2 text-xs font-bold uppercase tracking-wider rounded-lg border transition-colors ${
+                                            allAddOnsSelected
+                                                ? 'bg-primary text-white border-primary'
+                                                : 'border-structural-border dark:border-gray-700 text-secondary-text dark:text-gray-400 hover:border-primary hover:text-primary'
+                                        }`}
+                                    >
+                                        {allAddOnsSelected ? 'All Add-ons Selected' : `Select All - $${addOnBundlePrice}/mo (save $${addOns.filter(a => a.id !== 'all-in-pro').reduce((s, a) => s + a.price, 0) - addOnBundlePrice}/mo)`}
+                                    </button>
                                 </div>
 
                                 <div className="flex flex-col sm:flex-row gap-3">
