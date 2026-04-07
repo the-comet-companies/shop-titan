@@ -2,19 +2,17 @@
 
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { useState, useRef } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import VideoPlayer from '@/components/VideoPlayer';
 import VideoModal from '@/components/ui/VideoModal';
-import quotesImage from '@/assets/Filemaker/Quotes.png';
-import ordersImage from '@/assets/Filemaker/Orders.png';
-import customersImage from '@/assets/Filemaker/Customers.png';
-import purchaseOrdersImage from '@/assets/Filemaker/PurchaseOrders.png';
-import taskTypesImage from '@/assets/Filemaker/TaskTypes.png';
-import pricingGridImage from '@/assets/Filemaker/ServicePricingGrid.png';
-import screenPricingGridImage from '@/assets/Filemaker/ScreenPricingGrid.png';
-import emailTemplateImage from '@/assets/Filemaker/EmailTemplate.png';
-import reportingImage from '@/assets/Filemaker/Reporting.png';
-import contractorImage from '@/assets/Filemaker/Contractor.png';
+import brandsImage from '@/assets/Website/Brands.png';
+import storefrontImage from '@/assets/Website/StoreFront.png';
+import productCatalogImage from '@/assets/Website/ProductCatalog.png';
+import servicesImage from '@/assets/Website/Services.png';
+import mobileImage from '@/assets/Website/mobile.png';
+import dragAndDropImage from '@/assets/Website/DragAndDrop.png';
+import customerPortalImage from '@/assets/Website/CustomerPortal.png';
+import seoImage from '@/assets/Website/SEO.png';
 
 // --- Shared Feature Type ---
 interface Feature {
@@ -26,177 +24,164 @@ interface Feature {
     solution: { label: string; description: string };
     highlights?: string[];
     videoSrc: string;
-    imageSrc?: typeof quotesImage;
+    imageSrc?: StaticImageData;
+    layout?: 'stacked' | 'side-by-side';
+    hideBrowserChrome?: boolean;
 }
 
-// --- Tier 1 Features ---
+// --- Tier 1: Primary Website Features ---
 const tier1Features: Feature[] = [
     {
-        id: 'quotes',
-        tabLabel: 'Quotes',
-        tabIcon: 'request_quote',
-        title: 'Quotes',
+        id: 'storefront',
+        tabLabel: 'Storefront',
+        tabIcon: 'storefront',
+        title: 'Custom Storefront',
         painPoint: {
             label: 'THE FRICTION',
-            description: 'Manual quote creation with spreadsheets. Inconsistent pricing. Hours spent calculating setup fees, per-piece costs, and rush charges.',
+            description: 'Generic website templates that don\'t fit apparel decoration. No way to showcase your work, handle custom orders, or reflect your brand.',
         },
         solution: {
             label: 'THE FIX',
-            description: 'Automated quote generation with intelligent pricing matrices. Template library, auto-calculations, and one-click PDF generation.',
+            description: 'A fully branded storefront built for print shops. Showcase your products, services, and portfolio — designed to convert visitors into customers.',
         },
-        videoSrc: '/videos/feature-quotes.mp4',
-        imageSrc: quotesImage,
+        videoSrc: '/videos/feature-storefront.mp4',
+        imageSrc: storefrontImage,
+        layout: 'side-by-side',
     },
     {
-        id: 'orders',
-        tabLabel: 'Orders',
-        tabIcon: 'shopping_cart',
-        title: 'Orders',
+        id: 'product-catalog',
+        tabLabel: 'Product Catalog',
+        tabIcon: 'grid_view',
+        title: 'Product Catalog',
         painPoint: {
             label: 'THE FRICTION',
-            description: '"Where is order #492?" Lost orders, unclear status, constant check-in calls. Job jackets getting lost between office and production floor.',
+            description: 'Your customers can\'t see what you carry. No browsable catalog, no color options, no way to compare styles — they call, email, or go somewhere else.',
         },
         solution: {
             label: 'THE FIX',
-            description: "End-to-end order tracking with real-time status updates. Every garment's journey is logged, visible, and searchable from anywhere.",
+            description: 'A browsable, searchable product catalog that shows everything you offer — with real photos, color swatches, size breakdowns, and live pricing.',
         },
-        videoSrc: '/videos/feature-orders.mp4',
-        imageSrc: ordersImage,
+        highlights: [
+            'Color swatches with real product images',
+            'Size & variant selectors per style',
+            'SKU display for easy reordering',
+            'Sale badges & discount pricing',
+            'Filter by brand, category, or color',
+            'Synced with back-office inventory',
+        ],
+        videoSrc: '/videos/feature-catalog.mp4',
+        imageSrc: productCatalogImage,
+        layout: 'side-by-side',
     },
     {
-        id: 'email-template',
-        tabLabel: 'Email Templates',
-        tabIcon: 'mail',
-        title: 'Email Templates',
+        id: 'brands',
+        tabLabel: 'Brands',
+        tabIcon: 'loyalty',
+        title: 'Brands',
         painPoint: {
             label: 'THE FRICTION',
-            description: 'Sending plain text emails or manually formatting every message. No consistency, no branding, and no way to automate order confirmations or updates.',
+            description: 'Customers don\'t know what blanks you carry. No way to browse by brand, compare quality, or see what\'s available — so they go somewhere else.',
         },
         solution: {
             label: 'THE FIX',
-            description: 'Professional, branded email templates for order confirmations, invoices, shipping updates, and more. Automated and consistent every time.',
+            description: 'Showcase every brand you carry with dedicated brand pages. Customers browse by brand, see available styles, and order with confidence.',
         },
-        videoSrc: '/videos/feature-email.mp4',
-        imageSrc: emailTemplateImage,
+        videoSrc: '/videos/feature-brands.mp4',
+        imageSrc: brandsImage,
+        layout: 'side-by-side',
     },
     {
-        id: 'tasks',
-        tabLabel: 'Task Types',
-        tabIcon: 'tune',
-        title: 'Task Types',
+        id: 'drag-and-drop',
+        tabLabel: 'Drag & Drop',
+        tabIcon: 'upload_file',
+        title: 'Drag & Drop Upload',
         painPoint: {
             label: 'THE FRICTION',
-            description: "Rigid software that can't handle your custom workflows. Every shop does things differently, but you're stuck with one-size-fits-all.",
+            description: 'Customers emailing artwork back and forth. Lost files, wrong formats, unclear placement instructions. Endless revision cycles before production starts.',
         },
         solution: {
             label: 'THE FIX',
-            description: 'Fully configurable task types and decoration methods. Custom fields, workflow rules, and pricing formulas for ANY process you run.',
+            description: 'Drag-and-drop file upload right on your website. Customers attach their artwork directly to their order — no emails, no confusion, no lost files.',
         },
-        videoSrc: '/videos/feature-tasks.mp4',
-        imageSrc: taskTypesImage,
+        videoSrc: '/videos/feature-dragdrop.mp4',
+        imageSrc: dragAndDropImage,
+        layout: 'side-by-side',
     },
     {
-        id: 'pricing',
-        tabLabel: 'Service Pricing Grid',
-        tabIcon: 'grid_on',
-        title: 'Service Pricing Grid',
+        id: 'services',
+        tabLabel: 'Services',
+        tabIcon: 'design_services',
+        title: 'Services',
         painPoint: {
             label: 'THE FRICTION',
-            description: 'Underquoting complex jobs. No structured pricing for different decoration types. Sales team guessing at embroidery stitch counts or screen counts.',
+            description: 'Customers don\'t know what decoration methods you offer. No clear breakdown of embroidery, screen printing, DTG, or other services — so they look elsewhere.',
         },
         solution: {
             label: 'THE FIX',
-            description: 'Dynamic pricing matrices for all decoration types: embroidery (stitch count), screen printing (colors, screens), sewing, and any custom task you offer.',
+            description: 'Dedicated services pages that showcase every decoration method you offer. Customers understand your capabilities and order the right service from the start.',
         },
-        videoSrc: '/videos/feature-pricing.mp4',
-        imageSrc: pricingGridImage,
+        videoSrc: '/videos/feature-services.mp4',
+        imageSrc: servicesImage,
+        layout: 'side-by-side',
     },
     {
-        id: 'screen-pricing',
-        tabLabel: 'Screen Pricing Grid',
-        tabIcon: 'grid_on',
-        title: 'Screen Pricing Grid',
+        id: 'customer-portal',
+        tabLabel: 'Customer Portal',
+        tabIcon: 'person',
+        title: 'Customer Portal',
         painPoint: {
             label: 'THE FRICTION',
-            description: 'Screen printing pricing is a guessing game. Number of colors, screen counts, and setup fees vary per job — and nobody quotes them consistently.',
+            description: '"Where\'s my order?" calls all day. Customers have no visibility into their order status, history, or account details.',
         },
         solution: {
             label: 'THE FIX',
-            description: 'Dedicated screen printing pricing matrix. Set rates by color count, quantity breaks, and screen fees — every quote is accurate and consistent.',
+            description: 'Self-service customer portal with order tracking, history, reorder capability, and saved designs. Fewer support calls, happier customers.',
         },
-        videoSrc: '/videos/feature-screen-pricing.mp4',
-        imageSrc: screenPricingGridImage,
+        videoSrc: '/videos/feature-portal.mp4',
+        imageSrc: customerPortalImage,
+        layout: 'side-by-side',
     },
     {
-        id: 'customers',
-        tabLabel: 'Customers / Vendors',
-        tabIcon: 'people',
-        title: 'Customers / Vendors',
+        id: 'seo',
+        tabLabel: 'SEO & Analytics',
+        tabIcon: 'trending_up',
+        title: 'SEO & Analytics',
         painPoint: {
             label: 'THE FRICTION',
-            description: 'Contact info scattered across emails, sticky notes, and old spreadsheets. No relationship history. No visibility into customer lifetime value.',
+            description: 'No online presence. Competitors rank above you on Google. No data on who visits your site or what they\'re looking for.',
         },
         solution: {
             label: 'THE FIX',
-            description: 'Unified CRM and VRM with complete relationship tracking. Contact cards, order history, notes, and communication logs all in one place.',
+            description: 'Built-in SEO optimization, Google Analytics integration, and conversion tracking. Know where your traffic comes from and what converts.',
         },
-        videoSrc: '/videos/feature-crm.mp4',
-        imageSrc: customersImage,
+        videoSrc: '/videos/feature-seo.mp4',
+        imageSrc: seoImage,
+        layout: 'side-by-side',
     },
     {
-        id: 'purchase-orders',
-        tabLabel: 'Purchase Orders',
-        tabIcon: 'receipt_long',
-        title: 'Purchase Orders',
+        id: 'mobile',
+        tabLabel: 'Mobile Responsive',
+        tabIcon: 'smartphone',
+        title: 'Mobile Responsive',
         painPoint: {
             label: 'THE FRICTION',
-            description: 'Manual PO creation, vendor emails flying back and forth. Stock running out mid-job because nobody tracked what was ordered.',
+            description: 'Your website breaks on mobile. Over 60% of traffic is mobile, but your site was built for desktop only.',
         },
         solution: {
             label: 'THE FIX',
-            description: 'Automated PO generation with vendor integration. RFQ workflow for quotes, auto-reordering based on stock levels, and complete order tracking.',
+            description: 'Fully responsive design that looks and works perfectly on any device. Your customers can browse, configure, and order from their phone.',
         },
-        videoSrc: '/videos/feature-pos.mp4',
-        imageSrc: purchaseOrdersImage,
-    },
-    {
-        id: 'contractors',
-        tabLabel: 'Contractor Work Orders',
-        tabIcon: 'handshake',
-        title: 'Contractor Work Orders',
-        painPoint: {
-            label: 'THE FRICTION',
-            description: 'Subcontractor miscommunication. Work sent out with vague specs. Jobs coming back wrong or late with no accountability.',
-        },
-        solution: {
-            label: 'THE FIX',
-            description: 'Digital work order system for contractors. Send work out with detailed spec sheets, track deadlines, and get quality confirmation—all documented.',
-        },
-        videoSrc: '/videos/feature-contractors.mp4',
-        imageSrc: contractorImage,
-    },
-    {
-        id: 'reporting',
-        tabLabel: 'Reporting',
-        tabIcon: 'assessment',
-        title: 'Reporting',
-        painPoint: {
-            label: 'THE FRICTION',
-            description: 'No visibility into your numbers. Revenue, costs, and margins buried in spreadsheets. You find out about problems weeks after they happen.',
-        },
-        solution: {
-            label: 'THE FIX',
-            description: 'Built-in reporting with real-time dashboards. Track revenue, production output, costs, and profitability — all from one place.',
-        },
-        videoSrc: '/videos/feature-reporting.mp4',
-        imageSrc: reportingImage,
+        videoSrc: '/videos/feature-mobile.mp4',
+        imageSrc: mobileImage,
+        layout: 'side-by-side',
+        hideBrowserChrome: true,
     },
 ];
 
 // --- Feature Panel ---
 function FeaturePanel({ feature }: { feature: Feature }) {
-    if (feature.imageSrc) {
-        // Side-by-side layout: text left, image right (same as website section)
+    if (feature.imageSrc && feature.layout === 'side-by-side') {
+        // Side-by-side layout: text left, image right
         return (
             <motion.div
                 key={feature.id}
@@ -204,7 +189,7 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.25 }}
-                className="flex flex-col lg:flex-row gap-6 lg:gap-16 items-start lg:items-start mb-12 md:mb-20 lg:mb-28"
+                className="flex flex-col lg:flex-row gap-6 lg:gap-16 items-start lg:items-center mb-12 md:mb-20 lg:mb-28"
             >
                 {/* Left: Copy */}
                 <div className="lg:w-4/12 flex flex-col gap-4 order-2 lg:order-1">
@@ -263,24 +248,107 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                     transition={{ duration: 0.3, delay: 0.08 }}
                     className="lg:w-8/12 w-full order-1 lg:order-2"
                 >
+                    {feature.hideBrowserChrome ? (
+                        <div className="flex items-center justify-center">
+                            <Image
+                                src={feature.imageSrc}
+                                alt={feature.title}
+                                className="h-auto max-h-[500px] w-auto"
+                                sizes="(max-width: 1024px) 50vw, 33vw"
+                                placeholder="blur"
+                            />
+                        </div>
+                    ) : (
+                        <div className="rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl shadow-black/20">
+                            <div className="bg-gray-50 dark:bg-gray-900 border-b border-black/[0.06] dark:border-white/[0.06] px-4 py-2.5 flex items-center gap-3">
+                                <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">menu</span>
+                                <div className="flex-1 flex items-center gap-2 bg-white dark:bg-gray-800 border border-black/[0.08] dark:border-white/[0.08] rounded-lg px-3 py-1.5">
+                                    <span className="material-symbols-outlined text-primary text-sm select-none">lock</span>
+                                    <span className="text-xs text-gray-400 dark:text-gray-500 font-medium truncate">shoptitan.com / {feature.tabLabel.toLowerCase()}</span>
+                                </div>
+                                <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">more_vert</span>
+                            </div>
+                            <div className="relative min-h-[400px] bg-white dark:bg-gray-950">
+                                <Image
+                                    src={feature.imageSrc}
+                                    alt={feature.title}
+                                    className="w-full h-auto"
+                                    sizes="(max-width: 1024px) 100vw, 66vw"
+                                    placeholder="blur"
+                                />
+                            </div>
+                        </div>
+                    )}
+                </motion.div>
+            </motion.div>
+        );
+    }
+
+    if (feature.imageSrc) {
+        return (
+            <motion.div
+                key={feature.id}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+                className="flex flex-col gap-6 mb-12 md:mb-20 lg:mb-28"
+            >
+                {/* Title centered on top */}
+                <motion.h3
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.06 }}
+                    className="text-2xl sm:text-3xl font-bold text-charcoal dark:text-white leading-tight text-center"
+                >
+                    {feature.title}
+                </motion.h3>
+
+                {/* Cards row underneath */}
+                <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
+                    <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: 0.12 }}
+                        className="relative p-3 border border-black/10 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur-md shadow-sm rounded-xl overflow-hidden flex-1"
+                    >
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-rose-600 dark:text-rose-400 mb-1 relative z-10">{feature.painPoint.label}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed font-medium relative z-10">{feature.painPoint.description}</p>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: 0.18 }}
+                        className="relative p-3 border border-black/10 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur-md shadow-sm rounded-xl overflow-hidden flex-1"
+                    >
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-primary dark:text-blue-400 mb-1 relative z-10">{feature.solution.label}</p>
+                        <p className="text-xs text-charcoal dark:text-white leading-relaxed font-semibold relative z-10">{feature.solution.description}</p>
+                    </motion.div>
+                </div>
+
+                {/* Full-width browser frame with image */}
+                <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.08 }}
+                    className="w-full"
+                >
                     <div className="rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl shadow-black/20">
                         <div className="bg-gray-50 dark:bg-gray-900 border-b border-black/[0.06] dark:border-white/[0.06] px-4 py-2.5 flex items-center gap-3">
                             <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">menu</span>
                             <div className="flex-1 flex items-center gap-2 bg-white dark:bg-gray-800 border border-black/[0.08] dark:border-white/[0.08] rounded-lg px-3 py-1.5">
                                 <span className="material-symbols-outlined text-primary text-sm select-none">lock</span>
-                                <span className="text-xs text-gray-400 dark:text-gray-500 font-medium truncate">app.shoptitan.com / {feature.tabLabel.toLowerCase()}</span>
+                                <span className="text-xs text-gray-400 dark:text-gray-500 font-medium truncate">shoptitan.com / {feature.tabLabel.toLowerCase()}</span>
                             </div>
                             <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">more_vert</span>
                         </div>
-                        <div className="relative min-h-[400px] bg-white dark:bg-gray-950">
-                            <Image
-                                src={feature.imageSrc}
-                                alt={feature.title}
-                                className="w-full h-auto"
-                                sizes="(max-width: 1024px) 100vw, 66vw"
-                                placeholder="blur"
-                            />
-                        </div>
+                        <Image
+                            src={feature.imageSrc}
+                            alt={feature.title}
+                            className="w-full h-auto"
+                            sizes="(max-width: 1024px) 100vw, 1280px"
+                            placeholder="blur"
+                        />
                     </div>
                 </motion.div>
             </motion.div>
@@ -359,7 +427,7 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                         <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">menu</span>
                         <div className="flex-1 flex items-center gap-2 bg-white dark:bg-gray-800 border border-black/[0.08] dark:border-white/[0.08] rounded-lg px-3 py-1.5">
                             <span className="material-symbols-outlined text-primary text-sm select-none">lock</span>
-                            <span className="text-xs text-gray-400 dark:text-gray-500 font-medium truncate">app.shoptitan.com / {feature.tabLabel.toLowerCase()}</span>
+                            <span className="text-xs text-gray-400 dark:text-gray-500 font-medium truncate">shoptitan.com / {feature.tabLabel.toLowerCase()}</span>
                         </div>
                         <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">more_vert</span>
                     </div>
@@ -390,7 +458,7 @@ function FeaturePanel({ feature }: { feature: Feature }) {
 }
 
 // --- Main Component ---
-export default function FeaturesSection({ hideLearnMore = false }: { hideLearnMore?: boolean } = {}) {
+export default function WebsiteFeaturesSection({ hideLearnMore = false }: { hideLearnMore?: boolean } = {}) {
     const [activeTab, setActiveTab] = useState<number>(0);
     const [activeVideo, setActiveVideo] = useState<string | null>(null);
     const tabScrollRef = useRef<HTMLDivElement>(null);
@@ -398,7 +466,7 @@ export default function FeaturesSection({ hideLearnMore = false }: { hideLearnMo
     const activeFeature: Feature = tier1Features[activeTab];
 
     return (
-        <section id="features" className="pt-12 md:pt-16 lg:pt-20 pb-0 bg-background-light dark:bg-background-dark relative">
+        <section id="website-features" className="pt-12 md:pt-16 lg:pt-20 pb-0 bg-background-light dark:bg-background-dark relative">
 
             <div className="max-w-7xl mx-auto px-mobile relative z-10">
 
@@ -409,9 +477,9 @@ export default function FeaturesSection({ hideLearnMore = false }: { hideLearnMo
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4 }}
-                        className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-4"
+                        className="inline-block px-3 py-1 rounded-full bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold tracking-wider uppercase mb-4"
                     >
-                        FileMaker System
+                        Your Storefront
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 12 }}
@@ -420,7 +488,7 @@ export default function FeaturesSection({ hideLearnMore = false }: { hideLearnMo
                         transition={{ duration: 0.4, delay: 0.1 }}
                         className="text-3xl md:text-5xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-4"
                     >
-                        Your Back Office, Fully Automated
+                        A Website That Works as Hard as You Do
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 12 }}
@@ -429,40 +497,40 @@ export default function FeaturesSection({ hideLearnMore = false }: { hideLearnMo
                         transition={{ duration: 0.4, delay: 0.2 }}
                         className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-2xl mx-auto leading-relaxed"
                     >
-                        A powerful FileMaker-based system that runs your entire operation — from quoting and orders to scheduling and analytics.
+                        More than a website — a complete online storefront with custom ordering, product configuration, and seamless checkout built for print shops.
                     </motion.p>
                 </div>
-
             </div>
 
-            {/* Sticky Tab Bar — full width, scrollable */}
-            <div className="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md py-4 mb-10 md:mb-14 px-4 md:px-8">
-                <LayoutGroup>
-                    <div className="relative">
-                        <div ref={tabScrollRef} className="flex gap-1.5 overflow-x-auto pb-1 justify-start">
-                            {tier1Features.map((f, i) => (
-                                <button
-                                    key={f.id}
-                                    onClick={() => setActiveTab(i)}
-                                    className={`relative flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors ${activeTab === i
-                                        ? 'text-white'
-                                        : 'border border-structural-border dark:border-gray-700 text-secondary-text hover:text-charcoal dark:hover:text-white hover:border-primary/30'
-                                        }`}
-                                >
-                                    {activeTab === i && (
-                                        <motion.div
-                                            layoutId="activeFeatureTab"
-                                            className="absolute inset-0 bg-primary rounded-full"
-                                            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                                        />
-                                    )}
-                                    <span className="material-symbols-outlined text-sm sm:text-base relative z-10 hidden sm:inline-block">{f.tabIcon}</span>
-                                    <span className="relative z-10">{f.tabLabel}</span>
-                                </button>
-                            ))}
+            {/* Sticky Tab Bar — outside max-w container for full width */}
+            <div className="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md py-4 mb-10 md:mb-14 px-4 md:px-8 flex justify-center">
+                    <LayoutGroup>
+                        <div className="relative">
+
+                            <div ref={tabScrollRef} className="flex gap-1.5 overflow-x-auto scrollbar-none pb-1 justify-start">
+                                {tier1Features.map((f, i) => (
+                                    <button
+                                        key={f.id}
+                                        onClick={() => setActiveTab(i)}
+                                        className={`relative flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors ${activeTab === i
+                                            ? 'text-white'
+                                            : 'border border-structural-border dark:border-gray-700 text-secondary-text hover:text-charcoal dark:hover:text-white hover:border-primary/30'
+                                            }`}
+                                    >
+                                        {activeTab === i && (
+                                            <motion.div
+                                                layoutId="activeWebsiteTab"
+                                                className="absolute inset-0 bg-primary rounded-full"
+                                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                                            />
+                                        )}
+                                        <span className="material-symbols-outlined text-sm sm:text-base relative z-10 hidden sm:inline-block">{f.tabIcon}</span>
+                                        <span className="relative z-10">{f.tabLabel}</span>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                </LayoutGroup>
+                    </LayoutGroup>
             </div>
 
             <div className="max-w-7xl mx-auto px-mobile relative z-10">
@@ -481,12 +549,12 @@ export default function FeaturesSection({ hideLearnMore = false }: { hideLearnMo
                         className="flex items-center justify-center pt-8 pb-4 mt-4"
                     >
                         <a
-                            href="/platform/filemaker-system"
+                            href="/platform/ecommerce-storefront"
                             className="px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
                         >
                             <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
                             <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
-                            <span className="relative z-10">Learn more about the FileMaker system</span>
+                            <span className="relative z-10">Learn more about the Ecommerce Storefront</span>
                             <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                         </a>
                     </motion.div>

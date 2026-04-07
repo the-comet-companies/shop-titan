@@ -33,6 +33,15 @@ export default function CtaSection() {
                             </span>
                         </a>
                     </div>
+                    <div className="flex flex-wrap gap-4 justify-center mt-8 text-sm text-secondary-text dark:text-gray-500">
+                        <a href="/platform/complete-system" className="hover:text-primary transition-colors">Complete System</a>
+                        <span className="text-gray-300 dark:text-gray-700">·</span>
+                        <a href="/platform/filemaker-system" className="hover:text-primary transition-colors">FileMaker System</a>
+                        <span className="text-gray-300 dark:text-gray-700">·</span>
+                        <a href="/platform/ecommerce-storefront" className="hover:text-primary transition-colors">Ecommerce Storefront</a>
+                        <span className="text-gray-300 dark:text-gray-700">·</span>
+                        <a href="/pricing" className="hover:text-primary transition-colors">Pricing</a>
+                    </div>
                 </motion.div>
             </div>
         </section>
