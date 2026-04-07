@@ -72,6 +72,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8,
         },
         {
+            url: `${BASE_URL}/get-started/replace-spreadsheets`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: `${BASE_URL}/hire/filemaker-developer-usa`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
             url: `${BASE_URL}/hire/filemaker-developer`,
             lastModified: new Date(),
             changeFrequency: 'monthly',

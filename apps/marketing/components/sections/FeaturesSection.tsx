@@ -15,6 +15,7 @@ import screenPricingGridImage from '@/assets/Filemaker/ScreenPricingGrid.png';
 import emailTemplateImage from '@/assets/Filemaker/EmailTemplate.png';
 import reportingImage from '@/assets/Filemaker/Reporting.png';
 import contractorImage from '@/assets/Filemaker/Contractor.png';
+import transferFirmImage from '@/assets/Filemaker/transfer&firm.gif';
 
 // --- Shared Feature Type ---
 interface Feature {
@@ -78,6 +79,22 @@ const tier1Features: Feature[] = [
         },
         videoSrc: '/videos/feature-email.mp4',
         imageSrc: emailTemplateImage,
+    },
+    {
+        id: 'support',
+        tabLabel: 'Support',
+        tabIcon: 'support_agent',
+        title: 'Support',
+        painPoint: {
+            label: 'THE FRICTION',
+            description: 'Transfer requests and firm confirmations handled through scattered emails and phone calls. No tracking, no accountability, no audit trail.',
+        },
+        solution: {
+            label: 'THE FIX',
+            description: 'Built-in transfer and firm management. Track requests, confirmations, and status changes in one place — with full history and real-time updates.',
+        },
+        videoSrc: '/videos/feature-support.mp4',
+        imageSrc: transferFirmImage,
     },
     {
         id: 'tasks',
@@ -278,7 +295,7 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                                 alt={feature.title}
                                 className="w-full h-auto"
                                 sizes="(max-width: 1024px) 100vw, 66vw"
-                                placeholder="blur"
+                                {...(typeof feature.imageSrc === 'object' && 'src' in feature.imageSrc && typeof feature.imageSrc.src === 'string' && feature.imageSrc.src.endsWith('.gif') ? { unoptimized: true } : { placeholder: 'blur' as const })}
                             />
                         </div>
                     </div>
