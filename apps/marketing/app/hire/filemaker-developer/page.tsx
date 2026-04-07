@@ -483,7 +483,7 @@ export default function HireFileMakerDeveloperPage() {
                             viewport={{ once: true }}
                             className="text-secondary-text dark:text-gray-400 leading-relaxed mt-6"
                         >
-                            <strong className="text-charcoal dark:text-white">But for most print shops and apparel businesses:</strong> the system you need already exists. Deploying it is faster, cheaper, and lower risk than building from scratch.
+                            <strong className="text-charcoal dark:text-white">But for most print shops and apparel businesses:</strong> the system you need already exists. Deploying it is faster, cheaper, and lower risk than building from scratch. If you&apos;re specifically looking at <Link href="/hire/filemaker-developer-usa" className="text-primary hover:underline">US-based FileMaker developers, see our cost and timeline breakdown</Link>.
                         </motion.p>
                     </div>
                 </section>
@@ -645,6 +645,8 @@ export default function HireFileMakerDeveloperPage() {
                             className="text-sm text-secondary-text dark:text-gray-400 mt-4"
                         >
                             <Link href="/platform/filemaker-system" className="text-primary hover:underline">View the FileMaker System →</Link>
+                            <span className="mx-2 text-structural-border dark:text-gray-700">·</span>
+                            <Link href="/hire/filemaker-developer-usa" className="text-primary hover:underline">Hiring in the USA? See costs & timelines →</Link>
                         </motion.p>
                     </div>
                 </section>

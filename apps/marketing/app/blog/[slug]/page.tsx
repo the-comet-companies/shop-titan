@@ -1,6 +1,7 @@
 import { articles } from "@/lib/blog-data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { generatePageMetadata } from "@/lib/schema";
 
 interface PageProps {
     params: Promise<{
@@ -14,31 +15,18 @@ export async function generateMetadata({ params }: PageProps) {
     const post = articles.find((article) => article.slug === slug);
 
     if (!post) {
-        return {
-            title: "Article Not Found | Shop Titan",
-        };
+        return { title: "Article Not Found | Shop Titan" };
     }
 
-    return {
+    return generatePageMetadata({
         title: post.title,
         description: post.description,
-        alternates: {
-            canonical: `https://shoptitan.app/blog/${post.slug}`,
-        },
-        openGraph: {
-            title: post.title,
-            description: post.description,
-            type: 'article',
-            url: `https://shoptitan.app/blog/${post.slug}`,
-            publishedTime: post.date,
-            authors: [post.author],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: post.title,
-            description: post.description,
-        },
-    };
+        path: `/blog/${post.slug}`,
+        type: "blog",
+        ogType: "article",
+        publishedTime: post.date,
+        author: post.author,
+    });
 }
 
 // Generate static params if we want to statically generate these pages at build time

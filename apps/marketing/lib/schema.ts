@@ -1,4 +1,54 @@
-// JSON-LD Schema generators for SEO
+import type { Metadata } from 'next';
+
+// ─── Metadata helper ───
+
+const BASE_URL = 'https://shoptitan.app';
+
+type PageType = 'platform' | 'blog' | 'hire' | 'get-started' | 'page';
+
+interface MetaInput {
+    title: string;
+    description: string;
+    path: string;
+    type?: PageType;
+    ogType?: 'website' | 'article';
+    publishedTime?: string;
+    author?: string;
+}
+
+export function generatePageMetadata({
+    title,
+    description,
+    path,
+    type = 'page',
+    ogType = 'website',
+    publishedTime,
+    author,
+}: MetaInput): Metadata {
+    const url = `${BASE_URL}${path}`;
+    const fullTitle = `${title} | Shop Titan`;
+
+    return {
+        title,
+        description,
+        alternates: { canonical: url },
+        openGraph: {
+            title: fullTitle,
+            description,
+            url,
+            type: ogType,
+            ...(publishedTime && { publishedTime }),
+            ...(author && { authors: [author] }),
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: fullTitle,
+            description,
+        },
+    };
+}
+
+// ─── JSON-LD Schema generators for SEO ───
 
 export function generateFAQSchema(faqs: { question: string; answer: string }[]) {
     return {
