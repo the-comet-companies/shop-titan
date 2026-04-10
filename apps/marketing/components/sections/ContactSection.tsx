@@ -22,9 +22,9 @@ export default function ContactSection() {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Webhook URLs (Placeholders - to be replaced with env vars or actual URLs)
-    const WEBHOOK_STEP_1 = process.env.NEXT_PUBLIC_CONTACT_WEBHOOK_STEP_1 || "";
-    const WEBHOOK_STEP_2 = process.env.NEXT_PUBLIC_CONTACT_WEBHOOK_STEP_2 || "";
+    const WEBHOOK_URL = "https://n8n-dtla-c914de1950b9.herokuapp.com/webhook/0af2fe66-41e7-4a1d-b9be-73d8b2c1a72a";
+    const WEBHOOK_STEP_1 = WEBHOOK_URL;
+    const WEBHOOK_STEP_2 = WEBHOOK_URL;
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -176,28 +176,17 @@ export default function ContactSection() {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             className="pt-6 lg:pt-8 border-t border-gray-100 dark:border-gray-800"
                         >
-                            <div className="flex items-center gap-4 mb-4">
-                                <div className="flex -space-x-4">
-                                    {[1, 2, 3, 4].map((i) => (
-                                        <div key={i} className="w-12 h-12 rounded-full border-4 border-background-light dark:border-background-dark bg-gray-200 dark:bg-gray-700 overflow-hidden relative">
-                                            <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-gray-500">
-                                                U{i}
-                                            </div>
-                                        </div>
-                                    ))}
+                            <div className="mb-4">
+                                <div className="flex items-center text-yellow-400 gap-1 text-sm">
+                                    <span className="material-symbols-outlined filled text-lg">star</span>
+                                    <span className="material-symbols-outlined filled text-lg">star</span>
+                                    <span className="material-symbols-outlined filled text-lg">star</span>
+                                    <span className="material-symbols-outlined filled text-lg">star</span>
+                                    <span className="material-symbols-outlined filled text-lg">star</span>
                                 </div>
-                                <div>
-                                    <div className="flex items-center text-yellow-400 gap-1 text-sm">
-                                        <span className="material-symbols-outlined filled text-lg">star</span>
-                                        <span className="material-symbols-outlined filled text-lg">star</span>
-                                        <span className="material-symbols-outlined filled text-lg">star</span>
-                                        <span className="material-symbols-outlined filled text-lg">star</span>
-                                        <span className="material-symbols-outlined filled text-lg">star</span>
-                                    </div>
-                                    <p className="text-sm font-semibold text-charcoal dark:text-white mt-1">
-                                        Trusted by 500+ Shops
-                                    </p>
-                                </div>
+                                <p className="text-sm font-semibold text-charcoal dark:text-white mt-1">
+                                    Trusted by 22 Shops
+                                </p>
                             </div>
                         </motion.div>
                     </div>
@@ -474,21 +463,17 @@ export default function ContactSection() {
                             </AnimatePresence>
 
                             {/* Mobile Social Proof */}
-                            <div className="lg:hidden mt-10 pt-8 border-t border-gray-100 dark:border-gray-800 flex flex-col items-center gap-4">
+                            <div className="lg:hidden mt-10 pt-8 border-t border-gray-100 dark:border-gray-800 flex justify-center">
                                 <div className="flex items-center gap-2">
-                                    <div className="flex -space-x-2">
-                                        <div className="w-8 h-8 rounded-full bg-structural-border dark:bg-gray-700 border-2 border-surface dark:border-gray-900 flex items-center justify-center text-[10px] font-bold">
-                                            JD
-                                        </div>
-                                        <div className="w-8 h-8 rounded-full bg-primary/20 border-2 border-surface dark:border-gray-900 flex items-center justify-center text-[10px] font-bold text-primary">
-                                            MS
-                                        </div>
-                                        <div className="w-8 h-8 rounded-full bg-background-light dark:bg-gray-800 border-2 border-surface dark:border-gray-900 flex items-center justify-center text-[10px] font-bold text-secondary-text">
-                                            +12
-                                        </div>
+                                    <div className="flex items-center text-yellow-400 gap-0.5">
+                                        <span className="material-symbols-outlined filled text-sm">star</span>
+                                        <span className="material-symbols-outlined filled text-sm">star</span>
+                                        <span className="material-symbols-outlined filled text-sm">star</span>
+                                        <span className="material-symbols-outlined filled text-sm">star</span>
+                                        <span className="material-symbols-outlined filled text-sm">star</span>
                                     </div>
                                     <span className="text-xs text-secondary-text font-medium">
-                                        Joined by 150+ shops this month
+                                        Trusted by 22 Shops
                                     </span>
                                 </div>
                             </div>

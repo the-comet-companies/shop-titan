@@ -6,7 +6,7 @@ import Link from 'next/link';
 import {
     hero, steps, tracks, deliveries, pricing,
     comparisonFeatures, comparisonPricing, faqs,
-    addOns, addOnBundlePrice,
+    addOns, addOnBundlePrice, userPricing,
     type TrackId, type DeliveryId,
 } from '@/lib/pricing-data';
 
@@ -34,8 +34,20 @@ export default function InteractivePricing() {
         setSelectedTrack(id);
         setSelectedDelivery(null);
         setSelectedAddOns([]);
+        setCurrentStep(1);
+    }, []);
+
+    const handleContinueToFeatures = useCallback(() => {
         setCurrentStep(2);
         setTimeout(() => scrollTo(step2Ref.current), 100);
+    }, []);
+
+    const handleTableGetPlan = useCallback((id: TrackId) => {
+        setSelectedTrack(id);
+        setSelectedDelivery(null);
+        setSelectedAddOns([]);
+        setCurrentStep(1);
+        setTimeout(() => scrollTo(step1Ref.current), 100);
     }, []);
 
     const handleDeliverySelect = useCallback((id: DeliveryId) => {
@@ -223,6 +235,23 @@ export default function InteractivePricing() {
                             </motion.button>
                         ))}
                     </div>
+
+                    {/* Continue button after track selection */}
+                    {selectedTrack && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-center mt-8"
+                        >
+                            <button
+                                onClick={handleContinueToFeatures}
+                                className="px-8 py-3 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center gap-2"
+                            >
+                                Continue
+                                <span className="material-symbols-outlined text-lg">arrow_downward</span>
+                            </button>
+                        </motion.div>
+                    )}
                 </div>
             </section>
 
@@ -420,6 +449,17 @@ export default function InteractivePricing() {
                                     </div>
                                 </div>
 
+                                {/* User pricing */}
+                                <div className="flex items-start gap-2 mb-6 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                                    <span className="material-symbols-outlined text-primary text-sm mt-0.5 flex-shrink-0">group</span>
+                                    <div>
+                                        <p className="text-xs font-bold text-charcoal dark:text-white mb-0.5">User Pricing</p>
+                                        <p className="text-xs text-secondary-text dark:text-gray-400">
+                                            {selectedTrack && userPricing[selectedTrack]}
+                                        </p>
+                                    </div>
+                                </div>
+
                                 <div className="border-t border-structural-border dark:border-gray-800 pt-6 mb-6">
                                     <p className="text-sm font-bold text-charcoal dark:text-white mb-4">Everything included:</p>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -510,21 +550,21 @@ export default function InteractivePricing() {
                                         <div className="flex flex-col items-center justify-end">
                                             <span className="text-[9px] text-transparent mb-0.5">&nbsp;</span>
                                             <span className="text-charcoal dark:text-white font-bold block mb-2">Website Only</span>
-                                            <button onClick={() => { handleTrackSelect('website'); }} className="px-3 py-1 text-xs font-bold border border-primary text-primary rounded-full hover:bg-primary/5 transition-colors">Get Plan</button>
+                                            <button onClick={() => { handleTableGetPlan('website'); }} className="px-3 py-1 text-xs font-bold border border-primary text-primary rounded-full hover:bg-primary/5 transition-colors">Get Plan</button>
                                         </div>
                                     </th>
                                     <th className="text-center pt-3 pb-5 px-3">
                                         <div className="flex flex-col items-center justify-end">
                                             <span className="text-[9px] text-transparent mb-0.5">&nbsp;</span>
                                             <span className="text-charcoal dark:text-white font-bold block mb-2">FileMaker Only</span>
-                                            <button onClick={() => { handleTrackSelect('filemaker'); }} className="px-3 py-1 text-xs font-bold border border-primary text-primary rounded-full hover:bg-primary/5 transition-colors">Get Plan</button>
+                                            <button onClick={() => { handleTableGetPlan('filemaker'); }} className="px-3 py-1 text-xs font-bold border border-primary text-primary rounded-full hover:bg-primary/5 transition-colors">Get Plan</button>
                                         </div>
                                     </th>
                                     <th className="text-center pt-3 pb-5 px-3">
                                         <div className="flex flex-col items-center justify-end">
                                             <span className="inline-block px-2 py-0.5 bg-primary text-white text-[9px] font-bold uppercase tracking-wider rounded-full mb-0.5">Best Value</span>
                                             <span className="text-primary font-bold block mb-2">Website + FileMaker</span>
-                                            <button onClick={() => { handleTrackSelect('both'); }} className="px-3 py-1 text-xs font-bold bg-primary text-white rounded-full hover:bg-primary/90 transition-colors">Get Plan</button>
+                                            <button onClick={() => { handleTableGetPlan('both'); }} className="px-3 py-1 text-xs font-bold bg-primary text-white rounded-full hover:bg-primary/90 transition-colors">Get Plan</button>
                                         </div>
                                     </th>
                                 </tr>

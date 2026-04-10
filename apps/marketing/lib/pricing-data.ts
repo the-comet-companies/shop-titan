@@ -44,6 +44,12 @@ export const addOns: AddOn[] = [
 
 export const addOnBundlePrice = 120;
 
+export const userPricing = {
+    website: 'Unlimited users included',
+    filemaker: '$100/user/mo (1-5 users), $75/user/mo (6+ users)',
+    both: 'Website: Unlimited users. FileMaker: $100/user/mo (1-5), $75/user/mo (6+)',
+};
+
 export interface FAQ {
     question: string;
     answer: string;
@@ -244,6 +250,7 @@ export const comparisonPricing = [
     { label: 'DIY Setup', website: '$1,500', filemaker: '$3,000', both: '$4,000' },
     { label: 'DIY Monthly', website: '$200/mo', filemaker: '$350/mo', both: '$450/mo' },
     { label: 'DFY Timeline', website: '4-6 weeks', filemaker: '6-8 weeks', both: '8-12 weeks' },
+    { label: 'Users', website: 'Unlimited (free)', filemaker: '$100/user (1-5), $75/user (6+)', both: 'Web: Unlimited. FM: $100/$75 per user' },
 ];
 
 export const faqs: FAQ[] = [
