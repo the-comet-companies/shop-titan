@@ -12,7 +12,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
  *  3. IntersectionObserver reveals elements as they scroll into view
  *
  * This ensures content is visible even when a heavy asset (e.g. Spline 3D)
- * blocks the main thread — elements already in the viewport stay visible
+ * blocks the main thread  - elements already in the viewport stay visible
  * because they were never hidden.
  */
 export function useScrollAnimation(threshold = 0.1) {
@@ -33,7 +33,7 @@ export function useScrollAnimation(threshold = 0.1) {
 
     // IntersectionObserver for the entrance animation
     useEffect(() => {
-        if (isVisible) return; // already visible — nothing to do
+        if (isVisible) return; // already visible  - nothing to do
 
         const el = elementRef.current;
         if (!el) return;

@@ -9,23 +9,23 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 const faqs = [
     {
         question: 'What is a print shop management system?',
-        answer: "A print shop management system is a platform that handles the core operations of a printing or apparel decoration business — quotes, orders, inventory, production scheduling, customer management, and reporting. The Shop Titan complete system also includes an ecommerce storefront, making it a full frontend-to-backend solution.",
+        answer: "A print shop management system is a platform that handles the core operations of a printing or apparel decoration business  - quotes, orders, inventory, production scheduling, customer management, and reporting. The Shop Titan complete system also includes an ecommerce storefront, making it a full frontend-to-backend solution.",
     },
     {
         question: 'Do I need both the website and the backend system?',
-        answer: "Not necessarily. You can start with just the ecommerce storefront or just the FileMaker system. But the complete system is where the real value is — orders flowing from website to production without manual steps. Most shops that start with one add the other within a few months.",
+        answer: "Not necessarily. You can start with just the ecommerce storefront or just the FileMaker system. But the complete system is where the real value is  - orders flowing from website to production without manual steps. Most shops that start with one add the other within a few months.",
     },
     {
         question: 'Can this all-in-one print shop software replace Printavo?',
-        answer: "Yes. It covers everything Printavo does — quotes, orders, customer management — plus real inventory tracking, purchase orders, contractor work orders, website integration, and reporting that Printavo doesn't offer.",
+        answer: "Yes. It covers everything Printavo does  - quotes, orders, customer management  - plus real inventory tracking, purchase orders, contractor work orders, website integration, and reporting that Printavo doesn't offer.",
     },
     {
         question: 'Can this replace my spreadsheets?',
-        answer: 'Yes. Quotes, orders, inventory, customer lists, pricing — everything currently in Excel or Google Sheets moves into a connected system where data flows automatically.',
+        answer: 'Yes. Quotes, orders, inventory, customer lists, pricing  - everything currently in Excel or Google Sheets moves into a connected system where data flows automatically.',
     },
     {
         question: 'How long does setup take for the complete system?',
-        answer: 'Four to six weeks. FileMaker system first (2–3 weeks), then storefront deployment and integration (1–2 weeks). Your team is trained on both during the process.',
+        answer: 'Four to six weeks. FileMaker system first (2-3 weeks), then storefront deployment and integration (1-2 weeks). Your team is trained on both during the process.',
     },
     {
         question: 'Is this customizable?',
@@ -41,18 +41,18 @@ const faqs = [
     },
     {
         question: 'What makes this different from buying separate tools?',
-        answer: "Integration. Separate tools make you the integration layer — re-entering data, checking multiple systems, manually bridging workflows. This screen printing business system is built as one platform. Data flows between storefront and operations automatically.",
+        answer: "Integration. Separate tools make you the integration layer  - re-entering data, checking multiple systems, manually bridging workflows. This screen printing business system is built as one platform. Data flows between storefront and operations automatically.",
     },
     {
         question: 'Can the system grow with my business?',
-        answer: 'Yes. The same print shop automation system handles 50 orders a month and 500+. As you grow, the system scales with you — no rebuilding required.',
+        answer: 'Yes. The same print shop automation system handles 50 orders a month and 500+. As you grow, the system scales with you  - no rebuilding required.',
     },
 ];
 
 const faqSchema = generateFAQSchema(faqs);
 const serviceSchema = generateServiceSchema({
     name: 'Complete Print Shop Management System',
-    description: 'All-in-one print shop software — ecommerce storefront and FileMaker operations platform connected. Orders flow from website to production automatically.',
+    description: 'All-in-one print shop software  - ecommerce storefront and FileMaker operations platform connected. Orders flow from website to production automatically.',
     url: 'https://shoptitan.app/platform/complete-system',
 });
 const breadcrumbSchema = generateBreadcrumbSchema([
@@ -96,7 +96,7 @@ export default function CompleteSystemPage() {
                             transition={{ duration: 0.5, delay: 0.1 }}
                             className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
                         >
-                            Print Shop Management System — Website, Operations & Production in One Platform
+                            Print Shop Management System  - Website, Operations & Production in One Platform
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 12 }}
@@ -104,7 +104,7 @@ export default function CompleteSystemPage() {
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8"
                         >
-                            This print shop management system is designed for screen printing and apparel businesses that need their ecommerce storefront and operations working as one system. Orders flow from your website directly into production — no manual entry, no disconnected tools, no gaps. Already used in real print shop operations handling daily orders, inventory, and production workflows. Deployed into yours in 4–6 weeks.
+                            This print shop management system is designed for screen printing and apparel businesses that need their ecommerce storefront and operations working as one system. Orders flow from your website directly into production  - no manual entry, no disconnected tools, no gaps. Already used in real print shop operations handling daily orders, inventory, and production workflows. Deployed into yours in 4-6 weeks.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
@@ -116,7 +116,7 @@ export default function CompleteSystemPage() {
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Demo — Watch a Real Order Flow Through the System
+                                Book a Demo  - Watch a Real Order Flow Through the System
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                             <Link
@@ -160,7 +160,7 @@ export default function CompleteSystemPage() {
                             transition={{ delay: 0.15 }}
                             className="text-secondary-text dark:text-gray-400 leading-relaxed mb-10 max-w-3xl"
                         >
-                            But this all-in-one print shop software goes further. It connects your customer-facing storefront directly to your back-office operations — so the moment a customer places an order online, your entire shop knows about it.
+                            But this all-in-one print shop software goes further. It connects your customer-facing storefront directly to your back-office operations  - so the moment a customer places an order online, your entire shop knows about it.
                         </motion.p>
 
                         <motion.div
@@ -175,7 +175,7 @@ export default function CompleteSystemPage() {
                                 { icon: 'shopping_cart', title: 'Order Management', desc: 'Every order tracked from intake to delivery with full visibility' },
                                 { icon: 'inventory_2', title: 'Inventory', desc: 'Blank apparel stock monitored in real time by style, color, and size' },
                                 { icon: 'precision_manufacturing', title: 'Production', desc: 'Tasks assigned and tracked across screen printing, embroidery, DTG, and sewing' },
-                                { icon: 'local_shipping', title: 'Fulfillment', desc: 'Packing slips, shipping labels, tracking emails — automated' },
+                                { icon: 'local_shipping', title: 'Fulfillment', desc: 'Packing slips, shipping labels, tracking emails  - automated' },
                                 { icon: 'assessment', title: 'Reporting', desc: 'Revenue, production load, inventory levels, and profitability on demand' },
                             ].map((item) => (
                                 <motion.div
@@ -237,11 +237,11 @@ export default function CompleteSystemPage() {
                             viewport={{ once: true, margin: '-80px' }}
                         >
                             {[
-                                { num: '01', title: "Your website takes orders. Your system doesn't know about them.", desc: "A customer orders at 9pm. Nobody sees it until someone checks email the next morning. Then they re-enter it manually — name, product, sizes, colors, artwork." },
-                                { num: '02', title: 'Manual data entry creates errors you catch too late.', desc: "The order said 50 black mediums and 30 navy larges. Someone transposed the numbers. You don't find out until it's on the press — or after it ships." },
+                                { num: '01', title: "Your website takes orders. Your system doesn't know about them.", desc: "A customer orders at 9pm. Nobody sees it until someone checks email the next morning. Then they re-enter it manually  - name, product, sizes, colors, artwork." },
+                                { num: '02', title: 'Manual data entry creates errors you catch too late.', desc: "The order said 50 black mediums and 30 navy larges. Someone transposed the numbers. You don't find out until it's on the press  - or after it ships." },
                                 { num: '03', title: "You can't see the full picture from anywhere.", desc: "Website shows orders. App shows production. Spreadsheet shows inventory. Email shows customer comms. No single view tells you what's happening." },
                                 { num: '04', title: 'Your team wastes hours on work the system should handle.', desc: "Confirmation emails sent manually. Inventory checked by walking to the shelf. Status updates by phone. An all-in-one print shop software eliminates all of this." },
-                                { num: '05', title: "You're paying for 5 tools that don't connect.", desc: "Website hosting. CRM. Inventory spreadsheet. Order app. Accounting. Each costs money. None share data. You're the integration layer — and you don't scale." },
+                                { num: '05', title: "You're paying for 5 tools that don't connect.", desc: "Website hosting. CRM. Inventory spreadsheet. Order app. Accounting. Each costs money. None share data. You're the integration layer  - and you don't scale." },
                             ].map((pain) => (
                                 <motion.div
                                     key={pain.num}
@@ -268,7 +268,7 @@ export default function CompleteSystemPage() {
                             viewport={{ once: true }}
                             className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
                         >
-                            One Order, One System — From Website to Shipment
+                            One Order, One System  - From Website to Shipment
                         </motion.h2>
                         <motion.p
                             initial={{ opacity: 0, y: 12 }}
@@ -290,7 +290,7 @@ export default function CompleteSystemPage() {
                             {[
                                 { step: '01', title: 'Customer Finds You', icon: 'search', desc: 'SEO-optimized, mobile-responsive storefront. Customers browse your catalog, see brand pages, and view pricing.' },
                                 { step: '02', title: 'Customer Places Order', icon: 'shopping_cart', desc: 'Products selected, colors/sizes chosen in a grid, artwork uploaded with placement, checkout completed.' },
-                                { step: '03', title: 'Order Appears in FileMaker', icon: 'sync', desc: 'Automatically. Customer details, line items, artwork, decoration specs, due date — all transferred. Zero re-entry.' },
+                                { step: '03', title: 'Order Appears in FileMaker', icon: 'sync', desc: 'Automatically. Customer details, line items, artwork, decoration specs, due date  - all transferred. Zero re-entry.' },
                                 { step: '04', title: 'Inventory Checked', icon: 'inventory_2', desc: 'Blank availability verified. Stock allocated. If low, a purchase order is triggered to your vendor automatically.' },
                                 { step: '05', title: 'Production Scheduled', icon: 'precision_manufacturing', desc: 'Tasks created per decoration method. Team sees what\'s due, in progress, and complete.' },
                                 { step: '06', title: 'Customer Notified', icon: 'mail', desc: 'Confirmation, updates, and shipping tracking sent automatically via branded email templates.' },
@@ -325,7 +325,7 @@ export default function CompleteSystemPage() {
                             viewport={{ once: true }}
                             className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-12"
                         >
-                            Everything Your Print Shop Needs — Frontend and Backend
+                            Everything Your Print Shop Needs  - Frontend and Backend
                         </motion.h2>
 
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -340,7 +340,7 @@ export default function CompleteSystemPage() {
                                 <div className="space-y-3">
                                     {[
                                         'Product catalog with color swatches, sizing, and images',
-                                        'Size/color quantity grid — multiple variants at once',
+                                        'Size/color quantity grid  - multiple variants at once',
                                         'Drag-and-drop artwork upload with placement selection',
                                         'Volume-based pricing that calculates automatically',
                                         'Brand pages for every blank apparel line',
@@ -419,11 +419,11 @@ export default function CompleteSystemPage() {
                         >
                             {[
                                 { time: 'Monday, 2:14 PM', title: 'Customer places an order', desc: 'Selects 200 Comfort Colors 1717 tees in 4 colors, uploads logo, selects left chest embroidery, checks out. Total calculated automatically. Payment processed.' },
-                                { time: 'Monday, 2:14 PM', title: 'Order hits your system', desc: 'Appears in FileMaker immediately. Customer info, products, sizes per color, artwork file, decoration specs, due date — all there. No email to check. No data to re-enter.' },
+                                { time: 'Monday, 2:14 PM', title: 'Order hits your system', desc: 'Appears in FileMaker immediately. Customer info, products, sizes per color, artwork file, decoration specs, due date  - all there. No email to check. No data to re-enter.' },
                                 { time: 'Monday, 2:15 PM', title: 'Inventory checked', desc: '180 of 200 tees in stock. Purchase order for remaining 20 generated automatically and sent to vendor.' },
                                 { time: 'Monday, 2:16 PM', title: 'Customer receives confirmation', desc: 'Branded email sent automatically with order details, estimated delivery, and tracking link.' },
                                 { time: 'Tuesday, 10:00 AM', title: 'Blanks arrive', desc: 'Remaining 20 tees received into the system. Inventory updates. Order fully allocated.' },
-                                { time: 'Tuesday, 11:00 AM', title: 'Production begins', desc: 'Embroidery task created and assigned. Thread colors, placement, stitch count, quantity per size — visible to production team.' },
+                                { time: 'Tuesday, 11:00 AM', title: 'Production begins', desc: 'Embroidery task created and assigned. Thread colors, placement, stitch count, quantity per size  - visible to production team.' },
                                 { time: 'Wednesday, 3:00 PM', title: 'Production complete', desc: 'Task marked complete. Quality checked. Order status updates automatically.' },
                                 { time: 'Wednesday, 4:00 PM', title: 'Order ships', desc: 'Packing slip generated. Shipping label via ShipStation. Tracking sent to customer. Order fulfilled. Revenue logged.' },
                             ].map((step, i) => (
@@ -488,7 +488,7 @@ export default function CompleteSystemPage() {
                                         ['Production', 'Phone or whiteboard', 'Tracked per task, visible to all'],
                                         ['Customer updates', 'Sent manually', 'Automated branded emails'],
                                         ['Reporting', 'Monthly spreadsheet assembly', 'On demand, one dashboard'],
-                                        ['Cost', '4–6 separate subscriptions', 'One platform, one fee'],
+                                        ['Cost', '4-6 separate subscriptions', 'One platform, one fee'],
                                         ['Integration', 'You are the integration', 'Built-in by default'],
                                     ].map(([label, disco, titan], i) => (
                                         <tr key={i} className="border-b border-structural-border dark:border-gray-800 last:border-0">
@@ -550,7 +550,7 @@ export default function CompleteSystemPage() {
                             viewport={{ once: true }}
                             className="text-center text-sm text-indigo-600 dark:text-indigo-400 font-semibold mt-6"
                         >
-                            Total timeline: 4–6 weeks from discovery to go-live
+                            Total timeline: 4-6 weeks from discovery to go-live
                         </motion.p>
                     </div>
                 </section>
@@ -670,7 +670,7 @@ export default function CompleteSystemPage() {
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Demo — Watch a Real Order Flow Through the System
+                                Book a Demo  - Watch a Real Order Flow Through the System
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                         </motion.div>

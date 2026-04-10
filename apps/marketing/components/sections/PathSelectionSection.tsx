@@ -24,7 +24,7 @@ const tabs = [
 ];
 
 export default function PathSelectionSection() {
-    const [activeTab, setActiveTab] = useState('website');
+    const [activeTab, setActiveTab] = useState('both');
 
     return (
         <section id="solutions" className="pt-16 md:pt-20 bg-background-light dark:bg-background-dark relative">

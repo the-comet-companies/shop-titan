@@ -10,7 +10,7 @@ const platformData = [
     {
         statement: "Visibility",
         rotatingWords: ["REAL-TIME CLARITY", "FINANCIAL INSIGHT", "CAPACITY TRACKING"],
-        outcome: "Executive Visibility: Real-time financial and capacity clarity — without reports or follow-ups.",
+        outcome: "Executive Visibility: Real-time financial and capacity clarity  - without reports or follow-ups.",
     },
     {
         statement: "Auto Mode",

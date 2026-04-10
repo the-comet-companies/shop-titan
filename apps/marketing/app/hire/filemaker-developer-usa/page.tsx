@@ -9,31 +9,31 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 const faqs = [
     {
         question: 'How much does a FileMaker developer cost in the USA?',
-        answer: 'US-based FileMaker developers typically charge between $80 and $150 per hour depending on experience, location, and project complexity. A full custom system build can cost $30,000–$100,000+ over several months.',
+        answer: 'US-based FileMaker developers typically charge between $80 and $150 per hour depending on experience, location, and project complexity. A full custom system build can cost $30,000-$100,000+ over several months.',
     },
     {
         question: 'How long does it take to build a FileMaker system from scratch?',
-        answer: 'Building a custom FileMaker system from scratch typically takes 3–6+ months for a production-ready solution. Complex systems with inventory, production tracking, and ecommerce integration can take longer.',
+        answer: 'Building a custom FileMaker system from scratch typically takes 3-6+ months for a production-ready solution. Complex systems with inventory, production tracking, and ecommerce integration can take longer.',
     },
     {
         question: 'Is there a pre-built FileMaker system for print shops?',
-        answer: 'Yes. Shop Titan is a FileMaker-based system built specifically for print shops and apparel decorators. It covers orders, inventory, production, quoting, and ecommerce — and deploys in 2–4 weeks.',
+        answer: 'Yes. Shop Titan is a FileMaker-based system built specifically for print shops and apparel decorators. It covers orders, inventory, production, quoting, and ecommerce  - and deploys in 2-4 weeks.',
     },
     {
         question: "What's the difference between hiring a developer and deploying a system?",
-        answer: "Hiring a developer means building from scratch — you manage timelines, decisions, and ongoing maintenance. Deploying a system means starting with something proven that's already running in production, then customizing to fit your shop.",
+        answer: "Hiring a developer means building from scratch  - you manage timelines, decisions, and ongoing maintenance. Deploying a system means starting with something proven that's already running in production, then customizing to fit your shop.",
     },
     {
         question: 'Can I customize a pre-built FileMaker system?',
-        answer: 'Yes. FileMaker is inherently customizable. After deploying the base system, you can add custom fields, workflows, reports, and integrations — without starting from zero.',
+        answer: 'Yes. FileMaker is inherently customizable. After deploying the base system, you can add custom fields, workflows, reports, and integrations  - without starting from zero.',
     },
     {
         question: 'Should I hire a US-based developer or go offshore?',
-        answer: 'US-based developers cost more ($80–150/hr vs $25–60/hr offshore) but offer better communication, timezone alignment, and understanding of US business workflows. However, deploying a proven system eliminates the need to manage developers entirely.',
+        answer: 'US-based developers cost more ($80-150/hr vs $25-60/hr offshore) but offer better communication, timezone alignment, and understanding of US business workflows. However, deploying a proven system eliminates the need to manage developers entirely.',
     },
     {
         question: 'What if I need a developer after deploying the system?',
-        answer: 'Shop Titan includes onboarding and support. For custom additions beyond the base system, our team handles modifications — so you don\'t need to find and manage a separate developer.',
+        answer: 'Shop Titan includes onboarding and support. For custom additions beyond the base system, our team handles modifications  - so you don\'t need to find and manage a separate developer.',
     },
 ];
 
@@ -84,7 +84,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             transition={{ duration: 0.5, delay: 0.1 }}
                             className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
                         >
-                            Hire a FileMaker Developer in the USA — Or Deploy a Proven System Instead
+                            Hire a FileMaker Developer in the USA  - Or Deploy a Proven System Instead
                         </motion.h1>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
@@ -93,10 +93,10 @@ export default function HireFileMakerDeveloperUSAPage() {
                             className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8 space-y-4"
                         >
                             <p>
-                                Before you hire a FileMaker developer in the USA, see if the system you need is already built. US-based FileMaker developers charge $80–150/hr and building from scratch takes months. What if the system you need is already running in production — ready to deploy in weeks?
+                                Before you hire a FileMaker developer in the USA, see if the system you need is already built. US-based FileMaker developers charge $80-150/hr and building from scratch takes months. What if the system you need is already running in production  - ready to deploy in weeks?
                             </p>
                             <p className="text-base text-secondary-text/80 dark:text-gray-500">
-                                Already powering real print shop operations. Deploys in 2–4 weeks.
+                                Already powering real print shop operations. Deploys in 2-4 weeks.
                             </p>
                         </motion.div>
                         <motion.div
@@ -109,7 +109,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Demo — Deploy in Weeks, Not Months
+                                Book a Demo  - Deploy in Weeks, Not Months
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                         </motion.div>
@@ -141,7 +141,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                                 FileMaker developers in the United States typically charge between $80 and $150 per hour depending on experience and project scope. Building a custom system can take several months and requires ongoing maintenance after launch.
                             </p>
                             <p>
-                                For many print shops, the question isn&apos;t just cost — it&apos;s whether the system needs to be built from scratch at all. If you&apos;re looking for a FileMaker developer in the United States to build order tracking, inventory management, or production scheduling, that system may already exist.
+                                For many print shops, the question isn&apos;t just cost  - it&apos;s whether the system needs to be built from scratch at all. If you&apos;re looking for a FileMaker developer in the United States to build order tracking, inventory management, or production scheduling, that system may already exist.
                             </p>
                         </motion.div>
 
@@ -153,9 +153,9 @@ export default function HireFileMakerDeveloperUSAPage() {
                             viewport={{ once: true, margin: '-80px' }}
                         >
                             {[
-                                { label: 'US Developer Rate', value: '$80–150/hr', desc: 'Experienced US-based FileMaker developers. Higher for specialists with industry knowledge.', icon: 'payments' },
-                                { label: 'Custom Build Timeline', value: '3–6+ months', desc: 'From requirements gathering through development, testing, and deployment. Complex systems take longer.', icon: 'schedule' },
-                                { label: 'Shop Titan Deployment', value: '2–4 weeks', desc: 'Pre-built system configured for your shop. Data import, training, and go-live included.', icon: 'rocket_launch' },
+                                { label: 'US Developer Rate', value: '$80-150/hr', desc: 'Experienced US-based FileMaker developers. Higher for specialists with industry knowledge.', icon: 'payments' },
+                                { label: 'Custom Build Timeline', value: '3-6+ months', desc: 'From requirements gathering through development, testing, and deployment. Complex systems take longer.', icon: 'schedule' },
+                                { label: 'Shop Titan Deployment', value: '2-4 weeks', desc: 'Pre-built system configured for your shop. Data import, training, and go-live included.', icon: 'rocket_launch' },
                             ].map((item) => (
                                 <motion.div
                                     key={item.label}
@@ -204,9 +204,9 @@ export default function HireFileMakerDeveloperUSAPage() {
                         >
                             {[
                                 { icon: 'block', title: 'SaaS tools hit a wall', desc: 'Printavo, Shopify, or generic CRMs don\'t support your pricing model, production workflow, or multi-method routing. You need something custom.' },
-                                { icon: 'tune', title: 'Custom workflows needed', desc: 'Screen printing pricing grids, embroidery stitch-count calculations, DTG routing — your shop does things that no off-the-shelf tool handles.' },
+                                { icon: 'tune', title: 'Custom workflows needed', desc: 'Screen printing pricing grids, embroidery stitch-count calculations, DTG routing  - your shop does things that no off-the-shelf tool handles.' },
                                 { icon: 'lock', title: 'Data control matters', desc: 'You want to own your data, not rent it from a SaaS provider who could change pricing, features, or terms at any time.' },
-                                { icon: 'trending_up', title: 'Outgrown spreadsheets', desc: 'Orders, inventory, and production are too complex for spreadsheets. You need a real system — and many shops that <a href="/get-started/replace-spreadsheets" class="text-primary hover:underline">replace spreadsheets</a> start here.' },
+                                { icon: 'trending_up', title: 'Outgrown spreadsheets', desc: 'Orders, inventory, and production are too complex for spreadsheets. You need a real system  - and many shops that <a href="/get-started/replace-spreadsheets" class="text-primary hover:underline">replace spreadsheets</a> start here.' },
                             ].map((item) => (
                                 <motion.div
                                     key={item.title}
@@ -247,7 +247,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             transition={{ delay: 0.1 }}
                             className="text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl mb-10"
                         >
-                            Hiring a FileMaker developer is a valid path — but it&apos;s important to understand what it actually involves before committing.
+                            Hiring a FileMaker developer is a valid path  - but it&apos;s important to understand what it actually involves before committing.
                         </motion.p>
 
                         <motion.div
@@ -259,9 +259,9 @@ export default function HireFileMakerDeveloperUSAPage() {
                         >
                             {[
                                 { num: '01', title: 'Finding the right developer takes time', desc: 'Experienced FileMaker developers in the USA are a niche talent pool. Finding someone who understands both FileMaker AND your industry narrows the search significantly.' },
-                                { num: '02', title: 'Building from scratch takes 3–6+ months', desc: 'Requirements gathering, prototyping, development, testing, revisions, and deployment. A production-ready system doesn\'t happen in weeks when you build custom.' },
+                                { num: '02', title: 'Building from scratch takes 3-6+ months', desc: 'Requirements gathering, prototyping, development, testing, revisions, and deployment. A production-ready system doesn\'t happen in weeks when you build custom.' },
                                 { num: '03', title: 'You manage the project alongside your business', desc: 'You\'ll need to manage development timelines, revisions, and system decisions alongside your daily operations. That\'s a second job on top of running a print shop.' },
-                                { num: '04', title: 'Maintenance is ongoing', desc: 'After launch, bugs, updates, feature requests, and compatibility issues become your responsibility. The developer may move on — but the system needs ongoing care.' },
+                                { num: '04', title: 'Maintenance is ongoing', desc: 'After launch, bugs, updates, feature requests, and compatibility issues become your responsibility. The developer may move on  - but the system needs ongoing care.' },
                             ].map((item) => (
                                 <motion.div
                                     key={item.num}
@@ -295,7 +295,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             transition={{ delay: 0.1 }}
                             className="text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl mb-10"
                         >
-                            Shop Titan is a <Link href="/platform/filemaker-system" className="text-primary hover:underline">FileMaker system built specifically for print shop operations</Link>. It&apos;s not a template or a prototype — it&apos;s already running in a real production environment.
+                            Shop Titan is a <Link href="/platform/filemaker-system" className="text-primary hover:underline">FileMaker system built specifically for print shop operations</Link>. It&apos;s not a template or a prototype  - it&apos;s already running in a real production environment.
                         </motion.p>
 
                         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
@@ -307,12 +307,12 @@ export default function HireFileMakerDeveloperUSAPage() {
                             >
                                 <div className="space-y-3">
                                     {[
-                                        'Already used in real print shop workflows — orders, inventory, production',
+                                        'Already used in real print shop workflows  - orders, inventory, production',
                                         'Covers quoting, order management, task routing, and reporting',
                                         'Connected to a modern ecommerce storefront for online sales',
-                                        'Deploys in 2–4 weeks with data import and team training',
-                                        'Customizable after deployment — add fields, workflows, and reports',
-                                        'Ongoing support included — no managing a developer',
+                                        'Deploys in 2-4 weeks with data import and team training',
+                                        'Customizable after deployment  - add fields, workflows, and reports',
+                                        'Ongoing support included  - no managing a developer',
                                     ].map((item, i) => (
                                         <motion.div key={i} variants={fadeUp} className="flex items-start gap-2">
                                             <span className="material-symbols-outlined text-green-500 dark:text-green-400 text-sm mt-0.5 flex-shrink-0">check</span>
@@ -373,12 +373,12 @@ export default function HireFileMakerDeveloperUSAPage() {
                                 </thead>
                                 <tbody>
                                     {[
-                                        { label: 'Cost', us: '$80–150/hr', offshore: '$25–60/hr', deploy: 'Fixed deployment fee' },
-                                        { label: 'Timeline', us: '3–6+ months', offshore: '4–8+ months', deploy: '2–4 weeks' },
+                                        { label: 'Cost', us: '$80-150/hr', offshore: '$25-60/hr', deploy: 'Fixed deployment fee' },
+                                        { label: 'Timeline', us: '3-6+ months', offshore: '4-8+ months', deploy: '2-4 weeks' },
                                         { label: 'Communication', us: 'Same timezone, fluent English', offshore: 'Timezone gaps, possible language barrier', deploy: 'Direct support, US-based' },
-                                        { label: 'Industry Knowledge', us: 'Varies — most don\'t know print', offshore: 'Rarely understands print shops', deploy: 'Built for print shops specifically' },
+                                        { label: 'Industry Knowledge', us: 'Varies  - most don\'t know print', offshore: 'Rarely understands print shops', deploy: 'Built for print shops specifically' },
                                         { label: 'Ongoing Maintenance', us: 'You manage or rehire', offshore: 'You manage or rehire', deploy: 'Included in support' },
-                                        { label: 'Risk', us: 'Moderate — depends on developer', offshore: 'Higher — QA and communication gaps', deploy: 'Low — system is proven' },
+                                        { label: 'Risk', us: 'Moderate  - depends on developer', offshore: 'Higher  - QA and communication gaps', deploy: 'Low  - system is proven' },
                                     ].map((row) => (
                                         <tr key={row.label} className="border-b border-structural-border/50 dark:border-gray-800/50">
                                             <td className="py-3 px-4 text-xs font-bold text-secondary-text dark:text-gray-500 uppercase tracking-wider">{row.label}</td>
@@ -432,8 +432,8 @@ export default function HireFileMakerDeveloperUSAPage() {
                         >
                             {[
                                 { icon: 'settings_suggest', title: 'Truly unique workflows', desc: 'Your process is so specialized that no existing system covers it. This is rare in print shops, but it happens in highly niche operations.' },
-                                { icon: 'memory', title: 'Proprietary hardware integration', desc: 'You need to connect FileMaker to custom hardware — specialized printers, scanners, or machinery with proprietary APIs.' },
-                                { icon: 'build', title: 'Building something that doesn\'t exist', desc: 'Your idea is genuinely new — not a better way to track orders, but something no system on the market offers.' },
+                                { icon: 'memory', title: 'Proprietary hardware integration', desc: 'You need to connect FileMaker to custom hardware  - specialized printers, scanners, or machinery with proprietary APIs.' },
+                                { icon: 'build', title: 'Building something that doesn\'t exist', desc: 'Your idea is genuinely new  - not a better way to track orders, but something no system on the market offers.' },
                             ].map((item) => (
                                 <motion.div
                                     key={item.title}
@@ -455,7 +455,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             viewport={{ once: true }}
                             className="text-sm text-secondary-text dark:text-gray-400 mt-8"
                         >
-                            For everything else — orders, inventory, production, quoting, ecommerce — the <Link href="/platform/complete-system" className="text-primary hover:underline">complete system</Link> is already built. Also see our general <Link href="/hire/filemaker-developer" className="text-primary hover:underline">FileMaker developer guide</Link> for more on the build vs. deploy decision.
+                            For everything else  - orders, inventory, production, quoting, ecommerce  - the <Link href="/platform/complete-system" className="text-primary hover:underline">complete system</Link> is already built. Also see our general <Link href="/hire/filemaker-developer" className="text-primary hover:underline">FileMaker developer guide</Link> for more on the build vs. deploy decision.
                         </motion.p>
                     </div>
                 </section>
@@ -507,7 +507,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             transition={{ delay: 0.1 }}
                             className="text-secondary-text dark:text-gray-400 mb-8 max-w-2xl mx-auto"
                         >
-                            If you&apos;re looking for a FileMaker developer in the United States to build a print shop system, see what&apos;s already built first. Orders, inventory, production, and ecommerce — deployed in weeks, not months.
+                            If you&apos;re looking for a FileMaker developer in the United States to build a print shop system, see what&apos;s already built first. Orders, inventory, production, and ecommerce  - deployed in weeks, not months.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}

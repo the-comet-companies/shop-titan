@@ -9,7 +9,7 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 const faqs = [
     {
         question: 'What is a print shop inventory system?',
-        answer: 'A print shop inventory system tracks blank apparel and supplies by style, color, and size — and connects that data to orders, production, and vendor management. It replaces spreadsheets and manual counts with real-time tracking and automatic reordering.',
+        answer: 'A print shop inventory system tracks blank apparel and supplies by style, color, and size  - and connects that data to orders, production, and vendor management. It replaces spreadsheets and manual counts with real-time tracking and automatic reordering.',
     },
     {
         question: 'Can this track blanks by size and color?',
@@ -25,23 +25,23 @@ const faqs = [
     },
     {
         question: 'How does allocation work?',
-        answer: "When an order is created, the system reserves the blanks needed. Those blanks are marked as allocated — they can't be sold to another customer or pulled for a different job. You always know what's truly available.",
+        answer: "When an order is created, the system reserves the blanks needed. Those blanks are marked as allocated  - they can't be sold to another customer or pulled for a different job. You always know what's truly available.",
     },
     {
         question: 'Can this replace my inventory spreadsheet?',
-        answer: "Yes. That's exactly what this screen printing inventory software is built to do. Stock levels, vendor data, PO history, receiving logs — everything in a connected system where counts update automatically.",
+        answer: "Yes. That's exactly what this screen printing inventory software is built to do. Stock levels, vendor data, PO history, receiving logs  - everything in a connected system where counts update automatically.",
     },
     {
         question: 'Does it work as a standalone tool?',
-        answer: 'The inventory module is part of the Shop Titan FileMaker system. It works best connected to orders, production, and your website — as part of the complete system.',
+        answer: 'The inventory module is part of the Shop Titan FileMaker system. It works best connected to orders, production, and your website  - as part of the complete system.',
     },
     {
         question: 'How long does setup take?',
-        answer: 'Inventory configuration is part of the overall system setup — typically 2–4 weeks. We import your product catalog, set reorder thresholds, and configure vendor data during onboarding.',
+        answer: 'Inventory configuration is part of the overall system setup  - typically 2-4 weeks. We import your product catalog, set reorder thresholds, and configure vendor data during onboarding.',
     },
     {
         question: 'What makes this different from Sortly or Zoho Inventory?',
-        answer: "Generic inventory tools track numbers. This print shop inventory system tracks availability — allocated vs. available stock, connected to orders, production, and your website. It's built for apparel decoration workflows, not retail or warehouse generics.",
+        answer: "Generic inventory tools track numbers. This print shop inventory system tracks availability  - allocated vs. available stock, connected to orders, production, and your website. It's built for apparel decoration workflows, not retail or warehouse generics.",
     },
 ];
 
@@ -92,7 +92,7 @@ export default function InventoryManagementPage() {
                             transition={{ duration: 0.5, delay: 0.1 }}
                             className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
                         >
-                            Inventory Management for Print Shops — Track Blanks, Prevent Stockouts, Sync With Orders
+                            Inventory Management for Print Shops  - Track Blanks, Prevent Stockouts, Sync With Orders
                         </motion.h1>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
@@ -101,7 +101,7 @@ export default function InventoryManagementPage() {
                             className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8 space-y-4"
                         >
                             <p>
-                                A print shop inventory system that tracks blank apparel by style, color, and size — connected directly to your orders and production. Know what&apos;s in stock, what&apos;s allocated, and what needs reordering. No spreadsheets. No shelf counts. Already handling thousands of SKU combinations in real operations.
+                                A print shop inventory system that tracks blank apparel by style, color, and size  - connected directly to your orders and production. Know what&apos;s in stock, what&apos;s allocated, and what needs reordering. No spreadsheets. No shelf counts. Already handling thousands of SKU combinations in real operations.
                             </p>
                             <p className="text-base text-secondary-text/80 dark:text-gray-500">
                                 This print shop inventory management system is designed for apparel decorators who need real-time visibility into stock, allocation, and reorder decisions.
@@ -117,7 +117,7 @@ export default function InventoryManagementPage() {
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Demo — See How Inventory Prevents Stockouts Before They Happen
+                                Book a Demo  - See How Inventory Prevents Stockouts Before They Happen
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                         </motion.div>
@@ -164,7 +164,7 @@ export default function InventoryManagementPage() {
                                 { icon: 'grid_view', title: 'Size/color combinations', desc: 'Tracking a Comfort Colors 1717 across 47 colors and 8 sizes is thousands of individual SKU counts' },
                                 { icon: 'lock', title: 'Order allocation', desc: 'Inventory reserved for specific orders so the same blanks aren\'t promised twice' },
                                 { icon: 'local_shipping', title: 'Vendor relationships', desc: 'Which vendor supplies which blank, at what price, with what lead time' },
-                                { icon: 'precision_manufacturing', title: 'Production integration', desc: 'Inventory deducted as jobs complete — not when someone remembers to update a spreadsheet' },
+                                { icon: 'precision_manufacturing', title: 'Production integration', desc: 'Inventory deducted as jobs complete  - not when someone remembers to update a spreadsheet' },
                                 { icon: 'autorenew', title: 'Automatic reordering', desc: 'Purchase orders generated when stock drops below your threshold' },
                                 { icon: 'analytics', title: 'Data insights', desc: 'See which SKUs move fastest, identify dead stock, optimize reorder timing' },
                             ].map((item) => (
@@ -190,7 +190,7 @@ export default function InventoryManagementPage() {
                             viewport={{ once: true }}
                             className="text-sm text-secondary-text dark:text-gray-400"
                         >
-                            Inventory alone doesn&apos;t solve the problem — see how it connects inside the{' '}
+                            Inventory alone doesn&apos;t solve the problem  - see how it connects inside the{' '}
                             <Link href="/platform/complete-system" className="text-primary hover:underline">complete print shop management system</Link>.
                             {' '}If your main issue is backend operations, start with our{' '}
                             <Link href="/platform/filemaker-system" className="text-primary hover:underline">FileMaker system</Link>.
@@ -227,9 +227,9 @@ export default function InventoryManagementPage() {
                             viewport={{ once: true, margin: '-80px' }}
                         >
                             {[
-                                { num: '01', title: "You find out you're out of black mediums when the job is already on the press.", desc: "Not last week. Right now — screens burned, team set up, customer expects Friday. The count was updated three days ago. Two orders pulled from the same stock since." },
-                                { num: '02', title: 'Inventory counts are updated after the problem — not before.', desc: "Someone walks to the shelf, counts, updates the spreadsheet. By the time they're done, another order pulled from the same stock. The count is already wrong." },
-                                { num: '03', title: "You're overstocked on SKUs nobody orders.", desc: "400 ash gray XXLs from six months ago. Meanwhile, you're constantly short on black mediums and navy larges — the blanks customers actually order." },
+                                { num: '01', title: "You find out you're out of black mediums when the job is already on the press.", desc: "Not last week. Right now  - screens burned, team set up, customer expects Friday. The count was updated three days ago. Two orders pulled from the same stock since." },
+                                { num: '02', title: 'Inventory counts are updated after the problem  - not before.', desc: "Someone walks to the shelf, counts, updates the spreadsheet. By the time they're done, another order pulled from the same stock. The count is already wrong." },
+                                { num: '03', title: "You're overstocked on SKUs nobody orders.", desc: "400 ash gray XXLs from six months ago. Meanwhile, you're constantly short on black mediums and navy larges  - the blanks customers actually order." },
                                 { num: '04', title: 'Purchase orders are created from memory.', desc: "Someone notices a shelf looks low. Maybe checks the spreadsheet. Calls the vendor. Orders what they think is right. No data on reorder points. No history." },
                                 { num: '05', title: "Your website sells blanks you don't have.", desc: "Customer orders 100 pieces of a style that's been out of stock for two weeks. Nobody updated the website. Now you're apologizing and losing trust." },
                             ].map((pain) => (
@@ -258,7 +258,7 @@ export default function InventoryManagementPage() {
                             viewport={{ once: true }}
                             className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-6"
                         >
-                            Not Just Inventory Tracking — Inventory Connected to Your Entire Operation
+                            Not Just Inventory Tracking  - Inventory Connected to Your Entire Operation
                         </motion.h2>
                         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
                             <motion.div
@@ -268,10 +268,10 @@ export default function InventoryManagementPage() {
                                 className="lg:w-1/2 space-y-4 text-secondary-text dark:text-gray-400 leading-relaxed"
                             >
                                 <p>
-                                    This isn&apos;t just inventory tracking — it&apos;s inventory connected to your entire operation. Every time an order is created, the system checks stock. Every time blanks are received, counts update. Every time a job completes, inventory adjusts. Every time stock hits your threshold, a PO is generated.
+                                    This isn&apos;t just inventory tracking  - it&apos;s inventory connected to your entire operation. Every time an order is created, the system checks stock. Every time blanks are received, counts update. Every time a job completes, inventory adjusts. Every time stock hits your threshold, a PO is generated.
                                 </p>
                                 <p>
-                                    The apparel inventory tracking system handles thousands of combinations (size × color × style) and tracks them in real time — not after someone walks to the shelf and counts.
+                                    The apparel inventory tracking system handles thousands of combinations (size × color × style) and tracks them in real time  - not after someone walks to the shelf and counts.
                                 </p>
                             </motion.div>
                             <motion.div
@@ -320,12 +320,12 @@ export default function InventoryManagementPage() {
                             viewport={{ once: true, margin: '-60px' }}
                         >
                             {[
-                                { step: '01', title: 'Receive', icon: 'inventory', desc: 'Blanks arrive. Team receives them into the system — counts verified against the PO. Stock updates immediately. Discrepancies flagged.' },
-                                { step: '02', title: 'Track', icon: 'monitoring', desc: 'Every SKU tracked by style, color, and size. Available stock, allocated stock, and total on hand. The real number — not just what\'s on the shelf.' },
+                                { step: '01', title: 'Receive', icon: 'inventory', desc: 'Blanks arrive. Team receives them into the system  - counts verified against the PO. Stock updates immediately. Discrepancies flagged.' },
+                                { step: '02', title: 'Track', icon: 'monitoring', desc: 'Every SKU tracked by style, color, and size. Available stock, allocated stock, and total on hand. The real number  - not just what\'s on the shelf.' },
                                 { step: '03', title: 'Allocate', icon: 'lock', desc: 'Order created? System checks inventory and reserves blanks. Allocated stock can\'t be double-sold or pulled for another job.' },
-                                { step: '04', title: 'Reorder', icon: 'autorenew', desc: 'Stock below threshold? PO generated automatically — vendor, quantities, pricing, lead time pre-filled. No guessing, no forgetting.' },
+                                { step: '04', title: 'Reorder', icon: 'autorenew', desc: 'Stock below threshold? PO generated automatically  - vendor, quantities, pricing, lead time pre-filled. No guessing, no forgetting.' },
                                 { step: '05', title: 'Produce', icon: 'precision_manufacturing', desc: 'Production completes tasks, inventory adjusts. Blanks used are deducted. Waste logged. The count reflects reality.' },
-                                { step: '06', title: 'Report', icon: 'analytics', desc: 'Inventory levels, turnover rates, reorder history, dead stock — on demand. Know which SKUs move, which sit, which vendors deliver on time.' },
+                                { step: '06', title: 'Report', icon: 'analytics', desc: 'Inventory levels, turnover rates, reorder history, dead stock  - on demand. Know which SKUs move, which sit, which vendors deliver on time.' },
                             ].map((s) => (
                                 <motion.div
                                     key={s.step}
@@ -366,7 +366,7 @@ export default function InventoryManagementPage() {
                                 viewport={{ once: true }}
                                 className="p-6 rounded-2xl border border-rose-200 dark:border-rose-900/40 bg-rose-50/30 dark:bg-rose-950/10"
                             >
-                                <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-4">Before — Manual Inventory</h3>
+                                <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-4">Before  - Manual Inventory</h3>
                                 <ul className="space-y-3">
                                     {[
                                         'Stock counted by hand, usually after running out',
@@ -389,7 +389,7 @@ export default function InventoryManagementPage() {
                                 viewport={{ once: true }}
                                 className="p-6 rounded-2xl border border-green-200 dark:border-green-900/40 bg-green-50/30 dark:bg-green-950/10"
                             >
-                                <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wider mb-4">After — Screen Printing Inventory Software</h3>
+                                <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wider mb-4">After  - Screen Printing Inventory Software</h3>
                                 <ul className="space-y-3">
                                     {[
                                         'Stock updated in real time as blanks are received and used',
@@ -439,9 +439,9 @@ export default function InventoryManagementPage() {
                             viewport={{ once: true }}
                         >
                             {[
-                                { icon: 'shopping_cart', title: 'Connected to your orders', desc: "When an order is created, the system checks availability and allocates stock. If you have 200 tees and a customer orders 200, the system tells you immediately — and triggers a PO if you're short." },
+                                { icon: 'shopping_cart', title: 'Connected to your orders', desc: "When an order is created, the system checks availability and allocates stock. If you have 200 tees and a customer orders 200, the system tells you immediately  - and triggers a PO if you're short." },
                                 { icon: 'language', title: 'Connected to your website', desc: "Out-of-stock items hidden from your storefront automatically. Customers don't order what you can't deliver. When replenished, items reappear. No manual updates." },
-                                { icon: 'precision_manufacturing', title: 'Connected to production', desc: "As decoration tasks complete, inventory adjusts. Blanks used in production are deducted. Your count always reflects what's actually available — not last Tuesday's number." },
+                                { icon: 'precision_manufacturing', title: 'Connected to production', desc: "As decoration tasks complete, inventory adjusts. Blanks used in production are deducted. Your count always reflects what's actually available  - not last Tuesday's number." },
                                 { icon: 'local_shipping', title: 'Connected to your vendors', desc: 'Reorder thresholds trigger POs to the right vendor, at the right price, with the right quantities. When received, stock updates and blanks are immediately available.' },
                             ].map((item) => (
                                 <motion.div
@@ -463,7 +463,7 @@ export default function InventoryManagementPage() {
                             viewport={{ once: true }}
                             className="text-sm text-secondary-text dark:text-gray-400 mt-8 text-center"
                         >
-                            This is how inventory management for print shops should work — as part of a{' '}
+                            This is how inventory management for print shops should work  - as part of a{' '}
                             <Link href="/platform/complete-system" className="text-primary hover:underline">complete system</Link>, not a standalone app.
                             {' '}If your website and warehouse are out of sync, see how our{' '}
                             <Link href="/platform/ecommerce-storefront" className="text-primary hover:underline">ecommerce storefront</Link> connects automatically.
@@ -491,10 +491,10 @@ export default function InventoryManagementPage() {
                             viewport={{ once: true }}
                         >
                             {[
-                                { title: 'SKU Setup', desc: 'We import your product catalog — every style, color, and size.', icon: 'grid_view' },
+                                { title: 'SKU Setup', desc: 'We import your product catalog  - every style, color, and size.', icon: 'grid_view' },
                                 { title: 'Vendor Config', desc: 'Vendors, pricing, lead times, and reorder thresholds set up.', icon: 'local_shipping' },
                                 { title: 'Data Import', desc: 'Current stock levels loaded into the system.', icon: 'upload' },
-                                { title: 'Training', desc: 'Receiving, allocation, POs — your team trained on every workflow.', icon: 'school' },
+                                { title: 'Training', desc: 'Receiving, allocation, POs  - your team trained on every workflow.', icon: 'school' },
                                 { title: 'Go Live', desc: 'Real inventory tracked from day one. Connected to orders.', icon: 'rocket_launch' },
                             ].map((s) => (
                                 <motion.div
@@ -534,7 +534,7 @@ export default function InventoryManagementPage() {
                             {[
                                 { title: 'Shops tracking 500+ SKU combinations', desc: 'Multiple brands, dozens of styles, hundreds of color/size combos. Spreadsheets broke a long time ago.', icon: 'grid_view' },
                                 { title: 'Shops that run out mid-production', desc: "If your team has ever stopped a press because blanks weren't there, you need real-time inventory with allocation.", icon: 'warning' },
-                                { title: 'Shops with multiple vendors', desc: 'SanMar, S&S, Alpha Broder — different vendors for different blanks. One system to track them all.', icon: 'groups' },
+                                { title: 'Shops with multiple vendors', desc: 'SanMar, S&S, Alpha Broder  - different vendors for different blanks. One system to track them all.', icon: 'groups' },
                                 { title: 'Shops where website and warehouse are out of sync', desc: "If customers order blanks you don't have, you need inventory that syncs with your storefront automatically.", icon: 'sync_problem' },
                             ].map((item) => (
                                 <motion.div
@@ -604,7 +604,7 @@ export default function InventoryManagementPage() {
                             transition={{ delay: 0.1 }}
                             className="text-lg text-secondary-text dark:text-gray-400 leading-relaxed mb-8 max-w-2xl mx-auto"
                         >
-                            Watch how inventory syncs with orders and production in real time — allocation, automatic POs, and real-time stock updates in a live system.
+                            Watch how inventory syncs with orders and production in real time  - allocation, automatic POs, and real-time stock updates in a live system.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
@@ -617,7 +617,7 @@ export default function InventoryManagementPage() {
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Demo — See Inventory Sync With Orders in Real Time
+                                Book a Demo  - See Inventory Sync With Orders in Real Time
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                         </motion.div>

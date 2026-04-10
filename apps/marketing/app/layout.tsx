@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         template: '%s | Shop Titan',
     },
     description:
-        'Pre-built FileMaker system and ecommerce storefront for print shops. Proven in a $1M+ operation — deploy in weeks, not months. Quotes, orders, inventory, production, and online ordering.',
+        'Pre-built FileMaker system and ecommerce storefront for print shops. Proven in a $1M+ operation  - deploy in weeks, not months. Quotes, orders, inventory, production, and online ordering.',
     keywords: [
         'print shop management system',
         'filemaker for print shops',
@@ -58,13 +58,13 @@ export const metadata: Metadata = {
         url: 'https://shoptitan.app',
         siteName: 'Shop Titan',
         title: 'Shop Titan | Print Shop Management System & Ecommerce Platform',
-        description: 'Pre-built FileMaker system and ecommerce storefront for print shops. Proven in a $1M+ operation — deploy in weeks, not months.',
+        description: 'Pre-built FileMaker system and ecommerce storefront for print shops. Proven in a $1M+ operation  - deploy in weeks, not months.',
         images: [
             {
                 url: 'https://shoptitan.app/og-image.png',
                 width: 1200,
                 height: 630,
-                alt: 'Shop Titan — Print Shop Management System & Ecommerce Platform',
+                alt: 'Shop Titan  - Print Shop Management System & Ecommerce Platform',
             },
         ],
     },
@@ -169,7 +169,7 @@ export default function RootLayout({
                                     "name": "Shop Titan",
                                     "applicationCategory": "BusinessApplication",
                                     "operatingSystem": "Web, FileMaker",
-                                    "description": "Complete print shop management system — FileMaker-based operations platform with integrated ecommerce storefront.",
+                                    "description": "Complete print shop management system  - FileMaker-based operations platform with integrated ecommerce storefront.",
                                     "offers": {
                                         "@type": "Offer",
                                         "availability": "https://schema.org/InStock",

@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import ContactSection from "@/components/sections/ContactSection";
 
 export const metadata: Metadata = {
-    title: "Book a Demo — See the System Live",
+    title: "Book a Demo  - See the System Live",
     description:
         "Book a live walkthrough of the Shop Titan platform. See how the FileMaker system and ecommerce storefront work together for print shops.",
     alternates: {
         canonical: "https://shoptitan.app/reach-out",
     },
     openGraph: {
-        title: "Book a Demo — Shop Titan",
+        title: "Book a Demo  - Shop Titan",
         description: "Book a live walkthrough of the Shop Titan platform for your print shop.",
         url: "https://shoptitan.app/reach-out",
     },
