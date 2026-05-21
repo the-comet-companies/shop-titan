@@ -129,7 +129,7 @@ export default function PricingSection() {
                     <div className="inline-flex items-center bg-white dark:bg-gray-800 rounded-full p-1.5 shadow-sm border border-gray-100 dark:border-gray-700">
                         <button
                             onClick={() => setActiveTab('platform')}
-                            className={`px-6 py-2 md:py-2.5 min-h-[44px] rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'platform'
+                            className={`px-6 py-2 md:py-2.5 min-h-[44px] rounded-[6px] font-semibold text-sm transition-all duration-300 ${activeTab === 'platform'
                                 ? 'bg-primary text-white shadow-md'
                                 : 'text-gray-600 dark:text-gray-400 hover:text-charcoal dark:hover:text-white'
                                 }`}
@@ -138,7 +138,7 @@ export default function PricingSection() {
                         </button>
                         <button
                             onClick={() => setActiveTab('services')}
-                            className={`px-6 py-2 md:py-2.5 min-h-[44px] rounded-full font-semibold text-sm transition-all duration-300 ${activeTab === 'services'
+                            className={`px-6 py-2 md:py-2.5 min-h-[44px] rounded-[6px] font-semibold text-sm transition-all duration-300 ${activeTab === 'services'
                                 ? 'bg-primary text-white shadow-md'
                                 : 'text-gray-600 dark:text-gray-400 hover:text-charcoal dark:hover:text-white'
                                 }`}
@@ -173,7 +173,7 @@ export default function PricingSection() {
 
                             <div className="p-6 md:p-8 flex flex-col h-full">
                                 {/* Tier Name */}
-                                <h3 className="text-xl font-bold text-charcoal dark:text-white mb-2">
+                                <h3 className="text-xl font-medium text-charcoal dark:text-white mb-2">
                                     {tier.name}
                                 </h3>
 

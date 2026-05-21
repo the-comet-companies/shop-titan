@@ -8,7 +8,7 @@ export default function FounderStorySection() {
             {/* Subtle background orbs for depth */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
                 <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-primary/[0.07] blur-3xl" />
-                <div className="absolute bottom-0 -left-32 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.05] blur-3xl" />
+                <div className="absolute bottom-0 -left-32 w-[400px] h-[400px] rounded-full bg-stone blur-3xl" />
             </div>
 
             <div className="max-w-3xl mx-auto px-mobile relative z-10 flex flex-col gap-6">
@@ -17,7 +17,7 @@ export default function FounderStorySection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, ease: "easeOut" }}
-                            className="inline-block w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase"
+                            className="inline-block w-fit px-3 py-1 text-[11px] tracking-[0.22em] uppercase text-graphite font-medium"
                         >
                             The Origin
                         </motion.span>
@@ -66,12 +66,10 @@ export default function FounderStorySection() {
                         >
                             <a
                                 href="/about"
-                                className="inline-flex items-center gap-2 px-8 py-3 min-h-[44px] text-base font-semibold text-white relative overflow-hidden group rounded-full"
+                                className="inline-flex items-center gap-2 px-7 py-3.5 min-h-[44px] text-sm tracking-wide font-medium bg-ivory text-charcoal rounded-[6px] hover:bg-white transition-colors group"
                             >
-                                <div className="absolute inset-0 bg-white/20 group-hover:bg-white/30 transition-colors rounded-full" />
-                                <div className="absolute inset-0 border-2 border-white/20 group-hover:border-white/40 transition-colors rounded-full" />
-                                <span className="material-symbols-outlined text-lg relative z-10" aria-hidden="true">play_arrow</span>
-                                <span className="relative z-10">Watch Our Story</span>
+                                <span className="material-symbols-outlined text-base" aria-hidden="true">play_arrow</span>
+                                <span>Watch Our Story</span>
                             </a>
                         </motion.div>
             </div>

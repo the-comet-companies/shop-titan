@@ -90,7 +90,7 @@ export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuPr
                                 <li key={item.id}>
                                     <button
                                         onClick={() => handleNavigate(item.id)}
-                                        className="w-full text-left px-4 py-4 rounded-xl text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-primary/10 hover:text-primary dark:hover:text-primary transition-all duration-200 flex items-center justify-between group"
+                                        className="w-full text-left px-4 py-4 rounded-xl text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-stone hover:text-primary dark:hover:text-primary transition-all duration-200 flex items-center justify-between group"
                                     >
                                         {item.label}
                                         <span className="material-symbols-outlined text-xl opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all">

@@ -74,7 +74,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4 }}
-                            className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary dark:text-blue-400 text-xs font-bold tracking-wider uppercase mb-6"
+                            className="inline-block px-3 py-1 rounded-full bg-stone text-primary dark:text-blue-400 text-xs font-bold tracking-wider uppercase mb-6"
                         >
                             Hire vs. Deploy
                         </motion.span>
@@ -82,7 +82,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
+                            className="text-3xl md:text-5xl lg:text-6xl font-light text-charcoal dark:text-white tracking-tight leading-[1.05] mb-6"
                         >
                             Hire a FileMaker Developer in the USA  - Or Deploy a Proven System Instead
                         </motion.h1>
@@ -93,7 +93,10 @@ export default function HireFileMakerDeveloperUSAPage() {
                             className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8 space-y-4"
                         >
                             <p>
-                                Before you hire a FileMaker developer in the USA, see if the system you need is already built. US-based FileMaker developers charge $80-150/hr and building from scratch takes months. What if the system you need is already running in production  - ready to deploy in weeks?
+                                US-based FileMaker developers charge $80-150/hour and take 3-6 months to build a custom system from scratch. A pre-built FileMaker system for print shops deploys in 2-4 weeks for a fraction of the cost - covering orders, inventory, production, and quoting out of the box.
+                            </p>
+                            <p>
+                                Before you hire a developer, see if the system you need is already built.
                             </p>
                             <p className="text-base text-secondary-text/80 dark:text-gray-500">
                                 Already powering real print shop operations. Deploys in 2-4 weeks.
@@ -107,7 +110,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                         >
                             <Link
                                 href="/reach-out"
-                                className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
+                                className="px-7 py-3.5 bg-charcoal text-ivory text-sm tracking-wide font-medium rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2"
                             >
                                 Book a Demo  - Deploy in Weeks, Not Months
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
@@ -126,7 +129,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
                         >
                             What Does a FileMaker Developer in the USA Cost?
                         </motion.h2>
@@ -160,9 +163,9 @@ export default function HireFileMakerDeveloperUSAPage() {
                                 <motion.div
                                     key={item.label}
                                     variants={fadeUp}
-                                    className="p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 text-center"
+                                    className="p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 text-center"
                                 >
-                                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                                    <div className="w-12 h-12 rounded-xl bg-stone flex items-center justify-center mx-auto mb-3">
                                         <span className="material-symbols-outlined text-primary text-2xl">{item.icon}</span>
                                     </div>
                                     <p className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white mb-1">{item.value}</p>
@@ -181,7 +184,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white leading-tight mb-2"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight leading-tight mb-2"
                         >
                             Why Print Shops Look for FileMaker Developers
                         </motion.h2>
@@ -206,19 +209,19 @@ export default function HireFileMakerDeveloperUSAPage() {
                                 { icon: 'block', title: 'SaaS tools hit a wall', desc: 'Printavo, Shopify, or generic CRMs don\'t support your pricing model, production workflow, or multi-method routing. You need something custom.' },
                                 { icon: 'tune', title: 'Custom workflows needed', desc: 'Screen printing pricing grids, embroidery stitch-count calculations, DTG routing  - your shop does things that no off-the-shelf tool handles.' },
                                 { icon: 'lock', title: 'Data control matters', desc: 'You want to own your data, not rent it from a SaaS provider who could change pricing, features, or terms at any time.' },
-                                { icon: 'trending_up', title: 'Outgrown spreadsheets', desc: 'Orders, inventory, and production are too complex for spreadsheets. You need a real system  - and many shops that <a href="/get-started/replace-spreadsheets" class="text-primary hover:underline">replace spreadsheets</a> start here.' },
+                                { icon: 'trending_up', title: 'Outgrown spreadsheets', desc: 'Orders, inventory, and production are too complex for spreadsheets. You need a real system  - and many shops that <a href="/get-started/replace-spreadsheets" class="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">replace spreadsheets</a> start here.' },
                             ].map((item) => (
                                 <motion.div
                                     key={item.title}
                                     variants={fadeUp}
-                                    className="relative p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors group"
+                                    className="relative p-4 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors group"
                                 >
                                     <div className="flex gap-4">
-                                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                        <div className="w-10 h-10 rounded-lg bg-stone flex items-center justify-center flex-shrink-0">
                                             <span className="material-symbols-outlined text-primary text-xl">{item.icon}</span>
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-charcoal dark:text-white mb-1 text-sm">{item.title}</h3>
+                                            <h3 className="font-medium text-charcoal dark:text-white mb-2 text-sm">{item.title}</h3>
                                             <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.desc }} />
                                         </div>
                                     </div>
@@ -236,7 +239,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
                         >
                             The Reality of Hiring a FileMaker Developer
                         </motion.h2>
@@ -266,10 +269,10 @@ export default function HireFileMakerDeveloperUSAPage() {
                                 <motion.div
                                     key={item.num}
                                     variants={fadeUp}
-                                    className="p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900"
+                                    className="p-4 border border-line dark:border-gray-800 bg-white dark:bg-gray-900"
                                 >
-                                    <span className="block text-[10px] font-bold tracking-widest text-secondary-text/50 uppercase mb-1.5">{item.num}</span>
-                                    <h3 className="font-bold text-charcoal dark:text-white text-sm mb-1">{item.title}</h3>
+                                    <span className="block text-[10px] font-medium tracking-[0.22em] text-secondary-text/50 uppercase mb-1.5">{item.num}</span>
+                                    <h3 className="font-medium text-charcoal dark:text-white text-sm mb-1">{item.title}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{item.desc}</p>
                                 </motion.div>
                             ))}
@@ -284,7 +287,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
                         >
                             The Alternative: Deploy a System That&apos;s Already Built
                         </motion.h2>
@@ -295,7 +298,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             transition={{ delay: 0.1 }}
                             className="text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl mb-10"
                         >
-                            Shop Titan is a <Link href="/platform/filemaker-system" className="text-primary hover:underline">FileMaker system built specifically for print shop operations</Link>. It&apos;s not a template or a prototype  - it&apos;s already running in a real production environment.
+                            Shop Titan is a <Link href="/platform/filemaker-system" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">FileMaker system built specifically for print shop operations</Link>. It&apos;s not a template or a prototype  - it&apos;s already running in a real production environment.
                         </motion.p>
 
                         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
@@ -324,7 +327,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                                 <div className="mt-8">
                                     <Link
                                         href="/platform/complete-system"
-                                        className="text-primary hover:underline font-semibold text-sm inline-flex items-center gap-1"
+                                        className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors font-semibold text-sm inline-flex items-center gap-1"
                                     >
                                         See the complete system before you hire a developer →
                                     </Link>
@@ -351,7 +354,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-12"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-12"
                         >
                             Hiring a FileMaker Developer: USA vs. Offshore vs. Deploy
                         </motion.h2>
@@ -409,7 +412,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
                         >
                             When You Should Actually Hire a FileMaker Developer
                         </motion.h2>
@@ -438,12 +441,12 @@ export default function HireFileMakerDeveloperUSAPage() {
                                 <motion.div
                                     key={item.title}
                                     variants={fadeUp}
-                                    className="p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900"
+                                    className="p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900"
                                 >
-                                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                                    <div className="w-10 h-10 rounded-lg bg-stone flex items-center justify-center mb-3">
                                         <span className="material-symbols-outlined text-primary text-xl">{item.icon}</span>
                                     </div>
-                                    <h3 className="font-bold text-charcoal dark:text-white mb-2">{item.title}</h3>
+                                    <h3 className="font-medium text-charcoal dark:text-white mb-2">{item.title}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{item.desc}</p>
                                 </motion.div>
                             ))}
@@ -455,7 +458,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             viewport={{ once: true }}
                             className="text-sm text-secondary-text dark:text-gray-400 mt-8"
                         >
-                            For everything else  - orders, inventory, production, quoting, ecommerce  - the <Link href="/platform/complete-system" className="text-primary hover:underline">complete system</Link> is already built. Also see our general <Link href="/hire/filemaker-developer" className="text-primary hover:underline">FileMaker developer guide</Link> for more on the build vs. deploy decision.
+                            For everything else  - orders, inventory, production, quoting, ecommerce  - the <Link href="/platform/complete-system" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">complete system</Link> is already built. Also see our general <Link href="/hire/filemaker-developer" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">FileMaker developer guide</Link> for more on the build vs. deploy decision.
                         </motion.p>
                     </div>
                 </section>
@@ -468,7 +471,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-10"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-10"
                         >
                             Frequently Asked Questions
                         </motion.h2>
@@ -481,7 +484,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                         >
                             {faqs.map((faq) => (
                                 <motion.div key={faq.question} variants={fadeUp} className="pb-6 border-b border-structural-border dark:border-gray-800 last:border-0">
-                                    <h3 className="font-bold text-charcoal dark:text-white mb-2">{faq.question}</h3>
+                                    <h3 className="font-medium text-charcoal dark:text-white mb-2">{faq.question}</h3>
                                     <p className="text-sm text-secondary-text dark:text-gray-400 leading-relaxed">{faq.answer}</p>
                                 </motion.div>
                             ))}
@@ -496,7 +499,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
                         >
                             See the System Before You Hire a Developer
                         </motion.h2>
@@ -509,6 +512,14 @@ export default function HireFileMakerDeveloperUSAPage() {
                         >
                             If you&apos;re looking for a FileMaker developer in the United States to build a print shop system, see what&apos;s already built first. Orders, inventory, production, and ecommerce  - deployed in weeks, not months.
                         </motion.p>
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            className="text-sm text-secondary-text dark:text-gray-400 mb-6"
+                        >
+                            See real results: <Link href="/case-studies/scaling-from-5-to-20" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">how a print shop deployed the system instead of hiring a developer</Link>.
+                        </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -518,7 +529,7 @@ export default function HireFileMakerDeveloperUSAPage() {
                         >
                             <Link
                                 href="/reach-out"
-                                className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
+                                className="px-7 py-3.5 bg-charcoal text-ivory text-sm tracking-wide font-medium rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2"
                             >
                                 Book a Demo
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>

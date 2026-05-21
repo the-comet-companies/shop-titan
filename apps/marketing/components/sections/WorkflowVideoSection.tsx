@@ -56,61 +56,83 @@ export default function WorkflowVideoSection() {
 
     const goTo = (index: number) => {
         setCurrent(index);
-        // Reset autoplay timer on manual navigation
         startAutoplay();
     };
 
     const slide = slides[current];
+    const counter = `${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
 
     return (
-        <section id="workflow-video" className="py-24 md:py-32 bg-background-light dark:bg-black">
+        <section id="workflow-video" className="py-24 md:py-32 bg-ivory dark:bg-black">
             <div className="max-w-6xl mx-auto px-mobile">
+
                 {/* Section header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center mb-12"
-                >
-                    <h2 className="text-4xl md:text-5xl font-bold text-charcoal dark:text-white mb-4">
-                        Every stage. One system.
-                    </h2>
-                    <p className="text-lg text-secondary-text dark:text-gray-400 max-w-2xl mx-auto">
-                        From the first lead to the final report  - fully connected.
-                    </p>
-                </motion.div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-14 md:mb-16">
+                    <div className="lg:col-span-5">
+                        <motion.span
+                            initial={{ opacity: 0, y: 8 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4 }}
+                            className="inline-block text-[11px] tracking-[0.22em] uppercase text-graphite font-medium mb-6"
+                        >
+                            The Platform
+                        </motion.span>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 12 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.05 }}
+                            className="text-3xl md:text-5xl font-light text-charcoal dark:text-white leading-[1.05] tracking-tight"
+                        >
+                            Every stage.{' '}
+                            <span className="italic font-extralight text-graphite">One system.</span>
+                        </motion.h2>
+                    </div>
+                    <motion.p
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        className="lg:col-span-7 lg:pt-2 text-lg md:text-xl text-graphite dark:text-gray-400 leading-relaxed font-light max-w-xl"
+                    >
+                        From the first lead to the final report - storefront, quotes, orders, production, and reporting in one continuous workflow.
+                    </motion.p>
+                </div>
 
                 {/* Showcase container */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-50px' }}
                     transition={{ duration: 0.7, ease: 'easeOut' }}
-                    className="rounded-2xl overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 relative"
+                    className="border border-line dark:border-gray-800 bg-white dark:bg-gray-900 rounded-[8px] overflow-hidden shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.08)]"
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                 >
-                    {/* Browser chrome */}
-                    <div className="bg-gray-50 dark:bg-gray-900 border-b border-black/[0.06] dark:border-white/[0.06] px-4 py-2.5 flex items-center gap-3">
-                        <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">menu</span>
-                        <div className="flex-1 flex items-center gap-2 bg-white dark:bg-gray-800 border border-black/[0.08] dark:border-white/[0.08] rounded-lg px-3 py-1.5">
-                            <span className="material-symbols-outlined text-primary text-sm select-none">lock</span>
-                            <span className="text-xs text-gray-400 dark:text-gray-500 font-medium truncate">
-                                {slide.type === 'Website' ? 'yourstore.com' : 'app.shoptitan.com'} / {slide.label.toLowerCase().replace(/ /g, '-')}
-                            </span>
+                    {/* Minimal browser chrome */}
+                    <div className="flex items-center justify-between px-5 py-3 border-b border-line dark:border-gray-800 bg-ivory/60 dark:bg-gray-950/60">
+                        <div className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-line" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-line" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-line" />
                         </div>
-                        {/* Type badge */}
-                        <span className={`hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
-                            slide.type === 'Website'
-                                ? 'bg-teal-500/10 text-teal-600 dark:text-teal-400'
-                                : 'bg-primary/10 text-primary dark:text-blue-400'
-                        }`}>
-                            {slide.type}
-                        </span>
+                        <div className="flex items-center gap-2 text-[10px] tracking-[0.18em] uppercase text-graphite font-medium">
+                            <span
+                                className="material-symbols-outlined text-graphite text-xs"
+                                style={{ fontVariationSettings: "'wght' 250" }}
+                            >
+                                lock
+                            </span>
+                            <span className="hidden sm:inline-block normal-case tracking-normal text-xs font-light text-graphite">
+                                {slide.type === 'Website' ? 'yourstore.com' : 'app.shoptitan.com'}/{slide.label.toLowerCase().replace(/ /g, '-')}
+                            </span>
+                            <span className="sm:hidden">{slide.type}</span>
+                        </div>
+                        <div className="w-12" />
                     </div>
 
-                    {/* Image area  - fixed height to prevent layout shift */}
+                    {/* Image area */}
                     <div className="relative h-[280px] sm:h-[380px] md:h-[500px] lg:h-[580px] bg-white dark:bg-gray-950 overflow-hidden">
                         <AnimatePresence mode="wait">
                             <motion.div
@@ -123,7 +145,7 @@ export default function WorkflowVideoSection() {
                             >
                                 <Image
                                     src={slide.src}
-                                    alt={`${slide.type}  - ${slide.label}`}
+                                    alt={`${slide.type} - ${slide.label}`}
                                     className="w-full h-full object-cover object-top"
                                     sizes="(max-width: 1024px) 100vw, 1100px"
                                     placeholder="blur"
@@ -132,36 +154,44 @@ export default function WorkflowVideoSection() {
                                 />
                             </motion.div>
                         </AnimatePresence>
-
-                        {/* Overlay label */}
-                        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4 md:p-6 pointer-events-none">
-                            <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-1.5 ${
-                                slide.type === 'Website'
-                                    ? 'bg-teal-500/20 text-teal-300'
-                                    : 'bg-blue-500/20 text-blue-300'
-                            }`}>
-                                {slide.type}
-                            </span>
-                            <h3 className="text-white text-lg md:text-2xl font-bold">{slide.label}</h3>
-                        </div>
                     </div>
 
-                    {/* Dot navigation */}
-                    <div className="flex items-center justify-center gap-1.5 py-4 bg-black/90 dark:bg-gray-950">
-                        {slides.map((s, i) => (
-                            <button
-                                key={i}
-                                onClick={() => goTo(i)}
-                                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                    i === current
-                                        ? s.type === 'Website'
-                                            ? 'bg-teal-500 w-4'
-                                            : 'bg-primary w-4'
-                                        : 'bg-gray-600 hover:bg-gray-400'
-                                }`}
-                                aria-label={`Go to ${s.label}`}
-                            />
-                        ))}
+                    {/* Caption + navigation bar */}
+                    <div className="border-t border-line dark:border-gray-800 bg-white dark:bg-gray-900">
+                        {/* Caption row */}
+                        <div className="flex items-baseline justify-between gap-4 px-5 md:px-8 pt-5 pb-4">
+                            <div className="flex items-baseline gap-4 min-w-0">
+                                <span className="text-[10px] tracking-[0.22em] uppercase text-graphite font-medium flex-shrink-0">
+                                    {counter}
+                                </span>
+                                <span className="text-[10px] tracking-[0.22em] uppercase text-graphite font-medium flex-shrink-0 hidden sm:inline-block">
+                                    {slide.type}
+                                </span>
+                                <h3 className="text-base md:text-lg text-charcoal dark:text-white font-medium tracking-tight truncate">
+                                    {slide.label}
+                                </h3>
+                            </div>
+                        </div>
+
+                        {/* Line indicator strip */}
+                        <div className="flex items-stretch h-1 border-t border-line/60 dark:border-gray-800/60">
+                            {slides.map((_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => goTo(i)}
+                                    className="flex-1 relative group"
+                                    aria-label={`Go to slide ${i + 1}`}
+                                >
+                                    <span
+                                        className={`absolute inset-0 transition-colors ${
+                                            i === current
+                                                ? 'bg-charcoal dark:bg-white'
+                                                : 'bg-transparent group-hover:bg-charcoal/20 dark:group-hover:bg-white/20'
+                                        }`}
+                                    />
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </motion.div>
             </div>

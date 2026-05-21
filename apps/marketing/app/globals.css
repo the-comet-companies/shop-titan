@@ -4,22 +4,18 @@
 
 @layer base {
   body {
-    @apply font-sans antialiased bg-background-light text-charcoal;
+    @apply font-sans antialiased bg-ivory text-charcoal;
     @apply dark:bg-background-dark dark:text-gray-100;
-    background-image:
-      linear-gradient(to right, rgba(0, 102, 204, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0, 102, 204, 0.03) 1px, transparent 1px);
-    background-size: 140px 140px;
-  }
-
-  .dark body {
-    background-image:
-      linear-gradient(to right, rgba(0, 102, 204, 0.08) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0, 102, 204, 0.08) 1px, transparent 1px);
+    font-weight: 300;
   }
 
   html {
     @apply scroll-smooth;
+  }
+
+  /* Thin, refined Material Symbols sitewide */
+  .material-symbols-outlined {
+    font-variation-settings: 'wght' 250, 'GRAD' 0, 'opsz' 24;
   }
 
   /* Custom Scrollbar */
@@ -28,32 +24,170 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-background-light dark:bg-background-dark;
+    @apply bg-ivory dark:bg-background-dark;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-charcoal/20 dark:bg-white/20 rounded-full border-4 border-solid border-background-light dark:border-background-dark;
+    @apply bg-charcoal/15 dark:bg-white/20 border-4 border-solid border-ivory dark:border-background-dark;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-charcoal/40 dark:bg-white/40;
+    @apply bg-charcoal/30 dark:bg-white/40;
   }
 
-  /* Selection Color */
+  /* Selection Color - muted graphite */
   ::selection {
-    @apply bg-primary/30 text-charcoal dark:text-white;
+    @apply bg-charcoal/15 text-charcoal dark:text-white;
   }
 }
 
 @layer utilities {
 
+  /* =========================================================================
+     SHOP TITAN ARCHITECTURAL DESIGN SYSTEM
+     Reusable utilities. Use these instead of inlining the same Tailwind
+     stacks across new components. If you find yourself repeating a className
+     pattern, extract it into this file.
+
+     Palette tokens (defined in tailwind.config.ts):
+       ivory     #F7F5F0   page background
+       stone     #EFEDE8   muted section / hover bg
+       bone      #FFFFFF   cards / panels
+       line      #E0DDD7   hairline borders
+       graphite  #5A5A5C   muted text / icons
+       charcoal  #1C1C1C   primary text / primary action
+       rust      #A87474   warning / risk accent
+     ========================================================================= */
+
+  /* ---- ARCHITECTURAL LAYOUT ---- */
+
+  /* Standard section padding (use on every <section>) */
+  .arch-section {
+    @apply py-20 md:py-28 bg-ivory dark:bg-gray-950;
+  }
+
+  /* Dark inverted section (use for CTAs / footers) */
+  .arch-section-dark {
+    @apply py-24 md:py-32 bg-charcoal text-ivory;
+  }
+
+  /* Two-column header grid (eyebrow + h2 on left, body on right) */
+  .arch-header-grid {
+    @apply grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-16 md:mb-20;
+  }
+
+  /* ---- ARCHITECTURAL TYPOGRAPHY ---- */
+
+  /* Small uppercase eyebrow above section headers */
+  .arch-eyebrow {
+    @apply inline-block text-[11px] tracking-[0.22em] uppercase text-graphite font-medium;
+  }
+
+  /* Smaller eyebrow for cards, counters, table headers */
+  .arch-eyebrow-sm {
+    @apply text-[10px] tracking-[0.22em] uppercase text-graphite font-medium;
+  }
+
+  /* Hero h1 - large, refined, light weight */
+  .arch-h1 {
+    @apply text-3xl md:text-5xl lg:text-6xl font-light text-charcoal dark:text-white leading-[1.05] tracking-tight;
+  }
+
+  /* Section h2 - medium scale */
+  .arch-h2 {
+    @apply text-3xl md:text-5xl font-light text-charcoal dark:text-white leading-[1.05] tracking-tight;
+  }
+
+  /* Subsection h3 - compact */
+  .arch-h3 {
+    @apply text-2xl md:text-3xl font-light text-charcoal dark:text-white leading-tight tracking-tight;
+  }
+
+  /* Italic graphite emphasis (wrap second half of headlines) */
+  .arch-emphasis {
+    @apply italic font-extralight text-graphite dark:text-gray-300;
+  }
+
+  /* Lead paragraph (intro body copy in section headers) */
+  .arch-body-lead {
+    @apply text-lg md:text-xl text-graphite dark:text-gray-400 leading-relaxed font-light;
+  }
+
+  /* Default architectural body */
+  .arch-body {
+    @apply text-sm md:text-base text-graphite dark:text-gray-400 leading-relaxed font-light;
+  }
+
+  /* Smaller architectural body */
+  .arch-body-sm {
+    @apply text-sm text-graphite dark:text-gray-500 font-light leading-relaxed;
+  }
+
+  /* ---- ARCHITECTURAL DIVIDERS ---- */
+
+  /* Short hairline rule (use before eyebrows on dark sections) */
+  .arch-rule {
+    @apply h-px w-10 bg-charcoal dark:bg-ivory;
+  }
+
+  /* Full-width hairline (top of lists, between sections) */
+  .arch-divider {
+    @apply border-t border-line dark:border-gray-800;
+  }
+
+  /* ---- ARCHITECTURAL CARDS / CONTAINERS ---- */
+
+  /* Standard architectural card (browser frames, package reveal, mockups) */
+  .arch-card {
+    @apply border border-line dark:border-gray-800 bg-white dark:bg-gray-900 rounded-[8px] overflow-hidden shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.08)];
+  }
+
+  /* List row in an editorial index (case studies, blog) - apply on Link/article */
+  .arch-list-row {
+    @apply block border-b border-line py-10 md:py-14 hover:bg-stone/40 transition-colors;
+  }
+
+  /* ---- ARCHITECTURAL BUTTONS ---- */
+  /* (Primary / secondary defined further below for backward-compat aliases) */
+
+  /* Inverted primary button (for charcoal/dark sections) */
+  .btn-primary-inverted {
+    @apply bg-ivory text-charcoal px-7 py-3.5 text-sm tracking-wide font-medium rounded-[6px] transition-colors duration-200 hover:bg-white focus-primary inline-flex items-center justify-center gap-2;
+  }
+
+  /* Inverted secondary button (for charcoal/dark sections) */
+  .btn-secondary-inverted {
+    @apply border border-ivory/40 text-ivory px-7 py-3.5 text-sm tracking-wide font-medium rounded-[6px] transition-colors duration-200 hover:border-ivory focus-primary inline-flex items-center justify-center;
+  }
+
+  /* Compact uppercase header CTA button */
+  .btn-header {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-charcoal text-ivory text-[11px] tracking-[0.18em] uppercase font-medium rounded-[6px] hover:bg-black transition-colors focus-primary tap-target;
+  }
+
+  /* ---- ARCHITECTURAL NAV / CHROME ---- */
+
+  /* Browser frame chrome bar */
+  .arch-chrome {
+    @apply flex items-center justify-between px-5 py-3 border-b border-line dark:border-gray-800 bg-ivory/60 dark:bg-gray-950/60;
+  }
+
+  /* Chrome dot (use 3 in a row for the chrome bar left side) */
+  .arch-chrome-dot {
+    @apply w-1.5 h-1.5 rounded-full bg-line;
+  }
+
+  /* =========================================================================
+     END ARCHITECTURAL DESIGN SYSTEM
+     ========================================================================= */
+
   /* Custom Utilities */
   .glass-nav {
-    @apply bg-white/95 dark:bg-gray-950/95 border-b border-gray-200/60 dark:border-gray-800/60 shadow-sm;
+    @apply bg-ivory/90 dark:bg-gray-950/95 border-b border-line dark:border-gray-800/60 backdrop-blur-md;
   }
 
   .glass-button {
-    @apply bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl;
+    @apply bg-transparent border border-charcoal/20 dark:border-white/15;
   }
 
   .feature-card {
@@ -215,13 +349,13 @@
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background-light dark:focus-visible:ring-offset-background-dark;
   }
 
-  /* Enhanced Button States */
+  /* Architectural buttons - soft 10px radius, restrained, no scale/shadow noise */
   .btn-primary {
-    @apply bg-primary text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:brightness-110 hover:scale-105 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 focus-primary disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply bg-charcoal text-ivory px-7 py-3.5 text-sm tracking-wide font-medium rounded-[6px] transition-colors duration-200 hover:bg-black focus-primary disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center;
   }
 
   .btn-secondary {
-    @apply glass-button px-6 py-3 rounded-full font-semibold text-charcoal dark:text-white hover:bg-white/20 dark:hover:bg-white/10 hover:scale-105 hover:shadow-xl transition-all duration-300 focus-primary;
+    @apply border border-charcoal text-charcoal dark:border-white dark:text-white bg-transparent px-7 py-3.5 text-sm tracking-wide font-medium rounded-[6px] transition-colors duration-200 hover:bg-charcoal hover:text-ivory dark:hover:bg-white dark:hover:text-charcoal focus-primary inline-flex items-center justify-center;
   }
 
   /* Touch-friendly tap targets (min 44x44px) */
