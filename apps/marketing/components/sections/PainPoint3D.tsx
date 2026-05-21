@@ -22,58 +22,62 @@ interface PainPointScene {
 }
 
 // --- Data Structure ---
+// Architectural palette: charcoal for positive scenes, rust (muted dusty rose) for risk/problem scenes.
+const CHARCOAL = "#1C1C1C";
+const RUST = "#A87474";
+
 const painPointScenes: PainPointScene[] = [
     {
         id: "chaos",
         title: "No Single Source of Truth",
-        subtitle: "THE PROBLEM",
+        subtitle: "The Problem",
         description: "Orders, artwork, pricing, and approvals live in different places. Your production manager is copying details from emails into 4 different spreadsheets.",
-        color: "#ef4444",
-        particleColor: "#ef4444",
-        highlightWord: "CHAOS",
+        color: RUST,
+        particleColor: RUST,
+        highlightWord: "Chaos",
         Icon: ReportIcon,
         particleShape: "scattered",
     },
     {
         id: "solution",
         title: "One Platform. One Truth.",
-        subtitle: "THE SOLUTION",
+        subtitle: "The Solution",
         description: "Shop Titan becomes your single source of truth. Orders, art, pricing, production, and inventory in one system.",
-        color: "#EAB308",
-        particleColor: "#EAB308",
-        highlightWord: "CLARITY",
+        color: CHARCOAL,
+        particleColor: CHARCOAL,
+        highlightWord: "Clarity",
         Icon: LightbulbIcon,
         particleShape: "organized",
     },
     {
         id: "dream",
         title: "Here's What Happens",
-        subtitle: "DREAM OUTCOME",
+        subtitle: "Dream Outcome",
         description: "Zero time wasted searching. No more 'which version?' confusion. Production errors eliminated at the source.",
-        color: "#059669",
-        particleColor: "#059669",
-        highlightWord: "FOCUS",
+        color: CHARCOAL,
+        particleColor: CHARCOAL,
+        highlightWord: "Focus",
         Icon: TrendingUpIcon,
         particleShape: "expanding",
     },
     {
         id: "stakes",
         title: "Every Week You Wait...",
-        subtitle: "THE RISK",
+        subtitle: "The Risk",
         description: "Another missed deadline. Another manual error. Another dollar left on the floor. The margin leaks are silent  - until they're not. Your competitors are already systematizing.",
-        color: "#f97316",
-        particleColor: "#f97316",
-        highlightWord: "COST",
+        color: RUST,
+        particleColor: RUST,
+        highlightWord: "Cost",
         Icon: AlarmIcon,
         particleShape: "contracting",
     },
     {
         id: "cta",
         title: "Ready to change that?",
-        subtitle: "YOUR MOVE",
+        subtitle: "Your Move",
         description: "Shops that unify their operations cut production errors and reclaim hours every single day. The only question is when you start.",
-        color: "#0066CC",
-        particleColor: "#0066CC",
+        color: CHARCOAL,
+        particleColor: CHARCOAL,
         highlightWord: null,
         Icon: RocketIcon,
         particleShape: "expanding",
@@ -506,19 +510,25 @@ export default function PainPoint3D() {
                                     <SceneIcon color={activeScene.color} />
                                 </motion.div>
 
-                                {/* Subtitle eyebrow */}
-                                <motion.span
+                                {/* Subtitle eyebrow - hairline rule + thin uppercase */}
+                                <motion.div
                                     variants={itemVariants}
-                                    className="block text-sm md:text-base font-bold tracking-[0.3em] uppercase mb-6"
-                                    style={{ color: activeScene.color }}
+                                    className="flex items-center gap-3 mb-8"
                                 >
-                                    {activeScene.subtitle}
-                                </motion.span>
+                                    <span className="h-px w-10" style={{ backgroundColor: activeScene.color }} />
+                                    <span
+                                        className="text-[11px] font-medium tracking-[0.22em] uppercase"
+                                        style={{ color: activeScene.color }}
+                                    >
+                                        {activeScene.subtitle}
+                                    </span>
+                                    <span className="h-px w-10" style={{ backgroundColor: activeScene.color }} />
+                                </motion.div>
 
                                 {/* H2 */}
                                 <motion.h2
                                     variants={itemVariants}
-                                    className="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal dark:text-white mb-8 leading-tight tracking-tight md:whitespace-nowrap"
+                                    className="text-4xl md:text-6xl lg:text-7xl font-light text-charcoal dark:text-white mb-8 leading-[1.05] tracking-tight md:whitespace-nowrap"
                                 >
                                     {activeScene.title}
                                 </motion.h2>
@@ -526,7 +536,7 @@ export default function PainPoint3D() {
                                 {/* Description */}
                                 <motion.p
                                     variants={itemVariants}
-                                    className="text-lg md:text-2xl text-secondary-text dark:text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto"
+                                    className="text-base md:text-xl text-graphite dark:text-gray-400 mb-10 leading-relaxed max-w-2xl mx-auto font-light"
                                 >
                                     {activeScene.description}
                                 </motion.p>
@@ -534,29 +544,27 @@ export default function PainPoint3D() {
                                 {/* CTA or highlight word */}
                                 <motion.div variants={itemVariants}>
                                     {activeScene.cta ? (
-                                        <div className="flex flex-col items-center gap-5">
+                                        <div className="flex flex-col items-center gap-6">
                                             <a
                                                 href={activeScene.cta.href}
-                                                className="pointer-events-auto px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center"
+                                                className="pointer-events-auto px-7 py-3.5 text-sm tracking-wide font-medium bg-charcoal text-ivory rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2 group"
                                             >
-                                                <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
-                                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
-                                                <span className="relative z-10">{activeScene.cta.label}</span>
-                                                <span className="material-symbols-outlined text-xl relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                                                <span>{activeScene.cta.label}</span>
+                                                <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                                             </a>
                                             <button
                                                 type="button"
                                                 onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
-                                                className="pointer-events-auto flex flex-col items-center gap-2 text-secondary-text dark:text-gray-500 hover:text-charcoal dark:hover:text-white transition-colors duration-300 group"
+                                                className="pointer-events-auto flex flex-col items-center gap-2 text-graphite dark:text-gray-500 hover:text-charcoal dark:hover:text-white transition-colors duration-300 group"
                                             >
-                                                <span className="text-xs font-semibold tracking-widest uppercase">Explore the platform</span>
+                                                <span className="text-[11px] font-medium tracking-[0.22em] uppercase">Explore the platform</span>
                                                 <span className="material-symbols-outlined text-lg animate-bounce">keyboard_arrow_down</span>
                                             </button>
                                         </div>
                                     ) : (
                                         activeScene.highlightWord && (
                                             <div
-                                                className="inline-block px-8 py-4 border-2 rounded-full text-sm font-bold tracking-widest uppercase"
+                                                className="inline-block px-6 py-3 border text-[11px] font-medium tracking-[0.22em] uppercase"
                                                 style={{ borderColor: activeScene.color, color: activeScene.color }}
                                             >
                                                 {activeScene.highlightWord}

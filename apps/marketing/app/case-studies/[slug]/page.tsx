@@ -27,10 +27,10 @@ export async function generateStaticParams() {
 }
 
 const categoryColors: Record<string, string> = {
-    Operations: 'bg-primary/10 text-primary',
-    Growth: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
-    Inventory: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
-    Automation: 'bg-teal-500/10 text-teal-600 dark:text-teal-400',
+    Operations: 'bg-stone text-primary',
+    Growth: 'bg-stone text-charcoal dark:text-white',
+    Inventory: 'bg-stone text-charcoal dark:text-white',
+    Automation: 'bg-stone text-charcoal dark:text-white',
 };
 
 export default async function CaseStudyPage({ params }: PageProps) {
@@ -121,7 +121,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
                         <div className="space-y-2">
                             {study.problem.painPoints.map((point, i) => (
                                 <div key={i} className="flex items-start gap-2">
-                                    <span className="material-symbols-outlined text-rose-500 text-sm mt-0.5 flex-shrink-0">close</span>
+                                    <span className="material-symbols-outlined text-graphite text-sm mt-0.5 flex-shrink-0">close</span>
                                     <span className="text-sm text-secondary-text dark:text-gray-400">{point}</span>
                                 </div>
                             ))}
@@ -160,9 +160,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
                             {study.results.metrics.map((m) => (
-                                <div key={m.label} className="p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 text-center">
+                                <div key={m.label} className="p-4 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 text-center">
                                     <p className="text-[10px] font-bold uppercase tracking-wider text-secondary-text dark:text-gray-500 mb-2">{m.label}</p>
-                                    <p className="text-sm text-rose-500 line-through mb-1">{m.before}</p>
+                                    <p className="text-sm text-graphite line-through mb-1">{m.before}</p>
                                     <p className="text-xl font-bold text-charcoal dark:text-white">{m.after}</p>
                                 </div>
                             ))}
@@ -177,7 +177,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 {/* Quote */}
                 <section className="py-10 md:py-14 bg-surface dark:bg-gray-950">
                     <div className="max-w-3xl mx-auto px-mobile">
-                        <div className="p-6 md:p-8 rounded-2xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900">
+                        <div className="p-6 md:p-8 border border-line dark:border-gray-800 bg-white dark:bg-gray-900">
                             <span className="material-symbols-outlined text-primary text-3xl mb-4 block">format_quote</span>
                             <p className="text-lg md:text-xl font-medium text-charcoal dark:text-white leading-relaxed mb-4">
                                 &quot;{study.quote.text}&quot;
@@ -222,7 +222,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
                                     <Link
                                         key={s.slug}
                                         href={`/case-studies/${s.slug}`}
-                                        className="p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/40 transition-colors group"
+                                        className="p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/40 transition-colors group"
                                     >
                                         <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider mb-2 ${categoryColors[s.category] || 'bg-gray-100 text-gray-600'}`}>
                                             {s.category}
@@ -249,7 +249,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
                         </p>
                         <Link
                             href="/reach-out"
-                            className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center gap-2"
+                            className="px-7 py-3.5 bg-charcoal text-ivory text-sm tracking-wide font-medium hover:bg-black transition-colors inline-flex items-center gap-2"
                         >
                             Book a Demo
                             <span className="material-symbols-outlined text-lg">arrow_forward</span>

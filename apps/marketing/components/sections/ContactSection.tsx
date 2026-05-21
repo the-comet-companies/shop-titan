@@ -159,7 +159,7 @@ export default function ContactSection() {
                                 "Client Portal & Approvals"
                             ].map((item, index) => (
                                 <div key={index} className="flex items-center gap-4">
-                                    <div className="w-6 h-6 lg:w-8 lg:h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <div className="w-6 h-6 lg:w-8 lg:h-8 rounded-full bg-stone flex items-center justify-center shrink-0">
                                         <span className="material-symbols-outlined text-primary text-sm lg:text-lg">check</span>
                                     </div>
                                     <span className="text-sm lg:text-lg font-medium text-charcoal dark:text-gray-200">
@@ -216,7 +216,7 @@ export default function ContactSection() {
                         >
                             {/* Form Header */}
                             <div className="mb-6 lg:mb-8 text-center lg:text-left">
-                                <h3 className="text-2xl lg:text-3xl font-bold text-charcoal dark:text-white mb-2">
+                                <h3 className="text-2xl lg:text-3xl font-medium text-charcoal dark:text-white mb-2">
                                     {step === 1 ? "Let\u2019s Talk" : "Tell Us More"}
                                 </h3>
                                 <p className="text-secondary-text dark:text-gray-400">
@@ -248,7 +248,7 @@ export default function ContactSection() {
                                                             onChange={handleChange}
                                                             required
                                                             placeholder="Full Name"
-                                                            className="w-full min-h-[48px] bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 outline-none"
+                                                            className="w-full min-h-[48px] bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-[6px] px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 outline-none"
                                                         />
                                                     </div>
 
@@ -264,7 +264,7 @@ export default function ContactSection() {
                                                             onChange={handleChange}
                                                             required
                                                             placeholder="email@company.com"
-                                                            className="w-full min-h-[48px] bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 outline-none"
+                                                            className="w-full min-h-[48px] bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-[6px] px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 outline-none"
                                                         />
                                                     </div>
 
@@ -280,7 +280,7 @@ export default function ContactSection() {
                                                             onChange={handleChange}
                                                             required
                                                             placeholder="(555) 555-5555"
-                                                            className="w-full min-h-[48px] bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 outline-none"
+                                                            className="w-full min-h-[48px] bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-[6px] px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 outline-none"
                                                         />
                                                     </div>
 
@@ -296,7 +296,7 @@ export default function ContactSection() {
                                                             onChange={handleChange}
                                                             required
                                                             placeholder="Business Name"
-                                                            className="w-full min-h-[48px] bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 outline-none"
+                                                            className="w-full min-h-[48px] bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-[6px] px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 outline-none"
                                                         />
                                                     </div>
 
@@ -310,7 +310,7 @@ export default function ContactSection() {
                                                             value={formData.employeeCount}
                                                             onChange={handleChange}
                                                             required
-                                                            className="w-full min-h-[48px] bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white outline-none appearance-none cursor-pointer"
+                                                            className="w-full min-h-[48px] bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-[6px] px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white outline-none appearance-none cursor-pointer"
                                                         >
                                                             <option value="" disabled>Select team size</option>
                                                             <option value="1-5">1-5 employees</option>
@@ -329,7 +329,7 @@ export default function ContactSection() {
                                                         whileHover={{ scale: 1.02 }}
                                                         whileTap={{ scale: 0.98 }}
                                                         disabled={isSubmitting}
-                                                        className="w-full min-h-[48px] group relative backdrop-blur-xl bg-charcoal dark:bg-white/10 border border-charcoal/10 dark:border-white/10 text-white font-bold py-3 md:py-4 rounded-xl transition-all duration-300 shadow-lg flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                        className="w-full min-h-[48px] group relative backdrop-blur-xl bg-charcoal dark:bg-white/10 border border-charcoal/10 dark:border-white/10 text-white font-bold py-3 md:py-4 rounded-[6px] transition-all duration-300 shadow-lg flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                                                     >
                                                         {isSubmitting ? (
                                                             <span className="material-symbols-outlined animate-spin">refresh</span>
@@ -357,7 +357,7 @@ export default function ContactSection() {
                                                                 <label
                                                                     key={method}
                                                                     className={`flex items-center gap-3 px-3 py-3 rounded-xl border cursor-pointer transition-all duration-200 ${formData.decorationMethods.includes(method)
-                                                                        ? "border-primary bg-primary/10 text-primary"
+                                                                        ? "border-primary bg-stone text-primary"
                                                                         : "border-structural-border dark:border-gray-800 text-secondary-text dark:text-gray-400 hover:border-primary/40"
                                                                         }`}
                                                                 >
@@ -392,7 +392,7 @@ export default function ContactSection() {
                                                             onChange={handleChange}
                                                             autoFocus
                                                             placeholder="What part of your operation is causing the most chaos?"
-                                                            className="w-full bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 min-h-[120px] outline-none resize-none"
+                                                            className="w-full bg-background-light dark:bg-black/20 border border-structural-border dark:border-gray-800 rounded-[6px] px-4 py-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-charcoal dark:text-white placeholder:text-gray-300 min-h-[120px] outline-none resize-none"
                                                         />
                                                     </div>
                                                 </div>
@@ -405,7 +405,7 @@ export default function ContactSection() {
                                                         whileHover={{ scale: 1.02 }}
                                                         whileTap={{ scale: 0.98 }}
                                                         disabled={isSubmitting}
-                                                        className="w-full md:w-1/3 min-h-[48px] group relative bg-transparent border border-structural-border dark:border-gray-700 text-secondary-text font-bold py-3 md:py-4 rounded-xl transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center gap-2"
+                                                        className="w-full md:w-1/3 min-h-[48px] group relative bg-transparent border border-structural-border dark:border-gray-700 text-secondary-text font-bold py-3 md:py-4 rounded-[6px] transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center gap-2"
                                                     >
                                                         <span className="material-symbols-outlined text-xl group-hover:-translate-x-1 transition-transform">
                                                             arrow_back
@@ -418,7 +418,7 @@ export default function ContactSection() {
                                                         whileHover={{ scale: 1.02 }}
                                                         whileTap={{ scale: 0.98 }}
                                                         disabled={isSubmitting}
-                                                        className="w-full md:w-2/3 min-h-[48px] group relative backdrop-blur-xl bg-charcoal dark:bg-white/10 border border-charcoal/10 dark:border-white/10 text-white font-bold py-3 md:py-4 rounded-xl transition-all duration-300 shadow-lg flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                        className="w-full md:w-2/3 min-h-[48px] group relative backdrop-blur-xl bg-charcoal dark:bg-white/10 border border-charcoal/10 dark:border-white/10 text-white font-bold py-3 md:py-4 rounded-[6px] transition-all duration-300 shadow-lg flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                                                     >
                                                         {isSubmitting ? (
                                                             <span className="material-symbols-outlined animate-spin">refresh</span>
@@ -447,7 +447,7 @@ export default function ContactSection() {
                                             <span className="material-symbols-outlined text-4xl">check_circle</span>
                                         </div>
                                         <div>
-                                            <h3 className="text-2xl font-bold text-charcoal dark:text-white mb-2">Request Received</h3>
+                                            <h3 className="text-2xl font-medium text-charcoal dark:text-white mb-2">Request Received</h3>
                                             <p className="text-secondary-text dark:text-gray-400 max-w-sm mx-auto">
                                                 Thanks, {formData.name.split(' ')[0]}. We&apos;ll be in touch shortly to schedule your demo.
                                             </p>

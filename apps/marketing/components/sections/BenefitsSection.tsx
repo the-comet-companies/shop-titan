@@ -2,53 +2,83 @@
 
 import { motion } from 'framer-motion';
 
+const models = [
+    { name: 'OpenAI', logo: '/logos/ai/openai.svg', invert: true },
+    { name: 'Claude', logo: '/logos/ai/claude.svg', invert: false },
+    { name: 'Gemini', logo: '/logos/ai/gemini.svg', invert: false },
+    { name: 'Perplexity', logo: '/logos/ai/perplexity.svg', invert: true },
+];
+
 export default function BenefitsSection() {
     return (
-        <section id="benefits" className="pt-10 md:pt-16 pb-12 md:pb-16 bg-surface dark:bg-gray-950 relative overflow-hidden">
-            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent" />
+        <section id="benefits" className="bg-ivory dark:bg-gray-950 py-20 md:py-28 relative">
+            <div className="max-w-7xl mx-auto px-mobile">
 
-            <div className="max-w-7xl mx-auto px-mobile relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="rounded-2xl md:rounded-3xl p-6 md:p-10 border border-structural-border dark:border-gray-800 bg-gradient-to-br from-violet-50/40 to-indigo-50/40 dark:from-violet-950/20 dark:to-indigo-950/20 shadow-sm overflow-hidden flex flex-col lg:flex-row gap-8 lg:gap-12 items-center"
-                >
-                    {/* Left: Copy */}
-                    <div className="lg:w-1/2">
-                        <div className="flex items-center gap-3 mb-3">
-                            <div className="w-10 h-10 bg-violet-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <span className="material-symbols-outlined text-violet-600 dark:text-violet-400 text-xl">auto_awesome</span>
-                            </div>
-                            <h2 className="text-2xl md:text-4xl font-bold dark:text-white">AI-Powered Platform</h2>
-                        </div>
-                        <p className="text-secondary-text dark:text-gray-400 font-medium pt-2 text-lg">
-                            Our website and FileMaker system are integrated with leading AI models. From smart product descriptions and automated customer responses to intelligent order processing and predictive analytics.
-                        </p>
+                {/* Two-column header */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-14 md:mb-16">
+                    <div className="lg:col-span-5">
+                        <motion.span
+                            initial={{ opacity: 0, y: 8 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4 }}
+                            className="inline-block text-[11px] tracking-[0.22em] uppercase text-graphite font-medium mb-6"
+                        >
+                            Intelligence Layer
+                        </motion.span>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 12 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.05 }}
+                            className="text-3xl md:text-5xl font-light text-charcoal dark:text-white leading-[1.05] tracking-tight"
+                        >
+                            Powered by{' '}
+                            <span className="italic font-extralight text-graphite">leading AI models.</span>
+                        </motion.h2>
                     </div>
 
-                    {/* Right: AI Logo Grid */}
-                    <div className="lg:w-1/2 w-full">
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white dark:bg-gray-900/80 border border-gray-100 dark:border-gray-700/50 aspect-square">
-                                <img src="/logos/ai/openai.svg" alt="OpenAI" className="w-16 h-16 dark:invert" />
-                                <span className="text-sm font-bold text-charcoal dark:text-white">OpenAI</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white dark:bg-gray-900/80 border border-gray-100 dark:border-gray-700/50 aspect-square">
-                                <img src="/logos/ai/claude.svg" alt="Claude" className="w-16 h-16" />
-                                <span className="text-sm font-bold text-charcoal dark:text-white">Claude</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white dark:bg-gray-900/80 border border-gray-100 dark:border-gray-700/50 aspect-square">
-                                <img src="/logos/ai/gemini.svg" alt="Gemini" className="w-16 h-16" />
-                                <span className="text-sm font-bold text-charcoal dark:text-white">Gemini</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white dark:bg-gray-900/80 border border-gray-100 dark:border-gray-700/50 aspect-square">
-                                <img src="/logos/ai/perplexity.svg" alt="Perplexity" className="w-16 h-16 dark:invert" />
-                                <span className="text-sm font-bold text-charcoal dark:text-white">Perplexity</span>
-                            </div>
-                        </div>
+                    <motion.p
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        className="lg:col-span-7 lg:pt-2 text-lg md:text-xl text-graphite dark:text-gray-400 leading-relaxed font-light max-w-2xl"
+                    >
+                        Your website and FileMaker system are integrated with the frontier of AI. Smart product descriptions, automated customer responses, intelligent order processing, and predictive analytics. Quietly working in the background.
+                    </motion.p>
+                </div>
+
+                {/* Logo strip with hairline dividers */}
+                <div className="border-t border-line">
+                    <div className="grid grid-cols-2 md:grid-cols-4">
+                        {models.map((model, i) => (
+                            <motion.div
+                                key={model.name}
+                                initial={{ opacity: 0, y: 12 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: i * 0.08 }}
+                                className={`flex flex-col items-center justify-center gap-5 py-12 md:py-16 border-b border-line ${
+                                    i < models.length - 1 ? 'md:border-r' : ''
+                                } ${i === 0 || i === 2 ? 'border-r md:border-r' : ''} ${i === 1 ? 'border-r md:border-r' : ''}`}
+                            >
+                                <div className="h-12 flex items-center justify-center">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
+                                        src={model.logo}
+                                        alt={model.name}
+                                        className={`h-10 w-auto opacity-80 hover:opacity-100 transition-opacity ${model.invert ? 'dark:invert' : ''}`}
+                                    />
+                                </div>
+                                <span className="text-[11px] tracking-[0.22em] uppercase text-graphite font-medium">
+                                    {model.name}
+                                </span>
+                            </motion.div>
+                        ))}
                     </div>
-                </motion.div>
+                </div>
+
             </div>
         </section>
     );

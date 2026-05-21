@@ -2,8 +2,6 @@
 
 import { motion } from 'framer-motion';
 
-const TOTAL_CARDS = 10;
-
 const painPoints = [
     {
         number: "01",
@@ -57,106 +55,111 @@ const painPoints = [
     },
 ];
 
-function AnimatedCard({ point }: { point: typeof painPoints[0] }) {
-    return (
-        <div
-            className="relative p-3 md:p-4 rounded-xl border border-structural-border dark:border-gray-800 hover:border-rose-500/30 dark:hover:border-rose-500/20 bg-white dark:bg-gray-900 overflow-hidden group min-w-0 h-full transition-colors duration-300"
-        >
-            {/* Hover glow */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/0 group-hover:bg-rose-500/[0.10] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
-            <span className="block text-[10px] font-bold tracking-widest text-rose-500/70 dark:text-rose-500/50 uppercase mb-1.5">
-                {point.number}
-            </span>
-            <p className="text-sm font-bold text-charcoal dark:text-white leading-snug mb-1">
-                {point.headline}
-            </p>
-            <p className="text-xs text-secondary-text dark:text-gray-500 font-medium leading-relaxed">
-                {point.consequence}
-            </p>
-        </div>
-    );
-}
-
 export default function CanYouRelateSection() {
     return (
-        // Mobile & Desktop: natural flowing height
-        <div className="w-full">
-            <section
-                id="can-you-relate"
-                className="flex flex-col bg-surface dark:bg-gray-950 relative"
-            >
-                {/* Top divider */}
-                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent" />
-                {/* Micro grid texture */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+        <section
+            id="can-you-relate"
+            className="bg-ivory dark:bg-gray-950 py-20 md:py-28"
+        >
+            <div className="max-w-7xl mx-auto px-mobile">
 
-                {/* Content wrapper */}
-                <div className="relative z-10 md:flex-1 flex flex-col max-w-7xl mx-auto w-full px-mobile py-6 md:py-8 lg:py-12 md:min-h-0">
-
-                    {/* Header */}
-                    <div className="flex-shrink-0 mb-8 md:mb-12">
-                        <div className="flex items-end justify-between gap-4">
-                            <h2 className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white leading-tight">
-                                We&apos;ve heard all of these.
-                                <br />
-                                <span className="text-secondary-text dark:text-gray-500">Usually in the same conversation.</span>
-                            </h2>
-                        </div>
-                    </div>
-
-                    {/* Grid wrapper */}
-                    <div className="relative">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-5">
-                            {painPoints.map((point, index) => (
-                                <motion.div
-                                    key={point.number}
-                                    initial={{ opacity: 0, x: index % 2 === 0 ? -28 : 28, y: 12 }}
-                                    whileInView={{ opacity: 1, x: 0, y: 0 }}
-                                    viewport={{ once: true, margin: "-80px" }}
-                                    transition={{ type: 'spring', stiffness: 260, damping: 24, delay: index * 0.06 }}
-                                    className="h-full"
-                                >
-                                    <AnimatedCard point={point} />
-                                </motion.div>
-                            ))}
-                        </div>
-
-                        {/* Bridge CTA */}
-                        <motion.div
-                          className="pt-10 pb-4 flex flex-col items-center justify-center gap-6"
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true, margin: "-50px" }}
-                          transition={{ duration: 0.5, delay: 0.2 }}
+                {/* Header */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-16 md:mb-20">
+                    <div className="lg:col-span-5">
+                        <motion.span
+                            initial={{ opacity: 0, y: 8 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4 }}
+                            className="inline-block text-[11px] tracking-[0.22em] uppercase text-graphite font-medium mb-6"
                         >
-                          <p className="text-lg md:text-xl font-semibold text-charcoal dark:text-white text-center">
-                            We have solutions for all of these.
-                          </p>
-                          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-                            <a
-                              href="/reach-out"
-                              className="w-full sm:w-auto px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
-                            >
-                              <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
-                              <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
-                              <span className="relative z-10">Let&apos;s Talk</span>
-                              <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
-                            </a>
-                            <button
-                              onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
-                              className="w-full sm:w-auto px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
-                            >
-                              <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
-                              <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
-                              <span className="relative z-10">See How It Works</span>
-                              <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
-                            </button>
-                          </div>
-                        </motion.div>
+                            The Pattern
+                        </motion.span>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 12 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.05 }}
+                            className="text-3xl md:text-5xl font-light text-charcoal dark:text-white leading-[1.05] tracking-tight"
+                        >
+                            We&apos;ve heard all of these.{' '}
+                            <span className="italic font-extralight text-graphite">Usually in the same conversation.</span>
+                        </motion.h2>
                     </div>
-
+                    <motion.p
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        className="lg:col-span-7 lg:pt-2 text-lg md:text-xl text-graphite dark:text-gray-400 leading-relaxed font-light max-w-xl"
+                    >
+                        Ten quiet failures that compound until something breaks loudly. None of them on their own is a crisis. Together, they are why your shop feels harder to run than it should.
+                    </motion.p>
                 </div>
-            </section>
-        </div>
+
+                {/* Pain points list - 2 columns with hairline dividers */}
+                <div className="border-t border-line">
+                    <div className="grid grid-cols-1 md:grid-cols-2">
+                        {painPoints.map((point, index) => (
+                            <motion.div
+                                key={point.number}
+                                initial={{ opacity: 0, y: 12 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-60px' }}
+                                transition={{ duration: 0.45, delay: (index % 4) * 0.06 }}
+                                className={`flex items-baseline gap-5 py-6 md:py-7 border-b border-line ${
+                                    index % 2 === 0 ? 'md:border-r md:pr-8' : 'md:pl-8'
+                                }`}
+                            >
+                                <span className="flex-shrink-0 text-[10px] tracking-[0.22em] uppercase text-graphite font-medium w-7 pt-1">
+                                    {point.number}
+                                </span>
+                                <div className="flex-1 min-w-0">
+                                    <p className="text-base md:text-lg text-charcoal dark:text-white font-light leading-snug mb-2 tracking-tight">
+                                        {point.headline}
+                                    </p>
+                                    <p className="text-sm text-graphite dark:text-gray-500 font-light leading-relaxed">
+                                        {point.consequence}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Bridge CTA */}
+                <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{ duration: 0.5, delay: 0.15 }}
+                    className="mt-16 md:mt-20 flex flex-col items-center gap-8"
+                >
+                    <div className="flex items-center gap-3">
+                        <span className="h-px w-10 bg-charcoal" />
+                        <p className="text-base md:text-lg text-charcoal dark:text-white font-light tracking-tight">
+                            We have solutions for all of these.
+                        </p>
+                        <span className="h-px w-10 bg-charcoal" />
+                    </div>
+                    <div className="flex flex-col sm:flex-row items-center gap-3">
+                        <a
+                            href="/reach-out"
+                            className="w-full sm:w-auto px-7 py-3.5 min-h-[44px] text-sm tracking-wide font-medium bg-charcoal text-ivory rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2 group"
+                        >
+                            <span>Let&apos;s Talk</span>
+                            <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                        </a>
+                        <button
+                            onClick={() => document.getElementById('workflow-video')?.scrollIntoView({ behavior: 'smooth' })}
+                            className="w-full sm:w-auto px-7 py-3.5 min-h-[44px] text-sm tracking-wide font-medium border border-charcoal text-charcoal rounded-[6px] hover:bg-charcoal hover:text-ivory dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-charcoal transition-colors inline-flex items-center justify-center"
+                        >
+                            See How It Works
+                        </button>
+                    </div>
+                </motion.div>
+
+            </div>
+        </section>
     );
 }

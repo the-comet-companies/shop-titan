@@ -95,7 +95,7 @@ function Particle({ pathId, duration, startOffset }: ParticleProps) {
     <circle
       ref={circleRef}
       r={3}
-      fill="#0066CC"
+      fill="#5A5A5C"
       opacity={0}
     />
   );
@@ -121,7 +121,7 @@ function NetworkNode({
         id={`path-${node.id}`}
         d={pathD(node, hub)}
         fill="none"
-        stroke="#0066CC"
+        stroke="#5A5A5C"
         strokeOpacity={0.45}
         strokeWidth={2}
         strokeLinecap="round"
@@ -170,11 +170,11 @@ function NetworkNode({
                        bg-white/75 dark:bg-slate-900/80
                        backdrop-blur-md
                        border border-primary/25 dark:border-primary/20
-                       shadow-[0_4px_20px_rgba(0,102,204,0.13)]
+                       shadow-[0_4px_20px_rgba(90,90,92,0.13)]
                        whitespace-nowrap"
             style={{ width: W, height: H }}
           >
-            <span className="flex-none flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 dark:bg-primary/20">
+            <span className="flex-none flex items-center justify-center w-6 h-6 rounded-full bg-stone dark:bg-primary/20">
               <span className="material-symbols-outlined text-primary leading-none" style={{ fontSize: '13px' }}>
                 {node.icon}
               </span>
@@ -198,7 +198,7 @@ function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: Hub
           key={i}
           cx={pos.x} cy={pos.y} r={42}
           fill="none"
-          stroke="#0066CC"
+          stroke="#5A5A5C"
           strokeWidth={1.5}
           initial={{ scale: 1, opacity: prefersReduced ? 0 : 0.5 }}
           animate={prefersReduced ? { scale: 1, opacity: 0 } : { scale: 4.5, opacity: 0 }}
@@ -214,7 +214,7 @@ function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: Hub
         <motion.circle
           cx={pos.x} cy={pos.y} r={42}
           fill="none"
-          stroke="#0066CC"
+          stroke="#5A5A5C"
           strokeWidth={2.5}
           initial={{ scale: 0.8, opacity: 0.65 }}
           animate={{ scale: 5, opacity: 0 }}
@@ -224,7 +224,7 @@ function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: Hub
       )}
 
       {/* Inner dot  - springs in first with bigger bounce, then breathes continuously */}
-      <motion.circle cx={pos.x} cy={pos.y} r={8} fill="#0066CC" fillOpacity={0.80}
+      <motion.circle cx={pos.x} cy={pos.y} r={8} fill="#5A5A5C" fillOpacity={0.80}
         initial={{ scale: 0, opacity: 0 }}
         animate={prefersReduced
           ? { scale: 1, opacity: 1 }
@@ -235,7 +235,7 @@ function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: Hub
       />
       {/* Continuous breath on inner dot */}
       {!prefersReduced && (
-        <motion.circle cx={pos.x} cy={pos.y} r={8} fill="#0066CC" fillOpacity={0.50}
+        <motion.circle cx={pos.x} cy={pos.y} r={8} fill="#5A5A5C" fillOpacity={0.50}
           animate={{ scale: [1, 1.4, 1] }}
           transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 1, ease: 'easeInOut', delay: 1 }}
           style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
@@ -243,17 +243,17 @@ function Hub({ prefersReduced, pos }: { prefersReduced: boolean | null; pos: Hub
       )}
 
       {/* Mid rings  - expand outward after core */}
-      <motion.circle cx={pos.x} cy={pos.y} r={16} fill="#0066CC" fillOpacity={0.20}
+      <motion.circle cx={pos.x} cy={pos.y} r={16} fill="#5A5A5C" fillOpacity={0.20}
         initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 180, damping: 14, delay: 0.3 }}
         style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
       />
-      <motion.circle cx={pos.x} cy={pos.y} r={28} fill="#0066CC" fillOpacity={0.12}
+      <motion.circle cx={pos.x} cy={pos.y} r={28} fill="#5A5A5C" fillOpacity={0.12}
         initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 160, damping: 16, delay: 0.45 }}
         style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
       />
-      <motion.circle cx={pos.x} cy={pos.y} r={42} fill="#0066CC" fillOpacity={0.06}
+      <motion.circle cx={pos.x} cy={pos.y} r={42} fill="#5A5A5C" fillOpacity={0.06}
         initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 140, damping: 18, delay: 0.6 }}
         style={{ transformOrigin: `${pos.x}px ${pos.y}px` }}
@@ -291,14 +291,14 @@ export default function HeroBackground() {
         <defs>
           {/* Aurora glow  - soft radial, left-center */}
           <radialGradient id="aurora-left" cx="25%" cy="50%" r="45%" gradientUnits="objectBoundingBox">
-            <stop offset="0%" stopColor="#0066CC" stopOpacity={0.45} />
-            <stop offset="55%" stopColor="#0066CC" stopOpacity={0.15} />
-            <stop offset="100%" stopColor="#0066CC" stopOpacity={0} />
+            <stop offset="0%" stopColor="#5A5A5C" stopOpacity={0.45} />
+            <stop offset="55%" stopColor="#5A5A5C" stopOpacity={0.15} />
+            <stop offset="100%" stopColor="#5A5A5C" stopOpacity={0} />
           </radialGradient>
 
           {/* Dot grid pattern  - 2px dots every 36px */}
           <pattern id="dot-grid" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
-            <circle cx="18" cy="18" r="1.5" fill="#0066CC" fillOpacity={0.65} />
+            <circle cx="18" cy="18" r="1.5" fill="#5A5A5C" fillOpacity={0.65} />
           </pattern>
 
           {/* Fade mask: opaque on both edges, transparent in middle (around hub) */}

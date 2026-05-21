@@ -18,13 +18,13 @@ const testimonials: Testimonial[] = [
         company: "Premier Embroidery Co.",
     },
     {
-        quote: "The single source of truth concept is revolutionary. No more hunting for information across spreadsheets  - everything is exactly where you expect it.",
+        quote: "The single source of truth concept is revolutionary. No more hunting for information across spreadsheets. Everything is exactly where you expect it.",
         author: "Michael Chen",
         role: "Production Manager",
         company: "Elite Screen Printing",
     },
     {
-        quote: "We scaled from 5 to 20 employees without losing our minds. The system handles everything  - orders, scheduling, QC. I can't imagine running the shop without it.",
+        quote: "We scaled from 5 to 20 employees without losing our minds. The system handles everything: orders, scheduling, QC. I can't imagine running the shop without it.",
         author: "Jessica Williams",
         role: "CEO",
         company: "Custom Apparel Solutions",
@@ -45,178 +45,179 @@ const testimonials: Testimonial[] = [
 
 export default function ShowcaseSection() {
     const [current, setCurrent] = useState(0);
-    const [direction, setDirection] = useState<1 | -1>(1);
 
-    const go = useCallback((next: number, dir: 1 | -1) => {
-        setDirection(dir);
+    const go = useCallback((next: number) => {
         setCurrent((next + testimonials.length) % testimonials.length);
     }, []);
 
-    const prev = () => go(current - 1, -1);
-    const next = () => go(current + 1, 1);
+    const prev = () => go(current - 1);
+    const next = () => go(current + 1);
 
-    // Auto-advance every 6 s
     useEffect(() => {
-        const t = setInterval(() => go(current + 1, 1), 6000);
+        const t = setInterval(() => go(current + 1), 6000);
         return () => clearInterval(t);
     }, [current, go]);
 
-    const slide = {
-        enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 60 : -60 }),
-        center: { opacity: 1, x: 0 },
-        exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -60 : 60 }),
-    };
-
     const t = testimonials[current];
+    const counter = `${String(current + 1).padStart(2, '0')} / ${String(testimonials.length).padStart(2, '0')}`;
 
     return (
-        <section id="showcase" className="bg-gray-100 py-20 md:py-28 overflow-hidden">
-            <style>{`
-                @keyframes progress-fill {
-                    from { transform: scaleX(0); }
-                    to   { transform: scaleX(1); }
-                }
-                .dot-progress {
-                    animation: progress-fill 6s linear forwards;
-                    transform-origin: left;
-                }
-            `}</style>
-            <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
+        <section id="showcase" className="bg-ivory dark:bg-gray-950 py-20 md:py-28">
+            <div className="max-w-7xl mx-auto px-mobile">
 
-                {/* Section Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="mb-10"
-                >
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-5">
-                        Trusted by Shops
-                    </span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-charcoal leading-tight tracking-tight">
-                        Real shops. Real results.
-                    </h2>
-                    <p className="mt-4 text-secondary-text text-lg max-w-2xl mx-auto">
-                        No demos. No cherry-picked screenshots. Just what print and embroidery shops say after using it.
-                    </p>
-                </motion.div>
-
-                {/* Giant quote mark */}
-                <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="text-[120px] leading-none text-primary/20 font-serif select-none mb-2 -mt-6"
-                    aria-hidden="true"
-                >
-                    &ldquo;
-                </motion.div>
-
-                {/* Sliding quote */}
-                <div className="relative min-h-[180px] md:min-h-[140px] flex items-center justify-center">
-                    <AnimatePresence mode="wait" custom={direction}>
-                        <motion.div
-                            key={current}
-                            custom={direction}
-                            variants={slide}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            transition={{ duration: 0.4, ease: 'easeInOut' }}
-                            className="absolute inset-0 flex flex-col items-center justify-center gap-6"
+                {/* Header */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-16 md:mb-20">
+                    <div className="lg:col-span-5">
+                        <motion.span
+                            initial={{ opacity: 0, y: 8 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4 }}
+                            className="inline-block text-[11px] tracking-[0.22em] uppercase text-graphite font-medium mb-6"
                         >
-                            <p className="text-xl md:text-2xl font-medium text-charcoal leading-relaxed max-w-3xl">
-                                {t.quote}
-                            </p>
-
-                            <div className="flex flex-col items-center gap-0.5">
-                                <span className="text-base font-bold text-charcoal tracking-wide">
-                                    {t.author}
-                                </span>
-                                <span className="text-sm text-secondary-text">
-                                    {t.role} &middot; {t.company}
-                                </span>
-                            </div>
-                        </motion.div>
-                    </AnimatePresence>
+                            Trusted by Shops
+                        </motion.span>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 12 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.05 }}
+                            className="text-3xl md:text-5xl font-light text-charcoal dark:text-white leading-[1.05] tracking-tight"
+                        >
+                            Real shops.{' '}
+                            <span className="italic font-extralight text-graphite">Real results.</span>
+                        </motion.h2>
+                    </div>
+                    <motion.p
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        className="lg:col-span-7 lg:pt-2 text-lg md:text-xl text-graphite dark:text-gray-400 leading-relaxed font-light max-w-xl"
+                    >
+                        No demos. No cherry-picked screenshots. Just what print and embroidery shops say after using it.
+                    </motion.p>
                 </div>
 
-                {/* Controls row */}
-                <div className="mt-12 flex items-center justify-center gap-8">
+                {/* Testimonial editorial block */}
+                <div className="border-t border-line">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[340px]">
 
-                    {/* Prev arrow */}
-                    <button
-                        onClick={prev}
-                        className="w-10 h-10 rounded-full border border-structural-border bg-white hover:bg-primary hover:border-primary hover:text-white text-charcoal flex items-center justify-center transition-all duration-200 shadow-sm"
-                        aria-label="Previous testimonial"
-                    >
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="10 12 6 8 10 4" />
-                        </svg>
-                    </button>
+                        {/* Left: counter + author */}
+                        <div className="lg:col-span-4 py-10 md:py-12 lg:pr-10 lg:border-r border-line flex flex-col justify-between border-b lg:border-b-0 border-line">
+                            <div className="flex items-baseline gap-4">
+                                <span className="text-[10px] tracking-[0.22em] uppercase text-graphite font-medium">
+                                    {counter}
+                                </span>
+                                <span className="h-px flex-1 bg-line" />
+                            </div>
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={current}
+                                    initial={{ opacity: 0, y: 8 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -8 }}
+                                    transition={{ duration: 0.35 }}
+                                    className="mt-8 lg:mt-0"
+                                >
+                                    <p className="text-base text-charcoal dark:text-white font-medium tracking-tight mb-1">
+                                        {t.author}
+                                    </p>
+                                    <p className="text-sm text-graphite dark:text-gray-500 font-light">
+                                        {t.role}, {t.company}
+                                    </p>
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
 
-                    {/* Dot indicators */}
-                    <div className="flex items-center gap-2.5">
-                        {testimonials.map((_, i) => (
-                            <button
-                                key={i}
-                                onClick={() => go(i, i > current ? 1 : -1)}
-                                aria-label={`Go to testimonial ${i + 1}`}
-                                className={`relative rounded-full overflow-hidden transition-all duration-300 ${i === current
-                                        ? 'w-10 h-2.5 bg-primary/20'
-                                        : 'w-2.5 h-2.5 bg-charcoal/20 hover:bg-charcoal/40'
-                                    }`}
-                            >
-                                {i === current && (
-                                    <span
-                                        key={current}
-                                        className="dot-progress absolute inset-y-0 left-0 right-0 bg-primary rounded-full"
-                                    />
-                                )}
-                            </button>
-                        ))}
+                        {/* Right: quote */}
+                        <div className="lg:col-span-8 py-10 md:py-12 lg:pl-12">
+                            <AnimatePresence mode="wait">
+                                <motion.blockquote
+                                    key={current}
+                                    initial={{ opacity: 0, y: 12 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -12 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="text-xl md:text-2xl lg:text-3xl text-charcoal dark:text-white font-light leading-snug tracking-tight"
+                                    style={{ fontFamily: 'var(--font-crimson), serif' }}
+                                >
+                                    <span className="italic">&ldquo;{t.quote}&rdquo;</span>
+                                </motion.blockquote>
+                            </AnimatePresence>
+                        </div>
+
                     </div>
 
-                    {/* Next arrow */}
-                    <button
-                        onClick={next}
-                        className="w-10 h-10 rounded-full border border-structural-border bg-white hover:bg-primary hover:border-primary hover:text-white text-charcoal flex items-center justify-center transition-all duration-200 shadow-sm"
-                        aria-label="Next testimonial"
-                    >
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="6 4 10 8 6 12" />
-                        </svg>
-                    </button>
+                    {/* Navigation bar */}
+                    <div className="border-t border-line flex items-stretch">
+                        <button
+                            onClick={prev}
+                            className="px-5 py-4 text-graphite hover:text-charcoal hover:bg-stone transition-colors border-r border-line flex items-center justify-center"
+                            aria-label="Previous testimonial"
+                        >
+                            <span className="material-symbols-outlined text-base" style={{ fontVariationSettings: "'wght' 250" }}>arrow_back</span>
+                        </button>
 
+                        <div className="flex-1 flex items-stretch">
+                            {testimonials.map((_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => go(i)}
+                                    className="flex-1 relative group border-r border-line last:border-r-0"
+                                    aria-label={`Go to testimonial ${i + 1}`}
+                                >
+                                    <span
+                                        className={`absolute inset-x-0 top-0 h-px transition-colors ${
+                                            i === current
+                                                ? 'bg-charcoal dark:bg-white'
+                                                : 'bg-transparent group-hover:bg-charcoal/30'
+                                        }`}
+                                    />
+                                    <span className="block py-3 text-[10px] tracking-[0.22em] uppercase font-medium text-graphite group-hover:text-charcoal transition-colors">
+                                        {String(i + 1).padStart(2, '0')}
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
+
+                        <button
+                            onClick={next}
+                            className="px-5 py-4 text-graphite hover:text-charcoal hover:bg-stone transition-colors border-l border-line flex items-center justify-center"
+                            aria-label="Next testimonial"
+                        >
+                            <span className="material-symbols-outlined text-base" style={{ fontVariationSettings: "'wght' 250" }}>arrow_forward</span>
+                        </button>
+                    </div>
                 </div>
 
-                {/* CTA */}
+                {/* Bridge CTA */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  className="mt-12 flex flex-col items-center gap-2"
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{ duration: 0.5, delay: 0.15 }}
+                    className="mt-16 md:mt-20 flex flex-col items-center gap-8"
                 >
-                  <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-                    <p className="text-xl md:text-2xl font-bold text-charcoal">
-                      Join them.
-                    </p>
-                    <a
-                      href="/reach-out"
-                      className="w-full sm:w-auto px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
-                    >
-                      <div className="absolute inset-0 bg-charcoal/5 group-hover:bg-charcoal/10 transition-colors rounded-full" />
-                      <div className="absolute inset-0 border-2 border-charcoal/20 group-hover:border-charcoal/30 transition-colors rounded-full" />
-                      <span className="relative z-10">Let&apos;s Talk</span>
-                      <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
-                    </a>
-                  </div>
-                  <p className="text-sm text-secondary-text font-medium">
-                    See why shops like yours switched to Shop Titan.
-                  </p>
+                    <div className="flex items-center gap-3">
+                        <span className="h-px w-10 bg-charcoal" />
+                        <p className="text-base md:text-lg text-charcoal dark:text-white font-light tracking-tight">
+                            Join them.
+                        </p>
+                        <span className="h-px w-10 bg-charcoal" />
+                    </div>
+                    <div className="flex flex-col items-center gap-3">
+                        <a
+                            href="/reach-out"
+                            className="px-7 py-3.5 min-h-[44px] text-sm tracking-wide font-medium bg-charcoal text-ivory rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2 group"
+                        >
+                            <span>Let&apos;s Talk</span>
+                            <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                        </a>
+                        <p className="text-sm text-graphite font-light">
+                            See why shops like yours switched to Shop Titan.
+                        </p>
+                    </div>
                 </motion.div>
 
             </div>

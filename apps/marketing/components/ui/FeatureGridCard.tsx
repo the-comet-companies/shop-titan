@@ -45,7 +45,7 @@ export default function FeatureGridCard({
         transition-all duration-300 relative
         ${isExpanded
           ? 'border-2 border-primary/30 dark:border-primary/40 shadow-2xl shadow-primary/5'
-          : 'border border-white/50 dark:border-white/10 shadow-lg hover:shadow-xl hover:border-primary/20 cursor-pointer'
+          : 'border border-white/50 dark:border-white/10 shadow-lg hover:shadow-xl hover:border-charcoal/20 cursor-pointer'
         }
       `}
       onClick={() => !isExpanded && onToggle(id)}
@@ -57,7 +57,7 @@ export default function FeatureGridCard({
             e.stopPropagation();
             onToggle(id);
           }}
-          className="hidden md:flex absolute top-6 right-6 w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 hover:text-primary dark:hover:text-white hover:bg-primary/10 transition-all items-center justify-center"
+          className="hidden md:flex absolute top-6 right-6 w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 hover:text-primary dark:hover:text-white hover:bg-stone transition-all items-center justify-center"
           aria-label="Minimize"
         >
           <span className="material-symbols-outlined text-xl">close_fullscreen</span>
@@ -66,7 +66,7 @@ export default function FeatureGridCard({
 
       {/* Icon & Title Row */}
       <div className="flex items-center gap-4 mb-4">
-        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+        <div className="w-12 h-12 bg-stone rounded-xl flex items-center justify-center flex-shrink-0">
           <span className="material-symbols-outlined text-primary text-2xl">
             {icon}
           </span>
@@ -107,28 +107,28 @@ export default function FeatureGridCard({
             className="space-y-6 overflow-hidden"
           >
             <div className="grid md:grid-cols-2 gap-4 md:gap-6">
-              {/* Pain Point - Rose glass */}
-              <div className="relative p-5 border border-rose-200/50 dark:border-rose-800/30 bg-rose-50/60 dark:bg-rose-950/20 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col h-full hover:shadow-lg transition-all">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-rose-500/10 blur-2xl rounded-full pointer-events-none" />
+              {/* Pain Point - Architectural muted with dusty rose accent */}
+              <div className="relative p-5 border border-rust/30 dark:border-rust/40 bg-rust/[0.05] dark:bg-gray-900/40 flex flex-col h-full transition-colors">
                 <div className="flex items-center gap-2 mb-3 relative z-10">
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-rose-600 dark:text-rose-400">
+                  <span className="material-symbols-outlined text-rust text-sm" style={{ fontVariationSettings: "'wght' 250" }}>warning</span>
+                  <h4 className="text-[10px] font-medium uppercase tracking-[0.22em] text-rust">
                     The Friction
                   </h4>
                 </div>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed relative z-10 font-medium flex-grow">
+                <p className="text-graphite dark:text-gray-400 text-sm leading-relaxed relative z-10 font-light flex-grow">
                   {painPoint}
                 </p>
               </div>
 
-              {/* Solution - Primary blue glass */}
-              <div className="relative p-5 border border-blue-200/50 dark:border-blue-800/30 bg-blue-50/60 dark:bg-blue-950/20 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col h-full hover:shadow-lg hover:shadow-primary/10 transition-all">
-                <div className="absolute bottom-0 left-0 w-20 h-20 bg-primary/10 blur-2xl rounded-full pointer-events-none" />
+              {/* Solution - Architectural charcoal accent */}
+              <div className="relative p-5 border border-charcoal dark:border-white bg-white dark:bg-gray-900 flex flex-col h-full transition-colors">
                 <div className="flex items-center gap-2 mb-3 relative z-10">
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-primary dark:text-blue-400">
+                  <span className="h-px w-6 bg-charcoal dark:bg-white" />
+                  <h4 className="text-[10px] font-medium uppercase tracking-[0.22em] text-charcoal dark:text-white">
                     The Flow
                   </h4>
                 </div>
-                <p className="text-charcoal dark:text-white text-sm leading-relaxed font-semibold relative z-10 flex-grow">
+                <p className="text-charcoal dark:text-white text-sm leading-relaxed font-light relative z-10 flex-grow">
                   {solution}
                 </p>
               </div>

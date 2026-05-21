@@ -70,7 +70,7 @@ export default function ReplaceSpreadsheetsPage() {
                             initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4 }}
-                            className="inline-block px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold tracking-wider uppercase mb-6"
+                            className="inline-block px-3 py-1 rounded-full bg-stone text-rose-600 dark:text-rose-400 text-xs font-bold tracking-wider uppercase mb-6"
                         >
                             Stop Using Spreadsheets
                         </motion.span>
@@ -78,7 +78,7 @@ export default function ReplaceSpreadsheetsPage() {
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
+                            className="text-3xl md:text-5xl lg:text-6xl font-light text-charcoal dark:text-white tracking-tight leading-[1.05] mb-6"
                         >
                             Replace Print Shop Spreadsheets With a Management System That Scales
                         </motion.h1>
@@ -89,10 +89,10 @@ export default function ReplaceSpreadsheetsPage() {
                             className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8 space-y-4"
                         >
                             <p>
-                                You built your business on spreadsheets. They got you here. But they can&apos;t take you further  - missed orders, broken formulas, and zero visibility are costing you money every week. It&apos;s time to move from manual tracking to a connected print shop workflow system.
+                                To replace print shop spreadsheets, use a connected management system that tracks orders, inventory, and production in real time. Unlike spreadsheets, a system keeps data synced across departments, prevents version conflicts, and eliminates manual re-entry - deployed in 2-4 weeks with full data migration included.
                             </p>
                             <p className="text-base text-secondary-text/80 dark:text-gray-500">
-                                You don&apos;t need to start over. You need software instead of spreadsheets  - a system that imports your data and connects everything.
+                                You built your business on spreadsheets. They got you here, but they can&apos;t take you further. You don&apos;t need to start over - you need software instead of spreadsheets.
                             </p>
                         </motion.div>
                         <motion.div
@@ -103,7 +103,7 @@ export default function ReplaceSpreadsheetsPage() {
                         >
                             <Link
                                 href="/reach-out"
-                                className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
+                                className="px-7 py-3.5 bg-charcoal text-ivory text-sm tracking-wide font-medium rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2"
                             >
                                 Book a Demo  - Replace Spreadsheets With a Connected System
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
@@ -122,7 +122,7 @@ export default function ReplaceSpreadsheetsPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
                         >
                             Why Do Print Shops Still Use Spreadsheets?
                         </motion.h2>
@@ -137,7 +137,7 @@ export default function ReplaceSpreadsheetsPage() {
                                 Print shops often start with spreadsheets because they are easy to set up and flexible. But as orders, inventory, and production grow, spreadsheets become harder to manage, prone to errors, and disconnected from real-time operations.
                             </p>
                             <p>
-                                In simple terms, spreadsheets work for tracking data  - but not for running a print shop. This is where a <Link href="/platform/complete-system" className="text-primary hover:underline">complete print shop management system</Link> becomes necessary.
+                                In simple terms, spreadsheets work for tracking data  - but not for running a print shop. This is where a <Link href="/platform/complete-system" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">complete print shop management system</Link> becomes necessary.
                             </p>
                         </motion.div>
 
@@ -159,13 +159,13 @@ export default function ReplaceSpreadsheetsPage() {
                                 <motion.div
                                     key={item.title}
                                     variants={fadeUp}
-                                    className="flex gap-4 p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-rose-500/30 transition-colors group"
+                                    className="flex gap-4 p-4 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors group"
                                 >
-                                    <div className="w-10 h-10 rounded-lg bg-rose-500/10 flex items-center justify-center flex-shrink-0">
+                                    <div className="w-10 h-10 rounded-lg bg-stone flex items-center justify-center flex-shrink-0">
                                         <span className="material-symbols-outlined text-rose-600 dark:text-rose-400 text-xl">{item.icon}</span>
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-charcoal dark:text-white mb-1 text-sm">{item.title}</h3>
+                                        <h3 className="font-medium text-charcoal dark:text-white mb-2 text-sm">{item.title}</h3>
                                         <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{item.desc}</p>
                                     </div>
                                 </motion.div>
@@ -181,7 +181,7 @@ export default function ReplaceSpreadsheetsPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white leading-tight mb-2"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight leading-tight mb-2"
                         >
                             Sound Familiar?
                         </motion.h2>
@@ -212,10 +212,10 @@ export default function ReplaceSpreadsheetsPage() {
                                 <motion.div
                                     key={pain.num}
                                     variants={fadeUp}
-                                    className="relative p-3 md:p-4 rounded-xl border border-structural-border dark:border-gray-800 hover:border-rose-500/30 dark:hover:border-rose-500/20 bg-white dark:bg-gray-900 overflow-hidden group h-full transition-colors duration-300"
+                                    className="relative p-3 md:p-4 border border-line dark:border-gray-800 hover:border-charcoal/30 dark:hover:border-white/15 bg-white dark:bg-gray-900 overflow-hidden group h-full transition-colors duration-300"
                                 >
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/0 group-hover:bg-rose-500/[0.10] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
-                                    <span className="block text-[10px] font-bold tracking-widest text-rose-500/70 dark:text-rose-500/50 uppercase mb-1.5">{pain.num}</span>
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-charcoal/0 group-hover:bg-charcoal/[0.03] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+                                    <span className="block text-[10px] font-medium tracking-[0.22em] text-graphite dark:text-gray-500 uppercase mb-1.5">{pain.num}</span>
                                     <p className="text-sm font-bold text-charcoal dark:text-white leading-snug mb-1">{pain.title}</p>
                                     <p className="text-xs text-secondary-text dark:text-gray-500 font-medium leading-relaxed">{pain.desc}</p>
                                 </motion.div>
@@ -232,7 +232,7 @@ export default function ReplaceSpreadsheetsPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
                         >
                             What You&apos;re Tracking in Spreadsheets  - and Why It Breaks
                         </motion.h2>
@@ -298,19 +298,19 @@ export default function ReplaceSpreadsheetsPage() {
                                 <motion.div
                                     key={item.title}
                                     variants={fadeUp}
-                                    className="p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors"
+                                    className="p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors"
                                 >
                                     <div className="flex items-center gap-3 mb-4">
-                                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                        <div className="w-10 h-10 rounded-lg bg-stone flex items-center justify-center flex-shrink-0">
                                             <span className="material-symbols-outlined text-primary text-xl">{item.icon}</span>
                                         </div>
                                         <h3 className="font-bold text-charcoal dark:text-white">{item.title}</h3>
                                     </div>
                                     <div className="space-y-3">
                                         <div className="flex items-start gap-2">
-                                            <span className="material-symbols-outlined text-rose-500 text-sm mt-0.5 flex-shrink-0">close</span>
+                                            <span className="material-symbols-outlined text-graphite text-sm mt-0.5 flex-shrink-0">close</span>
                                             <div>
-                                                <span className="text-[10px] font-bold uppercase tracking-widest text-rose-500/70 block mb-0.5">Spreadsheet</span>
+                                                <span className="text-[10px] font-bold uppercase tracking-widest text-graphite block mb-0.5">Spreadsheet</span>
                                                 <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{item.breaks}</p>
                                             </div>
                                         </div>
@@ -322,7 +322,7 @@ export default function ReplaceSpreadsheetsPage() {
                                             </div>
                                         </div>
                                         {'link' in item && item.link && (
-                                            <Link href={item.link} className="text-xs text-primary hover:underline font-medium block mt-2">
+                                            <Link href={item.link} className="text-xs text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors font-medium block mt-2">
                                                 {item.linkText} →
                                             </Link>
                                         )}
@@ -340,7 +340,7 @@ export default function ReplaceSpreadsheetsPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-12"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-12"
                         >
                             Spreadsheets vs. a Connected Print Shop System
                         </motion.h2>
@@ -363,7 +363,7 @@ export default function ReplaceSpreadsheetsPage() {
                                         'Reports require hours of manual assembly',
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-start gap-2 text-sm text-secondary-text dark:text-gray-400">
-                                            <span className="material-symbols-outlined text-rose-500 text-sm mt-0.5 flex-shrink-0">close</span>
+                                            <span className="material-symbols-outlined text-graphite text-sm mt-0.5 flex-shrink-0">close</span>
                                             {item}
                                         </li>
                                     ))}
@@ -414,7 +414,7 @@ export default function ReplaceSpreadsheetsPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
                         >
                             You Don&apos;t Lose Your Data  - We Structure It
                         </motion.h2>
@@ -450,16 +450,16 @@ export default function ReplaceSpreadsheetsPage() {
                                 <motion.div
                                     key={s.step}
                                     variants={fadeUp}
-                                    className="p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors relative overflow-hidden group"
+                                    className="p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors relative overflow-hidden group"
                                 >
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary/0 group-hover:bg-primary/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-charcoal/0 group-hover:bg-charcoal/[0.03] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
                                     <div className="flex items-center gap-3 mb-3">
-                                        <div className="w-9 h-9 rounded-lg bg-rose-500/10 flex items-center justify-center flex-shrink-0">
+                                        <div className="w-9 h-9 rounded-lg bg-stone flex items-center justify-center flex-shrink-0">
                                             <span className="material-symbols-outlined text-rose-600 dark:text-rose-400 text-lg">{s.icon}</span>
                                         </div>
-                                        <span className="text-[10px] font-bold tracking-widest text-rose-600/60 dark:text-rose-400/60 uppercase">{s.step}</span>
+                                        <span className="text-[10px] font-medium tracking-[0.22em] text-rose-600/60 dark:text-rose-400/60 uppercase">{s.step}</span>
                                     </div>
-                                    <h3 className="font-bold text-charcoal dark:text-white mb-2">{s.title}</h3>
+                                    <h3 className="font-medium text-charcoal dark:text-white mb-2">{s.title}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{s.desc}</p>
                                 </motion.div>
                             ))}
@@ -474,7 +474,7 @@ export default function ReplaceSpreadsheetsPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
                         >
                             From Manual Tracking to a Connected System
                         </motion.h2>
@@ -528,16 +528,16 @@ export default function ReplaceSpreadsheetsPage() {
                                 <motion.div
                                     key={item.title}
                                     variants={fadeUp}
-                                    className="p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors"
+                                    className="p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors"
                                 >
                                     <div className="flex items-center gap-3 mb-3">
-                                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                        <div className="w-10 h-10 rounded-lg bg-stone flex items-center justify-center flex-shrink-0">
                                             <span className="material-symbols-outlined text-primary text-xl">{item.icon}</span>
                                         </div>
                                         <h3 className="font-bold text-charcoal dark:text-white">{item.title}</h3>
                                     </div>
                                     <p className="text-sm text-secondary-text dark:text-gray-400 leading-relaxed mb-3">{item.desc}</p>
-                                    <Link href={item.link} className="text-xs text-primary hover:underline font-medium">
+                                    <Link href={item.link} className="text-xs text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors font-medium">
                                         {item.linkText} →
                                     </Link>
                                 </motion.div>
@@ -554,7 +554,7 @@ export default function ReplaceSpreadsheetsPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-10"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-10"
                         >
                             Frequently Asked Questions
                         </motion.h2>
@@ -567,7 +567,7 @@ export default function ReplaceSpreadsheetsPage() {
                         >
                             {faqs.map((faq) => (
                                 <motion.div key={faq.question} variants={fadeUp} className="pb-6 border-b border-structural-border dark:border-gray-800 last:border-0">
-                                    <h3 className="font-bold text-charcoal dark:text-white mb-2">{faq.question}</h3>
+                                    <h3 className="font-medium text-charcoal dark:text-white mb-2">{faq.question}</h3>
                                     <p className="text-sm text-secondary-text dark:text-gray-400 leading-relaxed">{faq.answer}</p>
                                 </motion.div>
                             ))}
@@ -582,7 +582,7 @@ export default function ReplaceSpreadsheetsPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
+                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
                         >
                             See How Your Print Shop Runs Without Spreadsheets
                         </motion.h2>
@@ -595,6 +595,14 @@ export default function ReplaceSpreadsheetsPage() {
                         >
                             From manual tracking to a connected print shop management software  - orders, inventory, production, and your website in one system. Your spreadsheets got you here. A system takes you further.
                         </motion.p>
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            className="text-sm text-secondary-text dark:text-gray-400 mb-6"
+                        >
+                            See real results: <Link href="/case-studies/spreadsheets-to-system" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">how a 12-person shop replaced spreadsheets and eliminated 8-10 order errors per month</Link>.
+                        </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -604,7 +612,7 @@ export default function ReplaceSpreadsheetsPage() {
                         >
                             <Link
                                 href="/reach-out"
-                                className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
+                                className="px-7 py-3.5 bg-charcoal text-ivory text-sm tracking-wide font-medium rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2"
                             >
                                 Book a Demo
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>

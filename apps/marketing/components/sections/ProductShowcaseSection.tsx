@@ -79,7 +79,7 @@ export default function ProductShowcaseSection() {
                                                 Auto-Approve Art if MD5 Matches
                                             </span>
                                         </div>
-                                        <span className="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded flex items-center gap-1">
+                                        <span className="text-[10px] bg-stone text-primary px-2 py-1 rounded flex items-center gap-1">
                                             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" /> Active
                                         </span>
                                     </div>
