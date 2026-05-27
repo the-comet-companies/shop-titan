@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
-import CompetitorComparisonSection from '@/components/sections/CompetitorComparisonSection';
-import { comparisonByPage } from '@/lib/comparison-data';
 import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
 const faqs = [
@@ -88,7 +86,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4 }}
-                            className="inline-block mb-6 text-[11px] tracking-[0.22em] uppercase text-graphite font-medium"
+                            className="inline-block px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold tracking-wider uppercase mb-6"
                         >
                             Complete Platform
                         </motion.span>
@@ -96,7 +94,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="text-3xl md:text-5xl lg:text-6xl font-light text-charcoal dark:text-white tracking-tight leading-[1.05] mb-6"
+                            className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
                         >
                             Print Shop Management System  - Website, Operations & Production in One Platform
                         </motion.h1>
@@ -116,16 +114,16 @@ export default function CompleteSystemPage() {
                         >
                             <Link
                                 href="/reach-out"
-                                className="px-7 py-3.5 bg-charcoal text-ivory text-sm tracking-wide font-medium rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2"
+                                className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
                                 Book a Demo  - Watch a Real Order Flow Through the System
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                             <Link
                                 href="/pricing"
-                                className="px-7 py-3.5 text-charcoal dark:text-white text-sm tracking-wide font-medium inline-flex items-center justify-center gap-2 relative overflow-hidden group"
+                                className="px-8 py-4 text-charcoal dark:text-white font-semibold rounded-full inline-flex items-center justify-center gap-2 relative overflow-hidden group"
                             >
-                                <div className="absolute inset-0 border border-charcoal dark:border-white group-hover:bg-charcoal group-hover:text-ivory transition-colors" />
+                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-primary/50 transition-colors rounded-full" />
                                 <span className="relative z-10">View Pricing</span>
                             </Link>
                         </motion.div>
@@ -142,7 +140,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
                         >
                             What Is a Complete Print Shop Management System?
                         </motion.h2>
@@ -183,13 +181,13 @@ export default function CompleteSystemPage() {
                                 <motion.div
                                     key={item.title}
                                     variants={fadeUp}
-                                    className="flex gap-4 p-4 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors group"
+                                    className="flex gap-4 p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors group"
                                 >
-                                    <div className="w-10 h-10 rounded-lg bg-stone flex items-center justify-center flex-shrink-0">
-                                        <span className="material-symbols-outlined text-charcoal dark:text-white text-xl">{item.icon}</span>
+                                    <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
+                                        <span className="material-symbols-outlined text-indigo-600 dark:text-indigo-400 text-xl">{item.icon}</span>
                                     </div>
                                     <div>
-                                        <h3 className="font-medium text-charcoal dark:text-white mb-2 text-sm">{item.title}</h3>
+                                        <h3 className="font-bold text-charcoal dark:text-white mb-1 text-sm">{item.title}</h3>
                                         <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{item.desc}</p>
                                     </div>
                                 </motion.div>
@@ -203,9 +201,9 @@ export default function CompleteSystemPage() {
                             className="text-sm text-secondary-text dark:text-gray-400 mt-8"
                         >
                             If you only need the storefront, you can start with our{' '}
-                            <Link href="/platform/ecommerce-storefront" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">ecommerce website for print shops</Link>.
+                            <Link href="/platform/ecommerce-storefront" className="text-primary hover:underline">ecommerce website for print shops</Link>.
                             If your issue is backend operations, our{' '}
-                            <Link href="/platform/filemaker-system" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">FileMaker system</Link> handles that.
+                            <Link href="/platform/filemaker-system" className="text-primary hover:underline">FileMaker system</Link> handles that.
                         </motion.p>
                     </div>
                 </section>
@@ -217,7 +215,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight leading-tight mb-2"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white leading-tight mb-2"
                         >
                             What Happens When Your Website and Operations Don&apos;t Talk to Each Other
                         </motion.h2>
@@ -248,10 +246,10 @@ export default function CompleteSystemPage() {
                                 <motion.div
                                     key={pain.num}
                                     variants={fadeUp}
-                                    className="relative p-3 md:p-4 border border-line dark:border-gray-800 hover:border-charcoal/30 dark:hover:border-white/15 bg-white dark:bg-gray-900 overflow-hidden group h-full transition-colors duration-300"
+                                    className="relative p-3 md:p-4 rounded-xl border border-structural-border dark:border-gray-800 hover:border-rose-500/30 dark:hover:border-rose-500/20 bg-white dark:bg-gray-900 overflow-hidden group h-full transition-colors duration-300"
                                 >
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-charcoal/0 group-hover:bg-charcoal/[0.03] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
-                                    <span className="block text-[10px] font-medium tracking-[0.22em] text-graphite dark:text-gray-500 uppercase mb-1.5">{pain.num}</span>
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/0 group-hover:bg-rose-500/[0.10] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+                                    <span className="block text-[10px] font-bold tracking-widest text-rose-500/70 dark:text-rose-500/50 uppercase mb-1.5">{pain.num}</span>
                                     <p className="text-sm font-bold text-charcoal dark:text-white leading-snug mb-1">{pain.title}</p>
                                     <p className="text-xs text-secondary-text dark:text-gray-500 font-medium leading-relaxed">{pain.desc}</p>
                                 </motion.div>
@@ -268,7 +266,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
                         >
                             One Order, One System  - From Website to Shipment
                         </motion.h2>
@@ -301,16 +299,16 @@ export default function CompleteSystemPage() {
                                 <motion.div
                                     key={s.step}
                                     variants={fadeUp}
-                                    className="p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors relative overflow-hidden group"
+                                    className="p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors relative overflow-hidden group"
                                 >
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-charcoal/0 group-hover:bg-charcoal/[0.03] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary/0 group-hover:bg-primary/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
                                     <div className="flex items-center gap-3 mb-3">
-                                        <div className="w-9 h-9 rounded-lg bg-stone flex items-center justify-center flex-shrink-0">
-                                            <span className="material-symbols-outlined text-charcoal dark:text-white text-lg">{s.icon}</span>
+                                        <div className="w-9 h-9 rounded-lg bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined text-indigo-600 dark:text-indigo-400 text-lg">{s.icon}</span>
                                         </div>
-                                        <span className="text-[10px] font-medium tracking-[0.22em] text-graphite dark:text-gray-500 uppercase">{s.step}</span>
+                                        <span className="text-[10px] font-bold tracking-widest text-indigo-600/60 dark:text-indigo-400/60 uppercase">{s.step}</span>
                                     </div>
-                                    <h3 className="font-medium text-charcoal dark:text-white mb-2">{s.title}</h3>
+                                    <h3 className="font-bold text-charcoal dark:text-white mb-2">{s.title}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{s.desc}</p>
                                 </motion.div>
                             ))}
@@ -325,7 +323,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-12"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-12"
                         >
                             Everything Your Print Shop Needs  - Frontend and Backend
                         </motion.h2>
@@ -336,9 +334,9 @@ export default function CompleteSystemPage() {
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
-                                className="p-6 md:p-8 rounded-2xl border border-line dark:border-gray-800 bg-stone dark:bg-gray-900/30"
+                                className="p-6 md:p-8 rounded-2xl border border-teal-200 dark:border-teal-900/40 bg-teal-50/30 dark:bg-teal-950/10"
                             >
-                                <h3 className="text-sm font-bold text-charcoal dark:text-white uppercase tracking-wider mb-5">Your Online Storefront (Frontend)</h3>
+                                <h3 className="text-sm font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider mb-5">Your Online Storefront (Frontend)</h3>
                                 <div className="space-y-3">
                                     {[
                                         'Product catalog with color swatches, sizing, and images',
@@ -351,7 +349,7 @@ export default function CompleteSystemPage() {
                                         'SEO-optimized pages for Google visibility',
                                     ].map((f, i) => (
                                         <div key={i} className="flex items-start gap-2">
-                                            <span className="material-symbols-outlined text-charcoal text-sm mt-0.5 flex-shrink-0">check</span>
+                                            <span className="material-symbols-outlined text-teal-500 text-sm mt-0.5 flex-shrink-0">check</span>
                                             <span className="text-sm text-charcoal dark:text-white font-medium">{f}</span>
                                         </div>
                                     ))}
@@ -363,7 +361,7 @@ export default function CompleteSystemPage() {
                                 initial={{ opacity: 0, x: 20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
-                                className="p-6 md:p-8 border border-line dark:border-primary/30 bg-stone dark:bg-gray-900/30"
+                                className="p-6 md:p-8 rounded-2xl border border-primary/20 dark:border-primary/30 bg-primary/[0.03] dark:bg-primary/[0.05]"
                             >
                                 <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-5">Your Operations System (Backend)</h3>
                                 <div className="space-y-3">
@@ -408,7 +406,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-10"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-10"
                         >
                             What a Real Order Looks Like in the Complete System
                         </motion.h2>
@@ -435,12 +433,12 @@ export default function CompleteSystemPage() {
                                     className="flex gap-4 md:gap-6"
                                 >
                                     <div className="flex-shrink-0 flex flex-col items-center">
-                                        <div className="w-3 h-3 rounded-full bg-stone0 mt-1.5" />
+                                        <div className="w-3 h-3 rounded-full bg-indigo-500 mt-1.5" />
                                         {i < 7 && <div className="w-px flex-1 bg-structural-border dark:bg-gray-800 mt-1" />}
                                     </div>
                                     <div className="pb-2">
-                                        <span className="text-[10px] font-medium tracking-[0.22em] text-graphite uppercase">{step.time}</span>
-                                        <h3 className="font-medium text-charcoal dark:text-white text-sm mt-1">{step.title}</h3>
+                                        <span className="text-[10px] font-bold tracking-widest text-indigo-500/70 uppercase">{step.time}</span>
+                                        <h3 className="font-bold text-charcoal dark:text-white text-sm mt-1">{step.title}</h3>
                                         <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed mt-1">{step.desc}</p>
                                     </div>
                                 </motion.div>
@@ -450,7 +448,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
-                            className="text-sm font-semibold text-charcoal dark:text-white mt-8 text-center"
+                            className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 mt-8 text-center"
                         >
                             Total manual data entry across the entire flow: zero.
                         </motion.p>
@@ -464,7 +462,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-8"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-8"
                         >
                             Disconnected Tools vs. One Connected Screen Printing Business System
                         </motion.h2>
@@ -472,7 +470,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="overflow-x-auto border border-line dark:border-gray-800 bg-white dark:bg-gray-900"
+                            className="overflow-x-auto rounded-2xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900"
                         >
                             <table className="w-full text-sm">
                                 <thead>
@@ -513,7 +511,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-10"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-10"
                         >
                             What Happens After You Get Started
                         </motion.h2>
@@ -536,12 +534,12 @@ export default function CompleteSystemPage() {
                                 <motion.div
                                     key={s.title}
                                     variants={fadeUp}
-                                    className="text-center p-4 border border-line dark:border-gray-800 bg-white dark:bg-gray-900"
+                                    className="text-center p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900"
                                 >
-                                    <div className="w-10 h-10 rounded-full bg-stone flex items-center justify-center mx-auto mb-3">
-                                        <span className="material-symbols-outlined text-charcoal dark:text-white text-lg">{s.icon}</span>
+                                    <div className="w-10 h-10 rounded-full bg-indigo-500/10 flex items-center justify-center mx-auto mb-3">
+                                        <span className="material-symbols-outlined text-indigo-600 dark:text-indigo-400 text-lg">{s.icon}</span>
                                     </div>
-                                    <h3 className="font-medium text-charcoal dark:text-white text-xs mb-1">{s.title}</h3>
+                                    <h3 className="font-bold text-charcoal dark:text-white text-xs mb-1">{s.title}</h3>
                                     <p className="text-[10px] text-secondary-text dark:text-gray-400 leading-relaxed">{s.desc}</p>
                                 </motion.div>
                             ))}
@@ -550,7 +548,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
-                            className="text-center text-sm text-charcoal dark:text-white font-semibold mt-6"
+                            className="text-center text-sm text-indigo-600 dark:text-indigo-400 font-semibold mt-6"
                         >
                             Total timeline: 4-6 weeks from discovery to go-live
                         </motion.p>
@@ -564,7 +562,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-10"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-10"
                         >
                             Built For Shops Ready to Run on One System
                         </motion.h2>
@@ -584,11 +582,11 @@ export default function CompleteSystemPage() {
                                 <motion.div
                                     key={item.title}
                                     variants={fadeUp}
-                                    className="p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors group relative overflow-hidden"
+                                    className="p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors group relative overflow-hidden"
                                 >
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-charcoal/0 group-hover:bg-charcoal/[0.03] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
-                                    <span className="material-symbols-outlined text-charcoal dark:text-white text-2xl mb-3 block">{item.icon}</span>
-                                    <h3 className="font-medium text-charcoal dark:text-white mb-2 text-sm">{item.title}</h3>
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary/0 group-hover:bg-primary/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+                                    <span className="material-symbols-outlined text-indigo-600 dark:text-indigo-400 text-2xl mb-3 block">{item.icon}</span>
+                                    <h3 className="font-bold text-charcoal dark:text-white mb-1 text-sm">{item.title}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{item.desc}</p>
                                 </motion.div>
                             ))}
@@ -600,15 +598,12 @@ export default function CompleteSystemPage() {
                             className="text-sm text-secondary-text dark:text-gray-400 mt-6 text-center"
                         >
                             Not sure which option fits?{' '}
-                            <Link href="/reach-out" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">Talk to us</Link> and we&apos;ll help you decide.
+                            <Link href="/reach-out" className="text-primary hover:underline">Talk to us</Link> and we&apos;ll help you decide.
                             {' '}Or if you&apos;re considering whether to{' '}
-                            <Link href="/hire/filemaker-developer" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">hire a FileMaker developer</Link>, see why deploying beats building.
+                            <Link href="/hire/filemaker-developer" className="text-primary hover:underline">hire a FileMaker developer</Link>, see why deploying beats building.
                         </motion.p>
                     </div>
                 </section>
-
-                {/* ───── COMPETITOR COMPARISON ───── */}
-                <CompetitorComparisonSection data={comparisonByPage['complete-system']} bg="light" />
 
                 {/* ───── FAQ ───── */}
                 <section className="relative bg-surface dark:bg-gray-950">
@@ -619,7 +614,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-10"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-10"
                         >
                             Frequently Asked Questions
                         </motion.h2>
@@ -634,9 +629,9 @@ export default function CompleteSystemPage() {
                                 <motion.div
                                     key={i}
                                     variants={fadeUp}
-                                    className="p-4 md:p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/20 transition-colors"
+                                    className="p-4 md:p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/20 transition-colors"
                                 >
-                                    <h3 className="font-medium text-charcoal dark:text-white mb-2 text-sm">{faq.question}</h3>
+                                    <h3 className="font-bold text-charcoal dark:text-white mb-2 text-sm">{faq.question}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{faq.answer}</p>
                                 </motion.div>
                             ))}
@@ -651,7 +646,7 @@ export default function CompleteSystemPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
                         >
                             See How Your Shop Would Run With One Connected System
                         </motion.h2>
@@ -664,14 +659,6 @@ export default function CompleteSystemPage() {
                         >
                             Storefront and back office, connected. Orders flow from your website to production without a single manual step. Book a walkthrough and watch a real order move through the entire system.
                         </motion.p>
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className="text-sm text-secondary-text dark:text-gray-400 mb-6"
-                        >
-                            See it in action: <Link href="/case-studies/spreadsheets-to-system" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">how a 12-person shop eliminated order errors</Link> or <Link href="/case-studies/website-plus-operations" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">how ecommerce connected to operations</Link>.
-                        </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -681,7 +668,7 @@ export default function CompleteSystemPage() {
                         >
                             <Link
                                 href="/reach-out"
-                                className="px-7 py-3.5 bg-charcoal text-ivory text-sm tracking-wide font-medium rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2"
+                                className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
                                 Book a Demo  - Watch a Real Order Flow Through the System
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
@@ -694,7 +681,7 @@ export default function CompleteSystemPage() {
                             transition={{ delay: 0.3 }}
                             className="text-sm text-secondary-text dark:text-gray-400 mt-4"
                         >
-                            <Link href="/pricing" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">View Pricing →</Link>
+                            <Link href="/pricing" className="text-primary hover:underline">View Pricing →</Link>
                         </motion.p>
                     </div>
                 </section>

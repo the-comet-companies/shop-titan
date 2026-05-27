@@ -240,7 +240,7 @@ function FulfillmentContent() {
                         <span className="font-medium dark:text-gray-300">Customer (Miami, FL)</span>
                     </div>
                 </div>
-                <button className="mt-6 w-full py-2 bg-stone text-primary rounded-lg text-xs font-bold uppercase tracking-wide hover:bg-primary/20 transition-colors">
+                <button className="mt-6 w-full py-2 bg-primary/10 text-primary rounded-lg text-xs font-bold uppercase tracking-wide hover:bg-primary/20 transition-colors">
                     Print Label
                 </button>
             </div>

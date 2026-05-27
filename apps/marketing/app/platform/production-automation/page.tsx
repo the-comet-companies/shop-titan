@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
-import CompetitorComparisonSection from '@/components/sections/CompetitorComparisonSection';
-import { comparisonByPage } from '@/lib/comparison-data';
 import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
 const faqs = [
@@ -80,7 +78,7 @@ export default function ProductionAutomationPage() {
                             initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4 }}
-                            className="inline-block mb-6 text-[11px] tracking-[0.22em] uppercase text-graphite font-medium"
+                            className="inline-block px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold tracking-wider uppercase mb-6"
                         >
                             Production Module
                         </motion.span>
@@ -88,7 +86,7 @@ export default function ProductionAutomationPage() {
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="text-3xl md:text-5xl lg:text-6xl font-light text-charcoal dark:text-white tracking-tight leading-[1.05] mb-6"
+                            className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
                         >
                             Production Management for Print Shops  - Track Jobs, Control Scheduling, Prevent Delays
                         </motion.h1>
@@ -113,7 +111,7 @@ export default function ProductionAutomationPage() {
                         >
                             <Link
                                 href="/reach-out"
-                                className="px-7 py-3.5 bg-charcoal text-ivory text-sm tracking-wide font-medium rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2"
+                                className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
                                 Book a Demo  - See Every Job Tracked From Order to Shipment
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
@@ -132,7 +130,7 @@ export default function ProductionAutomationPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
                         >
                             What Is Print Shop Production Management?
                         </motion.h2>
@@ -169,13 +167,13 @@ export default function ProductionAutomationPage() {
                                 <motion.div
                                     key={item.title}
                                     variants={fadeUp}
-                                    className="flex gap-4 p-4 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors group"
+                                    className="flex gap-4 p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors group"
                                 >
-                                    <div className="w-10 h-10 rounded-lg bg-stone flex items-center justify-center flex-shrink-0">
-                                        <span className="material-symbols-outlined text-charcoal dark:text-white text-xl">{item.icon}</span>
+                                    <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+                                        <span className="material-symbols-outlined text-amber-600 dark:text-amber-400 text-xl">{item.icon}</span>
                                     </div>
                                     <div>
-                                        <h3 className="font-medium text-charcoal dark:text-white mb-2 text-sm">{item.title}</h3>
+                                        <h3 className="font-bold text-charcoal dark:text-white mb-1 text-sm">{item.title}</h3>
                                         <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{item.desc}</p>
                                     </div>
                                 </motion.div>
@@ -189,9 +187,9 @@ export default function ProductionAutomationPage() {
                             className="text-sm text-secondary-text dark:text-gray-400"
                         >
                             Production works best when connected to your full system  - see how it fits inside the{' '}
-                            <Link href="/platform/complete-system" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">complete print shop management system</Link>.
+                            <Link href="/platform/complete-system" className="text-primary hover:underline">complete print shop management system</Link>.
                             {' '}Powered by our{' '}
-                            <Link href="/platform/filemaker-system" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">FileMaker system</Link>.
+                            <Link href="/platform/filemaker-system" className="text-primary hover:underline">FileMaker system</Link>.
                         </motion.p>
                     </div>
                 </section>
@@ -203,7 +201,7 @@ export default function ProductionAutomationPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight leading-tight mb-2"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white leading-tight mb-2"
                         >
                             What Print Shop Production Problems Actually Look Like
                         </motion.h2>
@@ -234,10 +232,10 @@ export default function ProductionAutomationPage() {
                                 <motion.div
                                     key={pain.num}
                                     variants={fadeUp}
-                                    className="relative p-3 md:p-4 border border-line dark:border-gray-800 hover:border-charcoal/30 dark:hover:border-white/15 bg-white dark:bg-gray-900 overflow-hidden group h-full transition-colors duration-300"
+                                    className="relative p-3 md:p-4 rounded-xl border border-structural-border dark:border-gray-800 hover:border-rose-500/30 dark:hover:border-rose-500/20 bg-white dark:bg-gray-900 overflow-hidden group h-full transition-colors duration-300"
                                 >
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-charcoal/0 group-hover:bg-charcoal/[0.03] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
-                                    <span className="block text-[10px] font-medium tracking-[0.22em] text-graphite dark:text-gray-500 uppercase mb-1.5">{pain.num}</span>
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/0 group-hover:bg-rose-500/[0.10] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+                                    <span className="block text-[10px] font-bold tracking-widest text-rose-500/70 dark:text-rose-500/50 uppercase mb-1.5">{pain.num}</span>
                                     <p className="text-sm font-bold text-charcoal dark:text-white leading-snug mb-1">{pain.title}</p>
                                     <p className="text-xs text-secondary-text dark:text-gray-500 font-medium leading-relaxed">{pain.desc}</p>
                                 </motion.div>
@@ -254,7 +252,7 @@ export default function ProductionAutomationPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-12"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-12"
                         >
                             Print Shop Production Scheduling &amp; Job Tracking  - Organized by Workflow
                         </motion.h2>
@@ -267,8 +265,8 @@ export default function ProductionAutomationPage() {
                                 viewport={{ once: true }}
                             >
                                 <h3 className="text-lg font-bold text-charcoal dark:text-white mb-4 flex items-center gap-2">
-                                    <span className="w-8 h-8 rounded-lg bg-stone flex items-center justify-center">
-                                        <span className="material-symbols-outlined text-charcoal dark:text-white text-lg">visibility</span>
+                                    <span className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                                        <span className="material-symbols-outlined text-amber-600 dark:text-amber-400 text-lg">visibility</span>
                                     </span>
                                     Production Visibility
                                 </h3>
@@ -277,7 +275,7 @@ export default function ProductionAutomationPage() {
                                         { title: 'Real-time job board', desc: 'Every job visible by status  - queued, in production, in QC, ready to ship. No walking the floor to find out what\'s happening.' },
                                         { title: 'Status tracking by department', desc: 'Screen printing, DTG, embroidery, finishing  - each department\'s queue visible in one view. Know where every job is at any moment.' },
                                     ].map((f) => (
-                                        <div key={f.title} className="p-4 border border-line dark:border-gray-800 bg-white dark:bg-gray-900">
+                                        <div key={f.title} className="p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900">
                                             <p className="text-sm font-bold text-charcoal dark:text-white mb-1">{f.title}</p>
                                             <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{f.desc}</p>
                                             <div className="mt-3 h-32 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
@@ -295,8 +293,8 @@ export default function ProductionAutomationPage() {
                                 viewport={{ once: true }}
                             >
                                 <h3 className="text-lg font-bold text-charcoal dark:text-white mb-4 flex items-center gap-2">
-                                    <span className="w-8 h-8 rounded-lg bg-stone flex items-center justify-center">
-                                        <span className="material-symbols-outlined text-charcoal dark:text-white text-lg">schedule</span>
+                                    <span className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                                        <span className="material-symbols-outlined text-amber-600 dark:text-amber-400 text-lg">schedule</span>
                                     </span>
                                     Scheduling &amp; Flow
                                 </h3>
@@ -305,7 +303,7 @@ export default function ProductionAutomationPage() {
                                         { title: 'Queue management', desc: 'Jobs ordered by priority and deadline. Your team always knows what to run next  - no guessing, no asking the owner.' },
                                         { title: 'Priority routing for rush orders', desc: 'Rush jobs flagged and moved to the front. The system recalculates affected deadlines so you know what else is at risk.' },
                                     ].map((f) => (
-                                        <div key={f.title} className="p-4 border border-line dark:border-gray-800 bg-white dark:bg-gray-900">
+                                        <div key={f.title} className="p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900">
                                             <p className="text-sm font-bold text-charcoal dark:text-white mb-1">{f.title}</p>
                                             <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{f.desc}</p>
                                             <div className="mt-3 h-32 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
@@ -323,8 +321,8 @@ export default function ProductionAutomationPage() {
                                 viewport={{ once: true }}
                             >
                                 <h3 className="text-lg font-bold text-charcoal dark:text-white mb-4 flex items-center gap-2">
-                                    <span className="w-8 h-8 rounded-lg bg-stone flex items-center justify-center">
-                                        <span className="material-symbols-outlined text-charcoal dark:text-white text-lg">precision_manufacturing</span>
+                                    <span className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                                        <span className="material-symbols-outlined text-amber-600 dark:text-amber-400 text-lg">precision_manufacturing</span>
                                     </span>
                                     Execution Control
                                 </h3>
@@ -335,7 +333,7 @@ export default function ProductionAutomationPage() {
                                         { title: 'Quality checkpoints', desc: 'Built-in QC gates between stages. Jobs are verified before moving forward  - catching errors before they ship to customers.' },
                                         { title: 'Multi-method routing', desc: 'Screen printing, DTG, embroidery, heat transfer  - jobs routed to the correct department based on method. One system, all methods.' },
                                     ].map((f) => (
-                                        <div key={f.title} className="p-4 border border-line dark:border-gray-800 bg-white dark:bg-gray-900">
+                                        <div key={f.title} className="p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900">
                                             <p className="text-sm font-bold text-charcoal dark:text-white mb-1">{f.title}</p>
                                             <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{f.desc}</p>
                                         </div>
@@ -350,8 +348,8 @@ export default function ProductionAutomationPage() {
                                 viewport={{ once: true }}
                             >
                                 <h3 className="text-lg font-bold text-charcoal dark:text-white mb-4 flex items-center gap-2">
-                                    <span className="w-8 h-8 rounded-lg bg-stone flex items-center justify-center">
-                                        <span className="material-symbols-outlined text-charcoal dark:text-white text-lg">analytics</span>
+                                    <span className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                                        <span className="material-symbols-outlined text-amber-600 dark:text-amber-400 text-lg">analytics</span>
                                     </span>
                                     Analytics
                                 </h3>
@@ -360,7 +358,7 @@ export default function ProductionAutomationPage() {
                                         { title: 'Throughput tracking', desc: 'Jobs completed per day, per department, per method. See where output is strong and where it\'s falling behind.' },
                                         { title: 'Bottleneck identification', desc: 'Which stage holds jobs the longest? Where do delays cluster? Data-driven decisions instead of guesswork.' },
                                     ].map((f) => (
-                                        <div key={f.title} className="p-4 border border-line dark:border-gray-800 bg-white dark:bg-gray-900">
+                                        <div key={f.title} className="p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900">
                                             <p className="text-sm font-bold text-charcoal dark:text-white mb-1">{f.title}</p>
                                             <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{f.desc}</p>
                                         </div>
@@ -378,7 +376,7 @@ export default function ProductionAutomationPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
                         >
                             How Production Connects to Everything Else
                         </motion.h2>
@@ -432,16 +430,16 @@ export default function ProductionAutomationPage() {
                                 <motion.div
                                     key={item.title}
                                     variants={fadeUp}
-                                    className="p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-amber-500/30 transition-colors"
+                                    className="p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-amber-500/30 transition-colors"
                                 >
                                     <div className="flex items-center gap-3 mb-3">
-                                        <div className="w-10 h-10 rounded-lg bg-stone flex items-center justify-center flex-shrink-0">
-                                            <span className="material-symbols-outlined text-charcoal dark:text-white text-xl">{item.icon}</span>
+                                        <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined text-amber-600 dark:text-amber-400 text-xl">{item.icon}</span>
                                         </div>
                                         <h3 className="font-bold text-charcoal dark:text-white">{item.title}</h3>
                                     </div>
                                     <p className="text-sm text-secondary-text dark:text-gray-400 leading-relaxed mb-3">{item.desc}</p>
-                                    <Link href={item.link} className="text-xs text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors font-medium">
+                                    <Link href={item.link} className="text-xs text-primary hover:underline font-medium">
                                         {item.linkText} →
                                     </Link>
                                 </motion.div>
@@ -467,7 +465,7 @@ export default function ProductionAutomationPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-12"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-12"
                         >
                             Whiteboards &amp; Spreadsheets vs. Shop Titan Production
                         </motion.h2>
@@ -489,7 +487,7 @@ export default function ProductionAutomationPage() {
                                         'Production data lives in people\'s heads',
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-start gap-2 text-sm text-secondary-text dark:text-gray-400">
-                                            <span className="material-symbols-outlined text-graphite text-sm mt-0.5 flex-shrink-0">close</span>
+                                            <span className="material-symbols-outlined text-rose-500 text-sm mt-0.5 flex-shrink-0">close</span>
                                             {item}
                                         </li>
                                     ))}
@@ -529,7 +527,7 @@ export default function ProductionAutomationPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-12"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-12"
                         >
                             How We Set Up Your Production System
                         </motion.h2>
@@ -550,25 +548,22 @@ export default function ProductionAutomationPage() {
                                 <motion.div
                                     key={s.step}
                                     variants={fadeUp}
-                                    className="p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors relative overflow-hidden group"
+                                    className="p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors relative overflow-hidden group"
                                 >
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-charcoal/0 group-hover:bg-charcoal/[0.03] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary/0 group-hover:bg-primary/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
                                     <div className="flex items-center gap-3 mb-3">
-                                        <div className="w-9 h-9 rounded-lg bg-stone flex items-center justify-center flex-shrink-0">
-                                            <span className="material-symbols-outlined text-charcoal dark:text-white text-lg">{s.icon}</span>
+                                        <div className="w-9 h-9 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined text-amber-600 dark:text-amber-400 text-lg">{s.icon}</span>
                                         </div>
-                                        <span className="text-[10px] font-medium tracking-[0.22em] text-graphite dark:text-gray-500 uppercase">{s.step}</span>
+                                        <span className="text-[10px] font-bold tracking-widest text-amber-600/60 dark:text-amber-400/60 uppercase">{s.step}</span>
                                     </div>
-                                    <h3 className="font-medium text-charcoal dark:text-white mb-2">{s.title}</h3>
+                                    <h3 className="font-bold text-charcoal dark:text-white mb-2">{s.title}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{s.desc}</p>
                                 </motion.div>
                             ))}
                         </motion.div>
                     </div>
                 </section>
-
-                {/* ───── COMPETITOR COMPARISON ───── */}
-                <CompetitorComparisonSection data={comparisonByPage['production-automation']} bg="light" />
 
                 {/* ───── FAQ ───── */}
                 <section className="relative bg-surface dark:bg-gray-950">
@@ -578,7 +573,7 @@ export default function ProductionAutomationPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-10"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-10"
                         >
                             Frequently Asked Questions
                         </motion.h2>
@@ -591,7 +586,7 @@ export default function ProductionAutomationPage() {
                         >
                             {faqs.map((faq) => (
                                 <motion.div key={faq.question} variants={fadeUp} className="pb-6 border-b border-structural-border dark:border-gray-800 last:border-0">
-                                    <h3 className="font-medium text-charcoal dark:text-white mb-2">{faq.question}</h3>
+                                    <h3 className="font-bold text-charcoal dark:text-white mb-2">{faq.question}</h3>
                                     <p className="text-sm text-secondary-text dark:text-gray-400 leading-relaxed">{faq.answer}</p>
                                 </motion.div>
                             ))}
@@ -606,7 +601,7 @@ export default function ProductionAutomationPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
                         >
                             See How Production Runs Without Guessing or Walking the Floor
                         </motion.h2>
@@ -619,14 +614,6 @@ export default function ProductionAutomationPage() {
                         >
                             Production management is one module inside Shop Titan&apos;s connected platform. Orders, inventory, production, and your website  - all in one system.
                         </motion.p>
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className="text-sm text-secondary-text dark:text-gray-400 mb-6"
-                        >
-                            See it in action: <Link href="/case-studies/scaling-from-5-to-20" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">how a shop scaled from 5 to 20 employees without adding admin staff</Link>.
-                        </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -636,7 +623,7 @@ export default function ProductionAutomationPage() {
                         >
                             <Link
                                 href="/reach-out"
-                                className="px-7 py-3.5 bg-charcoal text-ivory text-sm tracking-wide font-medium rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2"
+                                className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
                                 Book a Demo
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>

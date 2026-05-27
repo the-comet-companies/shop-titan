@@ -78,38 +78,41 @@ export default function Header() {
             >
                 <nav
                     className={cn(
-                        "mx-auto flex items-center justify-between px-6 md:px-10 transition-[background-color,border-color] duration-300",
+                        "mx-auto flex items-center justify-between px-6 md:px-12 transition-[background-color,border-color,box-shadow] duration-300",
                         isScrolled
-                            ? "glass-nav h-14"
+                            ? "glass-nav shadow-lg shadow-black/5 h-16"
                             : "bg-transparent border-b border-transparent h-20"
                     )}
                 >
                     <div className="flex-shrink-0">
-                        <a
+                        <motion.a
                             href="#"
                             className="flex items-center gap-2 group"
                             onClick={(e) => { e.preventDefault(); scrollToSection("hero"); }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                         >
-                            <span className="text-base md:text-lg font-medium tracking-tight text-charcoal dark:text-white group-hover:opacity-70 transition-opacity">
-                                Shop <span className="font-light italic text-graphite dark:text-gray-300">Titan</span>
+
+                            <span className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter text-charcoal dark:text-white group-hover:opacity-80 transition-opacity">
+                                Shop <span className="text-primary">Titan</span>
                             </span>
-                        </a>
+                        </motion.a>
                     </div>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-8 lg:gap-10 absolute left-1/2 -translate-x-1/2">
+                    <div className="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 -translate-x-1/2">
                         {NAV_SECTIONS.map((section, index) => (
                             <motion.button
                                 key={section}
                                 onClick={() => scrollToSection(section)}
-                                initial={{ opacity: 0, y: -10 }}
+                                initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.1 + index * 0.06, duration: 0.4 }}
+                                transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
                                 className={cn(
-                                    "text-[11px] font-medium transition-colors duration-200 tracking-[0.18em] uppercase focus-primary tap-target",
+                                    "text-xs font-semibold transition-[color,transform] duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110",
                                     (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog') || ((section as string) === 'contact' && pathname === '/reach-out') || (section === 'case-studies' && pathname === '/case-studies') || (section === 'pricing' && pathname === '/pricing') || (section === 'about' && pathname === '/about')
-                                        ? "text-charcoal dark:text-white"
-                                        : "text-graphite dark:text-gray-400 hover:text-charcoal dark:hover:text-white"
+                                        ? "text-primary dark:text-white"
+                                        : "text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white"
                                 )}
                             >
                                 {section === 'case-studies' ? 'Case Studies' : section.charAt(0).toUpperCase() + section.slice(1)}
@@ -121,13 +124,18 @@ export default function Header() {
                     <div className="hidden md:flex items-center gap-3">
                         <motion.button
                             onClick={() => scrollToSection("contact")}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.5, duration: 0.5 }}
-                            className="group inline-flex items-center gap-2 px-5 py-2.5 bg-charcoal text-ivory text-[11px] tracking-[0.18em] uppercase font-medium rounded-[6px] hover:bg-black transition-colors focus-primary tap-target"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={cn(
+                                "group relative border-2 px-4 md:px-6 py-2 text-xs font-bold rounded-full transition-[background-color,border-color] duration-200 flex items-center gap-2 shadow-lg shadow-black/5 uppercase tracking-wide focus-primary tap-target",
+                                "bg-white/15 dark:bg-white/5 border-charcoal/20 dark:border-white/30 hover:border-charcoal/30 dark:hover:border-white/40 text-charcoal dark:text-white hover:bg-white/25 dark:hover:bg-white/10"
+                            )}
                         >
-                            Request Demo
-                            <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" style={{ fontVariationSettings: "'wght' 250" }}>
+                            Request Demo{" "}
+                            <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">
                                 arrow_forward
                             </span>
                         </motion.button>
@@ -136,10 +144,10 @@ export default function Header() {
                     {/* Mobile Hamburger Menu */}
                     <button
                         onClick={() => setIsMobileMenuOpen(true)}
-                        className="md:hidden w-10 h-10 flex items-center justify-center hover:bg-charcoal/5 dark:hover:bg-white/5 transition-colors tap-target focus-primary"
+                        className="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors tap-target focus-primary"
                         aria-label="Open menu"
                     >
-                        <span className="material-symbols-outlined text-charcoal dark:text-gray-300" style={{ fontVariationSettings: "'wght' 250" }}>
+                        <span className="material-symbols-outlined text-gray-600 dark:text-gray-400">
                             menu
                         </span>
                     </button>

@@ -35,7 +35,7 @@ export default function PathSelectionSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4 }}
-                        className="text-3xl md:text-5xl font-light text-charcoal dark:text-white tracking-tight tracking-tight leading-tight mb-4"
+                        className="text-3xl md:text-5xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-4"
                     >
                         Solutions That Scale With You
                     </motion.h2>
@@ -59,7 +59,7 @@ export default function PathSelectionSection() {
                             className={`relative flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-colors ${
                                 activeTab === tab.id
                                     ? 'bg-primary text-white'
-                                    : 'border border-structural-border dark:border-gray-700 text-secondary-text hover:text-charcoal dark:hover:text-white hover:border-charcoal/30'
+                                    : 'border border-structural-border dark:border-gray-700 text-secondary-text hover:text-charcoal dark:hover:text-white hover:border-primary/30'
                             }`}
                         >
                             <span className="material-symbols-outlined text-base">{tab.icon}</span>
@@ -111,10 +111,12 @@ export default function PathSelectionSection() {
                     >
                         <a
                             href="/platform/complete-system"
-                            className="px-7 py-3.5 min-h-[44px] text-sm tracking-wide font-medium border border-charcoal text-charcoal dark:border-white dark:text-white rounded-[6px] hover:bg-charcoal hover:text-ivory dark:hover:bg-white dark:hover:text-charcoal transition-colors inline-flex items-center justify-center gap-2 group"
+                            className="px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
                         >
-                            <span>Learn more about the Complete System</span>
-                            <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                            <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
+                            <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
+                            <span className="relative z-10">Learn more about the Complete System</span>
+                            <span className="material-symbols-outlined text-lg relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                         </a>
                     </motion.div>
                 )}

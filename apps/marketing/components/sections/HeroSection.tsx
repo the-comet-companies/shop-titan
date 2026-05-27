@@ -29,15 +29,18 @@ export default function HeroSection() {
                             transition={{ duration: 0.5, ease: "easeOut" }}
                             className="mb-8 md:mb-12"
                         >
-                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-light text-charcoal dark:text-white leading-[1.05] mb-8 tracking-tight">
+                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-charcoal dark:text-white leading-[1.1] mb-8 tracking-tight">
                                 A{' '}
-                                <span className="italic text-graphite dark:text-gray-300 font-extralight">
+                                <motion.span
+                                    animate={{ color: ['#1a1a2e', '#1e3a6e', '#1a1a2e'] }}
+                                    transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 1, ease: 'easeInOut' }}
+                                >
                                     single source of truth
-                                </span>
+                                </motion.span>
                                 {' '}for the decoration industry.
                             </h1>
                             <p
-                                className="text-lg sm:text-xl leading-relaxed max-w-2xl text-graphite dark:text-gray-400 font-light"
+                                className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl text-secondary-text dark:text-gray-300 font-medium"
                                 role="doc-subtitle"
                             >
                                 Our system allows you to focus on what you do best.
@@ -53,20 +56,24 @@ export default function HeroSection() {
                         >
                             <a
                                 href="/reach-out"
-                                className="px-7 py-3.5 text-sm tracking-wide font-medium bg-charcoal text-ivory rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2 group"
+                                className="px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full flex items-center gap-2 justify-center"
                                 aria-label="Contact us to get started"
                             >
-                                <span>Let&apos;s Talk</span>
-                                <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">
+                                <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
+                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />
+                                <span className="relative z-10">Let&apos;s Talk</span>
+                                <span className="material-symbols-outlined text-xl relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true">
                                     arrow_forward
                                 </span>
                             </a>
                             <button
                                 onClick={() => document.getElementById('pain-points')?.scrollIntoView({ behavior: 'auto' })}
-                                className="px-7 py-3.5 text-sm tracking-wide font-medium border border-charcoal text-charcoal rounded-[6px] hover:bg-charcoal hover:text-ivory dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-charcoal transition-colors inline-flex items-center justify-center"
+                                className="px-10 py-5 text-xl font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full"
                                 aria-label="Scroll to platform features section"
                             >
-                                See How It Works
+                                <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
+                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 rounded-full" />
+                                <span className="relative z-10">See How It Works</span>
                             </button>
                         </motion.nav>
                     </div>

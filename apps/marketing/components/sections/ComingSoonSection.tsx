@@ -114,7 +114,7 @@ export default function ComingSoonSection() {
       {/* Background orbs */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-primary/[0.06] blur-3xl" />
-        <div className="absolute bottom-0 -left-48 w-[400px] h-[400px] rounded-full bg-stone0/[0.04] blur-3xl" />
+        <div className="absolute bottom-0 -left-48 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.04] blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -149,7 +149,7 @@ export default function ComingSoonSection() {
                 hidden: { opacity: 0, y: 24 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
               }}
-              className="group relative flex flex-col gap-4 p-6 md:p-8 rounded-2xl md:rounded-3xl bg-surface border border-structural-border overflow-hidden hover:border-charcoal/30 hover:shadow-[0_0_40px_-10px_rgba(0,102,204,0.15)] transition-all duration-300"
+              className="group relative flex flex-col gap-4 p-6 md:p-8 rounded-2xl md:rounded-3xl bg-surface border border-structural-border overflow-hidden hover:border-primary/30 hover:shadow-[0_0_40px_-10px_rgba(0,102,204,0.15)] transition-all duration-300"
             >
               {/* Top-edge highlight */}
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent rounded-t-3xl pointer-events-none" />

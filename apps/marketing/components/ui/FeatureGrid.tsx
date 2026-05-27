@@ -25,7 +25,7 @@ export default function FeatureGrid({ features, onWatchDemo }: FeatureGridProps)
     <section id="more-features" className="mt-24 md:mt-32">
       {/* Section Header */}
       <div className="mb-12 text-center">
-        <span className="inline-block px-3 py-1 text-[11px] tracking-[0.22em] uppercase text-graphite font-medium mb-4">
+        <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-4">
           Additional Capabilities
         </span>
         <h2 className="text-3xl md:text-4xl font-bold text-charcoal dark:text-white mb-4">

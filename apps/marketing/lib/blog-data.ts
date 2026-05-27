@@ -34,7 +34,7 @@ export const articles: BlogPost[] = [
             <p><em>See how our <a href="/platform/filemaker-system">FileMaker system</a> handles order batching and production workflows in a real shop.</em></p>
 
             <h2>Stop Losing Time to POD Chaos</h2>
-            <p>If single-piece orders are slowing down your shop, the problem isn't the orders  - it's the system (or lack of one). A connected production system batches, routes, and schedules automatically so your team stays focused on output, not logistics. See <a href="/case-studies/scaling-from-5-to-20">how one shop used this to handle 4x team growth without adding admin staff</a>. And as your team grows, these same workflows become the foundation for <a href="/blog/scaling-beyond-10-employees">scaling your print shop beyond 10 employees</a>.</p>
+            <p>If single-piece orders are slowing down your shop, the problem isn't the orders  - it's the system (or lack of one). A connected production system batches, routes, and schedules automatically so your team stays focused on output, not logistics. And as your team grows, these same workflows become the foundation for <a href="/blog/scaling-beyond-10-employees">scaling your print shop beyond 10 employees</a>.</p>
             <p><a href="/platform/complete-system">See how Shop Titan's complete system handles POD and bulk production in one workflow →</a></p>
 
             <h2>FAQ</h2>
@@ -74,7 +74,7 @@ export const articles: BlogPost[] = [
             <p>This is the difference between a shop that grows and a shop that just gets busier. When your production system handles the routing, your team focuses on output instead of guessing what's next. And when your <a href="/blog/inventory-sync-realities">inventory syncs in real time</a>, nothing gets oversold or lost between departments.</p>
 
             <h2>Scale Your Print Shop Without Losing Control</h2>
-            <p>If you're stuck at the 10-employee ceiling, the bottleneck isn't your team  - it's the lack of process enforcement. A connected <a href="/platform/complete-system">print shop management system</a> gives every employee a clear workflow, tracks progress across departments, and keeps your operation running consistently  - whether you're on the floor or not. See <a href="/case-studies/scaling-from-5-to-20">how one shop used this to scale from 5 to 20 employees without adding admin staff</a>.</p>
+            <p>If you're stuck at the 10-employee ceiling, the bottleneck isn't your team  - it's the lack of process enforcement. A connected <a href="/platform/complete-system">print shop management system</a> gives every employee a clear workflow, tracks progress across departments, and keeps your operation running consistently  - whether you're on the floor or not.</p>
             <p><a href="/platform/complete-system">See how Shop Titan's complete system helps print shops scale operations →</a></p>
 
             <h2>FAQ</h2>
@@ -114,7 +114,7 @@ export const articles: BlogPost[] = [
             <p>This is where a connected <a href="/platform/filemaker-system">FileMaker-based system</a> shines: inventory, orders, production, and your <a href="/platform/ecommerce-storefront">ecommerce storefront</a> all share the same data in real time.</p>
 
             <h2>Stop Overselling  - Get Real-Time Inventory</h2>
-            <p>If you're running a print shop with disconnected inventory, every product launch is a risk. A connected system eliminates oversells, automates purchase orders, and gives your team a single source of truth  - from receiving dock to customer delivery. See <a href="/case-studies/real-time-inventory">how one shop ran a 500-unit launch with zero oversells</a>. This also solves the <a href="/blog/neutralizing-pod-friction">POD friction problem</a> where single-piece orders oversell stock before batch syncs catch up.</p>
+            <p>If you're running a print shop with disconnected inventory, every product launch is a risk. A connected system eliminates oversells, automates purchase orders, and gives your team a single source of truth  - from receiving dock to customer delivery. This also solves the <a href="/blog/neutralizing-pod-friction">POD friction problem</a> where single-piece orders oversell stock before batch syncs catch up.</p>
             <p><a href="/platform/inventory-management">See how Shop Titan's inventory management works for print shops →</a></p>
 
             <h2>FAQ</h2>
@@ -154,7 +154,7 @@ export const articles: BlogPost[] = [
             <p><em>Considering FileMaker for your business? Before you <a href="/hire/filemaker-developer">hire a FileMaker developer</a> to build from scratch, see the <a href="/platform/filemaker-system">pre-built system</a> that's already running in production.</em></p>
 
             <h2>Don't Build From Scratch  - Deploy What's Proven</h2>
-            <p>Whether you're outgrowing SaaS tools or evaluating FileMaker for the first time, you don't have to start from zero. Shop Titan's system is already built, tested, and running in a real print shop. You deploy it  - not build it. See <a href="/case-studies/website-plus-operations">how one shop replaced Shopify and spreadsheets with a connected system</a>. And as your team grows, the same system helps you <a href="/blog/scaling-beyond-10-employees">scale beyond 10 employees</a> without losing control.</p>
+            <p>Whether you're outgrowing SaaS tools or evaluating FileMaker for the first time, you don't have to start from zero. Shop Titan's system is already built, tested, and running in a real print shop. You deploy it  - not build it. And as your team grows, the same system helps you <a href="/blog/scaling-beyond-10-employees">scale beyond 10 employees</a> without losing control.</p>
             <p><a href="/platform/complete-system">See the complete system that combines FileMaker + ecommerce in one platform →</a></p>
 
             <h2>FAQ</h2>
@@ -224,7 +224,7 @@ export const articles: BlogPost[] = [
 
             <h2>The Bottom Line</h2>
             <p>If your shop is still tracking jobs on a whiteboard or spreadsheet, it's not a people problem  - it's a system problem. Your team isn't dropping the ball because they don't care. They're dropping it because the tools don't support the volume and complexity you're running.</p>
-            <p>A connected production system replaces the guesswork with real-time data, clear workflows, and automatic handoffs between departments. Your team focuses on output. The system handles the logistics. See <a href="/case-studies/scaling-from-5-to-20">how one shop used this to scale from 5 to 20 employees</a>.</p>
+            <p>A connected production system replaces the guesswork with real-time data, clear workflows, and automatic handoffs between departments. Your team focuses on output. The system handles the logistics.</p>
             <p><a href="/platform/complete-system">See how a complete print shop management system tracks production automatically →</a></p>
 
             <h2>FAQ</h2>
@@ -300,7 +300,7 @@ export const articles: BlogPost[] = [
 
             <h2>Stop Reacting. Start Operating.</h2>
             <p>If your inventory and production aren't connected, your shop will always be reacting instead of operating. You'll keep running out of blanks mid-job, overpromising orders, and spending hours on problems that a system solves automatically.</p>
-            <p>A <a href="/platform/complete-system">complete print shop management system</a> connects inventory, production, and orders  - so your team prints instead of guesses. See <a href="/case-studies/real-time-inventory">how one shop eliminated stockouts during a 500-unit launch</a>.</p>
+            <p>A <a href="/platform/complete-system">complete print shop management system</a> connects inventory, production, and orders  - so your team prints instead of guesses.</p>
             <p><a href="/platform/complete-system">See how a complete system connects inventory, production, and orders →</a></p>
 
             <h2>FAQ</h2>

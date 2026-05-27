@@ -37,7 +37,7 @@ export default function CTABlock() {
             {/* Background Layer */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-50" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-stone rounded-full blur-[120px] mix-blend-screen" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] mix-blend-screen" />
                 <InteractiveGridPattern
                     width={80}
                     height={80}

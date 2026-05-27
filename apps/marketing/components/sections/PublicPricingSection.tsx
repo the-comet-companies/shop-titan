@@ -171,7 +171,7 @@ export default function PublicPricingSection() {
     return (
         <section id="pricing" className="pt-20 pb-24 md:pb-32 bg-background-light dark:bg-black relative overflow-hidden">
             {/* Soft Ambient Background Glows */}
-            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-stone blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
             <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-500/10 blur-[150px] rounded-full pointer-events-none mix-blend-screen" />
 
             <div ref={elementRef} className="container mx-auto px-4 md:px-6 relative z-10">

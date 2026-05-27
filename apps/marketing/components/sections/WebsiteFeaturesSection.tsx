@@ -259,19 +259,15 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                             />
                         </div>
                     ) : (
-                        <div className="rounded-[8px] overflow-hidden border border-line dark:border-gray-800 bg-white dark:bg-gray-900 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.08)]">
-                            <div className="flex items-center justify-between px-5 py-3 border-b border-line dark:border-gray-800 bg-ivory/60 dark:bg-gray-950/60">
-                            <div className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-line" />
-                                <span className="w-1.5 h-1.5 rounded-full bg-line" />
-                                <span className="w-1.5 h-1.5 rounded-full bg-line" />
+                        <div className="rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl shadow-black/20">
+                            <div className="bg-gray-50 dark:bg-gray-900 border-b border-black/[0.06] dark:border-white/[0.06] px-4 py-2.5 flex items-center gap-3">
+                                <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">menu</span>
+                                <div className="flex-1 flex items-center gap-2 bg-white dark:bg-gray-800 border border-black/[0.08] dark:border-white/[0.08] rounded-lg px-3 py-1.5">
+                                    <span className="material-symbols-outlined text-primary text-sm select-none">lock</span>
+                                    <span className="text-xs text-gray-400 dark:text-gray-500 font-medium truncate">shoptitan.com / {feature.tabLabel.toLowerCase()}</span>
+                                </div>
+                                <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">more_vert</span>
                             </div>
-                            <div className="flex items-center gap-2 text-xs font-light text-graphite truncate max-w-[70%]">
-                                <span className="material-symbols-outlined text-graphite text-xs flex-shrink-0" style={{ fontVariationSettings: "'wght' 250" }}>lock</span>
-                                <span className="truncate">shoptitan.com/{feature.tabLabel.toLowerCase().replace(/ /g, '-')}</span>
-                            </div>
-                            <div className="w-12" />
-                        </div>
                             <div className="relative min-h-[400px] bg-white dark:bg-gray-950">
                                 <Image
                                     src={feature.imageSrc}
@@ -337,18 +333,14 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                     transition={{ duration: 0.3, delay: 0.08 }}
                     className="w-full"
                 >
-                    <div className="rounded-[8px] overflow-hidden border border-line dark:border-gray-800 bg-white dark:bg-gray-900 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.08)]">
-                        <div className="flex items-center justify-between px-5 py-3 border-b border-line dark:border-gray-800 bg-ivory/60 dark:bg-gray-950/60">
-                            <div className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-line" />
-                                <span className="w-1.5 h-1.5 rounded-full bg-line" />
-                                <span className="w-1.5 h-1.5 rounded-full bg-line" />
+                    <div className="rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl shadow-black/20">
+                        <div className="bg-gray-50 dark:bg-gray-900 border-b border-black/[0.06] dark:border-white/[0.06] px-4 py-2.5 flex items-center gap-3">
+                            <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">menu</span>
+                            <div className="flex-1 flex items-center gap-2 bg-white dark:bg-gray-800 border border-black/[0.08] dark:border-white/[0.08] rounded-lg px-3 py-1.5">
+                                <span className="material-symbols-outlined text-primary text-sm select-none">lock</span>
+                                <span className="text-xs text-gray-400 dark:text-gray-500 font-medium truncate">shoptitan.com / {feature.tabLabel.toLowerCase()}</span>
                             </div>
-                            <div className="flex items-center gap-2 text-xs font-light text-graphite truncate max-w-[70%]">
-                                <span className="material-symbols-outlined text-graphite text-xs flex-shrink-0" style={{ fontVariationSettings: "'wght' 250" }}>lock</span>
-                                <span className="truncate">shoptitan.com/{feature.tabLabel.toLowerCase().replace(/ /g, '-')}</span>
-                            </div>
-                            <div className="w-12" />
+                            <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">more_vert</span>
                         </div>
                         <Image
                             src={feature.imageSrc}
@@ -430,19 +422,15 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                 transition={{ duration: 0.3, delay: 0.08 }}
                 className="lg:w-7/12 w-full order-1 lg:order-2"
             >
-                <div className="rounded-[8px] overflow-hidden border border-line dark:border-gray-800 bg-white dark:bg-gray-900 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.08)]">
-                    <div className="flex items-center justify-between px-5 py-3 border-b border-line dark:border-gray-800 bg-ivory/60 dark:bg-gray-950/60">
-                            <div className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-line" />
-                                <span className="w-1.5 h-1.5 rounded-full bg-line" />
-                                <span className="w-1.5 h-1.5 rounded-full bg-line" />
-                            </div>
-                            <div className="flex items-center gap-2 text-xs font-light text-graphite truncate max-w-[70%]">
-                                <span className="material-symbols-outlined text-graphite text-xs flex-shrink-0" style={{ fontVariationSettings: "'wght' 250" }}>lock</span>
-                                <span className="truncate">shoptitan.com/{feature.tabLabel.toLowerCase().replace(/ /g, '-')}</span>
-                            </div>
-                            <div className="w-12" />
+                <div className="rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl shadow-black/20">
+                    <div className="bg-gray-50 dark:bg-gray-900 border-b border-black/[0.06] dark:border-white/[0.06] px-4 py-2.5 flex items-center gap-3">
+                        <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">menu</span>
+                        <div className="flex-1 flex items-center gap-2 bg-white dark:bg-gray-800 border border-black/[0.08] dark:border-white/[0.08] rounded-lg px-3 py-1.5">
+                            <span className="material-symbols-outlined text-primary text-sm select-none">lock</span>
+                            <span className="text-xs text-gray-400 dark:text-gray-500 font-medium truncate">shoptitan.com / {feature.tabLabel.toLowerCase()}</span>
                         </div>
+                        <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">more_vert</span>
+                    </div>
                     <div className="aspect-video bg-gradient-to-br from-gray-900 via-gray-800 to-slate-900 relative overflow-hidden">
                         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
@@ -489,7 +477,7 @@ export default function WebsiteFeaturesSection({ hideLearnMore = false }: { hide
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4 }}
-                        className="inline-block px-3 py-1 rounded-full bg-stone text-charcoal dark:text-white text-xs font-bold tracking-wider uppercase mb-4"
+                        className="inline-block px-3 py-1 rounded-full bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold tracking-wider uppercase mb-4"
                     >
                         Your Storefront
                     </motion.span>
@@ -498,7 +486,7 @@ export default function WebsiteFeaturesSection({ hideLearnMore = false }: { hide
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: 0.1 }}
-                        className="text-3xl md:text-5xl font-light text-charcoal dark:text-white tracking-tight tracking-tight leading-tight mb-4"
+                        className="text-3xl md:text-5xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-4"
                     >
                         A Website That Works as Hard as You Do
                     </motion.h2>
@@ -526,7 +514,7 @@ export default function WebsiteFeaturesSection({ hideLearnMore = false }: { hide
                                         onClick={() => setActiveTab(i)}
                                         className={`relative flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors ${activeTab === i
                                             ? 'text-white'
-                                            : 'border border-structural-border dark:border-gray-700 text-secondary-text hover:text-charcoal dark:hover:text-white hover:border-charcoal/30'
+                                            : 'border border-structural-border dark:border-gray-700 text-secondary-text hover:text-charcoal dark:hover:text-white hover:border-primary/30'
                                             }`}
                                     >
                                         {activeTab === i && (
@@ -562,7 +550,7 @@ export default function WebsiteFeaturesSection({ hideLearnMore = false }: { hide
                     >
                         <a
                             href="/platform/ecommerce-storefront"
-                            className="px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-[6px] inline-flex items-center gap-2 justify-center flex-shrink-0"
+                            className="px-8 py-3 min-h-[44px] text-base font-semibold text-charcoal dark:text-white relative overflow-hidden group rounded-full inline-flex items-center gap-2 justify-center flex-shrink-0"
                         >
                             <div className="absolute inset-0 bg-white/20 dark:bg-white/8 group-hover:bg-white/30 dark:group-hover:bg-white/12 transition-colors rounded-full" />
                             <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-charcoal/30 dark:group-hover:border-white/40 transition-colors rounded-full" />

@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
-import CompetitorComparisonSection from '@/components/sections/CompetitorComparisonSection';
-import { comparisonByPage } from '@/lib/comparison-data';
 import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
 const faqs = [
@@ -88,7 +86,7 @@ export default function EcommerceStorefrontPage() {
                             initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4 }}
-                            className="inline-block mb-6 text-[11px] tracking-[0.22em] uppercase text-graphite font-medium"
+                            className="inline-block px-3 py-1 rounded-full bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold tracking-wider uppercase mb-6"
                         >
                             Your Storefront
                         </motion.span>
@@ -96,7 +94,7 @@ export default function EcommerceStorefrontPage() {
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="text-3xl md:text-5xl lg:text-6xl font-light text-charcoal dark:text-white tracking-tight leading-[1.05] mb-6"
+                            className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
                         >
                             Ecommerce Website for Print Shops  - Online Ordering for Custom Apparel
                         </motion.h1>
@@ -116,16 +114,16 @@ export default function EcommerceStorefrontPage() {
                         >
                             <Link
                                 href="/reach-out"
-                                className="px-7 py-3.5 bg-charcoal text-ivory text-sm tracking-wide font-medium rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2"
+                                className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
                                 See a Live Storefront in Action
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                             <Link
                                 href="/pricing"
-                                className="px-7 py-3.5 text-charcoal dark:text-white text-sm tracking-wide font-medium inline-flex items-center justify-center gap-2 relative overflow-hidden group"
+                                className="px-8 py-4 text-charcoal dark:text-white font-semibold rounded-full inline-flex items-center justify-center gap-2 relative overflow-hidden group"
                             >
-                                <div className="absolute inset-0 border border-charcoal dark:border-white group-hover:bg-charcoal group-hover:text-ivory transition-colors" />
+                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-primary/50 transition-colors rounded-full" />
                                 <span className="relative z-10">View Pricing</span>
                             </Link>
                         </motion.div>
@@ -142,7 +140,7 @@ export default function EcommerceStorefrontPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
                         >
                             What Is an Ecommerce Storefront for Print Shops?
                         </motion.h2>
@@ -174,13 +172,13 @@ export default function EcommerceStorefrontPage() {
                                 <motion.div
                                     key={item.title}
                                     variants={fadeUp}
-                                    className="flex gap-4 p-4 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors group"
+                                    className="flex gap-4 p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors group"
                                 >
-                                    <div className="w-10 h-10 rounded-lg bg-stone flex items-center justify-center flex-shrink-0">
-                                        <span className="material-symbols-outlined text-charcoal dark:text-white text-xl">{item.icon}</span>
+                                    <div className="w-10 h-10 rounded-lg bg-teal-500/10 flex items-center justify-center flex-shrink-0">
+                                        <span className="material-symbols-outlined text-teal-600 dark:text-teal-400 text-xl">{item.icon}</span>
                                     </div>
                                     <div>
-                                        <h3 className="font-medium text-charcoal dark:text-white mb-2 text-sm">{item.title}</h3>
+                                        <h3 className="font-bold text-charcoal dark:text-white mb-1 text-sm">{item.title}</h3>
                                         <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{item.desc}</p>
                                     </div>
                                 </motion.div>
@@ -194,7 +192,7 @@ export default function EcommerceStorefrontPage() {
                             className="text-sm text-secondary-text dark:text-gray-400 mt-8"
                         >
                             A standard Shopify or Wix store isn&apos;t built for this. It&apos;s built for selling one product at one price. Print shops sell custom work with variables  - and the storefront needs to handle that.{' '}
-                            <Link href="/platform/filemaker-system" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">
+                            <Link href="/platform/filemaker-system" className="text-primary hover:underline">
                                 Already have a storefront and need a back-office system? →
                             </Link>
                         </motion.p>
@@ -208,7 +206,7 @@ export default function EcommerceStorefrontPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight leading-tight mb-2"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white leading-tight mb-2"
                         >
                             Why Generic Ecommerce Platforms Don&apos;t Work for Print Shops
                         </motion.h2>
@@ -239,10 +237,10 @@ export default function EcommerceStorefrontPage() {
                                 <motion.div
                                     key={pain.num}
                                     variants={fadeUp}
-                                    className="relative p-3 md:p-4 border border-line dark:border-gray-800 hover:border-charcoal/30 dark:hover:border-white/15 bg-white dark:bg-gray-900 overflow-hidden group h-full transition-colors duration-300"
+                                    className="relative p-3 md:p-4 rounded-xl border border-structural-border dark:border-gray-800 hover:border-rose-500/30 dark:hover:border-rose-500/20 bg-white dark:bg-gray-900 overflow-hidden group h-full transition-colors duration-300"
                                 >
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-charcoal/0 group-hover:bg-charcoal/[0.03] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
-                                    <span className="block text-[10px] font-medium tracking-[0.22em] text-graphite dark:text-gray-500 uppercase mb-1.5">{pain.num}</span>
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/0 group-hover:bg-rose-500/[0.10] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+                                    <span className="block text-[10px] font-bold tracking-widest text-rose-500/70 dark:text-rose-500/50 uppercase mb-1.5">{pain.num}</span>
                                     <p className="text-sm font-bold text-charcoal dark:text-white leading-snug mb-1">{pain.title}</p>
                                     <p className="text-xs text-secondary-text dark:text-gray-500 font-medium leading-relaxed">{pain.desc}</p>
                                 </motion.div>
@@ -259,7 +257,7 @@ export default function EcommerceStorefrontPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-6"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-6"
                         >
                             A Storefront That Understands How Print Shops Actually Sell
                         </motion.h2>
@@ -317,12 +315,12 @@ export default function EcommerceStorefrontPage() {
                                         {group.items.map((item) => (
                                             <div
                                                 key={item.title}
-                                                className="flex gap-3 p-4 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors group relative overflow-hidden"
+                                                className="flex gap-3 p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors group relative overflow-hidden"
                                             >
-                                                <div className="absolute top-0 right-0 w-24 h-24 bg-charcoal/0 group-hover:bg-charcoal/[0.03] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+                                                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/0 group-hover:bg-primary/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
                                                 <span className="material-symbols-outlined text-primary text-lg flex-shrink-0 mt-0.5">{item.icon}</span>
                                                 <div>
-                                                    <h4 className="font-medium text-charcoal dark:text-white text-sm mb-0.5">{item.title}</h4>
+                                                    <h4 className="font-bold text-charcoal dark:text-white text-sm mb-0.5">{item.title}</h4>
                                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{item.desc}</p>
                                                 </div>
                                             </div>
@@ -341,7 +339,7 @@ export default function EcommerceStorefrontPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
                         >
                             The Part Other Platforms Can&apos;t Do
                         </motion.h2>
@@ -373,16 +371,16 @@ export default function EcommerceStorefrontPage() {
                                 <motion.div
                                     key={s.step}
                                     variants={fadeUp}
-                                    className="p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors relative overflow-hidden group"
+                                    className="p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors relative overflow-hidden group"
                                 >
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-charcoal/0 group-hover:bg-charcoal/[0.03] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary/0 group-hover:bg-primary/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
                                     <div className="flex items-center gap-3 mb-3">
-                                        <div className="w-9 h-9 rounded-lg bg-stone flex items-center justify-center flex-shrink-0">
-                                            <span className="material-symbols-outlined text-charcoal dark:text-white text-lg">{s.icon}</span>
+                                        <div className="w-9 h-9 rounded-lg bg-teal-500/10 flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined text-teal-600 dark:text-teal-400 text-lg">{s.icon}</span>
                                         </div>
-                                        <span className="text-[10px] font-medium tracking-[0.22em] text-teal-600/60 dark:text-teal-400/60 uppercase">{s.step}</span>
+                                        <span className="text-[10px] font-bold tracking-widest text-teal-600/60 dark:text-teal-400/60 uppercase">{s.step}</span>
                                     </div>
-                                    <h3 className="font-medium text-charcoal dark:text-white mb-2">{s.title}</h3>
+                                    <h3 className="font-bold text-charcoal dark:text-white mb-2">{s.title}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{s.desc}</p>
                                 </motion.div>
                             ))}
@@ -417,7 +415,7 @@ export default function EcommerceStorefrontPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-12"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-12"
                         >
                             Before & After
                         </motion.h2>
@@ -439,7 +437,7 @@ export default function EcommerceStorefrontPage() {
                                         'Mobile visitors bounce  - site doesn\'t work on phones',
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-start gap-2 text-sm text-secondary-text dark:text-gray-400">
-                                            <span className="material-symbols-outlined text-graphite text-sm mt-0.5 flex-shrink-0">close</span>
+                                            <span className="material-symbols-outlined text-rose-500 text-sm mt-0.5 flex-shrink-0">close</span>
                                             {item}
                                         </li>
                                     ))}
@@ -479,7 +477,7 @@ export default function EcommerceStorefrontPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-10"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-10"
                         >
                             Built For Shops Ready to Sell Online
                         </motion.h2>
@@ -499,20 +497,17 @@ export default function EcommerceStorefrontPage() {
                                 <motion.div
                                     key={item.title}
                                     variants={fadeUp}
-                                    className="p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/30 transition-colors group relative overflow-hidden"
+                                    className="p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors group relative overflow-hidden"
                                 >
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-charcoal/0 group-hover:bg-charcoal/[0.03] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
-                                    <span className="material-symbols-outlined text-charcoal dark:text-white text-2xl mb-3 block">{item.icon}</span>
-                                    <h3 className="font-medium text-charcoal dark:text-white mb-2 text-sm">{item.title}</h3>
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary/0 group-hover:bg-primary/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
+                                    <span className="material-symbols-outlined text-teal-600 dark:text-teal-400 text-2xl mb-3 block">{item.icon}</span>
+                                    <h3 className="font-bold text-charcoal dark:text-white mb-1 text-sm">{item.title}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{item.desc}</p>
                                 </motion.div>
                             ))}
                         </motion.div>
                     </div>
                 </section>
-
-                {/* ───── COMPETITOR COMPARISON ───── */}
-                <CompetitorComparisonSection data={comparisonByPage['ecommerce-storefront']} bg="light" />
 
                 {/* ───── FAQ ───── */}
                 <section className="relative bg-surface dark:bg-gray-950">
@@ -523,7 +518,7 @@ export default function EcommerceStorefrontPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-10"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-10"
                         >
                             Frequently Asked Questions
                         </motion.h2>
@@ -538,9 +533,9 @@ export default function EcommerceStorefrontPage() {
                                 <motion.div
                                     key={i}
                                     variants={fadeUp}
-                                    className="p-4 md:p-5 border border-line dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-charcoal/20 transition-colors"
+                                    className="p-4 md:p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/20 transition-colors"
                                 >
-                                    <h3 className="font-medium text-charcoal dark:text-white mb-2 text-sm">{faq.question}</h3>
+                                    <h3 className="font-bold text-charcoal dark:text-white mb-2 text-sm">{faq.question}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{faq.answer}</p>
                                 </motion.div>
                             ))}
@@ -555,7 +550,7 @@ export default function EcommerceStorefrontPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-light text-charcoal dark:text-white tracking-tight mb-4"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-4"
                         >
                             See a Working Print Shop Storefront
                         </motion.h2>
@@ -568,14 +563,6 @@ export default function EcommerceStorefrontPage() {
                         >
                             This isn&apos;t a mockup. Customers use it to browse products, upload artwork, and place orders  - every day. Book a walkthrough and see how it works for your business.
                         </motion.p>
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className="text-sm text-secondary-text dark:text-gray-400 mb-6"
-                        >
-                            See it in action: <Link href="/case-studies/website-plus-operations" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">how a shop connected ecommerce to operations and stopped losing orders</Link>.
-                        </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -585,7 +572,7 @@ export default function EcommerceStorefrontPage() {
                         >
                             <Link
                                 href="/reach-out"
-                                className="px-7 py-3.5 bg-charcoal text-ivory text-sm tracking-wide font-medium rounded-[6px] hover:bg-black transition-colors inline-flex items-center justify-center gap-2"
+                                className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
                                 Book a Demo  - Watch How Orders Flow Into the System
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
@@ -598,7 +585,7 @@ export default function EcommerceStorefrontPage() {
                             transition={{ delay: 0.3 }}
                             className="text-sm text-secondary-text dark:text-gray-400 mt-4"
                         >
-                            <Link href="/pricing" className="text-charcoal underline underline-offset-4 decoration-line hover:decoration-charcoal transition-colors">View Pricing →</Link>
+                            <Link href="/pricing" className="text-primary hover:underline">View Pricing →</Link>
                         </motion.p>
                     </div>
                 </section>

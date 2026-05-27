@@ -39,7 +39,7 @@ export default function AboutUsSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
-                        className="text-3xl sm:text-5xl md:text-7xl font-medium text-charcoal dark:text-white mb-2 tracking-tight leading-[1.1]"
+                        className="text-3xl sm:text-5xl md:text-7xl font-bold text-charcoal dark:text-white mb-2 tracking-tight leading-[1.1]"
                     >
                         Necessity is the <br className="hidden md:block" />
                         <span className="text-secondary-text dark:text-gray-500">mother of invention.</span>
@@ -90,7 +90,7 @@ export default function AboutUsSection() {
                     className="mt-8 flex flex-col items-center justify-center text-center"
                 >
                     <div className="h-16 w-16 md:h-20 md:w-20 rounded-full bg-gray-200 dark:bg-gray-800 p-0.5 border border-white dark:border-gray-700 shadow-md mb-4 bg-[url('/placeholder-founder.jpg')] bg-cover bg-center">
-                        <div className="w-full h-full rounded-full bg-stone flex items-center justify-center text-primary font-bold text-xl">M</div>
+                        <div className="w-full h-full rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">M</div>
                     </div>
                     <div>
                         <h4 className="text-lg font-bold text-charcoal dark:text-white">Michael Monfared</h4>
@@ -151,7 +151,7 @@ export default function AboutUsSection() {
                             <div className="absolute top-0 right-0 p-4 opacity-10">
                                 <span className="material-symbols-outlined text-8xl">format_quote</span>
                             </div>
-                            <h4 className="text-xl font-medium text-charcoal dark:text-white mb-2 relative z-10">The Core Philosophy</h4>
+                            <h4 className="text-xl font-bold text-charcoal dark:text-white mb-2 relative z-10">The Core Philosophy</h4>
                             <p className="text-charcoal dark:text-gray-300 italic font-medium relative z-10">
                                 &quot;Every click has a follow action. We built this as automated as possible, as delegatable as possible,
                                 and for the least amount of issues or mistakes to go wrong.&quot;
@@ -179,13 +179,13 @@ export default function AboutUsSection() {
                 >
                     <p className="text-lg font-bold text-charcoal dark:text-white mb-6">See what we built</p>
                     <div className="flex flex-wrap gap-3 justify-center">
-                        <Link href="/platform/filemaker-system" className="px-5 py-2.5 text-sm font-medium text-secondary-text hover:text-charcoal dark:hover:text-white border border-structural-border dark:border-gray-700 rounded-full hover:border-charcoal/30 transition-colors">
+                        <Link href="/platform/filemaker-system" className="px-5 py-2.5 text-sm font-medium text-secondary-text hover:text-charcoal dark:hover:text-white border border-structural-border dark:border-gray-700 rounded-full hover:border-primary/30 transition-colors">
                             FileMaker System
                         </Link>
-                        <Link href="/platform/ecommerce-storefront" className="px-5 py-2.5 text-sm font-medium text-secondary-text hover:text-charcoal dark:hover:text-white border border-structural-border dark:border-gray-700 rounded-full hover:border-charcoal/30 transition-colors">
+                        <Link href="/platform/ecommerce-storefront" className="px-5 py-2.5 text-sm font-medium text-secondary-text hover:text-charcoal dark:hover:text-white border border-structural-border dark:border-gray-700 rounded-full hover:border-primary/30 transition-colors">
                             Ecommerce Storefront
                         </Link>
-                        <Link href="/platform/complete-system" className="px-5 py-2.5 text-sm font-medium text-secondary-text hover:text-charcoal dark:hover:text-white border border-structural-border dark:border-gray-700 rounded-full hover:border-charcoal/30 transition-colors">
+                        <Link href="/platform/complete-system" className="px-5 py-2.5 text-sm font-medium text-secondary-text hover:text-charcoal dark:hover:text-white border border-structural-border dark:border-gray-700 rounded-full hover:border-primary/30 transition-colors">
                             Complete System
                         </Link>
                         <Link href="/reach-out" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-full transition-colors">

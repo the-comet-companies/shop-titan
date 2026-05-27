@@ -10,20 +10,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Architectural design system - calm, premium, operational
-        primary: "#1C1C1C", // Charcoal (primary action color)
-        charcoal: "#1C1C1C", // Charcoal text
-        graphite: "#5A5A5C", // Muted graphite accents
-        "secondary-text": "#5A5A5C", // Graphite (alias)
-        ivory: "#F7F5F0", // Warm off-white / page background
-        "background-light": "#F7F5F0", // Ivory (alias)
-        stone: "#EFEDE8", // Soft stone gray sections
-        bone: "#FFFFFF", // Card / surface
-        surface: "#FFFFFF", // Surface (alias)
-        line: "#E0DDD7", // Hairline borders
-        "structural-border": "#E0DDD7", // Line (alias)
-        rust: "#A87474", // Muted dusty rose - architectural warning/risk accent
+        primary: "#0066CC", // Action Blue
+        "background-light": "#FBFBFB", // Off-white
         "background-dark": "#0a0a0a",
+        charcoal: "#1D1D1F", // Deep Charcoal
+        "secondary-text": "#6E6E73", // Muted Grey
+        "structural-border": "#E5E7EB", // Structural Borders
+        surface: "#FFFFFF", // Surface/Card
       },
       fontFamily: {
         display: ["var(--font-inter)", "sans-serif"],
