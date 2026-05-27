@@ -103,7 +103,7 @@ export default function WorkflowVideoSection() {
                         {/* Type badge */}
                         <span className={`hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
                             slide.type === 'Website'
-                                ? 'bg-teal-500/10 text-teal-600 dark:text-teal-400'
+                                ? 'bg-sky-500/10 text-sky-600 dark:text-sky-400'
                                 : 'bg-primary/10 text-primary dark:text-blue-400'
                         }`}>
                             {slide.type}
@@ -137,7 +137,7 @@ export default function WorkflowVideoSection() {
                         <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4 md:p-6 pointer-events-none">
                             <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-1.5 ${
                                 slide.type === 'Website'
-                                    ? 'bg-teal-500/20 text-teal-300'
+                                    ? 'bg-sky-500/20 text-sky-300'
                                     : 'bg-blue-500/20 text-blue-300'
                             }`}>
                                 {slide.type}
@@ -155,7 +155,7 @@ export default function WorkflowVideoSection() {
                                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
                                     i === current
                                         ? s.type === 'Website'
-                                            ? 'bg-teal-500 w-4'
+                                            ? 'bg-sky-500 w-4'
                                             : 'bg-primary w-4'
                                         : 'bg-gray-600 hover:bg-gray-400'
                                 }`}
