@@ -11,10 +11,10 @@ export const metadata = generatePageMetadata({
 });
 
 const categoryColors: Record<string, string> = {
-    Operations: 'bg-primary/10 text-primary',
-    Growth: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
-    Inventory: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
-    Automation: 'bg-teal-500/10 text-teal-600 dark:text-teal-400',
+    Operations: 'bg-primary/10 text-primary dark:text-blue-400',
+    Growth: 'bg-primary/10 text-primary dark:text-blue-400',
+    Inventory: 'bg-primary/10 text-primary dark:text-blue-400',
+    Automation: 'bg-primary/10 text-primary dark:text-blue-400',
 };
 
 export default function CaseStudiesPage() {
@@ -94,7 +94,8 @@ export default function CaseStudiesPage() {
                             Ready to See Similar Results?
                         </h2>
                         <p className="text-secondary-text dark:text-gray-400 mb-8 max-w-xl mx-auto">
-                            Book a demo and we will walk you through the system, show you how it works for shops like yours, and give you an honest assessment of whether it is a fit.
+                            Book a demo and we will walk you through the system, show you how it works for shops like yours, and give you an honest assessment of whether it is a fit. Or start with the{' '}
+                            <Link href="/get-started" className="text-primary hover:underline font-semibold">production operating system overview</Link>.
                         </p>
                         <Link
                             href="/reach-out"

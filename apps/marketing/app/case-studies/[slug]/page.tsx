@@ -27,10 +27,10 @@ export async function generateStaticParams() {
 }
 
 const categoryColors: Record<string, string> = {
-    Operations: 'bg-primary/10 text-primary',
-    Growth: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
-    Inventory: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
-    Automation: 'bg-teal-500/10 text-teal-600 dark:text-teal-400',
+    Operations: 'bg-primary/10 text-primary dark:text-blue-400',
+    Growth: 'bg-primary/10 text-primary dark:text-blue-400',
+    Inventory: 'bg-primary/10 text-primary dark:text-blue-400',
+    Automation: 'bg-primary/10 text-primary dark:text-blue-400',
 };
 
 export default async function CaseStudyPage({ params }: PageProps) {

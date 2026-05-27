@@ -11,6 +11,9 @@ import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 const NAV_SECTIONS = ['about', 'features', 'case-studies', 'pricing', 'blog'] as const;
 const ACTIVE_SECTIONS = ['hero', 'platform', 'features', 'case-studies', 'pricing', 'blog', 'contact'] as const;
 
+// Paid-traffic landing pages render their own minimal header (logo + single CTA, no nav).
+const LANDING_ROUTES = new Set(['/get-started', '/get-started/scheduling']);
+
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -27,6 +30,10 @@ export default function Header() {
     });
 
     const activeSection = useActiveSection(ACTIVE_SECTIONS);
+
+    if (LANDING_ROUTES.has(pathname)) {
+        return null;
+    }
 
     const scrollToSection = (sectionId: string) => {
         if (sectionId === 'blog') {

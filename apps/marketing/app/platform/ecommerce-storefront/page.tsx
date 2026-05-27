@@ -86,7 +86,7 @@ export default function EcommerceStorefrontPage() {
                             initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4 }}
-                            className="inline-block px-3 py-1 rounded-full bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold tracking-wider uppercase mb-6"
+                            className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary dark:text-blue-400 text-xs font-bold tracking-wider uppercase mb-6"
                         >
                             Your Storefront
                         </motion.span>
@@ -174,8 +174,8 @@ export default function EcommerceStorefrontPage() {
                                     variants={fadeUp}
                                     className="flex gap-4 p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors group"
                                 >
-                                    <div className="w-10 h-10 rounded-lg bg-teal-500/10 flex items-center justify-center flex-shrink-0">
-                                        <span className="material-symbols-outlined text-teal-600 dark:text-teal-400 text-xl">{item.icon}</span>
+                                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                        <span className="material-symbols-outlined text-primary dark:text-blue-400 text-xl">{item.icon}</span>
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-charcoal dark:text-white mb-1 text-sm">{item.title}</h3>
@@ -375,10 +375,10 @@ export default function EcommerceStorefrontPage() {
                                 >
                                     <div className="absolute top-0 right-0 w-24 h-24 bg-primary/0 group-hover:bg-primary/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
                                     <div className="flex items-center gap-3 mb-3">
-                                        <div className="w-9 h-9 rounded-lg bg-teal-500/10 flex items-center justify-center flex-shrink-0">
-                                            <span className="material-symbols-outlined text-teal-600 dark:text-teal-400 text-lg">{s.icon}</span>
+                                        <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined text-primary dark:text-blue-400 text-lg">{s.icon}</span>
                                         </div>
-                                        <span className="text-[10px] font-bold tracking-widest text-teal-600/60 dark:text-teal-400/60 uppercase">{s.step}</span>
+                                        <span className="text-[10px] font-bold tracking-widest text-primary/60 dark:text-blue-400/60 uppercase">{s.step}</span>
                                     </div>
                                     <h3 className="font-bold text-charcoal dark:text-white mb-2">{s.title}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{s.desc}</p>
@@ -500,7 +500,7 @@ export default function EcommerceStorefrontPage() {
                                     className="p-5 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-primary/30 transition-colors group relative overflow-hidden"
                                 >
                                     <div className="absolute top-0 right-0 w-24 h-24 bg-primary/0 group-hover:bg-primary/[0.06] blur-2xl rounded-full transition-all duration-500 pointer-events-none" />
-                                    <span className="material-symbols-outlined text-teal-600 dark:text-teal-400 text-2xl mb-3 block">{item.icon}</span>
+                                    <span className="material-symbols-outlined text-primary dark:text-blue-400 text-2xl mb-3 block">{item.icon}</span>
                                     <h3 className="font-bold text-charcoal dark:text-white mb-1 text-sm">{item.title}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{item.desc}</p>
                                 </motion.div>

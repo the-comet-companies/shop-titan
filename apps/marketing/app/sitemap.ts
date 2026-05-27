@@ -73,6 +73,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8,
         },
         {
+            url: `${BASE_URL}/get-started`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/get-started/scheduling`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
             url: `${BASE_URL}/get-started/replace-spreadsheets`,
             lastModified: new Date(),
             changeFrequency: 'monthly',

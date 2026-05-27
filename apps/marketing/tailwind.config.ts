@@ -22,6 +22,7 @@ const config: Config = {
         display: ["var(--font-inter)", "sans-serif"],
         sans: ["var(--font-inter)", "sans-serif"],
         serif: ["var(--font-crimson)", "serif"],
+        mono: ["var(--font-jetbrains-mono)", "ui-monospace", "monospace"],
       },
       borderRadius: {
         DEFAULT: "8px",

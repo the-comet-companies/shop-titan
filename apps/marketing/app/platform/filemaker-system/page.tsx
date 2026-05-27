@@ -325,6 +325,17 @@ export default function FileMakerSystemPage() {
                         >
                             From First Call to Final Shipment  - One System
                         </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0, y: 12 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.05 }}
+                            className="text-secondary-text dark:text-gray-400 mb-12 max-w-3xl"
+                        >
+                            FileMaker is the engine. Shop Titan layers it into a complete{' '}
+                            <Link href="/get-started" className="text-primary hover:underline font-semibold">production operating system</Link>{' '}
+                            so orders, art, approvals, inventory, and scheduling stay connected end to end.
+                        </motion.p>
                         <motion.div
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
                             variants={stagger}

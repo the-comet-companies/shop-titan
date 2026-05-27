@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Crimson_Pro } from "next/font/google";
+import { Inter, Crimson_Pro, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScrolling from "../components/SmoothScrolling";
 import Header from "@/components/Header";
@@ -16,6 +16,13 @@ const crimsonPro = Crimson_Pro({
     display: "swap",
     style: ["normal", "italic"],
     weight: ["400", "600"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+    subsets: ["latin"],
+    variable: "--font-jetbrains-mono",
+    display: "swap",
+    weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -185,7 +192,7 @@ export default function RootLayout({
                 />
             </head>
             <body
-                className={`${inter.variable} ${crimsonPro.variable} antialiased selection:bg-primary/20`}
+                className={`${inter.variable} ${crimsonPro.variable} ${jetbrainsMono.variable} antialiased selection:bg-primary/20`}
             >
                 <SmoothScrolling>
                     <Header />
