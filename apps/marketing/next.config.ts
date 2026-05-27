@@ -1,10 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-    // Serve modern image formats (avif ~50% smaller than jpg, webp ~30% smaller)
+    // Bypass Vercel's image optimizer (quota exceeded on current plan).
+    // Re-enable by removing `unoptimized: true` after upgrading to Pro.
     images: {
+        unoptimized: true,
         formats: ['image/avif', 'image/webp'],
-        // Minimize layout shift by enforcing explicit dimensions
         dangerouslyAllowSVG: false,
     },
 
