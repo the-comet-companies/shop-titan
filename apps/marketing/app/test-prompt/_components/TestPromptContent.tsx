@@ -249,6 +249,44 @@ const NO_MORE = [
     "No wondering what slipped.",
 ];
 
+const FOR_YOU = [
+    "Your shop is growing.",
+    "Your team is asking too many status questions.",
+    "Your schedule keeps changing.",
+    "Your owner is still the bottleneck.",
+    "Your approvals are hard to track.",
+    "Your production meetings are too reactive.",
+    "Your systems are patched together.",
+    "You know you need more structure before scaling further.",
+];
+
+const NOT_FOR_YOU = [
+    "Shops that want a generic project management tool.",
+    "Shops that want another spreadsheet.",
+    "Shops that are not ready to improve their process.",
+    "Shops that want to keep every decision in the owner's head.",
+    "Shops that are fine with daily production chaos.",
+];
+
+const FAQS = [
+    {
+        q: "Is this just project management software?",
+        a: "No. Generic project management tools are not built around decoration production, approvals, art files, job status, inventory dependencies, rush jobs, and department handoffs.",
+    },
+    {
+        q: "Can this help if we already use spreadsheets?",
+        a: "Yes. Shop Titan is designed for shops that have outgrown spreadsheets but still rely on them because nothing has replaced the full workflow.",
+    },
+    {
+        q: "Is this only for large shops?",
+        a: "No. It is for shops that are growing or already feeling the pain of disconnected systems, unclear scheduling, and too much owner dependency.",
+    },
+    {
+        q: "Does every button go to the same form?",
+        a: "Yes. Every CTA on this page leads to the same demo request. One path. One conversation. No funnels.",
+    },
+];
+
 export default function TestPromptContent() {
     return (
         <>
@@ -276,8 +314,8 @@ export default function TestPromptContent() {
                             That is not a team problem. That is a system problem.
                         </motion.p>
                         <motion.div variants={fadeUp} className="mt-9 flex flex-col sm:flex-row gap-3">
-                            <PrimaryCTA>See the System Built for Production Shops</PrimaryCTA>
-                            <SecondaryCTA>Watch How It Works</SecondaryCTA>
+                            <PrimaryCTA>Book a Demo</PrimaryCTA>
+                            <SecondaryCTA>See Shop Titan in Action</SecondaryCTA>
                         </motion.div>
                     </motion.div>
 
@@ -366,7 +404,7 @@ export default function TestPromptContent() {
                         If this feels familiar, the problem is not your team. It is the way the shop is being forced to run.
                     </p>
                     <div className="mt-8">
-                        <PrimaryCTA>Show Me the Fix</PrimaryCTA>
+                        <PrimaryCTA>See Shop Titan in Action</PrimaryCTA>
                     </div>
                 </FadeIn>
             </Section>
@@ -375,7 +413,7 @@ export default function TestPromptContent() {
             <Section>
                 <div className="max-w-3xl">
                     <FadeIn className="mb-5">
-                        <Eyebrow>And it keeps going</Eyebrow>
+                        <Eyebrow>The daily drag</Eyebrow>
                     </FadeIn>
                     <FadeIn>
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-charcoal">
@@ -416,7 +454,7 @@ export default function TestPromptContent() {
             <Section>
                 <div className="max-w-3xl">
                     <FadeIn className="mb-5">
-                        <Eyebrow>Growth exposes the cracks</Eyebrow>
+                        <Eyebrow>The slow break</Eyebrow>
                     </FadeIn>
                     <FadeIn>
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-charcoal">
@@ -465,6 +503,10 @@ export default function TestPromptContent() {
                     <p className="text-lg md:text-xl text-charcoal/80 leading-relaxed">
                         Growth does not create chaos. Growth <Pw>exposes the system gaps</Pw> that were already there.
                     </p>
+                </FadeIn>
+
+                <FadeIn className="mt-10">
+                    <PrimaryCTA>Book a Demo</PrimaryCTA>
                 </FadeIn>
             </Section>
 
@@ -556,13 +598,17 @@ export default function TestPromptContent() {
                         </div>
                     </div>
                 </FadeIn>
+
+                <FadeIn className="mt-10">
+                    <PrimaryCTA>Request a Walkthrough</PrimaryCTA>
+                </FadeIn>
             </Section>
 
             {/* ───── 7. FALSE SOLUTIONS ───── */}
             <Section>
                 <div className="max-w-3xl">
                     <FadeIn className="mb-5">
-                        <Eyebrow>Why the usual tools fail</Eyebrow>
+                        <Eyebrow>Why generic tools fail</Eyebrow>
                     </FadeIn>
                     <FadeIn>
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-charcoal">
@@ -746,7 +792,7 @@ export default function TestPromptContent() {
                 </div>
 
                 <FadeIn className="mt-12">
-                    <PrimaryCTA>Build a Shop That Runs With Clarity</PrimaryCTA>
+                    <PrimaryCTA>Book a Demo</PrimaryCTA>
                 </FadeIn>
             </Section>
 
@@ -754,7 +800,7 @@ export default function TestPromptContent() {
             <Section>
                 <div className="max-w-3xl">
                     <FadeIn className="mb-5">
-                        <Eyebrow>Dream outcome</Eyebrow>
+                        <Eyebrow>What it feels like</Eyebrow>
                     </FadeIn>
                     <FadeIn>
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-charcoal">
@@ -803,26 +849,187 @@ export default function TestPromptContent() {
                 </FadeIn>
 
                 <FadeIn className="mt-10">
-                    <PrimaryCTA>See What That Looks Like</PrimaryCTA>
+                    <PrimaryCTA>Get the Production System</PrimaryCTA>
                 </FadeIn>
             </Section>
 
-            {/* ───── 12. FINAL CTA ───── */}
+            {/* ───── 12. WHO THIS IS FOR ───── */}
+            <Section>
+                <div className="max-w-3xl">
+                    <FadeIn className="mb-5">
+                        <Eyebrow>Who this is for</Eyebrow>
+                    </FadeIn>
+                    <FadeIn>
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-charcoal">
+                            Shop Titan is built for shops that are past the &ldquo;just wing it&rdquo; stage.
+                        </h2>
+                    </FadeIn>
+                    <FadeIn>
+                        <p className="mt-5 text-base md:text-lg text-secondary-text leading-relaxed font-medium">
+                            This is for you if:
+                        </p>
+                    </FadeIn>
+                </div>
+
+                <motion.ul
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.15 }}
+                    variants={stagger}
+                    className="mt-10 grid gap-3 md:grid-cols-2"
+                >
+                    {FOR_YOU.map((item) => (
+                        <motion.li
+                            key={item}
+                            variants={fadeUp}
+                            className="flex items-start gap-3 rounded-xl border border-structural-border bg-white p-4"
+                        >
+                            <span
+                                className="material-symbols-outlined text-primary text-xl flex-shrink-0"
+                                style={{ fontVariationSettings: "'wght' 400" }}
+                                aria-hidden
+                            >
+                                check_circle
+                            </span>
+                            <span className="text-base text-charcoal leading-relaxed">{item}</span>
+                        </motion.li>
+                    ))}
+                </motion.ul>
+
+                <FadeIn className="mt-12">
+                    <PrimaryCTA>Book a Demo</PrimaryCTA>
+                </FadeIn>
+            </Section>
+
+            {/* ───── 13. WHO THIS IS NOT FOR ───── */}
+            <Section>
+                <div className="max-w-3xl">
+                    <FadeIn className="mb-5">
+                        <Eyebrow>Who this is not for</Eyebrow>
+                    </FadeIn>
+                    <FadeIn>
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-charcoal">
+                            This is not for shops that want another basic task board.
+                        </h2>
+                    </FadeIn>
+                    <FadeIn>
+                        <p className="mt-5 text-base md:text-lg text-secondary-text leading-relaxed font-medium">
+                            Shop Titan is not for:
+                        </p>
+                    </FadeIn>
+                </div>
+
+                <motion.ul
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.15 }}
+                    variants={stagger}
+                    className="mt-10 grid gap-3 md:grid-cols-2"
+                >
+                    {NOT_FOR_YOU.map((item) => (
+                        <motion.li
+                            key={item}
+                            variants={fadeUp}
+                            className="flex items-start gap-3 rounded-xl border border-structural-border bg-white p-4"
+                        >
+                            <span
+                                className="material-symbols-outlined text-secondary-text/70 text-xl flex-shrink-0"
+                                style={{ fontVariationSettings: "'wght' 300" }}
+                                aria-hidden
+                            >
+                                close
+                            </span>
+                            <span className="text-base text-secondary-text leading-relaxed">{item}</span>
+                        </motion.li>
+                    ))}
+                </motion.ul>
+
+                <FadeIn className="mt-12">
+                    <PrimaryCTA>See Shop Titan in Action</PrimaryCTA>
+                </FadeIn>
+            </Section>
+
+            {/* ───── 14. WHY WE BUILT THIS ───── */}
+            <Section>
+                <div className="max-w-3xl">
+                    <FadeIn className="mb-5">
+                        <Eyebrow>Why we built this</Eyebrow>
+                    </FadeIn>
+                    <FadeIn>
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-charcoal">
+                            Built from <Pw>real production pressure</Pw>.
+                        </h2>
+                    </FadeIn>
+                    <FadeIn>
+                        <p className="mt-5 text-base md:text-lg text-secondary-text leading-relaxed">
+                            Shop Titan was not built as a generic SaaS idea. It was built from the pressure of running real decoration production, where one missed detail can delay a job, trigger a reprint, frustrate a customer, and cut into margin.
+                        </p>
+                    </FadeIn>
+                    <FadeIn>
+                        <p className="mt-5 text-lg md:text-xl text-charcoal font-medium leading-snug">
+                            This is software built around <Pw>how production actually breaks</Pw>.
+                        </p>
+                    </FadeIn>
+                </div>
+
+                <FadeIn className="mt-10">
+                    <PrimaryCTA>Request a Walkthrough</PrimaryCTA>
+                </FadeIn>
+            </Section>
+
+            {/* ───── 15. COMMON QUESTIONS ───── */}
+            <Section>
+                <div className="max-w-3xl">
+                    <FadeIn className="mb-5">
+                        <Eyebrow>Common questions</Eyebrow>
+                    </FadeIn>
+                    <FadeIn>
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-charcoal">
+                            Common questions before you see it.
+                        </h2>
+                    </FadeIn>
+                </div>
+
+                <motion.dl
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.15 }}
+                    variants={stagger}
+                    className="mt-12 max-w-3xl divide-y divide-structural-border border-t border-b border-structural-border"
+                >
+                    {FAQS.map((f) => (
+                        <motion.div key={f.q} variants={fadeUp} className="py-6">
+                            <dt className="text-lg md:text-xl font-bold tracking-tight text-charcoal mb-2">{f.q}</dt>
+                            <dd className="text-base md:text-lg text-secondary-text leading-relaxed">{f.a}</dd>
+                        </motion.div>
+                    ))}
+                </motion.dl>
+
+                <FadeIn className="mt-12">
+                    <PrimaryCTA>Book a Demo</PrimaryCTA>
+                </FadeIn>
+            </Section>
+
+            {/* ───── 16. FINAL CTA ───── */}
             <section className="relative border-t border-structural-border py-28 md:py-40 overflow-hidden">
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-[400px] bg-[radial-gradient(ellipse_at_center,_rgba(0,102,204,0.08)_0%,_rgba(255,255,255,0)_70%)]" />
                 <div className="relative max-w-4xl mx-auto px-4 md:px-6 text-center">
+                    <FadeIn className="mb-5">
+                        <Eyebrow>Last thing</Eyebrow>
+                    </FadeIn>
                     <FadeIn>
                         <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-charcoal">
-                            If your shop has <Pw>outgrown chaos</Pw>, it is time to outgrow the system causing it.
+                            Your shop can keep growing. But your current system may not <Pw>survive it</Pw>.
                         </h2>
                     </FadeIn>
                     <FadeIn>
                         <p className="mt-7 text-lg md:text-xl text-secondary-text leading-relaxed max-w-3xl mx-auto">
-                            Shop Titan was built for production shops that need <Pw>clearer job ownership</Pw>, <Pw>fewer interruptions</Pw>, <Pw>better visibility</Pw>, and <Pw>less owner dependency</Pw>.
+                            If your team is already relying on whiteboards, spreadsheets, emails, memory, and constant interruptions, the problem will not get smaller as volume grows. Shop Titan gives you the structure to scale with <Pw>more clarity</Pw>, <Pw>more control</Pw>, and <Pw>less chaos</Pw>.
                         </p>
                     </FadeIn>
-                    <FadeIn className="mt-10 flex justify-center">
-                        <PrimaryCTA>Book a Shop Titan Demo</PrimaryCTA>
+                    <FadeIn className="mt-10 flex flex-col sm:flex-row justify-center gap-3">
+                        <PrimaryCTA>Book a Demo</PrimaryCTA>
+                        <SecondaryCTA>See Shop Titan in Action</SecondaryCTA>
                     </FadeIn>
                     <FadeIn>
                         <p className="mt-10 text-sm text-secondary-text/60 font-mono uppercase tracking-[0.22em]">
