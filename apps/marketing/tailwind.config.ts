@@ -10,22 +10,38 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#0066CC", // Action Blue
-        "background-light": "#FBFBFB", // Off-white
+        primary: {
+          DEFAULT: "#0066CC",
+          50: "#E6F0FA",
+          100: "#CCE0F5",
+          200: "#99C2EB",
+          300: "#66A3E0",
+          400: "#3385D6",
+          500: "#0066CC",
+          600: "#0052A3",
+          700: "#003D7A",
+          800: "#002952",
+          900: "#001429",
+        },
+        "background-light": "#FBFBFB",
         "background-dark": "#0a0a0a",
-        charcoal: "#1D1D1F", // Deep Charcoal
-        "secondary-text": "#6E6E73", // Muted Grey
-        "structural-border": "#E5E7EB", // Structural Borders
-        surface: "#FFFFFF", // Surface/Card
+        charcoal: "#1D1D1F",
+        "secondary-text": "#6E6E73",
+        "structural-border": "#E5E7EB",
+        surface: "#FFFFFF",
       },
       fontFamily: {
-        display: ["var(--font-inter)", "sans-serif"],
-        sans: ["var(--font-inter)", "sans-serif"],
-        serif: ["var(--font-crimson)", "serif"],
-        mono: ["var(--font-jetbrains-mono)", "ui-monospace", "monospace"],
+        display: ["var(--font-inter)", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        serif: ["var(--font-crimson)", "Crimson Pro", "ui-serif", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "JetBrains Mono", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       borderRadius: {
         DEFAULT: "8px",
+      },
+      boxShadow: {
+        soft: "0 1px 2px rgba(0,0,0,0.04), 0 8px 24px -12px rgba(0,0,0,0.08)",
+        card: "0 1px 0 rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.05)",
       },
       animation: {
         "carousel-scroll": "scroll 40s linear infinite",

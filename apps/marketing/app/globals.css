@@ -45,7 +45,76 @@
   }
 }
 
+@layer components {
+  /* /test-prompt landing transfer additions */
+  .container-app {
+    @apply mx-auto w-full max-w-container px-4 md:px-6;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-sm border border-charcoal/15 dark:border-white/15 bg-transparent px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-secondary-text dark:text-gray-400;
+  }
+  .chip-strong {
+    @apply text-charcoal dark:text-white border-charcoal/40 dark:border-white/40;
+  }
+  .chip-primary {
+    @apply text-primary border-primary/40 bg-primary/5;
+  }
+
+  .status-dot {
+    @apply inline-block h-1.5 w-1.5 rounded-full bg-secondary-text;
+  }
+
+  /* CRITICAL: italic pain emphasis renders in Action Blue */
+  .pain-em {
+    font-family: var(--font-crimson), "Crimson Pro", ui-serif, Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    color: #0066CC;
+  }
+
+  .section-rule {
+    @apply h-px w-full bg-structural-border dark:bg-gray-800;
+  }
+
+  .corner-mark {
+    position: relative;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+  }
+  .corner-mark::before,
+  .corner-mark::after {
+    content: "";
+    position: absolute;
+    background: currentColor;
+  }
+  .corner-mark::before {
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 1px;
+  }
+  .corner-mark::after {
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 10px;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+    user-select: none;
+    -webkit-user-select: none;
+    line-height: 1;
+    vertical-align: middle;
+  }
+}
+
 @layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
 
   /* Custom Utilities */
   .glass-nav {

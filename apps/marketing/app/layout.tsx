@@ -20,7 +20,7 @@ const crimsonPro = Crimson_Pro({
 
 const jetbrainsMono = JetBrains_Mono({
     subsets: ["latin"],
-    variable: "--font-jetbrains-mono",
+    variable: "--font-mono",
     display: "swap",
     weight: ["400", "500"],
 });
@@ -122,7 +122,7 @@ export default function RootLayout({
                 {/* Material Symbols Icons */}
                 {/* eslint-disable-next-line @next/next/no-page-custom-font */}
                 <link
-                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200..400,0..1,-50..200&display=swap"
                     rel="stylesheet"
                 />
 
