@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 // Pre-emphasized React nodes for the pain stack
 const painStackNodes: React.ReactNode[] = [
   <>
-    New orders come in before yesterday's jobs are{" "}
+    New orders come in before yesterday&apos;s jobs are{" "}
     <span className="pain-em">fully updated</span>.
   </>,
   <>
@@ -59,7 +59,7 @@ const painStackNodes: React.ReactNode[] = [
   </>,
   <>
     Sales wants an update, but the answer is{" "}
-    <span className="pain-em">still in someone's head</span>.
+    <span className="pain-em">still in someone&apos;s head</span>.
   </>,
   <>
     The <span className="pain-em">owner gets pulled in</span> because no one
