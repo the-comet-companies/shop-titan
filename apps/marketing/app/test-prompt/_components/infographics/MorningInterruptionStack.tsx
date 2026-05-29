@@ -28,20 +28,10 @@ export function MorningInterruptionStack() {
         ))}
       </div>
 
-      {/* Desktop: offset stacked deck */}
-      <div className="hidden sm:block relative">
+      {/* Desktop: flush stack */}
+      <div className="hidden sm:flex flex-col gap-2">
         {messages.map((m, i) => (
-          <div
-            key={i}
-            className="relative"
-            style={{
-              marginLeft: `${i * 8}px`,
-              marginTop: i === 0 ? 0 : "-6px",
-              zIndex: messages.length - i,
-            }}
-          >
-            <MessageCard message={m} />
-          </div>
+          <MessageCard key={i} message={m} />
         ))}
       </div>
 

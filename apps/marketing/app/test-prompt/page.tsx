@@ -22,6 +22,7 @@ import { HandoffRepairMap } from "./_components/infographics/HandoffRepairMap";
 import { ChaosToControlComparison } from "./_components/infographics/ChaosToControlComparison";
 import { ProofDashboard } from "./_components/infographics/ProofDashboard";
 import { ClarityState } from "./_components/infographics/ClarityState";
+import { DailyOrderSnapshot } from "./_components/infographics/DailyOrderSnapshot";
 
 export const metadata: Metadata = {
   title:
@@ -333,7 +334,30 @@ export default function TestPromptPage() {
             </div>
 
             <Reveal delay={0.25} className="mt-20 md:mt-24">
-              <ProductionScheduleDashboard />
+              <div className="rounded-2xl border border-structural-border bg-white shadow-card overflow-hidden">
+                {/* Browser-style chrome */}
+                <div className="flex items-center justify-between border-b border-structural-border bg-background-light/50 px-5 py-3">
+                  <div className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-structural-border" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-structural-border" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-structural-border" />
+                  </div>
+                  <span className="font-mono uppercase tracking-[0.22em] text-[10px] text-secondary-text">
+                    shoptitan.app / support-hub / transfers
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 font-mono uppercase tracking-[0.18em] text-[10px] text-secondary-text">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Live
+                  </span>
+                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/filemaker/transfer%26firm.gif"
+                  alt="Shop Titan Support Hub — transfer batch processing showing real production jobs, artwork files, and live status flags"
+                  className="block w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
             </Reveal>
           </div>
         </section>
@@ -366,6 +390,10 @@ export default function TestPromptPage() {
                 </li>
               ))}
             </ul>
+          </Reveal>
+
+          <Reveal delay={0.2} className="mt-10">
+            <CTAButton label="Book a Demo" />
           </Reveal>
 
           <Reveal delay={0.15} className="mt-12 md:mt-16">
@@ -734,6 +762,10 @@ export default function TestPromptPage() {
                 </>
               }
             />
+
+            <Reveal delay={0.1} className="mt-14 max-w-md mx-auto">
+              <DailyOrderSnapshot />
+            </Reveal>
 
             <Reveal delay={0.15} className="mt-14">
               <ul className="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-structural-border">
