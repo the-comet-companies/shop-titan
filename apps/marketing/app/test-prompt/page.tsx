@@ -393,7 +393,7 @@ export default function TestPromptPage() {
           </Reveal>
 
           <Reveal delay={0.2} className="mt-10">
-            <CTAButton label="Book a Demo" />
+            <CTAButton label="Create a Smoother Workflow" />
           </Reveal>
 
           <Reveal delay={0.15} className="mt-12 md:mt-16">
@@ -451,6 +451,10 @@ export default function TestPromptPage() {
               <span className="pain-em">reactive mode</span>.
             </p>
           </Reveal>
+
+          <Reveal delay={0.25} className="mt-10">
+            <CTAButton label="Get Clear Daily View" />
+          </Reveal>
         </Section>
 
         {/* 4. The chaos compounds as you grow */}
@@ -491,7 +495,7 @@ export default function TestPromptPage() {
           </Reveal>
 
           <Reveal delay={0.25} className="mt-10">
-            <CTAButton label="Book a Demo" />
+            <CTAButton label="Create a Smoother Workflow" />
           </Reveal>
         </Section>
 
@@ -532,6 +536,10 @@ export default function TestPromptPage() {
             </ul>
           </Reveal>
 
+          <Reveal delay={0.2} className="mt-10">
+            <CTAButton label="Stop Being the System" />
+          </Reveal>
+
           <Reveal delay={0.15} className="mt-12 md:mt-16">
             <OwnerAsOperatingSystem />
           </Reveal>
@@ -544,7 +552,7 @@ export default function TestPromptPage() {
           </Reveal>
 
           <Reveal delay={0.25} className="mt-10">
-            <CTAButton label="Get the Production System" />
+            <CTAButton label="Run Production With Confidence" />
           </Reveal>
         </Section>
 
@@ -621,6 +629,10 @@ export default function TestPromptPage() {
               You do not need another place to type notes. You need a system
               that understands how production actually moves.
             </p>
+          </Reveal>
+
+          <Reveal delay={0.25} className="mt-10">
+            <CTAButton label="Stop Chasing Updates" />
           </Reveal>
         </Section>
 

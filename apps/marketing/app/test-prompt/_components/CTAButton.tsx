@@ -5,7 +5,12 @@ export type CTALabel =
   | "Book a Demo"
   | "See Shop Titan in Action"
   | "Get the Production System"
-  | "Request a Walkthrough";
+  | "Request a Walkthrough"
+  | "Stop Chasing Updates"
+  | "Stop Being the System"
+  | "Get Clear Daily View"
+  | "Create a Smoother Workflow"
+  | "Run Production With Confidence";
 
 type Props = {
   label: CTALabel;
