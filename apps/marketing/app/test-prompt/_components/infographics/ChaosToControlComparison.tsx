@@ -50,33 +50,6 @@ function Arrow({ tone }: { tone: "muted" | "primary" }) {
   );
 }
 
-function VertArrow({ tone }: { tone: "muted" | "primary" }) {
-  const stroke = tone === "primary" ? "stroke-primary/60" : "stroke-gray-300";
-  return (
-    <svg
-      width="10"
-      height="14"
-      viewBox="0 0 10 14"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M5 1V11"
-        className={stroke}
-        strokeWidth="1"
-        strokeLinecap="round"
-      />
-      <path
-        d="M1.5 8L5 11.5L8.5 8"
-        className={stroke}
-        strokeWidth="1"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 function FlowRowItem({
   row,
   variant,
@@ -93,43 +66,33 @@ function FlowRowItem({
   const arrowTone = variant === "before" ? "muted" : "primary";
 
   return (
-    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-2">
+    <div className="flex items-center gap-2 flex-wrap">
       {/* Start pill */}
-      <div className="sm:w-[120px] sm:shrink-0">
-        <span className="inline-flex items-center rounded-full border border-structural-border bg-white px-3 py-1 text-[12px] text-charcoal">
+      <div className="w-[90px] shrink-0">
+        <span className="inline-flex items-center rounded-full border border-structural-border bg-white px-2.5 py-1 text-[11.5px] text-charcoal whitespace-nowrap">
           {row.start}
         </span>
       </div>
 
       {/* Arrow */}
-      <div className="hidden sm:flex">
-        <Arrow tone={arrowTone} />
-      </div>
-      <div className="flex sm:hidden justify-center">
-        <VertArrow tone={arrowTone} />
-      </div>
+      <Arrow tone={arrowTone} />
 
       {/* Middle pill */}
-      <div className="sm:w-[200px] sm:shrink-0">
+      <div className="flex-1 min-w-0">
         <span
-          className={`inline-flex items-center rounded-full border px-3 py-1 text-[12px] ${middleClass}`}
+          className={`inline-flex items-center rounded-full border px-2.5 py-1 text-[11.5px] ${middleClass} whitespace-nowrap`}
         >
           {row.middle}
         </span>
       </div>
 
       {/* Arrow */}
-      <div className="hidden sm:flex">
-        <Arrow tone={arrowTone} />
-      </div>
-      <div className="flex sm:hidden justify-center">
-        <VertArrow tone={arrowTone} />
-      </div>
+      <Arrow tone={arrowTone} />
 
       {/* End pill */}
       <div>
         <span
-          className={`inline-flex items-center rounded-full border border-structural-border bg-white px-3 py-1 text-[12px] ${endClass}`}
+          className={`inline-flex items-center rounded-full border border-structural-border bg-white px-2.5 py-1 text-[11.5px] ${endClass} whitespace-nowrap`}
         >
           {row.end}
         </span>
@@ -146,9 +109,9 @@ export function ChaosToControlComparison() {
           Operational state: scattered vs connected
         </div>
 
-        <div className="rounded-lg border border-structural-border bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-2 rounded-lg border border-structural-border bg-white overflow-hidden">
           {/* BEFORE */}
-          <section className="p-5 sm:p-6">
+          <section className="p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-structural-border">
             <div className="mb-4 flex items-center gap-2">
               <span className="font-mono uppercase tracking-[0.18em] text-[11px] text-secondary-text">
                 Before
@@ -162,7 +125,7 @@ export function ChaosToControlComparison() {
               </span>
             </div>
 
-            <div className="flex flex-col gap-4 sm:gap-3">
+            <div className="flex flex-col gap-3">
               {beforeRows.map((row) => (
                 <FlowRowItem
                   key={`before-${row.start}`}
@@ -176,9 +139,6 @@ export function ChaosToControlComparison() {
               Disconnected. Everything lives in a different place.
             </div>
           </section>
-
-          {/* Hairline divider */}
-          <div className="border-t border-structural-border" />
 
           {/* AFTER */}
           <section className="p-5 sm:p-6">
@@ -195,7 +155,7 @@ export function ChaosToControlComparison() {
               </span>
             </div>
 
-            <div className="flex flex-col gap-4 sm:gap-3">
+            <div className="flex flex-col gap-3">
               {afterRows.map((row) => (
                 <FlowRowItem
                   key={`after-${row.start}`}
