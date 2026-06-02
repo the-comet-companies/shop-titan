@@ -8,7 +8,6 @@ type Message = {
 const messages: Message[] = [
   { channel: "SLACK", text: "Which art file is final?", time: "8:42" },
   { channel: "EMAIL", text: "Customer approved, but where?", time: "9:03", urgent: true },
-  { channel: "TEXT", text: "Whiteboard changed", time: "9:11" },
   { channel: "WALK-UP", text: "Blanks missing", time: "9:30", urgent: true },
   { channel: "EMAIL", text: "What is next?", time: "9:48" },
   { channel: "TEXT", text: "Ask the owner", time: "10:09" },
@@ -36,7 +35,7 @@ export function MorningInterruptionStack() {
       </div>
 
       <div className="mt-6 font-mono uppercase tracking-[0.18em] text-[11px] text-secondary-text">
-        Six open questions before the first job ships.
+        5 open questions before the first job ships.
       </div>
     </div>
   );

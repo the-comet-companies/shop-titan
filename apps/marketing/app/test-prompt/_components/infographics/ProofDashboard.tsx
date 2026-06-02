@@ -7,14 +7,14 @@ const channels = [
   { label: "Referral", value: "652", pct: (0.652 / 14) * 100 },
 ];
 
-const countries = [
-  { name: "United States", users: "23K" },
-  { name: "Singapore", users: "4.2K" },
-  { name: "India", users: "566" },
-  { name: "South Korea", users: "455" },
-  { name: "Canada", users: "366" },
-  { name: "Vietnam", users: "252" },
-  { name: "Philippines", users: "247" },
+const states = [
+  { name: "California", users: "23K" },
+  { name: "Texas", users: "4.2K" },
+  { name: "New York", users: "566" },
+  { name: "Florida", users: "455" },
+  { name: "Illinois", users: "366" },
+  { name: "Arizona", users: "252" },
+  { name: "Washington", users: "247" },
 ];
 
 const stats = [
@@ -95,26 +95,26 @@ export function ProofDashboard() {
       {/* Divider */}
       <div className="h-px bg-structural-border my-8" />
 
-      {/* REGION 3 — Country reach */}
+      {/* REGION 3 — State reach */}
       <div>
         <div className="font-mono uppercase tracking-[0.18em] text-[11px] text-secondary-text mb-4">
-          COUNTRY REACH
+          STATE REACH
         </div>
         <div className="divide-y divide-structural-border border-t border-b border-structural-border">
-          {countries.map((c) => (
+          {states.map((s) => (
             <div
-              key={c.name}
+              key={s.name}
               className="grid grid-cols-2 py-2.5 text-[13px]"
             >
-              <div className="text-charcoal">{c.name}</div>
+              <div className="text-charcoal">{s.name}</div>
               <div className="font-mono text-secondary-text text-right tabular-nums">
-                {c.users}
+                {s.users}
               </div>
             </div>
           ))}
         </div>
         <div className="mt-4 font-mono uppercase tracking-[0.18em] text-[11px] text-secondary-text">
-          ACTIVE IN 7+ COUNTRIES.
+          ACTIVE IN 7+ STATES.
         </div>
       </div>
 

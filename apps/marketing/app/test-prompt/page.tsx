@@ -17,7 +17,6 @@ import { MorningInterruptionStack } from "./_components/infographics/MorningInte
 import { GrowthPressureScale } from "./_components/infographics/GrowthPressureScale";
 import { OwnerAsOperatingSystem } from "./_components/infographics/OwnerAsOperatingSystem";
 import { OneJobSixPlaces } from "./_components/infographics/OneJobSixPlaces";
-import { ToolFragmentationCards } from "./_components/infographics/ToolFragmentationCards";
 import { HandoffRepairMap } from "./_components/infographics/HandoffRepairMap";
 import { ChaosToControlComparison } from "./_components/infographics/ChaosToControlComparison";
 import { ProofDashboard } from "./_components/infographics/ProofDashboard";
@@ -256,14 +255,6 @@ const forYou = [
   "You know you need more structure before scaling further.",
 ];
 
-const notForYou = [
-  "Shops that want a generic project management tool.",
-  "Shops that want another spreadsheet.",
-  "Shops that are not ready to improve their process.",
-  "Shops that want to keep every decision in the owner's head.",
-  "Shops that are fine with daily production chaos.",
-];
-
 const faqs = [
   {
     q: "Is this just project management software?",
@@ -392,7 +383,7 @@ export default function TestPromptPage() {
             </ul>
           </Reveal>
 
-          <Reveal delay={0.2} className="mt-10">
+          <Reveal delay={0.2} className="mt-10 flex justify-center">
             <CTAButton label="Create a Smoother Workflow" />
           </Reveal>
 
@@ -454,6 +445,23 @@ export default function TestPromptPage() {
 
           <Reveal delay={0.25} className="mt-10">
             <CTAButton label="Get Clear Daily View" />
+          </Reveal>
+        </Section>
+
+        {/* 3.5 Proof — DTLA Print scale */}
+        <Section tone="default">
+          <SectionHeading
+            eyebrow="Built from real production scale"
+            headline={
+              <>
+                DTLA Print runs <GradientText underline>real traffic</GradientText>.
+                Shop Titan was built from that pressure.
+              </>
+            }
+          />
+
+          <Reveal delay={0.15} className="mt-12 md:mt-16">
+            <ProofDashboard />
           </Reveal>
         </Section>
 
@@ -605,34 +613,6 @@ export default function TestPromptPage() {
 
           <Reveal delay={0.25} className="mt-12">
             <CTAButton label="Request a Walkthrough" />
-          </Reveal>
-        </Section>
-
-        {/* 7. False solutions */}
-        <Section>
-          <SectionHeading
-            eyebrow="Why generic tools fail"
-            headline={
-              <>
-                Whiteboards, spreadsheets, and generic task boards were{" "}
-                <span className="pain-em">not built for production shops</span>.
-              </>
-            }
-          />
-
-          <Reveal delay={0.15} className="mt-12 md:mt-16">
-            <ToolFragmentationCards />
-          </Reveal>
-
-          <Reveal delay={0.2} className="mt-12 max-w-2xl">
-            <p className="text-[17px] md:text-[18px] text-charcoal leading-[1.65]">
-              You do not need another place to type notes. You need a system
-              that understands how production actually moves.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.25} className="mt-10">
-            <CTAButton label="Stop Chasing Updates" />
           </Reveal>
         </Section>
 
@@ -837,23 +817,6 @@ export default function TestPromptPage() {
           </div>
         </Section>
 
-        {/* 11.5 Proof — DTLA Print scale */}
-        <Section tone="default">
-          <SectionHeading
-            eyebrow="Built from real production scale"
-            headline={
-              <>
-                DTLA Print runs <GradientText underline>real traffic</GradientText>.
-                Shop Titan was built from that pressure.
-              </>
-            }
-          />
-
-          <Reveal delay={0.15} className="mt-12 md:mt-16">
-            <ProofDashboard />
-          </Reveal>
-        </Section>
-
         {/* 12. Who this is for */}
         <Section tone="stone">
           <SectionHeading
@@ -893,72 +856,151 @@ export default function TestPromptPage() {
           </Reveal>
         </Section>
 
-        {/* 13. Who this is not for */}
-        <Section>
-          <SectionHeading
-            headline={
-              <>
-                This is not for shops that want another{" "}
-                <span className="pain-em">basic task board</span>.
-              </>
-            }
-            intro={<>Shop Titan is not for:</>}
-          />
-          <Reveal delay={0.15} className="mt-12">
-            <ul className="grid sm:grid-cols-2 border-t border-l border-structural-border">
-              {notForYou.map((line) => (
-                <li
-                  key={line}
-                  className="flex items-start gap-4 border-r border-b border-structural-border p-5"
-                >
-                  <Icon
-                    name="close"
-                    size={16}
-                    weight={300}
-                    className="text-secondary-text mt-0.5"
-                  />
-                  <span className="text-[15px] text-secondary-text leading-snug">
-                    {line}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-          <Reveal delay={0.2} className="mt-12">
-            <CTAButton label="See Shop Titan in Action" />
-          </Reveal>
-        </Section>
-
         {/* 14. Why we built this */}
         <Section tone="stone">
-          <div className="max-w-3xl mx-auto text-center">
-            <SectionHeading
-              align="center"
-              headline={
-                <>
-                  Built from{" "}
-                  <GradientText underline>
-                    real production pressure
-                  </GradientText>
-                  .
-                </>
-              }
-              intro={
-                <>
-                  Shop Titan was not built as a generic SaaS idea. It was built
-                  from the pressure of running real decoration production, where
-                  one missed detail can delay a job, trigger a reprint,
-                  frustrate a customer, and cut into margin.
-                </>
-              }
-            />
-            <Reveal
-              delay={0.15}
-              className="mt-10 text-[17px] text-charcoal font-medium"
-            >
-              This is software built around how production actually breaks.
+          <div className="max-w-4xl mx-auto">
+            {/* Origin badge */}
+            <Reveal>
+              <div className="flex justify-center">
+                <div className="inline-flex items-center gap-2 font-mono uppercase tracking-[0.18em] text-[10px] text-secondary-text border border-structural-border bg-white rounded-full px-3 py-1.5">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-60 animate-ping" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
+                  </span>
+                  Origin: Los Angeles, since 2017
+                </div>
+              </div>
             </Reveal>
-            <Reveal delay={0.2} className="mt-12 flex justify-center">
+
+            {/* Heading */}
+            <Reveal delay={0.05} className="mt-6 text-center">
+              <h2 className="text-[32px] sm:text-[42px] md:text-[52px] font-bold tracking-tight leading-[1.05] text-charcoal">
+                Built from{" "}
+                <GradientText underline>real production pressure</GradientText>.
+              </h2>
+              <p className="mt-5 max-w-2xl mx-auto text-[15.5px] md:text-[16.5px] text-secondary-text leading-relaxed">
+                Shop Titan was not built as a generic SaaS idea. It was built
+                from the pressure of running real decoration production.
+              </p>
+            </Reveal>
+
+            {/* Consequence chain — the memorable visual */}
+            <Reveal delay={0.15} className="mt-10">
+              <div className="bg-white border border-structural-border rounded-xl overflow-hidden">
+                <div className="flex items-center justify-between px-4 py-2.5 border-b border-structural-border bg-[#FBFBFB]">
+                  <span className="font-mono uppercase tracking-[0.18em] text-[10px] text-secondary-text">
+                    One missed detail, what happens next
+                  </span>
+                  <span className="font-mono uppercase tracking-[0.18em] text-[10px] text-rose-600 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+                    Margin event
+                  </span>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-stretch divide-y sm:divide-y-0 sm:divide-x divide-structural-border">
+                  {[
+                    { n: "01", label: "Detail missed", tone: "neutral" as const },
+                    { n: "02", label: "Job delayed", tone: "warn" as const },
+                    { n: "03", label: "Reprint triggered", tone: "warn" as const },
+                    { n: "04", label: "Customer frustrated", tone: "warn" as const },
+                    { n: "05", label: "Margin cut", tone: "critical" as const },
+                  ].map((step) => {
+                    const labelClass =
+                      step.tone === "critical"
+                        ? "text-rose-600"
+                        : "text-charcoal";
+                    const numClass =
+                      step.tone === "critical"
+                        ? "text-rose-500"
+                        : "text-secondary-text";
+                    const bg =
+                      step.tone === "critical"
+                        ? "bg-rose-50/40"
+                        : "bg-white";
+                    return (
+                      <div
+                        key={step.n}
+                        className={`flex-1 px-4 py-4 sm:py-5 ${bg}`}
+                      >
+                        <div
+                          className={`font-mono text-[10px] tabular-nums tracking-[0.18em] ${numClass}`}
+                        >
+                          {step.n}
+                        </div>
+                        <div
+                          className={`mt-1.5 font-bold text-[13.5px] tracking-tight ${labelClass}`}
+                        >
+                          {step.label}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Founder quote */}
+            <Reveal delay={0.2} className="mt-10">
+              <figure className="relative bg-white border border-structural-border rounded-2xl p-7 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+                <span
+                  className="absolute -top-4 left-8 bg-primary text-white w-9 h-9 rounded-full flex items-center justify-center text-[22px] leading-none font-serif"
+                  aria-hidden="true"
+                >
+                  &quot;
+                </span>
+                <blockquote className="text-[19px] md:text-[23px] leading-snug text-charcoal font-medium">
+                  We built Shop Titan because we got tired of{" "}
+                  <span className="pain-em">being the system</span>. The
+                  whiteboard. The inbox. The &ldquo;ask the owner&rdquo; loop.
+                  So we built the workflow that runs our shop. Now it can run
+                  yours.
+                </blockquote>
+                <figcaption className="mt-6 pt-5 border-t border-structural-border flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <div className="font-bold text-charcoal text-[14px]">
+                      DTLA Print
+                    </div>
+                    <div className="text-secondary-text text-[11px] font-mono uppercase tracking-[0.18em]">
+                      Operator to builder
+                    </div>
+                  </div>
+                  <span className="font-mono uppercase tracking-[0.18em] text-[10px] text-secondary-text">
+                    Built in house since 2017
+                  </span>
+                </figcaption>
+              </figure>
+            </Reveal>
+
+            {/* Punchline callout */}
+            <Reveal delay={0.25} className="mt-10">
+              <div className="relative bg-primary text-white rounded-2xl px-7 py-10 md:px-10 md:py-12 overflow-hidden">
+                {/* Soft background pattern */}
+                <div
+                  className="absolute inset-0 opacity-[0.08] pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(circle at 25% 30%, white 0, transparent 35%), radial-gradient(circle at 80% 70%, white 0, transparent 40%)",
+                  }}
+                  aria-hidden="true"
+                />
+                <span className="absolute top-4 left-5 font-mono uppercase tracking-[0.18em] text-[10px] text-white/70">
+                  The Promise
+                </span>
+                <span className="absolute top-4 right-5 font-mono uppercase tracking-[0.18em] text-[10px] text-white/70">
+                  ST.001
+                </span>
+                <p className="relative text-center font-bold text-[22px] md:text-[30px] leading-tight tracking-tight mt-3">
+                  This is software built around{" "}
+                  <span className="italic font-light">
+                    how production actually breaks
+                  </span>
+                  .
+                </p>
+              </div>
+            </Reveal>
+
+            {/* CTA */}
+            <Reveal delay={0.3} className="mt-10 flex justify-center">
               <CTAButton label="Request a Walkthrough" />
             </Reveal>
           </div>

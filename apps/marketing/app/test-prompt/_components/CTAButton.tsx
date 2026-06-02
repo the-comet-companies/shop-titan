@@ -10,7 +10,8 @@ export type CTALabel =
   | "Stop Being the System"
   | "Get Clear Daily View"
   | "Create a Smoother Workflow"
-  | "Run Production With Confidence";
+  | "Run Production With Confidence"
+  | "Take Control of Production";
 
 type Props = {
   label: CTALabel;
