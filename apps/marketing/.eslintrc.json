@@ -5,7 +5,7 @@
   ],
   "overrides": [
     {
-      "files": ["app/test-prompt/**/*.{ts,tsx}"],
+      "files": ["app/test-prompt/**/*.{ts,tsx}", "app/scheduling/**/*.{ts,tsx}"],
       "rules": {
         "react/no-unescaped-entities": "off",
         "@typescript-eslint/no-unused-vars": "off"
