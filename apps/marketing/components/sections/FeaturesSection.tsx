@@ -5,17 +5,19 @@ import { useState, useRef } from 'react';
 import Image from 'next/image';
 import VideoPlayer from '@/components/VideoPlayer';
 import VideoModal from '@/components/ui/VideoModal';
-import quotesImage from '@/assets/Filemaker/Quotes.png';
-import ordersImage from '@/assets/Filemaker/Orders.png';
-import customersImage from '@/assets/Filemaker/Customers.png';
-import purchaseOrdersImage from '@/assets/Filemaker/PurchaseOrders.png';
-import taskTypesImage from '@/assets/Filemaker/TaskTypes.png';
-import pricingGridImage from '@/assets/Filemaker/ServicePricingGrid.png';
-import screenPricingGridImage from '@/assets/Filemaker/ScreenPricingGrid.png';
-import emailTemplateImage from '@/assets/Filemaker/EmailTemplate.png';
-import reportingImage from '@/assets/Filemaker/Reporting.png';
-import contractorImage from '@/assets/Filemaker/Contractor.png';
-import transferFirmImage from '@/assets/Filemaker/transfer&firm.gif';
+
+type ImgRef = { src: string; width: number; height: number };
+const quotesImage: ImgRef = { src: '/filemaker/Quotes.png', width: 1819, height: 1036 };
+const ordersImage: ImgRef = { src: '/filemaker/Orders.png', width: 1830, height: 1025 };
+const customersImage: ImgRef = { src: '/filemaker/Customers.png', width: 1607, height: 1016 };
+const purchaseOrdersImage: ImgRef = { src: '/filemaker/PurchaseOrders.png', width: 1904, height: 1132 };
+const taskTypesImage: ImgRef = { src: '/filemaker/TaskTypes.png', width: 1567, height: 842 };
+const pricingGridImage: ImgRef = { src: '/filemaker/ServicePricingGrid.png', width: 1892, height: 833 };
+const screenPricingGridImage: ImgRef = { src: '/filemaker/ScreenPricingGrid.png', width: 1531, height: 416 };
+const emailTemplateImage: ImgRef = { src: '/filemaker/EmailTemplate.png', width: 1877, height: 972 };
+const reportingImage: ImgRef = { src: '/filemaker/Reporting.png', width: 1297, height: 925 };
+const contractorImage: ImgRef = { src: '/filemaker/Contractor.png', width: 727, height: 548 };
+const transferFirmImage: ImgRef = { src: '/filemaker/transfer%26firm.gif', width: 1730, height: 1030 };
 
 // --- Shared Feature Type ---
 interface Feature {
@@ -291,11 +293,13 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                         </div>
                         <div className="relative min-h-[400px] bg-white dark:bg-gray-950">
                             <Image
-                                src={feature.imageSrc}
+                                src={feature.imageSrc.src}
                                 alt={feature.title}
+                                width={feature.imageSrc.width}
+                                height={feature.imageSrc.height}
                                 className="w-full h-auto"
                                 sizes="(max-width: 1024px) 100vw, 66vw"
-                                {...(typeof feature.imageSrc === 'object' && 'src' in feature.imageSrc && typeof feature.imageSrc.src === 'string' && feature.imageSrc.src.endsWith('.gif') ? { unoptimized: true } : { placeholder: 'blur' as const })}
+                                unoptimized={feature.imageSrc.src.endsWith('.gif')}
                             />
                         </div>
                     </div>

@@ -4,35 +4,19 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
-// FileMaker screenshots
-import quotesImg from '@/assets/Filemaker/Quotes.png';
-import ordersImg from '@/assets/Filemaker/Orders.png';
-import customersImg from '@/assets/Filemaker/Customers.png';
-import purchaseOrdersImg from '@/assets/Filemaker/PurchaseOrders.png';
-import reportingImg from '@/assets/Filemaker/Reporting.png';
-import emailTemplateImg from '@/assets/Filemaker/EmailTemplate.png';
-
-// Website screenshots
-import storeFrontImg from '@/assets/Website/StoreFront.png';
-import productCatalogImg from '@/assets/Website/ProductCatalog.png';
-import brandsImg from '@/assets/Website/Brands.png';
-import servicesImg from '@/assets/Website/Services.png';
-import customerPortalImg from '@/assets/Website/CustomerPortal.png';
-import seoImg from '@/assets/Website/SEO.png';
-
 const slides = [
-    { src: storeFrontImg, label: 'Storefront', type: 'Website' },
-    { src: quotesImg, label: 'Quotes', type: 'FileMaker' },
-    { src: productCatalogImg, label: 'Product Catalog', type: 'Website' },
-    { src: ordersImg, label: 'Orders', type: 'FileMaker' },
-    { src: brandsImg, label: 'Brands', type: 'Website' },
-    { src: customersImg, label: 'Customers / Vendors', type: 'FileMaker' },
-    { src: servicesImg, label: 'Services', type: 'Website' },
-    { src: purchaseOrdersImg, label: 'Purchase Orders', type: 'FileMaker' },
-    { src: customerPortalImg, label: 'Customer Portal', type: 'Website' },
-    { src: emailTemplateImg, label: 'Email Templates', type: 'FileMaker' },
-    { src: seoImg, label: 'SEO & Analytics', type: 'Website' },
-    { src: reportingImg, label: 'Reporting', type: 'FileMaker' },
+    { src: '/website/StoreFront.png', label: 'Storefront', type: 'Website' },
+    { src: '/filemaker/Quotes.png', label: 'Quotes', type: 'FileMaker' },
+    { src: '/website/ProductCatalog.png', label: 'Product Catalog', type: 'Website' },
+    { src: '/filemaker/Orders.png', label: 'Orders', type: 'FileMaker' },
+    { src: '/website/Brands.png', label: 'Brands', type: 'Website' },
+    { src: '/filemaker/Customers.png', label: 'Customers / Vendors', type: 'FileMaker' },
+    { src: '/website/Services.png', label: 'Services', type: 'Website' },
+    { src: '/filemaker/PurchaseOrders.png', label: 'Purchase Orders', type: 'FileMaker' },
+    { src: '/website/CustomerPortal.png', label: 'Customer Portal', type: 'Website' },
+    { src: '/filemaker/EmailTemplate.png', label: 'Email Templates', type: 'FileMaker' },
+    { src: '/website/SEO.png', label: 'SEO & Analytics', type: 'Website' },
+    { src: '/filemaker/Reporting.png', label: 'Reporting', type: 'FileMaker' },
 ];
 
 export default function WorkflowVideoSection() {
@@ -126,7 +110,6 @@ export default function WorkflowVideoSection() {
                                     alt={`${slide.type}  - ${slide.label}`}
                                     className="w-full h-full object-cover object-top"
                                     sizes="(max-width: 1024px) 100vw, 1100px"
-                                    placeholder="blur"
                                     priority={current === 0}
                                     fill
                                 />

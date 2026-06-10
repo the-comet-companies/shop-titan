@@ -3,7 +3,10 @@ import PainPointSection from "@/components/sections/PainPointSection";
 import CanYouRelateSection from "@/components/sections/CanYouRelateSection";
 import ProductShowcaseSection from "@/components/sections/ProductShowcaseSection";
 import PathSelectionSection from "@/components/sections/PathSelectionSection";
-import WorkflowVideoSection from "@/components/sections/WorkflowVideoSection";
+import WhyWebsiteSection from "@/components/sections/WhyWebsiteSection";
+import WebsiteSecretSection from "@/components/sections/WebsiteSecretSection";
+import WebsiteEverythingSection from "@/components/sections/WebsiteEverythingSection";
+import WebsiteFeaturesGridSection from "@/components/sections/WebsiteFeaturesGridSection";
 import BenefitsSection from "@/components/sections/BenefitsSection";
 import IndustriesSection from "@/components/sections/IndustriesSection";
 import ShowcaseSection from "@/components/sections/ShowcaseSection";
@@ -19,9 +22,12 @@ export default function Home() {
                 <HeroSection />
                 <PainPointSection />
                 <PathSelectionSection />
+                <WhyWebsiteSection />
+                <WebsiteSecretSection />
+                <WebsiteEverythingSection />
+                <WebsiteFeaturesGridSection />
                 <BenefitsSection />
                 <CanYouRelateSection />
-                <WorkflowVideoSection />
                 {/* <ProductShowcaseSection /> */}
                 <IndustriesSection />
                 <ShowcaseSection />

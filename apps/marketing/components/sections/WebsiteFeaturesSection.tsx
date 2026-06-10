@@ -2,17 +2,19 @@
 
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { useState, useRef } from 'react';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import VideoPlayer from '@/components/VideoPlayer';
 import VideoModal from '@/components/ui/VideoModal';
-import brandsImage from '@/assets/Website/Brands.png';
-import storefrontImage from '@/assets/Website/StoreFront.png';
-import productCatalogImage from '@/assets/Website/ProductCatalog.png';
-import servicesImage from '@/assets/Website/Services.png';
-import mobileImage from '@/assets/Website/mobile.png';
-import dragAndDropImage from '@/assets/Website/DragAndDrop.png';
-import customerPortalImage from '@/assets/Website/CustomerPortal.png';
-import seoImage from '@/assets/Website/SEO.png';
+
+type ImgRef = { src: string; width: number; height: number };
+const brandsImage: ImgRef = { src: '/website/Brands.png', width: 1881, height: 871 };
+const storefrontImage: ImgRef = { src: '/website/StoreFront.png', width: 1773, height: 795 };
+const productCatalogImage: ImgRef = { src: '/website/ProductCatalog.png', width: 1302, height: 867 };
+const servicesImage: ImgRef = { src: '/website/Services.png', width: 1723, height: 567 };
+const mobileImage: ImgRef = { src: '/website/mobile.png', width: 843, height: 1264 };
+const dragAndDropImage: ImgRef = { src: '/website/DragAndDrop.png', width: 1389, height: 724 };
+const customerPortalImage: ImgRef = { src: '/website/CustomerPortal.png', width: 1706, height: 901 };
+const seoImage: ImgRef = { src: '/website/SEO.png', width: 1376, height: 768 };
 
 // --- Shared Feature Type ---
 interface Feature {
@@ -24,7 +26,7 @@ interface Feature {
     solution: { label: string; description: string };
     highlights?: string[];
     videoSrc: string;
-    imageSrc?: StaticImageData;
+    imageSrc?: ImgRef;
     layout?: 'stacked' | 'side-by-side';
     hideBrowserChrome?: boolean;
 }
@@ -251,11 +253,12 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                     {feature.hideBrowserChrome ? (
                         <div className="flex items-center justify-center">
                             <Image
-                                src={feature.imageSrc}
+                                src={feature.imageSrc.src}
                                 alt={feature.title}
+                                width={feature.imageSrc.width}
+                                height={feature.imageSrc.height}
                                 className="h-auto max-h-[500px] w-auto"
                                 sizes="(max-width: 1024px) 50vw, 33vw"
-                                placeholder="blur"
                             />
                         </div>
                     ) : (
@@ -270,11 +273,12 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                             </div>
                             <div className="relative min-h-[400px] bg-white dark:bg-gray-950">
                                 <Image
-                                    src={feature.imageSrc}
+                                    src={feature.imageSrc.src}
                                     alt={feature.title}
+                                    width={feature.imageSrc.width}
+                                    height={feature.imageSrc.height}
                                     className="w-full h-auto"
                                     sizes="(max-width: 1024px) 100vw, 66vw"
-                                    placeholder="blur"
                                 />
                             </div>
                         </div>
@@ -343,11 +347,12 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                             <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">more_vert</span>
                         </div>
                         <Image
-                            src={feature.imageSrc}
+                            src={feature.imageSrc.src}
                             alt={feature.title}
+                            width={feature.imageSrc.width}
+                            height={feature.imageSrc.height}
                             className="w-full h-auto"
                             sizes="(max-width: 1024px) 100vw, 1280px"
-                            placeholder="blur"
                         />
                     </div>
                 </motion.div>
