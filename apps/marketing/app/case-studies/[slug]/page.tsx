@@ -197,15 +197,23 @@ export default async function CaseStudyPage({ params }: PageProps) {
                             Explore the System Behind These Results
                         </h2>
                         <div className="flex flex-wrap gap-3">
-                            {study.linksTo.map((link) => (
-                                <Link
-                                    key={link}
-                                    href={link}
-                                    className="px-4 py-2 text-xs font-bold text-primary border border-primary/30 rounded-full hover:bg-primary/5 transition-colors"
-                                >
-                                    {link.replace(/\//g, ' / ').trim()}
-                                </Link>
-                            ))}
+                            {study.linksTo.map((link) => {
+                                const slug = link.split('/').filter(Boolean).pop() ?? link;
+                                const label = slug
+                                    .split('-')
+                                    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+                                    .join(' ')
+                                    .replace(/Filemaker/g, 'FileMaker');
+                                return (
+                                    <Link
+                                        key={link}
+                                        href={link}
+                                        className="px-4 py-2 text-xs font-bold text-primary border border-primary/30 rounded-full hover:bg-primary/5 transition-colors"
+                                    >
+                                        {label}
+                                    </Link>
+                                );
+                            })}
                         </div>
                     </div>
                 </section>

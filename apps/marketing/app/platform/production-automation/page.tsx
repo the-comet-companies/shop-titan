@@ -290,9 +290,6 @@ export default function ProductionAutomationPage() {
                                         <div key={f.title} className="p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900">
                                             <p className="text-sm font-bold text-charcoal dark:text-white mb-1">{f.title}</p>
                                             <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{f.desc}</p>
-                                            <div className="mt-3 h-32 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                                                <span className="text-xs text-secondary-text dark:text-gray-500">(Screenshot: Production job board)</span>
-                                            </div>
                                         </div>
                                     ))}
                                 </div>
@@ -318,9 +315,6 @@ export default function ProductionAutomationPage() {
                                         <div key={f.title} className="p-4 rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900">
                                             <p className="text-sm font-bold text-charcoal dark:text-white mb-1">{f.title}</p>
                                             <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{f.desc}</p>
-                                            <div className="mt-3 h-32 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                                                <span className="text-xs text-secondary-text dark:text-gray-500">(Screenshot: Scheduling dashboard)</span>
-                                            </div>
                                         </div>
                                     ))}
                                 </div>
@@ -458,14 +452,6 @@ export default function ProductionAutomationPage() {
                             ))}
                         </motion.div>
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 12 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="mt-6 h-48 rounded-xl bg-gray-100 dark:bg-gray-800 border border-structural-border dark:border-gray-800 flex items-center justify-center"
-                        >
-                            <span className="text-sm text-secondary-text dark:text-gray-500">(Diagram: Order → Art Approval → Production → QC → Shipping flow)</span>
-                        </motion.div>
                     </div>
                 </section>
 
@@ -647,23 +633,6 @@ export default function ProductionAutomationPage() {
                                 See the Complete System
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.3 }}
-                            className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-secondary-text dark:text-gray-500"
-                        >
-                            <Link href="/platform/complete-system" className="hover:text-primary transition-colors">Complete System</Link>
-                            <span className="text-structural-border dark:text-gray-700">·</span>
-                            <Link href="/platform/filemaker-system" className="hover:text-primary transition-colors">FileMaker System</Link>
-                            <span className="text-structural-border dark:text-gray-700">·</span>
-                            <Link href="/platform/inventory-management" className="hover:text-primary transition-colors">Inventory Management</Link>
-                            <span className="text-structural-border dark:text-gray-700">·</span>
-                            <Link href="/platform/ecommerce-storefront" className="hover:text-primary transition-colors">Ecommerce Storefront</Link>
-                            <span className="text-structural-border dark:text-gray-700">·</span>
-                            <Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link>
                         </motion.div>
                     </div>
                 </section>

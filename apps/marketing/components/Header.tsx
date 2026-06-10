@@ -8,7 +8,7 @@ import { useActiveSection } from '@/hooks/useActiveSection';
 import { cn } from '@/lib/utils';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 
-const NAV_SECTIONS = ['about', 'features', 'case-studies', 'pricing', 'blog'] as const;
+const NAV_SECTIONS = ['products', 'about', 'features', 'case-studies', 'pricing', 'blog'] as const;
 const ACTIVE_SECTIONS = ['hero', 'platform', 'features', 'case-studies', 'pricing', 'blog', 'contact'] as const;
 
 // Paid-traffic landing pages render their own minimal header (logo + single CTA, no nav).
@@ -53,6 +53,11 @@ export default function Header() {
 
         if (sectionId === 'about') {
             router.push('/about');
+            return;
+        }
+
+        if (sectionId === 'products') {
+            router.push('/products');
             return;
         }
 
@@ -117,7 +122,7 @@ export default function Header() {
                                 transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
                                 className={cn(
                                     "text-xs font-semibold transition-[color,transform] duration-300 uppercase tracking-wider focus-primary tap-target hover:scale-110",
-                                    (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog') || ((section as string) === 'contact' && pathname === '/reach-out') || (section === 'case-studies' && pathname === '/case-studies') || (section === 'pricing' && pathname === '/pricing') || (section === 'about' && pathname === '/about')
+                                    (activeSection === section && pathname === '/') || (section === 'blog' && pathname === '/blog') || ((section as string) === 'contact' && pathname === '/reach-out') || (section === 'case-studies' && pathname === '/case-studies') || (section === 'pricing' && pathname === '/pricing') || (section === 'about' && pathname === '/about') || (section === 'products' && pathname === '/products')
                                         ? "text-primary dark:text-white"
                                         : "text-secondary-text dark:text-gray-400 hover:text-primary dark:hover:text-white"
                                 )}

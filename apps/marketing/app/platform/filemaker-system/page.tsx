@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
+import FeaturesSection from '@/components/sections/FeaturesSection';
 import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
 const faqs = [
@@ -131,6 +132,9 @@ export default function FileMakerSystemPage() {
                         </motion.div>
                     </div>
                 </section>
+
+                {/* ───── FILEMAKER FEATURES ───── */}
+                <FeaturesSection hideLearnMore />
 
                 {/* ───── DEFINITION ───── */}
                 <section className="relative bg-surface dark:bg-gray-950">
@@ -361,7 +365,6 @@ export default function FileMakerSystemPage() {
                                         <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                                             <span className="material-symbols-outlined text-primary text-lg">{s.icon}</span>
                                         </div>
-                                        <span className="text-[10px] font-bold tracking-widest text-primary/60 uppercase">{s.step}</span>
                                     </div>
                                     <h3 className="font-bold text-charcoal dark:text-white mb-2">{s.title}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{s.desc}</p>

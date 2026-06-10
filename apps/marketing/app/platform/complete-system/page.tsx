@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
+import WebsiteFeaturesSection from '@/components/sections/WebsiteFeaturesSection';
+import FeaturesSection from '@/components/sections/FeaturesSection';
 import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
 const faqs = [
@@ -129,6 +131,12 @@ export default function CompleteSystemPage() {
                         </motion.div>
                     </div>
                 </section>
+
+                {/* ───── WEBSITE FEATURES ───── */}
+                <WebsiteFeaturesSection hideLearnMore />
+
+                {/* ───── FILEMAKER FEATURES ───── */}
+                <FeaturesSection hideLearnMore />
 
                 {/* ───── DEFINITION ───── */}
                 <section className="relative bg-surface dark:bg-gray-950">
