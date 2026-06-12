@@ -71,7 +71,7 @@ export const metadata: Metadata = {
                 url: 'https://shoptitan.app/og-image.png',
                 width: 1200,
                 height: 630,
-                alt: 'Shop Titan  - Print Shop Management System & Ecommerce Platform',
+                alt: 'Shop Titan  - Ecommerce Storefront & Print Shop Management System',
             },
         ],
     },
