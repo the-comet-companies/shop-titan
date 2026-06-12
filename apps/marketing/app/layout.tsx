@@ -28,21 +28,21 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
     metadataBase: new URL('https://shoptitan.app'),
     title: {
-        default: 'Shop Titan | Print Shop Management System & Ecommerce Platform',
+        default: 'Shop Titan | Ecommerce Storefront & Print Shop Management System',
         template: '%s | Shop Titan',
     },
     description:
-        'Pre-built FileMaker system and ecommerce storefront for print shops. Proven in a $1M+ operation  - deploy in weeks, not months. Quotes, orders, inventory, production, and online ordering.',
+        'A branded ecommerce storefront for print and decoration shops  - customers find you and order online without a phone call. Add a pre-built FileMaker system to run quotes, orders, inventory, and production. Proven in a $1M+ shop.',
     keywords: [
+        'custom apparel online store',
+        'print shop ecommerce',
+        'online ordering for printers',
+        'ecommerce for screen printers',
         'print shop management system',
         'filemaker for print shops',
         'screen printing software',
         'apparel decorator management',
-        'print shop ecommerce',
-        'order management for printers',
         'screen printing inventory',
-        'production automation',
-        'custom apparel online store',
         'print shop CRM',
     ],
     authors: [{ name: 'Shop Titan' }],
@@ -64,8 +64,8 @@ export const metadata: Metadata = {
         locale: 'en_US',
         url: 'https://shoptitan.app',
         siteName: 'Shop Titan',
-        title: 'Shop Titan | Print Shop Management System & Ecommerce Platform',
-        description: 'Pre-built FileMaker system and ecommerce storefront for print shops. Proven in a $1M+ operation  - deploy in weeks, not months.',
+        title: 'Shop Titan | Ecommerce Storefront & Print Shop Management System',
+        description: 'A branded ecommerce storefront for print shops  - customers order online. Add a pre-built FileMaker system to run operations. Proven in a $1M+ shop.',
         images: [
             {
                 url: 'https://shoptitan.app/og-image.png',
@@ -78,8 +78,8 @@ export const metadata: Metadata = {
 
     twitter: {
         card: 'summary_large_image',
-        title: 'Shop Titan | Print Shop Management System',
-        description: 'Pre-built FileMaker system and ecommerce storefront for print shops. Deploy in weeks, not months.',
+        title: 'Shop Titan | Ecommerce Storefront for Print Shops',
+        description: 'A branded storefront for print shops  - customers order online. Add a FileMaker system to run operations. Deploy in weeks.',
         images: ['https://shoptitan.app/og-image.png'],
         creator: '@shoptitan',
     },
@@ -137,7 +137,7 @@ export default function RootLayout({
                                     "@type": "Organization",
                                     "@id": "https://shoptitan.app/#organization",
                                     "name": "Shop Titan",
-                                    "description": "Pre-built FileMaker systems and ecommerce storefronts for print shops. Proven in a $1M+ screen printing operation.",
+                                    "description": "Branded ecommerce storefronts and pre-built FileMaker systems for print shops. Proven in a $1M+ screen printing operation.",
                                     "url": "https://shoptitan.app",
                                     "logo": {
                                         "@type": "ImageObject",
@@ -155,11 +155,12 @@ export default function RootLayout({
                                         "availableLanguage": "English"
                                     },
                                     "knowsAbout": [
-                                        "FileMaker Development",
+                                        "Ecommerce for Print Shops",
+                                        "Online Ordering for Apparel Decorators",
                                         "Print Shop Management",
+                                        "FileMaker Development",
                                         "Screen Printing Software",
-                                        "Apparel Decoration Operations",
-                                        "Ecommerce for Print Shops"
+                                        "Apparel Decoration Operations"
                                     ]
                                 },
                                 {
@@ -176,7 +177,7 @@ export default function RootLayout({
                                     "name": "Shop Titan",
                                     "applicationCategory": "BusinessApplication",
                                     "operatingSystem": "Web, FileMaker",
-                                    "description": "Complete print shop management system  - FileMaker-based operations platform with integrated ecommerce storefront.",
+                                    "description": "Ecommerce storefront for print shops with online ordering, plus an integrated FileMaker operations platform for quotes, orders, inventory, and production.",
                                     "offers": {
                                         "@type": "Offer",
                                         "availability": "https://schema.org/InStock",
