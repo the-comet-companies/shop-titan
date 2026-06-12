@@ -68,10 +68,10 @@ export default function WhyWebsiteSection() {
                             <div className="absolute bottom-0 -right-[50px] w-[60%] rotate-[2deg] origin-bottom-right">
                                 <div className="rounded-xl overflow-hidden border border-structural-border dark:border-gray-800 shadow-2xl shadow-primary/15 bg-white">
                                     <Image
-                                        src="/website/ProductCatalog.png"
-                                        alt="Decoration aware product catalog"
-                                        width={1302}
-                                        height={867}
+                                        src="/website/CustomerPortal.png"
+                                        alt="Customer portal for tracking and reordering"
+                                        width={1706}
+                                        height={901}
                                         sizes="(max-width: 1024px) 60vw, 380px"
                                         className="w-full h-auto"
                                     />
