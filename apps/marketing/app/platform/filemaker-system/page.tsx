@@ -91,7 +91,7 @@ export default function FileMakerSystemPage() {
                             transition={{ duration: 0.4 }}
                             className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-6"
                         >
-                            The Platform
+                            Back Office System
                         </motion.span>
                         <motion.h1
                             initial={{ opacity: 0, y: 16 }}
@@ -198,9 +198,13 @@ export default function FileMakerSystemPage() {
                             viewport={{ once: true }}
                             className="text-sm text-primary font-medium mt-8"
                         >
-                            Looking for a complete system including an online storefront?{' '}
+                            The FileMaker system is the back office behind your Shop Titan website  - and it runs on its own too. Looking for the storefront itself?{' '}
+                            <Link href="/platform/ecommerce-storefront" className="underline hover:no-underline">
+                                See the website system →
+                            </Link>
+                            {' '}Want both connected as one platform?{' '}
                             <Link href="/platform/complete-system" className="underline hover:no-underline">
-                                See our complete platform →
+                                See the complete system →
                             </Link>
                             {' '}If you&apos;re evaluating whether to{' '}
                             <Link href="/hire/filemaker-developer" className="underline hover:no-underline">

@@ -137,9 +137,9 @@ export default function ContactSection() {
                             transition={{ duration: 0.6 }}
                             className="space-y-6"
                         >
-                            <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-charcoal dark:text-white leading-[1.1]">
+                            <h1 className="text-3xl lg:text-5xl font-bold tracking-tight text-charcoal dark:text-white leading-[1.1]">
                                 The Operating System for High-Volume Apparel.
-                            </h2>
+                            </h1>
                             <p className="text-base lg:text-xl text-secondary-text dark:text-gray-400 font-medium leading-relaxed max-w-lg">
                                 Join modern decorators running better, faster, and smarter operations. Stop wrestling with spreadsheets and start scaling.
                             </p>
@@ -200,9 +200,9 @@ export default function ContactSection() {
                             className={`lg:hidden text-center mb-8 md:mb-10 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                                 }`}
                         >
-                            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-charcoal dark:text-white mb-3 md:mb-4">
+                            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-charcoal dark:text-white mb-3 md:mb-4">
                                 {step === 1 ? "Let\u2019s Talk" : "Tell Us More"}
-                            </h1>
+                            </h2>
                             <p className="text-secondary-text dark:text-gray-400 text-base md:text-lg">
                                 {step === 1 ? "No pressure. No sales pitch. Just clarity." : "What's the biggest challenge you're facing right now?"}
                             </p>
@@ -216,9 +216,9 @@ export default function ContactSection() {
                         >
                             {/* Form Header */}
                             <div className="mb-6 lg:mb-8 text-center lg:text-left">
-                                <h3 className="text-2xl lg:text-3xl font-bold text-charcoal dark:text-white mb-2">
+                                <h2 className="text-2xl lg:text-3xl font-bold text-charcoal dark:text-white mb-2">
                                     {step === 1 ? "Let\u2019s Talk" : "Tell Us More"}
-                                </h3>
+                                </h2>
                                 <p className="text-secondary-text dark:text-gray-400">
                                     {step === 1 ? "Get a guided tour of the platform." : "We'll tailor the demo to your needs."}
                                 </p>

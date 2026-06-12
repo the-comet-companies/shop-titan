@@ -582,15 +582,6 @@ export default function EcommerceStorefrontPage() {
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                         </motion.div>
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.3 }}
-                            className="text-sm text-secondary-text dark:text-gray-400 mt-4"
-                        >
-                            <Link href="/pricing" className="text-primary hover:underline">View Pricing →</Link>
-                        </motion.p>
                     </div>
                 </section>
             </main>

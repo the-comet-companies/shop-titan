@@ -73,6 +73,7 @@ export const tracks: Track[] = [
         id: 'website',
         name: 'Website Only',
         tagline: 'An SEO-optimized storefront that brings customers in and converts them.',
+        badge: 'Start Here',
         cardFeatures: [
             { name: 'SEO-optimized website', included: true },
             { name: 'Online ordering & payments', included: true },
@@ -254,6 +255,10 @@ export const comparisonPricing = [
 ];
 
 export const faqs: FAQ[] = [
+    {
+        question: 'Do I have to start with the website?',
+        answer: 'Most shops start with the website  - a branded storefront with online ordering is the fastest way to bring customers in and take orders without the phone. You can also start with the FileMaker back office alone, or take both connected. Start with whichever is your bottleneck and add the other later; your setup investment carries over.',
+    },
     {
         question: 'What is FileMaker and why do I need it?',
         answer: 'FileMaker is a database platform that lets you manage orders, inventory, customers, and production in one system. Unlike generic tools, it is built to handle the complexity of print shop operations - size/color matrices, multi-method production, vendor management, and custom pricing.',

@@ -131,7 +131,7 @@ export default function ProductsPage() {
                             transition={{ duration: 0.5, delay: 0.1 }}
                             className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
                         >
-                            Two systems for print shops. Use one, or run them connected.
+                            Get your shop online and taking orders. Add the FileMaker back office when you&apos;re ready.
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 12 }}
@@ -139,7 +139,7 @@ export default function ProductsPage() {
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8"
                         >
-                            Shop Titan offers two products: a branded website for taking orders online, and a FileMaker system for running the shop floor. Each works on its own. Together they run the entire business on one platform.
+                            Shop Titan starts with a branded website that takes orders online  - customers find you, configure their job, and order without a phone call. Add the FileMaker system to run quotes, inventory, and production on the same platform when you&apos;re ready.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}

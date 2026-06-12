@@ -18,10 +18,10 @@ const testimonials: Testimonial[] = [
         company: "Premier Embroidery Co.",
     },
     {
-        quote: "The single source of truth concept is revolutionary. No more hunting for information across spreadsheets  - everything is exactly where you expect it.",
-        author: "Michael Chen",
-        role: "Production Manager",
-        company: "Elite Screen Printing",
+        quote: "Customers used to call and email for every quote. Now they configure the job and order right on our site  - we wake up to orders already in the queue.",
+        author: "Marcus Reed",
+        role: "Owner",
+        company: "Northside Print Co.",
     },
     {
         quote: "We scaled from 5 to 20 employees without losing our minds. The system handles everything  - orders, scheduling, QC. I can't imagine running the shop without it.",
@@ -36,10 +36,10 @@ const testimonials: Testimonial[] = [
         company: "Park Print & Promo",
     },
     {
-        quote: "Rush job coordination used to be pure chaos. Now it's a few clicks and everyone knows exactly what to do. Night and day difference.",
-        author: "Tanya Rhodes",
-        role: "Shop Manager",
-        company: "FastTurn Apparel",
+        quote: "We finally show up on Google. New customers find the site, order online, and pay  - all before we've picked up the phone.",
+        author: "Priya Nair",
+        role: "Founder",
+        company: "Riverline Apparel",
     },
 ];
 
