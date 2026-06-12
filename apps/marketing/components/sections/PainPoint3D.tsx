@@ -38,7 +38,7 @@ const painPointScenes: PainPointScene[] = [
         id: "solution",
         title: "One Platform. One Truth.",
         subtitle: "THE SOLUTION",
-        description: "Shop Titan becomes your single source of truth. Orders, art, pricing, production, and inventory in one system.",
+        description: "Shop Titan puts your shop online with a branded storefront that takes orders  - then a connected back office keeps orders, art, pricing, production, and inventory in one system.",
         color: "#EAB308",
         particleColor: "#EAB308",
         highlightWord: "CLARITY",
