@@ -15,7 +15,8 @@ export async function generateMetadata({ params }: PageProps) {
     if (!study) return { title: "Case Study Not Found | Shop Titan" };
 
     return generatePageMetadata({
-        title: study.title,
+        // seoTitle keeps the <title> under 60 chars; study.title (longer) stays the H1.
+        title: study.seoTitle || study.title,
         description: study.description,
         path: `/case-studies/${study.slug}`,
         type: "page",

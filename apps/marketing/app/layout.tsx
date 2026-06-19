@@ -28,8 +28,10 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
     metadataBase: new URL('https://shoptitan.app'),
     title: {
-        default: 'Shop Titan | Ecommerce Storefront & Print Shop Management System',
-        template: '%s | Shop Titan',
+        default: 'Shop Titan: Print Shop Management System & Ecommerce',
+        // Keep page titles keyword-first and under ~60 chars for SERPs; the old
+        // "%s | Shop Titan" suffix pushed every page past the limit.
+        template: '%s',
     },
     description:
         'A branded ecommerce storefront for print and decoration shops  - customers find you and order online without a phone call. Add a pre-built FileMaker system to run quotes, orders, inventory, and production. Proven in a $1M+ shop.',

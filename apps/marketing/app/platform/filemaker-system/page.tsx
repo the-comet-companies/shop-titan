@@ -653,15 +653,21 @@ export default function FileMakerSystemPage() {
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                         </motion.div>
-                        <motion.p
+                        <motion.div
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.3 }}
-                            className="text-sm text-secondary-text dark:text-gray-400 mt-4"
+                            className="flex justify-center mt-4"
                         >
-                            <Link href="/pricing" className="text-primary hover:underline">View Pricing →</Link>
-                        </motion.p>
+                            <Link
+                                href="/pricing"
+                                className="px-6 py-2.5 border border-primary/40 text-primary font-medium rounded-full hover:bg-primary/5 hover:border-primary transition-colors inline-flex items-center gap-1.5"
+                            >
+                                View Pricing
+                                <span className="material-symbols-outlined text-base">arrow_forward</span>
+                            </Link>
+                        </motion.div>
                     </div>
                 </section>
             </main>

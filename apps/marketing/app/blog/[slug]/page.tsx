@@ -21,7 +21,8 @@ export async function generateMetadata({ params }: PageProps) {
     }
 
     return generatePageMetadata({
-        title: post.title,
+        // seoTitle keeps the <title> under 60 chars; post.title (longer) stays the H1.
+        title: post.seoTitle || post.title,
         description: post.description,
         path: `/blog/${post.slug}`,
         type: "blog",

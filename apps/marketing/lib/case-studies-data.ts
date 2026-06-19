@@ -1,6 +1,7 @@
 export interface CaseStudy {
     slug: string;
     title: string;
+    seoTitle?: string; // optional <60-char SEO title; falls back to title
     description: string;
     category: string;
     shop: {
@@ -38,6 +39,7 @@ export const caseStudies: CaseStudy[] = [
     {
         slug: 'spreadsheets-to-system',
         title: 'From Spreadsheets to a Connected System - How a 12-Person Print Shop Eliminated Order Errors',
+        seoTitle: 'How a 12-Person Print Shop Eliminated Order Errors',
         description: 'A screen printing shop replaced spreadsheets with Shop Titan and reduced order errors from 8-10 per month to zero in 6 weeks.',
         category: 'Operations',
         shop: {
@@ -130,6 +132,7 @@ export const caseStudies: CaseStudy[] = [
     {
         slug: 'real-time-inventory',
         title: 'How Real-Time Inventory Eliminated Stockouts During a 500-Unit Product Launch',
+        seoTitle: 'Real-Time Inventory That Prevents Launch Stockouts',
         description: 'A print shop launched a 500-unit product drop with zero oversells and zero stockouts - because inventory, orders, and production were connected.',
         category: 'Inventory',
         shop: {
@@ -176,6 +179,7 @@ export const caseStudies: CaseStudy[] = [
     {
         slug: 'website-plus-operations',
         title: 'Connecting Ecommerce to Operations - How Orders Stopped Getting Lost',
+        seoTitle: 'Connecting Ecommerce to Operations: No Lost Orders',
         description: 'A print shop connected their website to their back-office system. Orders that used to take 20 minutes to process now flow automatically from customer to production.',
         category: 'Automation',
         shop: {

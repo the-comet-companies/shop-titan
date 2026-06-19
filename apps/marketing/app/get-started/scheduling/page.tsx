@@ -3,7 +3,7 @@ import LandingHeader from "../_components/LandingHeader";
 import SchedulingContent from "../_components/SchedulingContent";
 
 export const metadata: Metadata = {
-    title: "Production scheduling software for print shops — Shop Titan",
+    title: "Production Scheduling Software for Print Shops",
     description:
         "Stop scheduling from whiteboards and spreadsheets. See job status, department workload, rush impact, approvals, inventory readiness, and bottlenecks in one connected system.",
     alternates: { canonical: "https://shoptitan.app/get-started/scheduling" },
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         url: "https://shoptitan.app/get-started/scheduling",
-        title: "Production scheduling software for print shops — Shop Titan",
+        title: "Production Scheduling Software for Print Shops",
         description:
             "See job status, department workload, rush impact, approvals, inventory readiness, and bottlenecks in one connected system.",
     },

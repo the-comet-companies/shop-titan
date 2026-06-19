@@ -111,15 +111,18 @@ export default function InventoryManagementPage() {
                             initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="flex flex-col sm:flex-row gap-4 justify-center"
+                            className="flex flex-col items-center gap-3"
                         >
                             <Link
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Demo  - See How Inventory Prevents Stockouts Before They Happen
+                                Book a Demo
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
+                            <p className="text-sm text-secondary-text/80 dark:text-gray-500">
+                                See how inventory prevents stockouts before they happen.
+                            </p>
                         </motion.div>
                     </div>
                 </section>

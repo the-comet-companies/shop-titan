@@ -4,6 +4,7 @@ export interface BlogPost {
     date: string;
     category: string;
     title: string;
+    seoTitle?: string; // optional <60-char SEO title; falls back to title
     description: string;
     content: string;
     author: string;
@@ -57,6 +58,7 @@ export const articles: BlogPost[] = [
         date: "October 05, 2023",
         category: "Growth",
         title: "Scaling Your Print Shop Beyond 10 Employees Without Losing Control",
+        seoTitle: "Scaling a Print Shop Beyond 10 Employees",
         description:
             "Most print shops hit a wall at 10 employees. Learn why the shift from managing people to managing processes is the key to scaling  - and what systems make it work.",
         author: "Shop Titan Team",
@@ -97,6 +99,7 @@ export const articles: BlogPost[] = [
         date: "September 28, 2023",
         category: "Automation",
         title: "Real-Time Inventory Sync for Print Shops: Why Most Systems Fail",
+        seoTitle: "Why Real-Time Inventory Sync Fails for Print Shops",
         description:
             "Most inventory systems for print shops update every 15-60 minutes. In a high-volume launch, that gap means overselling by hundreds of units. Here's what real-time sync actually looks like.",
         author: "Shop Titan Team",
@@ -177,6 +180,7 @@ export const articles: BlogPost[] = [
         date: "April 7, 2026",
         category: "Production",
         title: "How Print Shops Track Production Without Whiteboards (And Why It Matters)",
+        seoTitle: "Tracking Print Shop Production Without Whiteboards",
         description:
             "Whiteboards and spreadsheets can't keep up with real print shop production. Learn how modern shops track jobs, manage scheduling, and prevent delays with a connected system.",
         author: "Shop Titan Team",
@@ -247,6 +251,7 @@ export const articles: BlogPost[] = [
         date: "April 7, 2026",
         category: "Operations",
         title: "Why Inventory and Production Must Be Connected in a Print Shop",
+        seoTitle: "Why Inventory and Production Must Connect",
         description:
             "When inventory and production aren't connected, print shops run out of blanks mid-job, overpromise orders, and waste hours reacting to problems. Here's how a connected system fixes it.",
         author: "Shop Titan Team",

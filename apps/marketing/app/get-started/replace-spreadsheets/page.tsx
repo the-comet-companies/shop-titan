@@ -89,10 +89,7 @@ export default function ReplaceSpreadsheetsPage() {
                             className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8 space-y-4"
                         >
                             <p>
-                                You built your business on spreadsheets. They got you here. But they can&apos;t take you further  - missed orders, broken formulas, and zero visibility are costing you money every week. It&apos;s time to move from manual tracking to a connected print shop workflow system.
-                            </p>
-                            <p className="text-base text-secondary-text/80 dark:text-gray-500">
-                                You don&apos;t need to start over. You need software instead of spreadsheets  - a system that imports your data and connects everything.
+                                You built your business on spreadsheets, but missed orders, broken formulas, and zero visibility cost you money every week. You don&apos;t need to start over. You need a connected print shop system that imports your data and connects everything.
                             </p>
                         </motion.div>
                         <motion.div
@@ -105,7 +102,7 @@ export default function ReplaceSpreadsheetsPage() {
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Demo  - Replace Spreadsheets With a Connected System
+                                Request a Demo
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                         </motion.div>
@@ -457,7 +454,6 @@ export default function ReplaceSpreadsheetsPage() {
                                         <div className="w-9 h-9 rounded-lg bg-rose-500/10 flex items-center justify-center flex-shrink-0">
                                             <span className="material-symbols-outlined text-rose-600 dark:text-rose-400 text-lg">{s.icon}</span>
                                         </div>
-                                        <span className="text-[10px] font-bold tracking-widest text-rose-600/60 dark:text-rose-400/60 uppercase">{s.step}</span>
                                     </div>
                                     <h3 className="font-bold text-charcoal dark:text-white mb-2">{s.title}</h3>
                                     <p className="text-xs text-secondary-text dark:text-gray-400 leading-relaxed">{s.desc}</p>
@@ -606,7 +602,7 @@ export default function ReplaceSpreadsheetsPage() {
                                 href="/reach-out"
                                 className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
                             >
-                                Book a Demo
+                                Request a Demo
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
                             <Link
@@ -622,17 +618,28 @@ export default function ReplaceSpreadsheetsPage() {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.3 }}
-                            className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-secondary-text dark:text-gray-500"
+                            className="pt-8 border-t border-structural-border/60 dark:border-gray-800"
                         >
-                            <Link href="/platform/complete-system" className="hover:text-primary transition-colors">Complete System</Link>
-                            <span className="text-structural-border dark:text-gray-700">·</span>
-                            <Link href="/platform/filemaker-system" className="hover:text-primary transition-colors">FileMaker System</Link>
-                            <span className="text-structural-border dark:text-gray-700">·</span>
-                            <Link href="/platform/inventory-management" className="hover:text-primary transition-colors">Inventory Management</Link>
-                            <span className="text-structural-border dark:text-gray-700">·</span>
-                            <Link href="/platform/production-automation" className="hover:text-primary transition-colors">Production Management</Link>
-                            <span className="text-structural-border dark:text-gray-700">·</span>
-                            <Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link>
+                            <p className="text-[11px] font-semibold uppercase tracking-widest text-secondary-text/60 dark:text-gray-600 text-center mb-4">
+                                Explore the platform
+                            </p>
+                            <div className="flex flex-nowrap justify-center gap-1.5">
+                                {[
+                                    { href: '/platform/complete-system', label: 'Complete System' },
+                                    { href: '/platform/filemaker-system', label: 'FileMaker System' },
+                                    { href: '/platform/inventory-management', label: 'Inventory Management' },
+                                    { href: '/platform/production-automation', label: 'Production Management' },
+                                    { href: '/pricing', label: 'Pricing' },
+                                ].map((l) => (
+                                    <Link
+                                        key={l.href}
+                                        href={l.href}
+                                        className="px-3 py-1.5 rounded-full border border-structural-border dark:border-gray-800 text-sm text-secondary-text dark:text-gray-400 whitespace-nowrap hover:border-primary/40 hover:text-primary hover:bg-primary/5 transition-colors"
+                                    >
+                                        {l.label}
+                                    </Link>
+                                ))}
+                            </div>
                         </motion.div>
                     </div>
                 </section>

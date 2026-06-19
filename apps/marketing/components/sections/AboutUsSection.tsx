@@ -34,7 +34,7 @@ export default function AboutUsSection() {
                         Our Origin Story
                     </motion.div>
 
-                    <motion.h2
+                    <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -43,7 +43,7 @@ export default function AboutUsSection() {
                     >
                         Necessity is the <br className="hidden md:block" />
                         <span className="text-secondary-text dark:text-gray-500">mother of invention.</span>
-                    </motion.h2>
+                    </motion.h1>
 
                     <motion.div
                         initial={{ height: 0 }}

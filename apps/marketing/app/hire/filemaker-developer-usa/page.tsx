@@ -536,17 +536,28 @@ export default function HireFileMakerDeveloperUSAPage() {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.3 }}
-                            className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-secondary-text dark:text-gray-500"
+                            className="pt-8 border-t border-structural-border/60 dark:border-gray-800"
                         >
-                            <Link href="/platform/complete-system" className="hover:text-primary transition-colors">Complete System</Link>
-                            <span className="text-structural-border dark:text-gray-700">·</span>
-                            <Link href="/platform/filemaker-system" className="hover:text-primary transition-colors">FileMaker System</Link>
-                            <span className="text-structural-border dark:text-gray-700">·</span>
-                            <Link href="/hire/filemaker-developer" className="hover:text-primary transition-colors">Hire a Developer</Link>
-                            <span className="text-structural-border dark:text-gray-700">·</span>
-                            <Link href="/get-started/replace-spreadsheets" className="hover:text-primary transition-colors">Replace Spreadsheets</Link>
-                            <span className="text-structural-border dark:text-gray-700">·</span>
-                            <Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link>
+                            <p className="text-[11px] font-semibold uppercase tracking-widest text-secondary-text/60 dark:text-gray-600 text-center mb-4">
+                                Explore the platform
+                            </p>
+                            <div className="flex flex-nowrap justify-center gap-1.5">
+                                {[
+                                    { href: '/platform/complete-system', label: 'Complete System' },
+                                    { href: '/platform/filemaker-system', label: 'FileMaker System' },
+                                    { href: '/hire/filemaker-developer', label: 'Hire a Developer' },
+                                    { href: '/get-started/replace-spreadsheets', label: 'Replace Spreadsheets' },
+                                    { href: '/pricing', label: 'Pricing' },
+                                ].map((l) => (
+                                    <Link
+                                        key={l.href}
+                                        href={l.href}
+                                        className="px-3 py-1.5 rounded-full border border-structural-border dark:border-gray-800 text-sm text-secondary-text dark:text-gray-400 whitespace-nowrap hover:border-primary/40 hover:text-primary hover:bg-primary/5 transition-colors"
+                                    >
+                                        {l.label}
+                                    </Link>
+                                ))}
+                            </div>
                         </motion.div>
                     </div>
                 </section>
