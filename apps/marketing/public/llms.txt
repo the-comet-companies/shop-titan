@@ -1,0 +1,22 @@
+# Shop Titan
+
+> Shop Titan builds custom eCommerce websites and business management systems designed specifically for print shops and apparel decorators. Sell online, manage orders, track production, and run operations in one connected system.
+
+Shop Titan offers two core products: a branded ecommerce storefront built for decoration shops (decoration-aware product catalog, online ordering, and a customer design studio), and pre-built FileMaker management systems for back-office operations (orders, inventory, production). The website and the management system can run together or separately. National US B2B service; most deployments go live in 2 to 4 weeks.
+
+## Platform
+- [Complete System](https://shoptitan.app/platform/complete-system): Storefront and back office connected end to end.
+- [Ecommerce Storefront](https://shoptitan.app/platform/ecommerce-storefront): Branded online ordering built for print shops.
+- [FileMaker System](https://shoptitan.app/platform/filemaker-system): Pre-built FileMaker management system for print shops.
+- [Inventory Management](https://shoptitan.app/platform/inventory-management): Track blanks, prevent stockouts, sync with orders.
+- [Production Automation](https://shoptitan.app/platform/production-automation): Production management and tracking.
+
+## Get started
+- [Pricing](https://shoptitan.app/pricing): Plans and pricing.
+- [Request a Demo](https://shoptitan.app/reach-out): Book a walkthrough.
+- [Get Started](https://shoptitan.app/get-started): Start the onboarding.
+
+## Resources
+- [Blog](https://shoptitan.app/blog): Articles on print shop operations, software, and scaling.
+- [Case Studies](https://shoptitan.app/case-studies): Real print shop results.
+- [About](https://shoptitan.app/about): Who Shop Titan is.
