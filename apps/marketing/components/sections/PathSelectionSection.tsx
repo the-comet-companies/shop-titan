@@ -149,7 +149,7 @@ export default function PathSelectionSection() {
                             <div className="hidden lg:flex items-center justify-center border-l border-structural-border dark:border-gray-800 p-10 bg-white dark:bg-gray-900">
                                 <div className="w-full max-w-md">
                                     <Image
-                                        src="/hero-test.png"
+                                        src="/website/design-studio.png"
                                         alt="Branded ecommerce storefront for print shops"
                                         width={1080}
                                         height={1350}
