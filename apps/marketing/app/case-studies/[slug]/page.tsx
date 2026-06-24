@@ -45,12 +45,34 @@ export default async function CaseStudyPage({ params }: PageProps) {
         { name: study.title, url: `https://shoptitan.app/case-studies/${study.slug}` },
     ]);
 
+    const faqSchema = study.faqs?.length ? generateFAQSchema(study.faqs) : null;
+
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": study.title,
+        "description": study.description,
+        "datePublished": "2026-06-20",
+        "dateModified": "2026-06-20",
+        "author": { "@type": "Organization", "name": "Shop Titan", "url": "https://shoptitan.app" },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Shop Titan",
+            "url": "https://shoptitan.app",
+            "logo": { "@type": "ImageObject", "url": "https://shoptitan.app/logo-transparent.png" },
+        },
+        "mainEntityOfPage": { "@type": "WebPage", "@id": `https://shoptitan.app/case-studies/${study.slug}` },
+        "image": "https://shoptitan.app/logo-transparent.png",
+    };
+
     const otherStudies = caseStudies.filter((s) => s.slug !== slug).slice(0, 2);
 
     return (
         <>
             <main className="min-h-screen pt-20">
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+                {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
 
                 {/* Hero */}
                 <section className="pt-12 md:pt-16 pb-10 md:pb-14 bg-background-light dark:bg-background-dark">
@@ -241,6 +263,39 @@ export default async function CaseStudyPage({ params }: PageProps) {
                                         </h3>
                                         <span className="text-xs text-primary font-bold">Read case study →</span>
                                     </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+                )}
+
+                {/* FAQ */}
+                {study.faqs && study.faqs.length > 0 && (
+                    <section className="py-10 md:py-14 bg-surface dark:bg-gray-950 border-t border-structural-border dark:border-gray-800">
+                        <div className="max-w-3xl mx-auto px-mobile">
+                            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-4">
+                                Common questions
+                            </span>
+                            <h2 className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-8">
+                                Frequently Asked Questions
+                            </h2>
+                            <div className="space-y-3">
+                                {study.faqs.map((f) => (
+                                    <details key={f.question} className="group rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 open:border-primary/30 transition-colors">
+                                        <summary className="flex items-center justify-between gap-4 cursor-pointer list-none p-4 md:p-5 select-none">
+                                            <h3 className="font-bold text-charcoal dark:text-white text-sm md:text-base">
+                                                {f.question}
+                                            </h3>
+                                            <span className="material-symbols-outlined text-secondary-text dark:text-gray-500 text-xl shrink-0 transition-transform duration-200 group-open:rotate-180">
+                                                expand_more
+                                            </span>
+                                        </summary>
+                                        <div className="px-4 md:px-5 pb-4 md:pb-5 -mt-1">
+                                            <p className="text-xs md:text-sm text-secondary-text dark:text-gray-400 leading-relaxed">
+                                                {f.answer}
+                                            </p>
+                                        </div>
+                                    </details>
                                 ))}
                             </div>
                         </div>

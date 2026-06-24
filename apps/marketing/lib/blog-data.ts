@@ -6,6 +6,7 @@ export interface BlogPost {
     title: string;
     seoTitle?: string; // optional <60-char SEO title; falls back to title
     description: string;
+    quickAnswer?: string; // 40-60 word direct answer rendered atop the post for AI Overviews
     content: string;
     author: string;
     image?: string;
@@ -15,6 +16,7 @@ export const articles: BlogPost[] = [
     {
         id: "1",
         slug: "neutralizing-pod-friction",
+        quickAnswer: "To handle print on demand in a high-volume shop, batch single-piece POD orders that share specs instead of running them one at a time. Batching groups jobs by garment, color, and print method, so the line stops context-switching and bulk runs and one-offs move together without killing output.",
         date: "October 12, 2023",
         category: "Operations",
         title: "How to Handle Print on Demand in a High-Volume Print Shop",
@@ -24,10 +26,10 @@ export const articles: BlogPost[] = [
         content: `
             <p>Print on Demand is often hailed as the future of customization  - but for high-volume print shops, it can be a silent killer of efficiency. Managing a print on demand workflow for print shops means constant context switching: handling individual unique orders alongside large bulk runs disrupts your entire production line and slows output to a crawl.</p>
 
-            <h2>The Bottleneck of "One"</h2>
+            <h2>Why are single-piece POD orders a bottleneck?</h2>
             <p>When your production line is optimized for hundreds of units of the same design, injecting a single unit order disrupts the flow. Screens need to be changed (or DTG printers reset), garments need individual picking, and shipping requires a completely different logic. Without a proper <a href="/platform/complete-system">print shop management system</a>, these one-off orders create chaos on the floor.</p>
 
-            <h2>Batching Logic: The Solution</h2>
+            <h2>How does batching logic fix POD bottlenecks?</h2>
             <p>The secret isn't to refuse POD orders, but to intelligently batch them. By grouping similar single-piece orders  - whether by garment type, print technology, or shipping destination  - you can simulate a bulk run. This "virtual batching" allows your shop to maintain high production efficiency even with low-quantity orders.</p>
 
             <p>A <a href="/platform/complete-system">system that handles production workflows</a> does this natively, treating every order as part of a larger, optimized stream  - so your team never has to manually sort or guess what runs next.</p>
@@ -55,6 +57,7 @@ export const articles: BlogPost[] = [
     {
         id: "2",
         slug: "scaling-beyond-10-employees",
+        quickAnswer: "Print shops stall around 10 employees because the owner can no longer manage every job by walking the floor. Scaling past it means shifting from managing people to managing processes: a print shop management system that enforces the workflow, so each role knows the next step without the owner directing it.",
         date: "October 05, 2023",
         category: "Growth",
         title: "Scaling Your Print Shop Beyond 10 Employees Without Losing Control",
@@ -65,12 +68,12 @@ export const articles: BlogPost[] = [
         content: `
             <p>There is a breaking point that almost every screen printing shop hits: the 10-employee mark. Before that threshold, a hands-on owner can manage everything by walking the floor and putting out fires. But once a print shop reaches 10+ employees, manual workflows break down  - quality drops, deadlines slip, and the business starts running you. Without a proper print shop management system, growth becomes chaos.</p>
 
-            <h2>The Management Shift</h2>
+            <h2>What changes when you manage processes instead of people?</h2>
             <p>Once you cross 10 employees, you physically cannot oversee every detail. Quality drops, deadlines are missed, and chaos ensues. The solution isn't to work harder; it's to shift from managing people to managing processes.</p>
 
             <p>You need Standard Operating Procedures (SOPs) that are documented and enforced by software, not just verbal instructions. Your print shop workflow should be guided by a system that tells each employee exactly what to do next  - without needing your constant intervention.</p>
 
-            <h2>What "Systems Thinking" Looks Like on the Floor</h2>
+            <h2>What does systems thinking look like on the floor?</h2>
             <p>In a well-run shop, every order follows a defined path: intake → art approval → production → quality check → shipping. A <a href="/platform/filemaker-system">FileMaker-based management system</a> enforces that path automatically. Tasks are assigned, statuses update in real time, and nothing falls through the cracks  - even when you're not watching.</p>
 
             <p>This is the difference between a shop that grows and a shop that just gets busier. When your production system handles the routing, your team focuses on output instead of guessing what's next. And when your <a href="/blog/inventory-sync-realities">inventory syncs in real time</a>, nothing gets oversold or lost between departments.</p>
@@ -96,6 +99,7 @@ export const articles: BlogPost[] = [
     {
         id: "3",
         slug: "inventory-sync-realities",
+        quickAnswer: "Most print shop inventory systems are not truly real-time; they sync every 15 to 60 minutes. During a high-volume launch, that gap oversells by hundreds of units. Real-time sync means stock updates the instant an order is placed, with blanks allocated immediately and out-of-stock variants hidden automatically.",
         date: "September 28, 2023",
         category: "Automation",
         title: "Real-Time Inventory Sync for Print Shops: Why Most Systems Fail",
@@ -106,12 +110,12 @@ export const articles: BlogPost[] = [
         content: `
             <p>Real-time inventory management for print shops is the holy grail of e-commerce  - but for apparel decorators, "sync" is often a lie. Most inventory systems update every hour or every 15 minutes. In a high-volume launch, that gap is enough to oversell by hundreds of units, trigger refunds, and damage customer trust. If your inventory system isn't updating in real time, it's costing you money.</p>
 
-            <h2>Real-Time vs. "Near" Time</h2>
+            <h2>What is the difference between real-time and near-time inventory?</h2>
             <p>True live-sync means that the moment a shirt is scanned at your receiving dock, it is available for sale. The moment a sale happens on your storefront, it is allocated in your warehouse. There is no lag.</p>
 
             <p>Achieving this requires a deep integration between your warehouse management and your sales channels  - something that generic ERPs and disconnected tools rarely deliver out of the box. You need a <a href="/platform/inventory-management">print shop inventory management system</a>, not something adapted from retail or generic e-commerce.</p>
 
-            <h2>Why Generic Tools Break Down</h2>
+            <h2>Why do generic tools break down for print shops?</h2>
             <p>Most SaaS inventory tools track products by SKU alone. But in apparel decoration, a single product might have 30+ size/color combinations, each with its own stock level across multiple vendors. Your inventory system needs to track blanks by style, color, and size  - and allocate stock the moment an order is placed, not after a batch sync runs.</p>
 
             <p>This is where a connected <a href="/platform/filemaker-system">FileMaker-based system</a> shines: inventory, orders, production, and your <a href="/platform/ecommerce-storefront">ecommerce storefront</a> all share the same data in real time.</p>
@@ -137,6 +141,7 @@ export const articles: BlogPost[] = [
     {
         id: "4",
         slug: "claris-filemaker-vs-saas",
+        quickAnswer: "Off-the-shelf SaaS is fast to launch but rigid, and it breaks when your pricing, workflow, or production floor does not fit its templates. A FileMaker-based system is customizable to how your shop actually runs. Choose SaaS for simple, standard needs, and FileMaker when you need flexibility generic software cannot give.",
         date: "September 15, 2023",
         category: "Infrastructure",
         title: "FileMaker vs SaaS for Print Shops: When Custom Platforms Win",
@@ -146,10 +151,10 @@ export const articles: BlogPost[] = [
         content: `
             <p>Choosing between FileMaker and SaaS tools is one of the most important decisions for print shop operations. Most shops start with off-the-shelf SaaS solutions  - they're easy to set up and look polished. But as your business grows, you hit a wall: the software doesn't support your specific print shop workflow, your custom pricing model, or the way your production floor actually operates. That's the moment shop owners start searching for something more flexible  - and the FileMaker vs SaaS debate begins.</p>
 
-            <h2>The Custom Advantage</h2>
+            <h2>What is the advantage of a custom FileMaker system?</h2>
             <p>This is where platforms like Claris FileMaker shone for decades  - they allowed infinite customization. Print shops could build exactly the system they needed: custom quoting, production tracking, <a href="/platform/inventory-management">inventory management by size and color</a>, vendor integrations. However, traditional FileMaker solutions lacked modern web capabilities and the scalability of cloud SaaS.</p>
 
-            <h2>The Hybrid Approach</h2>
+            <h2>When does a hybrid FileMaker and SaaS approach make sense?</h2>
             <p>The modern approach  - which Shop Titan was built around  - is a hybrid: a robust, proven FileMaker core for back-office operations paired with a modern <a href="/platform/ecommerce-storefront">ecommerce storefront</a> for customer-facing sales. You get the deep customization of FileMaker with the speed and UX of a modern web platform.</p>
 
             <p>This isn't about choosing one over the other. It's about using each technology where it's strongest  - and connecting them into a single <a href="/platform/complete-system">print shop management system</a> that covers everything from quote to delivery.</p>
@@ -177,6 +182,7 @@ export const articles: BlogPost[] = [
     {
         id: "5",
         slug: "print-shop-production-tracking-without-whiteboards",
+        quickAnswer: "Whiteboards and spreadsheets fall behind because nobody updates them in real time. Modern print shops track production with a connected system where every job has a live status, due date, and owner. Staff update jobs as they move through the floor, so scheduling stays accurate and delays get caught before customers call.",
         date: "April 7, 2026",
         category: "Production",
         title: "How Print Shops Track Production Without Whiteboards (And Why It Matters)",
@@ -187,7 +193,7 @@ export const articles: BlogPost[] = [
         content: `
             <p>If you run a print shop, you already know the scene: a whiteboard near the press with job names, due dates, and status markers that nobody updates after lunch. Print shop production tracking doesn't work on whiteboards  - and every shop owner figures that out the hard way, usually when a customer calls asking where their order is and nobody has an answer.</p>
 
-            <h2>Why Whiteboards Break at Scale</h2>
+            <h2>Why do whiteboards break at scale?</h2>
             <p>Whiteboards work when you have five jobs a week and three employees. Once you're running 20+ jobs across screen printing, DTG, and embroidery with a crew of 10, the whiteboard becomes decoration  - not a management tool.</p>
             <p>The problems are always the same:</p>
             <ul>
@@ -197,7 +203,7 @@ export const articles: BlogPost[] = [
             </ul>
             <p>Spreadsheets aren't much better  - they add version conflicts and broken formulas on top of the same visibility problems. If your shop has <a href="/blog/scaling-beyond-10-employees">scaled beyond 10 employees</a>, you've probably already hit this wall.</p>
 
-            <h2>What Production Tracking Should Actually Look Like</h2>
+            <h2>What should print shop production tracking look like?</h2>
             <p>Real print shop production tracking means every job has a status that updates in real time as it moves through your shop. Not once a day. Not when someone remembers. Automatically, as each stage completes.</p>
             <p>Here's what that looks like in practice:</p>
             <ul>
@@ -206,7 +212,7 @@ export const articles: BlogPost[] = [
                 <li><strong>Visibility across departments.</strong> Screen printing sees their queue. DTG sees theirs. The office sees everything. Nobody has to walk the floor to find out what's happening.</li>
             </ul>
 
-            <h2>How Modern Print Shops Track Production</h2>
+            <h2>How do modern print shops track production?</h2>
             <p>The shops that run smoothly at scale aren't using whiteboards  - they're using <a href="/platform/production-automation">production management systems</a> built for how print shops actually operate.</p>
             <p>That means:</p>
             <ul>
@@ -215,7 +221,7 @@ export const articles: BlogPost[] = [
                 <li><strong>Scheduling with priority.</strong> Rush orders get flagged and moved up. The system recalculates downstream deadlines so you know which other jobs are now at risk  - before the customer calls.</li>
             </ul>
 
-            <h2>Why Production Must Connect to Inventory and Orders</h2>
+            <h2>Why must production connect to inventory and orders?</h2>
             <p>Here's where most standalone tools fall short: they track production in isolation. But production doesn't happen in isolation.</p>
             <p>A job shouldn't hit the press if the blanks aren't allocated. An order shouldn't create a job if the art isn't approved. And a completed job should trigger shipping and invoicing  - not a sticky note on someone's desk.</p>
             <p>In a connected <a href="/platform/complete-system">print shop management system</a>, this happens automatically:</p>
@@ -248,6 +254,7 @@ export const articles: BlogPost[] = [
     {
         id: "6",
         slug: "inventory-production-connected-print-shop",
+        quickAnswer: "When inventory and production are separate, shops start jobs only to find blanks missing, because other orders pulled the same stock and nothing updated. Connecting them means each job ticket reserves its blanks in real time and reorders trigger automatically, so you stop running out mid-job and stop overpromising orders.",
         date: "April 7, 2026",
         category: "Operations",
         title: "Why Inventory and Production Must Be Connected in a Print Shop",
@@ -258,7 +265,7 @@ export const articles: BlogPost[] = [
         content: `
             <p>You pull a job ticket, set up the press, and start printing  - then discover you're short 40 black mediums. The blanks were supposed to be there. Someone counted them last week. But two other orders pulled from the same stock since then, and nobody updated anything. This is what happens when inventory management for print shops is disconnected from production. And it happens every day in shops that track these things separately.</p>
 
-            <h2>The Real Problem: Inventory and Production Are Separate</h2>
+            <h2>Why is disconnected inventory and production the real problem?</h2>
             <p>In most print shops, inventory lives in one place  - a spreadsheet, a shelf count, maybe a basic tool  - and production lives in another. The press operator doesn't see stock levels. The office doesn't know what's been pulled. And nobody finds out there's a problem until the job is already late.</p>
             <p>This disconnect creates a cycle:</p>
             <ul>
@@ -268,7 +275,7 @@ export const articles: BlogPost[] = [
             </ul>
             <p>The result is a shop that's constantly reacting  - never operating ahead of problems.</p>
 
-            <h2>What Happens When They're Not Connected</h2>
+            <h2>What happens when inventory and production aren't connected?</h2>
             <p>The consequences are predictable and expensive:</p>
             <ul>
                 <li><strong>Stockouts mid-job.</strong> You're set up, screens are burned, and the blanks aren't there. Now you're resetting for a different job and scrambling to reorder.</li>
@@ -277,7 +284,7 @@ export const articles: BlogPost[] = [
                 <li><strong>Emergency orders at premium pricing.</strong> When you run out, you rush-order from the vendor. That eats your margin on a job you already quoted.</li>
             </ul>
 
-            <h2>What a Connected System Looks Like</h2>
+            <h2>What does a connected print shop system look like?</h2>
             <p>In a connected system, <a href="/platform/inventory-management">inventory</a> and <a href="/platform/production-automation">production</a> share the same data. They're not separate tools that someone manually bridges  - they're the same platform.</p>
             <p>Here's what changes:</p>
             <ul>
@@ -298,7 +305,7 @@ export const articles: BlogPost[] = [
             </ol>
             <p>No phone calls. No shelf counts. No surprises. The system handled the logistics so the team could focus on printing.</p>
 
-            <h2>Why Spreadsheets Can't Handle This</h2>
+            <h2>Why can't spreadsheets handle print shop inventory?</h2>
             <p>Spreadsheets track numbers. That's it. They don't allocate. They don't check availability against incoming orders. They don't generate purchase orders. And they definitely don't update production status when stock arrives.</p>
             <p>A spreadsheet can tell you that you had 200 black mediums last Thursday. It can't tell you that 120 of those are already allocated to two other jobs and only 80 are truly available. That distinction  - available vs. allocated  - is the difference between a count and a system.</p>
             <p>If you're still running on spreadsheets, the path forward starts with <a href="/get-started/replace-spreadsheets">replacing them with a connected system</a>.</p>

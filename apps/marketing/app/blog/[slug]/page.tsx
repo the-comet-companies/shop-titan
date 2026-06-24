@@ -145,15 +145,25 @@ export default async function BlogPostPage({ params }: PageProps) {
                         </h1>
                     </header>
 
+                    {/* Quick Answer (AEO: direct answer AI engines can extract) */}
+                    {post.quickAnswer && (
+                        <div className="mb-10 md:mb-14 rounded-2xl border border-primary/20 bg-primary/5 p-5 md:p-6">
+                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-2">Quick Answer</p>
+                            <p className="text-base md:text-lg text-charcoal dark:text-gray-200 leading-relaxed">
+                                {post.quickAnswer}
+                            </p>
+                        </div>
+                    )}
+
                     {/* Content */}
                     <div
                         className="
                             max-w-none
-                            [&>p]:text-base [&>p]:text-secondary-text [&>p]:dark:text-gray-400 [&>p]:leading-relaxed [&>p]:mb-6
-                            [&>h2]:text-2xl [&>h2]:md:text-3xl [&>h2]:font-bold [&>h2]:text-charcoal [&>h2]:dark:text-white [&>h2]:tracking-tight [&>h2]:mt-12 [&>h2]:mb-4
-                            [&>ul]:my-4 [&>ul]:space-y-2 [&>ol]:my-4 [&>ol]:space-y-2
-                            [&>ul>li]:text-base [&>ul>li]:text-secondary-text [&>ul>li]:dark:text-gray-400 [&>ul>li]:leading-relaxed [&>ul>li]:pl-1
-                            [&>ol>li]:text-base [&>ol>li]:text-secondary-text [&>ol>li]:dark:text-gray-400 [&>ol>li]:leading-relaxed [&>ol>li]:pl-1
+                            [&>p]:text-base [&>p]:text-secondary-text [&>p]:dark:text-gray-400 [&>p]:leading-[1.8] [&>p]:mb-7
+                            [&>h2]:text-2xl [&>h2]:md:text-3xl [&>h2]:font-bold [&>h2]:text-charcoal [&>h2]:dark:text-white [&>h2]:tracking-tight [&>h2]:mt-16 [&>h2]:mb-6
+                            [&>ul]:my-7 [&>ul]:space-y-4 [&>ol]:my-7 [&>ol]:space-y-4
+                            [&>ul>li]:text-base [&>ul>li]:text-secondary-text [&>ul>li]:dark:text-gray-400 [&>ul>li]:leading-[1.8] [&>ul>li]:pl-1
+                            [&>ol>li]:text-base [&>ol>li]:text-secondary-text [&>ol>li]:dark:text-gray-400 [&>ol>li]:leading-[1.8] [&>ol>li]:pl-1
                             [&_strong]:text-charcoal [&_strong]:dark:text-gray-200 [&_strong]:font-bold
                             [&_a]:text-primary [&_a]:no-underline hover:[&_a]:underline
                             [&_em]:text-secondary-text [&_em]:dark:text-gray-400

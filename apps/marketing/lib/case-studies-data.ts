@@ -33,6 +33,7 @@ export interface CaseStudy {
         role: string;
     };
     linksTo: string[];
+    faqs?: { question: string; answer: string }[];
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -82,6 +83,11 @@ export const caseStudies: CaseStudy[] = [
             role: 'DTLA Print',
         },
         linksTo: ['/platform/complete-system', '/get-started/replace-spreadsheets', '/platform/inventory-management'],
+        faqs: [
+            { question: 'How long did it take to switch from spreadsheets to Shop Titan?', answer: 'The complete system, FileMaker plus a connected ecommerce storefront, went live in 6 weeks. Existing customer data, the product catalog, and pricing were imported from their spreadsheets during the first week.' },
+            { question: 'What results did the print shop see?', answer: 'Order errors dropped from 8 to 10 per month to zero, and the two employees who spent more than 6 hours a week updating spreadsheets moved back to production work.' },
+            { question: 'Which Shop Titan package did the shop use?', answer: 'The complete system, combining the FileMaker back office with a connected ecommerce storefront, so orders flow from the website to production without manual re-entry.' },
+        ],
     },
     {
         slug: 'scaling-from-5-to-20',
@@ -128,6 +134,11 @@ export const caseStudies: CaseStudy[] = [
             role: 'DTLA Print',
         },
         linksTo: ['/platform/filemaker-system', '/platform/production-automation', '/blog/scaling-beyond-10-employees'],
+        faqs: [
+            { question: 'How did the shop grow from 5 to 20 employees without adding admin staff?', answer: 'The FileMaker system enforces the production workflow, so every employee knows the next step without asking the owner. That let the team quadruple without hiring a single additional administrator.' },
+            { question: 'How long did the FileMaker system take to deploy?', answer: 'It went live in 4 weeks from kickoff, with a focus on production workflow and per-department task queues.' },
+            { question: 'How did the owner\'s workload change?', answer: 'Owner hours dropped from 70+ per week to about 45, and jobs falling through the cracks between departments went from 3 to 5 per week to zero.' },
+        ],
     },
     {
         slug: 'real-time-inventory',
@@ -175,6 +186,11 @@ export const caseStudies: CaseStudy[] = [
             role: 'DTLA Print',
         },
         linksTo: ['/platform/inventory-management', '/platform/ecommerce-storefront', '/platform/complete-system'],
+        faqs: [
+            { question: 'How did real-time inventory prevent stockouts during the product launch?', answer: 'Stock tracks by style, color, and size in real time. When a customer orders on the storefront, blanks are allocated instantly and out-of-stock items hide automatically, so a 500-unit drop sold out with zero oversells.' },
+            { question: 'How long did the build take?', answer: 'The complete system, inventory plus storefront and order management, was deployed in 8 weeks.' },
+            { question: 'How much did inventory accuracy improve?', answer: 'Inventory accuracy went from about 80 percent to 99.8 percent, and oversells per launch dropped from 30 to 50 units down to zero.' },
+        ],
     },
     {
         slug: 'website-plus-operations',
@@ -222,5 +238,10 @@ export const caseStudies: CaseStudy[] = [
             role: 'DTLA Print',
         },
         linksTo: ['/platform/complete-system', '/platform/ecommerce-storefront', '/platform/production-automation'],
+        faqs: [
+            { question: 'How did connecting the website to operations stop lost orders?', answer: 'Orders flow from the storefront straight into the FileMaker system with all specs, quantities, art files, and customer info attached. Nothing is re-entered by hand, so orders stop getting lost or duplicated.' },
+            { question: 'How long did the project take?', answer: 'The connected Shop Titan storefront and FileMaker system went live in 10 weeks.' },
+            { question: 'What were the results?', answer: 'Lost or duplicate orders dropped from 2 to 3 per week to zero, and order processing went from 15 to 20 minutes each to automatic.' },
+        ],
     },
 ];
