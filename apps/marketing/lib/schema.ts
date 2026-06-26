@@ -102,6 +102,35 @@ export function generateBreadcrumbSchema(items: { name: string; url: string }[])
     };
 }
 
+export function generateProductSchema(products: {
+    name: string;
+    description: string;
+    url: string;
+    lowPrice: number;
+    highPrice: number;
+    offerCount?: number;
+}[]) {
+    return {
+        "@context": "https://schema.org",
+        "@graph": products.map((p) => ({
+            "@type": "Product",
+            "name": p.name,
+            "description": p.description,
+            "url": p.url,
+            "brand": { "@type": "Brand", "name": "Shop Titan" },
+            "offers": {
+                "@type": "AggregateOffer",
+                "priceCurrency": "USD",
+                "lowPrice": p.lowPrice,
+                "highPrice": p.highPrice,
+                ...(p.offerCount ? { "offerCount": p.offerCount } : {}),
+                "availability": "https://schema.org/InStock",
+                "seller": { "@id": "https://shoptitan.app/#organization" },
+            },
+        })),
+    };
+}
+
 export function generateArticleSchema(article: {
     title: string;
     description: string;

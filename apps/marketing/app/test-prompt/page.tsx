@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "Your shop is not chaotic because your team is bad. It is chaotic because your system is broken. Shop Titan",
   description:
     "Shop Titan is the connected production operating system for growing print and decoration shops. Orders, artwork, approvals, scheduling, inventory, and job status in one workflow.",
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: false },
 };
 
 // Pre-emphasized React nodes for the pain stack

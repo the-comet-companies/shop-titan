@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import HeroSection from "@/components/sections/HeroSection";
 import PainPointSection from "@/components/sections/PainPointSection";
 import CanYouRelateSection from "@/components/sections/CanYouRelateSection";
@@ -14,6 +15,13 @@ import FounderStorySection from "@/components/sections/FounderStorySection";
 import CtaSection from "@/components/sections/CtaSection";
 
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+    title: "Shop Titan: Print Shop Websites & Ecommerce Storefronts",
+    description:
+        "Get your print shop online with a branded ecommerce storefront and online ordering, then add a pre-built FileMaker system to run quotes, orders, inventory, and production. Proven in a $1M+ shop.",
+    alternates: { canonical: "https://shoptitan.app" },
+};
 
 export default function Home() {
     return (
