@@ -19,6 +19,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1,
         },
         {
+            url: `${BASE_URL}/print-shop-website`,
+            lastModified: CONTENT_UPDATED,
+            changeFrequency: 'monthly',
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/print-shop-ecommerce-website`,
+            lastModified: CONTENT_UPDATED,
+            changeFrequency: 'monthly',
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/online-ordering-for-print-shops`,
+            lastModified: CONTENT_UPDATED,
+            changeFrequency: 'monthly',
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/screen-printing-website`,
+            lastModified: CONTENT_UPDATED,
+            changeFrequency: 'monthly',
+            priority: 0.9,
+        },
+        {
             url: `${BASE_URL}/about`,
             lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',

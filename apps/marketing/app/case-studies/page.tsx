@@ -24,9 +24,6 @@ export default function CaseStudiesPage() {
                 {/* Hero */}
                 <section className="pt-12 md:pt-16 pb-10 md:pb-14 bg-background-light dark:bg-background-dark">
                     <div className="max-w-4xl mx-auto px-mobile text-center">
-                        <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-4">
-                            Case Studies
-                        </span>
                         <h1 className="text-3xl md:text-5xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-4">
                             Real Results From Real Print Shops
                         </h1>
