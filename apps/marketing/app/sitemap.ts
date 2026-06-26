@@ -4,101 +4,107 @@ import { caseStudies } from '@/lib/case-studies-data';
 
 const BASE_URL = 'https://shoptitan.app';
 
+// Stable last-updated date for static + case study pages. Bump this when you
+// meaningfully update site content. Avoid new Date() here: a "now" timestamp on
+// every build makes lastmod useless, Google ignores sitemaps that always look
+// freshly modified. Blog posts use their own post.date below.
+const CONTENT_UPDATED = new Date('2026-06-24');
+
 export default function sitemap(): MetadataRoute.Sitemap {
     const staticPages: MetadataRoute.Sitemap = [
         {
             url: BASE_URL,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'weekly',
             priority: 1,
         },
         {
             url: `${BASE_URL}/about`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.7,
         },
         {
             url: `${BASE_URL}/pricing`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
             url: `${BASE_URL}/blog`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'weekly',
             priority: 0.8,
         },
         {
             url: `${BASE_URL}/case-studies`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.7,
         },
         {
             url: `${BASE_URL}/reach-out`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.6,
         },
         {
             url: `${BASE_URL}/platform/filemaker-system`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.9,
         },
         {
             url: `${BASE_URL}/platform/ecommerce-storefront`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.9,
         },
         {
             url: `${BASE_URL}/platform/complete-system`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 1,
         },
         {
             url: `${BASE_URL}/platform/inventory-management`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
             url: `${BASE_URL}/platform/production-automation`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
             url: `${BASE_URL}/get-started`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.9,
         },
         {
             url: `${BASE_URL}/get-started/scheduling`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
             url: `${BASE_URL}/get-started/replace-spreadsheets`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
             url: `${BASE_URL}/hire/filemaker-developer-usa`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
             url: `${BASE_URL}/hire/filemaker-developer`,
-            lastModified: new Date(),
+            lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.8,
         },
@@ -113,7 +119,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     const caseStudyPages: MetadataRoute.Sitemap = caseStudies.map((study) => ({
         url: `${BASE_URL}/case-studies/${study.slug}`,
-        lastModified: new Date(),
+        lastModified: CONTENT_UPDATED,
         changeFrequency: 'monthly' as const,
         priority: 0.7,
     }));
