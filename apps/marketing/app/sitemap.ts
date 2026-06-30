@@ -43,6 +43,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
         },
         {
+            url: `${BASE_URL}/embroidery-website`,
+            lastModified: CONTENT_UPDATED,
+            changeFrequency: 'monthly',
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/custom-apparel-online-store`,
+            lastModified: CONTENT_UPDATED,
+            changeFrequency: 'monthly',
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/best-ecommerce-platform-for-print-shops`,
+            lastModified: CONTENT_UPDATED,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: `${BASE_URL}/print-shop-website-cost`,
+            lastModified: CONTENT_UPDATED,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: `${BASE_URL}/shopify-for-print-shops`,
+            lastModified: CONTENT_UPDATED,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
             url: `${BASE_URL}/about`,
             lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',

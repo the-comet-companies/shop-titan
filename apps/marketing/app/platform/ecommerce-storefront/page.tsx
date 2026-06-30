@@ -52,8 +52,8 @@ const faqs = [
 
 const faqSchema = generateFAQSchema(faqs);
 const serviceSchema = generateServiceSchema({
-    name: 'Ecommerce Website for Print Shops',
-    description: 'Pre-built ecommerce storefront for print shops and apparel decorators. Product catalog, artwork uploads, size/color selection, volume pricing, and automatic order flow into production.',
+    name: 'Print Shop Ecommerce Storefront',
+    description: 'The Shop Titan storefront module for print shops and apparel decorators. Product catalog, artwork uploads, size/color selection, and volume pricing, with online orders flowing straight into the FileMaker system and production.',
     url: 'https://shoptitan.app/platform/ecommerce-storefront',
 });
 const breadcrumbSchema = generateBreadcrumbSchema([
@@ -89,7 +89,7 @@ export default function EcommerceStorefrontPage() {
                             transition={{ duration: 0.5, delay: 0.1 }}
                             className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
                         >
-                            Ecommerce Website for Print Shops  - Online Ordering for Custom Apparel
+                            A Print Shop Storefront Wired Straight Into Production
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 12 }}
@@ -97,7 +97,7 @@ export default function EcommerceStorefrontPage() {
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8"
                         >
-                            A storefront built specifically for screen printers and apparel decorators  - with artwork uploads, size/color selection, volume pricing, and automatic order flow into your production system. Not a template. A proven storefront handling real orders every day.
+                            A storefront built specifically for screen printers and apparel decorators, with artwork uploads, size/color selection, volume pricing, and automatic order flow into your production system. Not a template. A proven storefront handling real orders every day. Just want the website? See the <Link href="/print-shop-ecommerce-website" className="text-primary font-semibold hover:underline">print shop ecommerce website</Link> overview.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}

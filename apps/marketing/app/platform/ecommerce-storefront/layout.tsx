@@ -1,8 +1,8 @@
 import { generatePageMetadata } from "@/lib/schema";
 
 export const metadata = generatePageMetadata({
-    title: "Ecommerce Website & Online Ordering for Print Shops",
-    description: "Get a print shop ecommerce website with artwork uploads, size/color selection, and automatic order processing. Built for real production workflows. Deploy in 2-3 weeks.",
+    title: "Print Shop Storefront, Connected to Production",
+    description: "The Shop Titan storefront module sends online orders straight into your FileMaker system as quotes, inventory, and production jobs, with no re-entry. The selling front-end of the complete print shop platform.",
     path: "/platform/ecommerce-storefront",
     type: "platform",
 });
