@@ -241,6 +241,10 @@ export default function PrintShopWebsiteCostPage() {
                                 Compare platforms
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
+                            <Link href="/print-shop-website-checklist" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
+                                Website checklist
+                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                            </Link>
                         </div>
                     </div>
                 </section>

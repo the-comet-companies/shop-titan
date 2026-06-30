@@ -277,6 +277,18 @@ export default function BestEcommercePlatformPage() {
                                 The complete system
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
+                            <Link href="/shopify-for-print-shops" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
+                                Shopify for print shops
+                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                            </Link>
+                            <Link href="/woocommerce-for-print-shops" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
+                                WooCommerce for print shops
+                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                            </Link>
+                            <Link href="/onprintshop-alternative" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
+                                OnPrintShop alternative
+                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                            </Link>
                         </div>
                     </div>
                 </section>

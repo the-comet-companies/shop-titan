@@ -73,6 +73,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8,
         },
         {
+            url: `${BASE_URL}/woocommerce-for-print-shops`,
+            lastModified: CONTENT_UPDATED,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: `${BASE_URL}/onprintshop-alternative`,
+            lastModified: CONTENT_UPDATED,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: `${BASE_URL}/print-shop-website-checklist`,
+            lastModified: CONTENT_UPDATED,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
             url: `${BASE_URL}/about`,
             lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
