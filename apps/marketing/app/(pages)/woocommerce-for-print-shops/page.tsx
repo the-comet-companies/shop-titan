@@ -157,7 +157,7 @@ export default function WooCommerceForPrintShopsPage() {
                                 What running WooCommerce for a print shop actually takes
                             </h2>
                             <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed">
-                                "Free" is the plugin. This is the stack you assemble and maintain to make it work for decoration.
+                                Free is just the plugin. This is the stack you assemble and maintain to make it work for decoration.
                             </p>
                         </div>
                         <motion.div
