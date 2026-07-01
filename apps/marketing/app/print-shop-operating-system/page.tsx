@@ -12,20 +12,21 @@ import {
   WorkflowStepper,
   type WorkflowStep,
 } from "./_components/WorkflowStepper";
-import { BrokenSystemMap } from "./_components/infographics/BrokenSystemMap";
-import { MorningInterruptionStack } from "./_components/infographics/MorningInterruptionStack";
-import { GrowthPressureScale } from "./_components/infographics/GrowthPressureScale";
-import { OwnerAsOperatingSystem } from "./_components/infographics/OwnerAsOperatingSystem";
-import { OneJobSixPlaces } from "./_components/infographics/OneJobSixPlaces";
-import { HandoffRepairMap } from "./_components/infographics/HandoffRepairMap";
-import { ChaosToControlComparison } from "./_components/infographics/ChaosToControlComparison";
-import { ProofDashboard } from "./_components/infographics/ProofDashboard";
-import { ClarityState } from "./_components/infographics/ClarityState";
-import { DailyOrderSnapshot } from "./_components/infographics/DailyOrderSnapshot";
+import {
+  BrokenSystemMap,
+  MorningInterruptionStack,
+  GrowthPressureScale,
+  OwnerAsOperatingSystem,
+  OneJobSixPlaces,
+  HandoffRepairMap,
+  ChaosToControlComparison,
+  ProofDashboard,
+  ClarityState,
+  DailyOrderSnapshot,
+} from "./_components/LazyInfographics";
 
 export const metadata: Metadata = {
-  title:
-    "Print Shop Operating System: Orders, Art, and Production in One Workflow",
+  title: "Print Shop Operating System: One Connected Workflow",
   description:
     "Shop Titan is the connected production operating system for growing print and decoration shops. Orders, artwork, approvals, scheduling, inventory, and job status in one workflow.",
   alternates: { canonical: "https://shoptitan.app/print-shop-operating-system" },
