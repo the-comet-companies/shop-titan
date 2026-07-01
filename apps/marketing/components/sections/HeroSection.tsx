@@ -23,12 +23,7 @@ export default function HeroSection() {
             <div className="relative pt-32 pb-20 md:pt-24 lg:pt-32 lg:pb-40 z-20">
                 <div className="max-w-7xl mx-auto px-mobile relative 2xl:max-w-[1480px]">
                     <div className="max-w-3xl text-left">
-                        <motion.header
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, ease: "easeOut" }}
-                            className="mb-8 md:mb-12"
-                        >
+                        <header className="mb-8 md:mb-12">
                             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-charcoal dark:text-white leading-[1.1] mb-8 tracking-tight">
                                 Print Shop{' '}
                                 <motion.span
@@ -52,7 +47,7 @@ export default function HeroSection() {
                             >
                                 The branded site that wins orders online, plus the system that runs quotes, production, and inventory.
                             </p>
-                        </motion.header>
+                        </header>
 
                         <motion.nav
                             initial={{ opacity: 0, y: 20 }}

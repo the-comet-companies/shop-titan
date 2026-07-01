@@ -113,19 +113,13 @@ export default function RootLayout({
     return (
         <html lang="en">
             <head>
-                {/* DNS Prefetch for critical origins */}
-                <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-                <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-
-                {/* Preconnect for faster font loading */}
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
-                {/* Material Symbols Icons */}
-                {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+                {/* Self-hosted, subsetted Material Symbols icon font (see globals.css) */}
                 <link
-                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200..400,0..1,-50..200&display=swap"
-                    rel="stylesheet"
+                    rel="preload"
+                    href="/fonts/material-symbols-outlined-subset.woff2"
+                    as="font"
+                    type="font/woff2"
+                    crossOrigin="anonymous"
                 />
 
                 {/* Structured Data - Organization Schema */}

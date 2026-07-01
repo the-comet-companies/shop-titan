@@ -2,6 +2,12 @@
   "name": "tech-for-decorators-marketing",
   "version": "1.0.0",
   "private": true,
+  "browserslist": [
+    "chrome >= 93",
+    "edge >= 93",
+    "firefox >= 92",
+    "safari >= 15.4"
+  ],
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
