@@ -12,7 +12,7 @@ const NAV_SECTIONS = ['products', 'about', 'features', 'case-studies', 'pricing'
 const ACTIVE_SECTIONS = ['hero', 'platform', 'features', 'case-studies', 'pricing', 'blog', 'contact'] as const;
 
 // Paid-traffic landing pages render their own minimal header (logo + single CTA, no nav).
-const LANDING_ROUTES = new Set(['/get-started', '/get-started/scheduling', '/test-prompt', '/scheduling']);
+const LANDING_ROUTES = new Set(['/get-started', '/get-started/scheduling', '/print-shop-operating-system', '/scheduling']);
 
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

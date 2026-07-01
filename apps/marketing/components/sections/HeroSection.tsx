@@ -30,20 +30,27 @@ export default function HeroSection() {
                             className="mb-8 md:mb-12"
                         >
                             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-charcoal dark:text-white leading-[1.1] mb-8 tracking-tight">
-                                A{' '}
+                                Print Shop{' '}
                                 <motion.span
                                     animate={{ color: ['#1a1a2e', '#1e3a6e', '#1a1a2e'] }}
                                     transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 1, ease: 'easeInOut' }}
                                 >
-                                    single source of truth
+                                    Websites
                                 </motion.span>
-                                {' '}for the decoration industry.
+                                {' '}&amp; Management{' '}
+                                <motion.span
+                                    animate={{ color: ['#1a1a2e', '#1e3a6e', '#1a1a2e'] }}
+                                    transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 1, ease: 'easeInOut', delay: 0.6 }}
+                                >
+                                    Software
+                                </motion.span>
+                                .
                             </h1>
                             <p
                                 className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl text-secondary-text dark:text-gray-300 font-medium"
                                 role="doc-subtitle"
                             >
-                                Our system allows you to focus on what you do best.
+                                The branded site that wins orders online, plus the system that runs quotes, production, and inventory.
                             </p>
                         </motion.header>
 

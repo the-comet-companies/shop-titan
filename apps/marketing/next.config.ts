@@ -22,6 +22,17 @@ const nextConfig: NextConfig = {
             'gsap',
         ],
     },
+
+    // Preserve the old experimental URL: 301 to the renamed route.
+    async redirects() {
+        return [
+            {
+                source: '/test-prompt',
+                destination: '/print-shop-operating-system',
+                permanent: true,
+            },
+        ];
+    },
 };
 
 export default nextConfig;

@@ -286,6 +286,10 @@ export default function PrintShopWebsiteChecklistPage() {
                                 What it costs
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
                             </Link>
+                            <Link href="/portfolio" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
+                                Website examples
+                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                            </Link>
                         </div>
                     </div>
                 </section>

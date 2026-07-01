@@ -17,7 +17,7 @@ import CtaSection from "@/components/sections/CtaSection";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-    title: "Shop Titan: Print Shop Websites & Ecommerce Storefronts",
+    title: "Shop Titan: Print Shop Websites & Management Software",
     description:
         "Get your print shop online with a branded ecommerce storefront and online ordering, then add a pre-built FileMaker system to run quotes, orders, inventory, and production. Proven in a $1M+ shop.",
     alternates: { canonical: "https://shoptitan.app" },

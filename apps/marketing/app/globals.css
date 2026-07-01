@@ -46,7 +46,7 @@
 }
 
 @layer components {
-  /* /test-prompt landing transfer additions */
+  /* /print-shop-operating-system landing transfer additions */
   .container-app {
     @apply mx-auto w-full max-w-container px-4 md:px-6;
   }
