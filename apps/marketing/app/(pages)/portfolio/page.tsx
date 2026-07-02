@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import type { Variants } from 'framer-motion';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 import {
@@ -134,22 +133,6 @@ const itemListSchema = {
     })),
 };
 
-// ───── Motion ─────
-
-const stagger: Variants = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.05 } },
-};
-
-const fadeUp: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-    },
-};
-
 // ───── Browser-frame mockup (signature element) ─────
 
 function SiteMockup({ v }: { v: Vertical }) {
@@ -208,102 +191,63 @@ export default function PortfolioPage() {
 
                 {/* ───── HERO ───── */}
                 <section className="pt-16 md:pt-24 pb-12 md:pb-16 bg-background-light dark:bg-background-dark">
-                    <div className="max-w-4xl mx-auto px-mobile text-center">
-                        <motion.div
-                            initial={{ opacity: 0, y: 12 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="inline-flex items-center gap-2 rounded-full border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-950 px-4 py-1.5 mb-6"
-                        >
-                            <span className="material-symbols-outlined text-primary text-lg">palette</span>
-                            <span className="text-sm font-semibold text-charcoal dark:text-gray-200">{verticals.length} shop types, one platform</span>
-                        </motion.div>
+                    <div className="max-w-3xl mx-auto px-mobile text-center">
                         <motion.h1
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
-                            className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
+                            className="text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
                         >
-                            Print shop website examples, built for what you make.
+                            Our Work
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8"
+                            className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-2xl mx-auto leading-relaxed"
                         >
-                            See how a Shop Titan site looks for your kind of shop, from screen printing to embroidery to promo and signage. Every example is a real, buildable design, not a stock template.
+                            Explore custom websites we&apos;ve built for print shops, from screen printing and embroidery to signage and promotional products.
                         </motion.p>
-                        <motion.div
-                            initial={{ opacity: 0, y: 12 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            className="flex flex-col sm:flex-row gap-4 justify-center"
-                        >
-                            <Link
-                                href="/reach-out"
-                                className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
-                            >
-                                Book a Demo
-                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
-                            </Link>
-                            <Link
-                                href="/print-shop-website"
-                                className="px-8 py-4 text-charcoal dark:text-white font-semibold rounded-full inline-flex items-center justify-center gap-2 relative overflow-hidden group"
-                            >
-                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-primary/50 transition-colors rounded-full" />
-                                <span className="relative z-10">How a Print Shop Site Works</span>
-                            </Link>
-                        </motion.div>
                     </div>
                 </section>
 
-                {/* ───── DIRECT ANSWER (AEO) ───── */}
-                <section className="bg-surface dark:bg-gray-950 border-t border-structural-border dark:border-gray-800 py-14 md:py-16">
-                    <div className="max-w-4xl mx-auto px-mobile">
-                        <div className="border-l-4 border-primary pl-6 md:pl-8">
-                            <p className="text-base md:text-lg text-charcoal dark:text-gray-200 leading-relaxed">
-                                These are examples of what a Shop Titan print shop website can look like, organized by the kind of work you do. Each one pairs a branded storefront with decoration-aware online ordering, artwork upload, and a tie into production, so the site does not just look good, it takes clean orders and feeds your shop floor.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* ───── VERTICAL SHOWCASES (signature) ───── */}
-                <section className="bg-background-light dark:bg-background-dark py-16 md:py-24 border-t border-structural-border dark:border-gray-800">
-                    <div className="max-w-6xl mx-auto px-mobile space-y-16 md:space-y-24">
-                        {verticals.map((v, i) => (
-                            <motion.div
-                                key={v.key}
-                                variants={stagger}
-                                initial="hidden"
-                                whileInView="show"
-                                viewport={{ once: true, margin: '-80px' }}
-                                className="grid md:grid-cols-2 gap-8 md:gap-12 items-center"
-                            >
-                                <motion.div variants={fadeUp} className={i % 2 === 1 ? 'md:order-2' : ''}>
-                                    <SiteMockup v={v} />
-                                </motion.div>
-                                <motion.div variants={fadeUp} className={i % 2 === 1 ? 'md:order-1' : ''}>
-                                    <div className="inline-flex items-center gap-2 mb-3">
-                                        <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: v.accent }} />
-                                        <span className="text-xs font-semibold uppercase tracking-wide text-secondary-text dark:text-gray-500">{v.name}</span>
+                {/* ───── GALLERY (signature) ───── */}
+                <section className="bg-background-light dark:bg-background-dark py-12 md:py-16 border-t border-structural-border dark:border-gray-800">
+                    <div className="max-w-6xl mx-auto px-mobile">
+                        <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                            {verticals.map((v) => (
+                                <motion.article
+                                    key={v.key}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: '-60px' }}
+                                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                                    className="group flex flex-col rounded-2xl border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-950 overflow-hidden hover:shadow-card transition-shadow"
+                                >
+                                    <div className="p-4 md:p-5">
+                                        <SiteMockup v={v} />
                                     </div>
-                                    <h2 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white tracking-tight mb-4">
-                                        A website built for {v.name.toLowerCase()}
-                                    </h2>
-                                    <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed mb-6">{v.blurb}</p>
-                                    <ul className="space-y-3">
-                                        {v.features.map((f) => (
-                                            <li key={f} className="flex items-start gap-3 text-sm md:text-base text-charcoal dark:text-gray-200">
-                                                <span className="material-symbols-outlined text-lg shrink-0" style={{ color: v.accent }}>check_circle</span>
-                                                {f}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </motion.div>
-                            </motion.div>
-                        ))}
+                                    <div className="flex flex-col flex-1 px-5 pb-6 pt-1">
+                                        <div className="inline-flex items-center gap-2 mb-2">
+                                            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: v.accent }} />
+                                            <span className="text-xs font-semibold uppercase tracking-wide text-secondary-text dark:text-gray-500">{v.name}</span>
+                                        </div>
+                                        <h2 className="text-lg md:text-xl font-bold text-charcoal dark:text-white tracking-tight mb-2">
+                                            A website built for {v.name.toLowerCase()}
+                                        </h2>
+                                        <p className="text-sm md:text-base text-secondary-text dark:text-gray-400 leading-relaxed mb-4">{v.blurb}</p>
+                                        <ul className="mt-auto space-y-2">
+                                            {v.features.map((f) => (
+                                                <li key={f} className="flex items-start gap-2.5 text-sm text-charcoal dark:text-gray-200">
+                                                    <span className="material-symbols-outlined text-base shrink-0" style={{ color: v.accent }}>check_circle</span>
+                                                    {f}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </motion.article>
+                            ))}
+                        </div>
                     </div>
                 </section>
 

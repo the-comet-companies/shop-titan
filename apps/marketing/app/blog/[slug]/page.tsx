@@ -184,7 +184,12 @@ export default async function BlogPostPage({ params }: PageProps) {
                     {/* Footer / Author */}
                     <div className="mt-16 pt-12 border-t border-structural-border dark:border-gray-800">
                         <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary-text">
-                            Written by <span className="text-charcoal dark:text-white">{post.author}</span>
+                            Written by{" "}
+                            <Link href="/about" className="text-charcoal dark:text-white hover:text-primary transition-colors">{post.author}</Link>
+                        </p>
+                        <p className="mt-3 text-sm font-normal normal-case tracking-normal text-secondary-text dark:text-gray-400 leading-relaxed max-w-xl">
+                            Founder of Shop Titan, drawing on 15+ years running a $1M+ print and decoration shop.{" "}
+                            <Link href="/about" className="text-primary hover:underline">More about the team</Link>.
                         </p>
                     </div>
                 </div>

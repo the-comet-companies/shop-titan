@@ -22,7 +22,7 @@ export const articles: BlogPost[] = [
         title: "How to Handle Print on Demand in a High-Volume Print Shop",
         description:
             "Single-piece POD orders kill print shop efficiency. Learn how batching logic eliminates production bottlenecks and keeps your workflow running at scale.",
-        author: "Shop Titan Team",
+        author: "Michael Monfared",
         content: `
             <p>Print on Demand is often hailed as the future of customization  - but for high-volume print shops, it can be a silent killer of efficiency. Managing a print on demand workflow for print shops means constant context switching: handling individual unique orders alongside large bulk runs disrupts your entire production line and slows output to a crawl.</p>
 
@@ -64,7 +64,7 @@ export const articles: BlogPost[] = [
         seoTitle: "Scaling a Print Shop Beyond 10 Employees",
         description:
             "Most print shops hit a wall at 10 employees. Learn why the shift from managing people to managing processes is the key to scaling  - and what systems make it work.",
-        author: "Shop Titan Team",
+        author: "Michael Monfared",
         content: `
             <p>There is a breaking point that almost every screen printing shop hits: the 10-employee mark. Before that threshold, a hands-on owner can manage everything by walking the floor and putting out fires. But once a print shop reaches 10+ employees, manual workflows break down  - quality drops, deadlines slip, and the business starts running you. Without a proper print shop management system, growth becomes chaos.</p>
 
@@ -106,7 +106,7 @@ export const articles: BlogPost[] = [
         seoTitle: "Why Real-Time Inventory Sync Fails for Print Shops",
         description:
             "Most inventory systems for print shops update every 15-60 minutes. In a high-volume launch, that gap means overselling by hundreds of units. Here's what real-time sync actually looks like.",
-        author: "Shop Titan Team",
+        author: "Michael Monfared",
         content: `
             <p>Real-time inventory management for print shops is the holy grail of e-commerce  - but for apparel decorators, "sync" is often a lie. Most inventory systems update every hour or every 15 minutes. In a high-volume launch, that gap is enough to oversell by hundreds of units, trigger refunds, and damage customer trust. If your inventory system isn't updating in real time, it's costing you money.</p>
 
@@ -147,7 +147,7 @@ export const articles: BlogPost[] = [
         title: "FileMaker vs SaaS for Print Shops: When Custom Platforms Win",
         description:
             "Off-the-shelf SaaS tools break down as print shops grow. Here's why FileMaker-based systems offer the flexibility that generic software can't  - and when each approach makes sense.",
-        author: "Shop Titan Team",
+        author: "Michael Monfared",
         content: `
             <p>Choosing between FileMaker and SaaS tools is one of the most important decisions for print shop operations. Most shops start with off-the-shelf SaaS solutions  - they're easy to set up and look polished. But as your business grows, you hit a wall: the software doesn't support your specific print shop workflow, your custom pricing model, or the way your production floor actually operates. That's the moment shop owners start searching for something more flexible  - and the FileMaker vs SaaS debate begins.</p>
 
@@ -189,7 +189,7 @@ export const articles: BlogPost[] = [
         seoTitle: "Tracking Print Shop Production Without Whiteboards",
         description:
             "Whiteboards and spreadsheets can't keep up with real print shop production. Learn how modern shops track jobs, manage scheduling, and prevent delays with a connected system.",
-        author: "Shop Titan Team",
+        author: "Michael Monfared",
         content: `
             <p>If you run a print shop, you already know the scene: a whiteboard near the press with job names, due dates, and status markers that nobody updates after lunch. Print shop production tracking doesn't work on whiteboards  - and every shop owner figures that out the hard way, usually when a customer calls asking where their order is and nobody has an answer.</p>
 
@@ -261,7 +261,7 @@ export const articles: BlogPost[] = [
         seoTitle: "Why Inventory and Production Must Connect",
         description:
             "When inventory and production aren't connected, print shops run out of blanks mid-job, overpromise orders, and waste hours reacting to problems. Here's how a connected system fixes it.",
-        author: "Shop Titan Team",
+        author: "Michael Monfared",
         content: `
             <p>You pull a job ticket, set up the press, and start printing  - then discover you're short 40 black mediums. The blanks were supposed to be there. Someone counted them last week. But two other orders pulled from the same stock since then, and nobody updated anything. This is what happens when inventory management for print shops is disconnected from production. And it happens every day in shops that track these things separately.</p>
 

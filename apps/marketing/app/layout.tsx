@@ -35,18 +35,6 @@ export const metadata: Metadata = {
     },
     description:
         'A branded ecommerce storefront for print and decoration shops  - customers find you and order online without a phone call. Add a pre-built FileMaker system to run quotes, orders, inventory, and production. Proven in a $1M+ shop.',
-    keywords: [
-        'custom apparel online store',
-        'print shop ecommerce',
-        'online ordering for printers',
-        'ecommerce for screen printers',
-        'print shop management system',
-        'filemaker for print shops',
-        'screen printing software',
-        'apparel decorator management',
-        'screen printing inventory',
-        'print shop CRM',
-    ],
     authors: [{ name: 'Shop Titan' }],
     creator: 'Shop Titan',
     publisher: 'Shop Titan',
