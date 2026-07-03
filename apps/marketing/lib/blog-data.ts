@@ -1,7 +1,8 @@
 export interface BlogPost {
     id: string;
     slug: string;
-    date: string;
+    date: string; // ISO 8601 (YYYY-MM-DD) publication date; format for display with formatBlogDate()
+    updated?: string; // ISO 8601 (YYYY-MM-DD) last significant content update, if any
     category: string;
     title: string;
     seoTitle?: string; // optional <60-char SEO title; falls back to title
@@ -12,12 +13,22 @@ export interface BlogPost {
     image?: string;
 }
 
+// Render an ISO date as e.g. "February 12, 2026" (UTC to avoid off-by-one shifts).
+export function formatBlogDate(isoDate: string): string {
+    return new Date(`${isoDate}T00:00:00Z`).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        timeZone: "UTC",
+    });
+}
+
 export const articles: BlogPost[] = [
     {
         id: "1",
         slug: "neutralizing-pod-friction",
         quickAnswer: "To handle print on demand in a high-volume shop, batch single-piece POD orders that share specs instead of running them one at a time. Batching groups jobs by garment, color, and print method, so the line stops context-switching and bulk runs and one-offs move together without killing output.",
-        date: "October 12, 2023",
+        date: "2026-02-12",
         category: "Operations",
         title: "How to Handle Print on Demand in a High-Volume Print Shop",
         description:
@@ -58,7 +69,7 @@ export const articles: BlogPost[] = [
         id: "2",
         slug: "scaling-beyond-10-employees",
         quickAnswer: "Print shops stall around 10 employees because the owner can no longer manage every job by walking the floor. Scaling past it means shifting from managing people to managing processes: a print shop management system that enforces the workflow, so each role knows the next step without the owner directing it.",
-        date: "October 05, 2023",
+        date: "2026-02-12",
         category: "Growth",
         title: "Scaling Your Print Shop Beyond 10 Employees Without Losing Control",
         seoTitle: "Scaling a Print Shop Beyond 10 Employees",
@@ -100,7 +111,7 @@ export const articles: BlogPost[] = [
         id: "3",
         slug: "inventory-sync-realities",
         quickAnswer: "Most print shop inventory systems are not truly real-time; they sync every 15 to 60 minutes. During a high-volume launch, that gap oversells by hundreds of units. Real-time sync means stock updates the instant an order is placed, with blanks allocated immediately and out-of-stock variants hidden automatically.",
-        date: "September 28, 2023",
+        date: "2026-02-12",
         category: "Automation",
         title: "Real-Time Inventory Sync for Print Shops: Why Most Systems Fail",
         seoTitle: "Why Real-Time Inventory Sync Fails for Print Shops",
@@ -142,7 +153,7 @@ export const articles: BlogPost[] = [
         id: "4",
         slug: "claris-filemaker-vs-saas",
         quickAnswer: "Off-the-shelf SaaS is fast to launch but rigid, and it breaks when your pricing, workflow, or production floor does not fit its templates. A FileMaker-based system is customizable to how your shop actually runs. Choose SaaS for simple, standard needs, and FileMaker when you need flexibility generic software cannot give.",
-        date: "September 15, 2023",
+        date: "2026-02-12",
         category: "Infrastructure",
         title: "FileMaker vs SaaS for Print Shops: When Custom Platforms Win",
         description:
@@ -183,7 +194,7 @@ export const articles: BlogPost[] = [
         id: "5",
         slug: "print-shop-production-tracking-without-whiteboards",
         quickAnswer: "Whiteboards and spreadsheets fall behind because nobody updates them in real time. Modern print shops track production with a connected system where every job has a live status, due date, and owner. Staff update jobs as they move through the floor, so scheduling stays accurate and delays get caught before customers call.",
-        date: "April 7, 2026",
+        date: "2026-04-07",
         category: "Production",
         title: "How Print Shops Track Production Without Whiteboards (And Why It Matters)",
         seoTitle: "Tracking Print Shop Production Without Whiteboards",
@@ -255,7 +266,7 @@ export const articles: BlogPost[] = [
         id: "6",
         slug: "inventory-production-connected-print-shop",
         quickAnswer: "When inventory and production are separate, shops start jobs only to find blanks missing, because other orders pulled the same stock and nothing updated. Connecting them means each job ticket reserves its blanks in real time and reorders trigger automatically, so you stop running out mid-job and stop overpromising orders.",
-        date: "April 7, 2026",
+        date: "2026-04-07",
         category: "Operations",
         title: "Why Inventory and Production Must Be Connected in a Print Shop",
         seoTitle: "Why Inventory and Production Must Connect",

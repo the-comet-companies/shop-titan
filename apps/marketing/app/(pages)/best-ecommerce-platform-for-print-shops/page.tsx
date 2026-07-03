@@ -264,6 +264,11 @@ export default function BestEcommercePlatformPage() {
                         <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed mb-6">
                             Shop Titan is the right pick for one specific shop: you produce in-house, you want a custom, branded site instead of a template, and you want online orders to flow straight into operations. It pairs a custom storefront with a pre-built FileMaker system, proven in a $1M-plus shop. If that is not you, one of the other categories above will fit better, and that is fine.
                         </p>
+                        <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed mb-6">
+                            Why we rank the connected approach first comes down to what we have measured in shops running it. One shop&apos;s first product launch on the connected storefront moved 500 units in 4 hours with zero oversells, on inventory accuracy that went from roughly 80 percent to 99.8. Another cut order processing from 15-20 minutes per order to fully automatic. Those are the numbers behind the recommendation, not a feature checklist. See the{' '}
+                            <Link href="/case-studies/real-time-inventory" className="text-primary hover:underline">inventory launch case study</Link> and the{' '}
+                            <Link href="/case-studies/website-plus-operations" className="text-primary hover:underline">website plus operations case study</Link> for the full before and after.
+                        </p>
                         <div className="flex flex-wrap gap-4">
                             <Link href="/print-shop-ecommerce-website" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
                                 Print shop ecommerce website

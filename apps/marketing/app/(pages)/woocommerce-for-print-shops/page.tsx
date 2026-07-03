@@ -221,6 +221,25 @@ export default function WooCommerceForPrintShopsPage() {
                     </div>
                 </section>
 
+                {/* ───── FIRST-HAND EVIDENCE ───── */}
+                <section className="bg-background-light dark:bg-background-dark py-16 md:py-24 border-t border-structural-border dark:border-gray-800">
+                    <div className="max-w-4xl mx-auto px-mobile">
+                        <div className="rounded-2xl border border-primary/20 bg-primary/5 dark:bg-primary/10 p-7 md:p-10 shadow-card">
+                            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-4">Measured at a real shop</p>
+                            <h2 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white tracking-tight mb-4">
+                                The plugin stack is not the expensive part. The gap after checkout is.
+                            </h2>
+                            <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed mb-6">
+                                A store that does not feed production means someone re-keys every order. At one shop we moved onto a connected system, that gap was costing 8 to 10 order errors a month and more than 6 hours a week of manual tracking. Both went to zero in the first month, and order status lookups went from 10-15 minutes of digging to under 30 seconds.
+                            </p>
+                            <Link href="/case-studies/spreadsheets-to-system" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
+                                Read the full case study
+                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+
                 {/* ───── WHICH TO CHOOSE ───── */}
                 <section className="bg-background-light dark:bg-background-dark py-16 md:py-20 border-t border-structural-border dark:border-gray-800">
                     <div className="max-w-3xl mx-auto px-mobile">

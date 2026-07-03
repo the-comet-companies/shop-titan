@@ -1,4 +1,4 @@
-import { articles } from "@/lib/blog-data";
+import { articles, formatBlogDate } from "@/lib/blog-data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { generatePageMetadata } from "@/lib/schema";
@@ -82,6 +82,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 "headline": post.title,
                 "description": post.description,
                 "datePublished": post.date,
+                "dateModified": post.updated ?? post.date,
                 "author": {
                     "@type": "Person",
                     "name": post.author,
@@ -136,7 +137,13 @@ export default async function BlogPostPage({ params }: PageProps) {
                     {/* Header */}
                     <header className="mb-10 md:mb-14">
                         <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.2em] text-secondary-text dark:text-gray-500 mb-6">
-                            <span>{post.date}</span>
+                            <span>Published {formatBlogDate(post.date)}</span>
+                            {post.updated && (
+                                <>
+                                    <span className="w-1 h-1 rounded-full bg-structural-border"></span>
+                                    <span>Updated {formatBlogDate(post.updated)}</span>
+                                </>
+                            )}
                             <span className="w-1 h-1 rounded-full bg-structural-border"></span>
                             <span className="text-primary">{post.category}</span>
                         </div>

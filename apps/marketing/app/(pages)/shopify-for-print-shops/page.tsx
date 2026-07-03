@@ -252,6 +252,38 @@ export default function ShopifyForPrintShopsPage() {
                     </div>
                 </section>
 
+                {/* ───── FIRST-HAND EVIDENCE ───── */}
+                <section className="bg-background-light dark:bg-background-dark py-16 md:py-24 border-t border-structural-border dark:border-gray-800">
+                    <div className="max-w-5xl mx-auto px-mobile">
+                        <div className="max-w-2xl mb-10">
+                            <h2 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white tracking-tight mb-4">
+                                We measured this at a real shop that left Shopify
+                            </h2>
+                            <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed">
+                                This is not theory. One shop we work with ran a Shopify store doing 40+ orders a week, and every order was re-entered by hand into their tracking spreadsheet. Here is what changed after we replaced it with a connected storefront.
+                            </p>
+                        </div>
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                            {[
+                                { label: 'Order processing time', before: '15-20 min each', after: 'Automatic' },
+                                { label: 'Lost or duplicate orders', before: '2-3 per week', after: 'Zero' },
+                                { label: 'Status calls from customers', before: '15+ per week', after: '2-3 per week' },
+                                { label: 'Wrong design printed', before: '1-2 per month', after: 'Zero' },
+                            ].map((m) => (
+                                <div key={m.label} className="rounded-2xl border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-950 p-5">
+                                    <p className="text-xs font-semibold uppercase tracking-wide text-secondary-text dark:text-gray-500 mb-3">{m.label}</p>
+                                    <p className="text-sm text-secondary-text dark:text-gray-400 line-through decoration-rose-400/60 mb-1">{m.before}</p>
+                                    <p className="text-lg font-bold text-primary">{m.after}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <Link href="/case-studies/website-plus-operations" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
+                            Read the full case study
+                            <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                        </Link>
+                    </div>
+                </section>
+
                 {/* ───── WHICH TO CHOOSE ───── */}
                 <section className="bg-surface dark:bg-gray-950 py-16 md:py-20 border-t border-structural-border dark:border-gray-800">
                     <div className="max-w-3xl mx-auto px-mobile">

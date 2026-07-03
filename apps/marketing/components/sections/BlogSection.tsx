@@ -2,7 +2,7 @@
 
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { motion } from 'framer-motion';
-import { articles } from '@/lib/blog-data';
+import { articles, formatBlogDate } from '@/lib/blog-data';
 import Link from 'next/link';
 
 export default function BlogSection() {
@@ -42,7 +42,7 @@ export default function BlogSection() {
                             className="group relative"
                         >
                             <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.2em] text-secondary-text dark:text-gray-500 mb-4 md:mb-6">
-                                <span>{article.date}</span>
+                                <span>{formatBlogDate(article.date)}</span>
                                 <span className="w-1 h-1 rounded-full bg-structural-border"></span>
                                 <span className="text-primary">{article.category}</span>
                             </div>

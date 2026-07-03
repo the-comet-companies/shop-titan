@@ -253,8 +253,40 @@ export default function OnPrintShopAlternativePage() {
                     </div>
                 </section>
 
+                {/* ───── FIRST-HAND EVIDENCE ───── */}
+                <section className="bg-background-light dark:bg-background-dark py-16 md:py-24 border-t border-structural-border dark:border-gray-800">
+                    <div className="max-w-5xl mx-auto px-mobile">
+                        <div className="max-w-2xl mb-10">
+                            <h2 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white tracking-tight mb-4">
+                                What &ldquo;no platform to run&rdquo; looks like in practice
+                            </h2>
+                            <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed">
+                                The clearest measure of a done-for-you system is how far a shop can grow without adding admin. One shop we work with scaled from 5 to 20 people on Shop Titan with the same single admin, the owner, the whole way.
+                            </p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-px rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-structural-border dark:bg-gray-800 mb-8">
+                            {[
+                                { stat: '5 → 20', label: 'Team size, same single admin' },
+                                { stat: '70+ → 45', label: 'Owner hours per week' },
+                                { stat: '3-5/wk → 0', label: 'Jobs falling through the cracks' },
+                            ].map((s) => (
+                                <div key={s.label} className="flex-1 bg-surface dark:bg-gray-950 p-6 md:p-8 text-center">
+                                    <p className="text-2xl md:text-3xl font-black tracking-tight text-primary mb-2">{s.stat}</p>
+                                    <p className="text-sm text-secondary-text dark:text-gray-400">{s.label}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="text-center">
+                            <Link href="/case-studies/scaling-from-5-to-20" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
+                                Read the full case study
+                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+
                 {/* ───── WHERE ONPRINTSHOP FITS (fairness / EEAT) ───── */}
-                <section className="bg-background-light dark:bg-background-dark py-16 md:py-20 border-t border-structural-border dark:border-gray-800">
+                <section className="bg-surface dark:bg-gray-950 py-16 md:py-20 border-t border-structural-border dark:border-gray-800">
                     <div className="max-w-3xl mx-auto px-mobile">
                         <h2 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white tracking-tight mb-5">
                             Where OnPrintShop is the better choice
@@ -280,7 +312,7 @@ export default function OnPrintShopAlternativePage() {
                 </section>
 
                 {/* ───── FAQ ───── */}
-                <section className="bg-surface dark:bg-gray-950 py-16 md:py-24 border-t border-structural-border dark:border-gray-800">
+                <section className="bg-background-light dark:bg-background-dark py-16 md:py-24 border-t border-structural-border dark:border-gray-800">
                     <div className="max-w-3xl mx-auto px-mobile">
                         <h2 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white tracking-tight mb-10">
                             OnPrintShop alternative FAQ
@@ -300,7 +332,7 @@ export default function OnPrintShopAlternativePage() {
                 </section>
 
                 {/* ───── FINAL CTA ───── */}
-                <section className="bg-background-light dark:bg-background-dark py-20 md:py-28 border-t border-structural-border dark:border-gray-800">
+                <section className="bg-surface dark:bg-gray-950 py-20 md:py-28 border-t border-structural-border dark:border-gray-800">
                     <div className="max-w-3xl mx-auto px-mobile text-center">
                         <h2 className="text-3xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-5">
                             See the alternative in action

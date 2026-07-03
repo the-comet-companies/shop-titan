@@ -129,7 +129,8 @@ export default function RootLayout({
                                     },
                                     "sameAs": [
                                         "https://twitter.com/shoptitan",
-                                        "https://linkedin.com/company/shoptitan"
+                                        "https://linkedin.com/company/shoptitan",
+                                        "https://www.capterra.com/p/10049292/Shop-Titan/"
                                     ],
                                     "contactPoint": {
                                         "@type": "ContactPoint",
@@ -152,6 +153,7 @@ export default function RootLayout({
                                     "@id": "https://shoptitan.app/#website",
                                     "url": "https://shoptitan.app",
                                     "name": "Shop Titan",
+                                    "alternateName": "ShopTitan",
                                     "publisher": {
                                         "@id": "https://shoptitan.app/#organization"
                                     }
