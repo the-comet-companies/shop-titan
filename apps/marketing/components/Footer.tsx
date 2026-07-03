@@ -16,12 +16,21 @@ export default function Footer() {
 
                     {/* Brand */}
                     <div className="sm:col-span-2 lg:col-span-3">
-                        <a
-                            href="#"
-                            className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter text-white mb-4 md:mb-6 block"
+                        <Link
+                            href="/"
+                            aria-label="Shop Titan home"
+                            className="flex items-center gap-2.5 mb-4 md:mb-6"
                         >
-                            Shop <span className="text-primary">Titan</span>
-                        </a>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src="/shop-titan-mark-white.png"
+                                alt=""
+                                className="h-8 w-8 md:h-9 md:w-9"
+                            />
+                            <span className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter text-white">
+                                Shop <span className="text-primary">Titan</span>
+                            </span>
+                        </Link>
                         <p className="text-gray-400 text-sm md:text-base max-w-xs leading-relaxed">
                             Custom FileMaker solutions for the apparel decoration industry.
                         </p>

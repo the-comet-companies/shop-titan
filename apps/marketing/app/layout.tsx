@@ -125,7 +125,7 @@ export default function RootLayout({
                                     "url": "https://shoptitan.app",
                                     "logo": {
                                         "@type": "ImageObject",
-                                        "url": "https://shoptitan.app/logo-transparent.png"
+                                        "url": "https://shoptitan.app/shop-titan-logo.png"
                                     },
                                     "sameAs": [
                                         "https://twitter.com/shoptitan",

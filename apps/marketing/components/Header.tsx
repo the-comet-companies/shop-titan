@@ -98,13 +98,32 @@ export default function Header() {
                 >
                     <div className="flex-shrink-0">
                         <motion.a
-                            href="#"
-                            className="flex items-center gap-2 group"
-                            onClick={(e) => { e.preventDefault(); scrollToSection("hero"); }}
+                            href="/"
+                            aria-label="Shop Titan home"
+                            className="flex items-center gap-2.5 group"
+                            onClick={(e) => {
+                                // Already home: smooth-scroll to top instead of reloading
+                                if (pathname === '/') { e.preventDefault(); scrollToSection("hero"); }
+                            }}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-
+                            <Image
+                                src="/shop-titan-mark.png"
+                                alt=""
+                                width={36}
+                                height={36}
+                                priority
+                                className="h-8 w-8 md:h-9 md:w-9 dark:hidden group-hover:opacity-80 transition-opacity"
+                            />
+                            <Image
+                                src="/shop-titan-mark-white.png"
+                                alt=""
+                                width={36}
+                                height={36}
+                                priority
+                                className="hidden h-8 w-8 md:h-9 md:w-9 dark:block group-hover:opacity-80 transition-opacity"
+                            />
                             <span className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter text-charcoal dark:text-white group-hover:opacity-80 transition-opacity">
                                 Shop <span className="text-primary">Titan</span>
                             </span>
