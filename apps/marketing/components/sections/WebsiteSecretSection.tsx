@@ -88,9 +88,6 @@ export default function WebsiteSecretSection() {
                         variants={fadeUp}
                         className="rounded-2xl border border-primary/30 bg-white dark:bg-gray-900 p-7 md:p-9 shadow-lg shadow-primary/10 ring-1 ring-primary/10 relative"
                     >
-                        <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary text-white text-[10px] font-bold tracking-wider uppercase">
-                            Shop Titan
-                        </span>
                         <h3 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white text-center mb-7 tracking-tight">
                             With a Website
                         </h3>

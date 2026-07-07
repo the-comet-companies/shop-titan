@@ -11,7 +11,7 @@ const fadeUp: Variants = {
 };
 
 type Feature = {
-    eyebrow: string;
+    eyebrow: string; // not rendered as a tag; feeds the mock browser URL bar only
     title: string;
     desc: string;
     bullets: string[];
@@ -81,12 +81,9 @@ export default function WebsiteEverythingSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="text-center max-w-3xl mx-auto mb-16 md:mb-20"
+                    className="text-center max-w-5xl mx-auto mb-16 md:mb-20"
                 >
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-4">
-                        Everything in one platform
-                    </span>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-5">
+                    <h2 className="text-3xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-5 lg:whitespace-nowrap">
                         Everything your print shop needs to sell online.
                     </h2>
                     <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed">
@@ -108,9 +105,6 @@ export default function WebsiteEverythingSection() {
                             >
                                 {/* TEXT */}
                                 <motion.div variants={fadeUp} className={`order-2 ${reverse ? 'lg:order-2' : 'lg:order-1'}`}>
-                                    <span className="text-[11px] md:text-xs font-bold tracking-widest text-primary uppercase mb-3 block">
-                                        {feature.eyebrow}
-                                    </span>
                                     <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-5">
                                         {feature.title}
                                     </h3>

@@ -115,7 +115,6 @@ export default function ProductionAutomationPage() {
                 {/* ───── DEFINITION ───── */}
                 <section className="relative bg-surface dark:bg-gray-950">
                     <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent" />
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
                     <div className="max-w-7xl mx-auto px-mobile py-16 md:py-20 relative z-10">
                         <motion.h2
@@ -563,24 +562,21 @@ export default function ProductionAutomationPage() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white mb-10"
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-10 text-center"
                         >
                             Frequently Asked Questions
                         </motion.h2>
-                        <motion.div
-                            className="space-y-6"
-                            variants={stagger}
-                            initial="hidden"
-                            whileInView="show"
-                            viewport={{ once: true }}
-                        >
-                            {faqs.map((faq) => (
-                                <motion.div key={faq.question} variants={fadeUp} className="pb-6 border-b border-structural-border dark:border-gray-800 last:border-0">
-                                    <h3 className="font-bold text-charcoal dark:text-white mb-2">{faq.question}</h3>
-                                    <p className="text-sm text-secondary-text dark:text-gray-400 leading-relaxed">{faq.answer}</p>
-                                </motion.div>
+                        <div className="border-t border-structural-border dark:border-gray-800">
+                            {faqs.map((faq, i) => (
+                                <details key={i} className="group border-b border-structural-border dark:border-gray-800">
+                                    <summary className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none select-none">
+                                        <h3 className="text-base font-bold text-charcoal dark:text-white pr-4 leading-snug">{faq.question}</h3>
+                                        <span className="material-symbols-outlined text-xl text-secondary-text dark:text-gray-500 flex-shrink-0 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                                    </summary>
+                                    <p className="pb-5 text-sm text-secondary-text dark:text-gray-400 leading-relaxed">{faq.answer}</p>
+                                </details>
                             ))}
-                        </motion.div>
+                        </div>
                     </div>
                 </section>
 

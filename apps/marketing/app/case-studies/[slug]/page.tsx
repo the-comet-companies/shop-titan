@@ -273,28 +273,17 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 {study.faqs && study.faqs.length > 0 && (
                     <section className="py-10 md:py-14 bg-surface dark:bg-gray-950 border-t border-structural-border dark:border-gray-800">
                         <div className="max-w-3xl mx-auto px-mobile">
-                            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-4">
-                                Common questions
-                            </span>
-                            <h2 className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-8">
+                            <h2 className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-10 text-center">
                                 Frequently Asked Questions
                             </h2>
-                            <div className="space-y-3">
-                                {study.faqs.map((f) => (
-                                    <details key={f.question} className="group rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 open:border-primary/30 transition-colors">
-                                        <summary className="flex items-center justify-between gap-4 cursor-pointer list-none p-4 md:p-5 select-none">
-                                            <h3 className="font-bold text-charcoal dark:text-white text-sm md:text-base">
-                                                {f.question}
-                                            </h3>
-                                            <span className="material-symbols-outlined text-secondary-text dark:text-gray-500 text-xl shrink-0 transition-transform duration-200 group-open:rotate-180">
-                                                expand_more
-                                            </span>
+                            <div className="border-t border-structural-border dark:border-gray-800">
+                                {study.faqs.map((f, i) => (
+                                    <details key={i} className="group border-b border-structural-border dark:border-gray-800">
+                                        <summary className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none select-none">
+                                            <h3 className="text-base font-bold text-charcoal dark:text-white pr-4 leading-snug">{f.question}</h3>
+                                            <span className="material-symbols-outlined text-xl text-secondary-text dark:text-gray-500 flex-shrink-0 transition-transform duration-300 group-open:rotate-180">expand_more</span>
                                         </summary>
-                                        <div className="px-4 md:px-5 pb-4 md:pb-5 -mt-1">
-                                            <p className="text-xs md:text-sm text-secondary-text dark:text-gray-400 leading-relaxed">
-                                                {f.answer}
-                                            </p>
-                                        </div>
+                                        <p className="pb-5 text-sm text-secondary-text dark:text-gray-400 leading-relaxed">{f.answer}</p>
                                     </details>
                                 ))}
                             </div>

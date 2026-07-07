@@ -41,9 +41,6 @@ export default function WebsiteFeaturesGridSection() {
                     transition={{ duration: 0.5 }}
                     className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
                 >
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-4">
-                        Everything you need to succeed
-                    </span>
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-4">
                         Shop Titan gives you everything you need to sell online.
                     </h2>

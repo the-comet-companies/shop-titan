@@ -114,53 +114,17 @@ export default function ProductsPage() {
                 {/* Schema */}
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-                {/* ───── HERO ───── */}
-                <section className="pt-16 md:pt-24 pb-12 md:pb-16 bg-background-light dark:bg-background-dark relative overflow-hidden">
-                    <div className="max-w-4xl mx-auto px-6 md:px-12 text-center relative z-10">
+                {/* ───── TWO PRODUCT CARDS ───── */}
+                <section className="bg-surface dark:bg-gray-950 relative">
+                    <div className="max-w-7xl mx-auto px-6 md:px-12 pt-10 md:pt-14 pb-16 md:pb-20">
                         <motion.h1
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
+                            className="text-3xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-8 md:mb-10 text-center"
                         >
-                            Get your shop online and taking orders. Add the FileMaker back office when you&apos;re ready.
+                            Our Products
                         </motion.h1>
-                        <motion.p
-                            initial={{ opacity: 0, y: 12 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8"
-                        >
-                            Shop Titan starts with a branded website that takes orders online  - customers find you, configure their job, and order without a phone call. Add the FileMaker system to run quotes, inventory, and production on the same platform when you&apos;re ready.
-                        </motion.p>
-                        <motion.div
-                            initial={{ opacity: 0, y: 12 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.3 }}
-                            className="flex flex-col sm:flex-row gap-4 justify-center"
-                        >
-                            <Link
-                                href="/reach-out"
-                                className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
-                            >
-                                Book a Live Demo
-                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
-                            </Link>
-                            <Link
-                                href="/pricing"
-                                className="px-8 py-4 text-charcoal dark:text-white font-semibold rounded-full inline-flex items-center justify-center gap-2 relative overflow-hidden group"
-                            >
-                                <div className="absolute inset-0 border-2 border-charcoal/20 dark:border-white/30 group-hover:border-primary/50 transition-colors rounded-full" />
-                                <span className="relative z-10">View Pricing</span>
-                            </Link>
-                        </motion.div>
-                    </div>
-                </section>
-
-                {/* ───── TWO PRODUCT CARDS ───── */}
-                <section className="bg-surface dark:bg-gray-950 relative">
-                    <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent" />
-                    <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-20">
                         <motion.div
                             className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8"
                             variants={stagger}
@@ -277,15 +241,7 @@ export default function ProductsPage() {
                 <section className="bg-background-light dark:bg-background-dark relative">
                     <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent" />
                     <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-20">
-                        <div className="max-w-3xl mb-12 md:mb-14">
-                            <motion.span
-                                initial={{ opacity: 0, y: 12 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-4"
-                            >
-                                Pick your path
-                            </motion.span>
+                        <div className="max-w-4xl mx-auto text-center mb-12 md:mb-14">
                             <motion.h2
                                 initial={{ opacity: 0, y: 16 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -402,50 +358,30 @@ export default function ProductsPage() {
                 {/* ───── FAQ ───── */}
                 <section className="bg-surface dark:bg-gray-950 relative">
                     <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent" />
-                    <div className="max-w-4xl mx-auto px-6 md:px-12 py-16 md:py-20">
-                        <div className="mb-10">
-                            <motion.span
-                                initial={{ opacity: 0, y: 12 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-4"
-                            >
-                                Common questions
-                            </motion.span>
-                            <motion.h2
-                                initial={{ opacity: 0, y: 16 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight leading-tight"
-                            >
-                                Frequently Asked Questions
-                            </motion.h2>
-                        </div>
+                    <div className="max-w-3xl mx-auto px-6 md:px-12 py-16 md:py-20">
+                        <motion.h2
+                            initial={{ opacity: 0, y: 16 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-10 text-center"
+                        >
+                            Frequently Asked Questions
+                        </motion.h2>
                         <motion.div
-                            className="space-y-3"
-                            variants={stagger}
+                            className="border-t border-structural-border dark:border-gray-800"
+                            variants={fadeUp}
                             initial="hidden"
                             whileInView="show"
                             viewport={{ once: true, margin: '-40px' }}
                         >
                             {faqs.map((faq, i) => (
-                                <motion.div key={i} variants={fadeUp}>
-                                    <details className="group rounded-xl border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 open:border-primary/30 transition-colors">
-                                        <summary className="flex items-center justify-between gap-4 cursor-pointer list-none p-4 md:p-5 select-none">
-                                            <h3 className="font-bold text-charcoal dark:text-white text-sm md:text-base">
-                                                {faq.question}
-                                            </h3>
-                                            <span className="material-symbols-outlined text-secondary-text dark:text-gray-500 text-xl shrink-0 transition-transform duration-200 group-open:rotate-180">
-                                                expand_more
-                                            </span>
-                                        </summary>
-                                        <div className="px-4 md:px-5 pb-4 md:pb-5 -mt-1">
-                                            <p className="text-xs md:text-sm text-secondary-text dark:text-gray-400 leading-relaxed">
-                                                {faq.answer}
-                                            </p>
-                                        </div>
-                                    </details>
-                                </motion.div>
+                                <details key={i} className="group border-b border-structural-border dark:border-gray-800">
+                                    <summary className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none select-none">
+                                        <h3 className="text-base font-bold text-charcoal dark:text-white pr-4 leading-snug">{faq.question}</h3>
+                                        <span className="material-symbols-outlined text-xl text-secondary-text dark:text-gray-500 flex-shrink-0 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                                    </summary>
+                                    <p className="pb-5 text-sm text-secondary-text dark:text-gray-400 leading-relaxed">{faq.answer}</p>
+                                </details>
                             ))}
                         </motion.div>
                     </div>

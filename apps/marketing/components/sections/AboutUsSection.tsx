@@ -24,16 +24,6 @@ export default function AboutUsSection() {
 
                 {/* 1. Intro Header - Cinematic & Centered */}
                 <div className="mb-4 md:mb-6 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-charcoal/5 dark:bg-white/10 text-charcoal dark:text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-6 border border-charcoal/5 dark:border-white/5"
-                    >
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-                        Our Origin Story
-                    </motion.div>
-
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}

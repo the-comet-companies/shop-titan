@@ -12,16 +12,6 @@ export default function FounderStorySection() {
             </div>
 
             <div className="max-w-3xl mx-auto px-mobile relative z-10 flex flex-col gap-6">
-                        <motion.span
-                            initial={{ opacity: 0, y: 12 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.4, ease: "easeOut" }}
-                            className="inline-block w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase"
-                        >
-                            The Origin
-                        </motion.span>
-
                         <motion.h2
                             initial={{ opacity: 0, y: 12 }}
                             whileInView={{ opacity: 1, y: 0 }}

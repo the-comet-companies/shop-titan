@@ -91,9 +91,6 @@ export default function ShowcaseSection() {
                     transition={{ duration: 0.5 }}
                     className="mb-10"
                 >
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-5">
-                        Trusted by Shops
-                    </span>
                     <h2 className="text-4xl md:text-5xl font-bold text-charcoal leading-tight tracking-tight">
                         Real shops. Real results.
                     </h2>

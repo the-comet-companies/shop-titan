@@ -1009,35 +1009,24 @@ export default function TestPromptPage() {
 
         {/* 15. Common questions */}
         <Section>
-          <SectionHeading
-            align="center"
-            headline="Common questions before you see it."
-          />
-          <Reveal delay={0.15} className="mt-14 max-w-3xl mx-auto">
-            <div className="border-t border-structural-border">
-              {faqs.map((f) => (
-                <details
-                  key={f.q}
-                  className="group border-b border-structural-border"
-                >
-                  <summary className="flex cursor-pointer items-center justify-between gap-4 list-none py-6 text-left hover:text-charcoal/80 transition-colors">
-                    <span className="text-[17px] md:text-[18px] font-medium tracking-tight text-charcoal">
-                      {f.q}
-                    </span>
-                    <Icon
-                      name="add"
-                      size={20}
-                      weight={300}
-                      className="text-secondary-text transition-transform duration-200 group-open:rotate-45"
-                    />
-                  </summary>
-                  <div className="pb-6 -mt-1 text-[15.5px] text-secondary-text leading-[1.65] max-w-2xl">
-                    {f.a}
-                  </div>
-                </details>
-              ))}
-            </div>
-          </Reveal>
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-10 text-center">
+              Common questions before you see it.
+            </h2>
+            <Reveal delay={0.15}>
+              <div className="border-t border-structural-border dark:border-gray-800">
+                {faqs.map((f, i) => (
+                  <details key={i} className="group border-b border-structural-border dark:border-gray-800">
+                    <summary className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none select-none">
+                      <h3 className="text-base font-bold text-charcoal dark:text-white pr-4 leading-snug">{f.q}</h3>
+                      <span className="material-symbols-outlined text-xl text-secondary-text dark:text-gray-500 flex-shrink-0 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <p className="pb-5 text-sm text-secondary-text dark:text-gray-400 leading-relaxed">{f.a}</p>
+                  </details>
+                ))}
+              </div>
+            </Reveal>
+          </div>
           <Reveal delay={0.2} className="mt-12 flex justify-center">
             <CTAButton label="Book a Demo" />
           </Reveal>

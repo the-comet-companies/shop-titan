@@ -314,17 +314,17 @@ export default function OnPrintShopAlternativePage() {
                 {/* ───── FAQ ───── */}
                 <section className="bg-background-light dark:bg-background-dark py-16 md:py-24 border-t border-structural-border dark:border-gray-800">
                     <div className="max-w-3xl mx-auto px-mobile">
-                        <h2 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white tracking-tight mb-10">
+                        <h2 className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-10 text-center">
                             OnPrintShop alternative FAQ
                         </h2>
                         <div className="border-t border-structural-border dark:border-gray-800">
-                            {faqs.map((f) => (
-                                <details key={f.question} className="group border-b border-structural-border dark:border-gray-800">
-                                    <summary className="flex cursor-pointer items-center justify-between gap-4 list-none py-5 text-left">
-                                        <span className="text-base md:text-lg font-medium tracking-tight text-charcoal dark:text-white">{f.question}</span>
-                                        <span className="material-symbols-outlined text-secondary-text transition-transform duration-200 group-open:rotate-45">add</span>
+                            {faqs.map((faq, i) => (
+                                <details key={i} className="group border-b border-structural-border dark:border-gray-800">
+                                    <summary className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none select-none">
+                                        <h3 className="text-base font-bold text-charcoal dark:text-white pr-4 leading-snug">{faq.question}</h3>
+                                        <span className="material-symbols-outlined text-xl text-secondary-text dark:text-gray-500 flex-shrink-0 transition-transform duration-300 group-open:rotate-180">expand_more</span>
                                     </summary>
-                                    <div className="pb-5 -mt-1 text-base text-secondary-text dark:text-gray-400 leading-relaxed">{f.answer}</div>
+                                    <p className="pb-5 text-sm text-secondary-text dark:text-gray-400 leading-relaxed">{faq.answer}</p>
                                 </details>
                             ))}
                         </div>

@@ -437,7 +437,6 @@ function FeaturePanel({ feature }: { feature: Feature }) {
                         <span className="material-symbols-outlined text-gray-400 dark:text-gray-600 text-lg select-none">more_vert</span>
                     </div>
                     <div className="aspect-video bg-gradient-to-br from-gray-900 via-gray-800 to-slate-900 relative overflow-hidden">
-                        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
                         <VideoPlayer
                             src={feature.videoSrc}
@@ -477,15 +476,6 @@ export default function WebsiteFeaturesSection({ hideLearnMore = false }: { hide
 
                 {/* Section Header */}
                 <div className="text-center mb-12 md:mb-16">
-                    <motion.span
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4 }}
-                        className="inline-block px-3 py-1 rounded-full bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold tracking-wider uppercase mb-4"
-                    >
-                        Your Storefront
-                    </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}

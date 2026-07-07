@@ -180,8 +180,8 @@ export default async function BlogPostPage({ params }: PageProps) {
 
                     {/* FAQ Accordion */}
                     {faqs.length > 0 && (
-                        <div className="mt-16">
-                            <h2 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white tracking-tight mb-8">
+                        <div className="mt-16 max-w-3xl mx-auto">
+                            <h2 className="text-2xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-10 text-center">
                                 Frequently Asked Questions
                             </h2>
                             <BlogFAQ faqs={faqs} />

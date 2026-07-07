@@ -155,16 +155,6 @@ export default function IndustriesSection() {
 
                 {/* Section Header */}
                 <div className="max-w-3xl mx-auto px-mobile text-center mb-16 md:mb-20">
-                    <motion.span
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4 }}
-                        className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-6"
-                    >
-                        Industries We Serve
-                    </motion.span>
-
                     <motion.h2
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}

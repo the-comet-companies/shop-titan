@@ -66,14 +66,6 @@ export default function PathSelectionSection() {
         <section id="solutions" className="pt-16 md:pt-20 pb-16 md:pb-20 bg-background-light dark:bg-background-dark relative">
             <div className="max-w-7xl mx-auto px-mobile">
                 <div className="text-center mb-10 md:mb-14">
-                    <motion.span
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-4"
-                    >
-                        Start with the website
-                    </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -105,20 +97,8 @@ export default function PathSelectionSection() {
                         href="/platform/ecommerce-storefront"
                         className="group relative block overflow-hidden rounded-2xl border border-primary bg-white dark:bg-gray-900 ring-1 ring-primary/20 shadow-lg shadow-primary/10 hover:shadow-xl hover:shadow-primary/20 transition-shadow"
                     >
-                        <div className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary text-white text-[10px] font-bold tracking-wider uppercase">
-                            Primary product
-                        </div>
-
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                             <div className="p-6 md:p-10 lg:p-12 flex flex-col justify-center">
-                                <div className="flex items-center gap-3 mb-5">
-                                    <span className="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center">
-                                        <span className="material-symbols-outlined text-2xl">language</span>
-                                    </span>
-                                    <span className="text-[10px] font-bold tracking-widest text-primary uppercase">
-                                        Website Building
-                                    </span>
-                                </div>
                                 <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-4 leading-tight">
                                     A storefront that actually works for a print shop.
                                 </h3>
@@ -139,9 +119,6 @@ export default function PathSelectionSection() {
                                     <span className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white text-sm font-semibold rounded-full group-hover:bg-primary/90 transition-colors">
                                         Explore the Website
                                         <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                                    </span>
-                                    <span className="text-xs font-mono uppercase tracking-[0.18em] text-secondary-text dark:text-gray-500">
-                                        Live in 2 to 4 weeks
                                     </span>
                                 </div>
                             </div>
