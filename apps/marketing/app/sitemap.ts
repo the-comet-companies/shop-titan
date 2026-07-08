@@ -169,7 +169,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
         },
         {
-            url: `${BASE_URL}/get-started/scheduling`,
+            url: `${BASE_URL}/scheduling`,
             lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
             priority: 0.8,

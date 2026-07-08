@@ -42,6 +42,7 @@ export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuPr
     const menuItems = [
         { id: 'products', label: 'Products' },
         { id: 'about', label: 'About' },
+        { id: 'portfolio', label: 'Portfolio' },
         { id: 'case-studies', label: 'Case Studies' },
         { id: 'features', label: 'Features' },
         { id: 'pricing', label: 'Pricing' },

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import Footer from '@/components/Footer';
 import {
     generateFAQSchema,
@@ -11,73 +12,34 @@ import {
 
 // ───── Content ─────
 
-type Vertical = {
-    key: string;
-    name: string;
-    accent: string;
-    url: string;
-    shopName: string;
-    tagline: string;
-    products: string[];
-    blurb: string;
-    features: string[];
-};
-
-const verticals: Vertical[] = [
+// Live customer builds, shown as full-width cards.
+const liveProjects = [
     {
-        key: 'screen-printing',
-        name: 'Screen Printing',
-        accent: '#2563eb',
-        url: 'inkhouseprints.com',
-        shopName: 'INKHOUSE PRINTS',
-        tagline: 'Custom screen printed apparel, printed right.',
-        products: ['Tees', 'Hoodies', 'Long Sleeve', 'Tanks', 'Crewnecks', 'Caps'],
-        blurb: 'A bold, apparel-forward storefront that lets customers pick garments, colors, and quantities, then upload art and see pricing before they check out.',
-        features: ['Quantity and color-count pricing', 'Artwork upload with online proofing', 'One-click reorders of past runs'],
+        key: 'dtla-print',
+        name: 'DTLA Print',
+        url: 'https://www.dtlaprint.com',
+        image: '/website/dtla.png',
+        imageWidth: 1900,
+        imageHeight: 840,
+        desc: 'Live website for DTLA Print, a Los Angeles shop offering eco-friendly screen printing, embroidery, and private label services. Custom tees, hoodies, hats, and totes with a quote-ready ordering flow.',
     },
     {
-        key: 'embroidery',
-        name: 'Embroidery',
-        accent: '#7c3aed',
-        url: 'stitchandco.com',
-        shopName: 'STITCH & CO',
-        tagline: 'Embroidered logos with a premium finish.',
-        products: ['Polos', 'Caps', 'Jackets', 'Beanies', 'Bags', 'Aprons'],
-        blurb: 'A refined storefront built for logo work, with placement options, stitch-count pricing, and a clean flow for submitting and approving digitized files.',
-        features: ['Stitch-count based pricing', 'Logo digitizing requests', 'Left-chest and cap placement options'],
+        key: 'mika-jaymes',
+        name: 'Mika Jaymes',
+        url: 'https://mikajaymes.com',
+        image: '/website/mika-jaymes.png',
+        imageWidth: 1900,
+        imageHeight: 909,
+        desc: 'Live storefront for Mika Jaymes, a premium fashion brand with hand cut and sewn essentials crafted in Los Angeles. Minimal, modern design with a clean path from collection to checkout.',
     },
     {
-        key: 'promotional-products',
-        name: 'Promotional Products',
-        accent: '#ea580c',
-        url: 'brandmerchco.com',
-        shopName: 'BRANDMERCH CO',
-        tagline: 'Branded swag your team will actually use.',
-        products: ['Drinkware', 'Pens', 'Totes', 'Tech', 'Notebooks', 'Coolers'],
-        blurb: 'A catalog-heavy storefront that handles a wide product range, minimum quantities, and sample requests without overwhelming the buyer.',
-        features: ['Large searchable branded catalog', 'Minimum-quantity handling', 'Sample and mockup requests'],
-    },
-    {
-        key: 'signage',
-        name: 'Signage & Large Format',
-        accent: '#0d9488',
-        url: 'citywidesigns.com',
-        shopName: 'CITYWIDE SIGNS',
-        tagline: 'Banners, signs, and displays, made to size.',
-        products: ['Banners', 'Yard Signs', 'Decals', 'Posters', 'Displays', 'Wraps'],
-        blurb: 'A storefront built around custom sizes and materials, with clear file-spec guidance and options for local pickup or installation.',
-        features: ['Custom size and material builder', 'File spec and setup guidance', 'Local pickup and install options'],
-    },
-    {
-        key: 'team-spirit-wear',
-        name: 'Team & Spirit Wear',
-        accent: '#dc2626',
-        url: 'hometeamgear.com',
-        shopName: 'HOMETEAM GEAR',
-        tagline: 'Team stores that open, sell, and close on schedule.',
-        products: ['Jerseys', 'Hoodies', 'Shorts', 'Hats', 'Bags', 'Socks'],
-        blurb: 'A storefront designed for group ordering, with dedicated team stores, roster-based bulk ordering, and set open and close dates.',
-        features: ['Dedicated team and group stores', 'Roster and bulk ordering', 'Scheduled store open and close dates'],
+        key: 'kases',
+        name: 'KASES',
+        url: 'https://kases.com',
+        image: '/website/kases.png',
+        imageWidth: 1893,
+        imageHeight: 910,
+        desc: 'Live storefront for KASES, a premium Christian apparel brand. A clean, brand-first catalog of tees, hoodies, and tanks with a fast path from product page to checkout.',
     },
 ];
 
@@ -90,11 +52,11 @@ const included = [
 const faqs = [
     {
         question: 'What does a print shop website look like?',
-        answer: 'A strong print shop website pairs a branded storefront with decoration-aware online ordering. Customers browse your products, choose colors, sizes, and quantities, upload artwork, and see pricing before checkout. The examples on this page show that flow styled for different kinds of shops, from screen printing to embroidery to signage.',
+        answer: 'A strong print shop website pairs a branded storefront with decoration-aware online ordering. Customers browse your products, choose colors, sizes, and quantities, upload artwork, and see pricing before checkout. The live sites on this page show that foundation applied to real apparel brands.',
     },
     {
         question: 'Are these real examples or templates?',
-        answer: 'They are representative design examples that show what a Shop Titan print shop website can look like for each vertical, not stock templates every shop reuses. Every real build is custom to your brand, your products, and how your shop sells, so your site does not look like anyone else in your market.',
+        answer: 'Every site on this page is a live build for a real business, and you can visit each one through its Live link. Nothing here is a stock template. Every build is custom to your brand, your products, and how your shop sells, so your site does not look like anyone else in your market.',
     },
     {
         question: 'Do you build sites for my type of shop?',
@@ -102,7 +64,7 @@ const faqs = [
     },
     {
         question: 'Can you match my brand and colors?',
-        answer: 'Yes. Each site is designed around your brand, your logo, your colors, and your product mix. The examples here use different accents on purpose, to show that the same underlying platform adapts to very different looks.',
+        answer: 'Yes. Each site is designed around your brand, your logo, your colors, and your product mix. The live sites here look nothing alike on purpose: the same underlying platform adapts to very different brands.',
     },
     {
         question: 'How do I get a site like these?',
@@ -124,61 +86,15 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 const itemListSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Print Shop Website Examples by Vertical',
-    numberOfItems: verticals.length,
-    itemListElement: verticals.map((v, i) => ({
+    name: 'Websites Built by Shop Titan',
+    numberOfItems: liveProjects.length,
+    itemListElement: liveProjects.map((p, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        name: `${v.name} website example`,
+        name: `${p.name} website`,
+        url: p.url,
     })),
 };
-
-// ───── Browser-frame mockup (signature element) ─────
-
-function SiteMockup({ v }: { v: Vertical }) {
-    return (
-        <div className="rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 shadow-card bg-white dark:bg-gray-900 select-none">
-            {/* browser bar */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-structural-border dark:border-gray-800 bg-background-light dark:bg-gray-950">
-                <span className="h-2.5 w-2.5 rounded-full bg-rose-400" />
-                <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
-                <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-                <div className="ml-2 flex-1 h-5 rounded-md bg-white dark:bg-gray-800 border border-structural-border dark:border-gray-700 flex items-center px-2">
-                    <span className="material-symbols-outlined text-[11px] text-secondary-text mr-1">lock</span>
-                    <span className="text-[10px] text-secondary-text dark:text-gray-500 truncate">{v.url}</span>
-                </div>
-            </div>
-            {/* mock hero */}
-            <div className="p-5 md:p-6" style={{ backgroundColor: `${v.accent}0f` }}>
-                <div className="flex items-center justify-between mb-4">
-                    <span className="text-[11px] font-black tracking-widest" style={{ color: v.accent }}>{v.shopName}</span>
-                    <div className="flex gap-3">
-                        <span className="h-1.5 w-8 rounded-full bg-charcoal/15 dark:bg-white/20" />
-                        <span className="h-1.5 w-8 rounded-full bg-charcoal/15 dark:bg-white/20" />
-                        <span className="h-1.5 w-8 rounded-full bg-charcoal/15 dark:bg-white/20" />
-                    </div>
-                </div>
-                <div className="text-base md:text-lg font-bold text-charcoal dark:text-white leading-snug max-w-[16rem] mb-3">{v.tagline}</div>
-                <div className="inline-flex items-center gap-1 text-[10px] font-semibold text-white rounded-full px-3 py-1.5 mb-5" style={{ backgroundColor: v.accent }}>
-                    Order Online
-                    <span className="material-symbols-outlined text-[12px]">arrow_forward</span>
-                </div>
-                {/* product grid */}
-                <div className="grid grid-cols-3 gap-2">
-                    {v.products.map((p) => (
-                        <div
-                            key={p}
-                            className="rounded-lg h-14 p-2 flex flex-col justify-end bg-white dark:bg-gray-800 border border-structural-border/60 dark:border-gray-700"
-                        >
-                            <span className="h-6 rounded-md mb-1.5" style={{ backgroundColor: `${v.accent}26` }} />
-                            <span className="text-[8px] font-medium text-charcoal/70 dark:text-white/70 leading-none">{p}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-}
 
 export default function PortfolioPage() {
     return (
@@ -214,40 +130,45 @@ export default function PortfolioPage() {
                 {/* ───── GALLERY (signature) ───── */}
                 <section className="bg-background-light dark:bg-background-dark py-12 md:py-16 border-t border-structural-border dark:border-gray-800">
                     <div className="max-w-6xl mx-auto px-mobile">
-                        <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                            {verticals.map((v) => (
-                                <motion.article
-                                    key={v.key}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: '-60px' }}
-                                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                                    className="group flex flex-col rounded-2xl border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-950 overflow-hidden hover:shadow-card transition-shadow"
-                                >
-                                    <div className="p-4 md:p-5">
-                                        <SiteMockup v={v} />
-                                    </div>
-                                    <div className="flex flex-col flex-1 px-5 pb-6 pt-1">
-                                        <div className="inline-flex items-center gap-2 mb-2">
-                                            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: v.accent }} />
-                                            <span className="text-xs font-semibold uppercase tracking-wide text-secondary-text dark:text-gray-500">{v.name}</span>
-                                        </div>
-                                        <h2 className="text-lg md:text-xl font-bold text-charcoal dark:text-white tracking-tight mb-2">
-                                            A website built for {v.name.toLowerCase()}
-                                        </h2>
-                                        <p className="text-sm md:text-base text-secondary-text dark:text-gray-400 leading-relaxed mb-4">{v.blurb}</p>
-                                        <ul className="mt-auto space-y-2">
-                                            {v.features.map((f) => (
-                                                <li key={f} className="flex items-start gap-2.5 text-sm text-charcoal dark:text-gray-200">
-                                                    <span className="material-symbols-outlined text-base shrink-0" style={{ color: v.accent }}>check_circle</span>
-                                                    {f}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </motion.article>
-                            ))}
-                        </div>
+                        {/* Live customer builds */}
+                        {liveProjects.map((p) => (
+                            <motion.article
+                                key={p.key}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-60px' }}
+                                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                                className="mb-10 md:mb-12 last:mb-0 rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card"
+                            >
+                                <a href={p.url} target="_blank" rel="noopener noreferrer" className="block">
+                                    <Image
+                                        src={p.image}
+                                        alt={`${p.name} website built by Shop Titan`}
+                                        width={p.imageWidth}
+                                        height={p.imageHeight}
+                                        sizes="(max-width: 1152px) 100vw, 1152px"
+                                        quality={90}
+                                        className="w-full h-auto"
+                                    />
+                                </a>
+                                <div className="p-6 md:p-8">
+                                    <h2 className="text-xl md:text-2xl font-bold text-charcoal dark:text-white tracking-tight mb-3">
+                                        {p.name}
+                                    </h2>
+                                    <p className="text-base text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl mb-6">
+                                        {p.desc}
+                                    </p>
+                                    <a
+                                        href={p.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-1 font-mono text-sm text-secondary-text hover:text-charcoal dark:text-gray-400 dark:hover:text-white transition-colors"
+                                    >
+                                        Live <span aria-hidden="true">&#8599;</span>
+                                    </a>
+                                </div>
+                            </motion.article>
+                        ))}
                     </div>
                 </section>
 

@@ -3,7 +3,6 @@ import { CTAButton } from "./_components/CTAButton";
 import { Footer } from "./_components/Footer";
 import { GradientText } from "./_components/GradientText";
 import { Icon } from "./_components/Icon";
-import { Nav } from "./_components/Nav";
 import { ProductionScheduleDashboard } from "./_components/ProductionScheduleDashboard";
 import { Reveal } from "./_components/Reveal";
 import { Section } from "./_components/Section";
@@ -278,7 +277,6 @@ const faqs = [
 export default function TestPromptPage() {
   return (
     <>
-      <Nav />
       <main>
         {/* 1. Hero pain hook */}
         <section className="relative pt-32 md:pt-40 pb-20 md:pb-24 bg-background-light">

@@ -31,7 +31,7 @@ const REAL_PROBLEM_QUESTIONS = [
 const FEATURES = [
     { icon: "hub", title: "Centralized job records", body: "Every order, art file, approval, and note lives on one record from quote to ship." },
     { icon: "approval", title: "Artwork & approval tracking", body: "Version control on art files. Approvals are timestamped and tied to the job." },
-    { icon: "schedule", title: "Production scheduling", body: "Plan by department and machine instead of by memory and whiteboard.", linkLabel: "Read deep-dive", linkHref: "/get-started/scheduling" },
+    { icon: "schedule", title: "Production scheduling", body: "Plan by department and machine instead of by memory and whiteboard.", linkLabel: "Read deep-dive", linkHref: "/scheduling" },
     { icon: "groups", title: "Department queues", body: "Art, screen, embroidery, DTF, finishing - each crew sees only what is theirs." },
     { icon: "inventory_2", title: "Inventory awareness", body: "Surface blank shortages before the job hits the press, not the morning of." },
     { icon: "payments", title: "Pricing visibility", body: "Quotes, margins, and changes stay attached to the order - no one-off math." },

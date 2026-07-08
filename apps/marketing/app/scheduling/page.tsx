@@ -3,7 +3,6 @@ import { CTAButton } from "./_components/CTAButton";
 import { Footer } from "./_components/Footer";
 import { GradientText } from "./_components/GradientText";
 import { Icon } from "./_components/Icon";
-import { Nav } from "./_components/Nav";
 import { ProductionScheduleDashboard } from "./_components/ProductionScheduleDashboard";
 import { Reveal } from "./_components/Reveal";
 import { Section } from "./_components/Section";
@@ -11,14 +10,16 @@ import { SectionHeading } from "./_components/SectionHeading";
 import { WorkflowStepper, type WorkflowStep } from "./_components/WorkflowStepper";
 
 export const metadata: Metadata = {
-  title: "Production Scheduling Software for Print & Decoration Shops — Shop Titan",
+  title: "Production Scheduling Software for Print & Decoration Shops | Shop Titan",
   description:
     "Shop Titan helps production shops manage scheduling, job status, department workload, blocked jobs, rush orders, inventory readiness, and production visibility from one connected system.",
+  alternates: { canonical: "https://shoptitan.app/scheduling" },
   openGraph: {
-    title: "Production Scheduling Software — Shop Titan",
+    title: "Production Scheduling Software | Shop Titan",
     description:
       "Stop scheduling production from whiteboards, spreadsheets, and guesswork. See what is ready, what is blocked, and what is falling behind.",
     type: "website",
+    url: "https://shoptitan.app/scheduling",
   },
   robots: { index: true, follow: true },
 };
@@ -291,7 +292,6 @@ const results = [
 export default function SchedulingPage() {
   return (
     <>
-      <Nav />
       <main>
         {/* 1. Hero */}
         <section className="relative pt-32 md:pt-40 pb-20 md:pb-24 bg-background-light dark:bg-background-dark">

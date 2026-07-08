@@ -31,6 +31,13 @@ const nextConfig: NextConfig = {
                 destination: '/print-shop-operating-system',
                 permanent: true,
             },
+            // /get-started/scheduling was a near-duplicate of /scheduling;
+            // consolidated to /scheduling (RN, 2026-07-08).
+            {
+                source: '/get-started/scheduling',
+                destination: '/scheduling',
+                permanent: true,
+            },
         ];
     },
 };

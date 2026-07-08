@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import Footer from '@/components/Footer';
 import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
@@ -326,9 +327,16 @@ export default function HireFileMakerDeveloperUSAPage() {
                                 initial={{ opacity: 0, y: 16 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="lg:w-1/2 h-64 lg:h-auto rounded-xl bg-gray-100 dark:bg-gray-800 border border-structural-border dark:border-gray-800 flex items-center justify-center"
+                                className="lg:w-1/2 rounded-xl border border-structural-border dark:border-gray-800 overflow-hidden self-start"
                             >
-                                <span className="text-sm text-secondary-text dark:text-gray-500">(Screenshot: FileMaker dashboard)</span>
+                                <Image
+                                    src="/filemaker/Customers.png"
+                                    alt="Customer management screen in the Shop Titan FileMaker system"
+                                    width={1607}
+                                    height={1016}
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                    className="w-full h-auto"
+                                />
                             </motion.div>
                         </div>
                     </div>
@@ -386,9 +394,107 @@ export default function HireFileMakerDeveloperUSAPage() {
                             initial={{ opacity: 0, y: 12 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="mt-6 h-48 rounded-xl bg-gray-100 dark:bg-gray-800 border border-structural-border dark:border-gray-800 flex items-center justify-center"
+                            className="mt-6 rounded-xl bg-white dark:bg-gray-900 border border-structural-border dark:border-gray-800 p-6 md:p-8"
                         >
-                            <span className="text-sm text-secondary-text dark:text-gray-500">(Diagram: Build vs Deploy timeline comparison)</span>
+                            <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+                                <p className="text-sm font-semibold text-charcoal dark:text-white">
+                                    Typical time to a working system
+                                </p>
+                                <div className="flex items-center gap-4 text-xs text-secondary-text dark:text-gray-400">
+                                    <span className="inline-flex items-center gap-1.5">
+                                        <span className="h-2 w-2 rounded-full bg-[#D97706]" aria-hidden="true" />
+                                        Hire a developer and build
+                                    </span>
+                                    <span className="inline-flex items-center gap-1.5">
+                                        <span className="h-2 w-2 rounded-full bg-[#0066CC] dark:bg-[#3385D6]" aria-hidden="true" />
+                                        Shop Titan deploy
+                                    </span>
+                                </div>
+                            </div>
+
+                            <svg
+                                viewBox="0 0 900 320"
+                                role="img"
+                                aria-label="Line chart: Shop Titan deploy reaches a live system within month one, while hiring a developer to build from scratch reaches live around month six."
+                                className="w-full h-auto mt-2"
+                            >
+                                {/* Gridlines */}
+                                {[260, 202, 144, 86, 28].map((y) => (
+                                    <line key={y} x1="52" y1={y} x2="880" y2={y} className="stroke-gray-200 dark:stroke-gray-800" strokeWidth="1" />
+                                ))}
+
+                                {/* Y tick labels */}
+                                {[
+                                    [260, '0%'],
+                                    [202, '25%'],
+                                    [144, '50%'],
+                                    [86, '75%'],
+                                    [28, '100%'],
+                                ].map(([y, label]) => (
+                                    <text key={label} x="44" y={Number(y) + 4} textAnchor="end" fontSize="11" className="fill-secondary-text dark:fill-gray-500">
+                                        {label}
+                                    </text>
+                                ))}
+
+                                {/* X tick labels */}
+                                {[52, 190, 328, 466, 604, 742, 880].map((x, m) => (
+                                    <text key={x} x={x} y="282" textAnchor="middle" fontSize="11" className="fill-secondary-text dark:fill-gray-500">
+                                        {m}
+                                    </text>
+                                ))}
+                                <text x="466" y="306" textAnchor="middle" fontSize="11" className="fill-secondary-text dark:fill-gray-500">
+                                    Months from kickoff
+                                </text>
+                                <text x="52" y="12" fontSize="11" className="fill-secondary-text dark:fill-gray-500">
+                                    Progress to a live system
+                                </text>
+
+                                {/* Build-from-scratch line */}
+                                <polyline
+                                    points="52,260 190,236.8 328,202 466,155.6 604,109.2 742,62.8 880,28"
+                                    fill="none"
+                                    strokeWidth="2.5"
+                                    strokeLinejoin="round"
+                                    strokeLinecap="round"
+                                    className="stroke-[#D97706]"
+                                />
+
+                                {/* Shop Titan deploy line */}
+                                <polyline
+                                    points="52,260 190,28 880,28"
+                                    fill="none"
+                                    strokeWidth="2.5"
+                                    strokeLinejoin="round"
+                                    strokeLinecap="round"
+                                    className="stroke-[#0066CC] dark:stroke-[#3385D6]"
+                                />
+
+                                {/* Direct labels (text tokens, identity via nearby line) */}
+                                <text x="500" y="18" fontSize="12.5" fontWeight="600" className="fill-charcoal dark:fill-white">
+                                    Shop Titan deploy
+                                </text>
+                                <text x="380" y="182" fontSize="12.5" fontWeight="600" className="fill-charcoal dark:fill-white">
+                                    Hire a developer and build
+                                </text>
+
+                                {/* Milestone: deploy live */}
+                                <g>
+                                    <title>Shop Titan deploy: live in 2 to 4 weeks, support included</title>
+                                    <circle cx="190" cy="28" r="5.5" className="fill-[#0066CC] dark:fill-[#3385D6] stroke-white dark:stroke-gray-900" strokeWidth="2" />
+                                    <text x="202" y="50" fontSize="12" className="fill-charcoal dark:fill-white">
+                                        Live in 2-4 weeks
+                                    </text>
+                                </g>
+
+                                {/* Milestone: build live */}
+                                <g>
+                                    <title>Custom build: typically live around month 6, then you manage maintenance</title>
+                                    <circle cx="880" cy="28" r="5.5" className="fill-[#D97706] stroke-white dark:stroke-gray-900" strokeWidth="2" />
+                                    <text x="868" y="52" textAnchor="end" fontSize="12" className="fill-charcoal dark:fill-white">
+                                        Live around month 6
+                                    </text>
+                                </g>
+                            </svg>
                         </motion.div>
                     </div>
                 </section>

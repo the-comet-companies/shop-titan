@@ -62,7 +62,7 @@ export default function Footer() {
                             <li><MotionLink href="/#founder-story" whileHover={hoverProps} className={linkClass}>Founder Story</MotionLink></li>
                             <li><MotionLink href="/case-studies" whileHover={hoverProps} className={linkClass}>Case Studies</MotionLink></li>
                             <li><MotionLink href="/get-started" whileHover={hoverProps} className={linkClass}>Production Operating System</MotionLink></li>
-                            <li><MotionLink href="/get-started/scheduling" whileHover={hoverProps} className={linkClass}>Production Scheduling</MotionLink></li>
+                            <li><MotionLink href="/scheduling" whileHover={hoverProps} className={linkClass}>Production Scheduling</MotionLink></li>
                             <li><MotionLink href="/reach-out" whileHover={hoverProps} className={linkClass}>Contact</MotionLink></li>
                         </ul>
                     </div>

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import Footer from '@/components/Footer';
 import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
@@ -65,12 +66,12 @@ export default function ReplaceSpreadsheetsPage() {
 
                 {/* ───── HERO ───── */}
                 <section className="pt-16 md:pt-24 pb-16 md:pb-20 bg-background-light dark:bg-background-dark relative overflow-hidden">
-                    <div className="max-w-4xl mx-auto px-mobile text-center relative z-10">
+                    <div className="max-w-5xl mx-auto px-mobile text-center relative z-10">
                         <motion.h1
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="text-3xl md:text-5xl lg:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6"
+                            className="text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal dark:text-white tracking-tight leading-tight mb-6 text-balance"
                         >
                             Replace Print Shop Spreadsheets With a Management System That Scales
                         </motion.h1>
@@ -332,65 +333,87 @@ export default function ReplaceSpreadsheetsPage() {
                         >
                             Spreadsheets vs. a Connected Print Shop System
                         </motion.h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-6">
                             <motion.div
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="p-6 rounded-2xl border border-rose-200 dark:border-rose-900/40 bg-rose-50/30 dark:bg-rose-950/10"
+                                className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-center p-6 md:p-8 rounded-2xl border border-rose-200 dark:border-rose-900/40 bg-rose-50/30 dark:bg-rose-950/10"
                             >
-                                <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-4">Spreadsheets</h3>
-                                <ul className="space-y-3">
-                                    {[
-                                        'Data scattered across multiple files and tabs',
-                                        'Manual updates that are outdated by the time they\'re done',
-                                        'No connection between orders, inventory, and production',
-                                        'Broken formulas and version conflicts',
-                                        'Weeks of training for new employees',
-                                        'No real-time visibility into operations',
-                                        'Reports require hours of manual assembly',
-                                    ].map((item, i) => (
-                                        <li key={i} className="flex items-start gap-2 text-sm text-secondary-text dark:text-gray-400">
-                                            <span className="material-symbols-outlined text-rose-500 text-sm mt-0.5 flex-shrink-0">close</span>
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
+                                <div className="lg:col-span-2">
+                                    <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-4">Spreadsheets</h3>
+                                    <ul className="space-y-3">
+                                        {[
+                                            'Data scattered across multiple files and tabs',
+                                            'Manual updates that are outdated by the time they\'re done',
+                                            'No connection between orders, inventory, and production',
+                                            'Broken formulas and version conflicts',
+                                            'Weeks of training for new employees',
+                                            'No real-time visibility into operations',
+                                            'Reports require hours of manual assembly',
+                                        ].map((item, i) => (
+                                            <li key={i} className="flex items-start gap-2 text-sm text-secondary-text dark:text-gray-400">
+                                                <span className="material-symbols-outlined text-rose-500 text-sm mt-0.5 flex-shrink-0">close</span>
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="lg:col-span-3">
+                                    <div className="rounded-xl border border-rose-200 dark:border-rose-900/40 overflow-hidden">
+                                        <Image
+                                            src="/filemaker/spreadsheet.png"
+                                            alt="Print shop order tracking spreadsheet with scattered tabs and manual entries"
+                                            width={1361}
+                                            height={853}
+                                            sizes="(max-width: 1024px) 100vw, 60vw"
+                                            quality={90}
+                                            className="w-full h-auto"
+                                        />
+                                    </div>
+                                </div>
                             </motion.div>
+
                             <motion.div
-                                initial={{ opacity: 0, x: 20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="p-6 rounded-2xl border border-green-200 dark:border-green-900/40 bg-green-50/30 dark:bg-green-950/10"
+                                className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-center p-6 md:p-8 rounded-2xl border border-green-200 dark:border-green-900/40 bg-green-50/30 dark:bg-green-950/10"
                             >
-                                <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wider mb-4">Shop Titan  - Connected System</h3>
-                                <ul className="space-y-3">
-                                    {[
-                                        'Everything in one platform  - orders, inventory, production, customers',
-                                        'Real-time updates as events happen',
-                                        'Orders automatically create production jobs',
-                                        'Inventory adjusts when stock is received or used',
-                                        'New employees follow guided workflows from day one',
-                                        'Instant visibility into every job and department',
-                                        'Reports generated on demand  - no assembly required',
-                                    ].map((item, i) => (
-                                        <li key={i} className="flex items-start gap-2 text-sm text-secondary-text dark:text-gray-400">
-                                            <span className="material-symbols-outlined text-green-500 text-sm mt-0.5 flex-shrink-0">check</span>
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
+                                <div className="lg:col-span-3 order-2 lg:order-1">
+                                    <div className="rounded-xl border border-green-200 dark:border-green-900/40 overflow-hidden">
+                                        <Image
+                                            src="/filemaker/PurchaseOrders.png"
+                                            alt="Purchase orders screen in the Shop Titan connected system"
+                                            width={1904}
+                                            height={1132}
+                                            sizes="(max-width: 1024px) 100vw, 60vw"
+                                            quality={90}
+                                            className="w-full h-auto"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="lg:col-span-2 order-1 lg:order-2">
+                                    <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wider mb-4">Shop Titan  - Connected System</h3>
+                                    <ul className="space-y-3">
+                                        {[
+                                            'Everything in one platform  - orders, inventory, production, customers',
+                                            'Real-time updates as events happen',
+                                            'Orders automatically create production jobs',
+                                            'Inventory adjusts when stock is received or used',
+                                            'New employees follow guided workflows from day one',
+                                            'Instant visibility into every job and department',
+                                            'Reports generated on demand  - no assembly required',
+                                        ].map((item, i) => (
+                                            <li key={i} className="flex items-start gap-2 text-sm text-secondary-text dark:text-gray-400">
+                                                <span className="material-symbols-outlined text-green-500 text-sm mt-0.5 flex-shrink-0">check</span>
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </motion.div>
                         </div>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 12 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="mt-6 h-48 rounded-xl bg-gray-100 dark:bg-gray-800 border border-structural-border dark:border-gray-800 flex items-center justify-center"
-                        >
-                            <span className="text-sm text-secondary-text dark:text-gray-500">(Screenshot: Spreadsheet vs system dashboard side-by-side)</span>
-                        </motion.div>
                     </div>
                 </section>
 

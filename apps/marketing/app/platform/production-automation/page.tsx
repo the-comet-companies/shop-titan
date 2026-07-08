@@ -182,7 +182,7 @@ export default function ProductionAutomationPage() {
                             {' '}Powered by our{' '}
                             <Link href="/platform/filemaker-system" className="text-primary hover:underline">FileMaker system</Link>.
                             {' '}Want a closer look at scheduling? Read the{' '}
-                            <Link href="/get-started/scheduling" className="text-primary hover:underline">production scheduling deep-dive</Link>.
+                            <Link href="/scheduling" className="text-primary hover:underline">production scheduling deep-dive</Link>.
                         </motion.p>
                     </div>
                 </section>
@@ -257,7 +257,7 @@ export default function ProductionAutomationPage() {
                             className="text-secondary-text dark:text-gray-400 mb-12 max-w-3xl"
                         >
                             For a step-by-step walkthrough of how Shop Titan handles capacity, rush impact, and bottlenecks, see the{' '}
-                            <Link href="/get-started/scheduling" className="text-primary hover:underline font-semibold">production scheduling deep-dive</Link>.
+                            <Link href="/scheduling" className="text-primary hover:underline font-semibold">production scheduling deep-dive</Link>.
                         </motion.p>
 
                         <div className="space-y-12">

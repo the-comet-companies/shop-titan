@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import LandingHeader from "./_components/LandingHeader";
 import HomeContent from "./_components/HomeContent";
 
 export const metadata: Metadata = {
@@ -21,7 +20,6 @@ export const metadata: Metadata = {
 export default function GetStartedHomePage() {
     return (
         <>
-            <LandingHeader />
             <main className="min-h-screen pt-20">
                 <HomeContent />
             </main>
