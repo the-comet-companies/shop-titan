@@ -37,7 +37,7 @@ const projects: Project[] = [
             { src: '/gallery/dtla-print/best-sellers.webp', width: 1897, height: 1046, caption: 'Best sellers', alt: 'DTLA Print best sellers carousel with t-shirts, headwear, hoodies, and bags' },
             { src: '/gallery/dtla-print/t-shirts.webp', width: 1905, height: 1635, caption: 'T-shirt catalog', alt: 'DTLA Print t-shirt catalog with blank apparel products and pricing' },
             { src: '/gallery/dtla-print/hoodies.webp', width: 1906, height: 2334, caption: 'Hoodie catalog', alt: 'DTLA Print hoodie catalog with product cards and color options' },
-            { src: '/gallery/dtla-print/carhartt.webp', width: 1906, height: 3598, caption: 'Carhartt brand page', alt: 'DTLA Print Carhartt brand page with workwear products for decoration' },
+            { src: '/gallery/dtla-print/carhartt.webp', width: 1906, height: 3598, caption: 'Brand page', alt: 'DTLA Print brand page with Carhartt workwear products for decoration' },
             { src: '/gallery/dtla-print/categories.webp', width: 1895, height: 2236, caption: 'Product categories', alt: 'DTLA Print product category navigation across apparel types' },
             { src: '/gallery/dtla-print/deals.webp', width: 1910, height: 4848, caption: 'Deals page', alt: 'DTLA Print deals page with discounted blank apparel offers' },
             { src: '/gallery/dtla-print/rush-orders.webp', width: 1913, height: 3266, caption: 'Rush orders', alt: 'DTLA Print rush orders page for fast-turnaround custom printing' },
