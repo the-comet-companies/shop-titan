@@ -103,6 +103,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8,
         },
         {
+            url: `${BASE_URL}/gallery`,
+            lastModified: CONTENT_UPDATED,
+            changeFrequency: 'monthly',
+            priority: 0.7,
+        },
+        {
             url: `${BASE_URL}/about`,
             lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',

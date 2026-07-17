@@ -275,6 +275,208 @@ export default function PrintShopWebsitePage() {
                     </div>
                 </section>
 
+                {/* ───── REAL BUILD PROOF: DTLA PRINT ───── */}
+                <section className="bg-surface dark:bg-gray-950 py-16 md:py-24 border-t border-structural-border dark:border-gray-800">
+                    <div className="max-w-6xl mx-auto px-mobile">
+                        <div className="flex flex-wrap items-baseline justify-between gap-4 mb-3">
+                            <h2 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white tracking-tight">
+                                See it live: DTLA Print
+                            </h2>
+                            <a
+                                href="https://www.dtlaprint.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 font-mono text-sm text-secondary-text hover:text-charcoal dark:text-gray-400 dark:hover:text-white transition-colors"
+                            >
+                                Live <span aria-hidden="true">&#8599;</span>
+                            </a>
+                        </div>
+                        <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl mb-10">
+                            A Los Angeles screen printing and embroidery shop running on a Shop Titan storefront. Customers browse the catalog, configure products, and check out on their own, exactly the flow described above.
+                        </p>
+                        <div className="grid md:grid-cols-5 gap-4 md:gap-6">
+                            <div className="md:col-span-3 grid gap-4 md:gap-6 content-start">
+                                <figure>
+                                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/dtla-print/homepage.webp"
+                                            alt="DTLA Print homepage built on Shop Titan with custom apparel hero and category navigation"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 672px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Homepage
+                                    </figcaption>
+                                </figure>
+                                <figure>
+                                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/dtla-print/custom-merch.webp"
+                                            alt="DTLA Print custom merch section with customizable products and premium printing services"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 672px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Custom merch
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div className="md:col-span-2 grid gap-4 md:gap-6 content-start">
+                                <figure>
+                                    <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/dtla-print/best-sellers.webp"
+                                            alt="DTLA Print best sellers catalog with product cards, color options, and pricing"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 448px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Product catalog
+                                    </figcaption>
+                                </figure>
+                                <figure>
+                                    <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/dtla-print/rush-orders.webp"
+                                            alt="DTLA Print rush orders page for fast-turnaround custom printing"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 448px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Rush orders
+                                    </figcaption>
+                                </figure>
+                                <figure>
+                                    <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/dtla-print/cart.webp"
+                                            alt="DTLA Print shopping cart with configured products ready for online checkout"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 448px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Cart and checkout
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ───── REAL BUILD PROOF: FRESH MERCH ───── */}
+                <section className="bg-surface dark:bg-gray-950 pb-16 md:pb-24">
+                    <div className="max-w-6xl mx-auto px-mobile">
+                        <h2 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white tracking-tight mb-3">
+                            Fresh Merch
+                        </h2>
+                        <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl mb-10">
+                            A custom apparel supplier and decorator serving brands across Australia, from a single tee to full private label ranges, on the same storefront foundation.
+                        </p>
+                        <div className="grid md:grid-cols-5 gap-4 md:gap-6">
+                            <div className="md:col-span-2 grid gap-4 md:gap-6 content-start">
+                                <figure>
+                                    <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/fresh-merch/products.webp"
+                                            alt="Fresh Merch product catalog with custom apparel items"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 448px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Product catalog
+                                    </figcaption>
+                                </figure>
+                                <figure>
+                                    <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/fresh-merch/live-events.webp"
+                                            alt="Fresh Merch live events page for on-site merch printing"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 448px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Live events
+                                    </figcaption>
+                                </figure>
+                                <figure>
+                                    <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/fresh-merch/cart.webp"
+                                            alt="Fresh Merch shopping cart with order summary"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 448px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Cart and checkout
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div className="md:col-span-3 grid gap-4 md:gap-6 content-start">
+                                <figure>
+                                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/fresh-merch/homepage.webp"
+                                            alt="Fresh Merch homepage hero with custom apparel branding"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 672px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Homepage
+                                    </figcaption>
+                                </figure>
+                                <figure>
+                                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/fresh-merch/how-we-work.webp"
+                                            alt="Fresh Merch how we work page explaining the custom apparel process"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 672px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        How we work
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                        <div className="mt-8">
+                            <Link href="/gallery" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
+                                Browse the full gallery
+                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+
                 {/* ───── FEATURES (sticky rail) ───── */}
                 <section className="bg-surface dark:bg-gray-950 py-16 md:py-24 border-t border-structural-border dark:border-gray-800">
                     <div className="max-w-6xl mx-auto px-mobile grid lg:grid-cols-3 gap-10 lg:gap-12">
