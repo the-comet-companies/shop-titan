@@ -295,22 +295,39 @@ export default function PrintShopWebsitePage() {
                             A Los Angeles screen printing and embroidery shop running on a Shop Titan storefront. Customers browse the catalog, configure products, and check out on their own, exactly the flow described above.
                         </p>
                         <div className="grid md:grid-cols-5 gap-4 md:gap-6">
-                            <figure className="md:col-span-3">
-                                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
-                                    <Image
-                                        src="/gallery/dtla-print/homepage.webp"
-                                        alt="DTLA Print homepage built on Shop Titan with custom apparel hero and category navigation"
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 672px"
-                                        quality={90}
-                                        className="object-cover object-top"
-                                    />
-                                </div>
-                                <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
-                                    Homepage
-                                </figcaption>
-                            </figure>
-                            <div className="md:col-span-2 grid gap-4 md:gap-6">
+                            <div className="md:col-span-3 grid gap-4 md:gap-6 content-start">
+                                <figure>
+                                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/dtla-print/homepage.webp"
+                                            alt="DTLA Print homepage built on Shop Titan with custom apparel hero and category navigation"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 672px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Homepage
+                                    </figcaption>
+                                </figure>
+                                <figure>
+                                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/dtla-print/custom-merch.webp"
+                                            alt="DTLA Print custom merch section with customizable products and premium printing services"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 672px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Custom merch
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div className="md:col-span-2 grid gap-4 md:gap-6 content-start">
                                 <figure>
                                     <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
                                         <Image
@@ -324,6 +341,21 @@ export default function PrintShopWebsitePage() {
                                     </div>
                                     <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
                                         Product catalog
+                                    </figcaption>
+                                </figure>
+                                <figure>
+                                    <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/dtla-print/rush-orders.webp"
+                                            alt="DTLA Print rush orders page for fast-turnaround custom printing"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 448px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Rush orders
                                     </figcaption>
                                 </figure>
                                 <figure>
