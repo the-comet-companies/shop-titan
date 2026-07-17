@@ -124,6 +124,20 @@ export default function PortfolioPage() {
                         >
                             Explore custom websites we&apos;ve built for print shops, from screen printing and embroidery to signage and promotional products.
                         </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="mt-8"
+                        >
+                            <Link
+                                href="/gallery"
+                                className="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
+                            >
+                                Browse the full gallery
+                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                            </Link>
+                        </motion.div>
                     </div>
                 </section>
 
