@@ -195,6 +195,10 @@ export default function PortfolioPage() {
                             ))}
                         </div>
                         <div className="flex flex-wrap gap-4 justify-center mt-10">
+                            <Link href="/gallery" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
+                                Browse the full gallery
+                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                            </Link>
                             <Link href="/print-shop-website" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
                                 Print shop websites overview
                                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
