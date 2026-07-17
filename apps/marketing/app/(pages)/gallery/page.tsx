@@ -232,7 +232,7 @@ export default function GalleryPage() {
                 <section className="bg-surface dark:bg-gray-950 py-20 md:py-28 border-t border-structural-border dark:border-gray-800">
                     <div className="max-w-3xl mx-auto px-mobile text-center">
                         <h2 className="text-3xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-5">
-                            Want your shop in this gallery?
+                            Do you want your site to look like the ones in this gallery?
                         </h2>
                         <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed mb-8 max-w-2xl mx-auto">
                             Book a demo and we will design a branded storefront around your products and decoration methods, wired straight into production.
