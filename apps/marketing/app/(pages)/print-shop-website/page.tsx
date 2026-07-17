@@ -375,6 +375,99 @@ export default function PrintShopWebsitePage() {
                                 </figure>
                             </div>
                         </div>
+                    </div>
+                </section>
+
+                {/* ───── REAL BUILD PROOF: FRESH MERCH ───── */}
+                <section className="bg-surface dark:bg-gray-950 pb-16 md:pb-24">
+                    <div className="max-w-6xl mx-auto px-mobile">
+                        <h2 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white tracking-tight mb-3">
+                            Fresh Merch
+                        </h2>
+                        <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl mb-10">
+                            A custom apparel supplier and decorator serving brands across Australia, from a single tee to full private label ranges, on the same storefront foundation.
+                        </p>
+                        <div className="grid md:grid-cols-5 gap-4 md:gap-6">
+                            <div className="md:col-span-2 grid gap-4 md:gap-6 content-start">
+                                <figure>
+                                    <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/fresh-merch/products.webp"
+                                            alt="Fresh Merch product catalog with custom apparel items"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 448px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Product catalog
+                                    </figcaption>
+                                </figure>
+                                <figure>
+                                    <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/fresh-merch/live-events.webp"
+                                            alt="Fresh Merch live events page for on-site merch printing"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 448px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Live events
+                                    </figcaption>
+                                </figure>
+                                <figure>
+                                    <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/fresh-merch/cart.webp"
+                                            alt="Fresh Merch shopping cart with order summary"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 448px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Cart and checkout
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div className="md:col-span-3 grid gap-4 md:gap-6 content-start">
+                                <figure>
+                                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/fresh-merch/homepage.webp"
+                                            alt="Fresh Merch homepage hero with custom apparel branding"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 672px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        Homepage
+                                    </figcaption>
+                                </figure>
+                                <figure>
+                                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card">
+                                        <Image
+                                            src="/gallery/fresh-merch/how-we-work.webp"
+                                            alt="Fresh Merch how we work page explaining the custom apparel process"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 672px"
+                                            quality={90}
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-2 font-mono text-xs md:text-sm text-secondary-text dark:text-gray-400">
+                                        How we work
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
                         <div className="mt-8">
                             <Link href="/gallery" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
                                 Browse the full gallery
