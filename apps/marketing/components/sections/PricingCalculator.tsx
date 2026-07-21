@@ -136,7 +136,7 @@ export default function PricingCalculator() {
                         <div className="mb-10">
                             <StepLabel hint="drag or type your gross sales">Estimate your monthly</StepLabel>
                             <div className="flex flex-wrap items-center gap-3 mb-4">
-                                <div className="flex items-center rounded-xl border border-structural-border dark:border-gray-800 bg-background-light dark:bg-gray-900 px-4 py-3">
+                                <div className="flex items-center border border-charcoal/70 dark:border-gray-600 px-4 py-3">
                                     <span className="text-lg font-semibold text-secondary-text dark:text-gray-500 mr-1">$</span>
                                     <input
                                         type="text"
@@ -163,7 +163,7 @@ export default function PricingCalculator() {
                                 <span>$0</span><span>$50K</span><span>$100K</span><span>$150K+</span>
                             </div>
 
-                            <div className="rounded-2xl border border-structural-border dark:border-gray-800 bg-background-light dark:bg-gray-900 divide-y divide-structural-border dark:divide-gray-800 px-5">
+                            <div className="border-t border-charcoal/70 dark:border-gray-600 divide-y divide-dotted divide-structural-border dark:divide-gray-700">
                                 <div className={`flex items-baseline justify-between py-3 text-sm ${baseWaived ? 'opacity-50' : ''}`}>
                                     <span className="text-charcoal dark:text-gray-200">Monthly base {baseWaived ? '(waived under $10K)' : ''}</span>
                                     <span className="font-semibold text-charcoal dark:text-white">{usd(baseWaived ? 0 : PRICING.monthly.baseFee)}</span>
@@ -183,7 +183,7 @@ export default function PricingCalculator() {
                                 </div>
                             </div>
 
-                            <div className="rounded-xl border border-primary/30 bg-primary/5 p-4 mt-4 text-sm text-charcoal dark:text-gray-200 leading-relaxed">
+                            <div className="bg-charcoal dark:bg-gray-800 text-white px-4 py-3 mt-4 text-sm leading-relaxed">
                                 {baseWaived ? (
                                     <>
                                         <span className="font-semibold">Base fee waived.</span> The $500 monthly base does not apply until you cross $10,000 gross in a single month. We do not get paid a base until you are earning.
@@ -199,13 +199,11 @@ export default function PricingCalculator() {
                         {/* STEP: ADD-ONS */}
                         <div>
                             <StepLabel hint="optional · either model">Add-ons</StepLabel>
-                            <div className="rounded-2xl border border-structural-border dark:border-gray-800 bg-background-light dark:bg-gray-900 divide-y divide-structural-border dark:divide-gray-800 overflow-hidden">
+                            <div className="divide-y divide-structural-border dark:divide-gray-800">
                                 {addonRows.map((a) => (
                                     <label
                                         key={a.key}
-                                        className={`flex items-center gap-4 px-5 py-3.5 cursor-pointer transition-colors ${
-                                            state[a.key] ? 'bg-primary/5' : 'hover:bg-primary/[0.03]'
-                                        }`}
+                                        className="flex items-center gap-4 py-3.5 cursor-pointer"
                                     >
                                         <input
                                             type="checkbox"
