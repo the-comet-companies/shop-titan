@@ -30,8 +30,8 @@ const tiers = [
     },
     {
         label: 'Print-specialized platform',
-        price: 'Setup + monthly',
-        sub: 'Built for decorators',
+        price: '$10,000 to $20,000',
+        sub: 'Setup, then monthly tied to your sales',
         points: ['Custom, branded site', 'Decoration-aware ordering', 'Connected to production'],
         note: 'Higher up front, but built for how a shop actually sells and runs.',
     },
@@ -41,17 +41,17 @@ const factors = [
     { icon: 'language', title: 'Custom vs template', desc: 'A template site is cheap but looks generic. A custom-built site reflects your brand and converts better, and costs more up front.' },
     { icon: 'shopping_cart_checkout', title: 'Ecommerce & online ordering', desc: 'Adding real online ordering, size and color matrices, artwork upload, and payments raises the cost over a brochure site.' },
     { icon: 'sync', title: 'Production integration', desc: 'Wiring orders into quotes, inventory, and production is the priciest piece, and the one that saves the most labor.' },
-    { icon: 'support_agent', title: 'Build vs ongoing', desc: 'Most pricing splits into a one-time build (or setup) and an ongoing monthly fee for hosting, updates, and support.' },
+    { icon: 'support_agent', title: 'Build vs ongoing', desc: 'Most pricing splits into a one-time build (or setup) and an ongoing monthly cost, either a flat fee or a share of sales, covering hosting, updates, and support.' },
 ];
 
 const faqs = [
     {
         question: 'How much does a print shop website cost?',
-        answer: 'It depends on the type. A DIY website builder runs about $15 to $50 a month but you build it yourself. A freelancer or agency typically charges $2,000 to $10,000 or more for a custom site. A print-specialized platform with online ordering and production integration is usually priced as a setup fee plus a monthly subscription.',
+        answer: 'It depends on the type. A DIY website builder runs about $15 to $50 a month but you build it yourself. A freelancer or agency typically charges $2,000 to $10,000 or more for a custom site. A print-specialized platform with online ordering and production integration typically runs $10,000 to $20,000 in setup, plus an ongoing monthly cost, often tied to how much the store sells.',
     },
     {
         question: 'Is it a one-time cost or a monthly fee?',
-        answer: 'Usually both. Most custom and specialized options split into a one-time build or setup fee and an ongoing monthly cost for hosting, updates, and support. DIY builders are monthly only. When you compare, look at the total of both, not just the headline number.',
+        answer: 'Usually both. Most custom and specialized options split into a one-time build or setup fee and an ongoing monthly cost for hosting, updates, and support. The monthly side can be a flat subscription or a revenue share that scales with your sales. DIY builders are monthly only. When you compare, look at the total of both, not just the headline number.',
     },
     {
         question: 'Why does a print shop website cost more than a regular website?',
@@ -67,7 +67,7 @@ const faqs = [
     },
     {
         question: 'How much does a Shop Titan print shop website cost?',
-        answer: 'Shop Titan is priced as a setup fee plus a monthly subscription, with no long-term contract, and the storefront can be taken on its own or connected to the full operations system. See the pricing page for current setup and monthly options.',
+        answer: 'Shop Titan offers two launch models. Do-It-Yourself is $10,000: you build your pages and load your products on our platform with tools and guidance. Done-For-You is $20,000: we build every page, load up to 500 products, and handle SEO, payments, and launch, with $5,000 off for existing FileMaker clients. Both include a 3-month trial where you only pay the balance if you continue. After launch, the monthly cost is a $500 base fee, waived until you pass $10,000 a month in gross sales, plus a revenue share from 5% down to 2.5% as volume grows. See the pricing page for the full breakdown and calculator.',
     },
 ];
 
@@ -134,7 +134,7 @@ export default function PrintShopWebsiteCostPage() {
                     <div className="max-w-4xl mx-auto px-mobile">
                         <div className="border-l-4 border-primary pl-6 md:pl-8">
                             <p className="text-base md:text-lg text-charcoal dark:text-gray-200 leading-relaxed">
-                                A print shop website typically costs <strong>$15 to $50 a month</strong> with a DIY builder you set up yourself, <strong>$2,000 to $10,000 or more</strong> from a freelancer or agency, or a <strong>setup fee plus monthly subscription</strong> for a print-specialized platform with online ordering and production integration. The right price depends on whether you want a simple presence or a site that actually takes orders and feeds your shop.
+                                A print shop website typically costs <strong>$15 to $50 a month</strong> with a DIY builder you set up yourself, <strong>$2,000 to $10,000 or more</strong> from a freelancer or agency, or <strong>$10,000 to $20,000 in setup plus a monthly cost tied to your sales</strong> for a print-specialized platform with online ordering and production integration. The right price depends on whether you want a simple presence or a site that actually takes orders and feeds your shop.
                             </p>
                         </div>
                     </div>
@@ -226,7 +226,10 @@ export default function PrintShopWebsiteCostPage() {
                             What Shop Titan costs
                         </h2>
                         <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed mb-6">
-                            Shop Titan is priced as a setup fee plus a monthly subscription, with no long-term contract. You can take the storefront on its own or connect it to the full operations system, and we build it for you so you are not maintaining a template. See the pricing page for current options, or book a demo for a quote on your specific shop.
+                            Shop Titan comes in two launch models. <strong className="text-charcoal dark:text-white">Do-It-Yourself is $10,000</strong>: you build your pages and load your products on our platform with tools, templates, and guidance. <strong className="text-charcoal dark:text-white">Done-For-You is $20,000</strong>: we design and build every page, load up to 500 products, and handle SEO, payments, and launch. Existing FileMaker clients get $5,000 off the Done-For-You build. Both start with a $5,000 or $10,000 deposit and a built-in 3-month trial, and you only pay the balance if you continue.
+                        </p>
+                        <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed mb-6">
+                            After launch, the monthly cost scales with your sales instead of a flat subscription: a $500 base fee that is waived until your store passes $10,000 a month in gross sales, plus a revenue share that starts at 5% and steps down to 2.5% as volume grows. If the site is not selling yet, you are not paying a monthly bill for it.
                         </p>
                         <div className="flex flex-wrap gap-4">
                             <Link href="/pricing" className="text-primary font-semibold inline-flex items-center gap-1 hover:underline">
