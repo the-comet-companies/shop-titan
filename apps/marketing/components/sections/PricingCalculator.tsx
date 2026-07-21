@@ -338,31 +338,35 @@ export default function PricingCalculator() {
                     <h2 className="text-3xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-10">
                         The Fine Print
                     </h2>
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <div className="rounded-2xl border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-950 p-7">
-                            <h3 className="text-base font-bold text-charcoal dark:text-white tracking-tight mb-4">Included in Monthly</h3>
-                            <ul className="space-y-3">
+                    <div className="grid md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-10">
+                        <div>
+                            <h3 className="border-b border-structural-border dark:border-gray-700 pb-2 mb-4 text-sm font-bold uppercase tracking-[0.18em] text-charcoal dark:text-white">
+                                Included in Monthly
+                            </h3>
+                            <ul className="space-y-2">
                                 {PRICING.finePrint.includedMonthly.map((i) => (
-                                    <li key={i} className="flex items-start gap-3 text-sm md:text-base text-secondary-text dark:text-gray-400 leading-relaxed">
-                                        <span className="material-symbols-outlined text-primary text-xl shrink-0">check</span>
+                                    <li key={i} className="flex items-start gap-2.5 text-sm text-secondary-text dark:text-gray-400 leading-relaxed">
+                                        <span className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-charcoal dark:bg-gray-500" aria-hidden="true" />
                                         {i}
                                     </li>
                                 ))}
                             </ul>
                         </div>
-                        <div className="rounded-2xl border border-structural-border dark:border-gray-800 bg-surface dark:bg-gray-950 p-7">
-                            <h3 className="text-base font-bold text-charcoal dark:text-white tracking-tight mb-4">You Provide / Pay Direct</h3>
-                            <ul className="space-y-3">
+                        <div>
+                            <h3 className="border-b border-structural-border dark:border-gray-700 pb-2 mb-4 text-sm font-bold uppercase tracking-[0.18em] text-charcoal dark:text-white">
+                                You Provide / Pay Direct
+                            </h3>
+                            <ul className="space-y-2">
                                 {PRICING.finePrint.youProvide.map((i) => (
-                                    <li key={i} className="flex items-start gap-3 text-sm md:text-base text-secondary-text dark:text-gray-400 leading-relaxed">
-                                        <span className="material-symbols-outlined text-secondary-text/70 text-xl shrink-0">arrow_forward</span>
+                                    <li key={i} className="flex items-start gap-2.5 text-sm text-secondary-text dark:text-gray-400 leading-relaxed">
+                                        <span className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-charcoal dark:bg-gray-500" aria-hidden="true" />
                                         {i}
                                     </li>
                                 ))}
                             </ul>
                         </div>
                     </div>
-                    <p className="text-sm text-secondary-text dark:text-gray-500 leading-relaxed mt-8 max-w-3xl">
+                    <p className="text-sm text-secondary-text dark:text-gray-500 leading-relaxed mt-8">
                         {PRICING.finePrint.ownership}
                     </p>
                 </div>
