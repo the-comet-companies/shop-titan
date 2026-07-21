@@ -51,7 +51,7 @@ export default function PricingCalculator() {
         <>
             {/* ───── HERO ───── */}
             <section className="pt-16 md:pt-24 pb-12 md:pb-16 bg-background-light dark:bg-background-dark">
-                <div className="max-w-6xl mx-auto px-mobile text-center">
+                <div className="max-w-7xl mx-auto px-mobile text-center">
                     <h1 className="text-4xl md:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-[1.05] mb-6">
                         Built to sell.
                         <br />
@@ -65,7 +65,7 @@ export default function PricingCalculator() {
 
             {/* ───── CALCULATOR ───── */}
             <section className="bg-surface dark:bg-gray-950 py-12 md:py-16 border-y border-structural-border dark:border-gray-800">
-                <div className="max-w-6xl mx-auto px-mobile grid lg:grid-cols-5 gap-10 lg:gap-14">
+                <div className="max-w-7xl mx-auto px-mobile grid lg:grid-cols-5 gap-10 lg:gap-14">
                     {/* LEFT: CONTROLS */}
                     <div className="lg:col-span-3">
                         {/* STEP: MODEL */}
@@ -269,7 +269,7 @@ export default function PricingCalculator() {
 
             {/* ───── COMPARISON ───── */}
             <section className="bg-background-light dark:bg-background-dark py-16 md:py-24">
-                <div className="max-w-6xl mx-auto px-mobile">
+                <div className="max-w-7xl mx-auto px-mobile">
                     <h2 className="text-3xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-10">
                         What You Get · DIY vs DFY
                     </h2>
@@ -298,21 +298,23 @@ export default function PricingCalculator() {
 
             {/* ───── DFY FULL BUILD ───── */}
             <section className="bg-surface dark:bg-gray-950 py-16 md:py-24 border-t border-structural-border dark:border-gray-800">
-                <div className="max-w-6xl mx-auto px-mobile">
+                <div className="max-w-7xl mx-auto px-mobile">
                     <h2 className="text-3xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-4">
                         Done-For-You · The Full Build
                     </h2>
                     <p className="text-base md:text-lg text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl mb-10">
                         Model 2 includes <span className="font-semibold text-charcoal dark:text-white">everything in DIY</span> (the platform, hosting, security, automatic upgrades, and training) <span className="font-semibold text-charcoal dark:text-white">plus the entire build below, done for you before you launch.</span> With DIY these are yours to build and load; with Done-For-You they are handled end to end.
                     </p>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-10">
                         {PRICING.dfyBuild.map((g) => (
-                            <div key={g.group} className="rounded-2xl border border-structural-border dark:border-gray-800 bg-background-light dark:bg-gray-900 p-6">
-                                <h3 className="text-base font-bold text-charcoal dark:text-white tracking-tight mb-1">{g.group}</h3>
-                                <div className="text-xs uppercase tracking-wider text-primary font-semibold mb-4">{g.note}</div>
+                            <div key={g.group}>
+                                <h3 className="flex items-baseline justify-between gap-3 border-b border-structural-border dark:border-gray-700 pb-2 mb-4">
+                                    <span className="text-sm font-bold uppercase tracking-[0.18em] text-charcoal dark:text-white">{g.group}</span>
+                                    <span className="text-[11px] uppercase tracking-wider text-secondary-text dark:text-gray-500 whitespace-nowrap">{g.note}</span>
+                                </h3>
                                 <ul className="space-y-2">
                                     {g.items.map((i) => (
-                                        <li key={i} className="flex items-start gap-2 text-sm text-secondary-text dark:text-gray-400 leading-relaxed">
+                                        <li key={i} className="flex items-start gap-2.5 text-sm text-secondary-text dark:text-gray-400 leading-relaxed">
                                             <span className="material-symbols-outlined text-primary text-base shrink-0 mt-0.5">check</span>
                                             {i}
                                         </li>
@@ -320,20 +322,21 @@ export default function PricingCalculator() {
                                 </ul>
                             </div>
                         ))}
-                        <div className="rounded-2xl border border-primary/40 bg-primary/5 p-6">
-                            <div className="text-xs uppercase tracking-wider text-primary font-semibold mb-3">Recommended extra</div>
-                            <h3 className="text-base font-bold text-charcoal dark:text-white tracking-tight mb-2">ShipStation label printing</h3>
-                            <p className="text-sm text-secondary-text dark:text-gray-400 leading-relaxed">
-                                We integrate ShipStation so you print carrier labels and fulfill orders in a couple of clicks instead of retyping every address, a serious time-saver once orders pick up. You provide the ShipStation account; we wire it in.
-                            </p>
-                        </div>
+                    </div>
+                    <div className="mt-12 rounded-2xl border-2 border-charcoal/80 dark:border-gray-600 p-5 md:p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-charcoal dark:text-white leading-relaxed whitespace-nowrap sm:border-r sm:border-structural-border dark:sm:border-gray-600 sm:pr-6 sm:self-stretch sm:flex sm:items-center">
+                            Recommended<br />Extra
+                        </span>
+                        <p className="text-sm md:text-base text-secondary-text dark:text-gray-400 leading-relaxed">
+                            <span className="font-bold text-charcoal dark:text-white">ShipStation label printing.</span> We integrate ShipStation so you print carrier labels and fulfill orders in a couple of clicks instead of retyping every address, a serious time-saver once orders pick up. You provide the ShipStation account; we wire it in.
+                        </p>
                     </div>
                 </div>
             </section>
 
             {/* ───── FINE PRINT ───── */}
             <section className="bg-background-light dark:bg-background-dark py-16 md:py-24 border-t border-structural-border dark:border-gray-800">
-                <div className="max-w-6xl mx-auto px-mobile">
+                <div className="max-w-7xl mx-auto px-mobile">
                     <h2 className="text-3xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-10">
                         The Fine Print
                     </h2>
