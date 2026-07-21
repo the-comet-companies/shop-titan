@@ -144,7 +144,7 @@ export default function PricingCalculator() {
                                         aria-label="Gross sales per month"
                                         value={new Intl.NumberFormat('en-US').format(state.gross)}
                                         onChange={(e) => setGross(parseInt(e.target.value.replace(/[^0-9]/g, ''), 10) || 0)}
-                                        className="w-28 bg-transparent text-xl font-bold text-charcoal dark:text-white outline-none"
+                                        className="w-28 bg-transparent text-xl font-bold text-charcoal dark:text-white outline-none focus:ring-0"
                                     />
                                 </div>
                                 <span className="text-sm uppercase tracking-wider text-secondary-text dark:text-gray-500">gross sales / month</span>
@@ -157,7 +157,7 @@ export default function PricingCalculator() {
                                 value={Math.min(SLIDER_MAX, state.gross)}
                                 onChange={(e) => setGross(parseInt(e.target.value, 10))}
                                 aria-label="Gross sales slider"
-                                className="w-full accent-primary"
+                                className="w-full accent-primary outline-none focus:outline-none focus:ring-0"
                             />
                             <div className="flex justify-between text-xs text-secondary-text dark:text-gray-500 mt-1 mb-6">
                                 <span>$0</span><span>$50K</span><span>$100K</span><span>$150K+</span>
