@@ -199,14 +199,12 @@ export default function PricingCalculator() {
                         {/* STEP: ADD-ONS */}
                         <div>
                             <StepLabel hint="optional · either model">Add-ons</StepLabel>
-                            <div className="space-y-3">
+                            <div className="rounded-2xl border border-structural-border dark:border-gray-800 bg-background-light dark:bg-gray-900 divide-y divide-structural-border dark:divide-gray-800 overflow-hidden">
                                 {addonRows.map((a) => (
                                     <label
                                         key={a.key}
-                                        className={`flex items-center gap-4 rounded-2xl border p-5 cursor-pointer transition-colors ${
-                                            state[a.key]
-                                                ? 'border-primary/60 bg-primary/5'
-                                                : 'border-structural-border dark:border-gray-800 bg-background-light dark:bg-gray-900 hover:border-primary/40'
+                                        className={`flex items-center gap-4 px-5 py-3.5 cursor-pointer transition-colors ${
+                                            state[a.key] ? 'bg-primary/5' : 'hover:bg-primary/[0.03]'
                                         }`}
                                     >
                                         <input
@@ -216,10 +214,10 @@ export default function PricingCalculator() {
                                             className="h-5 w-5 accent-primary shrink-0"
                                         />
                                         <span className="flex-1">
-                                            <span className="block text-base font-semibold text-charcoal dark:text-white">{a.name}</span>
-                                            <span className="block text-sm text-secondary-text dark:text-gray-400">{a.desc}</span>
+                                            <span className="block text-sm font-semibold text-charcoal dark:text-white">{a.name}</span>
+                                            <span className="block text-xs text-secondary-text dark:text-gray-400">{a.desc}</span>
                                         </span>
-                                        <span className="text-base font-bold text-charcoal dark:text-white shrink-0">{a.price}</span>
+                                        <span className="text-sm font-bold text-charcoal dark:text-white shrink-0">{a.price}</span>
                                     </label>
                                 ))}
                             </div>
