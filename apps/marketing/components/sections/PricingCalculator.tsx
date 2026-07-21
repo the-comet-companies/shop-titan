@@ -269,21 +269,21 @@ export default function PricingCalculator() {
                     <h2 className="text-3xl md:text-4xl font-bold text-charcoal dark:text-white tracking-tight mb-10">
                         What You Get · DIY vs DFY
                     </h2>
-                    <div className="overflow-x-auto rounded-2xl border border-structural-border dark:border-gray-800">
-                        <table className="w-full text-sm md:text-base bg-surface dark:bg-gray-950">
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-sm md:text-base">
                             <thead>
-                                <tr className="border-b border-structural-border dark:border-gray-800 text-left">
-                                    <th className="px-5 py-4 font-bold text-charcoal dark:text-white">Deliverable</th>
-                                    <th className="px-5 py-4 font-bold text-charcoal dark:text-white">Model 1 · DIY</th>
-                                    <th className="px-5 py-4 font-bold text-charcoal dark:text-white">Model 2 · DFY</th>
+                                <tr className="border-b-2 border-structural-border dark:border-gray-700 text-left">
+                                    <th className="px-2 pb-3 text-xs font-bold uppercase tracking-[0.18em] text-charcoal dark:text-white">Deliverable</th>
+                                    <th className="px-2 pb-3 text-xs font-bold uppercase tracking-[0.18em] text-charcoal dark:text-white">Model 1 · DIY</th>
+                                    <th className="px-2 pb-3 text-xs font-bold uppercase tracking-[0.18em] text-charcoal dark:text-white">Model 2 · DFY</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-structural-border dark:divide-gray-800">
                                 {PRICING.comparison.map((r) => (
                                     <tr key={r.deliverable}>
-                                        <td className="px-5 py-4 font-medium text-charcoal dark:text-gray-200">{r.deliverable}</td>
-                                        <td className={`px-5 py-4 ${r.diyWe ? 'text-primary font-semibold' : 'text-secondary-text dark:text-gray-400'}`}>{r.diy}</td>
-                                        <td className={`px-5 py-4 ${r.dfyWe ? 'text-primary font-semibold' : 'text-secondary-text dark:text-gray-400'}`}>{r.dfy}</td>
+                                        <td className="px-2 py-3.5 font-semibold text-charcoal dark:text-gray-200 w-1/3">{r.deliverable}</td>
+                                        <td className={`px-2 py-3.5 ${r.diyWe ? 'text-primary font-semibold' : 'text-secondary-text dark:text-gray-400'}`}>{r.diy}</td>
+                                        <td className={`px-2 py-3.5 ${r.dfyWe ? 'text-primary font-semibold' : 'text-secondary-text dark:text-gray-400'}`}>{r.dfy}</td>
                                     </tr>
                                 ))}
                             </tbody>
