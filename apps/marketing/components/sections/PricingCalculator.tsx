@@ -183,7 +183,7 @@ export default function PricingCalculator() {
                                 </div>
                             </div>
 
-                            <div className="bg-charcoal dark:bg-gray-800 text-white px-4 py-3 mt-4 text-sm leading-relaxed">
+                            <div className="rounded-xl border border-structural-border dark:border-gray-700 px-4 py-3 mt-4 text-sm text-charcoal dark:text-gray-200 leading-relaxed">
                                 {baseWaived ? (
                                     <>
                                         <span className="font-semibold">Base fee waived.</span> The $500 monthly base does not apply until you cross $10,000 gross in a single month. We do not get paid a base until you are earning.
