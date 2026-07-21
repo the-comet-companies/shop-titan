@@ -163,7 +163,7 @@ export default function PricingCalculator() {
                                 <span>$0</span><span>$50K</span><span>$100K</span><span>$150K+</span>
                             </div>
 
-                            <div className="border-t border-charcoal/70 dark:border-gray-600 divide-y divide-dotted divide-structural-border dark:divide-gray-700">
+                            <div className="border-t border-structural-border dark:border-gray-700 divide-y divide-dotted divide-structural-border dark:divide-gray-700">
                                 <div className={`flex items-baseline justify-between py-3 text-sm ${baseWaived ? 'opacity-50' : ''}`}>
                                     <span className="text-charcoal dark:text-gray-200">Monthly base {baseWaived ? '(waived under $10K)' : ''}</span>
                                     <span className="font-semibold text-charcoal dark:text-white">{usd(baseWaived ? 0 : PRICING.monthly.baseFee)}</span>
