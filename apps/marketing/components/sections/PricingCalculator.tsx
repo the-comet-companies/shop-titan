@@ -51,13 +51,13 @@ export default function PricingCalculator() {
         <>
             {/* ───── HERO ───── */}
             <section className="pt-16 md:pt-24 pb-12 md:pb-16 bg-background-light dark:bg-background-dark">
-                <div className="max-w-6xl mx-auto px-mobile">
+                <div className="max-w-6xl mx-auto px-mobile text-center">
                     <h1 className="text-4xl md:text-6xl font-bold text-charcoal dark:text-white tracking-tight leading-[1.05] mb-6">
                         Built to sell.
                         <br />
                         <span className="text-primary">Two ways to launch.</span>
                     </h1>
-                    <p className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-2xl leading-relaxed">
+                    <p className="text-lg md:text-xl text-secondary-text dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
                         A fully SEO-optimized ecommerce storefront, built on the same platform that powers our flagship. Pick your model, estimate your monthly, and add what you need. <span className="font-semibold text-charcoal dark:text-white">We win when you win.</span> All pricing in USD.
                     </p>
                 </div>
