@@ -1,34 +1,33 @@
 import { generatePageMetadata, generateProductSchema } from "@/lib/schema";
-import { pricing, tracks } from "@/lib/pricing-data";
-import InteractivePricing from "@/components/sections/InteractivePricing";
+import { PRICING } from "@/lib/pricing-calculator";
+import PricingCalculator from "@/components/sections/PricingCalculator";
 import Footer from "@/components/Footer";
 
 export const metadata = generatePageMetadata({
-    title: "Pricing - Website, FileMaker System, or Both",
-    description: "Transparent pricing for Shop Titan. Choose your product track, pick your delivery model, and see exactly what you get. No hidden fees. No long-term contracts.",
+    title: "Pricing - Two Ways to Launch Your Print Shop Storefront",
+    description: "Transparent pricing for a fully SEO-optimized print shop storefront. Do-It-Yourself from $10,000 or Done-For-You from $20,000, with a 3-month trial, a monthly base waived under $10K gross, and revenue share that scales with your sales.",
     path: "/pricing",
     type: "page",
 });
 
-// Product + AggregateOffer schema, derived from the real pricing tiers so the
-// setup-fee range (DIY low to DFY high) stays in sync with pricing-data.ts.
+// Product + AggregateOffer schema derived from the two launch models so the
+// setup-fee range stays in sync with lib/pricing-calculator.ts.
 const PRICING_URL = "https://shoptitan.app/pricing";
-const toNumber = (value: string) => Number(value.replace(/[^0-9.]/g, ""));
-const productSchema = generateProductSchema(
-    tracks.map((track) => {
-        const setups = pricing
-            .filter((tier) => tier.track === track.id)
-            .map((tier) => toNumber(tier.setup));
-        return {
-            name: `Shop Titan ${track.name} for Print Shops`,
-            description: track.tagline,
-            url: PRICING_URL,
-            lowPrice: Math.min(...setups),
-            highPrice: Math.max(...setups),
-            offerCount: setups.length,
-        };
-    })
-);
+const setups = [
+    PRICING.models.diy.setupTotal,
+    PRICING.models.dfy.setupTotal - PRICING.models.dfy.fmDiscount,
+    PRICING.models.dfy.setupTotal,
+];
+const productSchema = generateProductSchema([
+    {
+        name: "Shop Titan Print Shop Storefront",
+        description: "A fully SEO-optimized ecommerce storefront for print shops and apparel decorators, available Do-It-Yourself or Done-For-You.",
+        url: PRICING_URL,
+        lowPrice: Math.min(...setups),
+        highPrice: Math.max(...setups),
+        offerCount: 2,
+    },
+]);
 
 export default function PricingPage() {
     return (
@@ -37,7 +36,7 @@ export default function PricingPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
             />
-            <InteractivePricing />
+            <PricingCalculator />
             <Footer />
         </main>
     );
