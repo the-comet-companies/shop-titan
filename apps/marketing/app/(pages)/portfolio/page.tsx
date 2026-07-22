@@ -204,20 +204,19 @@ export default function PortfolioPage() {
                                             </a>
                                         )}
                                         <div
-                                            className="mt-5 flex gap-3 overflow-x-auto scrollbar-none snap-x pb-1"
-                                            style={{ scrollbarWidth: 'none' }}
+                                            className="mt-5 grid grid-cols-3 gap-3 max-h-[540px] overflow-y-auto pr-1"
                                             aria-label={`${p.name} page captures`}
                                         >
                                             {p.shots.map((s) => (
                                                 <div
                                                     key={s}
-                                                    className="relative w-[calc((100%-1.5rem)/3)] shrink-0 aspect-[3/4] rounded-lg overflow-hidden border border-structural-border dark:border-gray-800 snap-start"
+                                                    className="relative aspect-[3/4] rounded-lg overflow-hidden border border-structural-border dark:border-gray-800"
                                                 >
                                                     <Image
                                                         src={s}
                                                         alt={`${p.name} ${shotLabel(s)} page`}
                                                         fill
-                                                        sizes="180px"
+                                                        sizes="200px"
                                                         className="object-cover object-top"
                                                     />
                                                 </div>
