@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Shop Titan — Storefront Pricing Calculator · Red &amp; Blue Embroidery</title>
+
+<!--
+  ════════════════════════════════════════════════════════════════════════════
+  ROGELIO — HANDOFF NOTES
+  ════════════════════════════════════════════════════════════════════════════
+  This is a self-contained interactive pricing calculator for Red & Blue
+  Embroidery. Zero dependencies (no build, no CDN) so it opens anywhere and is
+  easy to share. It mirrors the approved PDF pricing sheet
+  (shop-titan/sales/red-blue-embroidery-pricing.pdf).
+
+  To port into shoptitan.app (apps/marketing, Next 15 + Tailwind):
+    1. The single source of truth for all numbers/copy is the `PRICING` object
+       in the <script> below. Lift it verbatim into a TS module.
+    2. The math is in three PURE functions — `calcRevShare`, `computeTotals`,
+       and the `usd`/formatting helpers. Copy them as-is; they have no DOM deps.
+    3. `state` maps 1:1 to React useState ({ model, gross, addons }). Replace
+       the manual `render()` DOM updates with JSX bound to state.
+    4. Re-skin with the app tokens if you want (primary #0066CC, Inter). This
+       file uses the stark black/white editorial look from the sales PDF on
+       purpose — that's the approved brand for this collateral. Your call.
+    5. Suggested route: app/pricing/red-blue  (or a reusable <PricingCalculator
+       config={...} /> so other clients can reuse the same engine).
+  ════════════════════════════════════════════════════════════════════════════
+-->
+
+<style>
+  :root { --ink:#000; --paper:#fff; --muted:#666; --line:#000; --soft:#f4f4f4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Arial, Helvetica, "Helvetica Neue", sans-serif;
+    color: var(--ink);
+    background: #eaeaea;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; background: var(--paper); }
+
+  /* ===== TOP BAR ===== */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 32px;
+    background: #fff; border-bottom: 2px solid #000;
+  }
+  .brand { font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
+  .brand span { font-weight: 300; }
+  .topbar-meta { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; text-align: right; color:#333; }
+
+  /* ===== HERO ===== */
+  .hero { padding: 40px 32px 28px; border-bottom: 2px solid #000; }
+  .hero h1 { font-size: 46px; font-weight: 900; letter-spacing: -2px; line-height: 0.98; }
+  .hero h1 span { font-weight: 300; }
+  .hero p { font-size: 14px; max-width: 640px; margin-top: 14px; color:#222; }
+  .hero p strong { font-weight: 900; }
+
+  /* ===== LAYOUT ===== */
+  .main { display: grid; grid-template-columns: 1.55fr 1fr; gap: 0; }
+  .controls { padding: 28px 32px; border-right: 2px solid #000; }
+  .summary-col { padding: 28px 32px; }
+  @media (max-width: 860px) {
+    .main { grid-template-columns: 1fr; }
+    .controls { border-right: none; border-bottom: 2px solid #000; }
+    .hero h1 { font-size: 34px; letter-spacing: -1px; }
+  }
+
+  .step { margin-bottom: 30px; }
+  .step-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 3px; font-weight: 900;
+    border-bottom: 1px solid #000; padding-bottom: 5px; margin-bottom: 14px;
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .step-label .hint { font-weight: 400; font-size: 9px; letter-spacing: 1.2px; color:#777; }
+
+  /* ===== MODEL CARDS ===== */
+  .model-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .model-card {
+    border: 1.5px solid #000; padding: 14px; cursor: pointer; position: relative;
+    transition: background .12s, color .12s; user-select: none;
+  }
+  .model-card:hover { background: #f4f4f4; }
+  .model-card.active { background: #000; color: #fff; }
+  .model-card.active:hover { background: #000; }
+  .model-card .mc-tag { font-size: 8.5px; text-transform: uppercase; letter-spacing: 2px; }
+  .model-card .mc-name { font-size: 15px; font-weight: 900; margin: 5px 0 8px; line-height: 1.1; }
+  .model-card .mc-price { font-size: 26px; font-weight: 900; letter-spacing: -1px; line-height: 1; }
+  .model-card .mc-sub { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; color:#666; }
+  .model-card.active .mc-sub { color:#bbb; }
+  .model-card .mc-check {
+    position: absolute; top: 12px; right: 12px; width: 16px; height: 16px;
+    border: 1.5px solid #000; border-radius: 50%; font-size: 11px; text-align: center; line-height: 14px;
+  }
+  .model-card.active .mc-check { border-color: #fff; background: #fff; color: #000; }
+
+  /* ===== SETUP FLOW ===== */
+  .setup-flow {
+    display: grid; grid-template-columns: 1fr 18px 1fr 18px 1fr; align-items: center;
+    border: 1.5px solid #000; padding: 14px;
+  }
+  .sf-step { text-align: center; }
+  .sf-lbl { font-size: 8px; text-transform: uppercase; letter-spacing: 1.5px; }
+  .sf-val { font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
+  .sf-note { font-size: 8px; color:#777; margin-top: 2px; }
+  .sf-arrow { text-align: center; font-weight: 900; }
+  .setup-disc { font-size: 10px; margin-top: 8px; color:#333; }
+  .setup-disc strong { font-weight: 900; }
+
+  /* ===== GROSS INPUT ===== */
+  .gross-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+  .gross-input-wrap { display: flex; align-items: center; border: 1.5px solid #000; padding: 8px 12px; }
+  .gross-input-wrap .dollar { font-size: 22px; font-weight: 900; }
+  #grossInput {
+    border: none; outline: none; font-size: 26px; font-weight: 900; width: 150px;
+    font-family: inherit; letter-spacing: -1px;
+  }
+  .gross-per { font-size: 11px; color:#666; text-transform: uppercase; letter-spacing: 1.5px; }
+  input[type=range] {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 4px; background: #000;
+    margin: 16px 0 6px; cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 20px; height: 20px; background: #000;
+    border: 3px solid #fff; box-shadow: 0 0 0 1.5px #000;
+  }
+  input[type=range]::-moz-range-thumb {
+    width: 20px; height: 20px; background: #000; border: 3px solid #fff; box-shadow: 0 0 0 1.5px #000; border-radius: 0;
+  }
+  .range-scale { display: flex; justify-content: space-between; font-size: 8.5px; color:#888; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ===== BAND BREAKDOWN ===== */
+  .bands { margin-top: 14px; border-top: 1px solid #000; }
+  .band-row { display: flex; justify-content: space-between; font-size: 10.5px; padding: 6px 0; border-bottom: 1px dotted #999; }
+  .band-row .b-desc { color:#333; }
+  .band-row .b-fee { font-weight: 900; }
+  .band-row.muted { color:#aaa; }
+  .band-row.muted .b-fee { color:#aaa; font-weight: 400; }
+  .trigger-note { font-size: 9.5px; margin-top: 8px; padding: 7px 10px; background: #000; color: #fff; line-height: 1.4; }
+  .trigger-note strong { text-transform: uppercase; letter-spacing: 1px; font-size: 9px; }
+
+  /* ===== ADD-ONS ===== */
+  .addon { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid #000; }
+  .addon:last-child { border-bottom: none; }
+  .addon-info { flex: 1; }
+  .addon-name { font-size: 12px; font-weight: 900; }
+  .addon-desc { font-size: 9.5px; color:#666; }
+  .addon-price { font-size: 13px; font-weight: 900; white-space: nowrap; }
+  .addon-price small { font-size: 8.5px; font-weight: 400; color:#666; }
+  /* switch */
+  .switch { position: relative; width: 42px; height: 22px; flex-shrink: 0; cursor: pointer; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider-ui { position: absolute; inset: 0; background: #fff; border: 1.5px solid #000; transition: .15s; }
+  .slider-ui::before { content:""; position: absolute; width: 14px; height: 14px; left: 2px; top: 2px; background: #000; transition: .15s; }
+  .switch input:checked + .slider-ui { background: #000; }
+  .switch input:checked + .slider-ui::before { transform: translateX(20px); background: #fff; }
+  /* ===== SUMMARY PANEL ===== */
+  .summary { position: sticky; top: 78px; border: 2px solid #000; }
+  .summary-head { background: #000; color: #fff; padding: 12px 16px; }
+  .summary-head .sh-title { font-size: 13px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
+  .summary-head .sh-model { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color:#bbb; margin-top: 2px; }
+  .summary-body { padding: 16px; }
+  .sum-block { margin-bottom: 14px; }
+  .sum-block-lbl { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color:#666; margin-bottom: 6px; }
+  .sum-line { display: flex; justify-content: space-between; font-size: 11px; padding: 3px 0; }
+  .sum-line .sl-amt { font-weight: 700; }
+  .sum-total { display: flex; justify-content: space-between; align-items: baseline; border-top: 1.5px solid #000; padding-top: 6px; margin-top: 4px; }
+  .sum-total .st-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 900; }
+  .sum-total .st-amt { font-size: 22px; font-weight: 900; letter-spacing: -0.5px; }
+  .sum-subnote { font-size: 8.5px; color:#999; margin-top: 6px; line-height: 1.4; }
+  .cta { display: block; text-align: center; background: #fff; color: #000; border: 2px solid #000; margin: 14px; padding: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; text-decoration: none; cursor: pointer; }
+  .cta:hover { background: #000; color: #fff; }
+  .disclaimer { font-size: 8.5px; color:#999; padding: 0 16px 16px; line-height: 1.4; }
+
+  /* ===== COMPARISON + TERMS (full width) ===== */
+  .fullwide { padding: 28px 32px; border-top: 2px solid #000; }
+  .fullwide h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; font-weight: 900; border-bottom: 1px solid #000; padding-bottom: 5px; margin-bottom: 14px; }
+  table.cmp { width: 100%; border-collapse: collapse; font-size: 11px; }
+  table.cmp th { text-align: left; font-size: 8.5px; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1.5px solid #000; padding: 8px 6px 6px; }
+  table.cmp td { padding: 9px 6px; border-bottom: 1px solid #000; vertical-align: top; }
+  table.cmp .c-deliver { font-weight: 900; width: 34%; }
+  table.cmp .c-we { font-weight: 900; }
+  table.cmp .c-you { color:#444; }
+  .terms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 4px; }
+  @media (max-width:860px){ .terms-grid { grid-template-columns: 1fr; } }
+  .terms-grid h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+  .terms-grid ul { list-style: none; font-size: 10.5px; }
+  .terms-grid li { padding-left: 12px; position: relative; margin-bottom: 5px; line-height: 1.4; }
+  .terms-grid li::before { content:"■"; position: absolute; left: 0; font-size: 6px; top: 5px; }
+
+  /* ===== DFY FULL BUILD ===== */
+  .dfy-intro { font-size: 11px; color:#333; margin-bottom: 18px; max-width: 780px; line-height: 1.55; }
+  .dfy-intro strong { font-weight: 900; }
+  .dfy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 30px; }
+  @media (max-width:860px){ .dfy-grid { grid-template-columns: 1fr; } }
+  .dfy-group h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-weight: 900; border-bottom: 1px solid #000; padding-bottom: 4px; margin-bottom: 9px; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .dfy-group h3 .dfy-note { font-weight: 400; font-size: 8px; letter-spacing: 1px; color:#888; text-transform: uppercase; white-space: nowrap; }
+  .dfy-group ul { list-style: none; font-size: 10.5px; }
+  .dfy-group li { padding-left: 15px; position: relative; margin-bottom: 4px; line-height: 1.4; }
+  .dfy-group li::before { content:"✓"; position: absolute; left: 0; top: 0; font-size: 10px; font-weight: 900; }
+  .dfy-extra { margin-top: 22px; border: 2px solid #000; padding: 13px 16px; font-size: 10.5px; line-height: 1.5; display: flex; gap: 14px; align-items: flex-start; }
+  .dfy-extra .x-label { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; font-weight: 900; line-height: 1.3; white-space: nowrap; border-right: 1.5px solid #000; padding-right: 14px; }
+  .dfy-extra strong { font-weight: 900; }
+
+  .page-footer { padding: 18px 32px; border-top: 2px solid #000; display: flex; justify-content: space-between; font-size: 8.5px; text-transform: uppercase; letter-spacing: 1.5px; color:#333; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="brand">SHOP <span>TITAN</span></div>
+    <div class="topbar-meta">Storefront Pricing Calculator<br>Prepared for Red &amp; Blue Embroidery</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Built to sell.<br><span>Two ways to launch.</span></h1>
+    <p>A fully SEO-optimized e-commerce storefront — built on the same platform that powers our flagship.
+       Pick your model, estimate your monthly, add what you need. <strong>We win when you win.</strong>
+       All pricing in USD.</p>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- LEFT: CONTROLS -->
+    <div class="controls">
+
+      <!-- STEP 1 — MODEL -->
+      <div class="step">
+        <div class="step-label">1 · Choose Your Model <span class="hint">click to select</span></div>
+        <div class="model-grid" id="modelGrid">
+          <div class="model-card" data-model="diy">
+            <div class="mc-check">✓</div>
+            <div class="mc-tag">Model 1 · DIY</div>
+            <div class="mc-name">You Build.<br>We Power It.</div>
+            <div class="mc-price">$10,000</div>
+            <div class="mc-sub">Setup · you build &amp; load</div>
+          </div>
+          <div class="model-card" data-model="dfy">
+            <div class="mc-check">✓</div>
+            <div class="mc-tag">Model 2 · DFY</div>
+            <div class="mc-name">We Build It All.<br>You Sell.</div>
+            <div class="mc-price">$20,000</div>
+            <div class="mc-sub">FileMaker clients get $5,000 off</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2 — SETUP -->
+      <div class="step">
+        <div class="step-label">2 · Setup <span class="hint">$5K balance only after Day 90</span></div>
+        <div class="setup-flow">
+          <div class="sf-step"><div class="sf-lbl">Deposit</div><div class="sf-val" id="sfDeposit">$5,000</div><div class="sf-note">Kickoff</div></div>
+          <div class="sf-arrow">→</div>
+          <div class="sf-step"><div class="sf-lbl">Day 90 Balance</div><div class="sf-val" id="sfBalance">$5,000</div><div class="sf-note">If you continue</div></div>
+          <div class="sf-arrow">→</div>
+          <div class="sf-step"><div class="sf-lbl">Total Setup</div><div class="sf-val" id="sfTotal">$10,000</div><div class="sf-note">USD</div></div>
+        </div>
+        <div class="setup-disc" id="setupDisc">Built-in 3-month trial to iron out the creases. You only pay the balance if you continue.</div>
+      </div>
+
+      <!-- STEP 3 — MONTHLY ESTIMATOR -->
+      <div class="step">
+        <div class="step-label">3 · Estimate Your Monthly <span class="hint">drag or type your gross sales</span></div>
+        <div class="gross-row">
+          <div class="gross-input-wrap">
+            <span class="dollar">$</span>
+            <input id="grossInput" type="text" inputmode="numeric" value="25,000">
+          </div>
+          <span class="gross-per">gross sales / month</span>
+        </div>
+        <input id="grossRange" type="range" min="0" max="150000" step="1000" value="25000">
+        <div class="range-scale"><span>$0</span><span>$50K</span><span>$100K</span><span>$150K+</span></div>
+
+        <div class="bands" id="bands"><!-- band rows injected --></div>
+
+        <div class="trigger-note" id="triggerNote"></div>
+      </div>
+
+      <!-- STEP 4 — ADD-ONS -->
+      <div class="step">
+        <div class="step-label">4 · Add-Ons <span class="hint">optional · either model</span></div>
+
+        <div class="addon">
+          <label class="switch"><input type="checkbox" id="ax_seo"><span class="slider-ui"></span></label>
+          <div class="addon-info"><div class="addon-name">SEO Growth Engine</div><div class="addon-desc">Keyword targeting, on-page, content, monthly reporting</div></div>
+          <div class="addon-price">$750<small>/mo</small></div>
+        </div>
+
+        <div class="addon">
+          <label class="switch"><input type="checkbox" id="ax_ads"><span class="slider-ui"></span></label>
+          <div class="addon-info"><div class="addon-name">Ad Management</div><div class="addon-desc">Meta + Google campaigns (or 15% of ad spend)</div></div>
+          <div class="addon-price">$1,000<small>/mo</small></div>
+        </div>
+
+        <div class="addon">
+          <label class="switch"><input type="checkbox" id="ax_email"><span class="slider-ui"></span></label>
+          <div class="addon-info"><div class="addon-name">Email Marketing</div><div class="addon-desc">Klaviyo/Mailchimp flows, monthly campaigns, segmentation, reporting</div></div>
+          <div class="addon-price">$600<small>/mo</small></div>
+        </div>
+
+        <div class="addon">
+          <label class="switch"><input type="checkbox" id="ax_brand"><span class="slider-ui"></span></label>
+          <div class="addon-info"><div class="addon-name">Brand &amp; Visuals</div><div class="addon-desc">Custom design, logo refresh, product photography (one-time, from)</div></div>
+          <div class="addon-price">$1,500<small>+</small></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: SUMMARY -->
+    <div class="summary-col">
+      <div class="summary">
+        <div class="summary-head">
+          <div class="sh-title">Your Estimate</div>
+          <div class="sh-model" id="sumModel">Model 1 · Do-It-Yourself</div>
+        </div>
+        <div class="summary-body">
+          <div class="sum-block">
+            <div class="sum-block-lbl">One-Time (setup + one-time add-ons)</div>
+            <div id="sumOneTimeLines"></div>
+            <div class="sum-total"><span class="st-lbl">Total One-Time</span><span class="st-amt" id="sumOneTime">$10,000</span></div>
+          </div>
+          <div class="sum-block">
+            <div class="sum-block-lbl">Monthly (base + add-ons + revenue share)</div>
+            <div id="sumMonthlyLines"></div>
+            <div class="sum-total"><span class="st-lbl">Total Monthly</span><span class="st-amt" id="sumMonthly">$1,700/mo</span></div>
+            <div class="sum-subnote" id="sumMonthlyNote">Revenue share moves with your sales.</div>
+          </div>
+        </div>
+        <a class="cta" id="ctaBtn" href="#">Choose This Plan →</a>
+        <div class="disclaimer">Estimate only. Revenue share is calculated on actual monthly gross (Total Sales − Sales Tax − Processing Fees − Shipping − Refunds) and reconciled monthly; the monthly total shown includes revenue share at the sales level you set. Not a contract.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARISON -->
+  <div class="fullwide">
+    <h2>What You Get · DIY vs DFY</h2>
+    <table class="cmp">
+      <thead><tr><th>Deliverable</th><th>Model 1 · DIY</th><th>Model 2 · DFY</th></tr></thead>
+      <tbody>
+        <tr><td class="c-deliver">Platform, hosting &amp; security</td><td class="c-we">✓ Included</td><td class="c-we">✓ Included</td></tr>
+        <tr><td class="c-deliver">Page building</td><td class="c-you">You build (tool + templates)</td><td class="c-we">We build every page</td></tr>
+        <tr><td class="c-deliver">Product loading / catalog</td><td class="c-you">You import &amp; add</td><td class="c-we">We load your full catalog</td></tr>
+        <tr><td class="c-deliver">SEO optimization</td><td class="c-you">Tool + guidance (you apply)</td><td class="c-we">Fully done for you</td></tr>
+        <tr><td class="c-deliver">Stripe &amp; shipping setup</td><td class="c-you">Guided setup</td><td class="c-we">We wire it up</td></tr>
+        <tr><td class="c-deliver">Training + SOP videos</td><td class="c-we">✓ Included</td><td class="c-we">✓ Included</td></tr>
+        <tr><td class="c-deliver">Ongoing platform upgrades</td><td class="c-we">✓ Automatic</td><td class="c-we">✓ Automatic</td></tr>
+        <tr><td class="c-deliver">Support</td><td class="c-you">Portal + email</td><td class="c-we">Priority, hands-on</td></tr>
+        <tr><td class="c-deliver">Launch timeline</td><td class="c-you">Your pace</td><td class="c-we">Our launch window</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DFY FULL BUILD -->
+  <div class="fullwide">
+    <h2>Done-For-You · The Full Build</h2>
+    <p class="dfy-intro">Model 2 includes <strong>everything in DIY</strong> — the platform, hosting, security, automatic upgrades, and training — <strong>plus the entire build below, done for you before you launch.</strong> With DIY these are yours to build and load; with Done-For-You they're handled end to end.</p>
+    <div class="dfy-grid" id="dfyGrid"><!-- injected --></div>
+    <div class="dfy-extra">
+      <span class="x-label">Recommended<br>Extra</span>
+      <div><strong>ShipStation label printing.</strong> We integrate ShipStation so you print carrier labels and fulfill orders in a couple of clicks instead of retyping every address — a serious time-saver once orders pick up. You provide the ShipStation account; we wire it in.</div>
+    </div>
+  </div>
+
+  <!-- TERMS -->
+  <div class="fullwide">
+    <h2>The Fine Print</h2>
+    <div class="terms-grid">
+      <div>
+        <h3>Included in Monthly</h3>
+        <ul>
+          <li>All conversion + feature updates from our flagship, pushed automatically</li>
+          <li>Maintenance, uptime monitoring &amp; security patches</li>
+          <li>Bug fixes &amp; regression testing</li>
+          <li>Unlimited admin users + training &amp; SOP videos</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You Provide / Pay Direct</h3>
+        <ul>
+          <li>Domain, email/DNS, ShipStation &amp; Stripe API keys</li>
+          <li>CDN, bandwidth, storage, SSL &amp; Stripe fees</li>
+          <li>AWS EC2 hosting — reimbursed at cost, no markup</li>
+          <li>Custom dev / design changes after launch — quoted on scope</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:9.5px;color:#555;margin-top:14px;line-height:1.5;">
+      You own your domain, data, customer list &amp; brand assets. Source code &amp; platform IP remain with Shop Titan.
+      NET 15 from invoice. Revenue share reconciled monthly from your storefront + Stripe.
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <span>Shop Titan · Red &amp; Blue Embroidery</span>
+    <span>Interactive Estimate · v1 · All Pricing USD</span>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════════
+   PRICING — single source of truth (lift this straight into a TS module)
+   ══════════════════════════════════════════════════════════════════════════ */
+const PRICING = {
+  models: {
+    diy: { name: "Model 1 · Do-It-Yourself", setupTotal: 10000, fmDiscount: 0, deposit: 5000, balance: 5000,
+           disc: "Built-in 3-month trial to iron out the creases. You only pay the balance if you continue." },
+    dfy: { name: "Model 2 · Done-For-You", setupTotal: 20000, fmDiscount: 5000, deposit: 10000, balance: 10000,
+           disc: "$20,000 standard. <strong>FileMaker clients get $5,000 off</strong> → net $15,000. Same 3-month trial; balance only after Day 90." },
+  },
+  monthly: {
+    baseFee: 500,
+    baseTrigger: 10000, // base fee waived until monthly gross crosses this
+    bands: [ // cumulative revenue-share bands
+      { upTo: 20000,    rate: 0.05, label: "First $20,000" },
+      { upTo: 50000,    rate: 0.04, label: "Next $30,000"  },
+      { upTo: 100000,   rate: 0.03, label: "Next $50,000"  },
+      { upTo: Infinity, rate: 0.025, label: "Above $100,000" },
+    ],
+  },
+  addons: {
+    seo:   { name: "SEO Growth Engine", price: 750,  type: "monthly" },
+    ads:   { name: "Ad Management",     price: 1000, type: "monthly" },
+    email: { name: "Email Marketing",   price: 600,  type: "monthly" },
+    brand: { name: "Brand & Visuals",   price: 1500, type: "oneTime" },
+  },
+  /* ── Done-For-You full build (single source of truth for the "Full Build" section) ──
+     Everything below is INCLUDED in Model 2 (DFY) and NOT in Model 1 (DIY).
+     DIY still gets the platform, hosting, security, upgrades & training. */
+  dfyBuild: [
+    { group: "Pages & Site Structure", note: "we design & build every page", items: [
+      "Homepage — custom design & build",
+      "All service pages",
+      "All collection / category pages",
+      "About Us",
+      "Contact page + working inquiry form",
+      "Terms &amp; Conditions, Privacy, Returns &amp; Shipping policies",
+      "FAQ page",
+      "Header + footer navigation menus",
+    ] },
+    { group: "Product Catalog", note: "we load it for you", items: [
+      "Up to 500 products of your choosing, fully loaded",
+      "Variants configured (size, color, options)",
+      "Collections &amp; categories organized",
+      "Product images optimized &amp; hosted",
+      "Per-product SEO data (title, meta, alt) — to your review",
+    ] },
+    { group: "SEO &amp; Discoverability", note: "fully done for you", items: [
+      "Google Business Profile (GMB) connected",
+      "Google Search Console + XML sitemap submitted",
+      "SEO monitoring + site-health dashboard",
+      "Structured data / schema (Product, Organization, LocalBusiness)",
+      "Open Graph / social share tags",
+      "Core Web Vitals / speed baseline",
+    ] },
+    { group: "Analytics &amp; Tracking", note: "wired at launch", items: [
+      "GA4 property + integration",
+      "Google Tag Manager container",
+      "E-commerce conversion &amp; event tracking",
+      "Meta Pixel (ad-ready)",
+    ] },
+    { group: "Infrastructure &amp; Setup", note: "we configure", items: [
+      "AWS S3 bucket (media hosting)",
+      "Domain, DNS &amp; SSL configuration",
+      "Transactional email (order + shipping notices)",
+      "CDN / caching",
+    ] },
+    { group: "Payments &amp; Checkout", note: "we wire it up", items: [
+      "Stripe gateway integration",
+      "Sales-tax rules configured",
+      "Shipping rates / zones",
+      "Full checkout QA",
+    ] },
+    { group: "Launch &amp; Handoff", note: "we take you live", items: [
+      "Cross-browser + mobile QA",
+      "Pre-launch checklist",
+      "Admin training + SOP videos",
+      "Go-live launch support",
+    ] },
+  ],
+};
+
+/* ── pure helpers (no DOM) ────────────────────────────────────────────────── */
+const usd = (n) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(Math.round(n));
+
+function calcRevShare(gross) {
+  let prev = 0, total = 0; const parts = [];
+  for (const b of PRICING.monthly.bands) {
+    const width = b.upTo - prev;
+    const amt = Math.max(0, Math.min(gross - prev, width));
+    const active = amt > 0;
+    const fee = active ? amt * b.rate : 0;
+    parts.push({ label: b.label, rate: b.rate, amt, fee, active });
+    total += fee;
+    prev = b.upTo;
+    if (gross <= b.upTo) break;
+  }
+  return { total, parts };
+}
+
+function computeTotals(state) {
+  const model = PRICING.models[state.model];
+  const modelShort = state.model === "dfy" ? "DFY" : "DIY";
+
+  // ── one-time (setup − FileMaker discount + one-time add-ons) ──
+  let oneTime = model.setupTotal;
+  const oneTimeLines = [{ label: "Setup (" + modelShort + ", standard)", amt: model.setupTotal }];
+  const fmDiscount = model.fmDiscount || 0;
+  if (fmDiscount > 0) { oneTime -= fmDiscount; oneTimeLines.push({ label: "FileMaker client discount", amt: -fmDiscount }); }
+  if (state.brand) { oneTime += PRICING.addons.brand.price; oneTimeLines.push({ label: "Brand & Visuals (from)", amt: PRICING.addons.brand.price }); }
+
+  // ── monthly (base + monthly add-ons + revenue share at this sales level) ──
+  const base = state.gross >= PRICING.monthly.baseTrigger ? PRICING.monthly.baseFee : 0;
+  const rev = calcRevShare(state.gross);
+  const monthlyLines = [];
+  if (base > 0) monthlyLines.push({ label: "Monthly base", amt: base });
+  else monthlyLines.push({ label: "Monthly base (waived < $10K)", amt: 0 });
+  if (state.seo) monthlyLines.push({ label: "SEO Growth Engine", amt: PRICING.addons.seo.price });
+  if (state.ads) monthlyLines.push({ label: "Ad Management", amt: PRICING.addons.ads.price });
+  if (state.email) monthlyLines.push({ label: "Email Marketing", amt: PRICING.addons.email.price });
+  monthlyLines.push({ label: "Revenue share (5→2.5% of gross)", amt: rev.total });
+
+  const addons = (state.seo ? PRICING.addons.seo.price : 0) + (state.ads ? PRICING.addons.ads.price : 0) + (state.email ? PRICING.addons.email.price : 0);
+  const monthlyTotal = base + addons + rev.total;
+
+  return { model, modelShort, oneTime, oneTimeLines, base, rev, monthlyLines, monthlyTotal };
+}
+
+/* ── state ────────────────────────────────────────────────────────────────── */
+const state = { model: "diy", gross: 25000, seo: false, ads: false, email: false, brand: false };
+
+/* ── DOM refs ─────────────────────────────────────────────────────────────── */
+const $ = (id) => document.getElementById(id);
+
+/* ── render ───────────────────────────────────────────────────────────────── */
+function render() {
+  const t = computeTotals(state);
+
+  // model cards
+  document.querySelectorAll(".model-card").forEach((c) => c.classList.toggle("active", c.dataset.model === state.model));
+
+  // setup flow
+  $("sfDeposit").textContent = usd(t.model.deposit);
+  $("sfBalance").textContent = usd(t.model.balance);
+  $("sfTotal").textContent = usd(t.model.setupTotal);
+  $("setupDisc").innerHTML = t.model.disc;
+
+  // band breakdown
+  const baseWaived = state.gross < PRICING.monthly.baseTrigger;
+  const bandRows = t.rev.parts.map((p) => {
+    const cls = p.active ? "" : " muted";
+    const pct = (p.rate * 100).toFixed(p.rate === 0.025 ? 1 : 0) + "%";
+    return `<div class="band-row${cls}"><span class="b-desc">${pct} on ${usd(p.amt)} <span style="color:#999">· ${p.label}</span></span><span class="b-fee">${usd(p.fee)}</span></div>`;
+  }).join("");
+  const baseRow = `<div class="band-row${baseWaived ? " muted" : ""}"><span class="b-desc">Monthly base ${baseWaived ? "(waived under $10K)" : ""}</span><span class="b-fee">${usd(baseWaived ? 0 : PRICING.monthly.baseFee)}</span></div>`;
+  const platformTotal = t.base + t.rev.total;
+  const totalRow = `<div class="band-row" style="border-bottom:none;border-top:1.5px solid #000;padding-top:8px;margin-top:2px;"><span class="b-desc" style="font-weight:900;text-transform:uppercase;letter-spacing:1px;font-size:9.5px;">Base + revenue share</span><span class="b-fee" style="font-size:15px;">${usd(platformTotal)}</span></div>`;
+  $("bands").innerHTML = baseRow + bandRows + totalRow;
+
+  $("triggerNote").innerHTML = baseWaived
+    ? `<strong>Base fee waived</strong> · The $500 monthly base doesn't apply until you cross $10,000 gross in a single month. We don't get paid a base until you're earning.`
+    : `<strong>Base fee active</strong> · You've crossed $10,000 gross — the $500 base applies from this month forward.`;
+
+  // summary panel
+  $("sumModel").textContent = t.model.name;
+  const lineHTML = (l) => `<div class="sum-line"><span>${l.label}</span><span class="sl-amt">${usd(l.amt)}</span></div>`;
+  $("sumOneTimeLines").innerHTML = t.oneTimeLines.map(lineHTML).join("");
+  $("sumOneTime").textContent = usd(t.oneTime);
+  $("sumMonthlyLines").innerHTML = t.monthlyLines.map(lineHTML).join("");
+  $("sumMonthly").textContent = usd(t.monthlyTotal) + "/mo";
+  $("sumMonthlyNote").textContent = `Revenue share moves with your sales — shown here at ${usd(state.gross)} gross/mo.`;
+  $("ctaBtn").href = `mailto:hello@shoptitan.app?subject=${encodeURIComponent("Red & Blue Embroidery — " + t.model.name)}&body=${encodeURIComponent("I'd like to move forward with " + t.model.name + ". One-time " + usd(t.oneTime) + "; monthly " + usd(t.monthlyTotal) + " at ~" + usd(state.gross) + " gross (incl. revenue share).")}`;
+}
+
+/* ── input helpers ────────────────────────────────────────────────────────── */
+const parseNum = (s) => { const n = parseInt(String(s).replace(/[^0-9]/g, ""), 10); return isNaN(n) ? 0 : n; };
+const commafy = (n) => new Intl.NumberFormat("en-US").format(n);
+
+function setGross(v, from) {
+  v = Math.max(0, Math.min(500000, v));
+  state.gross = v;
+  if (from !== "range") $("grossRange").value = Math.min(150000, v);
+  if (from !== "input") $("grossInput").value = commafy(v);
+  render();
+}
+
+/* ── wire events ──────────────────────────────────────────────────────────── */
+document.querySelectorAll(".model-card").forEach((c) => c.addEventListener("click", () => { state.model = c.dataset.model; render(); }));
+
+$("grossRange").addEventListener("input", (e) => setGross(parseInt(e.target.value, 10), "range"));
+$("grossInput").addEventListener("blur", () => { $("grossInput").value = commafy(state.gross); });
+$("grossInput").addEventListener("focus", (e) => e.target.select());
+
+["seo", "ads", "email", "brand"].forEach((k) => $("ax_" + k).addEventListener("change", (e) => { state[k] = e.target.checked; render(); }));
+
+/* gross typing: update state + range live, but don't reformat the field mid-type (keeps caret) */
+$("grossInput").addEventListener("input", (e) => {
+  const v = parseNum(e.target.value);
+  state.gross = Math.max(0, Math.min(500000, v));
+  $("grossRange").value = Math.min(150000, state.gross);
+  render();
+});
+
+/* ── DFY full-build (static — renders once from PRICING.dfyBuild) ──────────── */
+function renderDfyBuild() {
+  $("dfyGrid").innerHTML = PRICING.dfyBuild.map((g) => `
+    <div class="dfy-group">
+      <h3>${g.group}<span class="dfy-note">${g.note}</span></h3>
+      <ul>${g.items.map((i) => `<li>${i}</li>`).join("")}</ul>
+    </div>`).join("");
+}
+
+/* init */
+$("grossInput").value = commafy(state.gross);
+renderDfyBuild();
+render();
+</script>
+</body>
+</html>
