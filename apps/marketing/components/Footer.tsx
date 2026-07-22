@@ -64,7 +64,6 @@ export default function Footer() {
                             <li><MotionLink href="/get-started" whileHover={hoverProps} className={linkClass}>Production Operating System</MotionLink></li>
                             <li><MotionLink href="/scheduling" whileHover={hoverProps} className={linkClass}>Production Scheduling</MotionLink></li>
                             <li><MotionLink href="/icon-library" whileHover={hoverProps} className={linkClass}>Icon Library</MotionLink></li>
-                            <li><motion.a href="/red-blue-pricing.html" whileHover={hoverProps} className={linkClass}>Pricing Calculator</motion.a></li>
                             <li><MotionLink href="/reach-out" whileHover={hoverProps} className={linkClass}>Contact</MotionLink></li>
                         </ul>
                     </div>
