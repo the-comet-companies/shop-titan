@@ -23,24 +23,6 @@ const liveProjects = [
         imageHeight: 840,
         desc: 'Live website for DTLA Print, a Los Angeles shop offering eco-friendly screen printing, embroidery, and private label services. Custom tees, hoodies, hats, and totes with a quote-ready ordering flow.',
     },
-    {
-        key: 'mika-jaymes',
-        name: 'Mika Jaymes',
-        url: 'https://mikajaymes.com',
-        image: '/website/mika-jaymes.png',
-        imageWidth: 1900,
-        imageHeight: 909,
-        desc: 'Live storefront for Mika Jaymes, a premium fashion brand with hand cut and sewn essentials crafted in Los Angeles. Minimal, modern design with a clean path from collection to checkout.',
-    },
-    {
-        key: 'kases',
-        name: 'KASES',
-        url: 'https://kases.com',
-        image: '/website/kases.png',
-        imageWidth: 1893,
-        imageHeight: 910,
-        desc: 'Live storefront for KASES, a premium Christian apparel brand. A clean, brand-first catalog of tees, hoodies, and tanks with a fast path from product page to checkout.',
-    },
 ];
 
 const included = [
