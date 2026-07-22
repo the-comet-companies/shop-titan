@@ -23,6 +23,16 @@ const liveProjects = [
         imageHeight: 840,
         desc: 'Live website for DTLA Print, a Los Angeles shop offering eco-friendly screen printing, embroidery, and private label services. Custom tees, hoodies, hats, and totes with a quote-ready ordering flow.',
     },
+    {
+        key: 'fresh-merch',
+        name: 'Fresh Merch',
+        url: '',
+        image: '/gallery/fresh-merch/homepage.webp',
+        imageWidth: 1908,
+        imageHeight: 2243,
+        crop: true,
+        desc: 'Storefront build for Fresh Merch, a custom merch company. Product catalog, categories, a how-we-work walkthrough, live event printing, and a clean path from browsing to cart.',
+    },
 ];
 
 const included = [
@@ -74,7 +84,7 @@ const itemListSchema = {
         '@type': 'ListItem',
         position: i + 1,
         name: `${p.name} website`,
-        url: p.url,
+        ...(p.url ? { url: p.url } : {}),
     })),
 };
 
@@ -136,17 +146,27 @@ export default function PortfolioPage() {
                                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                                 className="mb-10 md:mb-12 last:mb-0 rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card"
                             >
-                                <a href={p.url} target="_blank" rel="noopener noreferrer" className="block">
-                                    <Image
-                                        src={p.image}
-                                        alt={`${p.name} website built by Shop Titan`}
-                                        width={p.imageWidth}
-                                        height={p.imageHeight}
-                                        sizes="(max-width: 1152px) 100vw, 1152px"
-                                        quality={90}
-                                        className="w-full h-auto"
-                                    />
-                                </a>
+                                {(() => {
+                                    const img = (
+                                        <Image
+                                            src={p.image}
+                                            alt={`${p.name} website built by Shop Titan`}
+                                            width={p.imageWidth}
+                                            height={p.imageHeight}
+                                            sizes="(max-width: 1152px) 100vw, 1152px"
+                                            quality={90}
+                                            className={'crop' in p && p.crop ? 'w-full h-full object-cover object-top' : 'w-full h-auto'}
+                                        />
+                                    );
+                                    const frame = 'crop' in p && p.crop ? <div className="aspect-[1900/840] overflow-hidden">{img}</div> : img;
+                                    return p.url ? (
+                                        <a href={p.url} target="_blank" rel="noopener noreferrer" className="block">
+                                            {frame}
+                                        </a>
+                                    ) : (
+                                        frame
+                                    );
+                                })()}
                                 <div className="p-6 md:p-8">
                                     <h2 className="text-xl md:text-2xl font-bold text-charcoal dark:text-white tracking-tight mb-3">
                                         {p.name}
@@ -154,14 +174,16 @@ export default function PortfolioPage() {
                                     <p className="text-base text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl mb-6">
                                         {p.desc}
                                     </p>
-                                    <a
-                                        href={p.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-1 font-mono text-sm text-secondary-text hover:text-charcoal dark:text-gray-400 dark:hover:text-white transition-colors"
-                                    >
-                                        Live <span aria-hidden="true">&#8599;</span>
-                                    </a>
+                                    {p.url && (
+                                        <a
+                                            href={p.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-1 font-mono text-sm text-secondary-text hover:text-charcoal dark:text-gray-400 dark:hover:text-white transition-colors"
+                                        >
+                                            Live <span aria-hidden="true">&#8599;</span>
+                                        </a>
+                                    )}
                                 </div>
                             </motion.article>
                         ))}
