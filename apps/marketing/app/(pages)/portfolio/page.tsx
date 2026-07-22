@@ -153,7 +153,7 @@ export default function PortfolioPage() {
 
                 {/* ───── GALLERY (signature) ───── */}
                 <section className="bg-background-light dark:bg-background-dark py-12 md:py-16 border-t border-structural-border dark:border-gray-800">
-                    <div className="max-w-6xl mx-auto px-mobile">
+                    <div className="max-w-[1400px] mx-auto px-mobile">
                         {/* Live customer builds */}
                         <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
                             {liveProjects.map((p) => (
