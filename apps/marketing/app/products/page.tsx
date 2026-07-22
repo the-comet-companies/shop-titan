@@ -147,11 +147,6 @@ export default function ProductsPage() {
                                     />
                                 </div>
                                 <div className="p-6 md:p-8">
-                                    <div className="flex items-center gap-2 mb-3">
-                                        <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-secondary-text dark:text-gray-500">
-                                            Customer facing
-                                        </span>
-                                    </div>
                                     <h2 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white tracking-tight mb-3">
                                         Website Building
                                     </h2>
@@ -198,11 +193,6 @@ export default function ProductsPage() {
                                     />
                                 </div>
                                 <div className="p-6 md:p-8">
-                                    <div className="flex items-center gap-2 mb-3">
-                                        <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-secondary-text dark:text-gray-500">
-                                            Shop floor
-                                        </span>
-                                    </div>
                                     <h2 className="text-2xl md:text-3xl font-bold text-charcoal dark:text-white tracking-tight mb-3">
                                         FileMaker System
                                     </h2>

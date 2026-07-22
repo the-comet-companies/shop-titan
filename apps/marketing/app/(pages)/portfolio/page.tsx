@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -12,36 +13,46 @@ import {
 
 // ───── Content ─────
 
-// Live customer builds, shown as full-width cards.
+// Live customer builds, shown as two-column cards: header image, supporting
+// text, then a horizontally scrollable strip of page captures (3 per row).
 const liveProjects = [
     {
         key: 'dtla-print',
         name: 'DTLA Print',
         url: 'https://www.dtlaprint.com',
         image: '/website/dtla.png',
-        imageWidth: 1900,
-        imageHeight: 840,
         desc: 'Live website for DTLA Print, a Los Angeles shop offering eco-friendly screen printing, embroidery, and private label services. Custom tees, hoodies, hats, and totes with a quote-ready ordering flow.',
+        shots: [
+            '/gallery/dtla-print/homepage.webp',
+            '/gallery/dtla-print/custom-merch.webp',
+            '/gallery/dtla-print/best-sellers.webp',
+            '/gallery/dtla-print/t-shirts.webp',
+            '/gallery/dtla-print/hoodies.webp',
+            '/gallery/dtla-print/carhartt.webp',
+            '/gallery/dtla-print/categories.webp',
+            '/gallery/dtla-print/deals.webp',
+            '/gallery/dtla-print/rush-orders.webp',
+            '/gallery/dtla-print/cart.webp',
+            '/gallery/dtla-print/blog.webp',
+        ],
     },
     {
-        key: 'mika-jaymes',
-        name: 'Mika Jaymes',
-        url: 'https://mikajaymes.com',
-        image: '/website/mika-jaymes.png',
-        imageWidth: 1900,
-        imageHeight: 909,
-        desc: 'Live storefront for Mika Jaymes, a premium fashion brand with hand cut and sewn essentials crafted in Los Angeles. Minimal, modern design with a clean path from collection to checkout.',
-    },
-    {
-        key: 'kases',
-        name: 'KASES',
-        url: 'https://kases.com',
-        image: '/website/kases.png',
-        imageWidth: 1893,
-        imageHeight: 910,
-        desc: 'Live storefront for KASES, a premium Christian apparel brand. A clean, brand-first catalog of tees, hoodies, and tanks with a fast path from product page to checkout.',
+        key: 'fresh-merch',
+        name: 'Fresh Merch',
+        url: '',
+        image: '/gallery/fresh-merch/homepage.webp',
+        desc: 'Storefront build for Fresh Merch, a custom merch company. Product catalog, categories, a how-we-work walkthrough, live event printing, and a clean path from browsing to cart.',
+        shots: [
+            '/gallery/fresh-merch/products.webp',
+            '/gallery/fresh-merch/categories.webp',
+            '/gallery/fresh-merch/how-we-work.webp',
+            '/gallery/fresh-merch/live-events.webp',
+            '/gallery/fresh-merch/cart.webp',
+        ],
     },
 ];
+
+const shotLabel = (src: string) => (src.split('/').pop() || '').replace('.webp', '').replace(/-/g, ' ');
 
 const included = [
     { icon: 'storefront', title: 'A branded storefront', body: 'A custom site in your colors and voice, not a generic template every shop shares.' },
@@ -92,11 +103,42 @@ const itemListSchema = {
         '@type': 'ListItem',
         position: i + 1,
         name: `${p.name} website`,
-        url: p.url,
+        ...(p.url ? { url: p.url } : {}),
     })),
 };
 
+type Active = { project: number; shot: number } | null;
+
 export default function PortfolioPage() {
+    const [active, setActive] = useState<Active>(null);
+
+    const close = useCallback(() => setActive(null), []);
+    const step = useCallback((dir: 1 | -1) => {
+        setActive((a) => {
+            if (!a) return a;
+            const shots = liveProjects[a.project].shots;
+            return { ...a, shot: (a.shot + dir + shots.length) % shots.length };
+        });
+    }, []);
+
+    useEffect(() => {
+        if (!active) return;
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') close();
+            if (e.key === 'ArrowRight') step(1);
+            if (e.key === 'ArrowLeft') step(-1);
+        };
+        window.addEventListener('keydown', onKey);
+        document.body.style.overflow = 'hidden';
+        return () => {
+            window.removeEventListener('keydown', onKey);
+            document.body.style.overflow = '';
+        };
+    }, [active, close, step]);
+
+    const activeProject = active ? liveProjects[active.project] : null;
+    const activeShot = active && activeProject ? activeProject.shots[active.shot] : null;
+
     return (
         <>
             <main className="min-h-screen pt-20">
@@ -143,46 +185,82 @@ export default function PortfolioPage() {
 
                 {/* ───── GALLERY (signature) ───── */}
                 <section className="bg-background-light dark:bg-background-dark py-12 md:py-16 border-t border-structural-border dark:border-gray-800">
-                    <div className="max-w-6xl mx-auto px-mobile">
+                    <div className="max-w-[1400px] mx-auto px-mobile">
                         {/* Live customer builds */}
-                        {liveProjects.map((p) => (
-                            <motion.article
-                                key={p.key}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: '-60px' }}
-                                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                                className="mb-10 md:mb-12 last:mb-0 rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card"
-                            >
-                                <a href={p.url} target="_blank" rel="noopener noreferrer" className="block">
-                                    <Image
-                                        src={p.image}
-                                        alt={`${p.name} website built by Shop Titan`}
-                                        width={p.imageWidth}
-                                        height={p.imageHeight}
-                                        sizes="(max-width: 1152px) 100vw, 1152px"
-                                        quality={90}
-                                        className="w-full h-auto"
-                                    />
-                                </a>
-                                <div className="p-6 md:p-8">
-                                    <h2 className="text-xl md:text-2xl font-bold text-charcoal dark:text-white tracking-tight mb-3">
-                                        {p.name}
-                                    </h2>
-                                    <p className="text-base text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl mb-6">
-                                        {p.desc}
-                                    </p>
-                                    <a
-                                        href={p.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-1 font-mono text-sm text-secondary-text hover:text-charcoal dark:text-gray-400 dark:hover:text-white transition-colors"
-                                    >
-                                        Live <span aria-hidden="true">&#8599;</span>
-                                    </a>
-                                </div>
-                            </motion.article>
-                        ))}
+                        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
+                            {liveProjects.map((p, pi) => (
+                                <motion.article
+                                    key={p.key}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: '-60px' }}
+                                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                                    className="rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card"
+                                >
+                                    {(() => {
+                                        const frame = (
+                                            <div className="relative aspect-[1900/840] overflow-hidden">
+                                                <Image
+                                                    src={p.image}
+                                                    alt={`${p.name} website built by Shop Titan`}
+                                                    fill
+                                                    sizes="(max-width: 768px) 100vw, 560px"
+                                                    quality={90}
+                                                    className="object-cover object-top"
+                                                />
+                                            </div>
+                                        );
+                                        return p.url ? (
+                                            <a href={p.url} target="_blank" rel="noopener noreferrer" className="block">
+                                                {frame}
+                                            </a>
+                                        ) : (
+                                            frame
+                                        );
+                                    })()}
+                                    <div className="p-6 md:p-7">
+                                        <h2 className="text-xl md:text-2xl font-bold text-charcoal dark:text-white tracking-tight mb-3">
+                                            {p.name}
+                                        </h2>
+                                        <p className="text-base text-secondary-text dark:text-gray-400 leading-relaxed mb-4">
+                                            {p.desc}
+                                        </p>
+                                        {p.url && (
+                                            <a
+                                                href={p.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-1 font-mono text-sm text-secondary-text hover:text-charcoal dark:text-gray-400 dark:hover:text-white transition-colors"
+                                            >
+                                                Live <span aria-hidden="true">&#8599;</span>
+                                            </a>
+                                        )}
+                                        <div
+                                            className="mt-5 grid grid-cols-3 gap-3 max-h-[540px] overflow-y-auto pr-1"
+                                            aria-label={`${p.name} page captures`}
+                                        >
+                                            {p.shots.map((s, si) => (
+                                                <button
+                                                    key={s}
+                                                    type="button"
+                                                    onClick={() => setActive({ project: pi, shot: si })}
+                                                    aria-label={`View ${p.name} ${shotLabel(s)} page fullscreen`}
+                                                    className="relative aspect-[3/4] rounded-lg overflow-hidden border border-structural-border dark:border-gray-800 cursor-zoom-in"
+                                                >
+                                                    <Image
+                                                        src={s}
+                                                        alt={`${p.name} ${shotLabel(s)} page`}
+                                                        fill
+                                                        sizes="200px"
+                                                        className="object-cover object-top"
+                                                    />
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </motion.article>
+                            ))}
+                        </div>
                     </div>
                 </section>
 
@@ -269,6 +347,61 @@ export default function PortfolioPage() {
                 </section>
             </main>
             <Footer />
+
+            {/* ───── LIGHTBOX ───── */}
+            {activeShot && activeProject && (
+                <div
+                    className="fixed inset-0 z-[100] bg-black/95 flex flex-col"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={`${activeProject.name}: ${shotLabel(activeShot)}`}
+                    onClick={close}
+                >
+                    <div className="flex items-center justify-between px-5 py-4 text-white/90">
+                        <p className="font-mono text-sm truncate pr-4 capitalize">
+                            {activeProject.name} <span className="text-white/50">/</span> {shotLabel(activeShot)}
+                        </p>
+                        <button
+                            type="button"
+                            onClick={close}
+                            aria-label="Close fullscreen view"
+                            className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/10 transition-colors flex-shrink-0"
+                        >
+                            <span className="material-symbols-outlined">close</span>
+                        </button>
+                    </div>
+                    <div
+                        className="flex-1 overflow-y-auto overscroll-contain px-4 pb-6 md:px-16"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <Image
+                            src={activeShot}
+                            alt={`${activeProject.name} ${shotLabel(activeShot)} page`}
+                            width={1900}
+                            height={1200}
+                            sizes="100vw"
+                            quality={90}
+                            className="w-full h-auto max-w-5xl mx-auto rounded-lg"
+                        />
+                    </div>
+                    <button
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); step(-1); }}
+                        aria-label="Previous screenshot"
+                        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                    >
+                        <span className="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); step(1); }}
+                        aria-label="Next screenshot"
+                        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                    >
+                        <span className="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            )}
         </>
     );
 }
