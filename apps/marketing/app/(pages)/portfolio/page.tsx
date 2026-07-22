@@ -12,28 +12,46 @@ import {
 
 // ───── Content ─────
 
-// Live customer builds, shown as full-width cards.
+// Live customer builds, shown as two-column cards: header image, supporting
+// text, then a horizontally scrollable strip of page captures (3 per row).
 const liveProjects = [
     {
         key: 'dtla-print',
         name: 'DTLA Print',
         url: 'https://www.dtlaprint.com',
         image: '/website/dtla.png',
-        imageWidth: 1900,
-        imageHeight: 840,
         desc: 'Live website for DTLA Print, a Los Angeles shop offering eco-friendly screen printing, embroidery, and private label services. Custom tees, hoodies, hats, and totes with a quote-ready ordering flow.',
+        shots: [
+            '/gallery/dtla-print/homepage.webp',
+            '/gallery/dtla-print/custom-merch.webp',
+            '/gallery/dtla-print/best-sellers.webp',
+            '/gallery/dtla-print/t-shirts.webp',
+            '/gallery/dtla-print/hoodies.webp',
+            '/gallery/dtla-print/carhartt.webp',
+            '/gallery/dtla-print/categories.webp',
+            '/gallery/dtla-print/deals.webp',
+            '/gallery/dtla-print/rush-orders.webp',
+            '/gallery/dtla-print/cart.webp',
+            '/gallery/dtla-print/blog.webp',
+        ],
     },
     {
         key: 'fresh-merch',
         name: 'Fresh Merch',
         url: '',
         image: '/gallery/fresh-merch/homepage.webp',
-        imageWidth: 1908,
-        imageHeight: 2243,
-        crop: true,
         desc: 'Storefront build for Fresh Merch, a custom merch company. Product catalog, categories, a how-we-work walkthrough, live event printing, and a clean path from browsing to cart.',
+        shots: [
+            '/gallery/fresh-merch/products.webp',
+            '/gallery/fresh-merch/categories.webp',
+            '/gallery/fresh-merch/how-we-work.webp',
+            '/gallery/fresh-merch/live-events.webp',
+            '/gallery/fresh-merch/cart.webp',
+        ],
     },
 ];
+
+const shotLabel = (src: string) => (src.split('/').pop() || '').replace('.webp', '').replace(/-/g, ' ');
 
 const included = [
     { icon: 'storefront', title: 'A branded storefront', body: 'A custom site in your colors and voice, not a generic template every shop shares.' },
@@ -137,56 +155,78 @@ export default function PortfolioPage() {
                 <section className="bg-background-light dark:bg-background-dark py-12 md:py-16 border-t border-structural-border dark:border-gray-800">
                     <div className="max-w-6xl mx-auto px-mobile">
                         {/* Live customer builds */}
-                        {liveProjects.map((p) => (
-                            <motion.article
-                                key={p.key}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: '-60px' }}
-                                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                                className="mb-10 md:mb-12 last:mb-0 rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card"
-                            >
-                                {(() => {
-                                    const img = (
-                                        <Image
-                                            src={p.image}
-                                            alt={`${p.name} website built by Shop Titan`}
-                                            width={p.imageWidth}
-                                            height={p.imageHeight}
-                                            sizes="(max-width: 1152px) 100vw, 1152px"
-                                            quality={90}
-                                            className={'crop' in p && p.crop ? 'w-full h-full object-cover object-top' : 'w-full h-auto'}
-                                        />
-                                    );
-                                    const frame = 'crop' in p && p.crop ? <div className="aspect-[1900/840] overflow-hidden">{img}</div> : img;
-                                    return p.url ? (
-                                        <a href={p.url} target="_blank" rel="noopener noreferrer" className="block">
-                                            {frame}
-                                        </a>
-                                    ) : (
-                                        frame
-                                    );
-                                })()}
-                                <div className="p-6 md:p-8">
-                                    <h2 className="text-xl md:text-2xl font-bold text-charcoal dark:text-white tracking-tight mb-3">
-                                        {p.name}
-                                    </h2>
-                                    <p className="text-base text-secondary-text dark:text-gray-400 leading-relaxed max-w-3xl mb-6">
-                                        {p.desc}
-                                    </p>
-                                    {p.url && (
-                                        <a
-                                            href={p.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-1 font-mono text-sm text-secondary-text hover:text-charcoal dark:text-gray-400 dark:hover:text-white transition-colors"
+                        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
+                            {liveProjects.map((p) => (
+                                <motion.article
+                                    key={p.key}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: '-60px' }}
+                                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                                    className="rounded-2xl overflow-hidden border border-structural-border dark:border-gray-800 bg-white dark:bg-gray-900 shadow-card"
+                                >
+                                    {(() => {
+                                        const frame = (
+                                            <div className="relative aspect-[1900/840] overflow-hidden">
+                                                <Image
+                                                    src={p.image}
+                                                    alt={`${p.name} website built by Shop Titan`}
+                                                    fill
+                                                    sizes="(max-width: 768px) 100vw, 560px"
+                                                    quality={90}
+                                                    className="object-cover object-top"
+                                                />
+                                            </div>
+                                        );
+                                        return p.url ? (
+                                            <a href={p.url} target="_blank" rel="noopener noreferrer" className="block">
+                                                {frame}
+                                            </a>
+                                        ) : (
+                                            frame
+                                        );
+                                    })()}
+                                    <div className="p-6 md:p-7">
+                                        <h2 className="text-xl md:text-2xl font-bold text-charcoal dark:text-white tracking-tight mb-3">
+                                            {p.name}
+                                        </h2>
+                                        <p className="text-base text-secondary-text dark:text-gray-400 leading-relaxed mb-4">
+                                            {p.desc}
+                                        </p>
+                                        {p.url && (
+                                            <a
+                                                href={p.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-1 font-mono text-sm text-secondary-text hover:text-charcoal dark:text-gray-400 dark:hover:text-white transition-colors"
+                                            >
+                                                Live <span aria-hidden="true">&#8599;</span>
+                                            </a>
+                                        )}
+                                        <div
+                                            className="mt-5 flex gap-3 overflow-x-auto scrollbar-none snap-x pb-1"
+                                            style={{ scrollbarWidth: 'none' }}
+                                            aria-label={`${p.name} page captures`}
                                         >
-                                            Live <span aria-hidden="true">&#8599;</span>
-                                        </a>
-                                    )}
-                                </div>
-                            </motion.article>
-                        ))}
+                                            {p.shots.map((s) => (
+                                                <div
+                                                    key={s}
+                                                    className="relative w-[calc((100%-1.5rem)/3)] shrink-0 aspect-[3/4] rounded-lg overflow-hidden border border-structural-border dark:border-gray-800 snap-start"
+                                                >
+                                                    <Image
+                                                        src={s}
+                                                        alt={`${p.name} ${shotLabel(s)} page`}
+                                                        fill
+                                                        sizes="180px"
+                                                        className="object-cover object-top"
+                                                    />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </motion.article>
+                            ))}
+                        </div>
                     </div>
                 </section>
 
