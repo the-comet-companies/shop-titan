@@ -20,7 +20,15 @@ const source = fs.readFileSync(
 );
 
 const styleRaw = source.match(/<style>([\s\S]*?)<\/style>/)![1];
-const bodyRaw = source.match(/<body>([\s\S]*?)<script>/)![1];
+
+// The site navbar shows "· Icon Library" beside the logo on this route, so the
+// library's own <header> (with its duplicate h1) becomes a plain in-body tools
+// block: search bar, dark-preview toggle, and the how-to hint paragraph.
+const bodyRaw = source
+    .match(/<body>([\s\S]*?)<script>/)![1]
+    .replace(/<h1>[\s\S]*?<\/h1>\s*/, "")
+    .replace("<header>", '<div class="lib-tools">')
+    .replace("</header>", "</div>");
 
 // Scope the gallery-chrome rules under .iconlib so element selectors (body,
 // header, h1) and generic class names (.grid, .card) can't restyle the site
@@ -46,8 +54,8 @@ function scopeChromeCss(css: string): string {
                 .join(",");
             return brace + "\n" + scoped + "{";
         });
-    // Keep the library's sticky search bar below the fixed site navbar.
-    return icons + chrome + "\n.iconlib header{top:5rem}";
+    // The former sticky header now flows in the body, aligned with the grid.
+    return icons + chrome + "\n.iconlib .lib-tools{max-width:1200px;margin:0 auto;padding:28px 24px 0}";
 }
 
 const scopedStyle = scopeChromeCss(styleRaw);

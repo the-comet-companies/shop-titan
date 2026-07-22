@@ -94,7 +94,7 @@ export default function Header() {
                             : "bg-transparent border-b border-transparent h-20"
                     )}
                 >
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 flex items-center gap-2">
                         <motion.a
                             href="/"
                             aria-label="Shop Titan home"
@@ -126,6 +126,11 @@ export default function Header() {
                                 Shop <span className="text-primary">Titan</span>
                             </span>
                         </motion.a>
+                        {pathname === '/icon-library' && (
+                            <span className="hidden sm:inline text-lg md:text-xl font-bold tracking-tight text-charcoal dark:text-white whitespace-nowrap">
+                                · Icon Library
+                            </span>
+                        )}
                     </div>
 
                     {/* Desktop Navigation */}
