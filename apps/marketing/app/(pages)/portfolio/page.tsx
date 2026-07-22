@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -106,7 +107,38 @@ const itemListSchema = {
     })),
 };
 
+type Active = { project: number; shot: number } | null;
+
 export default function PortfolioPage() {
+    const [active, setActive] = useState<Active>(null);
+
+    const close = useCallback(() => setActive(null), []);
+    const step = useCallback((dir: 1 | -1) => {
+        setActive((a) => {
+            if (!a) return a;
+            const shots = liveProjects[a.project].shots;
+            return { ...a, shot: (a.shot + dir + shots.length) % shots.length };
+        });
+    }, []);
+
+    useEffect(() => {
+        if (!active) return;
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') close();
+            if (e.key === 'ArrowRight') step(1);
+            if (e.key === 'ArrowLeft') step(-1);
+        };
+        window.addEventListener('keydown', onKey);
+        document.body.style.overflow = 'hidden';
+        return () => {
+            window.removeEventListener('keydown', onKey);
+            document.body.style.overflow = '';
+        };
+    }, [active, close, step]);
+
+    const activeProject = active ? liveProjects[active.project] : null;
+    const activeShot = active && activeProject ? activeProject.shots[active.shot] : null;
+
     return (
         <>
             <main className="min-h-screen pt-20">
@@ -156,7 +188,7 @@ export default function PortfolioPage() {
                     <div className="max-w-[1400px] mx-auto px-mobile">
                         {/* Live customer builds */}
                         <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
-                            {liveProjects.map((p) => (
+                            {liveProjects.map((p, pi) => (
                                 <motion.article
                                     key={p.key}
                                     initial={{ opacity: 0, y: 20 }}
@@ -207,10 +239,13 @@ export default function PortfolioPage() {
                                             className="mt-5 grid grid-cols-3 gap-3 max-h-[540px] overflow-y-auto pr-1"
                                             aria-label={`${p.name} page captures`}
                                         >
-                                            {p.shots.map((s) => (
-                                                <div
+                                            {p.shots.map((s, si) => (
+                                                <button
                                                     key={s}
-                                                    className="relative aspect-[3/4] rounded-lg overflow-hidden border border-structural-border dark:border-gray-800"
+                                                    type="button"
+                                                    onClick={() => setActive({ project: pi, shot: si })}
+                                                    aria-label={`View ${p.name} ${shotLabel(s)} page fullscreen`}
+                                                    className="relative aspect-[3/4] rounded-lg overflow-hidden border border-structural-border dark:border-gray-800 cursor-zoom-in"
                                                 >
                                                     <Image
                                                         src={s}
@@ -219,7 +254,7 @@ export default function PortfolioPage() {
                                                         sizes="200px"
                                                         className="object-cover object-top"
                                                     />
-                                                </div>
+                                                </button>
                                             ))}
                                         </div>
                                     </div>
@@ -312,6 +347,61 @@ export default function PortfolioPage() {
                 </section>
             </main>
             <Footer />
+
+            {/* ───── LIGHTBOX ───── */}
+            {activeShot && activeProject && (
+                <div
+                    className="fixed inset-0 z-[100] bg-black/95 flex flex-col"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={`${activeProject.name}: ${shotLabel(activeShot)}`}
+                    onClick={close}
+                >
+                    <div className="flex items-center justify-between px-5 py-4 text-white/90">
+                        <p className="font-mono text-sm truncate pr-4 capitalize">
+                            {activeProject.name} <span className="text-white/50">/</span> {shotLabel(activeShot)}
+                        </p>
+                        <button
+                            type="button"
+                            onClick={close}
+                            aria-label="Close fullscreen view"
+                            className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/10 transition-colors flex-shrink-0"
+                        >
+                            <span className="material-symbols-outlined">close</span>
+                        </button>
+                    </div>
+                    <div
+                        className="flex-1 overflow-y-auto overscroll-contain px-4 pb-6 md:px-16"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <Image
+                            src={activeShot}
+                            alt={`${activeProject.name} ${shotLabel(activeShot)} page`}
+                            width={1900}
+                            height={1200}
+                            sizes="100vw"
+                            quality={90}
+                            className="w-full h-auto max-w-5xl mx-auto rounded-lg"
+                        />
+                    </div>
+                    <button
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); step(-1); }}
+                        aria-label="Previous screenshot"
+                        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                    >
+                        <span className="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); step(1); }}
+                        aria-label="Next screenshot"
+                        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                    >
+                        <span className="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            )}
         </>
     );
 }
