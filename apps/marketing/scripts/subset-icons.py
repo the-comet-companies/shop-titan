@@ -113,6 +113,23 @@ def main():
     sub = TTFont(io.BytesIO(raw))
     sub.flavor = "woff2"
     sub.save(OUT)
+
+    # cache-bust: stamp the font's content hash into the @font-face url so
+    # browsers refetch after every regeneration instead of serving a stale copy
+    import hashlib
+
+    digest = hashlib.md5(open(OUT, "rb").read()).hexdigest()[:8]
+    css_path = os.path.join(MARKETING, "app", "globals.css")
+    css = open(css_path, encoding="utf-8").read()
+    css_new = re.sub(
+        r"url\('/fonts/material-symbols-outlined-subset\.woff2(?:\?v=[0-9a-f]+)?'\)",
+        f"url('/fonts/material-symbols-outlined-subset.woff2?v={digest}')",
+        css,
+    )
+    if css_new != css:
+        open(css_path, "w", encoding="utf-8", newline="\n").write(css_new)
+        print(f"globals.css @font-face stamped ?v={digest}")
+
     print(f"OK: {OUT} ({os.path.getsize(OUT) // 1024}KB, {len(targets)} icon glyphs)")
 
 
