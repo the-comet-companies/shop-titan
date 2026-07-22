@@ -67,6 +67,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8,
         },
         {
+            url: `${BASE_URL}/printing-companies`,
+            lastModified: new Date('2026-07-21'),
+            changeFrequency: 'monthly',
+            priority: 0.9,
+        },
+        {
             url: `${BASE_URL}/shopify-for-print-shops`,
             lastModified: CONTENT_UPDATED,
             changeFrequency: 'monthly',
