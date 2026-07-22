@@ -38,6 +38,13 @@ const nextConfig: NextConfig = {
                 destination: '/scheduling',
                 permanent: true,
             },
+            // Icon library moved from a static public/ file to a routed page
+            // with the site navbar + footer (RN, 2026-07-21).
+            {
+                source: '/icon-library.html',
+                destination: '/icon-library',
+                permanent: true,
+            },
         ];
     },
 };
