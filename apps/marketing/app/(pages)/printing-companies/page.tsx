@@ -31,8 +31,8 @@ const painSolutions = [
         pain: 'Mockups, approvals, revised files, logo versions, print placements, and color notes get buried in email threads, folders, and downloads.',
         service: 'Artwork and Approval Tracking',
         fix: 'Mockups, revised artwork, approval history, logo files, print placement notes, and customer sign-off attach directly to the order.',
-        img: '/gallery/dtla-print/custom-merch.webp',
-        alt: 'DTLA Print custom merch page with artwork options',
+        img: '/filemaker/transfer&firm.gif',
+        alt: 'Transfers and trim tracking screen with artwork files per job',
     },
     {
         icon: 'edit_calendar',
