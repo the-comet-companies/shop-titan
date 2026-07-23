@@ -394,18 +394,25 @@ export default function PrintingCompaniesPage() {
                     </div>
                 </section>
 
-                {/* ───── PAIN → SERVICE · horizontal scroll-driven cards ───── */}
+                {/* ───── PAIN · heading + supporting text ───── */}
+                <section className="border-t border-[#161C27] pt-16 md:pt-24">
+                    <div className="max-w-7xl mx-auto px-mobile">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight mb-5 max-w-4xl">
+                            Print Shops Do Not Break Because They Cannot Print. They Break Because the Work Is Hard to Manage.
+                        </h2>
+                        <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-3xl mb-4">
+                            Most print shops have the skill, the equipment, and the team to produce great work. The real problem is everything around the job: quotes, art files, approvals, blanks, schedules, production notes, status updates, and last-minute changes. When those details live in different places, every job becomes harder than it should be.
+                        </p>
+                        <p className="text-base md:text-lg text-gray-300 font-medium leading-relaxed">
+                            Sound familiar? Every one of these problems maps to a service we deliver.
+                        </p>
+                    </div>
+                </section>
+
+                {/* ───── PAIN → SERVICE · horizontal scroll-driven cards (visually part of the section above: same bg, no rule) ───── */}
                 <style dangerouslySetInnerHTML={{ __html: painCss }} />
-                <section className="pain-section border-t border-[#161C27]">
+                <section className="pain-section">
                     <div className="pain-viewport">
-                        <div className="max-w-7xl mx-auto px-mobile w-full pt-16 md:pt-0 mb-8 md:mb-10">
-                            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight mb-4 max-w-4xl">
-                                Print Shops Do Not Break Because They Cannot Print. They Break Because the Work Is Hard to Manage.
-                            </h2>
-                            <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-3xl">
-                                Sound familiar? Every one of these problems maps to a service we deliver.
-                            </p>
-                        </div>
                         <div className="pain-track">
                             {painSolutions.map((p) => (
                                 <div
