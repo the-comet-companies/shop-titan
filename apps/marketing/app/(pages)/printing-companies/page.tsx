@@ -67,8 +67,8 @@ const painSolutions = [
         pain: 'Blanks, transfers, screens, specialty inks, labels, and packaging are not always connected to the job before production begins.',
         service: 'Inventory Awareness',
         fix: 'Jobs connect to blanks, transfers, specialty inks, labels, packaging, and vendor needs before production gets delayed.',
-        img: '/gallery/dtla-print/best-sellers.webp',
-        alt: 'DTLA Print best sellers with live product availability',
+        img: '/filemaker/InventoryReport.png',
+        alt: 'Inventory ordering report by product SKU',
     },
     {
         icon: 'replay',
