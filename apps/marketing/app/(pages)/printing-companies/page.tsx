@@ -92,7 +92,7 @@ const painSolutions = [
 
 const painCss = `
 .pain-track {
-    --card-w: min(1150px, calc(100vw - 4rem));
+    --card-w: min(1400px, calc(100vw - 4rem));
     display: flex;
     gap: 1.5rem;
     /* center the first card at rest and the last card at the end */
@@ -417,7 +417,8 @@ export default function PrintingCompaniesPage() {
                             {painSolutions.map((p) => (
                                 <div
                                     key={p.q}
-                                    className="w-[min(1150px,calc(100vw-4rem))] shrink-0 rounded-xl border border-[#232C3B] bg-[#10151D] overflow-hidden grid md:grid-cols-2"
+                                    style={{ width: 'var(--card-w)' }}
+                                    className="shrink-0 rounded-xl border border-[#232C3B] bg-[#10151D] overflow-hidden grid md:grid-cols-2"
                                 >
                                     <div className="p-7 md:p-10 flex flex-col justify-center">
                                         <div className="flex items-center gap-3 mb-4">
@@ -435,13 +436,13 @@ export default function PrintingCompaniesPage() {
                                             <p className="text-sm md:text-base text-gray-300 leading-relaxed">{p.fix}</p>
                                         </div>
                                     </div>
-                                    <div className="relative min-h-[260px] md:min-h-[420px] border-t md:border-t-0 md:border-l border-[#202836] bg-[#0B0F16]">
+                                    <div className="relative min-h-[300px] md:min-h-[620px] border-t md:border-t-0 md:border-l border-[#202836] bg-[#0B0F16]">
                                         <Image
                                             src={p.img}
                                             alt={p.alt}
                                             fill
-                                            sizes="(max-width: 768px) 90vw, 575px"
-                                            className="object-cover object-left-top"
+                                            sizes="(max-width: 768px) 90vw, 700px"
+                                            className="object-cover object-top"
                                         />
                                     </div>
                                 </div>
