@@ -430,7 +430,7 @@ export default function PrintingCompaniesPage() {
                                         <p className="text-sm md:text-base text-gray-400 leading-relaxed mb-6">{p.pain}</p>
                                         <div className="border-t border-[#202836] pt-5">
                                             <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#4D9FFF] mb-2">
-                                                The service we offer
+                                                Our Solution
                                             </div>
                                             <div className="text-lg font-bold text-white tracking-tight mb-2">{p.service}</div>
                                             <p className="text-sm md:text-base text-gray-300 leading-relaxed">{p.fix}</p>
