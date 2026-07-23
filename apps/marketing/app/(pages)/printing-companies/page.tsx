@@ -49,8 +49,8 @@ const painSolutions = [
         pain: 'The team keeps asking, "Where is this order?" or "Is this approved?" because the system does not give everyone a clear answer.',
         service: 'Job Status Tracking',
         fix: 'See where each order stands without walking the floor, interrupting production, or asking three different people.',
-        img: '/gallery/dtla-print/homepage.webp',
-        alt: 'DTLA Print homepage where customers order without calling',
+        img: '/filemaker/TaskTypes.png',
+        alt: 'Task types setup with per-department production tasks',
     },
     {
         icon: 'calculate',
