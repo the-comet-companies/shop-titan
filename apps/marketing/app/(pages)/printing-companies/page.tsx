@@ -58,8 +58,8 @@ const painSolutions = [
         pain: 'Print pricing changes based on setup, color count, locations, quantity breaks, garment type, rush needs, and finishing requirements.',
         service: 'Structured Pricing Support',
         fix: 'Pricing logic, quantity breaks, color counts, locations, rush fees, discounts, and special requirements stay consistent on every quote.',
-        img: '/gallery/dtla-print/deals.webp',
-        alt: 'DTLA Print deals page with structured pricing offers',
+        img: '/filemaker/ServicePricingGrid-cropped.png',
+        alt: 'Services pricing grid with quantity break pricing per service',
     },
     {
         icon: 'inventory_2',
