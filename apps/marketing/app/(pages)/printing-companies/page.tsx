@@ -22,8 +22,8 @@ const painSolutions = [
         pain: 'Customer details, quantities, sizes, due dates, print locations, garment styles, and production notes are split across emails, spreadsheets, invoices, and job sheets.',
         service: 'Centralized Job Records',
         fix: 'Every order becomes one connected job record: customer details, quantities, garment styles, due dates, print locations, and production requirements in the same place.',
-        img: '/gallery/dtla-print/cart.webp',
-        alt: 'DTLA Print cart with complete order details',
+        img: '/filemaker/PurchaseOrders.png',
+        alt: 'Purchase orders screen with complete order details',
     },
     {
         icon: 'palette',
