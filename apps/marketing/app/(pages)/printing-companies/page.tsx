@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Footer from '@/components/Footer';
 import { generateServiceSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
@@ -11,16 +12,119 @@ import { generateServiceSchema, generateBreadcrumbSchema } from '@/lib/schema';
 // #10151D/#151B25, borders #202836, accent = brand blue on dark.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const pains = [
-    { icon: 'inbox', title: 'Orders Live Everywhere', desc: 'Customer details, quantities, sizes, due dates, print locations, garment styles, and production notes are split across emails, spreadsheets, invoices, and job sheets.' },
-    { icon: 'palette', title: 'Artwork Gets Messy Fast', desc: 'Mockups, approvals, revised files, logo versions, print placements, and color notes get buried in email threads, folders, and downloads.' },
-    { icon: 'edit_calendar', title: 'Scheduling Is Still Too Manual', desc: 'Whiteboards, spreadsheets, magnets, and verbal updates do not show real press capacity, department workload, rush impact, or bottlenecks.' },
-    { icon: 'notifications_active', title: 'Production Keeps Getting Interrupted', desc: 'The team keeps asking, "Where is this order?" or "Is this approved?" because the system does not give everyone a clear answer.' },
-    { icon: 'calculate', title: 'Pricing Is Easy to Get Wrong', desc: 'Print pricing changes based on setup, color count, locations, quantity breaks, garment type, rush needs, and finishing requirements.' },
-    { icon: 'inventory_2', title: 'Inventory Issues Show Up Too Late', desc: 'Blanks, transfers, screens, specialty inks, labels, and packaging are not always connected to the job before production begins.' },
-    { icon: 'replay', title: 'Reprints Eat Profit', desc: 'Wrong artwork, missing approvals, unclear notes, incorrect garments, or rushed handoffs can turn a profitable job into a loss.' },
-    { icon: 'manage_accounts', title: 'The Owner Becomes the System', desc: 'The owner or production manager becomes the person everyone depends on for answers, approvals, pricing, scheduling, and problem solving.' },
+// Pain-to-service cards: one big card per scroll step in a horizontal
+// scroll-driven strip (CSS view-timeline, per scroll-driven-animations.style).
+// Content left, product screenshot right.
+const painSolutions = [
+    {
+        icon: 'inbox',
+        q: 'Orders Live Everywhere?',
+        pain: 'Customer details, quantities, sizes, due dates, print locations, garment styles, and production notes are split across emails, spreadsheets, invoices, and job sheets.',
+        service: 'Centralized Job Records',
+        fix: 'Every order becomes one connected job record: customer details, quantities, garment styles, due dates, print locations, and production requirements in the same place.',
+        img: '/filemaker/Orders.png',
+        alt: 'Order management screen with connected job records',
+    },
+    {
+        icon: 'palette',
+        q: 'Artwork Gets Messy Fast?',
+        pain: 'Mockups, approvals, revised files, logo versions, print placements, and color notes get buried in email threads, folders, and downloads.',
+        service: 'Artwork and Approval Tracking',
+        fix: 'Mockups, revised artwork, approval history, logo files, print placement notes, and customer sign-off attach directly to the order.',
+        img: '/website/art-work-upload.png',
+        alt: 'Artwork upload and approval tracking screen',
+    },
+    {
+        icon: 'edit_calendar',
+        q: 'Scheduling Is Still Too Manual?',
+        pain: 'Whiteboards, spreadsheets, magnets, and verbal updates do not show real press capacity, department workload, rush impact, or bottlenecks.',
+        service: 'Production Scheduling',
+        fix: 'See what is in queue, what is ready, what is blocked, and how rush jobs affect capacity across departments.',
+        img: '/filemaker/machine-scheduler.png',
+        alt: 'Machine and press scheduling screen',
+    },
+    {
+        icon: 'notifications_active',
+        q: 'Production Keeps Getting Interrupted?',
+        pain: 'The team keeps asking, "Where is this order?" or "Is this approved?" because the system does not give everyone a clear answer.',
+        service: 'Job Status Tracking',
+        fix: 'See where each order stands without walking the floor, interrupting production, or asking three different people.',
+        img: '/website/backend-dashboard.png',
+        alt: 'Backend dashboard with live job status',
+    },
+    {
+        icon: 'calculate',
+        q: 'Pricing Is Easy to Get Wrong?',
+        pain: 'Print pricing changes based on setup, color count, locations, quantity breaks, garment type, rush needs, and finishing requirements.',
+        service: 'Structured Pricing Support',
+        fix: 'Pricing logic, quantity breaks, color counts, locations, rush fees, discounts, and special requirements stay consistent on every quote.',
+        img: '/filemaker/Quotes.png',
+        alt: 'Structured quoting and pricing screen',
+    },
+    {
+        icon: 'inventory_2',
+        q: 'Inventory Issues Show Up Too Late?',
+        pain: 'Blanks, transfers, screens, specialty inks, labels, and packaging are not always connected to the job before production begins.',
+        service: 'Inventory Awareness',
+        fix: 'Jobs connect to blanks, transfers, specialty inks, labels, packaging, and vendor needs before production gets delayed.',
+        img: '/filemaker/PurchaseOrders.png',
+        alt: 'Purchase orders and vendor needs screen',
+    },
+    {
+        icon: 'replay',
+        q: 'Reprints Eat Profit?',
+        pain: 'Wrong artwork, missing approvals, unclear notes, incorrect garments, or rushed handoffs can turn a profitable job into a loss.',
+        service: 'Margin and Reprint Visibility',
+        fix: 'Track the details that affect profit, including labor, rush changes, errors, reprints, discounts, and production exceptions.',
+        img: '/filemaker/Reporting.png',
+        alt: 'Reporting screen with margin and exception tracking',
+    },
+    {
+        icon: 'manage_accounts',
+        q: 'The Owner Becomes the System?',
+        pain: 'The owner or production manager becomes the person everyone depends on for answers, approvals, pricing, scheduling, and problem solving.',
+        service: 'Department Visibility',
+        fix: 'Screen printing, DTG, DTF, finishing, fulfillment, and shipping teams get the exact information they need to move work forward without waiting on you.',
+        img: '/filemaker/TaskTypes.png',
+        alt: 'Task and workflow structure screen',
+    },
 ];
+
+const painCss = `
+.pain-track { display: flex; gap: 1.5rem; padding: 0 2rem; }
+.pain-viewport { overflow-x: auto; padding-bottom: 1rem; }
+@supports (animation-timeline: view()) {
+    .pain-section {
+        height: 500vh;
+        overflow: visible; /* required for position: sticky inside */
+        view-timeline-name: --pain-tl;
+        view-timeline-axis: block;
+    }
+    .pain-viewport {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 0;
+    }
+    .pain-track {
+        width: max-content;
+        will-change: transform;
+        animation: pain-move linear forwards;
+        animation-timeline: --pain-tl;
+        animation-range: contain 0% contain 100%;
+    }
+    @keyframes pain-move {
+        to {
+            /* Move horizontally so the right edge aligns with the viewport */
+            transform: translateX(calc(-100% + 100vw));
+        }
+    }
+}
+`;
 
 const movingParts = [
     'Quote', 'Customer notes', 'Garment style', 'Size breakdown', 'Print method', 'Artwork file',
@@ -280,20 +384,49 @@ export default function PrintingCompaniesPage() {
                     </div>
                 </section>
 
-                {/* ───── PAIN ───── */}
-                <section className="border-t border-[#161C27] py-16 md:py-24">
-                    <div className="max-w-7xl mx-auto px-mobile">
-                        <SectionHead
-                            wide
-                            title="Print Shops Do Not Break Because They Cannot Print. They Break Because the Work Is Hard to Manage."
-                            body="Most print shops have the skill, the equipment, and the team to produce great work. The real problem is everything around the job: quotes, art files, approvals, blanks, schedules, production notes, status updates, and last-minute changes. When those details live in different places, every job becomes harder than it should be."
-                        />
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                            {pains.map((p) => (
-                                <div key={p.title} className={`${panel} rounded-xl p-6`}>
-                                    <span className={`material-symbols-outlined ${accent} text-2xl`}>{p.icon}</span>
-                                    <h3 className="text-base font-semibold text-white tracking-tight mt-3 mb-2">{p.title}</h3>
-                                    <p className="text-sm text-gray-400 leading-relaxed">{p.desc}</p>
+                {/* ───── PAIN → SERVICE · horizontal scroll-driven cards ───── */}
+                <style dangerouslySetInnerHTML={{ __html: painCss }} />
+                <section className="pain-section border-t border-[#161C27]">
+                    <div className="pain-viewport">
+                        <div className="max-w-7xl mx-auto px-mobile w-full pt-16 md:pt-0 mb-8 md:mb-10">
+                            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight mb-4 max-w-4xl">
+                                Print Shops Do Not Break Because They Cannot Print. They Break Because the Work Is Hard to Manage.
+                            </h2>
+                            <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-3xl">
+                                Sound familiar? Keep scrolling: every one of these problems maps to a service we deliver.
+                            </p>
+                        </div>
+                        <div className="pain-track">
+                            {painSolutions.map((p) => (
+                                <div
+                                    key={p.q}
+                                    className="w-[min(1150px,calc(100vw-4rem))] shrink-0 rounded-xl border border-[#232C3B] bg-[#10151D] overflow-hidden grid md:grid-cols-2"
+                                >
+                                    <div className="p-7 md:p-10 flex flex-col justify-center">
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#2A5A9E]/50 bg-[#0E1725] shrink-0">
+                                                <span className="material-symbols-outlined text-[#4D9FFF] text-xl">{p.icon}</span>
+                                            </span>
+                                            <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">{p.q}</h3>
+                                        </div>
+                                        <p className="text-sm md:text-base text-gray-400 leading-relaxed mb-6">{p.pain}</p>
+                                        <div className="border-t border-[#202836] pt-5">
+                                            <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#4D9FFF] mb-2">
+                                                The service we offer
+                                            </div>
+                                            <div className="text-lg font-bold text-white tracking-tight mb-2">{p.service}</div>
+                                            <p className="text-sm md:text-base text-gray-300 leading-relaxed">{p.fix}</p>
+                                        </div>
+                                    </div>
+                                    <div className="relative min-h-[260px] md:min-h-[420px] border-t md:border-t-0 md:border-l border-[#202836] bg-[#0B0F16]">
+                                        <Image
+                                            src={p.img}
+                                            alt={p.alt}
+                                            fill
+                                            sizes="(max-width: 768px) 90vw, 575px"
+                                            className="object-cover object-left-top"
+                                        />
+                                    </div>
                                 </div>
                             ))}
                         </div>
