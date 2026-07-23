@@ -99,8 +99,8 @@ const siteSolutions = [
         pain: 'Every order that starts with a call or an email thread needs someone to type it up, chase the details, and confirm the price before work can begin.',
         service: 'Online Storefront',
         fix: 'Customers browse products, pick garments, and place orders on your website any time, and each order arrives complete instead of scattered across messages.',
-        img: '/gallery/dtla-print/homepage.webp',
-        alt: 'DTLA Print homepage storefront built on Shop Titan',
+        img: '/website/ProductCatalog.png',
+        alt: 'Product page with color, size, and quantity ordering flow',
     },
     {
         icon: 'grid_view',
