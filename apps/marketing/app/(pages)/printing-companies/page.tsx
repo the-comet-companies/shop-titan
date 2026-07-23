@@ -22,8 +22,8 @@ const painSolutions = [
         pain: 'Customer details, quantities, sizes, due dates, print locations, garment styles, and production notes are split across emails, spreadsheets, invoices, and job sheets.',
         service: 'Centralized Job Records',
         fix: 'Every order becomes one connected job record: customer details, quantities, garment styles, due dates, print locations, and production requirements in the same place.',
-        img: '/filemaker/Orders.png',
-        alt: 'Order management screen with connected job records',
+        img: '/gallery/dtla-print/cart.webp',
+        alt: 'DTLA Print cart with complete order details',
     },
     {
         icon: 'palette',
@@ -31,8 +31,8 @@ const painSolutions = [
         pain: 'Mockups, approvals, revised files, logo versions, print placements, and color notes get buried in email threads, folders, and downloads.',
         service: 'Artwork and Approval Tracking',
         fix: 'Mockups, revised artwork, approval history, logo files, print placement notes, and customer sign-off attach directly to the order.',
-        img: '/website/art-work-upload.png',
-        alt: 'Artwork upload and approval tracking screen',
+        img: '/gallery/dtla-print/custom-merch.webp',
+        alt: 'DTLA Print custom merch page with artwork options',
     },
     {
         icon: 'edit_calendar',
@@ -40,8 +40,8 @@ const painSolutions = [
         pain: 'Whiteboards, spreadsheets, magnets, and verbal updates do not show real press capacity, department workload, rush impact, or bottlenecks.',
         service: 'Production Scheduling',
         fix: 'See what is in queue, what is ready, what is blocked, and how rush jobs affect capacity across departments.',
-        img: '/filemaker/machine-scheduler.png',
-        alt: 'Machine and press scheduling screen',
+        img: '/gallery/dtla-print/rush-orders.webp',
+        alt: 'DTLA Print rush orders page with clear turnaround expectations',
     },
     {
         icon: 'notifications_active',
@@ -49,8 +49,8 @@ const painSolutions = [
         pain: 'The team keeps asking, "Where is this order?" or "Is this approved?" because the system does not give everyone a clear answer.',
         service: 'Job Status Tracking',
         fix: 'See where each order stands without walking the floor, interrupting production, or asking three different people.',
-        img: '/website/backend-dashboard.png',
-        alt: 'Backend dashboard with live job status',
+        img: '/gallery/dtla-print/homepage.webp',
+        alt: 'DTLA Print homepage where customers order without calling',
     },
     {
         icon: 'calculate',
@@ -58,8 +58,8 @@ const painSolutions = [
         pain: 'Print pricing changes based on setup, color count, locations, quantity breaks, garment type, rush needs, and finishing requirements.',
         service: 'Structured Pricing Support',
         fix: 'Pricing logic, quantity breaks, color counts, locations, rush fees, discounts, and special requirements stay consistent on every quote.',
-        img: '/filemaker/Quotes.png',
-        alt: 'Structured quoting and pricing screen',
+        img: '/gallery/dtla-print/deals.webp',
+        alt: 'DTLA Print deals page with structured pricing offers',
     },
     {
         icon: 'inventory_2',
@@ -67,8 +67,8 @@ const painSolutions = [
         pain: 'Blanks, transfers, screens, specialty inks, labels, and packaging are not always connected to the job before production begins.',
         service: 'Inventory Awareness',
         fix: 'Jobs connect to blanks, transfers, specialty inks, labels, packaging, and vendor needs before production gets delayed.',
-        img: '/filemaker/PurchaseOrders.png',
-        alt: 'Purchase orders and vendor needs screen',
+        img: '/gallery/dtla-print/best-sellers.webp',
+        alt: 'DTLA Print best sellers with live product availability',
     },
     {
         icon: 'replay',
@@ -76,8 +76,8 @@ const painSolutions = [
         pain: 'Wrong artwork, missing approvals, unclear notes, incorrect garments, or rushed handoffs can turn a profitable job into a loss.',
         service: 'Margin and Reprint Visibility',
         fix: 'Track the details that affect profit, including labor, rush changes, errors, reprints, discounts, and production exceptions.',
-        img: '/filemaker/Reporting.png',
-        alt: 'Reporting screen with margin and exception tracking',
+        img: '/gallery/dtla-print/t-shirts.webp',
+        alt: 'DTLA Print t-shirt catalog with accurate product details',
     },
     {
         icon: 'manage_accounts',
@@ -85,13 +85,19 @@ const painSolutions = [
         pain: 'The owner or production manager becomes the person everyone depends on for answers, approvals, pricing, scheduling, and problem solving.',
         service: 'Department Visibility',
         fix: 'Screen printing, DTG, DTF, finishing, fulfillment, and shipping teams get the exact information they need to move work forward without waiting on you.',
-        img: '/filemaker/TaskTypes.png',
-        alt: 'Task and workflow structure screen',
+        img: '/gallery/dtla-print/categories.webp',
+        alt: 'DTLA Print category navigation the whole team can follow',
     },
 ];
 
 const painCss = `
-.pain-track { display: flex; gap: 1.5rem; padding: 0 2rem; }
+.pain-track {
+    --card-w: min(1150px, calc(100vw - 4rem));
+    display: flex;
+    gap: 1.5rem;
+    /* center the first card at rest and the last card at the end */
+    padding: 0 calc((100vw - var(--card-w)) / 2);
+}
 .pain-viewport { overflow-x: auto; padding-bottom: 1rem; }
 @supports (animation-timeline: view()) {
     .pain-section {
@@ -99,6 +105,10 @@ const painCss = `
         overflow: visible; /* required for position: sticky inside */
         view-timeline-name: --pain-tl;
         view-timeline-axis: block;
+        /* the site sets scroll-padding-top: 100px, which view-timeline-inset:auto
+           would inherit and start the animation early; pin it to 0 so the first
+           card sits centered when the section pins */
+        view-timeline-inset: 0;
     }
     .pain-viewport {
         position: sticky;
@@ -393,7 +403,7 @@ export default function PrintingCompaniesPage() {
                                 Print Shops Do Not Break Because They Cannot Print. They Break Because the Work Is Hard to Manage.
                             </h2>
                             <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-3xl">
-                                Sound familiar? Keep scrolling: every one of these problems maps to a service we deliver.
+                                Sound familiar? Every one of these problems maps to a service we deliver.
                             </p>
                         </div>
                         <div className="pain-track">
