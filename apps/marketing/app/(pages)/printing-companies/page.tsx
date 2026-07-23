@@ -67,7 +67,7 @@ const painSolutions = [
         pain: 'Blanks, transfers, screens, specialty inks, labels, and packaging are not always connected to the job before production begins.',
         service: 'Inventory Awareness',
         fix: 'Jobs connect to blanks, transfers, specialty inks, labels, packaging, and vendor needs before production gets delayed.',
-        img: '/filemaker/InventoryReport.png',
+        img: '',
         alt: 'Inventory ordering report by product SKU',
     },
     {
@@ -76,8 +76,8 @@ const painSolutions = [
         pain: 'Wrong artwork, missing approvals, unclear notes, incorrect garments, or rushed handoffs can turn a profitable job into a loss.',
         service: 'Margin and Reprint Visibility',
         fix: 'Track the details that affect profit, including labor, rush changes, errors, reprints, discounts, and production exceptions.',
-        img: '/gallery/dtla-print/t-shirts.webp',
-        alt: 'DTLA Print t-shirt catalog with accurate product details',
+        img: '',
+        alt: 'Margin and reprint visibility report',
     },
     {
         icon: 'manage_accounts',
@@ -85,8 +85,8 @@ const painSolutions = [
         pain: 'The owner or production manager becomes the person everyone depends on for answers, approvals, pricing, scheduling, and problem solving.',
         service: 'Department Visibility',
         fix: 'Screen printing, DTG, DTF, finishing, fulfillment, and shipping teams get the exact information they need to move work forward without waiting on you.',
-        img: '/gallery/dtla-print/categories.webp',
-        alt: 'DTLA Print category navigation the whole team can follow',
+        img: '',
+        alt: 'Department visibility dashboard',
     },
 ];
 
@@ -358,13 +358,20 @@ export default function PrintingCompaniesPage() {
                                         </div>
                                     </div>
                                     <div className="relative min-h-[300px] md:min-h-[620px] border-t md:border-t-0 md:border-l border-[#202836] bg-[#0B0F16]">
-                                        <Image
-                                            src={p.img}
-                                            alt={p.alt}
-                                            fill
-                                            sizes="(max-width: 768px) 90vw, 980px"
-                                            className="object-contain"
-                                        />
+                                        {p.img ? (
+                                            <Image
+                                                src={p.img}
+                                                alt={p.alt}
+                                                fill
+                                                sizes="(max-width: 768px) 90vw, 980px"
+                                                className="object-contain"
+                                            />
+                                        ) : (
+                                            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                                                <span className="material-symbols-outlined text-5xl text-[#2A3547]">imagesmode</span>
+                                                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#3A4657]">Screenshot coming soon</span>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             ))}
