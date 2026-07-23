@@ -452,11 +452,8 @@ export default function PrintingCompaniesPage() {
                         <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight mb-5 max-w-4xl">
                             Production Is Only Half the Story. Growth Starts on Your Website.
                         </h2>
-                        <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-3xl mb-4">
+                        <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-3xl">
                             Before a job ever reaches the press, a customer has to find you, see what you offer, and place the order. When that only happens by phone and email, your shop sells at the speed of your inbox. Shop Titan builds print shop storefronts that take complete orders around the clock.
-                        </p>
-                        <p className="text-base md:text-lg text-gray-300 font-medium leading-relaxed">
-                            Every screen below is DTLA Print, a working storefront built on Shop Titan.
                         </p>
                     </div>
                 </section>
