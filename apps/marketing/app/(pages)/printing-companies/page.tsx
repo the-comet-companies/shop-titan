@@ -262,95 +262,6 @@ function SectionHead({ title, body, wide }: { title: string; body?: string; wide
     );
 }
 
-// ── hero dashboard mockup (illustrative UI, sample data) ──
-function Dashboard() {
-    const queues = [
-        { name: 'Screen Printing', jobs: 18, pct: 78 },
-        { name: 'DTG', jobs: 11, pct: 52 },
-        { name: 'DTF', jobs: 9, pct: 41 },
-    ];
-    const approvals = [
-        { job: 'Riverside FC · 144 tees · 3-color front', status: 'Awaiting client', tone: 'text-amber-400 border-amber-400/30 bg-amber-400/10' },
-        { job: 'Summit Coffee · 60 hoodies · left chest', status: 'Approved', tone: 'text-emerald-400 border-emerald-400/30 bg-emerald-400/10' },
-        { job: 'Valley 5K · 350 tees · front + back', status: 'Rev 2 sent', tone: 'text-sky-400 border-sky-400/30 bg-sky-400/10' },
-    ];
-    return (
-        <div className="rounded-xl border border-[#232C3B] bg-[#0E1219] shadow-[0_24px_80px_rgba(0,0,0,0.55)] overflow-hidden text-left">
-            {/* window bar */}
-            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-[#1C2330] bg-[#0B0F16]">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#2A3547]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#2A3547]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#2A3547]" />
-                <span className="ml-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-400">Production Command Center</span>
-                <span className="ml-auto text-[11px] text-gray-500">Today</span>
-            </div>
-            {/* KPI row */}
-            <div className="grid grid-cols-4 divide-x divide-[#1C2330] border-b border-[#1C2330]">
-                {[
-                    { label: 'Open jobs', val: '47' },
-                    { label: 'Rush', val: '6', hot: true },
-                    { label: 'Awaiting approval', val: '9' },
-                    { label: 'Blocked', val: '3' },
-                ].map((k) => (
-                    <div key={k.label} className="px-4 py-3">
-                        <div className={`text-xl font-bold ${k.hot ? 'text-amber-400' : 'text-white'}`}>{k.val}</div>
-                        <div className="text-[10px] uppercase tracking-wider text-gray-500 mt-0.5">{k.label}</div>
-                    </div>
-                ))}
-            </div>
-            <div className="grid sm:grid-cols-2">
-                {/* queues */}
-                <div className="p-4 border-b sm:border-b-0 sm:border-r border-[#1C2330]">
-                    <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500 mb-3">Department queues</div>
-                    <div className="space-y-3">
-                        {queues.map((q) => (
-                            <div key={q.name}>
-                                <div className="flex justify-between text-xs mb-1">
-                                    <span className="text-gray-300">{q.name}</span>
-                                    <span className="text-gray-500">{q.jobs} jobs</span>
-                                </div>
-                                <div className="h-1.5 rounded-full bg-[#1C2330]">
-                                    <div className="h-1.5 rounded-full bg-[#4D9FFF]" style={{ width: `${q.pct}%` }} />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="mt-4 rounded-lg border border-amber-400/25 bg-amber-400/5 px-3 py-2 flex items-start gap-2">
-                        <span className="material-symbols-outlined text-amber-400 text-base mt-0.5">warning</span>
-                        <div className="text-[11px] leading-snug text-gray-300">
-                            <span className="font-semibold text-amber-400">Reprint flagged</span> · Job 2214 · art mismatch caught at press check
-                        </div>
-                    </div>
-                    <div className="mt-2 rounded-lg border border-[#243044] bg-[#111827] px-3 py-2 flex items-start gap-2">
-                        <span className="material-symbols-outlined text-[#4D9FFF] text-base mt-0.5">inventory_2</span>
-                        <div className="text-[11px] leading-snug text-gray-300">
-                            <span className="font-semibold text-[#4D9FFF]">Blanks low</span> · Black tees, size M · linked to 2 scheduled jobs
-                        </div>
-                    </div>
-                </div>
-                {/* approvals */}
-                <div className="p-4">
-                    <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500 mb-3">Artwork approvals</div>
-                    <div className="space-y-2.5">
-                        {approvals.map((a) => (
-                            <div key={a.job} className="rounded-lg border border-[#1C2330] bg-[#0B0F16] px-3 py-2.5">
-                                <div className="text-xs text-gray-200 leading-snug mb-1.5">{a.job}</div>
-                                <span className={`inline-block text-[10px] font-semibold uppercase tracking-wider border rounded px-1.5 py-0.5 ${a.tone}`}>{a.status}</span>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="mt-3 text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500 mb-2">Press schedule</div>
-                    <div className="space-y-1.5 text-[11px]">
-                        <div className="flex justify-between text-gray-300"><span>Press 1 · 6-color</span><span className="text-gray-500">AM block</span></div>
-                        <div className="flex justify-between text-gray-300"><span>Press 2 · 2-color</span><span className="text-gray-500">PM block</span></div>
-                        <div className="flex justify-between text-gray-300"><span>DTG line</span><span className="text-amber-400">Rush queue</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
-
 export default function PrintingCompaniesPage() {
     const [method, setMethod] = useState('screen');
     const active = methods.find((m) => m.key === method)!;
@@ -390,7 +301,17 @@ export default function PrintingCompaniesPage() {
                                 <GhostButton label="See the Workflow" href="#workflow" />
                             </div>
                         </div>
-                        <Dashboard />
+                        <div className="rounded-xl border border-[#232C3B] shadow-[0_24px_80px_rgba(0,0,0,0.55)] overflow-hidden bg-[#0E1219]">
+                            <Image
+                                src="/gallery/dtla-print/hoodiesv2.jpg"
+                                alt="DTLA Print custom hoodies and sweaters catalog built on Shop Titan"
+                                width={1906}
+                                height={2230}
+                                priority
+                                sizes="(max-width: 1024px) 90vw, 600px"
+                                className="w-full h-auto"
+                            />
+                        </div>
                     </div>
                 </section>
 
