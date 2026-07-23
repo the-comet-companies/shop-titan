@@ -144,8 +144,8 @@ const siteSolutions = [
         pain: 'Deals, seasonal pushes, and best sellers do not sell anything if the only place they exist is inside the shop.',
         service: 'Deals and Best Sellers',
         fix: 'Featured deals and best-seller pages give customers a reason to come back and an easy path to order more.',
-        img: '/gallery/dtla-print/deals.webp',
-        alt: 'DTLA Print deals page with featured offers',
+        img: '/website/best-sellers-crop.png',
+        alt: 'Best sellers section with category filters and discounted products',
     },
 ];
 
