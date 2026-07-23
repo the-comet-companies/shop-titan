@@ -418,7 +418,7 @@ export default function PrintingCompaniesPage() {
                                 <div
                                     key={p.q}
                                     style={{ width: 'var(--card-w)' }}
-                                    className="shrink-0 rounded-xl border border-[#232C3B] bg-[#10151D] overflow-hidden grid md:grid-cols-2"
+                                    className="shrink-0 rounded-xl border border-[#232C3B] bg-[#10151D] overflow-hidden grid md:grid-cols-[3fr_7fr]"
                                 >
                                     <div className="p-7 md:p-10 flex flex-col justify-center">
                                         <div className="flex items-center gap-3 mb-4">
@@ -441,7 +441,7 @@ export default function PrintingCompaniesPage() {
                                             src={p.img}
                                             alt={p.alt}
                                             fill
-                                            sizes="(max-width: 768px) 90vw, 700px"
+                                            sizes="(max-width: 768px) 90vw, 980px"
                                             className="object-cover object-top"
                                         />
                                     </div>
