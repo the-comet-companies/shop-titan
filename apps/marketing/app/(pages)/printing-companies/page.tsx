@@ -363,7 +363,7 @@ export default function PrintingCompaniesPage() {
                                             alt={p.alt}
                                             fill
                                             sizes="(max-width: 768px) 90vw, 980px"
-                                            className="object-cover object-top"
+                                            className="object-contain"
                                         />
                                     </div>
                                 </div>
