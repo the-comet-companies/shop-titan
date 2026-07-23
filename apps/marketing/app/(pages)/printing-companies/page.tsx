@@ -40,8 +40,8 @@ const painSolutions = [
         pain: 'Whiteboards, spreadsheets, magnets, and verbal updates do not show real press capacity, department workload, rush impact, or bottlenecks.',
         service: 'Production Scheduling',
         fix: 'See what is in queue, what is ready, what is blocked, and how rush jobs affect capacity across departments.',
-        img: '/gallery/dtla-print/rush-orders.webp',
-        alt: 'DTLA Print rush orders page with clear turnaround expectations',
+        img: '/filemaker/machine-scheduler.png',
+        alt: 'Machine scheduler with jobs assigned per press and department',
     },
     {
         icon: 'notifications_active',
