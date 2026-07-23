@@ -90,6 +90,65 @@ const painSolutions = [
     },
 ];
 
+// Website-focused cards: same pain-to-solution format, storefront screens
+// from DTLA Print's live site (built on Shop Titan).
+const siteSolutions = [
+    {
+        icon: 'storefront',
+        q: 'Still Taking Orders by Phone and Email?',
+        pain: 'Every order that starts with a call or an email thread needs someone to type it up, chase the details, and confirm the price before work can begin.',
+        service: 'Online Storefront',
+        fix: 'Customers browse products, pick garments, and place orders on your website any time, and each order arrives complete instead of scattered across messages.',
+        img: '/gallery/dtla-print/homepage.webp',
+        alt: 'DTLA Print homepage storefront built on Shop Titan',
+    },
+    {
+        icon: 'grid_view',
+        q: 'Customers Cannot See Everything You Offer?',
+        pain: 'If your catalog lives in a PDF or in your head, customers only order what they already know about, and the rest of your capabilities never get sold.',
+        service: 'Full Product Catalog',
+        fix: 'Organized categories put every garment, print method, and service in front of customers, so browsing turns into bigger and more frequent orders.',
+        img: '/gallery/dtla-print/categories.webp',
+        alt: 'DTLA Print product category navigation',
+    },
+    {
+        icon: 'design_services',
+        q: 'Custom Jobs Start as Long Email Threads?',
+        pain: 'Custom merch requests bounce between quotes, art files, placement notes, and revisions before anyone knows what the job actually is.',
+        service: 'Custom Merch Ordering',
+        fix: 'A guided flow collects the garment, quantities, artwork, and placement up front, so custom jobs start with the details production needs.',
+        img: '/gallery/dtla-print/custom-merch.webp',
+        alt: 'DTLA Print custom merch ordering page',
+    },
+    {
+        icon: 'bolt',
+        q: 'Rush Requests Come In With No Structure?',
+        pain: 'Rush jobs land as urgent calls with unclear expectations, and the shop absorbs the chaos of confirming what is possible by when.',
+        service: 'Rush Ordering Built In',
+        fix: 'Clear rush options and turnaround expectations live on the site, so customers pick a real deadline and production plans around it.',
+        img: '/gallery/dtla-print/rush-orders.webp',
+        alt: 'DTLA Print rush orders page with turnaround options',
+    },
+    {
+        icon: 'shopping_cart',
+        q: 'Reorders Still Require a Phone Call?',
+        pain: 'Repeat customers should be your easiest revenue, but if reordering means calling the shop, many of those orders quietly go elsewhere.',
+        service: 'Self-Serve Checkout',
+        fix: 'Customers build a cart and check out on their own, and repeat orders take minutes instead of another round of back and forth.',
+        img: '/gallery/dtla-print/cart.webp',
+        alt: 'DTLA Print cart and checkout',
+    },
+    {
+        icon: 'sell',
+        q: 'Promotions Never Reach Your Customers?',
+        pain: 'Deals, seasonal pushes, and best sellers do not sell anything if the only place they exist is inside the shop.',
+        service: 'Deals and Best Sellers',
+        fix: 'Featured deals and best-seller pages give customers a reason to come back and an easy path to order more.',
+        img: '/gallery/dtla-print/deals.webp',
+        alt: 'DTLA Print deals page with featured offers',
+    },
+];
+
 const painCss = `
 .pain-track {
     --card-w: min(1400px, calc(100vw - 4rem));
@@ -133,6 +192,8 @@ const painCss = `
             transform: translateX(calc(-100% + 100vw));
         }
     }
+    /* website strip has 6 cards instead of 8: shorter scroll range */
+    .site-section { height: 400vh; }
 }
 `;
 
@@ -262,6 +323,49 @@ function SectionHead({ title, body, wide }: { title: string; body?: string; wide
     );
 }
 
+// One pain-to-solution card in a horizontal scroll strip (30% text / 70% image).
+function SolutionCard({ p }: { p: (typeof painSolutions)[number] }) {
+    return (
+        <div
+            style={{ width: 'var(--card-w)' }}
+            className="shrink-0 rounded-xl border border-[#232C3B] bg-[#10151D] overflow-hidden grid md:grid-cols-[3fr_7fr]"
+        >
+            <div className="p-7 md:p-10 flex flex-col justify-center">
+                <div className="flex items-center gap-3 mb-4">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#2A5A9E]/50 bg-[#0E1725] shrink-0">
+                        <span className="material-symbols-outlined text-[#4D9FFF] text-xl">{p.icon}</span>
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">{p.q}</h3>
+                </div>
+                <p className="text-sm md:text-base text-gray-400 leading-relaxed mb-6">{p.pain}</p>
+                <div className="border-t border-[#202836] pt-5">
+                    <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#4D9FFF] mb-2">
+                        Our Solution
+                    </div>
+                    <div className="text-lg font-bold text-white tracking-tight mb-2">{p.service}</div>
+                    <p className="text-sm md:text-base text-gray-300 leading-relaxed">{p.fix}</p>
+                </div>
+            </div>
+            <div className="relative min-h-[300px] md:min-h-[620px] border-t md:border-t-0 md:border-l border-[#202836] bg-[#0B0F16]">
+                {p.img ? (
+                    <Image
+                        src={p.img}
+                        alt={p.alt}
+                        fill
+                        sizes="(max-width: 768px) 90vw, 980px"
+                        className="object-contain"
+                    />
+                ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                        <span className="material-symbols-outlined text-5xl text-[#2A3547]">imagesmode</span>
+                        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#3A4657]">Screenshot coming soon</span>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
 export default function PrintingCompaniesPage() {
     const [method, setMethod] = useState('screen');
     const active = methods.find((m) => m.key === method)!;
@@ -336,44 +440,33 @@ export default function PrintingCompaniesPage() {
                     <div className="pain-viewport">
                         <div className="pain-track">
                             {painSolutions.map((p) => (
-                                <div
-                                    key={p.q}
-                                    style={{ width: 'var(--card-w)' }}
-                                    className="shrink-0 rounded-xl border border-[#232C3B] bg-[#10151D] overflow-hidden grid md:grid-cols-[3fr_7fr]"
-                                >
-                                    <div className="p-7 md:p-10 flex flex-col justify-center">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#2A5A9E]/50 bg-[#0E1725] shrink-0">
-                                                <span className="material-symbols-outlined text-[#4D9FFF] text-xl">{p.icon}</span>
-                                            </span>
-                                            <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">{p.q}</h3>
-                                        </div>
-                                        <p className="text-sm md:text-base text-gray-400 leading-relaxed mb-6">{p.pain}</p>
-                                        <div className="border-t border-[#202836] pt-5">
-                                            <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#4D9FFF] mb-2">
-                                                Our Solution
-                                            </div>
-                                            <div className="text-lg font-bold text-white tracking-tight mb-2">{p.service}</div>
-                                            <p className="text-sm md:text-base text-gray-300 leading-relaxed">{p.fix}</p>
-                                        </div>
-                                    </div>
-                                    <div className="relative min-h-[300px] md:min-h-[620px] border-t md:border-t-0 md:border-l border-[#202836] bg-[#0B0F16]">
-                                        {p.img ? (
-                                            <Image
-                                                src={p.img}
-                                                alt={p.alt}
-                                                fill
-                                                sizes="(max-width: 768px) 90vw, 980px"
-                                                className="object-contain"
-                                            />
-                                        ) : (
-                                            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                                                <span className="material-symbols-outlined text-5xl text-[#2A3547]">imagesmode</span>
-                                                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#3A4657]">Screenshot coming soon</span>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
+                                <SolutionCard key={p.q} p={p} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* ───── WEBSITE · heading + supporting text ───── */}
+                <section className="border-t border-[#161C27] pt-16 md:pt-24">
+                    <div className="max-w-7xl mx-auto px-mobile">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight mb-5 max-w-4xl">
+                            Production Is Only Half the Story. Growth Starts on Your Website.
+                        </h2>
+                        <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-3xl mb-4">
+                            Before a job ever reaches the press, a customer has to find you, see what you offer, and place the order. When that only happens by phone and email, your shop sells at the speed of your inbox. Shop Titan builds print shop storefronts that take complete orders around the clock.
+                        </p>
+                        <p className="text-base md:text-lg text-gray-300 font-medium leading-relaxed">
+                            Every screen below is DTLA Print, a working storefront built on Shop Titan.
+                        </p>
+                    </div>
+                </section>
+
+                {/* ───── WEBSITE · horizontal scroll-driven cards (visually part of the section above: same bg, no rule) ───── */}
+                <section className="pain-section site-section">
+                    <div className="pain-viewport">
+                        <div className="pain-track">
+                            {siteSolutions.map((p) => (
+                                <SolutionCard key={p.q} p={p} />
                             ))}
                         </div>
                     </div>
