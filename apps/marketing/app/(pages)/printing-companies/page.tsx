@@ -117,8 +117,8 @@ const siteSolutions = [
         pain: 'Custom merch requests bounce between quotes, art files, placement notes, and revisions before anyone knows what the job actually is.',
         service: 'Custom Merch Ordering',
         fix: 'A guided flow collects the garment, quantities, artwork, and placement up front, so custom jobs start with the details production needs.',
-        img: '/gallery/dtla-print/custom-merch.webp',
-        alt: 'DTLA Print custom merch ordering page',
+        img: '/website/art-work-upload.png',
+        alt: 'Design studio with artwork upload, placement, and decoration method',
     },
     {
         icon: 'bolt',
