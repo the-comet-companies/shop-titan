@@ -126,8 +126,8 @@ const siteSolutions = [
         pain: 'Rush jobs land as urgent calls with unclear expectations, and the shop absorbs the chaos of confirming what is possible by when.',
         service: 'Rush Ordering Built In',
         fix: 'Clear rush options and turnaround expectations live on the site, so customers pick a real deadline and production plans around it.',
-        img: '/gallery/dtla-print/rush-orders.webp',
-        alt: 'DTLA Print rush orders page with turnaround options',
+        img: '/website/rush-orders-hero.png',
+        alt: 'Rush order page with turnaround options and rush quote button',
     },
     {
         icon: 'shopping_cart',
